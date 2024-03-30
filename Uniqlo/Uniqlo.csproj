@@ -76,6 +76,14 @@
     <Content Include="Images\accessories.jpg" />
     <Content Include="Images\storeLocator.jpg" />
     <Content Include="Images\Uniqlo-Logos.png" />
+    <Content Include="Images\uniqloKidsDresses.png" />
+    <Content Include="Images\uniqloKidsOuterwear.jpeg" />
+    <Content Include="Images\uniqloKidsPants.png" />
+    <Content Include="Images\uniqloKidsTop.jpg" />
+    <Content Include="Images\uniqloMenAccessories.jpg" />
+    <Content Include="Images\uniqloMenOuterwear.jpg" />
+    <Content Include="Images\uniqloMenPants.jpg" />
+    <Content Include="Images\uniqloMenTop.jpg" />
     <Content Include="Images\uniqloWomanDress.jpg" />
     <Content Include="Images\uniqloWomanOuterwear.jpg" />
     <Content Include="Images\uniqloWomenPants.jpg" />

@@ -98,3 +98,51 @@ h2 {
     margin-top: 20px;
 }
 
+/*BOX*/
+.column {
+    float: left;
+    width: 23%;
+    padding: 0 10px;
+}
+
+.row {
+    max-width: 1000px;
+    position: relative;
+    margin: auto;
+    margin-top: 40px;
+    padding-bottom:50px;
+}
+
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+@media screen and (max-width: 600px) {
+    .column {
+        width: 100%;
+        display: block;
+        margin-bottom: 20px;
+    }
+}
+
+.card {
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+    padding: 16px;
+    text-align: center;
+    background-color: #f1f1f1;
+}
+
+.card:hover {
+    transform: translate3D(0,-1px,0) scale(1.10);
+    transition: all .5s ease;
+}
+
+.img {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    object-fit: cover;
+    padding-left: 5px;
+}
