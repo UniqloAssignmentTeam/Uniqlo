@@ -14,7 +14,7 @@
             <div>
                 <img src="Images/Uniqlo-Logos.png" class="uniqlo-icon" runat="server"/>
             </div>
-            
+           
             <div id="menu">
                 <asp:Menu ID="Menu1" runat="server" DataSourceID="SiteMapDataSource1" BackColor="GhostWhite" ForeColor="Black" OnMenuItemClick="Menu1_MenuItemClick" Orientation="Horizontal" StaticDisplayLevels="2" StaticSubMenuIndent="30px" Font-Bold="True" Font-Size="20px" Font-Underline="False" CssClass="main-menu">
                     <DynamicHoverStyle CssClass="dynamic-menu-hover" />

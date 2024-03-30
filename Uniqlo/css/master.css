@@ -14,17 +14,16 @@ body {
     padding-left: 50px;
     padding-top: 55px;
     background-color: ghostwhite;
-}
 
-.dynamic-menu-item, .menu-item {
+
+}
+.dynamic-menu-item {
     margin-top: 15px;
-    padding-left: 30px;
+    margin-bottom:10px;
     border-radius: 10px;
-}
-
-.dynamic-menu-item:hover, .menu-item:hover {
+    padding: 10px 30px 10px 30px;
     background-color: ghostwhite;
- }
+}
 
 
 #header {
