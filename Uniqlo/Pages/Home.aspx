@@ -4,7 +4,6 @@
         <link href="../css/home.css" rel="stylesheet" />
     </header>
 
-    <!--beng yee ass>
     <!--SLIDER-->
     <div class="slideshow-container">
         <div class="mySlides fade">
