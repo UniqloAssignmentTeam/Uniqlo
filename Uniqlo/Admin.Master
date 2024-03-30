@@ -10,10 +10,45 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <div>
-            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+        <asp:SiteMapDataSource ID="SiteMapDataSource1" runat="server" />
+        <div id="header">
+            <div>
+                <img src="Images/Uniqlo-Logos.png" class="uniqlo-icon" runat="server"/>
+            </div>
+            
+            <div id="menu">
+                <asp:Menu ID="Menu1" runat="server" DataSourceID="SiteMapDataSource1" 
+                    BackColor="GhostWhite" ForeColor="Black" OnMenuItemClick="Menu1_MenuItemClick" Orientation="Horizontal" StaticDisplayLevels="2" StaticSubMenuIndent="30px" Font-Bold="True" Font-Size="20px" Font-Underline="False" CssClass="main-menu">
+                    <DynamicHoverStyle CssClass="dynamic-menu-hover" />
+                    <DynamicMenuItemStyle ForeColor="Black" CssClass="dynamic-menu-item"/>
+                    <DynamicMenuStyle CssClass="dynamic-menu-item" />
+                    <StaticHoverStyle CssClass="menu-hover" />
+                    <StaticMenuItemStyle CssClass="menu-item" />
+                    <StaticMenuStyle CssClass="menu-item" />
+                </asp:Menu>
+            </div>
+
+            <div id="search">
+                <div id="search-icon">
+                    <a href="Cart.aspx" style="text-decoration: none;">
+                        <i class="fa-solid fa-cart-shopping cart"></i>
+                    </a>
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </div>
+                <asp:TextBox ID="SearchBox" runat="server" CssClass="SearchBox" placeholder="Search" MaxLength="30"></asp:TextBox>
+            </div>
+        </div>
+
+
+        <div id="content">
+            <asp:ContentPlaceHolder ID="main" runat="server">
+                <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                </asp:ContentPlaceHolder>
             </asp:ContentPlaceHolder>
         </div>
     </form>
 </body>
+<foot>
+    
+</foot>
 </html>
