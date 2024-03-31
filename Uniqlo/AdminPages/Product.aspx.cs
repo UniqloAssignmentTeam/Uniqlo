@@ -13,5 +13,10 @@ namespace Uniqlo.AdminPages
         {
 
         }
+
+        protected void search_bar_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
