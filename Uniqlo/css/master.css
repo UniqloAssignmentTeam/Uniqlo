@@ -182,3 +182,9 @@ body {
     padding-top: 65px;
     padding-left: 130px;
 }
+
+.siteMapPath {
+    max-width: 1000px;
+    position: relative;
+    margin: auto;
+}

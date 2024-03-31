@@ -47,7 +47,7 @@
                     <i class="fa-solid fa-users users"></i>
                 </div>
                 <div class="overviewContent">
-                    <h2>10 active User</h2>
+                    <h2>10 register User</h2>
                     <p class="overviewP">Within 3 months</p>
                 </div>
             </div>
@@ -56,24 +56,37 @@
         <!--HEADING-->
         <div class="space"></div>
 
-        <hr />
         <div class="header">
-            <h2>Total Orders</h2>
+            <h2>Total Orders In 2024</h2>
             <p>Payment received across all channels</p>
         </div>
-
-        <!--Date Picker-->
-        <input type="date" name="start" />
-        <input type="date" name="end" />
 
         <!--LINE CHART-->
         <canvas id="myChart" style="width:100%;"></canvas>
         
 
+        <!--OVERVIEW GRAPH-->
+        <div class="overviewGraph">
+            <div class="ttlOrder">
+                <div class="overviewName">
+                    <h3>Total Orders</h3>
+                    <h3 class="amt">16,289</h3>
+                </div>
+                <div class="overviewDetails">
+                    <p>Last 7 days</p>
+                </div>
+                <div>
+                    <canvas id="barChart"></canvas>
+                </div>
+            </div>
+            <div class="newUser">
+
+            </div>
+        </div>
     </div>    
     <footer>
         <script src="../Javascript/lineChart.js"></script>
-        
+        <script src="../Javascript/barChartTtlOder.js"></script>
     </footer>
 
 </asp:Content>

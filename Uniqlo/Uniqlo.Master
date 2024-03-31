@@ -10,6 +10,7 @@
 <body>
     <form id="form1" runat="server">
         <asp:SiteMapDataSource ID="SiteMapDataSource1" runat="server" SiteMapProvider="UserSiteMapProvider"/>
+        
         <div id="header">
             <div>
                 <img src="Images/Uniqlo-Logos.png" class="uniqlo-icon" runat="server"/>
@@ -48,7 +49,9 @@
                 <asp:TextBox ID="SearchBox" runat="server" CssClass="SearchBox" placeholder="Search" MaxLength="30"></asp:TextBox>
             </div>
         </div>
-
+        <div class="siteMapPath">
+            <asp:SiteMapPath ID="SiteMapPath1" runat="server" SiteMapProvider="UserSiteMapProvider"></asp:SiteMapPath>
+        </div>
 
         <div id="content">
             <asp:ContentPlaceHolder ID="main" runat="server">

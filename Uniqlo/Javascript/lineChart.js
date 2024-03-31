@@ -1,5 +1,5 @@
-﻿const xValues = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "July", "Aug", "Sep", "Oct", "Nov", "Dec"];
-const yValues = [20, 10, 30, 40, 60, 30, 90, 100, 60, 70, 100, 80];
+﻿const xValues = ["Jan", "Feb", "Mar", "Apr"];
+const yValues = [30, 40, 20, 50];
 
 new Chart("myChart", {
     type: "line",
@@ -16,7 +16,7 @@ new Chart("myChart", {
     options: {
         legend: { display: false },
         scales: {
-            yAxes: [{ ticks: { min: 0, max: 100 } }],
+            yAxes: [{ ticks: { min: 0, max: 50 } }],
         }
     }
 });

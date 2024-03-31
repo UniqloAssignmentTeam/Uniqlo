@@ -18,13 +18,13 @@
 }
 
 /*OVERVIEW SECTION*/
-.overview {
+.overview, .overviewGraph {
     display: flex;
 }
 
 .orderOnHold, .orderCompleted, .productOutOfStock, .activeUser {
     background-color: ghostwhite;
-    width: 230px;
+    width: 25%;
     height: 180px;
     margin-right: 20px;
     border-radius: 10px;
@@ -55,3 +55,41 @@
     display: flex;
 }
 
+/*OVERVIEW GRAPH*/
+.overviewGraph{
+    margin-top: 70px;
+}
+
+.ttlOrder, .newUser {
+    background-color: ghostwhite;
+    width: 50%;
+    height: 380px;
+    margin-right: 20px;
+    border-radius: 10px;
+    box-shadow: 2px 4px 6px 0 rgba(0, 0, 0, 0.2);
+    padding: 0px 10px 0px 10px;
+}
+
+.overviewName{
+    display: flex;
+}
+
+.overviewName .amt{
+    padding-left: 280px;
+}
+
+
+.overviewDetails {
+    margin-top: -30px;
+}
+
+.container {
+    width: 80%;
+    margin: 20px auto;
+}
+
+.p {
+    text-align: center;
+    font-size: 14px;
+    padding-top: 140px;
+}
