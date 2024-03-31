@@ -11,7 +11,7 @@ namespace Uniqlo.AdminPages
 {
 
 
-    public partial class Discount
+    public partial class ValueBuy
     {
     }
 }

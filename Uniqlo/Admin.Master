@@ -27,15 +27,15 @@
             </div>
 
 
-            <div id="search">
+            <div id="adminSearch">
                 <div id="search-icon">
                     <!--User-->
                     <div class="user-dropdown">
                         <i class="fa-regular fa-user user"></i>
                         <!-- Hidden menu that will be displayed on hover -->
                         <div class="hiddenUserMenu">
-                            <a href="/login">Login</a>
                             <a href="/profile">Profile</a>
+                            <a href="/logout">Logout</a>
                         </div>
                     </div>
 
@@ -59,11 +59,12 @@
             </div>
             <div class="footerNav">
                 <ul>
-                    <li><a href="Home.aspx">Home</a></li>
-                    <li><a href="ValueBuy.aspx">Value Buy</a></li>
-                    <li><a href="WishList.aspx">Wish List</a></li>
-                    <li><a href="AboutUs.aspx">About Us</a></li>
-                    <li><a href="ContactUs.aspx">Contact Us</a></li>
+                    <li><a href="Dashboard.aspx">Dashboard</a></li>
+                    <li><a href="Staff.aspx">Manage Staff</a></li>
+                    <li><a href="Product.aspx">Manage Product</a></li>
+                    <li><a href="ValueBuy.aspx">Manage Value Buy</a></li>
+                    <li><a href="Order.aspx">Manage Order</a></li>
+                    <li><a href="Report.aspx">Report</a></li>
                 </ul>
             </div>
 

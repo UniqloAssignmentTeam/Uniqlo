@@ -161,6 +161,6 @@
 
 
     <footer>
-        <script src="../Javascript/home.js"></script>
+        <script src="../Javascript/slider.js"></script>
     </footer>
 </asp:Content>

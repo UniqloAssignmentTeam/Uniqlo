@@ -1,0 +1,57 @@
+﻿.bodyContent {
+    max-width: 1000px;
+    position: relative;
+    margin: auto;
+}
+
+.header {
+    padding-top: 30px;
+}
+
+.header p{
+    margin-top: -10px;
+    margin-bottom: 30px;
+}
+
+.space{
+    margin-top: 50px;
+}
+
+/*OVERVIEW SECTION*/
+.overview {
+    display: flex;
+}
+
+.orderOnHold, .orderCompleted, .productOutOfStock, .activeUser {
+    background-color: ghostwhite;
+    width: 230px;
+    height: 180px;
+    margin-right: 20px;
+    border-radius: 10px;
+    display: flex;
+    box-shadow: 2px 4px 6px 0 rgba(0, 0, 0, 0.2);
+}
+
+.orderOnHold:hover, .orderCompleted:hover, .productOutOfStock:hover, .activeUser:hover{
+    transform: translate3D(0,-1px,0) scale(1.05);
+    transition: all .5s ease;
+}
+
+.truck, .order, .product, .users{
+    font-size: 50px;
+    margin: 60px 5px 60px 20px;
+}
+
+.overviewContent {
+    margin: 40px 5px 40px 20px;
+}
+
+.overviewP{
+    margin-top: -15px;
+}
+
+/*GRAPH*/
+.chart{
+    display: flex;
+}
+
