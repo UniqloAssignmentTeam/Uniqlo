@@ -21,7 +21,6 @@
 			  <siteMapNode url="Pages/Categories/Kids/DressesSkirt.aspx" title="Dresses and Skirts"/>
 		  </siteMapNode>
 	  </siteMapNode>
-    <siteMapNode url="Pages/Profile.aspx" title="Profile"/>
     <siteMapNode url="Pages/WishList.aspx" title="Wish List"/>
     <siteMapNode url="Pages/ValueBuy.aspx" title="Value Buy"/>
     <siteMapNode url="Pages/AboutUs.aspx" title="About Us"/>

@@ -17,12 +17,11 @@ body {
 }
 .dynamic-menu-item {
     margin-top: 15px;
-    margin-bottom:6px;
+    margin-bottom: 6px;
     border-radius: 10px;
     padding: 6px 30px 6px 30px;
     background-color: ghostwhite;
 }
-
 
 #header {
     display: flex;
@@ -36,11 +35,44 @@ body {
     padding: 0;
 }
 
-.cart{
-    padding-right:20px;
+.cart, .user{
+    padding-right: 15px;
     color: black;
     text-decoration: none;
 }
+
+.user-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.hiddenUserMenu {
+    display: none;
+    position: absolute;
+    background-color: ghostwhite;
+    border-radius: 10px;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.hiddenUserMenu a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+
+}
+
+.hiddenUserMenu a:hover {
+    background-color: #C8C7C7;
+    border-radius: 10px;
+}
+
+.user-dropdown:hover .hiddenUserMenu {
+    display: block;
+}
+
 
 #search {
     display: flex;

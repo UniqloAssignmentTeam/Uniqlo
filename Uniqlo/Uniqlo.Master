@@ -9,14 +9,14 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <asp:SiteMapDataSource ID="SiteMapDataSource1" runat="server" />
+        <asp:SiteMapDataSource ID="SiteMapDataSource1" runat="server" SiteMapProvider="UserSiteMapProvider"/>
         <div id="header">
             <div>
                 <img src="Images/Uniqlo-Logos.png" class="uniqlo-icon" runat="server"/>
             </div>
            
             <div id="menu">
-                <asp:Menu ID="Menu1" runat="server" DataSourceID="SiteMapDataSource1" BackColor="GhostWhite" ForeColor="Black" OnMenuItemClick="Menu1_MenuItemClick" Orientation="Horizontal" StaticDisplayLevels="2" StaticSubMenuIndent="30px" Font-Bold="True" Font-Size="20px" Font-Underline="False" CssClass="main-menu">
+                <asp:Menu ID="Menu1" runat="server" DataSourceID="SiteMapDataSource1" BackColor="GhostWhite" ForeColor="Black" Orientation="Horizontal" StaticDisplayLevels="2" StaticSubMenuIndent="30px" Font-Bold="True" Font-Size="20px" Font-Underline="False" CssClass="main-menu">
                     <DynamicHoverStyle CssClass="dynamic-menu-hover" />
                     <DynamicMenuItemStyle ForeColor="Black" CssClass="dynamic-menu-item"/>
                     <DynamicMenuStyle CssClass="dynamic-menu-item" />
@@ -28,10 +28,22 @@
 
             <div id="search">
                 <div id="search-icon">
+                    <!--User-->
+                    <div class="user-dropdown">
+                        <i class="fa-regular fa-user user"></i>
+                        <!-- Hidden menu that will be displayed on hover -->
+                        <div class="hiddenUserMenu">
+                            <a href="/login">Login</a>
+                            <a href="/register">Register</a>
+                            <a href="/profile">Profile</a>
+                        </div>
+                    </div>
+
+                    <!--Cart-->
                     <a href="Cart.aspx" style="text-decoration: none;">
                         <i class="fa-solid fa-cart-shopping cart"></i>
                     </a>
-                    <i class="fa-solid fa-magnifying-glass"></i>
+                    
                 </div>
                 <asp:TextBox ID="SearchBox" runat="server" CssClass="SearchBox" placeholder="Search" MaxLength="30"></asp:TextBox>
             </div>
@@ -40,8 +52,6 @@
 
         <div id="content">
             <asp:ContentPlaceHolder ID="main" runat="server">
-                <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-                </asp:ContentPlaceHolder>
             </asp:ContentPlaceHolder>
         </div>
 
@@ -49,27 +59,27 @@
 
 
         <div id="footer">
-                <div class="socialIcons">
-                    <a href="https://www.facebook.com/uniqlo.my/"><i class="fa-brands fa-facebook"></i></a>
-                    <a href="https://www.instagram.com/uniqlomyofficial/?hl=en"><i class="fa-brands fa-instagram"></i></a>
-                    <a href="https://twitter.com/UniqloUSA?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor"><i class="fa-brands fa-twitter"></i></a>
-                    <a href="https://www.uniqlo.com/my/en/?gad_source=1&gclid=Cj0KCQjw-_mvBhDwARIsAA-Q0Q4mkpufJT-oMpmxWp0x2VTbpXDByneYpbwIYAWKkKmx5xDWyIrkkg0aAs43EALw_wcB"><i class="fa-brands fa-google-plus"></i></a>
-                    <a href="https://www.youtube.com/user/UNIQLOMALAYSIA"><i class="fa-brands fa-youtube"></i></a>
-                </div>
-                <div class="footerNav">
-                    <ul>
-                        <li><a href="Home.aspx">Home</a></li>
-                        <li><a href="ValueBuy.aspx">Value Buy</a></li>
-                        <li><a href="WishList.aspx">Wish List</a></li>
-                        <li><a href="AboutUs.aspx">About Us</a></li>
-                        <li><a href="ContactUs.aspx">Contact Us</a></li>
-                    </ul>
-                </div>
-        
+            <div class="socialIcons">
+                <a href="https://www.facebook.com/uniqlo.my/"><i class="fa-brands fa-facebook"></i></a>
+                <a href="https://www.instagram.com/uniqlomyofficial/?hl=en"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://twitter.com/UniqloUSA?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor"><i class="fa-brands fa-twitter"></i></a>
+                <a href="https://www.uniqlo.com/my/en/?gad_source=1&gclid=Cj0KCQjw-_mvBhDwARIsAA-Q0Q4mkpufJT-oMpmxWp0x2VTbpXDByneYpbwIYAWKkKmx5xDWyIrkkg0aAs43EALw_wcB"><i class="fa-brands fa-google-plus"></i></a>
+                <a href="https://www.youtube.com/user/UNIQLOMALAYSIA"><i class="fa-brands fa-youtube"></i></a>
             </div>
-            <div class="footerBottom">
-                <p>COPYRIGHT &copy; <span class="designer">UNIQLO CO., LTD.</span> ALL RIGHTS RESERVED. </p>
+            <div class="footerNav">
+                <ul>
+                    <li><a href="Home.aspx">Home</a></li>
+                    <li><a href="ValueBuy.aspx">Value Buy</a></li>
+                    <li><a href="WishList.aspx">Wish List</a></li>
+                    <li><a href="AboutUs.aspx">About Us</a></li>
+                    <li><a href="ContactUs.aspx">Contact Us</a></li>
+                </ul>
             </div>
+
+        </div>
+        <div class="footerBottom">
+            <p>COPYRIGHT &copy; <span class="designer">UNIQLO CO., LTD.</span> ALL RIGHTS RESERVED. </p>
+        </div>
     </form>
 </body>
 <foot>

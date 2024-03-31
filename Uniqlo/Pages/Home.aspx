@@ -5,7 +5,6 @@
     </header>
 
     <!--SLIDER-->
-    <!--HELLO HI-->
     <div class="slideshow-container">
         <div class="mySlides fade">
               <div class="numbertext">1 / 3</div>
