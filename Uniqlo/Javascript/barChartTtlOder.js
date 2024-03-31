@@ -40,10 +40,6 @@ var myNewChartB = new Chart(ctx, {
 		legend: {
 			position: 'top',
 		},
-		title: {
-			display: true,
-			text: 'Bar Chart'
-		},
 		scales: {
 			yAxes: [{
 				ticks: {

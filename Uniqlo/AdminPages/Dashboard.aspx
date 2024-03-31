@@ -80,7 +80,54 @@
                 </div>
             </div>
             <div class="newUser">
-
+                <div class="overviewName">
+                    <h3>Top 5 Product Sold</h3>
+                </div>
+                <div class="table">
+                    <div class="row">
+                        <div class="col prod">
+                            Product
+                        </div>
+                        <div class="col ord">
+                            Orders
+                        </div>
+                        <div class="col">
+                            Status
+                        </div>
+                        <div class="col">
+                            Price
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="row">
+                        <div class="col prod">
+                            Mini Short Sleeve T-Shirt
+                        </div>
+                        <div class="col ord">
+                            1,500
+                        </div>
+                        <div class="col">
+                            In Stock
+                        </div>
+                        <div class="col">
+                            RM 74,850
+                        </div>
+                    </div>
+                    <div class="row">
+                    <div class="col prod">
+                        AIRism Cotton Sleeveless T-Shirt
+                    </div>
+                    <div class="col ord">
+                        1,500
+                    </div>
+                    <div class="col">
+                        In Stock
+                    </div>
+                    <div class="col">
+                        RM 74,850
+                    </div>
+                </div>
+                </div>
             </div>
         </div>
     </div>    
