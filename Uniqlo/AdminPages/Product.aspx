@@ -17,9 +17,9 @@
        
             
             
-     <div class="side-search">
+     <div class="filter-button">
 
-     <div class="category-group">
+     <div class="gender-group">
         <asp:DropDownList ID="ddlCategory" runat="server">
         <asp:ListItem>Men</asp:ListItem>
         <asp:ListItem>Women</asp:ListItem>
