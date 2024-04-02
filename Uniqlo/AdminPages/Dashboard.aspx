@@ -91,10 +91,10 @@
                         <div class="col ord">
                             Orders
                         </div>
-                        <div class="col">
+                        <div class="col stat">
                             Status
                         </div>
-                        <div class="col">
+                        <div class="col price">
                             Price
                         </div>
                     </div>
@@ -106,27 +106,74 @@
                         <div class="col ord">
                             1,500
                         </div>
-                        <div class="col">
+                        <div class="col stat inStock">
                             In Stock
                         </div>
-                        <div class="col">
+                        <div class="col price">
                             RM 74,850
                         </div>
                     </div>
+                    <hr />
                     <div class="row">
-                    <div class="col prod">
-                        AIRism Cotton Sleeveless T-Shirt
+                        <div class="col prod">
+                            AIRism Cotton Sleeveless T-Shirt
+                        </div>
+                        <div class="col ord">
+                            1,300
+                        </div>
+                        <div class="col stat inStock">
+                            In Stock
+                        </div>
+                        <div class="col price">
+                            RM 74,850
+                        </div>
                     </div>
-                    <div class="col ord">
-                        1,500
+                    <hr />
+                    <div class="row">
+                        <div class="col prod">
+                            Pleated Straight Pants
+                        </div>
+                        <div class="col ord">
+                            1,000
+                        </div>
+                        <div class="col stat lowInStock">
+                            Low In Stock
+                        </div>
+                        <div class="col price">
+                            RM 149,900
+                        </div>
                     </div>
-                    <div class="col">
-                        In Stock
+                    <hr />
+                    <div class="row">
+                        <div class="col prod">
+                            Crew Neck Short Sleeve T-Shirt
+                        </div>
+                        <div class="col ord">
+                            800
+                        </div>
+                        <div class="col stat inStock">
+                            In Stock
+                        </div>
+                        <div class="col price">
+                            RM 39,920
+                        </div>
                     </div>
-                    <div class="col">
-                        RM 74,850
+                    <hr />                    
+                    <div class="row">
+                        <div class="col prod">
+                            KIDS AIRism Cotton Graphic Short Sleeve T-Shirt
+                        </div>
+                        <div class="col ord">
+                            800
+                        </div>
+                        <div class="col stat inStock">
+                            In Stock
+                        </div>
+                        <div class="col price">
+                            RM 39,920
+                        </div>
                     </div>
-                </div>
+                    <hr />
                 </div>
             </div>
         </div>
