@@ -80,7 +80,9 @@
     </Content>
     <Content Include="css\dashboard.css" />
     <Content Include="css\home.css" />
+    <Content Include="css\Login.css" />
     <Content Include="css\master.css" />
+    <Content Include="css\product.css" />
     <Content Include="css\productAdmin.css" />
     <Content Include="Images\accessories.jpg" />
     <Content Include="Images\storeLocator.jpg" />
@@ -101,6 +103,7 @@
     <Content Include="Images\valueBuyBanner.jpg" />
     <Content Include="Javascript\barChartTtlOder.js" />
     <Content Include="Javascript\lineChart.js" />
+    <Content Include="Javascript\product.js" />
     <Content Include="Javascript\slider.js" />
     <Content Include="Pages\AboutUs.aspx" />
     <Content Include="Pages\Cart.aspx" />
