@@ -1,5 +1,5 @@
 ﻿.bodyContent {
-    max-width: 1000px;
+    max-width: 1100px;
     position: relative;
     margin: auto;
 }
@@ -63,7 +63,7 @@
 .ttlOrder, .newUser {
     background-color: ghostwhite;
     width: 50%;
-    height: 380px;
+    height: 430px;
     border-radius: 10px;
     box-shadow: 2px 4px 6px 0 rgba(0, 0, 0, 0.2);
     padding: 0px 10px 0px 10px;
@@ -109,14 +109,34 @@
 .col{
     width: 100%;
     margin-left: 15px;
+    padding: 5px 0px 5px 0px;
+}
+
+.prod{
+    width: 45%;
 }
 
 .ord{
-    margin-left: 100px;
+    width: 10%;
 }
 
-.prod {
-    flex-grow: 1;
-    white-space: pre-wrap;
+.stat{
+    width: 25%;
+}
+
+.price{
+    width: 20%;
+}
+
+.inStock{
+    color: green;
+}
+
+.lowInStock {
+    color: #8B8000;
+}
+
+.outOfStock{
+    color: red;
 }
 
