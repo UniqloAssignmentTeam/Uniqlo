@@ -4,6 +4,11 @@
     margin: auto;
 }
 
+/*HEADER*/
+.genderHeader{
+    margin-top: 80px;
+}
+
 /*CARD SLIDER*/
 .wrapper {
     max-width: 1100px;

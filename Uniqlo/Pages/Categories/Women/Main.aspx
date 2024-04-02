@@ -5,7 +5,7 @@
     </header>
     <div class="productBody">
         <!--WOMAN SECTION-->
-        <h2>Women</h2>
+        <h1 class="genderHeader">Women</h1>
         <div class="wrapper">
             <i id="left" class="fa-solid fa-angle-left"></i>
             <ul class="carousel">
@@ -21,12 +21,12 @@
                 </li>
                 <li class="card">
                     <div class="img">
-                        <img src="../Images/uniqloWomanOuterwear.jpg" alt="img" draggable="false"/></div>
+                        <img src="../../../Images/uniqloWomanOuterwear.jpg" alt="img" draggable="false"/></div>
                     <h2>Outerwear</h2>
                 </li>
                 <li class="card">
                     <div class="img">
-                        <img src="../Images/uniqloWomanDress.jpg" alt="img" draggable="false"/></div>
+                        <img src="../../../Images/uniqloWomanDress.jpg" alt="img" draggable="false"/></div>
                     <h2>Dresses and Skirts</h2>
                 </li>
             </ul>
