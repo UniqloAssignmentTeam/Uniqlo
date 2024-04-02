@@ -12,11 +12,12 @@
 <body>
 
 <div class="container">
-  <h2>Vertical (basic) Form</h2>
+  <h2>Login</h2>
   <form>
     <div class="form-group">
       <label for="email">Email:</label>
       <input type="email" class="form-control" id="email" placeholder="Enter email">
+        <asp:TextBox ID="TextBox1" type="email" runat="server"></asp:TextBox>
     </div>
     <div class="form-group">
       <label for="pwd">Password:</label>
