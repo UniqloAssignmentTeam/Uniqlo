@@ -12,20 +12,20 @@
 <body>
 
 <div class="container">
-  <h2>Vertical (basic) Form</h2>
+  <h2>Login</h2>
   <form>
     <div class="form-group">
       <label for="email">Email:</label>
-      <input type="email" class="form-control" id="email" placeholder="Enter email">
+        <asp:TextBox id="email" type="email" class="form-control" placeholder="Enter email" runat="server"></asp:TextBox>
     </div>
     <div class="form-group">
       <label for="pwd">Password:</label>
-      <input type="password" class="form-control" id="pwd" placeholder="Enter password">
+       <asp:TextBox id="password" type="password" class="form-control" placeholder="Enter password" runat="server"></asp:TextBox>
     </div>
     <div class="checkbox">
       <label><input type="checkbox"> Show My Password</label>
     </div>
-    <button type="submit" class="btn btn-default">Submit</button>
+      <asp:Button ID="BtnLogin" runat="server" Text="Login" OnClick="BtnLogin_Click" />
   </form>
 </div>
 

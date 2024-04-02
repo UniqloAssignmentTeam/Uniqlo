@@ -80,6 +80,7 @@
     </Content>
     <Content Include="css\dashboard.css" />
     <Content Include="css\home.css" />
+    <Content Include="css\Login.css" />
     <Content Include="css\master.css" />
     <Content Include="css\product.css" />
     <Content Include="css\productAdmin.css" />
