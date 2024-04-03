@@ -74,6 +74,10 @@
     <Content Include="AdminPages\Report.aspx" />
     <Content Include="AdminPages\Staff.aspx" />
     <Content Include="AdminPages\ValueBuy.aspx" />
+    <Content Include="App_Data\Uniqlo.mdf" />
+    <Content Include="App_Data\Uniqlo_log.ldf">
+      <DependentUpon>Uniqlo.mdf</DependentUpon>
+    </Content>
     <Content Include="css\dashboard.css" />
     <Content Include="css\home.css" />
     <Content Include="css\Login.css" />
