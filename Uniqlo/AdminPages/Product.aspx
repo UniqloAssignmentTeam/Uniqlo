@@ -16,15 +16,14 @@
      </div>
        
             
-            
-     <div class="filter-button">
+   <div id="dd" class="wrapper-dropdown-5" tabindex="1">Hello
+    <ul class="dropdown">
+        <li>Men</li>
+        <li>Women</li>
+    </ul>
+</div>
+    
 
-     <div class="gender-group">
-        <asp:DropDownList ID="ddlCategory" runat="server">
-        <asp:ListItem>Men</asp:ListItem>
-        <asp:ListItem>Women</asp:ListItem>
-        </asp:DropDownList>
-    </div>
 
 
 
@@ -35,11 +34,11 @@
          <asp:ListItem>S</asp:ListItem>
          </asp:DropDownList>
     </div>
-</div>
 
 
-        <div class="export-add">
 
+       
+     <div class="export-product-add">
             <div class="export-excel">
          <asp:Button ID="btnExport" runat="server" Text="Button" />
             </div>
@@ -47,13 +46,19 @@
             <div class="product-add">
          <asp:Button ID="btnAddProduct" runat="server" Text="Button" />
              </div>
-         </div>
-
-
 
 </div>
 
 
 </div>
-      
+
+
+</div>
+    <footer>
+
+
+
+        <script src="../Javascript/genderDDL.js"></script>
+
+    </footer>
 </asp:Content>
