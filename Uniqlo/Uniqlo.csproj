@@ -102,7 +102,6 @@
     <Content Include="Images\valueBuy.jpg" />
     <Content Include="Images\valueBuyBanner.jpg" />
     <Content Include="Javascript\barChartTtlOder.js" />
-    <Content Include="Javascript\genderDDL.js" />
     <Content Include="Javascript\lineChart.js" />
     <Content Include="Javascript\modalProduct.js" />
     <Content Include="Javascript\product.js" />
