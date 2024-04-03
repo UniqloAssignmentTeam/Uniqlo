@@ -103,7 +103,9 @@
     <Content Include="Images\valueBuyBanner.jpg" />
     <Content Include="Javascript\barChartTtlOder.js" />
     <Content Include="Javascript\lineChart.js" />
+    <Content Include="Javascript\modalProduct.js" />
     <Content Include="Javascript\product.js" />
+    <Content Include="Javascript\productItem.js" />
     <Content Include="Javascript\slider.js" />
     <Content Include="Pages\AboutUs.aspx" />
     <Content Include="Pages\Cart.aspx" />
