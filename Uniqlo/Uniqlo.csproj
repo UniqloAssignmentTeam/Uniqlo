@@ -86,6 +86,10 @@
     <Content Include="css\productAdmin.css" />
     <Content Include="css\SignUp.css" />
     <Content Include="Images\accessories.jpg" />
+    <Content Include="Images\Categories\Woman\AIRismCottonShortSleeveT-Shirt1.jpg" />
+    <Content Include="Images\Categories\Woman\AIRismCottonShortSleeveT-Shirt2.jpg" />
+    <Content Include="Images\Categories\Woman\AIRismCottonShortSleeveT-Shirt3.jpg" />
+    <Content Include="Images\Categories\Woman\AIRismCottonShortSleeveT-Shirt4.jpg" />
     <Content Include="Images\storeLocator.jpg" />
     <Content Include="Images\Uniqlo-Logos.png" />
     <Content Include="Images\uniqloKidsDresses.png" />
@@ -102,6 +106,7 @@
     <Content Include="Images\uniqloWomenTop.jpg" />
     <Content Include="Images\valueBuy.jpg" />
     <Content Include="Images\valueBuyBanner.jpg" />
+    <Content Include="Javascript\addToCartButton.js" />
     <Content Include="Javascript\barChartTtlOder.js" />
     <Content Include="Javascript\lineChart.js" />
     <Content Include="Javascript\modalProduct.js" />
