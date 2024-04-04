@@ -1,14 +1,19 @@
-﻿const activeImage = document.querySelector(".product-image .active");
-const productImages = document.querySelectorAll(".image-list img");
-const navItem = document.querySelector('a.toggle-nav');
+﻿const imgs = document.querySelectorAll('.img-select a');
+const imgBtns = [...imgs];
+let imgId = 1;
 
-function changeImage(e) {
-    activeImage.src = e.target.src;
+imgBtns.forEach((imgItem) => {
+    imgItem.addEventListener('click', (event) => {
+        event.preventDefault();
+        imgId = imgItem.dataset.id;
+        slideImage();
+    });
+});
+
+function slideImage() {
+    const displayWidth = document.querySelector('.img-showcase img:first-child').clientWidth;
+
+    document.querySelector('.img-showcase').style.transform = `translateX(${- (imgId - 1) * displayWidth}px)`;
 }
 
-function toggleNavigation() {
-    this.nextElementSibling.classList.toggle('active');
-}
-
-productImages.forEach(image => image.addEventListener("click", changeImage));
-navItem.addEventListener('click', toggleNavigation);
+window.addEventListener('resize', slideImage);
