@@ -76,10 +76,10 @@ body{
 
 .table {
     width: 100%;
-    max-width: 1000px; /* Adjust as necessary */
+    /* Adjust as necessary */
     margin: 0 auto;
     margin-top: 20px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  
 }
 .row {
     display: flex;
@@ -96,8 +96,8 @@ body{
     }
 
 .col {
-    flex: 1;
-    padding: 8px 16px; /* Spacious feel */
+    border: 2px solid black;
+
 }
 
 /* Header specific styles */
@@ -107,44 +107,49 @@ body{
     background: linear-gradient(135deg, #4c9a2a, #4c6d2a);
 }
 
-/* Decorative lines - using border instead of <hr> for simplicity */
-.col:not(:last-child) {
-    border-right: 2px solid #ddd; /* Vertical line */
-}
 
 /* Product ID Column */
 .productid {
-    flex: 0 0 80px; /* Do not grow, do not shrink, set basis to 80px */
+    height: 25px;
+    width: 5%; /* Do not grow, do not shrink, set basis to 80px */
+    padding: 10px 10px;
+    text-align:center;
 }
 
 /* Product Image Column */
 .prodImage {
-    flex: 0 0 50px; /* Adjust the width as needed */
-    padding: 4px;
+    width: 5%; /* Adjust the width as needed */
+    height: auto;
+    padding: 0px 10px;
     text-align: center; /* Center the image within the column */
 }
 
-    .prodImage img {
-        max-width: 100%; /* Make sure the image doesn't overflow its container */
-        height: auto; /* Maintain the aspect ratio */
-        border-radius: 6px; /* Optionally round the corners of the image */
-    }
-
 /* Name Column */
 .Name {
-    flex: 1; /* Take the remaining space */
+    padding: 10px 10px;
+    width: 60%;
+    height: 25px;
+    word-wrap: break-word;
 }
 
 /* Price Column */
 .price {
-    flex: 0 0 100px; /* Do not grow, do not shrink, set basis to 100px */
+    width: 6%; /* Do not grow, do not shrink, set basis to 100px */
+    height: 25px;
+    padding: 10px 10px;
 }
 
 /* Category Column */
 .category {
-    flex: 0 0 120px; /* Do not grow, do not shrink, set basis to 120px */
+    width: 10%; /* Do not grow, do not shrink, set basis to 120px */
+    height: 25px;
+    padding: 10px 10px;
 }
-
+.actionBtn {
+    width: 10%; /* Do not grow, do not shrink, set basis to 120px */
+    height: 25px;
+    padding: 10px 10px;
+}
 /* Utility styles */
 hr {
     display: none; /* Since we are using borders, the <hr> tags are not needed */

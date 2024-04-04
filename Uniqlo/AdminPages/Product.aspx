@@ -49,9 +49,9 @@
     <div class="col productid">
         Product ID
     </div>
-         <hr />
+  
        <div class="col prodImage">
-      <img src="" alt="" />
+      
     </div>
         
     <div class="col Name">
@@ -61,7 +61,7 @@
     <div class="col price">
         Price(RM)
     </div>
-      <hr />
+      
     <div class="col category">
         Category
     </div>
@@ -76,10 +76,10 @@
       1001
   </div>
      <div class="col prodImage">
-  <img src="../Images/uniqloKidsDresses.png" alt="Product Image" />
+  <img src="../Images/uniqloKidsDresses.png" width="40" height="40" alt ="Product Image" />
 </div>
   <div class="col Name">
-      Product Name
+      Product Name   Product
   </div>
    
   <div class="col price">
@@ -89,6 +89,9 @@
   <div class="col category">
       Category
   </div>
+      <div class="col actionBtn">
+          <asp:Button ID="btnAction" runat="server" Text="Button" />
+</div>
       </div>
       <hr />
 
