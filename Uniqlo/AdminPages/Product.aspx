@@ -7,24 +7,13 @@
        
  <h2>Product</h2>
  <div class="wrap-items-search-buttons">
-
-  
-   
      <div class="search">
         <span class="material-symbols-outlined">search</span>
          <input class="search-input" type="search" placeholder="Search" />
      </div>
-       
-            
-   <div id="dd" class="wrapper-dropdown-5" tabindex="1">Hello
-    <ul class="dropdown">
-        <li>Men</li>
-        <li>Women</li>
-    </ul>
-</div>
-    
 
 
+      
 
 
      <div class="size-group">
@@ -53,9 +42,163 @@
 </div>
 
 
+<div class="table">
+   <!--Header-->
+    <div class="row">
+
+    <div class="col productid">
+        Product ID
+    </div>
+         <hr />
+       <div class="col prodImage">
+      <img src="" alt="" />
+    </div>
+        
+    <div class="col Name">
+        Product Name
+    </div>
+        
+    <div class="col price">
+        Price(RM)
+    </div>
+      <hr />
+    <div class="col category">
+        Category
+    </div>
+        </div>
+        <hr />
+
+
+       <!--Product 1-->
+  <div class="row">
+
+  <div class="col productid">
+      1001
+  </div>
+     <div class="col prodImage">
+  <img src="../Images/uniqloKidsDresses.png" alt="Product Image" />
 </div>
+  <div class="col Name">
+      Product Name
+  </div>
+   
+  <div class="col price">
+      100.00
+  </div>
+  
+  <div class="col category">
+      Category
+  </div>
+      </div>
+      <hr />
+
+    <!--Product 2-->
+     <div class="row">
+
+ <div class="col productid">
+      1002
+ </div>
+   <div class="col prodImage">
+    
+</div>
+ <div class="col Name">
+     Product Name
+ </div>
+  
+ <div class="col price">
+     Price
+ </div>
+ 
+ <div class="col category">
+     Category
+ </div>
+     </div>
+     <hr />
+
+    <!--Product 3-->
+     <div class="row">
+
+ <div class="col productid">
+      1003
+ </div>
+   <div class="col prodImage">
+    
+</div>
+ <div class="col Name">
+     Product Name
+ </div>
+  
+ <div class="col price">
+     Price
+ </div>
+ 
+ <div class="col category">
+     Category
+ </div>
+     </div>
+     <hr />
+
+    <!--Product 4-->
+     <div class="row">
+
+ <div class="col productid">
+      1004
+ </div>
+   <div class="col prodImage">
+    
+</div>
+ <div class="col Name">
+     Product Name
+ </div>
+  
+ <div class="col price">
+     Price
+ </div>
+ 
+ <div class="col category">
+     Category
+ </div>
+     </div>
+     <hr />
+
+       <!--Product 5-->
+    <div class="row">
+
+<div class="col productid">
+    1005
+</div>
+   <div class="col prodImage">
+    
+</div>
+<div class="col Name">
+    Product Name
+</div>
+ 
+<div class="col price">
+    Price
+</div>
+
+<div class="col category">
+    Category
+</div>
+    </div>
+    <hr />
+
+</div>
+
+
+
+
+
+
+
+
+
+</div>
+    <div style="margin-bottom:500px;"></div>
     <footer>
 
+        
 
 
         <script src="../Javascript/genderDDL.js"></script>

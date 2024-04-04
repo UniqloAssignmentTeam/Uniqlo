@@ -3,6 +3,7 @@
     position: relative;
     margin: auto;
     margin-top: 40px;
+    background-color:darkolivegreen;
 }
 
 .wrap-items-search-buttons {
@@ -14,119 +15,6 @@
 filter-button{
     display:flex;
 }
-
-
-
-.wrapper-dropdown-5 {
-    /* Size & position */
-    position: relative;
-    width: 200px;
-    margin: 40px auto;
-    padding: 12px 15px;
-    /* Styles */
-    background: #fff;
-    border-radius: 5px;
-    box-shadow: 0 1px 0 rgba(0,0,0,0.2);
-    cursor: pointer;
-    outline: none;
-    -webkit-transition: all 0.3s ease-out;
-    -moz-transition: all 0.3s ease-out;
-    -ms-transition: all 0.3s ease-out;
-    -o-transition: all 0.3s ease-out;
-    transition: all 0.3s ease-out;
-}
-
-    .wrapper-dropdown-5:after { /* Little arrow */
-        content: "";
-        width: 0;
-        height: 0;
-        position: absolute;
-        top: 50%;
-        right: 15px;
-        margin-top: -3px;
-        border-width: 6px 6px 0 6px;
-        border-style: solid;
-        border-color: #4cbeff transparent;
-    }
-
-    .wrapper-dropdown-5 .dropdown {
-        /* Size & position */
-        position: absolute;
-        top: 100%;
-        left: 0;
-        right: 0;
-        /* Styles */
-        background: #fff;
-        border-radius: 0 0 5px 5px;
-        border: 1px solid rgba(0,0,0,0.2);
-        border-top: none;
-        border-bottom: none;
-        list-style: none;
-        -webkit-transition: all 0.3s ease-out;
-        -moz-transition: all 0.3s ease-out;
-        -ms-transition: all 0.3s ease-out;
-        -o-transition: all 0.3s ease-out;
-        transition: all 0.3s ease-out;
-        /* Hiding */
-        max-height: 0;
-        overflow: hidden;
-    }
-
-        .wrapper-dropdown-5 .dropdown li {
-            padding: 0 10px;
-        }
-
-            .wrapper-dropdown-5 .dropdown li a {
-                display: block;
-                text-decoration: none;
-                color: #333;
-                padding: 10px 0;
-                transition: all 0.3s ease-out;
-                border-bottom: 1px solid #e6e8ea;
-            }
-
-            .wrapper-dropdown-5 .dropdown li:last-of-type a {
-                border: none;
-            }
-
-            .wrapper-dropdown-5 .dropdown li i {
-                margin-right: 5px;
-                color: inherit;
-                vertical-align: middle;
-            }
-
-            /* Hover state */
-
-            .wrapper-dropdown-5 .dropdown li:hover a {
-                color: #57a9d9;
-            }
-
-    /* Active state */
-
-    .wrapper-dropdown-5.active {
-        border-radius: 5px 5px 0 0;
-        background: #4cbeff;
-        box-shadow: none;
-        border-bottom: none;
-        color: white;
-    }
-
-        .wrapper-dropdown-5.active:after {
-            border-color: #82d1ff transparent;
-        }
-
-        .wrapper-dropdown-5.active .dropdown {
-            border-bottom: 1px solid rgba(0,0,0,0.2);
-            max-height: 400px;
-        }
-
-
-
-
-
-
-
-
 
 
 .size-group {
@@ -182,3 +70,103 @@ filter-button{
     color: rgba(0,0,0,0.25);
 }
 
+body{
+    background-color:grey;
+}
+
+.table {
+    width: 100%;
+    max-width: 1000px; /* Adjust as necessary */
+    margin: 0 auto;
+    margin-top: 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.row {
+    display: flex;
+    align-items: center;
+    background-color: #f8f8f8;
+    margin-bottom: 8px; /* Space between rows */
+    padding: 10px;
+    border-radius: 6px; /* Rounded corners for each row */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+    .row:nth-child(even) {
+        background-color: #e8e8e8; /* Alternate row color for readability */
+    }
+
+.col {
+    flex: 1;
+    padding: 8px 16px; /* Spacious feel */
+}
+
+/* Header specific styles */
+.row:first-child {
+    font-weight: bold;
+    color: white;
+    background: linear-gradient(135deg, #4c9a2a, #4c6d2a);
+}
+
+/* Decorative lines - using border instead of <hr> for simplicity */
+.col:not(:last-child) {
+    border-right: 2px solid #ddd; /* Vertical line */
+}
+
+/* Product ID Column */
+.productid {
+    flex: 0 0 80px; /* Do not grow, do not shrink, set basis to 80px */
+}
+
+/* Product Image Column */
+.prodImage {
+    flex: 0 0 50px; /* Adjust the width as needed */
+    padding: 4px;
+    text-align: center; /* Center the image within the column */
+}
+
+    .prodImage img {
+        max-width: 100%; /* Make sure the image doesn't overflow its container */
+        height: auto; /* Maintain the aspect ratio */
+        border-radius: 6px; /* Optionally round the corners of the image */
+    }
+
+/* Name Column */
+.Name {
+    flex: 1; /* Take the remaining space */
+}
+
+/* Price Column */
+.price {
+    flex: 0 0 100px; /* Do not grow, do not shrink, set basis to 100px */
+}
+
+/* Category Column */
+.category {
+    flex: 0 0 120px; /* Do not grow, do not shrink, set basis to 120px */
+}
+
+/* Utility styles */
+hr {
+    display: none; /* Since we are using borders, the <hr> tags are not needed */
+}
+
+
+
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .row {
+        flex-direction: column;
+    }
+
+    .col {
+        width: 100%;
+        padding: 10px;
+        border-right: none; /* Remove vertical line on mobile */
+    }
+
+    .row:first-child {
+        background: #4c9a2a; /* Keep the header green on mobile */
+    }
+}
