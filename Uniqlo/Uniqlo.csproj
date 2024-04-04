@@ -80,6 +80,7 @@
     <Content Include="css\master.css" />
     <Content Include="css\product.css" />
     <Content Include="css\productAdmin.css" />
+    <Content Include="css\SignUp.css" />
     <Content Include="Images\accessories.jpg" />
     <Content Include="Images\storeLocator.jpg" />
     <Content Include="Images\Uniqlo-Logos.png" />
