@@ -18,5 +18,10 @@ namespace Uniqlo.AdminPages
         {
 
         }
+
+        protected void ddlCategoryFilter_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
