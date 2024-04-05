@@ -152,6 +152,12 @@
     outline: none;
     font-weight: bold;
     cursor: pointer;
+    transition: all 0.5s ease;
+}
+
+.viewMoreButton:hover{
+    background-color: black;
+    color: white;
 }
 
 
@@ -179,6 +185,7 @@
     border: 1px solid #888;
     width: 80%; /* Could be more or less, depending on screen size */
     border-radius: 5px;
+    margin-bottom: 120px;
 }
 
 /* The Close Button */
@@ -445,6 +452,22 @@
 	transform: translate(-50%,-50%);
 }
 
+.cart-button:hover {
+    background-color: black;
+    color: white;
+}
+
+.cart-button:hover span {
+    color: white;
+}
+
+
+.cart-button:hover .fas,
+.cart-button:hover .fa-shopping-cart,
+.cart-button:hover .fa-shirt {
+    color: white;
+}
+
 
 .cart-button span.add-to-cart {
 	opacity: 1;
@@ -538,3 +561,116 @@
 }
 
 /*REVIEW SECTION*/
+.reviewRatingNumUser{
+    margin:10px;
+}
+
+.reviewSection {
+    width: 100%;
+}
+
+.reviewRatingAndBar{
+    display: flex;
+}
+
+.reviewRating {
+    font-size: 1.35rem;
+    text-align: center;
+    width: 30%;
+    padding: 100px;
+}
+
+.star {
+    color: #ffc107;
+}
+
+.reviewRating h3{
+    margin: 7px;
+}
+
+.reviewBar {
+    font-size: 1.40rem;
+    width: 70%;
+    padding: 20px;
+}
+
+.reviewBarDetailsRow {
+    display: flex;
+}
+
+.reviewBarDetailsCol {
+    margin-top: 5px;
+}
+
+.number{
+    padding-right: 30px;
+}
+
+.progress {
+    border: 1px solid #E3E1D9;
+    border-radius: 12px;
+    width: 100%;
+    padding: 0px;
+    background-color: #E3E1D9;
+    height: 5px;
+    margin-top: 15px;
+}
+
+.progressBar {
+    height: 100%;
+    border-radius: 12px;
+    margin: 0px;
+}
+
+
+.green {
+    background-color: #2C7865;
+    width: 80%;
+}
+
+.lightGreen {
+    background-color: #90D26D;
+    width: 50%;
+}
+
+.yellow {
+    background-color: #F9F07A;
+    width: 30%;
+}
+
+.orange {
+    background-color: #FF9800;
+    width: 20%;
+}
+
+.red {
+    background-color: #E72929;
+    width: 10%;
+}
+
+.commentSection {
+    padding: 0px 70px 20px 70px;
+
+}
+
+.commentRatingSection{
+    display: flex;
+    font-style: italic;
+    margin-bottom: 20px;
+}
+
+.commentRatingSectionStars{
+    margin-right: 20px;
+}
+
+.commentRatingSectionDetails{
+    text-align: justify;
+}
+
+.commentSectionNewRow{
+    margin-bottom: 50px;
+}
+
+.reviewSection .viewMoreSection{
+    margin-top: 80px;
+}
