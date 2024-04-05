@@ -144,7 +144,7 @@
 
                   <div class="productQtySizeSection">
                       <div class="purchase-size">
-                          <h3>Size: Women <label id="size"></label></h3>
+                          <h3>Size: Women <label id="size">S</label></h3>
                           <div class="purchase-size-item">
                               <asp:RadioButtonList ID="RadioButtonList1" runat="server" RepeatDirection="Horizontal" ValidateRequestMode="Enabled" Visible="True" CssClass="custom-radio-list">
                                   <asp:ListItem>S</asp:ListItem>
@@ -193,10 +193,127 @@
               </div>
             </div>
               <!--REVIEW SECTIONS-->
-            <div>
-
+            <div class="reviewSection">
+                <div class="reviewRatingAndBar">
+                    <div class="reviewRating">
+                        <h3>4.7</h3>
+                        <i class="fas fa-star star"></i>
+                        <i class = "fas fa-star star"></i>
+                        <i class = "fas fa-star star"></i>
+                        <i class = "fas fa-star star"></i>
+                        <i class = "fas fa-star-half-alt star"></i>
+                        <div class="reviewRatingNumUser"><i class="fa-solid fa-user"></i> 21 Total</div>
+                    </div>
+                    <div class="reviewBar">
+                        <h3>Reviews</h3>
+                        <div class="reviewBarDetails">
+                            <div class="reviewBarDetailsRow">
+                                <div class="reviewBarDetailsCol number">
+                                    5
+                                </div>                                
+                                <div class="reviewBarDetailsCol progress">
+                                    <div class="progressBar green"></div>
+                                </div>   
+                            </div>
+                            <div class="reviewBarDetailsRow">
+                                <div class="reviewBarDetailsCol number">
+                                    4
+                                </div>                                
+                                <div class="reviewBarDetailsCol progress">
+                                    <div class="progressBar lightGreen"></div>
+                                </div>   
+                            </div>
+                            <div class="reviewBarDetailsRow">
+                                <div class="reviewBarDetailsCol number">
+                                    3
+                                </div>                                
+                                <div class="reviewBarDetailsCol progress">
+                                    <div class="progressBar yellow"></div>
+                                </div>   
+                            </div>
+                            <div class="reviewBarDetailsRow">
+                                <div class="reviewBarDetailsCol number">
+                                    2
+                                </div>                                
+                                <div class="reviewBarDetailsCol progress">
+                                    <div class="progressBar orange"></div>
+                                </div> 
+                            </div>
+                            <div class="reviewBarDetailsRow">
+                                <div class="reviewBarDetailsCol number">
+                                    1
+                                </div>                                
+                                <div class="reviewBarDetailsCol progress">
+                                    <div class="progressBar red"></div>
+                                </div>                                
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+                    <div class="commentSection">
+                        <div class="commentSectionNewRow">
+                            <h3>Korim Mia</h3>
+                            <div class="commentRatingSection">
+                                <div class="commentRatingSectionStars">
+                                    <i class="fas fa-star star"></i>
+                                    <i class = "fas fa-star star"></i>
+                                    <i class = "fas fa-star star"></i>
+                                    <i class = "fas fa-star star"></i>
+                                    <i class = "fas fa-star-half-alt star"></i>
+                                </div>
+                                <div class="commentRatingSectionDate">
+                                    25th June, 2020
+                                </div>
+                            </div>
+                            <div class="commentRatingSectionDetails">
+                                Lorem ipsum dolor sit, Lorem ipsum dolor sit amet consectetur, adipisicing elit. Id labore iusto, doloremque eveniet eos nostrum cupiditate. Laboriosam voluptates, eligendi minus totam, fuga, quidem officiis tempore quod placeat voluptate sunt soluta ratione deserunt sequi quia laborum quasi ullam repellendus molestias aliquid illo illum iure. Fugit cupiditate, alias rem nobis iste minima dolor ea porro fugiat, ipsum eum unde error aliquid consequatur. amet consectetur adipisicing elit. Praesentium eligendi maxime possimus temporibus! Labore accusamus facilis sequi dolorem ullam odio.
+                            </div>
+                        </div>
+                        <div class="commentSectionNewRow">
+                            <h3>Korim Mia</h3>
+                            <div class="commentRatingSection">
+                                <div class="commentRatingSectionStars">
+                                    <i class="fas fa-star star"></i>
+                                    <i class = "fas fa-star star"></i>
+                                    <i class = "fas fa-star star"></i>
+                                    <i class = "fas fa-star star"></i>
+                                    <i class = "fas fa-star-half-alt star"></i>
+                                </div>
+                                <div class="commentRatingSectionDate">
+                                    25th June, 2020
+                                </div>
+                            </div>
+                            <div class="commentRatingSectionDetails">
+                                Lorem ipsum dolor sit, Lorem ipsum dolor sit amet consectetur, adipisicing elit. Id labore iusto, doloremque eveniet eos nostrum cupiditate. Laboriosam voluptates, eligendi minus totam, fuga, quidem officiis tempore quod placeat voluptate sunt soluta ratione deserunt sequi quia laborum quasi ullam repellendus molestias aliquid illo illum iure. Fugit cupiditate, alias rem nobis iste minima dolor ea porro fugiat, ipsum eum unde error aliquid consequatur. amet consectetur adipisicing elit. Praesentium eligendi maxime possimus temporibus! Labore accusamus facilis sequi dolorem ullam odio.
+                            </div>
+                        </div>
+                        <div class="commentSectionNewRow">
+                            <h3>Korim Mia</h3>
+                            <div class="commentRatingSection">
+                                <div class="commentRatingSectionStars">
+                                    <i class="fas fa-star star"></i>
+                                    <i class = "fas fa-star star"></i>
+                                    <i class = "fas fa-star star"></i>
+                                    <i class = "fas fa-star star"></i>
+                                    <i class = "fas fa-star-half-alt star"></i>
+                                </div>
+                                <div class="commentRatingSectionDate">
+                                    25th June, 2020
+                                </div>
+                            </div>
+                            <div class="commentRatingSectionDetails">
+                                Lorem ipsum dolor sit, Lorem ipsum dolor sit amet consectetur, adipisicing elit. Id labore iusto, doloremque eveniet eos nostrum cupiditate. Laboriosam voluptates, eligendi minus totam, fuga, quidem officiis tempore quod placeat voluptate sunt soluta ratione deserunt sequi quia laborum quasi ullam repellendus molestias aliquid illo illum iure. Fugit cupiditate, alias rem nobis iste minima dolor ea porro fugiat, ipsum eum unde error aliquid consequatur. amet consectetur adipisicing elit. Praesentium eligendi maxime possimus temporibus! Labore accusamus facilis sequi dolorem ullam odio.
+                            </div>
+                        </div>
+                        <!--VIEWMORE BUTTON-->
+                        <div class="viewMoreSection">
+                            <button class="viewMoreButton">VIEW MORE</button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
+        <!--VIEWMOREBUTTON END-->
     </div>
     <footer>
         <script src="../../../Javascript/product.js"></script>

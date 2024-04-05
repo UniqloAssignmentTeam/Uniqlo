@@ -32,12 +32,9 @@ window.onclick = function (event) {
     }
 }
 
-// Alternatively, if closing happens through other means (e.g., clicking an overlay), select that element instead
-
 closeModalButton.addEventListener('click', function () {
     // Reset the slider to the first image
     imgId = 1;
     slideImage();
 });
 
-// If your modal is closed in other ways (e.g., clicking an overlay), ensure you add similar event listeners to those elements/actions
