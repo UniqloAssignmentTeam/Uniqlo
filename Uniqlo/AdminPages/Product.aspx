@@ -4,8 +4,15 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <link href="../css/productAdmin.css" rel="stylesheet" />
     <div class="productBody">
-       
+            <header>
+   <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+</header>
  <h2>Product</h2>
+
+
+
+<div>
+
  <div class="wrap-items-search-buttons">
      <div class="search">
         <span class="material-symbols-outlined">search</span>
@@ -13,58 +20,77 @@
      </div>
 
 
-      
-
-
-     <div class="size-group">
-         <asp:DropDownList ID="ddlSize" runat="server">
-         <asp:ListItem>L</asp:ListItem>
-         <asp:ListItem>M</asp:ListItem>
-         <asp:ListItem>S</asp:ListItem>
-         </asp:DropDownList>
-    </div>
+  
 
 
 
-       
-     <div class="export-product-add">
-            <div class="export-excel">
-         <asp:Button ID="btnExport" runat="server" Text="Button" />
-            </div>
+
+
+
+
+
+
+
+
+
+
+ 
+    
 
             <div class="product-add">
-         <asp:Button ID="btnAddProduct" runat="server" Text="Button" />
+         <asp:Button ID="btnAddProduct" runat="server" Text="Button" CssClass="product-add" />
              </div>
 
-</div>
 
 
 </div>
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
 
 
 <div class="table">
+
    <!--Header-->
     <div class="row">
 
-    <div class="col productid">
+    <div class="col productidHeader">
         Product ID
     </div>
   
-       <div class="col prodImage">
+       <div class="col prodImageHeader">
       
     </div>
         
-    <div class="col Name">
+    <div class="col nameHeader">
         Product Name
     </div>
-        
-    <div class="col price">
-        Price(RM)
+
+     <div class="col statusHeader">
+     Status
+ </div>
+
+    <div class="col priceHeader">
+        Price (RM)
     </div>
       
-    <div class="col category">
+    <div class="col categoryHeader">
         Category
     </div>
+              <div class="col actionBtnHeader">
+                  <asp:Button ID="actionBtnNone" class="" runat="server" Text="Button" Visible="False" />
+</div>
         </div>
         <hr />
 
@@ -75,13 +101,18 @@
   <div class="col productid">
       1001
   </div>
-     <div class="col prodImage">
+     <div class="prodImage">
   <img src="../Images/uniqloKidsDresses.png" width="40" height="40" alt ="Product Image" />
 </div>
-  <div class="col Name">
+
+  <div class="col name">
       Product Name   Product
-  </div>
-   
+      </div>
+
+   <div class="col stat inStock">
+     In Stock
+ </div>
+
   <div class="col price">
       100.00
   </div>
@@ -90,7 +121,7 @@
       Category
   </div>
       <div class="col actionBtn">
-          <asp:Button ID="btnAction" runat="server" Text="Button" />
+          <asp:Button ID="btnAction1" runat="server" Text="Button" />
 </div>
       </div>
       <hr />
@@ -101,20 +132,31 @@
  <div class="col productid">
       1002
  </div>
-   <div class="col prodImage">
-    
+
+   <div class="prodImage">
+    <img src="../Images/uniqloKidsDresses.png" width="40" height="40" alt ="Product Image" />
 </div>
- <div class="col Name">
+
+ <div class="col name">
      Product Name
  </div>
-  
+
+     <div class="col stat lowInStock">
+     Low In Stock
+ </div>
+
  <div class="col price">
-     Price
+    99.00
  </div>
  
  <div class="col category">
      Category
  </div>
+
+    <div class="col actionBtn">
+          <asp:Button ID="btnAction2" runat="server" Text="Button" />
+</div>
+
      </div>
      <hr />
 
@@ -124,20 +166,31 @@
  <div class="col productid">
       1003
  </div>
-   <div class="col prodImage">
-    
+
+   <div class="prodImage">
+    <img src="../Images/uniqloKidsDresses.png" width="40" height="40" alt ="Product Image" />
 </div>
- <div class="col Name">
+
+ <div class="col name">
      Product Name
  </div>
-  
+
+   <div class="col stat inStock">
+    In Stock
+</div>
+
  <div class="col price">
-     Price
+    130.00
  </div>
  
  <div class="col category">
      Category
  </div>
+
+               <div class="col actionBtn">
+          <asp:Button ID="btnAction3" runat="server" Text="Button" />
+</div>
+
      </div>
      <hr />
 
@@ -147,20 +200,30 @@
  <div class="col productid">
       1004
  </div>
-   <div class="col prodImage">
-    
+
+   <div class="prodImage">
+    <img src="../Images/uniqloKidsDresses.png" width="40" height="40" alt ="Product Image" />
 </div>
- <div class="col Name">
+
+ <div class="col name">
      Product Name
+      </div>
+
+  <div class="col stat inStock">
+     In Stock
  </div>
-  
+
  <div class="col price">
-     Price
+     12.00
  </div>
  
  <div class="col category">
      Category
  </div>
+
+               <div class="col actionBtn">
+          <asp:Button ID="btnAction4" runat="server" Text="Button" />
+</div>
      </div>
      <hr />
 
@@ -170,19 +233,29 @@
 <div class="col productid">
     1005
 </div>
-   <div class="col prodImage">
-    
+
+   <div class="prodImage">
+    <img src="../Images/uniqloKidsDresses.png" width="40" height="40" alt ="Product Image" />
 </div>
-<div class="col Name">
+
+<div class="col name">
     Product Name
 </div>
- 
+
+      <div class="col lowInStock">
+     Low In Stock
+ </div>
+
 <div class="col price">
-    Price
+    112.00
 </div>
 
 <div class="col category">
     Category
+</div>
+
+              <div class="col actionBtn">
+          <asp:Button ID="btnAction5" runat="server" Text="Button" />
 </div>
     </div>
     <hr />

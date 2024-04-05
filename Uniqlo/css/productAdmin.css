@@ -3,45 +3,26 @@
     position: relative;
     margin: auto;
     margin-top: 40px;
-    background-color:darkolivegreen;
+    background-color:rebeccapurple;
 }
 
 .wrap-items-search-buttons {
     display: flex;
     width: 100%;
     align-items: center;
-   
+   border:1px solid black;
 }
-filter-button{
-    display:flex;
-}
-
-
-.size-group {
-    width: 10%;
-}
-.export-product-add{
-    display:flex;
-    margin-left:auto;
-}
-.export-excel {
-    width: 10%;
-   
-}
-
 
 .product-add {
-    width: 10%;
-    margin-left: auto;
+
 }
-.size-group {
-    border-inline-color: red;
-}
+
+
 
 
 
 .search {
-    --padding: 14px;
+    --padding: 8px;
     width: 35%;
     display: flex;
     align-items: center;
@@ -70,24 +51,49 @@ filter-button{
     color: rgba(0,0,0,0.25);
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 body{
     background-color:grey;
 }
 
 .table {
     width: 100%;
-    /* Adjust as necessary */
     margin: 0 auto;
     margin-top: 20px;
-  
+  border: 2px solid black;
 }
+
 .row {
     display: flex;
     align-items: center;
     background-color: #f8f8f8;
-    margin-bottom: 8px; /* Space between rows */
+    justify-content: center;
     padding: 10px;
-    border-radius: 6px; /* Rounded corners for each row */
+    border-radius: 0px; /* Rounded corners for each row */
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
 }
 
@@ -95,10 +101,6 @@ body{
         background-color: #e8e8e8; /* Alternate row color for readability */
     }
 
-.col {
-    border: 2px solid black;
-
-}
 
 /* Header specific styles */
 .row:first-child {
@@ -107,54 +109,93 @@ body{
     background: linear-gradient(135deg, #4c9a2a, #4c6d2a);
 }
 
-
-/* Product ID Column */
-.productid {
-    height: 25px;
-    width: 5%; /* Do not grow, do not shrink, set basis to 80px */
-    padding: 10px 10px;
-    text-align:center;
+.col {
+    align-items: center;
+    text-align: center;
+    flex-grow: 0; /* Do not allow columns to grow */
+    flex-shrink: 0; /* Do not allow columns to shrink */
+    height: 50px; /* Adjust height automatically */
+    justify-content: center;
 }
+
+.col:last-child {
+    border-right: none;
+}
+
+
+/* Header Styles: Ensure headers match column styles */
+.productidHeader {
+    flex-basis: 10%;
+    
+}
+.nameHeader {
+    flex-grow: 1;
+
+    
+}
+
+.priceHeader {
+    flex-basis: 9%;
+}
+
+
+.statusHeader {
+    flex-basis: 10%;
+ 
+}
+
+.categoryHeader {
+    flex-basis: 10%;
+}
+
+.actionBtnHeader {
+    flex-basis: 8%;
+}
+
+
+.productid, .price {
+    flex-basis: 9%; /* Set a base width */
+}
+
 
 /* Product Image Column */
 .prodImage {
-    width: 5%; /* Adjust the width as needed */
+    width: 5%;
     height: auto;
     padding: 0px 10px;
-    text-align: center; /* Center the image within the column */
+    
 }
 
 /* Name Column */
-.Name {
-    padding: 10px 10px;
-    width: 60%;
-    height: 25px;
-    word-wrap: break-word;
+.name {
+    flex-grow: 1; /* Allow this column to grow and take up remaining space */
+    text-align: left;
+}
+.inStock {
+    flex-basis: 10%;
+    color: green;
+    
 }
 
-/* Price Column */
-.price {
-    width: 6%; /* Do not grow, do not shrink, set basis to 100px */
-    height: 25px;
-    padding: 10px 10px;
+.lowInStock {
+    flex-basis: 10%;
+    color: #8B8000;
+    
 }
+/* Price Column */
+
 
 /* Category Column */
 .category {
-    width: 10%; /* Do not grow, do not shrink, set basis to 120px */
-    height: 25px;
-    padding: 10px 10px;
+    flex-basis: 10%;
 }
 .actionBtn {
-    width: 10%; /* Do not grow, do not shrink, set basis to 120px */
-    height: 25px;
-    padding: 10px 10px;
+    flex-basis: 8%;
 }
 /* Utility styles */
 hr {
     display: none; /* Since we are using borders, the <hr> tags are not needed */
 }
-
 
 
 
