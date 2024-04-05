@@ -142,19 +142,33 @@
                     </ul>
                   </div>
 
-                  <div class = "purchase-info">
-                    <input type = "number" class="qty" min = "0" value = "1">
-                     <!--ANIMATION ADD TO CART BUTTON-->
-                      <div class="cart-button">
-                          <a href="#">
-	                        <span class="add-to-cart">Add To Cart</span>
-	                        <span class="added">Added</span>
-                              <i class="fas fa-shopping-cart"></i>
-                              <i class="fas fa-solid fa-shirt"></i>
-                         </a>
+                  <div class="productQtySizeSection">
+                      <div class="purchase-size">
+                          <h3>Size: Women <label id="size"></label></h3>
+                          <div class="purchase-size-item">
+                              <asp:RadioButtonList ID="RadioButtonList1" runat="server" RepeatDirection="Horizontal" ValidateRequestMode="Enabled" Visible="True" CssClass="custom-radio-list">
+                                  <asp:ListItem>S</asp:ListItem>
+                                  <asp:ListItem>M</asp:ListItem>
+                                  <asp:ListItem>L</asp:ListItem>
+                                  <asp:ListItem>XL</asp:ListItem>
+                              </asp:RadioButtonList>
+                          </div>
                       </div>
 
-                      <!--END OF CART BUTTON-->
+                      <div class = "purchase-info">
+                        <h3>Quantity: </h3>
+                        <input type = "number" class="qty" min = "0" value = "1">
+                      </div>
+                  </div>
+                  
+                  <!--ANIMATION ADD TO CART BUTTON-->
+                  <div class="cart-button">
+                     <a href="#">
+	                    <span class="add-to-cart">Add To Cart</span>
+	                    <span class="added">Added</span>
+                        <i class="fas fa-shopping-cart"></i>
+                        <i class="fas fa-solid fa-shirt"></i>
+                     </a>
                   </div>
 
                   <div class = "social-links">
@@ -178,6 +192,139 @@
                 </div>
               </div>
             </div>
+              <!--REVIEW SECTIONS-->
+              <div class="section">
+                <div class="row">
+                    <div class="col s12 m12">
+                        <h3 class="center-align">Reviews</h3>
+                    </div>
+                    <div class="col m4 s12 center-align">
+                        <h3 style="margin-top: 0px;">4.7</h3>
+                            <i class = "fas fa-star"></i>
+                            <i class = "fas fa-star"></i>
+                            <i class = "fas fa-star"></i>
+                            <i class = "fas fa-star"></i>
+                            <i class = "fas fa-star-half-alt"></i>
+                        <p><i class="fa-solid fa-user"></i> 21 Total</p>
+                    </div>
+                    <div class="col m8 s12">
+                        <div class="row" style="margin-bottom: 0px;">
+                            <div class="col s2 right-align">
+                                <p class="flow-text" style="margin: -8px 0px 0px;">5</p>
+                            </div>
+                            <div class="col s10 valign-wrapper">
+                                <div class="progress">
+                                    <div class="determinate" style="width: 50%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" style="margin-bottom: 0px;">
+                            <div class="col s2 right-align">
+                                <p class="flow-text" style="margin: -8px 0px 0px;">4</p>
+                            </div>
+                            <div class="col s10 valign-wrapper">
+                                <div class="progress">
+                                    <div class="teal accent-4 determinate" style="width: 20%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" style="margin-bottom: 0px;">
+                            <div class="col s2 right-align">
+                                <p class="flow-text" style="margin: -8px 0px 0px;">3</p>
+                            </div>
+                            <div class="col s10 valign-wrapper">
+                                <div class="progress">
+                                    <div class=" yellow accent-3 determinate" style="width: 10%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" style="margin-bottom: 0px;">
+                            <div class="col s2 right-align">
+                                <p class="flow-text" style="margin: -8px 0px 0px;">2</p>
+                            </div>
+                            <div class="col s10 valign-wrapper">
+                                <div class="progress">
+                                    <div class="orange accent-2 determinate" style="width: 12%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" style="margin-bottom: 0px;">
+                            <div class="col s2 right-align">
+                                <p class="flow-text" style="margin: -8px 0px 0px;">1</p>
+                            </div>
+                            <div class="col s10 valign-wrapper">
+                                <div class="progress">
+                                    <div class="deep-orange determinate" style="width: 8%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- One review section -->
+                    <div class="col s12">
+                        <h5>Korim Mia</h5>
+
+                        <i class="material-icons">star</i>
+                        <i class="material-icons">star</i>
+                        <i class="material-icons">star</i>
+                        <i class="material-icons">star_border</i>
+                        <i class="material-icons">star_border</i>
+                        <i>25th June, 2020</i>
+                        <p>Lorem ipsum dolor sit, Lorem ipsum dolor sit amet consectetur, adipisicing elit. Id labore iusto,
+                            doloremque eveniet eos nostrum cupiditate. Laboriosam voluptates, eligendi minus totam, fuga, quidem
+                            officiis tempore quod placeat voluptate sunt soluta ratione deserunt sequi quia laborum quasi ullam
+                            repellendus molestias aliquid illo illum iure. Fugit cupiditate, alias rem nobis iste minima dolor
+                            ea porro fugiat, ipsum eum unde error aliquid consequatur. amet consectetur adipisicing elit.
+                            Praesentium eligendi maxime possimus temporibus! Labore accusamus facilis sequi dolorem ullam odio.
+                        </p>
+                    </div>
+                    <!-- One review section End -->
+                    <!-- One review section -->
+                    <div class="col s12">
+                        <h5>Rohim Mia</h5>
+                        <i class="material-icons">star</i>
+                        <i class="material-icons">star</i>
+                        <i class="material-icons">star</i>
+                        <i class="material-icons">star</i>
+                        <i class="material-icons">star_border</i>
+                        <i>25th June, 2020</i>
+                        <p>Lorem ipsum dolor sit, Lorem ipsum dolor sit amet consectetur, adipisicing elit. Id labore iusto,
+                            doloremque eveniet eos nostrum cupiditate. Laboriosam voluptates, eligendi minus totam, fuga, quidem
+                            officiis tempore quod placeat voluptate sunt soluta ratione deserunt sequi quia laborum quasi ullam
+                            repellendus molestias aliquid illo illum iure. Fugit cupiditate, alias rem nobis iste minima dolor
+                            ea porro fugiat, ipsum eum unde error aliquid consequatur. amet consectetur adipisicing elit.
+                            Praesentium eligendi maxime possimus temporibus! Labore accusamus facilis sequi dolorem ullam odio.
+                        </p>
+                    </div>
+                    <!-- One review section end -->
+                    <!-- Write review section -->
+                    <div class="col s12">
+                        <h5>Write a review</h5>
+                        <div class="row">
+                            <form class="col s12 review_form" action="" method="POST">
+                                <div class="row">
+                                    <div class="col s12">
+                                        <i class="material-icons stars" data-value="1">star_border</i>
+                                        <i class="material-icons stars" data-value="2">star_border</i>
+                                        <i class="material-icons stars" data-value="3">star_border</i>
+                                        <i class="material-icons stars" data-value="4">star_border</i>
+                                        <i class="material-icons stars" data-value="5">star_border</i>
+                                        <input type="hidden" name="star" id="star">
+                                        <!-- take input from this hidden field for stars -->
+                                    </div>
+                                    <div class="input-field col s12">
+                                        <textarea id="textarea1" class="materialize-textarea"></textarea>
+                                        <label for="textarea1">Your review</label>
+                                    </div>
+                                    <div class="input-field col s12">
+                                        <button type="submit" class="btn btn-small submit">Submit</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <!-- Write review section end -->
+                </div>
+            </div>
           </div>
         </div>
     </div>
@@ -186,5 +333,7 @@
         <script src="../../../Javascript/modalProduct.js"></script>
         <script src="../../../Javascript/productItem.js"></script>
         <script src="../../../Javascript/addToCartButton.js"></script>
+        <script src="../../../Javascript/productSize.js"></script>
+        <script src="../../../Javascript/productReview.js"></script>
     </footer>
 </asp:Content>

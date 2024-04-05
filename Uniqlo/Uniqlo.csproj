@@ -112,6 +112,8 @@
     <Content Include="Javascript\modalProduct.js" />
     <Content Include="Javascript\product.js" />
     <Content Include="Javascript\productItem.js" />
+    <Content Include="Javascript\productReview.js" />
+    <Content Include="Javascript\productSize.js" />
     <Content Include="Javascript\slider.js" />
     <Content Include="Pages\AboutUs.aspx" />
     <Content Include="Pages\Cart.aspx" />

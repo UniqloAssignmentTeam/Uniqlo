@@ -1,6 +1,7 @@
 ﻿const imgs = document.querySelectorAll('.img-select a');
 const imgBtns = [...imgs];
 let imgId = 1;
+var modal = document.getElementById("myModal");
 
 imgBtns.forEach((imgItem) => {
     imgItem.addEventListener('click', (event) => {
@@ -17,3 +18,26 @@ function slideImage() {
 }
 
 window.addEventListener('resize', slideImage);
+
+// Add an event listener for closing the modal
+const closeModalButton = document.querySelector('.close'); // Adjust the selector to your modal's close button
+
+//When click outside modal will return slide to first slide and close the modal
+window.onclick = function (event) {
+    if (event.target == modal) {
+        // Reset the slider to the first image
+        imgId = 1;
+        slideImage();
+        modal.style.display = "none";
+    }
+}
+
+// Alternatively, if closing happens through other means (e.g., clicking an overlay), select that element instead
+
+closeModalButton.addEventListener('click', function () {
+    // Reset the slider to the first image
+    imgId = 1;
+    slideImage();
+});
+
+// If your modal is closed in other ways (e.g., clicking an overlay), ensure you add similar event listeners to those elements/actions
