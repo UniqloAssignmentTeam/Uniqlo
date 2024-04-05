@@ -85,6 +85,7 @@
     <Content Include="css\product.css" />
     <Content Include="css\productAdmin.css" />
     <Content Include="css\SignUp.css" />
+    <Content Include="css\test.css" />
     <Content Include="Images\accessories.jpg" />
     <Content Include="Images\Categories\Woman\AIRismCottonShortSleeveT-Shirt1.jpg" />
     <Content Include="Images\Categories\Woman\AIRismCottonShortSleeveT-Shirt2.jpg" />
@@ -114,6 +115,7 @@
     <Content Include="Javascript\productItem.js" />
     <Content Include="Javascript\productSize.js" />
     <Content Include="Javascript\slider.js" />
+    <Content Include="Javascript\test.js" />
     <Content Include="Pages\AboutUs.aspx" />
     <Content Include="Pages\Cart.aspx" />
     <Content Include="Pages\ContactUs.aspx" />

@@ -9,9 +9,14 @@
 </header>
  <h2>Product</h2>
 
+       
 
+    
 
 <div class="crudProduct">
+
+
+
 
  <div class="wrap-items-search-buttons">
      <div class="search">
@@ -20,17 +25,30 @@
      </div>
 
 
-  
-
-     <asp:Button ID="Button1" runat="server" Text="Button" />
 
 
-             <div class="product-add">
-                
-         <asp:Button ID="btnAddProduct" runat="server" Text="Add Product" CssClass="product-add" />
-             </div>
 
 
+
+
+     <div>
+
+     <asp:DropDownList ID="ddlStatusFilter" runat="server" CssClass="ddlStatusFilter"></asp:DropDownList>
+</div>
+
+     
+
+
+
+
+     <div class="move">
+      
+          <asp:Button ID="btnExcelExport" runat="server" Text="Export" CssClass="excel-export" Font-Bold="True" ToolTip="Export To Excel" />  
+         <asp:Button ID="btnAddProduct" runat="server" Text="➕ Add Product" CssClass="product-add" ToolTip="Add Product" Font-Bold="True" />
+
+            </div>
+
+     
 
 </div>
 
@@ -260,13 +278,13 @@
 
 
 </div>
-    <div style="margin-bottom:500px;"></div>
+    
     <footer>
 
         
+        <script src="../Javascript/test.js"></script>
 
-
-        <script src="../Javascript/genderDDL.js"></script>
+      
 
     </footer>
 </asp:Content>
