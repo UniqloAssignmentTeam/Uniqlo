@@ -37,33 +37,79 @@
         <h1 class="genderHeader">Limited Offers</h1>
         <div class="limitedOfferCardContainer">
             <div class="limitedOfferCard" id="product1" data-product-id="1">
-                <img src="../../../Images/uniqloWomenTop.jpg" alt="Avatar" style="width: 100%"/>
-
+                <img src="../../../Images/Categories/Woman/Tops/AIRismCottonShortSleeveT-Shirt1.jpg"  alt="Avatar" style="width: 100%"/>
                 <div class="limitedOfferContainer">
-                    <div class="product-name"><h4><b>Blue T-shirt</b></h4></div>
-                    <div class="product-description"><p>Soft cotton t-shirt in blue</p></div>
-                    <div class="product-price"><p>RM 30.00</p></div>
+                    <div class="product-name"><h3><b>AIRism Cotton Short Sleeve T-Shirt</b></h3></div>
+                    <div class="product-description"><p>Smooth "AIRism" fabric with the look of cotton. Refined fabric and design.</p></div>
+                    <div class="product-price">
+                        <p style="text-decoration: line-through; margin-right: 10px;">RM 59.90</p>
+                        <p style="color: red;">RM 30.00</p>
+                    </div>
+                    <div class = "product-rating">
+                        <i class = "fas fa-star"></i>
+                        <i class = "fas fa-star"></i>
+                        <i class = "fas fa-star"></i>
+                        <i class = "fas fa-star"></i>
+                        <i class = "fas fa-star-half-alt"></i>
+                        <span>4.7 (21)</span>
+                    </div>
                 </div>
             </div>        
             <div class="limitedOfferCard" id="product2" data-product-id="2">
-                <img src="../../../Images/uniqloWomenTop.jpg" alt="Avatar" style="width: 100%"/>
+                <img src="../../../Images/Categories/Woman/Bottoms/SweatCargoPants1.jpg" alt="Avatar" style="width: 100%"/>
                 <div class="limitedOfferContainer">
-                    <h4><b>John Doe</b></h4> 
-                    <p>Architect & Engineer</p> 
+                    <div class="product-name"><h3><b>Sweat Cargo Pants</b></h3></div>
+                    <div class="product-description"><p>Sweatpants with cargo details. Adjust the hems to create your own style.</p></div>
+                    <div class="product-price">
+                        <p style="text-decoration: line-through; margin-right: 10px;">RM 120.00</p>
+                        <p style="color: red;">RM 79.90</p>
+                    </div>
+                    <div class = "product-rating">
+                        <i class = "fas fa-star"></i>
+                        <i class = "fas fa-star"></i>
+                        <i class = "fas fa-star"></i>
+                        <i class = "fas fa-star"></i>
+                        <i class = "fas fa-star"></i>
+                        <span>5.0 (50)</span>
+                    </div>
                 </div>
             </div>        
             <div class="limitedOfferCard">
-                <img src="../../../Images/uniqloWomenTop.jpg" alt="Avatar" style="width: 100%"/>
+                <img src="../../../Images/Categories/Woman/Outerwear/SoftBrushedLongSleeveShirt1.jpg" alt="Avatar" style="width: 100%"/>
                 <div class="limitedOfferContainer">
-                    <h4><b>John Doe</b></h4> 
-                    <p>Architect & Engineer</p> 
+                    <div class="product-name"><h3><b>Soft Brushed Long Sleeve Shirt</b></h3></div>
+                    <div class="product-description"><p>Soft, comfortable brushed fabric. Perfect on its own or as an outer layer.</p></div>
+                    <div class="product-price">
+                        <p style="text-decoration: line-through; margin-right: 10px;">RM 120.00</p>
+                        <p style="color: red;">RM 79.90</p>
+                    </div>
+                    <div class = "product-rating">
+                        <i class = "fas fa-star"></i>
+                        <i class = "fas fa-star"></i>
+                        <i class = "fas fa-star"></i>
+                        <i class = "fas fa-star"></i>
+                        <i class = "fa-regular fa-star"></i>
+                        <span>4.0 (15)</span>
+                    </div>
                 </div>
             </div>        
             <div class="limitedOfferCard">
-                <img src="../../../Images/uniqloWomenTop.jpg" alt="Avatar" style="width: 100%"/>
+                <img src="../../../Images/Categories/Woman/Outerwear/PocketableUVProtectionParka1.jpg" alt="Avatar" style="width: 100%"/>
                 <div class="limitedOfferContainer">
-                    <h4><b>John Doe</b></h4> 
-                    <p>Architect & Engineer</p> 
+                    <div class="product-name"><h3><b>Pocketable UV Protection Parka</b></h3></div>
+                    <div class="product-description"><p>Lightweight, pocketable design for easy carrying. A high-performance parka for protection against sun and light rain.</p></div>
+                    <div class="product-price">
+                        <p style="text-decoration: line-through; margin-right: 10px;">RM 159.90</p>
+                        <p style="color: red;">RM 129.90</p>
+                    </div>
+                    <div class = "product-rating">
+                        <i class = "fas fa-star"></i>
+                        <i class = "fas fa-star"></i>
+                        <i class = "fas fa-star"></i>
+                        <i class = "fas fa-star"></i>
+                        <i class = "fas fa-star-half-alt"></i>
+                        <span>4.2 (5)</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -85,31 +131,31 @@
                 <div class = "product-imgs">
                   <div class = "img-display">
                     <div class = "img-showcase">
-                        <img src="../../../Images/Categories/Woman/AIRismCottonShortSleeveT-Shirt1.jpg" alt = "uniqlo image"/>
-                        <img src="../../../Images/Categories/Woman/AIRismCottonShortSleeveT-Shirt2.jpg" alt = "uniqlo image"/>
-                        <img src="../../../Images/Categories/Woman/AIRismCottonShortSleeveT-Shirt3.jpg" alt = "uniqlo image"/>
-                        <img src="../../../Images/Categories/Woman/AIRismCottonShortSleeveT-Shirt4.jpg" alt = "uniqlo image"/>
+                        <img src="../../../Images/Categories/Woman/Tops/AIRismCottonShortSleeveT-Shirt1.jpg" alt = "uniqlo image"/>
+                        <img src="../../../Images/Categories/Woman/Tops/AIRismCottonShortSleeveT-Shirt2.jpg" alt = "uniqlo image"/>
+                        <img src="../../../Images/Categories/Woman/Tops/AIRismCottonShortSleeveT-Shirt3.jpg" alt = "uniqlo image"/>
+                        <img src="../../../Images/Categories/Woman/Tops/AIRismCottonShortSleeveT-Shirt4.jpg" alt = "uniqlo image"/>
                     </div>
                   </div>
                   <div class = "img-select">
                     <div class = "img-item">
                       <a href = "#" data-id = "1">
-                          <img src="../../../Images/Categories/Woman/AIRismCottonShortSleeveT-Shirt1.jpg" alt = "uniqlo image"/>
+                          <img src="../../../Images/Categories/Woman/Tops/AIRismCottonShortSleeveT-Shirt1.jpg" alt = "uniqlo image"/>
                       </a>
                     </div>
                     <div class = "img-item">
                       <a href = "#" data-id = "2">
-                          <img src="../../../Images/Categories/Woman/AIRismCottonShortSleeveT-Shirt2.jpg" alt = "uniqlo image"/>
+                          <img src="../../../Images/Categories/Woman/Tops/AIRismCottonShortSleeveT-Shirt2.jpg" alt = "uniqlo image"/>
                       </a>
                     </div>
                     <div class = "img-item">
                       <a href = "#" data-id = "3">
-                          <img src="../../../Images/Categories/Woman/AIRismCottonShortSleeveT-Shirt3.jpg" alt = "uniqlo image"/>
+                          <img src="../../../Images/Categories/Woman/Tops/AIRismCottonShortSleeveT-Shirt3.jpg" alt = "uniqlo image"/>
                       </a>
                     </div>
                     <div class = "img-item">
                       <a href = "#" data-id = "4">
-                          <img src="../../../Images/Categories/Woman/AIRismCottonShortSleeveT-Shirt4.jpg" alt = "uniqlo image"/>
+                          <img src="../../../Images/Categories/Woman/Tops/AIRismCottonShortSleeveT-Shirt4.jpg" alt = "uniqlo image"/>
                       </a>
                     </div>
                   </div>
