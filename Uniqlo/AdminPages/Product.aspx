@@ -11,7 +11,7 @@
 
 
 
-<div>
+<div class="crudProduct">
 
  <div class="wrap-items-search-buttons">
      <div class="search">
@@ -22,23 +22,12 @@
 
   
 
+     <asp:Button ID="Button1" runat="server" Text="Button" />
 
 
-
-
-
-
-
-
-
-
-
-
- 
-    
-
-            <div class="product-add">
-         <asp:Button ID="btnAddProduct" runat="server" Text="Button" CssClass="product-add" />
+             <div class="product-add">
+                
+         <asp:Button ID="btnAddProduct" runat="server" Text="Add Product" CssClass="product-add" />
              </div>
 
 
