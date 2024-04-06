@@ -17,8 +17,6 @@
     border:1px solid black;
 }
 
-
-
 .ddlStatusFilter{
 
 
@@ -197,7 +195,6 @@
 /* Header specific styles */
 .row:first-child {
     font-weight: bold;
-   
     color: black;
     background: ghostwhite;
 }
@@ -313,4 +310,25 @@ hr {
     .row:first-child {
         background: #4c9a2a; /* Keep the header green on mobile */
     }
+}
+
+/* Wish List */
+.prodHeader {
+    flex-basis: 35%;
+}
+
+.statusHeader {
+    flex-basis: 15%;
+}
+
+.priceHeader {
+    flex-basis: 20%;
+}
+
+.categoryHeader {
+    flex-basis: 15%;
+}
+
+.actionBtnHeader {
+    flex-basis: 15%;
 }

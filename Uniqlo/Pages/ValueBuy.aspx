@@ -1,12 +1,13 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin.Master" AutoEventWireup="true" CodeBehind="ValueBuy.aspx.cs" Inherits="Uniqlo.AdminPages.ValueBuy" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="main" runat="server">
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <link href="../css/ValueBuy.css" rel="stylesheet" />
-    <div class="valueBuyBody">
-        <header>
-            <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
-            <h2>Value Buy</h2>
-        </header>
+    <div class="productBody">
+    <header>
+        <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet" />
+    </header>
+        <h2>Value Buy</h2>
+
         <div class="wrap-items-search" style="display: flex;">
             <div class="search">
                 <input class="search-input" type="search" placeholder="Search" />
@@ -17,6 +18,13 @@
                     <asp:ListItem>Kids</asp:ListItem>
                     <asp:ListItem>Men</asp:ListItem>
                     <asp:ListItem>Women</asp:ListItem>
+                </asp:DropDownList>
+            </div>
+            <div class="filter" style="margin-left: 10px;">
+                <asp:DropDownList ID="ddlStatusFilter" runat="server" CssClass="ddlFilter">
+                    <asp:ListItem>In Stock</asp:ListItem>
+                    <asp:ListItem>Low In Stock</asp:ListItem>
+                    <asp:ListItem>No Stock</asp:ListItem>
                 </asp:DropDownList>
             </div>
         </div>
@@ -175,4 +183,3 @@
         <hr />
     </div>
 </asp:Content>
-
