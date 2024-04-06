@@ -128,6 +128,7 @@
     <Content Include="Javascript\productSize.js" />
     <Content Include="Javascript\slider.js" />
     <Content Include="Javascript\test.js" />
+    <Content Include="Javascript\wishList.js" />
     <Content Include="Pages\AboutUs.aspx" />
     <Content Include="Pages\Cart.aspx" />
     <Content Include="Pages\ContactUs.aspx" />
