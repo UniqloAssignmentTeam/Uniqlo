@@ -12,7 +12,7 @@
             <!-- Cart Item 1 -->
             <div class="cart-item">
                 <div class="item-image">
-                    <img src="../Images/uniqloKidsDresses.png" alt="Product Image" />
+                    <img src="../../../Images/Categories/Woman/Tops/AIRismCottonShortSleeveT-Shirt1.jpg" alt="Product Image" />
                 </div>
                 <div class="item-details">
                     <h3 class="item-name">Kid's Dress - Blue Floral</h3>
