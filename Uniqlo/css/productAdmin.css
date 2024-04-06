@@ -3,27 +3,23 @@
     position: relative;
     margin: auto;
     margin-top: 40px;
-    background-color:grey;
+    background-color: grey;
 }
 
 .wrap-items-search-buttons {
     display: flex;
     width: 100%;
     align-items: center;
-   
 }
 
-.crudProduct{
-    border:1px solid black;
+.crudProduct {
+    border: 1px solid black;
 }
 
-.ddlStatusFilter{
-
-
-
+.ddlStatusFilter {
 }
 
-.ddlFilters{
+.ddlFilters {
     background-color: #EA4C89;
     border-radius: 8px;
     border-style: none;
@@ -53,10 +49,11 @@
 
 
 
-.move{
-    margin-left:450px;
-    display:flex;
+.move {
+    margin-left: 450px;
+    display: flex;
 }
+
 .excel-export {
     background-color: #EA4C89;
     border-radius: 8px;
@@ -106,7 +103,7 @@
     touch-action: manipulation;
 }
 
-    .product-add:hover,.product-add:focus {
+    .product-add:hover, .product-add:focus {
         background-color: #F082AC;
     }
 
@@ -125,24 +122,24 @@
     transition: box-shadow 0.25s;
 }
 
-.search:focus-within{
-    box-shadow: 0 0 2px rgba(0,0,0,0.75);
-}
+    .search:focus-within {
+        box-shadow: 0 0 2px rgba(0,0,0,0.75);
+    }
 
 .search-input {
     font-size: 16px;
     color: #333333;
     margin-left: var(--padding);
-    outline:none;
-    border:none;
-    background:transparent;
-    width:200px;
-    flex:1;
+    outline: none;
+    border: none;
+    background: transparent;
+    width: 200px;
+    flex: 1;
 }
 
-.search-input::placeholder, .material-symbols-outlined {
-    color: rgba(0,0,0,0.25);
-}
+    .search-input::placeholder, .material-symbols-outlined {
+        color: rgba(0,0,0,0.25);
+    }
 
 
 
@@ -175,7 +172,7 @@
     margin-top: 20px;
     border: 2px solid ghostwhite;
 }
-  
+
 
 .row {
     display: flex;
@@ -192,12 +189,12 @@
     }
 
 
-/* Header specific styles */
-.row:first-child {
-    font-weight: bold;
-    color: black;
-    background: ghostwhite;
-}
+    /* Header specific styles */
+    .row:first-child {
+        font-weight: bold;
+        color: black;
+        background: ghostwhite;
+    }
 
 .col {
     align-items: center;
@@ -208,20 +205,18 @@
     justify-content: center;
 }
 
-.col:last-child {
-    border-right: none;
-}
+    .col:last-child {
+        border-right: none;
+    }
 
 
 /* Header Styles: Ensure headers match column styles */
 .productidHeader {
     flex-basis: 10%;
-    
 }
+
 .nameHeader {
     flex-grow: 1;
-
-    
 }
 
 .priceHeader {
@@ -231,12 +226,12 @@
 
 .statusHeader {
     flex-basis: 10%;
- 
 }
 
 .genderHeader {
     flex-basis: 10%;
 }
+
 .categoryHeader {
     flex-basis: 10%;
 }
@@ -256,7 +251,6 @@
     width: 5%;
     height: auto;
     padding: 0px 10px;
-    
 }
 
 /* Name Column */
@@ -264,16 +258,15 @@
     flex-grow: 1; /* Allow this column to grow and take up remaining space */
     text-align: left;
 }
+
 .inStock {
     flex-basis: 10%;
     color: green;
-    
 }
 
 .lowInStock {
     flex-basis: 10%;
     color: #8B8000;
-    
 }
 /* Price Column */
 
@@ -284,6 +277,7 @@
 .category {
     flex-basis: 10%;
 }
+
 .actionBtn {
     flex-basis: 8%;
 }

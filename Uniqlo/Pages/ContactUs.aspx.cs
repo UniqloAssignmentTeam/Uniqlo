@@ -5,13 +5,15 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace Uniqlo.Pages
+namespace Uniqlo
 {
-    public partial class ContactUs : System.Web.UI.Page
+    public partial class ContactUs : Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            // Page load logic here
         }
+
+        // Other methods and event handlers
     }
 }
