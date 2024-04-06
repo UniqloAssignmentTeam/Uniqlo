@@ -1,0 +1,89 @@
+﻿/* Value Buy Body */
+.valueBuyBody {
+    padding: 20px;
+}
+
+/* Header */
+header {
+    margin-bottom: 20px;
+}
+
+/* Search and Filter */
+.wrap-items-search {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.search {
+    flex: 1;
+    margin-right: 10px;
+}
+
+.filter {
+    flex: 1;
+    margin-left: 10px;
+}
+
+/* Product Items */
+.row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.prodImage {
+    margin-right: 10px;
+    flex-shrink: 0; /* Prevent image from shrinking */
+    width: 80px; /* Set width for the image */
+    height: 80px; /* Set height for the image */
+}
+
+.product-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.col {
+    flex: 1;
+    padding: 5px; /* Add padding for spacing */
+}
+
+.col.product {
+    flex: 1.5; /* Adjust width for product column */
+}
+
+.col.price {
+    flex: 1; /* Adjust width for price column */
+}
+
+.col.availability,
+.col.gender,
+.col.category {
+    flex: 1; /* Equal width for these columns */
+}
+
+.col.actionBtn {
+    flex: 1; /* Adjust width for action button column */
+}
+
+.price {
+    font-weight: bold;
+}
+
+/* Horizontal Rule */
+hr {
+    margin: 20px 0;
+    border: 0;
+    border-top: 1px solid #ccc;
+}
+
+/* Horizontal Rule */
+hr {
+    margin: 20px 0;
+    border: 0;
+    border-top: 1px solid #ccc;
+}

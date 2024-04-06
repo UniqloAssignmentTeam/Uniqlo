@@ -86,6 +86,7 @@
     <Content Include="css\productAdmin.css" />
     <Content Include="css\SignUp.css" />
     <Content Include="css\test.css" />
+    <Content Include="css\ValueBuy.css" />
     <Content Include="Images\accessories.jpg" />
     <Content Include="Images\Categories\Woman\Bottoms\SweatCargoPants1.jpg" />
     <Content Include="Images\Categories\Woman\Bottoms\SweatCargoPants2.jpg" />
