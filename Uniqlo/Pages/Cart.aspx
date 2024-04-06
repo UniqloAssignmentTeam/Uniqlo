@@ -7,7 +7,7 @@
             <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet" />
         </header>
         <h2>Shopping Cart</h2>
-        sdfweefsdfsd
+        
         <div class="cart-items">
             <!-- Cart Item 1 -->
             <div class="cart-item">
@@ -18,7 +18,12 @@
                     <h3 class="item-name">Kid's Dress - Blue Floral</h3>
                     <p class="item-price">Price: RM 89.99</p>
                     <p class="item-size">Size: M</p>
-                    <p class="item-quantity">Quantity: 9</p>
+                    <div class="item-quantity">
+                        Quantity: 
+                        <button class="quantity-edit" data-action="decrease">-</button>
+                        <span class="quantity">9</span>
+                        <button class="quantity-edit" data-action="increase">+</button>
+                    </div>
                     <p class="item-subtotal">Subtotal: RM <%= (89.99m * 9).ToString("F2") %></p>
                 </div>
                 <div class="item-actions">
@@ -35,7 +40,12 @@
                     <h3 class="item-name">Kid's Shorts - Beach Style</h3>
                     <p class="item-price">Price: RM 99.99</p>
                     <p class="item-size">Size: L</p>
-                    <p class="item-quantity">Quantity: 5</p>
+                    <div class="item-quantity">
+                        Quantity: 
+                        <button class="quantity-edit" data-action="decrease">-</button>
+                        <span class="quantity">5</span>
+                        <button class="quantity-edit" data-action="increase">+</button>
+                    </div>
                     <p class="item-subtotal">Subtotal: RM <%= (99.99m * 5).ToString("F2") %></p>
                 </div>
                 <div class="item-actions">
