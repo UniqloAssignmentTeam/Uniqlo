@@ -4,7 +4,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <link href="../css/productAdmin.css" rel="stylesheet" />
     <div class="productBody">
-            <header>
+<header>
    <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
 </header>
  <h2>Product</h2>
@@ -33,10 +33,21 @@
 
      <div>
 
-     <asp:DropDownList ID="ddlStatusFilter" runat="server" CssClass="ddlStatusFilter"></asp:DropDownList>
+     <asp:DropDownList ID="ddlStatusFilter" runat="server" CssClass="ddlFilter">
+         <asp:ListItem>In Stock</asp:ListItem>
+         <asp:ListItem>Low In Stock</asp:ListItem>
+         <asp:ListItem>No Stock</asp:ListItem>
+         </asp:DropDownList>
 </div>
 
-     
+    <div>
+
+     <asp:DropDownList ID="ddlCategoryFilter" runat="server" CssClass="ddlFilter" OnSelectedIndexChanged="ddlCategoryFilter_SelectedIndexChanged">
+         <asp:ListItem>Kids</asp:ListItem>
+         <asp:ListItem>Men</asp:ListItem>
+         <asp:ListItem>Women</asp:ListItem>
+         </asp:DropDownList>
+</div>
 
 
 
@@ -91,7 +102,11 @@
     <div class="col priceHeader">
         Price (RM)
     </div>
-      
+
+<div class="col genderHeader">
+    Gender
+</div>
+
     <div class="col categoryHeader">
         Category
     </div>
@@ -123,7 +138,9 @@
   <div class="col price">
       100.00
   </div>
-  
+  <div class="col gender">
+    Gender
+</div>
   <div class="col category">
       Category
   </div>
@@ -155,7 +172,9 @@
  <div class="col price">
     99.00
  </div>
- 
+   <div class="col gender">
+    Gender
+</div>
  <div class="col category">
      Category
  </div>
@@ -189,7 +208,9 @@
  <div class="col price">
     130.00
  </div>
- 
+   <div class="col gender">
+    Gender
+</div>
  <div class="col category">
      Category
  </div>
@@ -223,7 +244,9 @@
  <div class="col price">
      12.00
  </div>
- 
+   <div class="col gender">
+    Gender
+</div>
  <div class="col category">
      Category
  </div>
@@ -256,7 +279,9 @@
 <div class="col price">
     112.00
 </div>
-
+          <div class="col gender">
+    Gender
+</div>
 <div class="col category">
     Category
 </div>

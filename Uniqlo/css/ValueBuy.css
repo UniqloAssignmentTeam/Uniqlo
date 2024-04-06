@@ -1,0 +1,169 @@
+﻿/* Value Buy Body */
+.valueBuyBody {
+    padding: 20px;
+    max-width: 1100px;
+    position: relative;
+    margin: auto;
+    margin-top: 40px;
+}
+
+/* Header */
+header {
+    margin-bottom: 20px;
+}
+
+/* Search and Filter */
+.wrap-items-search {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.search {
+    flex: 1;
+    margin-right: 10px;
+}
+
+.filter {
+    flex: 1;
+    margin-left: 10px;
+}
+
+/* Product Items */
+.row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.prodImage {
+    margin-right: 10px;
+    flex-shrink: 0; /* Prevent image from shrinking */
+    width: 80px; /* Set width for the image */
+    height: 80px; /* Set height for the image */
+}
+
+.product-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.col {
+    flex: 1;
+    padding: 5px; /* Add padding for spacing */
+}
+
+.col.product {
+    flex: 2; /* Adjust width for product column */
+}
+
+.col.price {
+    flex: 1; /* Adjust width for price column */
+}
+
+.col.availability,
+.col.gender,
+.col.category {
+    flex: 1; /* Equal width for these columns */
+}
+
+.col.actionBtn {
+    flex: 1; /* Adjust width for action button column */
+}
+
+.price {
+    font-weight: bold;
+}
+
+/* Grey background for the first row */
+.row:first-child {
+    background-color: #ddd;
+}
+
+/* White background for the last row */
+.row:last-child {
+    background-color: #fff;
+}
+
+/* Horizontal Rule */
+hr {
+    margin: 20px 0;
+    border: 0;
+    border-top: 1px solid #ccc;
+}
+
+/*Admin Value Buy*/
+/* Custom styling */
+body {
+    font-family: 'Lato', sans-serif;
+    background-color: #f7f7f7;
+    color: #333;
+}
+
+.productBody {
+    padding: 20px;
+}
+
+header h2 {
+    color: #333;
+    text-align: center;
+}
+
+.value-buy-container {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.btn-add {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-bottom: 20px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.btn-add:hover {
+    background-color: #45a049;
+}
+
+.product-grid {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.product-grid th, .product-grid td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.btn-edit, .btn-delete {
+    background-color: #008CBA;
+    border: none;
+    color: white;
+    padding: 8px 12px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    margin-right: 5px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.btn-edit:hover, .btn-delete:hover {
+    background-color: #005f70;
+}

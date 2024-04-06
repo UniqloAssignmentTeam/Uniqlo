@@ -78,6 +78,8 @@
     <Content Include="App_Data\Uniqlo_log.ldf">
       <DependentUpon>Uniqlo.mdf</DependentUpon>
     </Content>
+    <Content Include="css\Cart.css" />
+    <Content Include="css\ContactUs.css" />
     <Content Include="css\dashboard.css" />
     <Content Include="css\home.css" />
     <Content Include="css\Login.css" />
@@ -86,6 +88,7 @@
     <Content Include="css\productAdmin.css" />
     <Content Include="css\SignUp.css" />
     <Content Include="css\test.css" />
+    <Content Include="css\ValueBuy.css" />
     <Content Include="Images\accessories.jpg" />
     <Content Include="Images\Categories\Woman\Bottoms\SweatCargoPants1.jpg" />
     <Content Include="Images\Categories\Woman\Bottoms\SweatCargoPants2.jpg" />
@@ -121,6 +124,7 @@
     <Content Include="Images\valueBuyBanner.jpg" />
     <Content Include="Javascript\addToCartButton.js" />
     <Content Include="Javascript\barChartTtlOder.js" />
+    <Content Include="Javascript\ContactUs.js" />
     <Content Include="Javascript\lineChart.js" />
     <Content Include="Javascript\modalProduct.js" />
     <Content Include="Javascript\product.js" />

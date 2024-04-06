@@ -17,12 +17,35 @@
     border:1px solid black;
 }
 
-
-
 .ddlStatusFilter{
 
 
 
+}
+
+.ddlFilters{
+    background-color: #EA4C89;
+    border-radius: 8px;
+    border-style: none;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    height: 40px;
+    line-height: 20px;
+    list-style: none;
+    margin: 0;
+    outline: none;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    transition: color 100ms;
+    vertical-align: baseline;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    margin-right: 25px
 }
 
 
@@ -30,9 +53,8 @@
 
 
 
-
 .move{
-    margin-left:500px;
+    margin-left:450px;
     display:flex;
 }
 .excel-export {
@@ -173,7 +195,6 @@
 /* Header specific styles */
 .row:first-child {
     font-weight: bold;
-   
     color: black;
     background: ghostwhite;
 }
@@ -213,6 +234,9 @@
  
 }
 
+.genderHeader {
+    flex-basis: 10%;
+}
 .categoryHeader {
     flex-basis: 10%;
 }
@@ -253,7 +277,9 @@
 }
 /* Price Column */
 
-
+.gender {
+    flex-basis: 10%;
+}
 /* Category Column */
 .category {
     flex-basis: 10%;
@@ -284,4 +310,25 @@ hr {
     .row:first-child {
         background: #4c9a2a; /* Keep the header green on mobile */
     }
+}
+
+/* Wish List */
+.prodHeader {
+    flex-basis: 35%;
+}
+
+.statusHeader {
+    flex-basis: 15%;
+}
+
+.priceHeader {
+    flex-basis: 20%;
+}
+
+.categoryHeader {
+    flex-basis: 15%;
+}
+
+.actionBtnHeader {
+    flex-basis: 15%;
 }
