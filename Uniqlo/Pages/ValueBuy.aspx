@@ -12,22 +12,6 @@
     <div class="limitedOfferCard" id="product1" data-product-id="1">
         <div class="product-image-container">
             <img src="../../../Images/Categories/Woman/Tops/AIRismCottonShortSleeveT-Shirt1.jpg"  alt="Avatar" style="width: 100%"/>
-            <div class="limitedOfferContainer">
-                <div class="product-name"><h3><b>AIRism Cotton Short Sleeve T-Shirt</b></h3></div>
-                <div class="product-description"><p>Smooth "AIRism" fabric with the look of cotton. Refined fabric and design.</p></div>
-                <div class="product-price">
-                    <p style="text-decoration: line-through; margin-right: 10px;">RM 59.90</p>
-                    <p style="color: red;">RM 30.00</p>
-                </div>
-                <div class = "product-rating">
-                    <i class = "fas fa-star"></i>
-                    <i class = "fas fa-star"></i>
-                    <i class = "fas fa-star"></i>
-                    <i class = "fas fa-star"></i>
-                    <i class = "fas fa-star-half-alt"></i>
-                    <span>4.7 (21)</span>
-                </div>
-            </div>
         </div>
         <div class="limitedOfferContainer">
             <div class="product-name"><h3><b>AIRism Cotton Short Sleeve T-Shirt</b></h3></div>

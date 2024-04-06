@@ -5,13 +5,13 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace Uniqlo
+namespace Uniqlo.Pages
 {
-    public partial class ContactUs : System.Web.UI.Page
+    public partial class Cart : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            // Code for page load event
+            // Add any code you need to execute when the page loads
         }
     }
 }

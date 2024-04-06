@@ -167,3 +167,60 @@ header h2 {
 .btn-edit:hover, .btn-delete:hover {
     background-color: #005f70;
 }
+
+/*LIMITED OFFER CARD*/
+.limitedOfferCardContainer {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.limitedOfferCard {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    width: calc(25% - 20px);
+    margin: 10px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+}
+
+    .limitedOfferCard:hover {
+        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    }
+
+.limitedOfferContainer {
+    padding: 0px 16px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: space-between;
+    padding: 8px 16px;
+}
+
+    .limitedOfferContainer .product-name {
+        height: 30%;
+        text-align: justify;
+    }
+
+    .limitedOfferContainer .product-description {
+        height: 50%;
+        flex-grow: 1;
+        text-align: justify;
+    }
+
+    .limitedOfferContainer .product-price {
+        display: flex;
+        justify-content: start;
+        align-items: center;
+        height: 10%;
+    }
+
+    .limitedOfferContainer .product-rating {
+        display: flex;
+        align-items: center;
+        height: 10%;
+    }
+
+        .limitedOfferContainer .product-rating span {
+            margin-left: 10px;
+        }
