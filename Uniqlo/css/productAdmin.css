@@ -16,33 +16,101 @@
     border: 1px solid black;
 }
 
-.ddlStatusFilter {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.dropdown-container {
+    position: relative;
 }
 
-.ddlFilters {
-    background-color: #EA4C89;
-    border-radius: 8px;
-    border-style: none;
-    box-sizing: border-box;
-    color: #FFFFFF;
-    cursor: pointer;
-    font-size: 14px;
-    font-weight: 500;
+.dropdown-display {
+    width: 200px;
     height: 40px;
-    line-height: 20px;
-    list-style: none;
-    margin: 0;
-    outline: none;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: white;
+    cursor: pointer;
     position: relative;
-    text-align: center;
-    text-decoration: none;
-    transition: color 100ms;
-    vertical-align: baseline;
-    user-select: none;
-    -webkit-user-select: none;
-    touch-action: manipulation;
-    margin-right: 25px
 }
+
+.dropdown-list {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 100;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    opacity: 0; /* Start fully transparent */
+    visibility: hidden; /* Start hidden */
+    transform: translateY(-20px); /* Start slightly above */
+    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s; /* Animate opacity, transform, and visibility */
+}
+.dropdown-list.open {
+        opacity: 1; /* Fade in to fully opaque */
+        visibility: visible; /* Make visible */
+        transform: translateY(0px); /* Move to original position */
+    }
+
+
+.dropdown-list.open {
+        display: block; /* Show dropdown */
+}
+
+.dropdown-list div {
+        padding: 10px;
+        cursor: pointer;
+}
+
+    .dropdown-list div:hover {
+        background-color: #f0f0f0;
+    }
+
+
+.dropdown-display::after {
+    content: '';
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%) rotate(180deg); /* Arrow points up initially */
+    border: solid transparent;
+    border-width: 0 6px 6px 6px; /* Create a sharper arrow */
+    border-bottom-color: black; /* The tip of the arrow is black */
+    display: inline-block;
+    transition: transform 0.3s ease;
+}
+.dropdown-container.open .dropdown-display::after {
+    transform: translateY(-50%) rotate(0deg); /* Rotate arrow to point down when open */
+}
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -103,7 +171,7 @@
     touch-action: manipulation;
 }
 
-    .product-add:hover, .product-add:focus {
+    .product-add:hover, .product-add:focus, .excel-export:hover, .excel-export:focus {
         background-color: #F082AC;
     }
 
@@ -178,15 +246,13 @@
     display: flex;
     align-items: center;
     background-color: #f8f8f8;
-    justify-content: center;
+    justify-content: space-between;
     padding: 10px;
     border-radius: 0px; /* Rounded corners for each row */
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
 }
 
-    .row:nth-child(even) {
-        background-color: #e8e8e8; /* Alternate row color for readability */
-    }
+   
 
 
     /* Header specific styles */
@@ -197,52 +263,22 @@
     }
 
 .col {
+    display:flex;
     align-items: center;
     text-align: center;
     flex-grow: 0; /* Do not allow columns to grow */
     flex-shrink: 0; /* Do not allow columns to shrink */
     height: 50px; /* Adjust height automatically */
     justify-content: center;
+ 
 }
 
-    .col:last-child {
-        border-right: none;
-    }
-
-
-/* Header Styles: Ensure headers match column styles */
-.productidHeader {
-    flex-basis: 10%;
+.prodImageHeader {
+    display: none;
 }
 
-.nameHeader {
-    flex-grow: 1;
-}
-
-.priceHeader {
-    flex-basis: 9%;
-}
-
-
-.statusHeader {
-    flex-basis: 10%;
-}
-
-.genderHeader {
-    flex-basis: 10%;
-}
-
-.categoryHeader {
-    flex-basis: 10%;
-}
-
-.actionBtnHeader {
-    flex-basis: 8%;
-}
-
-
-.productid, .price {
-    flex-basis: 9%; /* Set a base width */
+.productid, .price{
+    flex: 0 0 10%; /* Set a base width */
 }
 
 
@@ -256,9 +292,12 @@
 /* Name Column */
 .name {
     flex-grow: 1; /* Allow this column to grow and take up remaining space */
-    text-align: left;
-}
+    
 
+}
+.status {
+    flex-basis: 10%;
+}
 .inStock {
     flex-basis: 10%;
     color: green;
@@ -281,10 +320,17 @@
 .actionBtn {
     flex-basis: 8%;
 }
-/* Utility styles */
-hr {
-    display: none; /* Since we are using borders, the <hr> tags are not needed */
-}
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -306,23 +352,3 @@ hr {
     }
 }
 
-/* Wish List */
-.prodHeader {
-    flex-basis: 35%;
-}
-
-.statusHeader {
-    flex-basis: 15%;
-}
-
-.priceHeader {
-    flex-basis: 20%;
-}
-
-.categoryHeader {
-    flex-basis: 15%;
-}
-
-.actionBtnHeader {
-    flex-basis: 15%;
-}

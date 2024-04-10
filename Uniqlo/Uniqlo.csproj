@@ -128,10 +128,11 @@
     <Content Include="Javascript\lineChart.js" />
     <Content Include="Javascript\modalProduct.js" />
     <Content Include="Javascript\product.js" />
+    <Content Include="Javascript\productAdminDDL.js" />
+    <Content Include="Javascript\productAdminDDLCategory.js" />
     <Content Include="Javascript\productItem.js" />
     <Content Include="Javascript\productSize.js" />
     <Content Include="Javascript\slider.js" />
-    <Content Include="Javascript\test.js" />
     <Content Include="Javascript\wishList.js" />
     <Content Include="Pages\AboutUs.aspx" />
     <Content Include="Pages\Cart.aspx" />
