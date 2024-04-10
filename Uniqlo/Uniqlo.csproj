@@ -128,6 +128,7 @@
     <Content Include="Javascript\modalProduct.js" />
     <Content Include="Javascript\product.js" />
     <Content Include="Javascript\productAdminDDL.js" />
+    <Content Include="Javascript\productAdminDDLCategory.js" />
     <Content Include="Javascript\productItem.js" />
     <Content Include="Javascript\productSize.js" />
     <Content Include="Javascript\slider.js" />

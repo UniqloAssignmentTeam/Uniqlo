@@ -27,32 +27,33 @@
          <input class="search-input" type="search" placeholder="Search" />
      </div>
 
-
-
-
-
-
-
-
-
-   <div class="dropdown-container" onclick="toggleDropdown()">
+<div class="dropdown-container" onclick="toggleDropdown('dropdownList', 'dropdownDisplay')">
   <div class="dropdown-display" id="dropdownDisplay">Status</div>
   <div class="dropdown-list" id="dropdownList">
-    <div onclick="selectOption('In Stock')">In Stock</div>
-    <div onclick="selectOption('Low In Stock')">Low In Stock</div>
-    <div onclick="selectOption('No Stock')">No Stock</div>
+    <div onclick="selectOption('In Stock', 'dropdownDisplay')">In Stock</div>
+    <div onclick="selectOption('Low In Stock', 'dropdownDisplay')">Low In Stock</div>
+    <div onclick="selectOption('No Stock', 'dropdownDisplay')">No Stock</div>
+  </div>
+</div>
+
+<div class="dropdown-container" onclick="toggleDropdown('dropdownList2', 'dropdownDisplay2')">
+  <div class="dropdown-display" id="dropdownDisplay2">Category</div>
+  <div class="dropdown-list" id="dropdownList2">
+    <div onclick="selectOption('Men', 'dropdownDisplay2')">Men</div>
+    <div onclick="selectOption('Women', 'dropdownDisplay2')">Women</div>
+    <div onclick="selectOption('Kids', 'dropdownDisplay2')">Kids</div>
   </div>
 </div>
 
 
-     <div>
-     <select name="exampleDropdown" id="ddlCategoryFilter">
-  <option value="option1">Men</option>
-  <option value="option2">Women</option>
-  <option value="option3">Kids</option>
-</select>
-         </div>
- 
+
+
+
+
+
+
+
+
 
 
 
@@ -314,7 +315,7 @@
 
         
         <script src="../Javascript/productAdminDDL.js"></script>
-
+    
       
 
     </footer>
