@@ -81,6 +81,7 @@
     <Content Include="css\Cart.css" />
     <Content Include="css\ContactUs.css" />
     <Content Include="css\dashboard.css" />
+    <Content Include="css\delivery.css" />
     <Content Include="css\home.css" />
     <Content Include="css\Login.css" />
     <Content Include="css\master.css" />
@@ -135,6 +136,7 @@
     <Content Include="Pages\AboutUs.aspx" />
     <Content Include="Pages\Cart.aspx" />
     <Content Include="Pages\ContactUs.aspx" />
+    <Content Include="Pages\Delivery.aspx" />
     <Content Include="Pages\Home.aspx" />
     <Content Include="Pages\Categories\Kids\Bottoms.aspx" />
     <Content Include="Pages\Categories\Kids\DressesSkirt.aspx" />
@@ -235,6 +237,13 @@
     </Compile>
     <Compile Include="Pages\ContactUs.aspx.designer.cs">
       <DependentUpon>ContactUs.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Delivery.aspx.cs">
+      <DependentUpon>Delivery.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Delivery.aspx.designer.cs">
+      <DependentUpon>Delivery.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Home.aspx.cs">
       <DependentUpon>Home.aspx</DependentUpon>
