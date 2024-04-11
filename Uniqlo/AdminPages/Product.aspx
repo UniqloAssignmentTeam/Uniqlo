@@ -14,8 +14,6 @@
 
        
 
-    
-
 <div class="crudProduct">
 
 
@@ -27,6 +25,8 @@
          <input class="search-input" type="search" placeholder="Search" />
      </div>
 
+
+     <div class="dropdown-wrapper">
 <div class="dropdown-container" onclick="toggleDropdown('dropdownList', 'dropdownDisplay')">
   <div class="dropdown-display" id="dropdownDisplay">Status</div>
   <div class="dropdown-list" id="dropdownList">
@@ -45,6 +45,7 @@
   </div>
 </div>
 
+       </div>
 
 
 
@@ -58,8 +59,7 @@
 
 
 
-
-     <div class="move">
+     <div class="btnExcel-Add">
       
           <asp:Button ID="btnExcelExport" runat="server" Text="Export" CssClass="excel-export" Font-Bold="True" ToolTip="Export To Excel" />  
          <asp:Button ID="btnAddProduct" runat="server" Text="➕ Add Product" CssClass="product-add" ToolTip="Add Product" Font-Bold="True" />

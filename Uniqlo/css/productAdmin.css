@@ -3,47 +3,88 @@
     position: relative;
     margin: auto;
     margin-top: 40px;
-    background-color: grey;
+    border: 1px solid #eaeaea; /* light border for subtle definition */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* soft shadow for depth */
 }
+
+
+
+.crudProduct {
+    padding: 15px; /* Add padding inside the border */
+    background-color: whitesmoke;
+    max-width: 1100px;
+}
+
+
 
 .wrap-items-search-buttons {
     display: flex;
-    width: 100%;
+    justify-content: space-between; /* This will spread out the child elements */
+    align-items: center; /* Vertically centers the child elements in the container */
+    padding: 0 20px; /* Add padding on sides */
+    /* Adds a gap between the search bar and other elements if needed */
+}
+
+.search {
+    --padding: 5px;
+    width:350px; /* Makes the search bar take up the available space */
+    display: flex;
     align-items: center;
+    padding: var(--padding);
+    border-radius: 28px;
+    background: #f6f6f6;
+    transition: box-shadow 0.25s;
+   
+   /* Add some margin to the right if you want to separate it from other elements */
 }
 
-.crudProduct {
-    border: 1px solid black;
+    .search:focus-within {
+        box-shadow: 0 0 2px rgba(0,0,0,0.75);
+    }
+
+.search-input {
+    font-size: 16px;
+    color: #333333;
+    margin-left: var(--padding);
+    outline: none;
+    border: none;
+    background: transparent;
+    flex-grow: 1; /* Allows the input to fill the space inside the search div */
+    
 }
 
+    .search-input::placeholder, .material-symbols-outlined {
+        color: rgba(0,0,0,0.5);
+        padding: var(--padding); /* Adds padding around the icon */
+    }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+.dropdown-wrapper {
+    display: flex; /* Use flexbox to align the children */
+    justify-content: center; /* Center the children horizontally */
+    align-items: center; /* Center the children vertically */
+    gap: 10px; /* This sets the space between the dropdowns */
+}
 
 .dropdown-container {
     position: relative;
+    width: 150px; /* Fixed width for consistency */
+    display: flex; /* Use flex to align the arrow inside .dropdown-display */
+    align-items: center; /* Center align the contents */
+    justify-content: space-between; /* Spread out the contents */
 }
 
 .dropdown-display {
-    width: 200px;
+    width: 150px;
     height: 40px;
     border: 1px solid #ccc;
     border-radius: 5px;
     background-color: white;
     cursor: pointer;
     position: relative;
+    text-align: center; /* Center the text */
+    display: flex; /* Use flexbox here to help with centering text and arrow */
+    align-items: center; /* Align the text and arrow vertically */
+    justify-content: center; /* Centers the text inside the dropdown */
 }
 
 .dropdown-list {
@@ -60,6 +101,8 @@
     visibility: hidden; /* Start hidden */
     transform: translateY(-20px); /* Start slightly above */
     transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s; /* Animate opacity, transform, and visibility */
+  align-items:center;
+    text-align: center; /* Centers the text inside the dropdown */
 }
 .dropdown-list.open {
         opacity: 1; /* Fade in to fully opaque */
@@ -94,120 +137,47 @@
     display: inline-block;
     transition: transform 0.3s ease;
 }
-.dropdown-container.open .dropdown-display::after {
-    transform: translateY(-50%) rotate(0deg); /* Rotate arrow to point down when open */
-}
-
-  
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-.move {
-    margin-left: 450px;
+.btnExcel-Add{
+    margin-left: 150px;
     display: flex;
+   
 }
 
 .excel-export {
-    background-color: #EA4C89;
-    border-radius: 8px;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 5px;
     border-style: none;
     box-sizing: border-box;
-    color: #FFFFFF;
-    cursor: pointer;
-    font-size: 14px;
-    font-weight: 500;
     height: 40px;
-    line-height: 20px;
-    list-style: none;
-    margin: 0;
-    outline: none;
     position: relative;
     text-align: center;
     text-decoration: none;
     transition: color 100ms;
-    vertical-align: baseline;
-    user-select: none;
-    -webkit-user-select: none;
-    touch-action: manipulation;
-    margin-right: 25px
 }
 
 .product-add {
-    background-color: #EA4C89;
-    border-radius: 8px;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 5px;
     border-style: none;
     box-sizing: border-box;
-    color: #FFFFFF;
-    cursor: pointer;
-    font-size: 14px;
-    font-weight: 500;
     height: 40px;
-    line-height: 20px;
-    list-style: none;
-    margin: 0;
-    outline: none;
     position: relative;
     text-align: center;
     text-decoration: none;
-    transition: color 100ms;
-    vertical-align: baseline;
-    user-select: none;
-    -webkit-user-select: none;
-    touch-action: manipulation;
+    transition: color 500ms;
+    margin-left: 10px;
 }
 
-    .product-add:hover, .product-add:focus, .excel-export:hover, .excel-export:focus {
+.product-add:hover, .product-add:focus, .excel-export:hover, .excel-export:focus {
         background-color: #F082AC;
-    }
-
-
-
-
-
-.search {
-    --padding: 8px;
-    width: 35%;
-    display: flex;
-    align-items: center;
-    padding: var(--padding);
-    border-radius: 28px;
-    background: #f6f6f6;
-    transition: box-shadow 0.25s;
 }
 
-    .search:focus-within {
-        box-shadow: 0 0 2px rgba(0,0,0,0.75);
-    }
-
-.search-input {
-    font-size: 16px;
-    color: #333333;
-    margin-left: var(--padding);
-    outline: none;
-    border: none;
-    background: transparent;
-    width: 200px;
-    flex: 1;
-}
-
-    .search-input::placeholder, .material-symbols-outlined {
-        color: rgba(0,0,0,0.25);
-    }
 
 
 
@@ -235,32 +205,33 @@
 
 
 .table {
-    width: 100%;
+    max-width: 1100px;
     margin: 0 auto;
-    margin-top: 20px;
     border: 2px solid ghostwhite;
+    box-sizing: border-box;
 }
 
 
 .row {
     display: flex;
     align-items: center;
-    background-color: #f8f8f8;
     justify-content: space-between;
     padding: 10px;
-    border-radius: 0px; /* Rounded corners for each row */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    width: 100%; /* Ensures row does not exceed its container's width */
+    box-sizing: border-box; /* Include this as well */
 }
 
-   
 
+.table .row:nth-child(even) {
+    background-color: #fafafa; /* very light grey for every even row */
+}
 
     /* Header specific styles */
-    .row:first-child {
-        font-weight: bold;
-        color: black;
-        background: ghostwhite;
-    }
+.row:first-child {
+    font-weight: bold;
+    background-color: #007bff; /* Blue makes the header pop and looks great with white */
+    color: white;
+}
 
 .col {
     display:flex;
@@ -270,6 +241,7 @@
     flex-shrink: 0; /* Do not allow columns to shrink */
     height: 50px; /* Adjust height automatically */
     justify-content: center;
+
  
 }
 
@@ -300,12 +272,15 @@
 }
 .inStock {
     flex-basis: 10%;
-    color: green;
+    color: #28a745;
 }
-
+.noStock{
+    flex-basis:10%;
+    color:red;
+}
 .lowInStock {
     flex-basis: 10%;
-    color: #8B8000;
+    color: #ffc107;
 }
 /* Price Column */
 
