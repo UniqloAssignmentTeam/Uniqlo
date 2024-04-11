@@ -93,6 +93,7 @@
     <Content Include="css\style.css" />
     <Content Include="css\style1.css" />
     <Content Include="css\ValueBuy.css" />
+    <Content Include="css\WishList.css" />
     <Content Include="Images\accessories.jpg" />
     <Content Include="Images\Categories\Woman\Bottoms\SweatCargoPants1.jpg" />
     <Content Include="Images\Categories\Woman\Bottoms\SweatCargoPants2.jpg" />
