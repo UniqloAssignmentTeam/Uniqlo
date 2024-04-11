@@ -1,7 +1,11 @@
 ﻿/**Formatting*/
 body {
     margin: 0;
-    padding: 0;
+    padding: 0;  
+}
+
+* {
+    box-sizing: border-box;
     font-family: "Poppins", sans-serif;
     font-size: 1rem;
     font-weight: 400;
@@ -11,12 +15,7 @@ body {
     background-color: #fff;
 }
 
-* {
-    box-sizing: border-box;
-}
-
 /*HEADER*/
-
 
 .uniqlo-icon {
     margin: 45px 0px 0px 40px;
@@ -114,6 +113,8 @@ body {
     text-align: center;
     margin: 0;
     padding: 40px 0px 0px 0px;
+
+
 }
 
 .socialIcons {
