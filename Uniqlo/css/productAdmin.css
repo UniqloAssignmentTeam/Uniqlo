@@ -294,9 +294,63 @@
     flex-basis: 10%;
 }
 
-.actionBtn {
+
+
+
+.eclipse-container {
+    display: flex;
+    position: relative;
+    
     flex-basis: 8%;
 }
+
+.eclipse-display {
+    cursor: pointer;
+    flex-basis: 8%;
+}
+
+.eclipse-list {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 100;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    opacity: 0; /* Start fully transparent */
+    visibility: hidden; /* Start hidden */
+    transform: translateY(-20px); /* Start slightly above */
+    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s; /* Animate opacity, transform, and visibility */
+    align-items: center;
+    text-align: center; /* Centers the text inside the dropdown */
+}
+
+    .eclipse-list.open {
+        opacity: 1; /* Fade in to fully opaque */
+        visibility: visible; /* Make visible */
+        transform: translateY(0px); /* Move to original position */
+    }
+
+
+    .eclipse-list.open {
+        display: block; /* Show dropdown */
+    }
+
+    .eclipse-list div {
+        padding: 10px;
+        cursor: pointer;
+    }
+
+        .eclipse-list div:hover {
+            background-color: #f0f0f0;
+        }
+
+
+
+
+
 
 
 .user-dropdown {
@@ -357,31 +411,45 @@
         cursor: default; /* Revert cursor to default when button is disabled */
     }
 
-.eclipse-display {
-    padding: 8px;
-    cursor: pointer;
-    display: inline-block; /* or block */
+
+
+
+
+
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 2; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
 }
 
-.eclipse-list {
-    display: none; /* Start hidden */
-    position: absolute;
-    background-color: #f9f9f9;
-    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
-    right: 0;
-    top: 100%;
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
 }
 
-    /* Style for each item in the dropdown */
-    .eclipse-list div {
-        padding: 12px 16px;
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+    .close:hover,
+    .close:focus {
         color: black;
+        text-decoration: none;
+        cursor: pointer;
     }
-
-        .eclipse-list div:hover {
-            background-color: #f0f0f0;
-        }
-
 
       
 

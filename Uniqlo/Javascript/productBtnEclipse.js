@@ -1,28 +1,56 @@
-﻿// Toggle dropdown visibility
-function toggleDropdown2() {
-    var eclipseList = document.getElementById("eclipseList");
-    var isDisplayed = window.getComputedStyle(eclipseList).display !== "none";
-    eclipseList.style.display = isDisplayed ? "none" : "block";
+﻿function toggleDropdown(dropdownListId, dropdownDisplayId) {
+    var dropdownList = document.getElementById(dropdownListId);
+    dropdownList.classList.toggle('open');
+    var dropdownDisplay = document.getElementById(dropdownDisplayId);
+    dropdownDisplay.classList.toggle('open');
 }
 
-// Show modal
+function selectOption(option, dropdownDisplayId) {
+    var dropdownDisplay = document.getElementById(dropdownDisplayId);
+    dropdownDisplay.textContent = option;
+    var dropdownList = dropdownDisplay.nextElementSibling;
+    dropdownList.classList.remove('open');
+}
+
+// Function to display the modal
 function showModal(modalId) {
-    // Implementation to show modal
+    var modal = document.getElementById(modalId);
+    modal.style.display = "block";
 }
 
-// Close modal
+// Function to close the modal
 function closeModal(modalId) {
-    // Implementation to close modal
+    var modal = document.getElementById(modalId);
+    modal.style.display = "none";
 }
 
-// Close dropdowns or modals if the user clicks outside of them
+
+
+// Close the dropdown if the user clicks outside of it
 window.onclick = function (event) {
-    var eclipseList = document.getElementById("eclipseList");
     if (!event.target.matches('.eclipse-display') && !event.target.matches('.fa')) {
-        eclipseList.style.display = "none";
+        var dropdowns = document.getElementsByClassName("eclipse-list");
+        for (var i = 0; i < dropdowns.length; i++) {
+            var openDropdown = dropdowns[i];
+            openDropdown.style.display = "none";
+        }
     }
 
-    if (event.target.matches('.modal')) {
-        // Close the modal
+    if (event.target.classList.contains('modal')) {
+        event.target.style.display = "none";
     }
 };
+
+
+
+window.onclick = function (event) {
+    if (!event.target.matches('.eclipse-display')) {
+        var dropdowns = document.getElementsByClassName("eclipse-list");
+        for (var i = 0; i < dropdowns.length; i++) {
+            var openDropdown = dropdowns[i];
+            if (openDropdown.classList.contains('open')) {
+                openDropdown.classList.remove('open');
+            }
+        }
+    }
+}
