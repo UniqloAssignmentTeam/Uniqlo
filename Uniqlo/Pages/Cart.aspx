@@ -19,7 +19,6 @@
                     <h3><b>AIRism Cotton Short Sleeve T-Shirt</b></h3>
                 </div>
                 <div class="item-price">
-                    <!-- Display original price and discounted price next to each other -->
                     <p style="margin-right: 10px;">
                         <span style="text-decoration: line-through;">RM 59.90</span>
                         <span style="color: red; margin-left: 10px;"><b>RM 30.00</b></span>
@@ -40,7 +39,6 @@
                 <button class="btn-remove">Remove</button>
             </div>
         </div>
-
             
         <!-- Cart Item 2 -->
         <div class="cart-item" id="cart2" data-cart-id="2">
@@ -52,7 +50,6 @@
                     <h3><b>Sweat Cargo Pants</b></h3>
                 </div>
                 <div class="item-price">
-                    <!-- Display original price and discounted price next to each other -->
                     <p style="margin-right: 10px;">
                         <span style="text-decoration: line-through;">RM 120.00</span>
                         <span style="color: red; margin-left: 10px;"><b>RM 79.90</b></span>

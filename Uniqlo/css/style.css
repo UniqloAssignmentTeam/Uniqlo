@@ -35,12 +35,12 @@
     --font-family-sans-serif: "Poppins", sans-serif;
     --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
-*,
-*::before,
-*::after {
-    box-sizing: border-box;
-}
 
+.body {
+    max-width: 1100px;
+    position: relative;
+    margin: auto;
+}
 html {
     font-family: sans-serif;
     line-height: 1.15;

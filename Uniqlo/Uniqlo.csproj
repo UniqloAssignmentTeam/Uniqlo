@@ -126,8 +126,8 @@
     <Content Include="Images\uniqloWomenTop.jpg" />
     <Content Include="Images\valueBuy.jpg" />
     <Content Include="Images\valueBuyBanner.jpg" />
-    <Content Include="Javascript\addProductModal.js" />
     <Content Include="Javascript\addToCartButton.js" />
+    <Content Include="Javascript\adminProductModal.js" />
     <Content Include="Javascript\barChartTtlOder.js" />
     <Content Include="Javascript\ContactUs.js" />
     <Content Include="Javascript\lineChart.js" />
@@ -167,7 +167,6 @@
     <Content Include="Pages\Profile.aspx" />
     <Content Include="Pages\SignUp.aspx" />
     <Content Include="Pages\ValueBuy.aspx" />
-    <Content Include="Pages\WebForm1.aspx" />
     <Content Include="Pages\WishList.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -423,13 +422,6 @@
     </Compile>
     <Compile Include="Pages\ValueBuy.aspx.designer.cs">
       <DependentUpon>ValueBuy.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\WebForm1.aspx.cs">
-      <DependentUpon>WebForm1.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Pages\WebForm1.aspx.designer.cs">
-      <DependentUpon>WebForm1.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\WishList.aspx.cs">
       <DependentUpon>WishList.aspx</DependentUpon>
