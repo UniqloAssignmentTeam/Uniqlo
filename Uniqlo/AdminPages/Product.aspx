@@ -122,8 +122,8 @@
        
 
 
-         <div class="col actionBtn">
-             <asp:Button ID="Button1" runat="server" Text="Button" Visible="false" />
+         <div class="col eclipse-container">
+             <asp:Button ID="Button1" runat="server" Text="Button" Visible="False" />
 
 </div>
   
@@ -160,22 +160,19 @@
   </div>
 
 
-      <div class="col actionBtn">
-    <!-- Trigger Button -->
-    <div class="eclipse-display" onclick="toggleDropdown2()">
-       <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
-    </div>
-    <!-- Dropdown Menu -->
-    <div class="eclipse-list" id="eclipseList">
-        <div onclick="showModal('viewMoreModal')">View More</div>
-        <div onclick="showModal('updateModal')">Update</div>
-        <div onclick="selectOption('delete')">Delete</div>
-    </div>
-</div>
 
+    <div class="col eclipse-container" onclick="toggleDropdown('dropdownList3', 'dropdownDisplay3')">
 
-
+        <div class="eclipse-display" id="dropdownDisplay3" style="border:none;"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></div>
+         <div class="eclipse-list" id="dropdownList3">
+          <div onclick="showModal('viewMoreModalContainer')">View More</div>
+        <div onclick="showModal('updateModalContainer')">Update</div>
+        <div onclick="showModal('deleteModalContainer')">Delete</div>
+       </div>
+     </div>
   
+
+
       </div>
 
 
@@ -208,9 +205,16 @@
      Category
  </div>
 
-    <div class="col actionBtn">
-          <asp:Button ID="btnAction2" runat="server" Text="Button" />
-</div>
+    <div class="col eclipse-container">
+
+    <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+   
+ </div>
+
+
+
+
+
 
      </div>
    
@@ -244,8 +248,10 @@
      Category
  </div>
 
-               <div class="col actionBtn">
-          <asp:Button ID="btnAction3" runat="server" Text="Button" />
+             <div class="col eclipse-container">
+
+   <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+  
 </div>
 
      </div>
@@ -280,8 +286,10 @@
      Category
  </div>
 
-               <div class="col actionBtn">
-          <asp:Button ID="btnAction4" runat="server" Text="Button" />
+               <div class="col eclipse-container">
+
+   <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+  
 </div>
      </div>
     
@@ -336,16 +344,12 @@
 
 
 
-
-      <div id="myModal" class="modal">
-
-<!-- Modal content -->
-<div class="modal-content">
-  <span class="close">&times;</span>
-
-   </div>
-
-        </div>
+<div id="viewMoreModalContainer" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal('viewMoreModalContainer')">&times;</span>
+        <p>Some content for view more...</p>
+    </div>
+</div>
 
 
 
