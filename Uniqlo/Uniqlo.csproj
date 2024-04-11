@@ -68,6 +68,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="AdminPages\Dashboard.aspx" />
+    <Content Include="AdminPages\Discount.aspx" />
     <Content Include="AdminPages\Login.aspx" />
     <Content Include="AdminPages\Order.aspx" />
     <Content Include="AdminPages\Product.aspx" />
@@ -182,6 +183,13 @@
     </Compile>
     <Compile Include="AdminPages\Dashboard.aspx.designer.cs">
       <DependentUpon>Dashboard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AdminPages\Discount.aspx.cs">
+      <DependentUpon>Discount.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminPages\Discount.aspx.designer.cs">
+      <DependentUpon>Discount.aspx</DependentUpon>
     </Compile>
     <Compile Include="AdminPages\Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
