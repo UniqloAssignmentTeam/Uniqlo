@@ -36,6 +36,7 @@
   </div>
 </div>
 
+
 <div class="dropdown-container" onclick="toggleDropdown('dropdownList2', 'dropdownDisplay2')">
   <div class="dropdown-display" id="dropdownDisplay2">Category</div>
   <div class="dropdown-list" id="dropdownList2">
@@ -61,8 +62,8 @@
 
      <div class="btnExcel-Add">
       
-          <asp:Button ID="btnExcelExport" runat="server" Text="Export" CssClass="excel-export" Font-Bold="True" ToolTip="Export To Excel" />  
-         <asp:Button ID="btnAddProduct" runat="server" Text="➕ Add Product" CssClass="product-add" ToolTip="Add Product" Font-Bold="True" />
+          <asp:Button ID="btnExcelExport" runat="server" Text="Export" CssClass="excel-export" ToolTip="Export To Excel" />  
+         <asp:Button ID="btnAddProduct" runat="server" Text="➕ Add Product" CssClass="product-add" ToolTip="Add Product" />
 
             </div>
 
@@ -95,7 +96,7 @@
     </div>
   
        <div class="col prodImageHeader">
-       <img src="../Images/uniqloKidsDresses.png" width="40" height="40" alt ="Product Image" Visible:"False" />
+       <img src="../Images/uniqloKidsDresses.png" width="40" height="40" alt ="Product Image" Visible:"True" />
     </div>
         
     <div class="col name">
@@ -117,9 +118,15 @@
     <div class="col category">
         Category
     </div>
-              <div class="col actionBtn">
-                  <asp:Button ID="actionBtnNone" class="" runat="server" Text="Button" Visible="True" />
+           
+       
+
+
+         <div class="col actionBtn">
+             <asp:Button ID="Button1" runat="server" Text="Button" Visible="false" />
+
 </div>
+  
         </div>
      
 
@@ -151,11 +158,26 @@
   <div class="col category">
       Category
   </div>
+
+
       <div class="col actionBtn">
-          <asp:Button ID="btnAction1" runat="server" Text="Button" />
+    <!-- Trigger Button -->
+    <div class="eclipse-display" onclick="toggleDropdown2()">
+       <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+    </div>
+    <!-- Dropdown Menu -->
+    <div class="eclipse-list" id="eclipseList">
+        <div onclick="showModal('viewMoreModal')">View More</div>
+        <div onclick="showModal('updateModal')">Update</div>
+        <div onclick="selectOption('delete')">Delete</div>
+    </div>
 </div>
-      </div>
+
+
+
   
+      </div>
+
 
     <!--Product 2-->
      <div class="row">
@@ -301,21 +323,42 @@
 
 </div>
 
+         
 
 
 
 
-
-
-
-
+        <div class="pagination">
+    <button class="page-btn" onclick="goToNextPage()">Next Page</button>
 </div>
+
+
+
+
+
+
+      <div id="myModal" class="modal">
+
+<!-- Modal content -->
+<div class="modal-content">
+  <span class="close">&times;</span>
+
+   </div>
+
+        </div>
+
+
+
+
+
+    </div>
+
     
     <footer>
 
-        
+        <script src="../Javascript/productBtnEclipse.js"></script>
         <script src="../Javascript/productAdminDDL.js"></script>
-    
+     
       
 
     </footer>

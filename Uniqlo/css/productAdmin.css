@@ -3,8 +3,7 @@
     position: relative;
     margin: auto;
     margin-top: 40px;
-    border: 1px solid #eaeaea; /* light border for subtle definition */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* soft shadow for depth */
+
 }
 
 
@@ -27,15 +26,15 @@
 
 .search {
     --padding: 5px;
-    width:350px; /* Makes the search bar take up the available space */
+    width: 350px; /* Makes the search bar take up the available space */
     display: flex;
     align-items: center;
     padding: var(--padding);
     border-radius: 28px;
-    background: #f6f6f6;
+    background: white;
     transition: box-shadow 0.25s;
-   
-   /* Add some margin to the right if you want to separate it from other elements */
+    border: 1px solid #ccc;
+    /* Add some margin to the right if you want to separate it from other elements */
 }
 
     .search:focus-within {
@@ -154,10 +153,11 @@
     border-style: none;
     box-sizing: border-box;
     height: 40px;
+    cursor: pointer;
     position: relative;
     text-align: center;
     text-decoration: none;
-    transition: color 100ms;
+    transition: background-color 250ms ease-out 100ms;
 }
 
 .product-add {
@@ -167,16 +167,18 @@
     border-style: none;
     box-sizing: border-box;
     height: 40px;
+    cursor: pointer;
     position: relative;
     text-align: center;
     text-decoration: none;
     transition: color 500ms;
     margin-left: 10px;
+    transition: background-color 250ms ease-out 100ms;
 }
 
-.product-add:hover, .product-add:focus, .excel-export:hover, .excel-export:focus {
-        background-color: #F082AC;
-}
+    .product-add:hover, .product-add:focus, .excel-export:hover, .excel-export:focus {
+        background-color: lightgrey;
+    }
 
 
 
@@ -297,16 +299,91 @@
 }
 
 
+.user-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.hiddenUserMenu {
+    display: none;
+    position: absolute;
+    background-color: ghostwhite;
+    border-radius: 10px;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+    .hiddenUserMenu a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+    }
+
+        .hiddenUserMenu a:hover {
+            background-color: #C8C7C7;
+            border-radius: 10px;
+        }
+
+.user-dropdown:hover .hiddenUserMenu {
+    display: block;
+}
 
 
 
+.pagination {
+    text-align: center; /* Center align the pagination buttons */
+    padding: 10px 0; /* Add some padding above and below the buttons */
+    margin-top: 20px; /* Add some space between the table and the pagination buttons */
+}
+
+.page-btn {
+    padding: 10px 20px; /* Add some padding inside the button for better touch */
+    background-color: #007bff; /* Use a color that matches your header */
+    color: white; /* Text color for the button */
+    border: none; /* Remove default border */
+    border-radius: 5px; /* Rounded corners for the button */
+    cursor: pointer; /* Change mouse cursor to pointer */
+    transition: background-color 0.3s; /* Transition for a hover effect */
+}
+
+    .page-btn:hover {
+        background-color: #0056b3; /* Darken button color on hover for feedback */
+    }
+
+    .page-btn:disabled {
+        background-color: #ccc; /* Gray out the button when it is disabled */
+        cursor: default; /* Revert cursor to default when button is disabled */
+    }
+
+.eclipse-display {
+    padding: 8px;
+    cursor: pointer;
+    display: inline-block; /* or block */
+}
+
+.eclipse-list {
+    display: none; /* Start hidden */
+    position: absolute;
+    background-color: #f9f9f9;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    right: 0;
+    top: 100%;
+}
+
+    /* Style for each item in the dropdown */
+    .eclipse-list div {
+        padding: 12px 16px;
+        color: black;
+    }
+
+        .eclipse-list div:hover {
+            background-color: #f0f0f0;
+        }
 
 
-
-
-
-
-
+      
 
 
 
