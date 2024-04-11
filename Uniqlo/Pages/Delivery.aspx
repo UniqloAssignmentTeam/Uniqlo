@@ -1,8 +1,12 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Uniqlo.Master" AutoEventWireup="true" CodeBehind="Delivery.aspx.cs" Inherits="Uniqlo.Pages.Delivery" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="main" runat="server">
-    <head>
+    <header>
         <link href="../css/delivery.css" rel="stylesheet" />
-    </head>
+        <link href="../css/style.css" rel="stylesheet" />
+        <link href="../css/style1.css" rel="stylesheet" />
+    </header>
+
+    <div class="bordersizebox">
         <div class="container-fluid pt-5">
         <section class="step-wizard">
             <ul class="step-wizard-list">
@@ -25,12 +29,12 @@
             </ul>
         </section>
         <div class="row px-xl-5">
-            <form action="checkoutServlet" method="doGet" class="d-flex">
+            <form class="d-flex">
                 <div class="col-lg-8">
                     <div class="mb-4">
                         <br /><br />
 
-                        <h4 class="font-weight-semi-bold mb-4">Shipping Address</h4>
+                        <h4 class="font-weight-semi-bold mb-4">Delivery Address</h4>
                         <div class="row">
 
                             <div class="col-md-6 form-group">
@@ -125,5 +129,6 @@
             </form>          
         </div>
     </div>
+        </div>
 
 </asp:Content>

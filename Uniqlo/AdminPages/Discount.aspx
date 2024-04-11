@@ -1,13 +1,11 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin.Master" AutoEventWireup="true" CodeBehind="Product.aspx.cs" Inherits="Uniqlo.AdminPages.Product" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin.Master" AutoEventWireup="true" CodeBehind="Discount.aspx.cs" Inherits="Uniqlo.AdminPages.Discount" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="main" runat="server">
 
- 
-    
-        <link href="../css/productAdmin.css" rel="stylesheet" />
-   <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
-           <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-   
 
+
+
+
+    
     <div class="productBody">
 
  <h2>Product</h2>
@@ -357,13 +355,15 @@
 
     </div>
 
-    
+
     <footer>
 
-        <script src="../Javascript/productBtnEclipse.js"></script>
-        <script src="../Javascript/productAdminDDL.js"></script>
-     
-      
+    <script src="../Javascript/productBtnEclipse.js"></script>
+    <script src="../Javascript/productAdminDDL.js"></script>
+ 
+  
 
-    </footer>
+</footer>
+
+
 </asp:Content>

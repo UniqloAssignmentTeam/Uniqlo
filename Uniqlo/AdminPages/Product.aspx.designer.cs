@@ -33,49 +33,13 @@ namespace Uniqlo.AdminPages
         protected global::System.Web.UI.WebControls.Button btnAddProduct;
 
         /// <summary>
-        /// actionBtnNone control.
+        /// Button1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button actionBtnNone;
-
-        /// <summary>
-        /// btnAction1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAction1;
-
-        /// <summary>
-        /// btnAction2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAction2;
-
-        /// <summary>
-        /// btnAction3 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAction3;
-
-        /// <summary>
-        /// btnAction4 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAction4;
+        protected global::System.Web.UI.WebControls.Button Button1;
 
         /// <summary>
         /// btnAction5 control.

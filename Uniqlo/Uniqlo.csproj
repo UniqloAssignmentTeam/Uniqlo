@@ -68,6 +68,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="AdminPages\Dashboard.aspx" />
+    <Content Include="AdminPages\Discount.aspx" />
     <Content Include="AdminPages\Login.aspx" />
     <Content Include="AdminPages\Order.aspx" />
     <Content Include="AdminPages\Product.aspx" />
@@ -88,6 +89,8 @@
     <Content Include="css\product.css" />
     <Content Include="css\productAdmin.css" />
     <Content Include="css\SignUp.css" />
+    <Content Include="css\style.css" />
+    <Content Include="css\style1.css" />
     <Content Include="css\ValueBuy.css" />
     <Content Include="Images\accessories.jpg" />
     <Content Include="Images\Categories\Woman\Bottoms\SweatCargoPants1.jpg" />
@@ -122,6 +125,7 @@
     <Content Include="Images\uniqloWomenTop.jpg" />
     <Content Include="Images\valueBuy.jpg" />
     <Content Include="Images\valueBuyBanner.jpg" />
+    <Content Include="Javascript\addProductModal.js" />
     <Content Include="Javascript\addToCartButton.js" />
     <Content Include="Javascript\barChartTtlOder.js" />
     <Content Include="Javascript\ContactUs.js" />
@@ -130,12 +134,14 @@
     <Content Include="Javascript\product.js" />
     <Content Include="Javascript\productAdminDDL.js" />
     <Content Include="Javascript\productAdminDDLCategory.js" />
+    <Content Include="Javascript\productBtnEclipse.js" />
     <Content Include="Javascript\productItem.js" />
     <Content Include="Javascript\productSize.js" />
     <Content Include="Javascript\slider.js" />
     <Content Include="Javascript\wishList.js" />
     <Content Include="Pages\AboutUs.aspx" />
     <Content Include="Pages\Cart.aspx" />
+    <Content Include="Pages\ConfirmPayment.aspx" />
     <Content Include="Pages\ContactUs.aspx" />
     <Content Include="Pages\Delivery.aspx" />
     <Content Include="Pages\Home.aspx" />
@@ -154,7 +160,9 @@
     <Content Include="Pages\Categories\Women\Main.aspx" />
     <Content Include="Pages\Categories\Women\Outerwear.aspx" />
     <Content Include="Pages\Categories\Women\Tops.aspx" />
+    <Content Include="Pages\Invoice.aspx" />
     <Content Include="Pages\Login.aspx" />
+    <Content Include="Pages\Payment.aspx" />
     <Content Include="Pages\Profile.aspx" />
     <Content Include="Pages\SignUp.aspx" />
     <Content Include="Pages\ValueBuy.aspx" />
@@ -175,6 +183,13 @@
     </Compile>
     <Compile Include="AdminPages\Dashboard.aspx.designer.cs">
       <DependentUpon>Dashboard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AdminPages\Discount.aspx.cs">
+      <DependentUpon>Discount.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminPages\Discount.aspx.designer.cs">
+      <DependentUpon>Discount.aspx</DependentUpon>
     </Compile>
     <Compile Include="AdminPages\Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
@@ -231,6 +246,13 @@
     </Compile>
     <Compile Include="Pages\Cart.aspx.designer.cs">
       <DependentUpon>Cart.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ConfirmPayment.aspx.cs">
+      <DependentUpon>ConfirmPayment.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\ConfirmPayment.aspx.designer.cs">
+      <DependentUpon>ConfirmPayment.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\ContactUs.aspx.cs">
       <DependentUpon>ContactUs.aspx</DependentUpon>
@@ -358,12 +380,26 @@
     <Compile Include="Pages\Categories\Women\Tops.aspx.designer.cs">
       <DependentUpon>Tops.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Pages\Invoice.aspx.cs">
+      <DependentUpon>Invoice.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Invoice.aspx.designer.cs">
+      <DependentUpon>Invoice.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Pages\Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Payment.aspx.cs">
+      <DependentUpon>Payment.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Payment.aspx.designer.cs">
+      <DependentUpon>Payment.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Profile.aspx.cs">
       <DependentUpon>Profile.aspx</DependentUpon>

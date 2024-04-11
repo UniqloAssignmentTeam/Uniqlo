@@ -3,8 +3,7 @@
     position: relative;
     margin: auto;
     margin-top: 40px;
-    border: 1px solid #eaeaea; /* light border for subtle definition */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* soft shadow for depth */
+
 }
 
 
@@ -27,15 +26,15 @@
 
 .search {
     --padding: 5px;
-    width:350px; /* Makes the search bar take up the available space */
+    width: 350px; /* Makes the search bar take up the available space */
     display: flex;
     align-items: center;
     padding: var(--padding);
     border-radius: 28px;
-    background: #f6f6f6;
+    background: white;
     transition: box-shadow 0.25s;
-   
-   /* Add some margin to the right if you want to separate it from other elements */
+    border: 1px solid #ccc;
+    /* Add some margin to the right if you want to separate it from other elements */
 }
 
     .search:focus-within {
@@ -154,10 +153,11 @@
     border-style: none;
     box-sizing: border-box;
     height: 40px;
+    cursor: pointer;
     position: relative;
     text-align: center;
     text-decoration: none;
-    transition: color 100ms;
+    transition: background-color 250ms ease-out 100ms;
 }
 
 .product-add {
@@ -167,16 +167,18 @@
     border-style: none;
     box-sizing: border-box;
     height: 40px;
+    cursor: pointer;
     position: relative;
     text-align: center;
     text-decoration: none;
     transition: color 500ms;
     margin-left: 10px;
+    transition: background-color 250ms ease-out 100ms;
 }
 
-.product-add:hover, .product-add:focus, .excel-export:hover, .excel-export:focus {
-        background-color: #F082AC;
-}
+    .product-add:hover, .product-add:focus, .excel-export:hover, .excel-export:focus {
+        background-color: lightgrey;
+    }
 
 
 
@@ -292,21 +294,164 @@
     flex-basis: 10%;
 }
 
-.actionBtn {
+
+
+
+.eclipse-container {
+    display: flex;
+    position: relative;
+    
     flex-basis: 8%;
+}
+
+.eclipse-display {
+    cursor: pointer;
+    flex-basis: 8%;
+}
+
+.eclipse-list {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 100;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    opacity: 0; /* Start fully transparent */
+    visibility: hidden; /* Start hidden */
+    transform: translateY(-20px); /* Start slightly above */
+    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s; /* Animate opacity, transform, and visibility */
+    align-items: center;
+    text-align: center; /* Centers the text inside the dropdown */
+}
+
+    .eclipse-list.open {
+        opacity: 1; /* Fade in to fully opaque */
+        visibility: visible; /* Make visible */
+        transform: translateY(0px); /* Move to original position */
+    }
+
+
+    .eclipse-list.open {
+        display: block; /* Show dropdown */
+    }
+
+    .eclipse-list div {
+        padding: 10px;
+        cursor: pointer;
+    }
+
+        .eclipse-list div:hover {
+            background-color: #f0f0f0;
+        }
+
+
+
+
+
+
+
+.user-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.hiddenUserMenu {
+    display: none;
+    position: absolute;
+    background-color: ghostwhite;
+    border-radius: 10px;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+    .hiddenUserMenu a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+    }
+
+        .hiddenUserMenu a:hover {
+            background-color: #C8C7C7;
+            border-radius: 10px;
+        }
+
+.user-dropdown:hover .hiddenUserMenu {
+    display: block;
 }
 
 
 
+.pagination {
+    text-align: center; /* Center align the pagination buttons */
+    padding: 10px 0; /* Add some padding above and below the buttons */
+    margin-top: 20px; /* Add some space between the table and the pagination buttons */
+}
+
+.page-btn {
+    padding: 10px 20px; /* Add some padding inside the button for better touch */
+    background-color: #007bff; /* Use a color that matches your header */
+    color: white; /* Text color for the button */
+    border: none; /* Remove default border */
+    border-radius: 5px; /* Rounded corners for the button */
+    cursor: pointer; /* Change mouse cursor to pointer */
+    transition: background-color 0.3s; /* Transition for a hover effect */
+}
+
+    .page-btn:hover {
+        background-color: #0056b3; /* Darken button color on hover for feedback */
+    }
+
+    .page-btn:disabled {
+        background-color: #ccc; /* Gray out the button when it is disabled */
+        cursor: default; /* Revert cursor to default when button is disabled */
+    }
 
 
 
 
 
 
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 2; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
 
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+}
 
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
 
+    .close:hover,
+    .close:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+      
 
 
 
