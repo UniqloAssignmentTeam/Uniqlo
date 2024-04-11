@@ -6,7 +6,7 @@
         <link href="../css/style1.css" rel="stylesheet" />
     </header>
 
-    <body>
+    <div class="bordersizebox">
         <div class="container-fluid pt-5">
         <section class="step-wizard">
             <ul class="step-wizard-list">
@@ -129,6 +129,6 @@
             </form>          
         </div>
     </div>
-        </body>
+        </div>
 
 </asp:Content>
