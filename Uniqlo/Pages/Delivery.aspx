@@ -1,10 +1,10 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Uniqlo.Master" AutoEventWireup="true" CodeBehind="Delivery.aspx.cs" Inherits="Uniqlo.Pages.Delivery" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="main" runat="server">
-    <head>
+    <header>
         <link href="../css/delivery.css" rel="stylesheet" />
         <link href="../css/style.css" rel="stylesheet" />
         <link href="../css/style1.css" rel="stylesheet" />
-    </head>
+    </header>
 
     <body>
         <div class="container-fluid pt-5">
