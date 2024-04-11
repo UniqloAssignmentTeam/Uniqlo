@@ -290,11 +290,13 @@
 
 
 /*DROPDOWN LIST*/
-.dropdown-bigcontainer{
+.dropdown-bigcontainer {
     width: 100%;
-    text-align: right;
     border: 2px solid black;
+}
 
+.dropdown-bigcontainer h4{
+    margin-bottom: -1px;
 }
 
 .dropdown-wrapper {
@@ -302,6 +304,7 @@
     justify-content: center; /* Center the children horizontally */
     align-items: center; /* Center the children vertically */
     gap: 10px; /* This sets the space between the dropdowns */
+    
 }
 
 
