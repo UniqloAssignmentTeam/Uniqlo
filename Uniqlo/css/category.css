@@ -168,8 +168,9 @@
     height: 10%;
 }
 
-.topSellingContainer .product-rating span{
+.topSellingContainer .product-rating div{
     margin-left: 10px;
+    color: #6F6F6F;
 }
 
 /*WISHLIST*/

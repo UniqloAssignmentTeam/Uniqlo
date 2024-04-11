@@ -38,7 +38,7 @@
                                 <i class = "fas fa-star star"></i>
                                 <i class = "fas fa-star star"></i>
                                 <i class = "fas fa-star star"></i>
-                                <span>5.0 (50)</span>
+                                <div>5.0 (50)</div>
                             </div>
                         </div>
                     </div>    
@@ -73,7 +73,7 @@
                                 <i class = "fas fa-star star"></i>
                                 <i class = "fas fa-star star"></i>
                                 <i class = "fas fa-star star"></i>
-                                <span>5.0 (50)</span>
+                                <div>5.0 (50)</div>
                             </div>
                         </div>
                     </div>    
@@ -108,7 +108,7 @@
                                 <i class = "fas fa-star star"></i>
                                 <i class = "fas fa-star star"></i>
                                 <i class = "fas fa-star star"></i>
-                                <span>5.0 (50)</span>
+                                <div>5.0 (50)</div>
                             </div>
                         </div>
                     </div>    
@@ -143,7 +143,7 @@
                                 <i class = "fas fa-star star"></i>
                                 <i class = "fas fa-star star"></i>
                                 <i class = "fas fa-star star"></i>
-                                <span>5.0 (50)</span>
+                                <div>5.0 (50)</div>
                             </div>
                         </div>
                     </div>    
