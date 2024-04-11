@@ -1,5 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Uniqlo.Master" AutoEventWireup="true" CodeBehind="ValueBuy.aspx.cs" Inherits="Uniqlo.Pages.ValueBuy" %>
-<asp:Content ID="Content1" ContentPlaceHolderID="main" runat="server">
+<asp:Content ID="Content2" ContentPlaceHolderID="main" runat="server">
     <header>
         <link href="../css/ValueBuy.css" rel="stylesheet" />
     </header>
@@ -738,3 +738,4 @@
         <script src="../../../Javascript/productAdminDDL.js"></script>
     </footer>
 </asp:Content>
+
