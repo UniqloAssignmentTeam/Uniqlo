@@ -62,8 +62,10 @@
 
      <div class="btnExcel-Add">
       
-          <asp:Button ID="btnExcelExport" runat="server" Text="Export" CssClass="excel-export" ToolTip="Export To Excel" />  
-         <asp:Button ID="btnAddProduct" runat="server" Text="➕ Add Product" CssClass="product-add" ToolTip="Add Product" />
+       <button class="excel-export">Export</button>
+        
+       
+        <button class="product-add" onclick="showModal('addProductModalContainer')">➕ Add Product</button>
 
             </div>
 
@@ -167,7 +169,7 @@
          <div class="eclipse-list" id="dropdownList3">
           <div onclick="showModal('viewMoreModalContainer')">View More</div>
         <div onclick="showModal('updateModalContainer')">Update</div>
-        <div onclick="showModal('deleteModalContainer')">Delete</div>
+        <div>Delete</div>
        </div>
      </div>
   
@@ -532,8 +534,7 @@
     </div>
   
 
-        </div>
-     </div>
+       
 
     
 
@@ -731,15 +732,195 @@
     </div>
   
 
+      
+
+
+
+
+<div id="addProductModalContainer" class="modal">
+
+
+    <div class="modal-content">
+        <span class="close" onclick="closeModal('addProductModalContainer')">&times;</span>
+           <div class = "card-wrapper">
+      <div class = "productItemCard">
+        <!-- card left -->
+        <div class = "product-imgs">
+          <div class = "img-display">
+            <div class = "img-showcase">
+                <img src="../../../Images/Categories/Woman/Tops/AIRismCottonShortSleeveT-Shirt1.jpg" alt = "uniqlo image"/>
+                <img src="../../../Images/Categories/Woman/Tops/AIRismCottonShortSleeveT-Shirt2.jpg" alt = "uniqlo image"/>
+                <img src="../../../Images/Categories/Woman/Tops/AIRismCottonShortSleeveT-Shirt3.jpg" alt = "uniqlo image"/>
+                <img src="../../../Images/Categories/Woman/Tops/AIRismCottonShortSleeveT-Shirt4.jpg" alt = "uniqlo image"/>
+            </div>
+          </div>
+
+
+          <div class = "img-select">
+            <div class = "img-item">
+              <a href = "#" data-id = "1">
+                  <img src="../../../Images/Categories/Woman/Tops/AIRismCottonShortSleeveT-Shirt1.jpg" alt = "uniqlo image"/>
+              </a>
+            </div>
+            <div class = "img-item">
+              <a href = "#" data-id = "2">
+                  <img src="../../../Images/Categories/Woman/Tops/AIRismCottonShortSleeveT-Shirt2.jpg" alt = "uniqlo image"/>
+              </a>
+            </div>
+            <div class = "img-item">
+              <a href = "#" data-id = "3">
+                  <img src="../../../Images/Categories/Woman/Tops/AIRismCottonShortSleeveT-Shirt3.jpg" alt = "uniqlo image"/>
+              </a>
+            </div>
+            <div class = "img-item">
+              <a href = "#" data-id = "4">
+                  <img src="../../../Images/Categories/Woman/Tops/AIRismCottonShortSleeveT-Shirt4.jpg" alt = "uniqlo image"/>
+              </a>
+            </div>
+          </div>
         </div>
-     </div>
 
 
 
 
 
 
-    </div>
+
+        <!-- card right -->
+        <div class = "product-content">
+          <h2 class = "product-title product-name">Red Top</h2>
+          
+
+         
+
+          <div class = "product-detail">
+
+            <div class="product-details-info"> 
+      <div class="product-details-head">
+      Item Description:
+      </div> 
+      <div class="product-details-items">
+    Item Description Here!
+      </div>
+   </div>
+            
+
+              <div class="product-details-info">
+
+     <div class="form-group">
+    <span>Product ID:</span>
+    <input class="form-field" type="text" placeholder="domain.tld">
+</div>
+
+                    </div>
+
+
+
+
+
+                
+               <div class="product-details-info">
+                       <div class="form-group">
+    <span>Current Price:</span>
+    <input class="form-field" type="text" placeholder="domain.tld">
+</div>
+                  </div>
+             
+             
+               <div class="product-details-info">
+                        <div class="form-group">
+    <span>Availability:</span>
+    <input class="form-field" type="text" placeholder="domain.tld">
+</div>
+              </div>
+
+           
+               <div class="product-details-info">
+                      <div class="form-group">
+    <span>Category:</span>
+    <input class="form-field" type="text" placeholder="domain.tld">
+</div>
+                 
+              </div>
+           
+
+             
+              <div class="product-details-info">
+                        <div class="form-group">
+    <span>Gender:</span>
+    <input class="form-field" type="text" placeholder="domain.tld">
+</div>
+                 </div>
+            
+            
+          
+          </div>
+
+
+
+
+          
+
+          <div class="productQtySizeSection">
+
+              <div class="quantityHeader">QUANTITY</div> 
+  
+
+
+             
+                  <div class="purchase-size-item">
+
+
+
+                       <div class="form-group">
+    <span>S:</span>
+    <input class="form-field" type="text" placeholder="domain.tld">
+</div>
+
+                    </div>
+
+
+
+
+                      <div class="purchase-size">
+                               <div class="form-group">
+    <span>M:</span>
+    <input class="form-field" type="text" placeholder="domain.tld">
+</div>
+                      </div>
+                    
+
+
+                      <div class="purchase-size">
+                               <div class="form-group">
+    <span>L:</span>
+    <input class="form-field" type="text" placeholder="domain.tld">
+</div>
+                      </div>
+
+
+                      <div class="purchase-size">
+                           
+                              <div class="form-group">
+    <span>XL:</span>
+    <input class="form-field" type="text" placeholder="domain.tld">
+</div>
+
+                      </div>
+                   
+
+                   
+                 </div>
+                  </div>
+              </div>
+
+          </div>
+          
+       
+        </div>
+      </div>
+  
+  
 
     
     <footer>
