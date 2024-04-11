@@ -10,7 +10,7 @@
         
         <div class="cart-items-container">
         <!-- Cart Item 1 -->
-        <div class="cart-item" id="cart1" data-cart-id="1">
+        <div class="cart-item" id="cart1" data-product-id="1">
             <div class="cart-item-image-container" style="width: 40%">
                 <img src="../../../Images/Categories/Woman/Tops/AIRismCottonShortSleeveT-Shirt1.jpg" style="width: 100%" />
             </div>
@@ -41,7 +41,7 @@
         </div>
             
         <!-- Cart Item 2 -->
-        <div class="cart-item" id="cart2" data-cart-id="2">
+        <div class="cart-item" id="cart2" data-product-id="2">
             <div class="cart-item-image-container" style="width: 40%">
                 <img src="../../../Images/Categories/Woman/Bottoms/SweatCargoPants1.jpg" style="width: 100%" />
             </div>
