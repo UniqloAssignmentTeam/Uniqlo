@@ -225,7 +225,7 @@
 }
 
 /* The Close Button */
-.close {
+.close, .closeReview {
     color: #aaa;
     float: right;
     font-size: 28px;
@@ -236,6 +236,13 @@
 
 .close:hover,
 .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.closeReview:hover,
+.closeReview:focus {
     color: black;
     text-decoration: none;
     cursor: pointer;
@@ -823,10 +830,42 @@
   }
 }
 
+/*SECOND MODAL*/
+.viewMoreReviewButton {
+    border: 2px solid black;
+    padding: 20px 180px 20px 180px;
+    background: none;
+    outline: none;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.5s ease;
+}
 
+.reviewModal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 2; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    padding-top: 90px;
+}
 
-
-
-
-
+/* Modal Content */
+.review-modal-content {
+    background-color: #fefefe;
+    position: absolute;
+    margin: 5% auto; /* 5% from the top and centered */
+    padding: 80px 20px 100px 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+    max-width: 1200px; /* Max width for large screens, adjust as needed */
+    border-radius: 5px;
+    margin-bottom: 120px;
+    right: 130px;
+}
 

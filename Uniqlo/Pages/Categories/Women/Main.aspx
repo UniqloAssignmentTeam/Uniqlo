@@ -367,13 +367,99 @@
                         </div>
                         <!--VIEWMORE BUTTON-->
                         <div class="viewMoreSection">
-                            <button class="viewMoreButton">VIEW MORE</button>
+                            <div class="viewMoreReviewButton" id="openReviewBtn">VIEW MORE</div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
         <!--VIEWMOREBUTTON END-->
+
+
+
+
+        <!--REVIEW VIEW MORE SECTION MODAL-->
+        <div id="reviewModal" class="reviewModal">
+
+          <!-- Modal content -->
+          <div class="review-modal-content">
+            <span class="closeReview">&times;</span>
+            <div class="commentSection">
+                <div class="commentSectionNewRow">
+                    <h3>Korim Mia</h3>
+                    <div class="commentRatingSection">
+                        <div class="commentRatingSectionStars">
+                            <i class="fas fa-star star"></i>
+                            <i class="fas fa-star star"></i>
+                            <i class="fas fa-star star"></i>
+                            <i class="fas fa-star star"></i>
+                            <i class="fas fa-star-half-alt star"></i>
+                        </div>
+                        <div class="commentRatingSectionDate">
+                            25th June, 2020
+                        </div>
+                    </div>
+                    <div class="commentRatingSectionDetails">
+                        Lorem ipsum dolor sit, Lorem ipsum dolor sit amet consectetur, adipisicing elit. Id labore iusto, doloremque eveniet eos nostrum cupiditate. Laboriosam voluptates, eligendi minus totam, fuga, quidem officiis tempore quod placeat voluptate sunt soluta ratione deserunt sequi quia laborum quasi ullam repellendus molestias aliquid illo illum iure. Fugit cupiditate, alias rem nobis iste minima dolor ea porro fugiat, ipsum eum unde error aliquid consequatur. amet consectetur adipisicing elit. Praesentium eligendi maxime possimus temporibus! Labore accusamus facilis sequi dolorem ullam odio.
+                    </div>
+                </div>
+                <div class="commentSectionNewRow">
+                    <h3>Korim Mia</h3>
+                    <div class="commentRatingSection">
+                        <div class="commentRatingSectionStars">
+                            <i class="fas fa-star star"></i>
+                            <i class="fas fa-star star"></i>
+                            <i class="fas fa-star star"></i>
+                            <i class="fas fa-star star"></i>
+                            <i class="fas fa-star-half-alt star"></i>
+                        </div>
+                        <div class="commentRatingSectionDate">
+                            25th June, 2020
+                        </div>
+                    </div>
+                    <div class="commentRatingSectionDetails">
+                        Lorem ipsum dolor sit, Lorem ipsum dolor sit amet consectetur, adipisicing elit. Id labore iusto, doloremque eveniet eos nostrum cupiditate. Laboriosam voluptates, eligendi minus totam, fuga, quidem officiis tempore quod placeat voluptate sunt soluta ratione deserunt sequi quia laborum quasi ullam repellendus molestias aliquid illo illum iure. Fugit cupiditate, alias rem nobis iste minima dolor ea porro fugiat, ipsum eum unde error aliquid consequatur. amet consectetur adipisicing elit. Praesentium eligendi maxime possimus temporibus! Labore accusamus facilis sequi dolorem ullam odio.
+                    </div>
+                </div>
+                <div class="commentSectionNewRow">
+                    <h3>Korim Mia</h3>
+                    <div class="commentRatingSection">
+                        <div class="commentRatingSectionStars">
+                            <i class="fas fa-star star"></i>
+                            <i class="fas fa-star star"></i>
+                            <i class="fas fa-star star"></i>
+                            <i class="fas fa-star star"></i>
+                            <i class="fas fa-star-half-alt star"></i>
+                        </div>
+                        <div class="commentRatingSectionDate">
+                            25th June, 2020
+                        </div>
+                    </div>
+                    <div class="commentRatingSectionDetails">
+                        Lorem ipsum dolor sit, Lorem ipsum dolor sit amet consectetur, adipisicing elit. Id labore iusto, doloremque eveniet eos nostrum cupiditate. Laboriosam voluptates, eligendi minus totam, fuga, quidem officiis tempore quod placeat voluptate sunt soluta ratione deserunt sequi quia laborum quasi ullam repellendus molestias aliquid illo illum iure. Fugit cupiditate, alias rem nobis iste minima dolor ea porro fugiat, ipsum eum unde error aliquid consequatur. amet consectetur adipisicing elit. Praesentium eligendi maxime possimus temporibus! Labore accusamus facilis sequi dolorem ullam odio.
+                    </div>
+                </div>                
+                <div class="commentSectionNewRow">
+                    <h3>Korim Mia</h3>
+                    <div class="commentRatingSection">
+                        <div class="commentRatingSectionStars">
+                            <i class="fas fa-star star"></i>
+                            <i class="fas fa-star star"></i>
+                            <i class="fas fa-star star"></i>
+                            <i class="fas fa-star star"></i>
+                            <i class="fas fa-star-half-alt star"></i>
+                        </div>
+                        <div class="commentRatingSectionDate">
+                            25th June, 2020
+                        </div>
+                    </div>
+                    <div class="commentRatingSectionDetails">
+                        Lorem ipsum dolor sit, Lorem ipsum dolor sit amet consectetur, adipisicing elit. Id labore iusto, doloremque eveniet eos nostrum cupiditate. Laboriosam voluptates, eligendi minus totam, fuga, quidem officiis tempore quod placeat voluptate sunt soluta ratione deserunt sequi quia laborum quasi ullam repellendus molestias aliquid illo illum iure. Fugit cupiditate, alias rem nobis iste minima dolor ea porro fugiat, ipsum eum unde error aliquid consequatur. amet consectetur adipisicing elit. Praesentium eligendi maxime possimus temporibus! Labore accusamus facilis sequi dolorem ullam odio.
+                    </div>
+                </div>
+              </div>
+           </div>
+         </div>
     </div>
     <footer>
         <script src="../../../Javascript/product.js"></script>
