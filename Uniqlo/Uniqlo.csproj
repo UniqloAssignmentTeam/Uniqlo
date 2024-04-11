@@ -132,6 +132,7 @@
     <Content Include="Javascript\ContactUs.js" />
     <Content Include="Javascript\lineChart.js" />
     <Content Include="Javascript\modalProduct.js" />
+    <Content Include="Javascript\modalProductItem.js" />
     <Content Include="Javascript\product.js" />
     <Content Include="Javascript\productAdminDDL.js" />
     <Content Include="Javascript\productAdminDDLCategory.js" />
