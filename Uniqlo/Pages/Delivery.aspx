@@ -6,7 +6,7 @@
         <link href="../css/style1.css" rel="stylesheet" />
     </header>
 
-    <div class="bordersizebox">
+    <div class="body">
         <div class="container-fluid pt-5">
         <section class="step-wizard">
             <ul class="step-wizard-list">

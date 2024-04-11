@@ -16,8 +16,6 @@ body {
 }
 
 /*HEADER*/
-
-
 .uniqlo-icon {
     margin: 45px 0px 0px 40px;
 }
@@ -119,6 +117,7 @@ body {
 .socialIcons {
     display: flex;
     justify-content: center;
+    background-color: ghostwhite;
 }
 
 .socialIcons a {
@@ -146,16 +145,11 @@ body {
 }
 
 .footerNav {
-    margin: 30px 0;
+    padding-top: inherit;
+    background-color: ghostwhite;
 }
 
-.footerNav ul {
-    display: flex;
-    justify-content: center;
-    list-style-type: none;
- }
-
-.footerNav ul li a {
+.footerNav a {
     color: black;
     margin: 20px;
     text-decoration: none;
@@ -164,8 +158,10 @@ body {
     transition: 0.5s;
 }
 
-.footerNav ul li a:hover {
-   opacity: 1;
+.footerNav a:hover {
+        opacity: 1;
+        color: #ba6a62;
+        text-decoration: underline;
 }
 
 .footerBottom {
