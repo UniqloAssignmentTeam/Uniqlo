@@ -69,20 +69,20 @@
                 <a href="https://www.uniqlo.com/my/en/?gad_source=1&gclid=Cj0KCQjw-_mvBhDwARIsAA-Q0Q4mkpufJT-oMpmxWp0x2VTbpXDByneYpbwIYAWKkKmx5xDWyIrkkg0aAs43EALw_wcB"><i class="fa-brands fa-google-plus"></i></a>
                 <a href="https://www.youtube.com/user/UNIQLOMALAYSIA"><i class="fa-brands fa-youtube"></i></a>
             </div>
-            <div class="footerNav">
-                <ul>
-                    <li><a href="Home.aspx">Home</a></li>
-                    <li><a href="ValueBuy.aspx">Value Buy</a></li>
-                    <li><a href="WishList.aspx">Wish List</a></li>
-                    <li><a href="AboutUs.aspx">About Us</a></li>
-                    <li><a href="ContactUs.aspx">Contact Us</a></li>
-                </ul>
-            </div>
 
+            <div class="footerNav">                
+                <a href="Home.aspx">Home</a>
+                <a href="ValueBuy.aspx">Value Buy</a>
+                <a href="WishList.aspx">Wish List</a>
+                <a href="AboutUs.aspx">About Us</a>
+                <a href="ContactUs.aspx">Contact Us</a>       
+            </div>
+            <div class="footerBottom">
+                <p>COPYRIGHT &copy; <span class="designer">UNIQLO CO., LTD.</span> ALL RIGHTS RESERVED. </p>
+            </div>
         </div>
-        <div class="footerBottom">
-            <p>COPYRIGHT &copy; <span class="designer">UNIQLO CO., LTD.</span> ALL RIGHTS RESERVED. </p>
-        </div>
+
+        
     </form>
 </body>
 <foot>
