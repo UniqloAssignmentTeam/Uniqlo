@@ -1,7 +1,9 @@
-﻿* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+﻿
+.col-md-6 form-group {
+    position: relative;
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
 }
 
 body {
@@ -154,3 +156,5 @@ body {
         text-decoration: none;
         cursor: pointer;
     }
+
+

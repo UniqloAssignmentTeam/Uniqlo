@@ -2,7 +2,11 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="main" runat="server">
     <head>
         <link href="../css/delivery.css" rel="stylesheet" />
+        <link href="../css/style.css" rel="stylesheet" />
+        <link href="../css/style1.css" rel="stylesheet" />
     </head>
+
+    <body>
         <div class="container-fluid pt-5">
         <section class="step-wizard">
             <ul class="step-wizard-list">
@@ -25,12 +29,12 @@
             </ul>
         </section>
         <div class="row px-xl-5">
-            <form action="checkoutServlet" method="doGet" class="d-flex">
+            <form class="d-flex">
                 <div class="col-lg-8">
                     <div class="mb-4">
                         <br /><br />
 
-                        <h4 class="font-weight-semi-bold mb-4">Shipping Address</h4>
+                        <h4 class="font-weight-semi-bold mb-4">Delivery Address</h4>
                         <div class="row">
 
                             <div class="col-md-6 form-group">
@@ -125,5 +129,6 @@
             </form>          
         </div>
     </div>
+        </body>
 
 </asp:Content>
