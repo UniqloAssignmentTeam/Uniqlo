@@ -8,178 +8,84 @@
     </header>
         <h2>Value Buy</h2>
 
-        <div class="wrap-items-search" style="display: flex;">
-            <div class="search">
-                <input class="search-input" type="search" placeholder="Search" />
+        <div class="limitedOfferCardContainer">
+    <div class="limitedOfferCard" id="product1" data-product-id="1">
+        <div class="product-image-container">
+            <img src="../../../Images/Categories/Woman/Tops/AIRismCottonShortSleeveT-Shirt1.jpg"  alt="Avatar" style="width: 100%"/>
+        </div>
+        <div class="limitedOfferContainer">
+            <div class="product-name"><h3><b>AIRism Cotton Short Sleeve T-Shirt</b></h3></div>
+            <div class="product-description"><p>Smooth "AIRism" fabric with the look of cotton. Refined fabric and design.</p></div>
+            <div class="product-price">
+                <p style="text-decoration: line-through; margin-right: 10px;">RM 59.90</p>
+                <p style="color: red;">RM 30.00</p>
             </div>
-            <div class="filter">
-                <asp:DropDownList ID="ddlCategoryFilter" runat="server" CssClass="ddlFilter">
-                    <asp:ListItem Text="All Categories" Value="" />
-                    <asp:ListItem>Kids</asp:ListItem>
-                    <asp:ListItem>Men</asp:ListItem>
-                    <asp:ListItem>Women</asp:ListItem>
-                </asp:DropDownList>
-            </div>
-            <div class="filter" style="margin-left: 10px;">
-                <asp:DropDownList ID="ddlStatusFilter" runat="server" CssClass="ddlFilter">
-                    <asp:ListItem>In Stock</asp:ListItem>
-                    <asp:ListItem>Low In Stock</asp:ListItem>
-                    <asp:ListItem>No Stock</asp:ListItem>
-                </asp:DropDownList>
+            <div class = "product-rating">
+                <i class = "fas fa-star"></i>
+                <i class = "fas fa-star"></i>
+                <i class = "fas fa-star"></i>
+                <i class = "fas fa-star"></i>
+                <i class = "fas fa-star-half-alt"></i>
+                <span>4.7 (21)</span>
             </div>
         </div>
-        <!--Header-->
-        <div class="row">
-            <div class="col productHeader">
-                Product
+    </div>        
+    <div class="limitedOfferCard" id="product2" data-product-id="2">
+        <img src="../../../Images/Categories/Woman/Bottoms/SweatCargoPants1.jpg" alt="Avatar" style="width: 100%"/>
+        <div class="limitedOfferContainer">
+            <div class="product-name"><h3><b>Sweat Cargo Pants</b></h3></div>
+            <div class="product-description"><p>Sweatpants with cargo details. Adjust the hems to create your own style.</p></div>
+            <div class="product-price">
+                <p style="text-decoration: line-through; margin-right: 10px;">RM 120.00</p>
+                <p style="color: red;">RM 79.90</p>
             </div>
-            <div class="col priceHeader">
-                Price (RM)
-            </div>
-            <div class="col availabilityHeader">
-                Availability
-            </div>
-            <div class="col genderHeader">
-                Gender
-            </div>
-            <div class="col categoryHeader">
-                Category
-            </div>
-            <div class="col actionBtnHeader">
-                Action
+            <div class = "product-rating">
+                <i class = "fas fa-star"></i>
+                <i class = "fas fa-star"></i>
+                <i class = "fas fa-star"></i>
+                <i class = "fas fa-star"></i>
+                <i class = "fas fa-star"></i>
+                <span>5.0 (50)</span>
             </div>
         </div>
-
-        <!-- Product Items-->
-        <!-- Product 1 -->
-        <div class="row">
-            <div class="prodImage">
-                <img src="../Images/uniqloKidsDresses.png" width="80" height="80" alt="Product Image" />
+    </div>        
+    <div class="limitedOfferCard">
+        <img src="../../../Images/Categories/Woman/Outerwear/SoftBrushedLongSleeveShirt1.jpg" alt="Avatar" style="width: 100%"/>
+        <div class="limitedOfferContainer">
+            <div class="product-name"><h3><b>Soft Brushed Long Sleeve Shirt</b></h3></div>
+            <div class="product-description"><p>Soft, comfortable brushed fabric. Perfect on its own or as an outer layer.</p></div>
+            <div class="product-price">
+                <p style="text-decoration: line-through; margin-right: 10px;">RM 120.00</p>
+                <p style="color: red;">RM 79.90</p>
             </div>
-            <div class="col product">
-                Kid's Dress - Blue Floral
-            </div>
-            <div class="col price">
-                <span class="strike">Original: 50.00</span><br>
-                Price After Discount: 40.00
-            </div>
-            <div class="col availability">
-                In Stock
-            </div>
-            <div class="col gender">
-                Kids
-            </div>
-            <div class="col category">
-                Dresses
-            </div>
-            <div class="col actionBtn">
-                <asp:Button ID="btnAction1" runat="server" Text="Add to Cart" />
+            <div class = "product-rating">
+                <i class = "fas fa-star"></i>
+                <i class = "fas fa-star"></i>
+                <i class = "fas fa-star"></i>
+                <i class = "fas fa-star"></i>
+                <i class = "fa-regular fa-star"></i>
+                <span>4.0 (15)</span>
             </div>
         </div>
-        <hr />
-        <!-- Product 2 -->
-        <div class="row">
-            <div class="prodImage">
-                <img src="../Images/uniqloKidsDresses.png" width="80" height="80" alt="Product Image" />
+    </div>        
+    <div class="limitedOfferCard">
+        <img src="../../../Images/Categories/Woman/Outerwear/PocketableUVProtectionParka1.jpg" alt="Avatar" style="width: 100%"/>
+        <div class="limitedOfferContainer">
+            <div class="product-name"><h3><b>Pocketable UV Protection Parka</b></h3></div>
+            <div class="product-description"><p>Lightweight, pocketable design for easy carrying. A high-performance parka for protection against sun and light rain.</p></div>
+            <div class="product-price">
+                <p style="text-decoration: line-through; margin-right: 10px;">RM 159.90</p>
+                <p style="color: red;">RM 129.90</p>
             </div>
-            <div class="col product">
-                Men's Casual Shirt - Checked
-            </div>
-            <div class="col price">
-                <span class="strike">Original: 100.00</span><br>
-                Price After Discount: 85.00
-            </div>
-            <div class="col availability">
-                In Stock
-            </div>
-            <div class="col gender">
-                Men
-            </div>
-            <div class="col category">
-                Shirts
-            </div>
-            <div class="col actionBtn">
-                <asp:Button ID="btnAction2" runat="server" Text="Add to Cart" />
+            <div class = "product-rating">
+                <i class = "fas fa-star"></i>
+                <i class = "fas fa-star"></i>
+                <i class = "fas fa-star"></i>
+                <i class = "fas fa-star"></i>
+                <i class = "fas fa-star-half-alt"></i>
+                <span>4.2 (5)</span>
             </div>
         </div>
-        <hr />
-        <!-- Product 3 -->
-        <div class="row">
-            <div class="prodImage">
-                <img src="../Images/uniqloKidsDresses.png" width="80" height="80" alt="Product Image" />
-            </div>
-            <div class="col product">
-                Women's Jeans - Slim Fit
-            </div>
-            <div class="col price">
-                <span class="strike">Original: 80.00</span><br>
-                Price After Discount: 60.00
-            </div>
-            <div class="col availability">
-                In Stock
-            </div>
-            <div class="col gender">
-                Women
-            </div>
-            <div class="col category">
-                Jeans
-            </div>
-            <div class="col actionBtn">
-                <asp:Button ID="btnAction3" runat="server" Text="Add to Cart" />
-            </div>
-        </div>
-        <hr />
-        <!-- Product 4 -->
-        <div class="row">
-            <div class="prodImage">
-                <img src="../Images/uniqloKidsDresses.png" width="80" height="80" alt="Product Image" />
-            </div>
-            <div class="col product">
-                Kid's Shorts - Beach Style
-            </div>
-            <div class="col price">
-                <span class="strike">Original: 60.00</span><br>
-                Price After Discount: 54.00
-            </div>
-            <div class="col availability">
-                In Stock
-            </div>
-            <div class="col gender">
-                Kids
-            </div>
-            <div class="col category">
-                Shorts
-            </div>
-            <div class="col actionBtn">
-                <asp:Button ID="btnAction4" runat="server" Text="Add to Cart" />
-            </div>
-        </div>
-        <hr />
-        <!-- Product 5 -->
-        <div class="row">
-            <div class="prodImage">
-                <img src="../Images/uniqloKidsDresses.png" width="80" height="80" alt="Product Image" />
-            </div>
-            <div class="col product">
-                Women's Elegant Dress - Black
-            </div>
-            <div class="col price">
-                <span class="strike">Original: 150.00</span><br>
-                Price After Discount: 105.00
-            </div>
-            <div class="col availability">
-                In Stock
-            </div>
-            <div class="col gender">
-                Women
-            </div>
-            <div class="col category">
-                Dresses
-            </div>
-            <div class="col actionBtn">
-                <asp:Button ID="btnAction5" runat="server" Text="Add to Cart" />
-            </div>
-        </div>
-        <hr />
     </div>
+</div>
 </asp:Content>
