@@ -54,7 +54,7 @@
 .wrapper .carousel {
     display: grid;
     grid-auto-flow: column;
-    grid-auto-columns: calc((100% / 3) - 12px);
+    grid-auto-columns: calc(100% / 3) ;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
     gap: 16px;
@@ -386,6 +386,7 @@
 .limitedOfferCardContainer{
     display: flex;
     flex-wrap: wrap; 
+    
 }
 
 .limitedOfferCard {
@@ -466,7 +467,7 @@
 .modal-content {
     background-color: #fefefe;
     margin: 5% auto; /* 5% from the top and centered */
-    padding: 80px 20px 20px 20px;
+    padding: 130px 20px 20px 20px;
     border: 1px solid #888;
     width: 80%; /* Could be more or less, depending on screen size */
     border-radius: 5px;
@@ -474,7 +475,16 @@
 }
 
 /* The Close Button */
-.close, .closeReview {
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    margin-top: -90px;
+    margin-right: 20px;
+}
+
+.closeReview {
     color: #aaa;
     float: right;
     font-size: 28px;
@@ -483,19 +493,19 @@
     margin-right: 20px;
 }
 
-    .close:hover,
-    .close:focus {
-        color: black;
-        text-decoration: none;
-        cursor: pointer;
-    }
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
 
-    .closeReview:hover,
-    .closeReview:focus {
-        color: black;
-        text-decoration: none;
-        cursor: pointer;
-    }
+.closeReview:hover,
+.closeReview:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
 
 
 
@@ -690,17 +700,17 @@
     }
 }
 
-.qty {
-    margin-top: 8px;
+.purchase-info input[type="number"] {
+    height: 50px;
 }
 
 
 /*ADD TO CART BUTTON*/
 .cart-button {
     position: relative;
-    margin-top: 30px;
-    width: 120px;
-    height: 15px;
+    margin-top: 15px;
+    width: 520px;
+    height: 50px;
     border: 2px solid black;
     padding: 20px 180px 20px 180px;
     cursor: pointer;
@@ -977,4 +987,82 @@
 
 .reviewSection .viewMoreSection {
     margin-top: 80px;
+}
+
+
+/*SECOND MODAL*/
+.viewMoreSection {
+    text-align: center;
+    margin: 60px 0px 60px 0px;
+}
+
+.viewMoreReviewButton {
+    border: 2px solid black;
+    padding: 20px 180px 20px 180px;
+    background: none;
+    outline: none;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.5s ease;
+    width: 100%;
+    text-decoration: none;
+    color: black;
+}
+
+    .viewMoreReviewButton:hover {
+        background-color: black;
+        color: white;
+    }
+
+.reviewModal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 2; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    padding-top: 90px;
+}
+
+/* Modal Content */
+.review-modal-content {
+    background-color: #fefefe;
+    position: absolute;
+    margin: 5% auto; /* 5% from the top and centered */
+    padding: 80px 20px 0px 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+    max-width: 1200px; /* Max width for large screens, adjust as needed */
+    border-radius: 5px;
+    right: 150px;
+}
+
+
+.reviewModalSection {
+    display: flex;
+}
+
+.reviewModalRatingSection {
+    float: right;
+    width: 100%;
+    text-align: right;
+    padding-top: 20px;
+}
+
+.reviewStar {
+    margin: 0px 5px;
+}
+
+.reviewSectionDropDownLists {
+    display: flex;
+}
+
+.noMoreRatingFound {
+    text-align: center;
+    border-top: 1px solid grey;
+    padding: 30px 0px;
 }

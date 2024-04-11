@@ -32,8 +32,6 @@ span.onclick = function () {
 
 closeSpan.onclick = function () {
     reviewModal.style.display = "none";
-    // Also reset heart icons when the review modal closes
-    showHeartIcons();
 };
 
 // Handle opening and closing of the main modal

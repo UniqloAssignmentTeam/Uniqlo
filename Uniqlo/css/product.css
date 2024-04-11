@@ -217,7 +217,7 @@
 .modal-content {
     background-color: #fefefe;
     margin: 5% auto; /* 5% from the top and centered */
-    padding: 80px 20px 20px 20px;
+    padding: 130px 20px 20px 20px;
     border: 1px solid #888;
     width: 80%; /* Could be more or less, depending on screen size */
     border-radius: 5px;
@@ -225,7 +225,16 @@
 }
 
 /* The Close Button */
-.close, .closeReview {
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    margin-top: -90px;
+    margin-right: 20px;
+}
+
+.closeReview {
     color: #aaa;
     float: right;
     font-size: 28px;
@@ -441,17 +450,17 @@
     }
 }
 
-.qty{
-    margin-top: 8px;
+.purchase-info input[type="number"] {
+    height: 50px;
 }
 
 
 /*ADD TO CART BUTTON*/
 .cart-button {
     position: relative;
-    margin-top: 30px;
-    width: 120px;
-    height: 15px;
+    margin-top: 15px;
+    width: 520px;
+    height: 50px;
     border: 2px solid black;
     padding: 20px 180px 20px 180px;
     cursor: pointer;

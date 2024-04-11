@@ -473,8 +473,8 @@
                     </div>
                 </div>
             </div>
-
-
+        
+        </div>
 
         </div>
 
@@ -578,6 +578,7 @@
                      </a>
                   </div>
 
+                <!--
                   <div class = "social-links">
                     <p>Share At: </p>
                     <a href = "#">
@@ -596,6 +597,7 @@
                       <i class = "fab fa-pinterest"></i>
                     </a>
                   </div>
+                -->
                 </div>
               </div>
             </div>
@@ -719,10 +721,164 @@
                     </div>
                 </div>
             </div>
+
+
+            <!--REVIEW VIEW MORE SECTION MODAL-->
+            <div id="reviewModal" class="reviewModal">
+
+              <!-- Modal content -->
+              <div class="review-modal-content">
+                <span class="closeReview">&times;</span>
+                <div class="commentSection">
+                    <h2>AIRism Cotton Short Sleeve T-Shirt</h2>
+                    <div class="reviewModalSection">
+                        <h2>Reviews</h2>
+                        <div class="reviewModalRatingSection">
+                            4.7
+                            <i class="fas fa-star star"></i>
+                            <i class="fas fa-star star"></i>
+                            <i class = "fas fa-star star"></i>
+                            <i class = "fas fa-star star"></i>
+                            <i class = "fas fa-star-half-alt star"></i>
+                            (21)
+                        </div>
+                    </div>
+                    <hr />
+
+                    <div class="reviewSectionDropDownLists">
+                        <div class="dropdown-container" onclick="toggleDropdown('dropdownList1', 'dropdownDisplay1')">
+                            <div class="dropdown-display" id="dropdownDisplay1">
+                                Star 
+                                <i class="fas fa-star star reviewStar"></i> 
+                                (All)
+                            </div>
+                            <div class="dropdown-list" id="dropdownList1">
+                                <div onclick="selectOption('5 Star (8)', 'dropdownDisplay1')">                        
+                                    <i class="fas fa-star star"></i>
+                                    <i class="fas fa-star star"></i>
+                                    <i class = "fas fa-star star"></i>
+                                    <i class = "fas fa-star star"></i>
+                                    <i class = "fas fa-star star"></i>
+                                    (8)
+                                </div>
+                                <div onclick="selectOption('4 Star (5)', 'dropdownDisplay1')">
+                                    <i class="fas fa-star star"></i>
+                                    <i class="fas fa-star star"></i>
+                                    <i class = "fas fa-star star"></i>
+                                    <i class = "fas fa-star star"></i>
+                                    (5)
+                                </div>
+                                <div onclick="selectOption('3 Star (4)', 'dropdownDisplay1')">
+                                    <i class="fas fa-star star"></i>
+                                    <i class="fas fa-star star"></i>
+                                    <i class = "fas fa-star star"></i>
+                                    (4)
+                                </div>
+                                <div onclick="selectOption('2 Star (3)', 'dropdownDisplay1')">
+                                    <i class="fas fa-star star"></i>
+                                    <i class = "fas fa-star star"></i>
+                                    (3)
+                                </div>
+                                <div onclick="selectOption('1 Star (1)', 'dropdownDisplay1')">
+                                    <i class = "fas fa-star star"></i>
+                                    (1)
+                                </div>
+                            </div>
+                        </div>
+
+            
+                        <div class="dropdown-container" onclick="toggleDropdown('dropdownList2', 'dropdownDisplay2')">
+                            <div class="dropdown-display" id="dropdownDisplay2">Variation (All)</div>
+                            <div class="dropdown-list" id="dropdownList2">
+                                <div onclick="selectOption('Variation (S)', 'dropdownDisplay2')">S</div>
+                                <div onclick="selectOption('Variation (M)', 'dropdownDisplay2')">M</div>
+                                <div onclick="selectOption('Variation (L)', 'dropdownDisplay2')">L</div>
+                                <div onclick="selectOption('Variation (XL)', 'dropdownDisplay2')">XL</div>
+                            </div>
+                        </div>                    
+            
+                    </div>
+                    </div>
+
+                    <div class="commentSectionNewRow" style="margin-top: 60px;">
+                        <h3>Korim Mia</h3>
+                        <div class="commentRatingSection">
+                            <div class="commentRatingSectionStars">
+                                <i class="fas fa-star star"></i>
+                                <i class="fas fa-star star"></i>
+                                <i class="fas fa-star star"></i>
+                                <i class="fas fa-star star"></i>
+                                <i class="fas fa-star-half-alt star"></i>
+                            </div>
+                            <div class="commentRatingSectionDate">
+                                25th June, 2020
+                            </div>
+                        </div>
+                        <div class="commentRatingSectionDetails">
+                            Lorem ipsum dolor sit, Lorem ipsum dolor sit amet consectetur, adipisicing elit. Id labore iusto, doloremque eveniet eos nostrum cupiditate. Laboriosam voluptates, eligendi minus totam, fuga, quidem officiis tempore quod placeat voluptate sunt soluta ratione deserunt sequi quia laborum quasi ullam repellendus molestias aliquid illo illum iure. Fugit cupiditate, alias rem nobis iste minima dolor ea porro fugiat, ipsum eum unde error aliquid consequatur. amet consectetur adipisicing elit. Praesentium eligendi maxime possimus temporibus! Labore accusamus facilis sequi dolorem ullam odio.
+                        </div>
+                    </div>
+                    <div class="commentSectionNewRow">
+                        <h3>Korim Mia</h3>
+                        <div class="commentRatingSection">
+                            <div class="commentRatingSectionStars">
+                                <i class="fas fa-star star"></i>
+                                <i class="fas fa-star star"></i>
+                                <i class="fas fa-star star"></i>
+                                <i class="fas fa-star star"></i>
+                                <i class="fas fa-star-half-alt star"></i>
+                            </div>
+                            <div class="commentRatingSectionDate">
+                                25th June, 2020
+                            </div>
+                        </div>
+                        <div class="commentRatingSectionDetails">
+                            Lorem ipsum dolor sit, Lorem ipsum dolor sit amet consectetur, adipisicing elit. Id labore iusto, doloremque eveniet eos nostrum cupiditate. Laboriosam voluptates, eligendi minus totam, fuga, quidem officiis tempore quod placeat voluptate sunt soluta ratione deserunt sequi quia laborum quasi ullam repellendus molestias aliquid illo illum iure. Fugit cupiditate, alias rem nobis iste minima dolor ea porro fugiat, ipsum eum unde error aliquid consequatur. amet consectetur adipisicing elit. Praesentium eligendi maxime possimus temporibus! Labore accusamus facilis sequi dolorem ullam odio.
+                        </div>
+                    </div>
+                    <div class="commentSectionNewRow">
+                        <h3>Korim Mia</h3>
+                        <div class="commentRatingSection">
+                            <div class="commentRatingSectionStars">
+                                <i class="fas fa-star star"></i>
+                                <i class="fas fa-star star"></i>
+                                <i class="fas fa-star star"></i>
+                                <i class="fas fa-star star"></i>
+                                <i class="fas fa-star-half-alt star"></i>
+                            </div>
+                            <div class="commentRatingSectionDate">
+                                25th June, 2020
+                            </div>
+                        </div>
+                        <div class="commentRatingSectionDetails">
+                            Lorem ipsum dolor sit, Lorem ipsum dolor sit amet consectetur, adipisicing elit. Id labore iusto, doloremque eveniet eos nostrum cupiditate. Laboriosam voluptates, eligendi minus totam, fuga, quidem officiis tempore quod placeat voluptate sunt soluta ratione deserunt sequi quia laborum quasi ullam repellendus molestias aliquid illo illum iure. Fugit cupiditate, alias rem nobis iste minima dolor ea porro fugiat, ipsum eum unde error aliquid consequatur. amet consectetur adipisicing elit. Praesentium eligendi maxime possimus temporibus! Labore accusamus facilis sequi dolorem ullam odio.
+                        </div>
+                    </div>                
+                    <div class="commentSectionNewRow">
+                        <h3>Korim Mia</h3>
+                        <div class="commentRatingSection">
+                            <div class="commentRatingSectionStars">
+                                <i class="fas fa-star star"></i>
+                                <i class="fas fa-star star"></i>
+                                <i class="fas fa-star star"></i>
+                                <i class="fas fa-star star"></i>
+                                <i class="fas fa-star-half-alt star"></i>
+                            </div>
+                            <div class="commentRatingSectionDate">
+                                25th June, 2020
+                            </div>
+                        </div>
+                        <div class="commentRatingSectionDetails">
+                            Lorem ipsum dolor sit, Lorem ipsum dolor sit amet consectetur, adipisicing elit. Id labore iusto, doloremque eveniet eos nostrum cupiditate. Laboriosam voluptates, eligendi minus totam, fuga, quidem officiis tempore quod placeat voluptate sunt soluta ratione deserunt sequi quia laborum quasi ullam repellendus molestias aliquid illo illum iure. Fugit cupiditate, alias rem nobis iste minima dolor ea porro fugiat, ipsum eum unde error aliquid consequatur. amet consectetur adipisicing elit. Praesentium eligendi maxime possimus temporibus! Labore accusamus facilis sequi dolorem ullam odio.
+                        </div>
+                    </div>
+                    <h4 class="noMoreRatingFound">
+                        No More Ratings Found
+                    </h4>
+                  </div>
+                </div>
         </div>
 
-
-    </div>
     
 
 
