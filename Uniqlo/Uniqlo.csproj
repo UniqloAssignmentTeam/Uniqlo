@@ -80,6 +80,7 @@
       <DependentUpon>Uniqlo.mdf</DependentUpon>
     </Content>
     <Content Include="css\Cart.css" />
+    <Content Include="css\category.css" />
     <Content Include="css\ContactUs.css" />
     <Content Include="css\dashboard.css" />
     <Content Include="css\delivery.css" />
