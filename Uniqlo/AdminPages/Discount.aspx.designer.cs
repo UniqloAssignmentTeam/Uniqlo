@@ -11,7 +11,7 @@ namespace Uniqlo.AdminPages
 {
 
 
-    public partial class Staff
+    public partial class Discount
     {
 
         /// <summary>
