@@ -8,7 +8,7 @@
     <link href="css/master.css" rel="stylesheet" />
 </head>
 <body>
-    <form id="form1" runat="server">
+    <form id="form1" runat="server" >
         <asp:SiteMapDataSource ID="SiteMapDataSource1" runat="server" SiteMapProvider="UserSiteMapProvider"/>
         
         <div id="header">
