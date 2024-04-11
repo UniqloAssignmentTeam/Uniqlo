@@ -16,16 +16,27 @@
 var modal = document.getElementById("myModal");
 var span = document.getElementsByClassName("close")[0];
 
-// When the user clicks on <span> (x), close the modal
+// Second modal
+var reviewModal = document.getElementById("reviewModal");
+var reviewBtn = document.getElementById("openReviewBtn");
+var closeSpan = document.getElementsByClassName("closeReview")[0];
+
+// First modal close
 span.onclick = function () {
     modal.style.display = "none";
+}
+//second modal close
+closeSpan.onclick = function () {
+    reviewModal.style.display = "none";
 }
 
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function (event) {
     if (event.target == modal) {
         modal.style.display = "none";
-    }
+    } else if (event.target == reviewModal) {
+        reviewModal.style.display = "none";
+    } 
 }
 
 document.querySelectorAll('.limitedOfferCard').forEach(item => {
@@ -52,4 +63,7 @@ function showModalWithProductDetails(productId) {
     } else {
         console.error('Product not found for ID:', productId);
     }
+}
+reviewBtn.onclick = function () {
+    reviewModal.style.display = "block";
 }
