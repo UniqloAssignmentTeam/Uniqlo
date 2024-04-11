@@ -12,17 +12,6 @@ function selectOption(option, dropdownDisplayId) {
     dropdownList.classList.remove('open');
 }
 
-// Function to display the modal
-function showModal(modalId) {
-    var modal = document.getElementById(modalId);
-    modal.style.display = "block";
-}
-
-// Function to close the modal
-function closeModal(modalId) {
-    var modal = document.getElementById(modalId);
-    modal.style.display = "none";
-}
 
 
 
@@ -54,3 +43,17 @@ window.onclick = function (event) {
         }
     }
 }
+
+
+// Function to display the modal
+function showModal(modalId) {
+    var modal = document.getElementById(modalId);
+    modal.style.display = "block";
+}
+
+// Function to close the modal
+function closeModal(modalId) {
+    var modal = document.getElementById(modalId);
+    modal.style.display = "none";
+}
+
