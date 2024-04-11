@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Uniqlo.Master" AutoEventWireup="true" CodeBehind="Cart.aspx.cs" Inherits="Uniqlo.Pages.Cart" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Uniqlo.Master" AutoEventWireup="true" CodeBehind="WebForm1.aspx.cs" Inherits="Uniqlo.Pages.WebForm1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="main" runat="server">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <link href="../css/Cart.css" rel="stylesheet" />
@@ -90,7 +90,7 @@
         var totalItems = 0;
         var totalPrice = 0;
 
-        cartItems.forEach(function (cartItem) {
+        cartItems.forEach(function(cartItem) {
             var quantity = parseInt(cartItem.querySelector('.quantity').textContent);
             var subtotal = parseFloat(cartItem.querySelector('.item-subtotal').textContent.replace('Subtotal: RM ', ''));
             totalItems += quantity;
