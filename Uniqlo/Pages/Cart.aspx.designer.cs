@@ -13,23 +13,5 @@ namespace Uniqlo.Pages
 
     public partial class Cart
     {
-
-        /// <summary>
-        /// totalItemsLabel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl totalItemsLabel;
-
-        /// <summary>
-        /// totalPriceLabel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl totalPriceLabel;
     }
 }

@@ -151,7 +151,7 @@
                     </div>
                     <form action="checkoutReviewServlet" >
                         <div class="card-footer border-secondary bg-transparent">
-                            <button type="submit" class="btn btn-lg btn-block btn-primary font-weight-bold my-3 py-3" id="submit-btn" value=" ">Confirm Order</button>
+                            <button type="submit" class="btn btn-lg btn-block btn-primary font-weight-bold my-3 py-3" id="submit-btn" value=" "><a style="text-decoration:none; color:black" href="Invoice.aspx">Confirm Order</a></button>
                         </div>
                     </form>
                     <div id="popup" class="popup">

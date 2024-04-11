@@ -347,7 +347,208 @@
 
 
 
+<div id="updateModalContainer" class="modal">
+
+
+    <div class="modal-content">
+        <span class="close" onclick="closeModal('updateMoreModalContainer')">&times;</span>
+           <div class = "card-wrapper">
+      <div class = "productItemCard">
+        <!-- card left -->
+        <div class = "product-imgs">
+          <div class = "img-display">
+            <div class = "img-showcase">
+                <img src="../../../Images/Categories/Woman/Tops/AIRismCottonShortSleeveT-Shirt1.jpg" alt = "uniqlo image"/>
+                <img src="../../../Images/Categories/Woman/Tops/AIRismCottonShortSleeveT-Shirt2.jpg" alt = "uniqlo image"/>
+                <img src="../../../Images/Categories/Woman/Tops/AIRismCottonShortSleeveT-Shirt3.jpg" alt = "uniqlo image"/>
+                <img src="../../../Images/Categories/Woman/Tops/AIRismCottonShortSleeveT-Shirt4.jpg" alt = "uniqlo image"/>
+            </div>
+          </div>
+
+
+          <div class = "img-select">
+            <div class = "img-item">
+              <a href = "#" data-id = "1">
+                  <img src="../../../Images/Categories/Woman/Tops/AIRismCottonShortSleeveT-Shirt1.jpg" alt = "uniqlo image"/>
+              </a>
+            </div>
+            <div class = "img-item">
+              <a href = "#" data-id = "2">
+                  <img src="../../../Images/Categories/Woman/Tops/AIRismCottonShortSleeveT-Shirt2.jpg" alt = "uniqlo image"/>
+              </a>
+            </div>
+            <div class = "img-item">
+              <a href = "#" data-id = "3">
+                  <img src="../../../Images/Categories/Woman/Tops/AIRismCottonShortSleeveT-Shirt3.jpg" alt = "uniqlo image"/>
+              </a>
+            </div>
+            <div class = "img-item">
+              <a href = "#" data-id = "4">
+                  <img src="../../../Images/Categories/Woman/Tops/AIRismCottonShortSleeveT-Shirt4.jpg" alt = "uniqlo image"/>
+              </a>
+            </div>
+          </div>
+        </div>
+
+
+
+
+
+
+
+        <!-- card right -->
+        <div class = "product-content">
+          <h2 class = "product-title product-name">Red Top</h2>
+          
+
+         
+
+          <div class = "product-detail">
+
+            <div class="product-details-info"> 
+      <div class="product-details-head">
+      Item Description:
+      </div> 
+      <div class="product-details-items">
+    Item Description Here!
+      </div>
+   </div>
+            
+
+              <div class="product-details-info">
+
+
+
+
+                  <div class="product-details-head">
+                 
+                     Product ID: 
+                   </div>
+                 <div class="product-details-items">
+                     1001
+                  </div>
+                    </div>
+
+
+
+                
+               <div class="product-details-info">
+                   <div class="product-details-head"> Current Price:</div>
+                   <div class="product-details-items">  RM 59.90</div>  
+                  </div>
+             
+             
+               <div class="product-details-info">
+                    <div class="product-details-head">
+                     Available:
+                    </div>
+                    <div class="product-details-items"> In Stock</div> 
+              </div>
+
+           
+               <div class="product-details-info">
+                   <div class="product-details-head">
+                       Category: 
+                   </div>
+                    <div class="product-details-items">Tops</div>
+                 
+              </div>
+           
+
+             
+              <div class="product-details-info">
+                   <div class="product-details-head">
+                    Gender:
+                    </div>
+                    <div class="product-details-items"> Female</div>
+                 </div>
+            
+            
+          
+          </div>
+
+
+
+
+          
+
+          <div class="productQtySizeSection">
+
+              <div class="quantityHeader">QUANTITY</div> 
+  
+
+
+             
+                  <div class="purchase-size-item">
+
+
+
+                    <div class="purchase-size">
+
+                   <div class="purchase-size-size">
+                     S:
+                    </div>
+
+                    <div class="purchase-size-qty">
+                     100
+                    </div>
+
+                    </div>
+
+
+
+
+                      <div class="purchase-size">
+                          <div class="purchase-size-size">
+                            M:
+                        </div>
+
+                          <div class="purchase-size-qty"> 100</div>
+                      </div>
+                    
+
+
+                      <div class="purchase-size">
+                          <div class="purchase-size-size">
+                            L:
+                            </div>
+                          <div class="purchase-size-qty">
+                              100
+                          </div>
+                      </div>
+
+
+                      <div class="purchase-size">
+                           
+                          <div class="purchase-size-size">
+                             XL: 
+                          </div>
+                          <div class="purchase-size-qty"> 100 </div>
+
+                      </div>
+                   
+
+                   
+                 </div>
+                  </div>
+              </div>
+
+          </div>
+          
+       
+        </div>
+      </div>
+    </div>
+  
+
+        </div>
+     </div>
+
+    
+
 <div id="viewMoreModalContainer" class="modal">
+
+
     <div class="modal-content">
         <span class="close" onclick="closeModal('viewMoreModalContainer')">&times;</span>
            <div class = "card-wrapper">
@@ -402,40 +603,134 @@
          
 
           <div class = "product-detail">
-            <h2>about this item: </h2>  
-          
-              <h4> Product ID:</h4>1001
-                <br />
-              <h4> Current Price:</h4>RM 59.90<br />
+
+            <div class="product-details-info"> 
+      <div class="product-details-head">
+      Item Description:
+      </div> 
+      <div class="product-details-items">
+    Item Description Here!
+      </div>
+   </div>
+            
+
+              <div class="product-details-info">
 
 
-              <h4>  Available:</h4> In Stock<br />
-              <h4> Category:</h4>Tops<br />
-              <h4>Gender:</h4> Female  <br />
-              <h4>Item Description:</h4>
-         
-          <p> Item Description Here!</p>
+
+
+                  <div class="product-details-head">
+                 
+                     Product ID: 
+                   </div>
+                 <div class="product-details-items">
+                     1001
+                  </div>
+                    </div>
+
+
+
+                
+               <div class="product-details-info">
+                   <div class="product-details-head"> Current Price:</div>
+                   <div class="product-details-items">  RM 59.90</div>  
+                  </div>
+             
+             
+               <div class="product-details-info">
+                    <div class="product-details-head">
+                     Available:
+                    </div>
+                    <div class="product-details-items"> In Stock</div> 
+              </div>
+
+           
+               <div class="product-details-info">
+                   <div class="product-details-head">
+                       Category: 
+                   </div>
+                    <div class="product-details-items">Tops</div>
+                 
+              </div>
+           
+
+             
+              <div class="product-details-info">
+                   <div class="product-details-head">
+                    Gender:
+                    </div>
+                    <div class="product-details-items"> Female</div>
+                 </div>
+            
+            
           
           </div>
+
+
 
 
           
 
           <div class="productQtySizeSection">
 
-           
-  <h3>QUANTITY</h3>
+              <div class="quantityHeader">QUANTITY</div> 
+  
 
 
              
                   <div class="purchase-size-item">
-                      <h4>S:</h4>
-                      <br />
-                      <h4>M:</h4><br />
-                      <h4>L:</h4><br />
-                      <h4>XL:</h4>
-                  </div>
 
+
+
+                    <div class="purchase-size">
+
+                   <div class="purchase-size-size">
+                     S:
+                    </div>
+
+                    <div class="purchase-size-qty">
+                     100
+                    </div>
+
+                    </div>
+
+
+
+
+                      <div class="purchase-size">
+                          <div class="purchase-size-size">
+                            M:
+                        </div>
+
+                          <div class="purchase-size-qty"> 100</div>
+                      </div>
+                    
+
+
+                      <div class="purchase-size">
+                          <div class="purchase-size-size">
+                            L:
+                            </div>
+                          <div class="purchase-size-qty">
+                              100
+                          </div>
+                      </div>
+
+
+                      <div class="purchase-size">
+                           
+                          <div class="purchase-size-size">
+                             XL: 
+                          </div>
+                          <div class="purchase-size-qty"> 100 </div>
+
+                      </div>
+                   
+
+                   
+                 </div>
+                  </div>
+              </div>
 
           </div>
           
@@ -449,6 +744,10 @@
      </div>
 
 
+
+
+
+
     </div>
 
     
@@ -456,7 +755,7 @@
 
         <script src="../Javascript/productBtnEclipse.js"></script>
         <script src="../Javascript/productAdminDDL.js"></script>
-        <script src="../Javascript/adminProductModal.js"></script>
+       
       
 
     </footer>

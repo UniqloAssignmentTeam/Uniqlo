@@ -122,7 +122,7 @@
                     </div>
 
                     <div class="card-footer border-secondary bg-transparent">
-                        <button type="submit" class="btn btn-lg btn-block btn-primary font-weight-bold my-3 py-3">Next</button>
+                        <button class="btn btn-lg btn-block btn-primary font-weight-bold my-3 py-3"><a style="text-decoration:none; color:black" href="Payment.aspx">Next</a></button>
                     </div>
 
                 </div>
