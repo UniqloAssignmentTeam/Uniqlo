@@ -6,7 +6,7 @@
         <link href="../css/style1.css" rel="stylesheet" />
     </header>
 
-    <div class="bordersizebox">
+    <div class="body">
         <div class="container-fluid pt-5">
         <section class="step-wizard">
             <ul class="step-wizard-list">
@@ -122,7 +122,7 @@
                     </div>
 
                     <div class="card-footer border-secondary bg-transparent">
-                        <button type="submit" class="btn btn-lg btn-block btn-primary font-weight-bold my-3 py-3">Next</button>
+                        <button class="btn btn-lg btn-block btn-primary font-weight-bold my-3 py-3"><a style="text-decoration:none; color:black" href="Payment.aspx">Next</a></button>
                     </div>
 
                 </div>
