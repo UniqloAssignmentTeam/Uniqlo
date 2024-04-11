@@ -140,6 +140,7 @@
     <Content Include="Javascript\wishList.js" />
     <Content Include="Pages\AboutUs.aspx" />
     <Content Include="Pages\Cart.aspx" />
+    <Content Include="Pages\ConfirmPayment.aspx" />
     <Content Include="Pages\ContactUs.aspx" />
     <Content Include="Pages\Delivery.aspx" />
     <Content Include="Pages\Home.aspx" />
@@ -158,6 +159,7 @@
     <Content Include="Pages\Categories\Women\Main.aspx" />
     <Content Include="Pages\Categories\Women\Outerwear.aspx" />
     <Content Include="Pages\Categories\Women\Tops.aspx" />
+    <Content Include="Pages\Invoice.aspx" />
     <Content Include="Pages\Login.aspx" />
     <Content Include="Pages\Payment.aspx" />
     <Content Include="Pages\Profile.aspx" />
@@ -236,6 +238,13 @@
     </Compile>
     <Compile Include="Pages\Cart.aspx.designer.cs">
       <DependentUpon>Cart.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ConfirmPayment.aspx.cs">
+      <DependentUpon>ConfirmPayment.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\ConfirmPayment.aspx.designer.cs">
+      <DependentUpon>ConfirmPayment.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\ContactUs.aspx.cs">
       <DependentUpon>ContactUs.aspx</DependentUpon>
@@ -362,6 +371,13 @@
     </Compile>
     <Compile Include="Pages\Categories\Women\Tops.aspx.designer.cs">
       <DependentUpon>Tops.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Invoice.aspx.cs">
+      <DependentUpon>Invoice.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Invoice.aspx.designer.cs">
+      <DependentUpon>Invoice.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
