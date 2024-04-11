@@ -125,8 +125,8 @@
     <Content Include="Images\uniqloWomenTop.jpg" />
     <Content Include="Images\valueBuy.jpg" />
     <Content Include="Images\valueBuyBanner.jpg" />
-    <Content Include="Javascript\addProductModal.js" />
     <Content Include="Javascript\addToCartButton.js" />
+    <Content Include="Javascript\adminProductModal.js" />
     <Content Include="Javascript\barChartTtlOder.js" />
     <Content Include="Javascript\ContactUs.js" />
     <Content Include="Javascript\lineChart.js" />
