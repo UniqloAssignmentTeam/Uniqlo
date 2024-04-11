@@ -417,50 +417,49 @@
 
               <div class="product-details-info">
 
+     <div class="form-group">
+    <span>Product ID:</span>
+    <input class="form-field" type="text" placeholder="domain.tld">
+</div>
 
-
-
-                  <div class="product-details-head">
-                 
-                     Product ID: 
-                   </div>
-                 <div class="product-details-items">
-                     1001
-                  </div>
                     </div>
+
+
 
 
 
                 
                <div class="product-details-info">
-                   <div class="product-details-head"> Current Price:</div>
-                   <div class="product-details-items">  RM 59.90</div>  
+                       <div class="form-group">
+    <span>Current Price:</span>
+    <input class="form-field" type="text" placeholder="domain.tld">
+</div>
                   </div>
              
              
                <div class="product-details-info">
-                    <div class="product-details-head">
-                     Available:
-                    </div>
-                    <div class="product-details-items"> In Stock</div> 
+                        <div class="form-group">
+    <span>Availability:</span>
+    <input class="form-field" type="text" placeholder="domain.tld">
+</div>
               </div>
 
            
                <div class="product-details-info">
-                   <div class="product-details-head">
-                       Category: 
-                   </div>
-                    <div class="product-details-items">Tops</div>
+                      <div class="form-group">
+    <span>Category:</span>
+    <input class="form-field" type="text" placeholder="domain.tld">
+</div>
                  
               </div>
            
 
              
               <div class="product-details-info">
-                   <div class="product-details-head">
-                    Gender:
-                    </div>
-                    <div class="product-details-items"> Female</div>
+                        <div class="form-group">
+    <span>Gender:</span>
+    <input class="form-field" type="text" placeholder="domain.tld">
+</div>
                  </div>
             
             
@@ -483,15 +482,10 @@
 
 
 
-                    <div class="purchase-size">
-
-                   <div class="purchase-size-size">
-                     S:
-                    </div>
-
-                    <div class="purchase-size-qty">
-                     100
-                    </div>
+                       <div class="form-group">
+    <span>S:</span>
+    <input class="form-field" type="text" placeholder="domain.tld">
+</div>
 
                     </div>
 
@@ -499,31 +493,28 @@
 
 
                       <div class="purchase-size">
-                          <div class="purchase-size-size">
-                            M:
-                        </div>
-
-                          <div class="purchase-size-qty"> 100</div>
+                               <div class="form-group">
+    <span>M:</span>
+    <input class="form-field" type="text" placeholder="domain.tld">
+</div>
                       </div>
                     
 
 
                       <div class="purchase-size">
-                          <div class="purchase-size-size">
-                            L:
-                            </div>
-                          <div class="purchase-size-qty">
-                              100
-                          </div>
+                               <div class="form-group">
+    <span>L:</span>
+    <input class="form-field" type="text" placeholder="domain.tld">
+</div>
                       </div>
 
 
                       <div class="purchase-size">
                            
-                          <div class="purchase-size-size">
-                             XL: 
-                          </div>
-                          <div class="purchase-size-qty"> 100 </div>
+                              <div class="form-group">
+    <span>XL:</span>
+    <input class="form-field" type="text" placeholder="domain.tld">
+</div>
 
                       </div>
                    
