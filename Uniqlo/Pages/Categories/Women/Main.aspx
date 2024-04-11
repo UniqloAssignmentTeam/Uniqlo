@@ -184,7 +184,7 @@
 
         <!--VIEWMORE BUTTON-->
         <div class="viewMoreSection">
-            <button class="viewMoreButton">VIEW MORE</button>
+            <a href="../../ValueBuy.aspx" class="viewMoreButton">VIEW MORE</a>
         </div>
 
         <!-- The Modal -->
