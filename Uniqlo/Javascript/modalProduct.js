@@ -15,36 +15,41 @@
 // You only need to define these once, so they should be outside of showModalWithProductDetails function
 var modal = document.getElementById("myModal");
 var span = document.getElementsByClassName("close")[0];
+var qtyInput = document.querySelector('.qty');
+var radioButtons = document.querySelectorAll('.custom-radio-list input[type=radio]');
+var label = document.querySelector('#size');
 
 // Second modal
 var reviewModal = document.getElementById("reviewModal");
 var reviewBtn = document.getElementById("openReviewBtn");
 var closeSpan = document.getElementsByClassName("closeReview")[0];
 
-// First modal close
 span.onclick = function () {
     modal.style.display = "none";
-}
-//second modal close
+    // Make all heart icons visible again when modal closes
+    showHeartIcons();
+};
+
 closeSpan.onclick = function () {
     reviewModal.style.display = "none";
-}
+    // Also reset heart icons when the review modal closes
+    showHeartIcons();
+};
 
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function (event) {
-    if (event.target == modal) {
-        modal.style.display = "none";
-    } else if (event.target == reviewModal) {
-        reviewModal.style.display = "none";
-    } 
-}
-
+// Handle opening and closing of the main modal
 document.querySelectorAll('.limitedOfferCard').forEach(item => {
-    item.addEventListener('click', event => {
-        let productId = item.getAttribute('data-product-id');
-        showModalWithProductDetails(productId);
+    item.addEventListener('click', function (event) {
+        if (event.target.closest('.wishlist-heart-group')) {
+            event.preventDefault();  // Prevent default behavior, stopping the page jump
+            event.stopPropagation(); // Stop the event from bubbling up if not already doing so
+        } else {
+            let productId = this.getAttribute('data-product-id');
+            showModalWithProductDetails(productId);
+            hideHeartIcons(); // Hide all heart icons when any modal is opened
+        }
     });
 });
+
 
 function getProductDetails(productId) {
     return productDetails.find(product => product.id === productId);
@@ -60,10 +65,34 @@ function showModalWithProductDetails(productId) {
 
         // Now, display the modal
         modal.style.display = "block";
+        resetModalContent();
+        hideHeartIcons();
     } else {
         console.error('Product not found for ID:', productId);
     }
 }
+
+
+function resetModalContent() {
+    qtyInput.value = 1;  // Reset quantity input
+    radioButtons.forEach(radioButton => radioButton.checked = false); // Uncheck all radios
+    label.textContent = "S";  // Reset label to default
+}
 reviewBtn.onclick = function () {
     reviewModal.style.display = "block";
+    hideHeartIcons();
+}
+
+// Common function to hide all heart icons
+function hideHeartIcons() {
+    document.querySelectorAll('.wishlist-heart-group').forEach(icon => {
+        icon.style.display = 'none';
+    });
+}
+
+// Common function to show all heart icons
+function showHeartIcons() {
+    document.querySelectorAll('.wishlist-heart-group').forEach(icon => {
+        icon.style.display = ''; // Reset display property
+    });
 }
