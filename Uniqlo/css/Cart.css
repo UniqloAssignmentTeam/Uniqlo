@@ -33,14 +33,6 @@ header h1 {
         box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
     }
 
-.cart-item-image-container {
-    width: 40%; /* Adjust width for item image */
-}
-
-    .cart-item-image-container img {
-        width: 100%;
-    }
-
 .item-details {
     padding: 10px;
 }

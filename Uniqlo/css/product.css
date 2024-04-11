@@ -868,13 +868,12 @@
     background-color: #fefefe;
     position: absolute;
     margin: 5% auto; /* 5% from the top and centered */
-    padding: 80px 20px 80px 20px;
+    padding: 80px 20px 0px 20px;
     border: 1px solid #888;
     width: 80%; /* Could be more or less, depending on screen size */
     max-width: 1200px; /* Max width for large screens, adjust as needed */
     border-radius: 5px;
-    margin-bottom: 120px;
-    right: 130px;
+    right: 150px;
 }
 
 
