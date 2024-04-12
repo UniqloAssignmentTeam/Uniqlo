@@ -149,20 +149,11 @@
     <Content Include="Pages\ContactUs.aspx" />
     <Content Include="Pages\Delivery.aspx" />
     <Content Include="Pages\Home.aspx" />
-    <Content Include="Pages\Categories\Kids\Bottoms.aspx" />
-    <Content Include="Pages\Categories\Kids\DressesSkirt.aspx" />
-    <Content Include="Pages\Categories\Kids\Main.aspx" />
-    <Content Include="Pages\Categories\Kids\Outerwear.aspx" />
-    <Content Include="Pages\Categories\Kids\Tops.aspx" />
-    <Content Include="Pages\Categories\Men\Accessories.aspx" />
     <Content Include="Pages\Categories\Men\Bottoms.aspx" />
     <Content Include="Pages\Categories\Men\Main.aspx" />
-    <Content Include="Pages\Categories\Men\Outerwear.aspx" />
     <Content Include="Pages\Categories\Men\Tops.aspx" />
     <Content Include="Pages\Categories\Women\Bottoms.aspx" />
-    <Content Include="Pages\Categories\Women\DressesSkirt.aspx" />
     <Content Include="Pages\Categories\Women\Main.aspx" />
-    <Content Include="Pages\Categories\Women\Outerwear.aspx" />
     <Content Include="Pages\Categories\Women\Tops.aspx" />
     <Content Include="Pages\Invoice.aspx" />
     <Content Include="Pages\Login.aspx" />
@@ -287,48 +278,6 @@
     <Compile Include="Pages\Home.aspx.designer.cs">
       <DependentUpon>Home.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Categories\Kids\Bottoms.aspx.cs">
-      <DependentUpon>Bottoms.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Pages\Categories\Kids\Bottoms.aspx.designer.cs">
-      <DependentUpon>Bottoms.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\Categories\Kids\DressesSkirt.aspx.cs">
-      <DependentUpon>DressesSkirt.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Pages\Categories\Kids\DressesSkirt.aspx.designer.cs">
-      <DependentUpon>DressesSkirt.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\Categories\Kids\Main.aspx.cs">
-      <DependentUpon>Main.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Pages\Categories\Kids\Main.aspx.designer.cs">
-      <DependentUpon>Main.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\Categories\Kids\Outerwear.aspx.cs">
-      <DependentUpon>Outerwear.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Pages\Categories\Kids\Outerwear.aspx.designer.cs">
-      <DependentUpon>Outerwear.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\Categories\Kids\Tops.aspx.cs">
-      <DependentUpon>Tops.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Pages\Categories\Kids\Tops.aspx.designer.cs">
-      <DependentUpon>Tops.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\Categories\Men\Accessories.aspx.cs">
-      <DependentUpon>Accessories.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Pages\Categories\Men\Accessories.aspx.designer.cs">
-      <DependentUpon>Accessories.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Pages\Categories\Men\Bottoms.aspx.cs">
       <DependentUpon>Bottoms.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -342,13 +291,6 @@
     </Compile>
     <Compile Include="Pages\Categories\Men\Main.aspx.designer.cs">
       <DependentUpon>Main.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\Categories\Men\Outerwear.aspx.cs">
-      <DependentUpon>Outerwear.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Pages\Categories\Men\Outerwear.aspx.designer.cs">
-      <DependentUpon>Outerwear.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Categories\Men\Tops.aspx.cs">
       <DependentUpon>Tops.aspx</DependentUpon>
@@ -364,26 +306,12 @@
     <Compile Include="Pages\Categories\Women\Bottoms.aspx.designer.cs">
       <DependentUpon>Bottoms.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Categories\Women\DressesSkirt.aspx.cs">
-      <DependentUpon>DressesSkirt.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Pages\Categories\Women\DressesSkirt.aspx.designer.cs">
-      <DependentUpon>DressesSkirt.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Pages\Categories\Women\Main.aspx.cs">
       <DependentUpon>Main.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Pages\Categories\Women\Main.aspx.designer.cs">
       <DependentUpon>Main.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\Categories\Women\Outerwear.aspx.cs">
-      <DependentUpon>Outerwear.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Pages\Categories\Women\Outerwear.aspx.designer.cs">
-      <DependentUpon>Outerwear.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Categories\Women\Tops.aspx.cs">
       <DependentUpon>Tops.aspx</DependentUpon>
