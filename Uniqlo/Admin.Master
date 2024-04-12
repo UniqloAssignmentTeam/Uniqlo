@@ -71,11 +71,11 @@
                     <a href="Report.aspx">Report</a>
                 
             </div>
-
-        </div>
-        <div class="footerBottom">
+<div class="footerBottom">
             <p>COPYRIGHT &copy; <span class="designer">UNIQLO CO., LTD.</span> ALL RIGHTS RESERVED. </p>
         </div>
+        </div>
+        
     </form>
 </body>
 <foot>
