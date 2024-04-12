@@ -402,7 +402,7 @@
                         <div class="product-details-items"> Female</div>
                      </div>
                   </div>
-                  <div class="productQtySizeSection">
+                  <div class="viewProductQtySizeSection">
                      <div class="quantityHeader">QUANTITY</div>
                       <div class="color-radio">
     <!-- Radio buttons -->
@@ -521,7 +521,7 @@
     <button id="addColorButton">Add color</button>
 </div>
 
-<div class="productQtySizeSection">
+<div class="addProductQtySizeSection">
    <div class="quantityHeader">QUANTITY</div>
    <div class="purchase-size-item">
       <div class="form-group">
