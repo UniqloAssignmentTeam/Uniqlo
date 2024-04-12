@@ -204,9 +204,10 @@
             </div>
          </div>
       </div>
-      <div class="pagination">
-         <button class="page-btn" onclick="goToNextPage()">Next Page</button>
-      </div>
+      
+                    <div class="viewMoreSection">
+    <a href="../AdminPages/Product.aspx" class="viewMoreButton">BACK</a>
+            </div>
       <div id="updateModalContainer" class="modal">
          <div class="modal-content">
             <span class="close" onclick="closeModal('updateModalContainer')">&times;</span>
@@ -402,7 +403,7 @@
                         <div class="product-details-items"> Female</div>
                      </div>
                   </div>
-                  <div class="productQtySizeSection">
+                  <div class="viewProductQtySizeSection">
                      <div class="quantityHeader">QUANTITY</div>
                       <div class="color-radio">
     <!-- Radio buttons -->
@@ -521,7 +522,7 @@
     <button id="addColorButton">Add color</button>
 </div>
 
-<div class="productQtySizeSection">
+<div class="addProductQtySizeSection">
    <div class="quantityHeader">QUANTITY</div>
    <div class="purchase-size-item">
       <div class="form-group">
