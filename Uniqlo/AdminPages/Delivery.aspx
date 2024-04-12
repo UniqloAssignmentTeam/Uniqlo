@@ -213,8 +213,8 @@
             </div>
          </div>
       </div>
-                     <div class="viewMoreSection">
-<a href="../AdminPages/Delivery.aspx" class="viewMoreButton">LOAD MORE</a>
+                             <div class="viewMoreSection">
+            <   1..10  >
         </div>
     
       </div>
