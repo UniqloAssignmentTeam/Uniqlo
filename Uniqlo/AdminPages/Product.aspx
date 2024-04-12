@@ -90,7 +90,7 @@
                <div class="eclipse-display" id="dropdownDisplay3" style="border:none;"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></div>
                <div class="eclipse-list" id="dropdownList3">
                   <div onclick="showModal('viewMoreModalContainer')">View More</div>
-                  <div onclick="showModal('updateModalContainer')">Update</div>
+                   <a href="UpdateProduct.aspx" style="text-decoration:none;"><div>Update</div></a>
                   <div>Delete</div>
                </div>
             </div>
