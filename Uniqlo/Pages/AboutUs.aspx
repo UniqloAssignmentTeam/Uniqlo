@@ -4,12 +4,14 @@
         <link href="../css/aboutUs.css" rel="stylesheet" />
     </head>
      <main>
+         <div class="mainBody">
         <section class="about-section">
             <h2>About Us</h2>
             <p>
                 Uniqlo is a Japanese clothing company that offers innovative and functional apparel for people of all
                 ages. We are dedicated to providing high-quality, comfortable clothing at affordable prices.
             </p>
+            <img src="../Images/uniqlostore.jpg" />
             <p>
                 Our mission is to create a better life for our customers by constantly improving our products and
                 exploring new technologies and designs. We are committed to sustainability and ethical practices in all
@@ -24,15 +26,19 @@
                 that combines fashion and functionality, always keeping our customers' needs in mind.
             </p>
         </section>
-
+             <img src="../Images/Uniqlo-Logos.png" /><img src="../Images/storeLocator.jpg" />
         <section class="values-section">
             <h2>Our Values</h2>
             <ul>
                 <li>Innovation</li>
                 <li>Sustainability</li>
                 <li>Customer-Centric Approach</li>
-                <li>Quality</li>
+                <li>Quality</li>   
+                
+                
             </ul>
+         <p><img src="../Images/3R.jpg" /></p>
         </section>
+         </div>
     </main>
 </asp:Content>

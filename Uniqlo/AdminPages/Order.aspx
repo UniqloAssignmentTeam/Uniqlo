@@ -301,8 +301,8 @@
 
 
 
-        <div class="pagination">
-    <button class="page-btn" onclick="goToNextPage()">Next Page</button>
+                    <div class="viewMoreSection">
+    <a href="../AdminPages/Order.aspx" class="viewMoreButton">BACK</a>
 </div>
 
 
@@ -312,8 +312,11 @@
 
   
    
-    </div>
+             
+         </div>
     
+
+
     <footer>
 
         <script src="../Javascript/productBtnEclipse.js"></script>

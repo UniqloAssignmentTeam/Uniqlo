@@ -406,29 +406,26 @@
 
 
 
-.pagination {
-    text-align: center; /* Center align the pagination buttons */
-    padding: 10px 0; /* Add some padding above and below the buttons */
-    margin-top: 20px; /* Add some space between the table and the pagination buttons */
+.viewMoreSection {
+    text-align: center;
+    margin: 60px 0px 60px 0px;
 }
 
-.page-btn {
-    padding: 10px 20px; /* Add some padding inside the button for better touch */
-    background-color: #007bff; /* Use a color that matches your header */
-    color: white; /* Text color for the button */
-    border: none; /* Remove default border */
-    border-radius: 5px; /* Rounded corners for the button */
-    cursor: pointer; /* Change mouse cursor to pointer */
-    transition: background-color 0.3s; /* Transition for a hover effect */
+.viewMoreButton {
+    border: 2px solid black;
+    padding: 20px 180px 20px 180px;
+    background: none;
+    outline: none;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.5s ease;
+    text-decoration: none;
+    color: black;
 }
 
-    .page-btn:hover {
-        background-color: #0056b3; /* Darken button color on hover for feedback */
-    }
-
-    .page-btn:disabled {
-        background-color: #ccc; /* Gray out the button when it is disabled */
-        cursor: default; /* Revert cursor to default when button is disabled */
+    .viewMoreButton:hover {
+        background-color: black;
+        color: white;
     }
 
 
