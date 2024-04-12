@@ -1,4 +1,9 @@
-﻿body {
+﻿.mainBody {
+    max-width: 1100px;
+    position: relative;
+    margin: auto;
+}
+body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;

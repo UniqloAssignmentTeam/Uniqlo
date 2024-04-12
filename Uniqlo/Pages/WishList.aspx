@@ -13,7 +13,7 @@
                     <img src="../../../Images/Categories/Woman/Tops/AIRismCottonShortSleeveT-Shirt1.jpg" alt="AIRism Cotton Short Sleeve T-Shirt" style="width: 100%" />
                     <div class="wishlistSection">
                         <div class="wishlist-heart-group">
-                            <input name="wishListProduct" id="wishListProduct1" data-product-id="1" type="checkbox" />
+                            <input name="wishListProduct" id="wishListProduct1" data-product-id="1" type="checkbox"/>
                             <label for="wishListProduct" data-hover-text="Wish List">
                                 <svg xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" version="1.1" x="0px" y="0px" viewBox="0 0 100 100">
                                     <g transform="translate(0,-952.36218)">

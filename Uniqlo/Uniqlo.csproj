@@ -98,6 +98,7 @@
     <Content Include="css\style1.css" />
     <Content Include="css\ValueBuy.css" />
     <Content Include="css\WishList.css" />
+    <Content Include="Images\3R.jpg" />
     <Content Include="Images\accessories.jpg" />
     <Content Include="Images\Categories\Woman\Bottoms\SweatCargoPants1.jpg" />
     <Content Include="Images\Categories\Woman\Bottoms\SweatCargoPants2.jpg" />
@@ -125,6 +126,7 @@
     <Content Include="Images\uniqloMenOuterwear.jpg" />
     <Content Include="Images\uniqloMenPants.jpg" />
     <Content Include="Images\uniqloMenTop.jpg" />
+    <Content Include="Images\uniqlostore.jpg" />
     <Content Include="Images\uniqloValueBuyBanner.jpg" />
     <Content Include="Images\uniqloWomanDress.jpg" />
     <Content Include="Images\uniqloWomanOuterwear.jpg" />
@@ -145,6 +147,7 @@
     <Content Include="Javascript\productItem.js" />
     <Content Include="Javascript\productSize.js" />
     <Content Include="Javascript\slider.js" />
+    <Content Include="Javascript\valueBuy.js" />
     <Content Include="Javascript\wishList.js" />
     <Content Include="Pages\AboutUs.aspx" />
     <Content Include="Pages\Cart.aspx" />

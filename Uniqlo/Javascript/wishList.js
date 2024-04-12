@@ -94,3 +94,32 @@ function showHeartIcons() {
         icon.style.display = ''; // Reset display property
     });
 }
+
+document.addEventListener('DOMContentLoaded', function () {
+    var wishlistLabels = document.querySelectorAll('.wishlist-heart-group label');
+
+    wishlistLabels.forEach(function (label) {
+        label.addEventListener('click', function (event) {
+            event.preventDefault(); // Prevent default form submission
+            var checkbox = this.previousElementSibling; // Get the checkbox related to this label
+
+            if (checkbox) {
+                checkbox.checked = !checkbox.checked; // Toggle the checkbox state
+                toggleHeartIcon(checkbox, checkbox.checked); // Toggle the heart icon color based on checkbox state
+                checkbox.dispatchEvent(new Event('change')); // Dispatch change event manually
+            }
+        });
+    });
+
+    function toggleHeartIcon(checkbox, isChecked) {
+        var heartPath = checkbox.nextElementSibling.querySelector('#heart-path');
+        if (isChecked) {
+            heartPath.style.fill = 'white';
+            heartPath.style.stroke = 'white'; // Additional visual feedback
+        } else {
+            heartPath.style.fill = 'red';
+            heartPath.style.stroke = 'red'; // Restore original color when unchecked
+        }
+    }
+});
+
