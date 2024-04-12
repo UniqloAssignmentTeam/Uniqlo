@@ -1,7 +1,8 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin.Master" AutoEventWireup="true" CodeBehind="UpdateDiscount.aspx.cs" Inherits="Uniqlo.AdminPages.UpdateDiscount" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin.Master" AutoEventWireup="true" CodeBehind="AddStaff.aspx.cs" Inherits="Uniqlo.AdminPages.AddStaff" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="main" runat="server">
-    
-            <header>
+
+
+                <header>
             <link href="../css/addProduct.css" rel="stylesheet" />
         </header>
 
@@ -54,7 +55,7 @@
         <div class="Body">
             <div class="container">
                  <div class = "productItemCard">
-    <h2 class = "product-title product-name">Uniqlo Add Discount</h2>
+    <h2 class = "product-title product-name">Uniqlo Add Staff</h2>
  </div>
           <div class="modal-content">
 
@@ -62,40 +63,47 @@
 
                 <div class = "product-content">
                        <div class="form-group">
-      <span>Product ID</span>
+      <span>Staff Name</span>
       <input class="form-field" type="text" >
    </div>
 
                    <div class="form-group">
-                      <span>Discount Price</span>
-                      <input class="form-field" type="text" >
+                      <span>Gender</span>
+<div class="dropdown-container" onclick="toggleDropdown('dropdownList1', 'dropdownDisplay1')">
+ <div class="dropdown-display" id="dropdownDisplay1">Gender</div>
+<div class="dropdown-list" id="dropdownList1">
+  <div onclick="selectOption('Male', 'dropdownDisplay1')">Male</div>
+  <div onclick="selectOption('Female', 'dropdownDisplay1')">Female</div>
+</div>
                    </div>
+                        </div>
+
 
                      <div class="form-group">
-    <span>Status</span>
+    <span>Role</span>
       <div class="dropdown-display" id="dropdownDisplay">Status</div>
   <div class="dropdown-list" id="dropdownList">
-    <div onclick="selectOption('Valid', 'dropdownDisplay')">Valid</div>
-    <div onclick="selectOption('Invalid', 'dropdownDisplay')">Invalid</div>
+    <div onclick="selectOption('Admin', 'dropdownDisplay')">Admin</div>
+    <div onclick="selectOption('Manager', 'dropdownDisplay')">Manager</div>
   </div>
 </div>
 
-                      <div class="product-details-info">
-                         <div class="form-group">
-                            <span>Start Date</span>
-                            <input class="form-field" type="date" >
-                         </div>
-                          <div class="form-group">
-                        <span>End Date</span>
-                        <input class="form-field" type="date" >
-                        </div>
-                      </div>
-                       
+ 
+                
+
+                                         <div class="form-group">
+   <span>Contact No</span>
+   <input class="form-field" type="text" >
+</div>
+                                <div class="form-group">
+   <span>E-mail</span>
+   <input class="form-field" type="text" >
+</div>           
                     
                                     
 </div>
               
-                <div  class="product-add">Update Product</div>
+                <div  class="product-add">Add Staff</div>
    
     </div>
 
@@ -117,8 +125,6 @@
   
         <script src="../Javascript/productAdminDDL.js"></script>
             </footer>
-
-
 
 
 </asp:Content>

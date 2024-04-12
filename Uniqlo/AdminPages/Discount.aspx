@@ -144,7 +144,8 @@
 
         <div class="eclipse-display" id="dropdownDisplay3" style="border:none;"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></div>
          <div class="eclipse-list" id="dropdownList3">
-        <div onclick="showModal('updateModalContainer')">Update</div>
+     
+             <a href="UpdateDiscount.aspx">   <div>Update</div></a>
         <div>Delete</div>
        </div>
      </div>
