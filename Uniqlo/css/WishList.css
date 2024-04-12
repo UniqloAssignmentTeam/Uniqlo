@@ -196,8 +196,16 @@
     background-color: #4CAF50; /* Green background for add to cart */
 }
 
+.btnMoveToCart:hover {
+    background-color: green; /* Green background for add to cart */
+}
+
 .btnRemove {
     background-color: #f44336; /* Red background for remove */
+}
+
+.btnRemove:hover {
+    background-color: red; /* Red background for remove */
 }
 
 /* Responsive design adjustments */

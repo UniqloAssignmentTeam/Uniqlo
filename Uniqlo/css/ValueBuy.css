@@ -104,19 +104,23 @@
   left: -999999px;
   position: absolute;
   top: -999999px;
+  display: none;
 }
 
-.wishlist-heart-group input[type="checkbox"] + label svg {
-  transform: rotate(0deg);
-}
+    .wishlist-heart-group input[type="checkbox"] + label svg {
+        transform: rotate(0deg);
+        fill: #ccc;
+    }
 
 .wishlist-heart-group input[type="checkbox"]:checked + label svg {
   animation: wishlist-heart-wiggle 400ms 50ms forwards ease-in-out;
+  fill: red;
 }
 
 .wishlist-heart-group input[type="checkbox"]:checked + label svg #heart-path {
   animation: wishlist-heart-add 300ms forwards;
   stroke: rgba(248, 51, 42, 1);
+  fill: red; 
 }
 
 .wishlist-heart-group input[type="checkbox"] + label svg #heart-path {
@@ -127,11 +131,6 @@
   transition: stroke 150ms linear;
   stroke: rgba(248, 51, 42, 1);
 }
-
-    .wishlist-heart-group input[type="checkbox"]:checked + label .heart-svg #heart-path {
-        fill: red; /* Fill the heart icon with red */
-        stroke: red;
-    }
 
 .wishlist-heart-group input[type="checkbox"] + label:before {
   align-items: center;
@@ -165,6 +164,10 @@
   display: inline-block;
   position: relative;
   width: 100%;
+}
+
+#wishlistMessage {
+    color: red;
 }
 
 @keyframes wishlist-heart-wiggle {
