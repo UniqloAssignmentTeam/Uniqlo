@@ -6,6 +6,42 @@
 
 }
 
+.productQtySizeSection {
+    display: none; /* Hide the section by default */
+}
+
+/* Style for radio buttons */
+.color-radio input[type="radio"] {
+    display: none;
+}
+
+.color-radio label {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    margin: 5px;
+    border: 3px solid transparent; /* Border initially transparent */
+    cursor: pointer;
+}
+
+/* Define colors for radio buttons */
+#red + label {
+    background-color: red;
+}
+
+#green + label {
+    background-color: green;
+}
+
+#blue + label {
+    background-color: blue;
+}
+
+/* Style for selected radio button */
+.color-radio input[type="radio"]:checked + label {
+    border-color: black; /* Solid black border when selected */
+}
+
 
 
 .crudProduct {
