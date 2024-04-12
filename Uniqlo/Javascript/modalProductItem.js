@@ -18,6 +18,8 @@ var span = document.getElementsByClassName("close")[0];
 var qtyInput = document.querySelector('.qty');
 var radioButtons = document.querySelectorAll('.custom-radio-list input[type=radio]');
 var label = document.querySelector('#size');
+var colorRadioButtons = document.querySelectorAll('.color-radio-list input[type="radio"]');
+var colorLabel = document.querySelector('#color');
 
 // Second modal
 var reviewModal = document.getElementById("reviewModal");
@@ -88,7 +90,9 @@ function showModalWithProductDetails(productId) {
 function resetModalContent() {
     qtyInput.value = 1;  // Reset quantity input
     radioButtons.forEach(radioButton => radioButton.checked = false); // Uncheck all radios
-    label.textContent = "S";  // Reset label to default
+    label.textContent = "S";  // Reset label to default    
+    colorRadioButtons.forEach(colorRadioButtons => colorRadioButtons.checked = false); // Uncheck all radios
+    colorLabel.textContent = "White";  // Reset label to default
 }
 reviewBtn.onclick = function () {
     reviewModal.style.display = "block";
