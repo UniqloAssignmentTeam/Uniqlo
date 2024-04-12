@@ -29,34 +29,23 @@
 
      <div class="dropdown-wrapper">
 <div class="dropdown-container" onclick="toggleDropdown('dropdownList', 'dropdownDisplay')">
-  <div class="dropdown-display" id="dropdownDisplay">Status</div>
+  <div class="dropdown-display" id="dropdownDisplay">Gender</div>
   <div class="dropdown-list" id="dropdownList">
-    <div onclick="selectOption('In Stock', 'dropdownDisplay')">In Stock</div>
-    <div onclick="selectOption('Low In Stock', 'dropdownDisplay')">Low In Stock</div>
-    <div onclick="selectOption('No Stock', 'dropdownDisplay')">No Stock</div>
+    <div onclick="selectOption('Male', 'dropdownDisplay')">Male</div>
+    <div onclick="selectOption('Female', 'dropdownDisplay')">Female</div>
   </div>
 </div>
 
 
 <div class="dropdown-container" onclick="toggleDropdown('dropdownList2', 'dropdownDisplay2')">
-  <div class="dropdown-display" id="dropdownDisplay2">Category</div>
+  <div class="dropdown-display" id="dropdownDisplay2">Role</div>
   <div class="dropdown-list" id="dropdownList2">
-    <div onclick="selectOption('Men', 'dropdownDisplay2')">Men</div>
-    <div onclick="selectOption('Women', 'dropdownDisplay2')">Women</div>
-    <div onclick="selectOption('Kids', 'dropdownDisplay2')">Kids</div>
+    <div onclick="selectOption('Admin', 'dropdownDisplay2')">Admin</div>
+    <div onclick="selectOption('Manager', 'dropdownDisplay2')">Admin Manager</div>
   </div>
 </div>
 
        </div>
-
-
-
-
-
-
-
-
-
 
 
 
@@ -67,7 +56,7 @@
         
 
 
-         <div  class="product-add" onclick="showModal('addProductModalContainer')">➕ Add Product</div>
+         <div  class="product-add" onclick="showModal('addProductModalContainer')">➕ Add Staff</div>
       
 
             </div>
@@ -87,17 +76,13 @@
 
 
 
-
-
-
-
 <div class="table">
 
    <!--Header-->
     <div class="row">
 
     <div class="col productid">
-        Product ID
+        Staff ID
     </div>
   
        <div class="col prodImageHeader">
@@ -105,23 +90,23 @@
     </div>
         
     <div class="col name">
-        Product Name
+        Staff Name
     </div>
 
      <div class="col status">
-     Status
+     Gender
  </div>
 
     <div class="col price">
-        Price (RM)
+        Role
     </div>
 
 <div class="col gender">
-    Gender
+    Contact No
 </div>
 
     <div class="col category">
-        Category
+        Email
     </div>
            
        
@@ -170,7 +155,6 @@
 
         <div class="eclipse-display" id="dropdownDisplay3" style="border:none;"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></div>
          <div class="eclipse-list" id="dropdownList3">
-          <div onclick="showModal('viewMoreModalContainer')">View More</div>
         <div onclick="showModal('updateModalContainer')">Update</div>
         <div>Delete</div>
        </div>
@@ -288,7 +272,7 @@
     Gender
 </div>
  <div class="col category">
-     Category
+      jefferozf@gmail.com
  </div>
 
                <div class="col eclipse-container">
@@ -325,7 +309,7 @@
     Gender
 </div>
 <div class="col category">
-    Category
+  asdasd
 </div>
 
            
@@ -359,7 +343,7 @@
 
 
     <div class="modal-content">
-        <span class="close" onclick="closeModal('updateMoreModalContainer')">&times;</span>
+        <span class="close" onclick="closeModal('updateModalContainer')">&times;</span>
            <div class = "card-wrapper">
       <div class = "productItemCard">
         <!-- card left -->
@@ -367,33 +351,6 @@
           <div class = "img-display">
             <div class = "img-showcase">
                 <img src="../../../Images/Categories/Woman/Tops/AIRismCottonShortSleeveT-Shirt1.jpg" alt = "uniqlo image"/>
-                <img src="../../../Images/Categories/Woman/Tops/AIRismCottonShortSleeveT-Shirt2.jpg" alt = "uniqlo image"/>
-                <img src="../../../Images/Categories/Woman/Tops/AIRismCottonShortSleeveT-Shirt3.jpg" alt = "uniqlo image"/>
-                <img src="../../../Images/Categories/Woman/Tops/AIRismCottonShortSleeveT-Shirt4.jpg" alt = "uniqlo image"/>
-            </div>
-          </div>
-
-
-          <div class = "img-select">
-            <div class = "img-item">
-              <a href = "#" data-id = "1">
-                  <img src="../../../Images/Categories/Woman/Tops/AIRismCottonShortSleeveT-Shirt1.jpg" alt = "uniqlo image"/>
-              </a>
-            </div>
-            <div class = "img-item">
-              <a href = "#" data-id = "2">
-                  <img src="../../../Images/Categories/Woman/Tops/AIRismCottonShortSleeveT-Shirt2.jpg" alt = "uniqlo image"/>
-              </a>
-            </div>
-            <div class = "img-item">
-              <a href = "#" data-id = "3">
-                  <img src="../../../Images/Categories/Woman/Tops/AIRismCottonShortSleeveT-Shirt3.jpg" alt = "uniqlo image"/>
-              </a>
-            </div>
-            <div class = "img-item">
-              <a href = "#" data-id = "4">
-                  <img src="../../../Images/Categories/Woman/Tops/AIRismCottonShortSleeveT-Shirt4.jpg" alt = "uniqlo image"/>
-              </a>
             </div>
           </div>
         </div>
@@ -406,28 +363,16 @@
 
         <!-- card right -->
         <div class = "product-content">
-          <h2 class = "product-title product-name">Red Top</h2>
+          <h2 class = "product-title product-name">Staff Update</h2>
           
-
-         
-
           <div class = "product-detail">
 
-            <div class="product-details-info"> 
-      <div class="product-details-head">
-      Item Description:
-      </div> 
-      <div class="product-details-items">
-    Item Description Here!
-      </div>
-   </div>
-            
 
               <div class="product-details-info">
 
      <div class="form-group">
-    <span>Product ID:</span>
-    <input class="form-field" type="text">
+    <span>Staff ID:</span>
+    <input class="form-field" type="text" disabled>
 </div>
 
                     </div>
@@ -439,7 +384,7 @@
                 
                <div class="product-details-info">
                        <div class="form-group">
-    <span>Current Price:</span>
+    <span>Staff Name:</span>
     <input class="form-field" type="text">
 </div>
                   </div>
@@ -447,16 +392,32 @@
              
                <div class="product-details-info">
                         <div class="form-group">
-    <span>Availability:</span>
-    <input class="form-field" type="text" >
+    <span>Gender:</span>
+       <div class="dropdown-container" onclick="toggleDropdown('dropdownList6', 'dropdownDisplay6')">
+  <div class="dropdown-display" id="dropdownDisplay8">Gender</div>
+  <div class="dropdown-list" id="dropdownList8">
+    <div onclick="selectOption('Male', 'dropdownDisplay')">Male</div>
+    <div onclick="selectOption('Female', 'dropdownDisplay')">Female</div>
+    
+      </div>
+</div>
 </div>
               </div>
 
            
                <div class="product-details-info">
                       <div class="form-group">
-    <span>Category:</span>
-    <input class="form-field" type="text" >
+    <span>Role:</span>
+                           
+    <div class="dropdown-container" onclick="toggleDropdown('dropdownList6', 'dropdownDisplay6')">
+  <div class="dropdown-display" id="dropdownDisplay7">Status</div>
+  <div class="dropdown-list" id="dropdownList7">
+    <div onclick="selectOption('Admin', 'dropdownDisplay')">Admin</div>
+    <div onclick="selectOption('Manager', 'dropdownDisplay')">Manager</div>
+    
+      </div>
+</div>
+                            </div>
 </div>
                  
               </div>
@@ -465,279 +426,39 @@
              
               <div class="product-details-info">
                         <div class="form-group">
-    <span>Gender:</span>
+    <span>Contact No:</span>
     <input class="form-field" type="text" >
 </div>
                  </div>
             
-            
-          
-          </div>
-
-
-
-
-          
-
-          <div class="productQtySizeSection">
-
-              <div class="quantityHeader">QUANTITY</div> 
-  
-
-
-             
-                  <div class="purchase-size-item">
-
-
-
-                       <div class="form-group">
-    <span>S:</span>
+                          <div class="product-details-info">
+                        <div class="form-group">
+    <span>Email:</span>
     <input class="form-field" type="text" >
 </div>
-
-                    </div>
-
-
-
-
-                      <div class="purchase-size">
-                               <div class="form-group">
-    <span>M:</span>
-    <input class="form-field" type="text" >
-</div>
-                      </div>
-                    
-
-
-                      <div class="purchase-size">
-                               <div class="form-group">
-    <span>L:</span>
-    <input class="form-field" type="text" >
-</div>
-                      </div>
-
-
-                      <div class="purchase-size">
-                           
-                              <div class="form-group">
-    <span>XL:</span>
-    <input class="form-field" type="text" >
-</div>
-
-                      </div>
-                   
-
-                   
                  </div>
-                  </div>
-              </div>
-
-          </div>
-          
-       
-        </div>
-      </div>
-    </div>
-  
-
-<div id="viewMoreModalContainer" class="modal">
-
-
-    <div class="modal-content">
-        <span class="close" onclick="closeModal('viewMoreModalContainer')">&times;</span>
-           <div class = "card-wrapper">
-      <div class = "productItemCard">
-        <!-- card left -->
-        <div class = "product-imgs">
-          <div class = "img-display">
-            <div class = "img-showcase">
-                <img src="../../../Images/Categories/Woman/Tops/AIRismCottonShortSleeveT-Shirt1.jpg" alt = "uniqlo image"/>
-                <img src="../../../Images/Categories/Woman/Tops/AIRismCottonShortSleeveT-Shirt2.jpg" alt = "uniqlo image"/>
-                <img src="../../../Images/Categories/Woman/Tops/AIRismCottonShortSleeveT-Shirt3.jpg" alt = "uniqlo image"/>
-                <img src="../../../Images/Categories/Woman/Tops/AIRismCottonShortSleeveT-Shirt4.jpg" alt = "uniqlo image"/>
-            </div>
-          </div>
-
-
-          <div class = "img-select">
-            <div class = "img-item">
-              <a href = "#" data-id = "1">
-                  <img src="../../../Images/Categories/Woman/Tops/AIRismCottonShortSleeveT-Shirt1.jpg" alt = "uniqlo image"/>
-              </a>
-            </div>
-            <div class = "img-item">
-              <a href = "#" data-id = "2">
-                  <img src="../../../Images/Categories/Woman/Tops/AIRismCottonShortSleeveT-Shirt2.jpg" alt = "uniqlo image"/>
-              </a>
-            </div>
-            <div class = "img-item">
-              <a href = "#" data-id = "3">
-                  <img src="../../../Images/Categories/Woman/Tops/AIRismCottonShortSleeveT-Shirt3.jpg" alt = "uniqlo image"/>
-              </a>
-            </div>
-            <div class = "img-item">
-              <a href = "#" data-id = "4">
-                  <img src="../../../Images/Categories/Woman/Tops/AIRismCottonShortSleeveT-Shirt4.jpg" alt = "uniqlo image"/>
-              </a>
-            </div>
-          </div>
-        </div>
-
-
-
-
-
-
-
-        <!-- card right -->
-        <div class = "product-content">
-          <h2 class = "product-title product-name" id="modalProductName">Red Top</h2>
-          
-
+                                                   <div class="addProduct-restProduct">  
+<div  class="addProductBtn"> Update</div>
          
-
-          <div class = "product-detail">
-
-            <div class="product-details-info"> 
-      <div class="product-details-head">
-      Item Description:
-      </div> 
-      <div class="product-details-items">
-    Item Description Here!
-      </div>
-   </div>
-            
-
-              <div class="product-details-info">
-
-
-
-
-                  <div class="product-details-head">
-                 
-                     Product ID: 
-                   </div>
-                 <div class="product-details-items">
-                     1001
-                  </div>
-                    </div>
-
-
-
-                
-               <div class="product-details-info">
-                   <div class="product-details-head"> Current Price:</div>
-                   <div class="product-details-items">  RM 59.90</div>  
-                  </div>
-             
-             
-               <div class="product-details-info">
-                    <div class="product-details-head">
-                     Available:
-                    </div>
-                    <div class="product-details-items"> In Stock</div> 
-              </div>
-
-           
-               <div class="product-details-info">
-                   <div class="product-details-head">
-                       Category: 
-                   </div>
-                    <div class="product-details-items">Tops</div>
-                 
-              </div>
-           
-
-             
-              <div class="product-details-info">
-                   <div class="product-details-head">
-                    Gender:
-                    </div>
-                    <div class="product-details-items"> Female</div>
-                 </div>
-            
-            
-          
+            </div> 
           </div>
 
 
-
+                               
 
           
 
-          <div class="productQtySizeSection">
-
-              <div class="quantityHeader">QUANTITY</div> 
-  
-
-
-             
-                  <div class="purchase-size-item">
-
-
-
-                    <div class="purchase-size">
-
-                   <div class="purchase-size-size">
-                     S:
-                    </div>
-
-                    <div class="purchase-size-qty">
-                     100
-                    </div>
-
-                    </div>
-
-
-
-
-                      <div class="purchase-size">
-                          <div class="purchase-size-size">
-                            M:
-                        </div>
-
-                          <div class="purchase-size-qty"> 100</div>
-                      </div>
+              </div>
+                             
+          </div>
                     
-
-
-                      <div class="purchase-size">
-                          <div class="purchase-size-size">
-                            L:
-                            </div>
-                          <div class="purchase-size-qty">
-                              100
-                          </div>
-                      </div>
-
-
-                      <div class="purchase-size">
-                           
-                          <div class="purchase-size-size">
-                             XL: 
-                          </div>
-                          <div class="purchase-size-qty"> 100 </div>
-
-                      </div>
-                   
-
-                   
-                 </div>
-                  </div>
-              </div>
-
-          </div>
-          
        
         </div>
       </div>
     </div>
   
-
-      
-
-
-
+  
+          
 
 <div id="addProductModalContainer" class="modal">
 
@@ -752,33 +473,18 @@
          </div>
 
 
-
         <!-- card right -->
         <div class = "product-content">
          
-               <div class="form-group">
-    <span>Product Name</span>
-    <input class="form-field" type="text" >
-</div>
 
          
 
           <div class = "product-detail">
 
-                        <div class="form-group">
-    <span>Description    </span>   
-    <textarea class="form-field" rows="4" cols="50"></textarea> 
-</div>
-              
 
-
-
-
-
-                
                <div class="product-details-info">
                        <div class="form-group">
-    <span>Price</span>
+    <span>Staff Name</span>
     <input class="form-field" type="text" >
 </div>
                   </div>
@@ -786,13 +492,12 @@
              
                <div class="product-details-info">
                         <div class="form-group">
-    <span>Availability:</span>
+    <span>Gender:</span>
     <div class="dropdown-container" onclick="toggleDropdown('dropdownList6', 'dropdownDisplay6')">
-  <div class="dropdown-display" id="dropdownDisplay6">Status</div>
+  <div class="dropdown-display" id="dropdownDisplay6">Male</div>
   <div class="dropdown-list" id="dropdownList6">
-    <div onclick="selectOption('In Stock', 'dropdownDisplay')">In Stock</div>
-    <div onclick="selectOption('Low In Stock', 'dropdownDisplay')">Low In Stock</div>
-    <div onclick="selectOption('No Stock', 'dropdownDisplay')">No Stock</div>
+    <div onclick="selectOption('Male', 'dropdownDisplay')">Male</div>
+    <div onclick="selectOption('Female', 'dropdownDisplay')">Female</div>
       </div>
 </div>
                             </div>
@@ -804,11 +509,11 @@
     <span>Category:</span>
          
 <div class="dropdown-container" onclick="toggleDropdown('dropdownList5', 'dropdownDisplay5')">
-  <div class="dropdown-display" id="dropdownDisplay5">Status</div>
+  <div class="dropdown-display" id="dropdownDisplay5">Admin</div>
   <div class="dropdown-list" id="dropdownList5">
-    <div onclick="selectOption('In Stock', 'dropdownDisplay')">In Stock</div>
-    <div onclick="selectOption('Low In Stock', 'dropdownDisplay')">Low In Stock</div>
-    <div onclick="selectOption('No Stock', 'dropdownDisplay')">No Stock</div>
+    <div onclick="selectOption('Admin', 'dropdownDisplay')">Admin</div>
+    <div onclick="selectOption('Manager', 'dropdownDisplay')">Manager</div>
+    
   </div>
 </div>
 </div>
@@ -835,64 +540,23 @@
             
           
           </div>
-
-
-
-
-          
-
-          <div class="productQtySizeSection">
-
-              <div class="quantityHeader">QUANTITY</div> 
-  
-
-
-             
-                  <div class="purchase-size-item">
-
-
-
-                       <div class="form-group">
-    <span>S:</span>
+              
+              <div class="product-details-info">
+                        <div class="form-group">
+    <span>Contact No:</span>
     <input class="form-field" type="text" >
 </div>
-
-                    </div>
-
-
-
-
-                      <div class="purchase-size">
-                               <div class="form-group">
-    <span>M:</span>
+                 </div>
+            
+                          <div class="product-details-info">
+                        <div class="form-group">
+    <span>Email:</span>
     <input class="form-field" type="text" >
 </div>
-                      </div>
-                    
-
-
-                      <div class="purchase-size">
-                               <div class="form-group">
-    <span>L:</span>
-    <input class="form-field" type="text" >
-</div>
-                      </div>
-
-
-                      <div class="purchase-size">
-                           
-                              <div class="form-group">
-    <span>XL:</span>
-    <input class="form-field" type="text" >
-</div>
-
-                    
-                  </div>
-              </div>
-
-   </div>
+                 </div>
+        
                <div class="addProduct-restProduct">  
-       <div  class="addProductBtn">Add Product</div>
+       <div  class="addProductBtn">Add Staff</div>
                 <div  class="addProductBtn">Reset</div>
                    </div> 
               </div>
@@ -904,7 +568,6 @@
       </div>
   
   
-
     
     <footer>
 
