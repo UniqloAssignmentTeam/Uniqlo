@@ -10,6 +10,10 @@
             <!-- Chatbot Section -->
             <div class="chatbot-container">
                 <div class="chatbot-messages" id="chatbotMessages">
+                    <!-- Welcome message styled as a chatbot message -->
+                    <div class="chatbot-message">
+                        <p>Welcome to Uniqlo! Please don't hesitate to let us know what we can assist you with.</p>
+                    </div>
                     <!-- Chatbot messages will appear here -->
                 </div>
                 <div class="chatbot-input">
