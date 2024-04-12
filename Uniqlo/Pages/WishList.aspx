@@ -1,13 +1,14 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Uniqlo.Master" AutoEventWireup="true" CodeBehind="WishList.aspx.cs" Inherits="Uniqlo.Pages.WishList" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="main" runat="server">
     <header>
-        <link href="../css/Wishlist.css" rel="stylesheet" />
+        <link href="../css/WishList.css" rel="stylesheet" />
     </header>
     <div class="wishlistBody">
         <h1 class="header">My Wishlist</h1>
+
         <div class="wishlistContainer">
             <!-- Product 1 -->
-            <div class="wishlistItemCard" id="wishlistItem1" data-product-id="1">
+            <div class="wishlistItemCard" id="wishlistItem1" data-product-id="1" >
                 <div class="product-image-container">
                     <img src="../../../Images/Categories/Woman/Tops/AIRismCottonShortSleeveT-Shirt1.jpg" alt="AIRism Cotton Short Sleeve T-Shirt" style="width: 100%" />
                     <div class="wishlistSection">
@@ -100,12 +101,12 @@
                 </div>
             </div>
             <!-- Product 3 -->
-            <div class="wishlistItemCard" id="wishlistItem3" data-product-id="3">
+            <div class="wishlistItemCard" id="wishlistItem3" data-product-id="1">
                 <div class="product-image-container">
                     <img src="../../../Images/Categories/Woman/Outerwear/SoftBrushedLongSleeveShirt1.jpg" alt="Soft Brushed Long Sleeve Shirt" style="width: 100%" />
                     <div class="wishlistSection">
                         <div class="wishlist-heart-group">
-                            <input name="wishListProduct" id="wishListProduct3" data-product-id="3" type="checkbox" />
+                            <input name="wishListProduct" id="wishListProduct3" data-product-id="1" type="checkbox" />
                             <label for="wishListProduct" data-hover-text="Wish List">
                                 <svg xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" version="1.1" x="0px" y="0px" viewBox="0 0 100 100">
                                     <g transform="translate(0,-952.36218)">
@@ -145,12 +146,12 @@
                 </div>
             </div>
             <!-- Product 4 -->
-            <div class="wishlistItemCard" id="wishlistItem4" data-product-id="4">
+            <div class="wishlistItemCard" id="wishlistItem4" data-product-id="1">
                 <div class="product-image-container">
                     <img src="../../../Images/Categories/Woman/Outerwear/PocketableUVProtectionParka1.jpg" alt="Pocketable UV Protection Parka" style="width: 100%" />
                     <div class="wishlistSection">
                         <div class="wishlist-heart-group">
-                            <input name="wishListProduct" id="wishListProduct4" data-product-id="4" type="checkbox" />
+                            <input name="wishListProduct" id="wishListProduct4" data-product-id="1" type="checkbox" />
                             <label for="wishListProduct" data-hover-text="Wish List">
                                 <svg xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" version="1.1" x="0px" y="0px" viewBox="0 0 100 100">
                                     <g transform="translate(0,-952.36218)">
@@ -191,12 +192,12 @@
                 </div>
             </div>
             <!-- Product 5 -->
-            <div class="wishlistItemCard" id="wishlistItem5" data-product-id="5">
+            <div class="wishlistItemCard" id="wishlistItem5" data-product-id="1">
                 <div class="product-image-container">
                     <img src="../../../Images/Categories/Woman/Bottoms/SweatCargoPants1.jpg" alt="Sweat Cargo Pants" style="width: 100%" />
                     <div class="wishlistSection">
                         <div class="wishlist-heart-group">
-                            <input name="wishListProduct" id="wishListProduct5" data-product-id="2" type="checkbox" />
+                            <input name="wishListProduct" id="wishListProduct5" data-product-id="1" type="checkbox" />
                             <label for="wishListProduct" data-hover-text="Wish List">
                                 <svg xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" version="1.1" x="0px" y="0px" viewBox="0 0 100 100">
                                     <g transform="translate(0,-952.36218)">
@@ -236,12 +237,12 @@
                 </div>
             </div>
             <!-- Product 6 -->
-            <div class="wishlistItemCard" id="wishlistItem6" data-product-id="6">
+            <div class="wishlistItemCard" id="wishlistItem6" data-product-id="2">
                 <div class="product-image-container">
                     <img src="../../../Images/Categories/Woman/Outerwear/SoftBrushedLongSleeveShirt3.jpg" alt="Ultra Stretch Active Jogger Pants" style="width: 100%" />
                     <div class="wishlistSection">
                         <div class="wishlist-heart-group">
-                            <input name="wishListProduct" id="wishListProduct6" data-product-id="5" type="checkbox" />
+                            <input name="wishListProduct" id="wishListProduct6" data-product-id="2" type="checkbox" />
                             <label for="wishListProduct" data-hover-text="Wish List">
                                 <svg xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" version="1.1" x="0px" y="0px" viewBox="0 0 100 100">
                                     <g transform="translate(0,-952.36218)">
@@ -282,7 +283,9 @@
                 </div>
             </div>
         </div>
-        
+
+
+
         <!-- The Modal -->
         <div id="myModal" class="modal">
 
@@ -370,12 +373,12 @@
                         <input type = "number" class="qty" min = "0" value = "1">
                       </div>
                   </div>
-                  
+          
                   <!--ANIMATION ADD TO CART BUTTON-->
                   <div class="cart-button">
                      <a href="#">
-	                    <span class="add-to-cart">Add To Cart</span>
-	                    <span class="added">Added</span>
+                        <span class="add-to-cart">Add To Cart</span>
+                        <span class="added">Added</span>
                         <i class="fas fa-shopping-cart"></i>
                         <i class="fas fa-solid fa-shirt"></i>
                      </a>
@@ -592,7 +595,7 @@
                         </div>
                     </div>
 
-                    
+            
                     <div class="dropdown-container" onclick="toggleDropdown('dropdownList2', 'dropdownDisplay2')">
                         <div class="dropdown-display" id="dropdownDisplay2">Variation (All)</div>
                         <div class="dropdown-list" id="dropdownList2">
@@ -602,7 +605,7 @@
                             <div onclick="selectOption('Variation (XL)', 'dropdownDisplay2')">XL</div>
                         </div>
                     </div>                    
-                    
+            
                 </div>
                 </div>
 
@@ -683,16 +686,18 @@
                 </h4>
            </div>
         </div>
+
+
+
     </div>
     <footer>
-        <script src="../Javascript/modalProduct.js"></script>
+        <script src="../Javascript/wishList.js"></script>
         <script src="../../../Javascript/productItem.js"></script>
         <script src="../../../Javascript/addToCartButton.js"></script>
         <script src="../../../Javascript/productSize.js"></script>
         <script src="../../../Javascript/productReview.js"></script>
         <script src="../../../Javascript/productAdminDDL.js"></script>
     </footer>
-
 </asp:Content>
 
 

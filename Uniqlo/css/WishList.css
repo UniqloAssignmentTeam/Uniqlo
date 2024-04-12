@@ -364,9 +364,9 @@
     display: flex;
 }
 
-.product-price span {
-    font-weight: 400;
-}
+    .product-price span {
+        font-weight: 400;
+    }
 
 .last-price span {
     color: #f64749;
@@ -418,7 +418,7 @@
     outline: none;
     width: 100px;
     height: 30px;
-    margin-top: -1px;
+    margin-top:-1px;
 }
 
 .social-links {
@@ -492,120 +492,107 @@
     font-weight: bold;
 }
 
-    .cart-button:active {
-        transform: scale(.9);
-    }
+.cart-button:active {
+	transform: scale(.9);
+}
 
-    .cart-button .fa-shopping-cart {
-        position: absolute;
-        z-index: 2;
-        top: 50%;
-        left: -10%;
-        font-size: 2em;
-        transform: translate(-50%,-50%);
-        color: black;
-    }
+.cart-button .fa-shopping-cart {
+	position: absolute;
+	z-index: 2;
+	top: 50%;
+	left: -10%;
+	font-size: 2em;
+	transform: translate(-50%,-50%);
+    color: black;
+}
+.cart-button .fa-shirt {
+	position: absolute;
+	z-index: 3;
+	top: -20%;
+	left: 52%;
+	font-size: 1.2em;
+	transform: translate(-50%,-50%);
+    color: black;
+}
+.cart-button span {
+	position: absolute;
+	z-index: 3;
+	left: 50%;
+	top: 50%;
+	font-size: 1.2em;
+	color: black;
+	transform: translate(-50%,-50%);
+}
 
-    .cart-button .fa-shirt {
-        position: absolute;
-        z-index: 3;
-        top: -20%;
-        left: 52%;
-        font-size: 1.2em;
-        transform: translate(-50%,-50%);
-        color: black;
-    }
+.cart-button:hover {
+    background-color: black;
+    color: white;
+}
 
-    .cart-button span {
-        position: absolute;
-        z-index: 3;
-        left: 50%;
-        top: 50%;
-        font-size: 1.2em;
-        color: black;
-        transform: translate(-50%,-50%);
-    }
-
-    .cart-button:hover {
-        background-color: black;
-        color: white;
-    }
-
-        .cart-button:hover span {
-            color: white;
-        }
+.cart-button:hover span {
+    color: white;
+}
 
 
-        .cart-button:hover .fas,
-        .cart-button:hover .fa-shopping-cart,
-        .cart-button:hover .fa-shirt {
-            color: white;
-        }
+.cart-button:hover .fas,
+.cart-button:hover .fa-shopping-cart,
+.cart-button:hover .fa-shirt {
+    color: white;
+}
 
 
-    .cart-button span.add-to-cart {
-        opacity: 1;
-    }
+.cart-button span.add-to-cart {
+	opacity: 1;
+}
+.cart-button span.added {
+	opacity: 0;
+}
 
-    .cart-button span.added {
-        opacity: 0;
-    }
-
-    .cart-button.clicked .fa-shopping-cart {
-        animation: cart 1.5s ease-in-out forwards;
-    }
-
-    .cart-button.clicked .fa-shirt {
-        animation: shirt 1.5s ease-in-out forwards;
-    }
-
-    .cart-button.clicked span.add-to-cart {
-        animation: txt1 1.5s ease-in-out forwards;
-    }
-
-    .cart-button.clicked span.added {
-        animation: txt2 1.5s ease-in-out forwards;
-    }
+.cart-button.clicked .fa-shopping-cart {
+	animation: cart 1.5s ease-in-out forwards;
+}
+.cart-button.clicked .fa-shirt {
+	animation: shirt 1.5s ease-in-out forwards;
+}
+.cart-button.clicked span.add-to-cart {
+	animation: txt1 1.5s ease-in-out forwards;
+}
+.cart-button.clicked span.added {
+	animation: txt2 1.5s ease-in-out forwards;
+}
 
 
 @keyframes cart {
-    0% {
-        left: -10%;
-    }
-
-    40%, 60% {
-        left: 50%;
-    }
-
-    100% {
-        left: 110%;
-    }
+	0% {
+		left: -10%;
+	}
+	40%, 60% {
+		left: 50%;
+	}
+	100% {
+		left: 110%;
+	}
 }
-
 @keyframes shirt {
-    0%, 40% {
-        top: -20%;
-    }
-
-    60% {
-        top: 40%;
-        left: 52%;
-    }
-
-    100% {
-        top: 40%;
-        left: 112%;
-    }
+	0%, 40% {
+		top: -20%;
+	}
+	60% {
+		top: 40%;
+		left: 52%;
+	}
+	100% {
+		top: 40%;
+		left: 112%;
+	}
 }
-
 @keyframes txt1 {
-    0% {
-        opacity: 1;
-    }
-
-    20%, 100% {
-        opacity: 0;
-    }
+	0% {
+		opacity: 1;
+	}
+	20%, 100% {
+		opacity: 0;
+	}
 }
 
 @keyframes txt2 {
@@ -619,14 +606,14 @@
 }
 
 /*SIZE SELECTION*/
-.productQtySizeSection {
+.productQtySizeSection{
     display: flex;
 }
 
 .custom-radio-list input[type='radio'] {
-    opacity: 0;
-    position: absolute;
-    width: 0;
+    opacity: 0; 
+    position: absolute; 
+    width: 0; 
 }
 
 .custom-radio-list label {
@@ -638,17 +625,17 @@
 }
 
 .custom-radio-list input[type='radio']:checked + label {
-    background-color: black;
+    background-color: black; 
     color: white;
 }
 
-.purchase-info {
+.purchase-info{
     margin-left: 50px;
 }
 
 /*REVIEW SECTION*/
-.reviewRatingNumUser {
-    margin: 10px;
+.reviewRatingNumUser{
+    margin:10px;
 }
 
 .reviewSection {
@@ -656,7 +643,7 @@
     margin: 0 auto;
 }
 
-.reviewRatingAndBar {
+.reviewRatingAndBar{
     display: flex;
 }
 
@@ -671,7 +658,7 @@
     color: #ffc107;
 }
 
-.reviewRating h3 {
+.reviewRating h3{
     margin: 7px;
 }
 
@@ -689,7 +676,7 @@
     margin-top: 5px;
 }
 
-.number {
+.number{
     padding-right: 30px;
 }
 
@@ -737,27 +724,28 @@
 
 .commentSection {
     max-width: 1200px;
+
 }
 
-.commentRatingSection {
+.commentRatingSection{
     display: flex;
     font-style: italic;
     margin-bottom: 20px;
 }
 
-.commentRatingSectionStars {
+.commentRatingSectionStars{
     margin-right: 20px;
 }
 
-.commentRatingSectionDetails {
+.commentRatingSectionDetails{
     text-align: justify;
 }
 
-.commentSectionNewRow {
+.commentSectionNewRow{
     margin-bottom: 50px;
 }
 
-.reviewSection .viewMoreSection {
+.reviewSection .viewMoreSection{
     margin-top: 80px;
 }
 
@@ -776,10 +764,10 @@
     color: black;
 }
 
-    .viewMoreReviewButton:hover {
-        background-color: black;
-        color: white;
-    }
+.viewMoreReviewButton:hover {
+    background-color: black;
+    color: white;
+}
 
 .reviewModal {
     display: none; /* Hidden by default */
@@ -816,27 +804,120 @@
 .reviewModalRatingSection {
     float: right;
     width: 100%;
-    text-align: right;
+    text-align:right;
     padding-top: 20px;
 }
 
-.reviewStar {
+.reviewStar{
     margin: 0px 5px;
 }
 
-.reviewSectionDropDownLists {
-    display: flex;
+.reviewSectionDropDownLists{
+    display:flex;
 }
 
-.noMoreRatingFound {
+.noMoreRatingFound{
     text-align: center;
     border-top: 1px solid grey;
-    padding: 30px 0px;
+    padding:30px 0px;
 }
 
 /*VIEW MORE BUTTON*/
 .viewMoreSection {
     text-align: center;
     margin: 60px 0px 60px 0px;
+}
+
+
+/*DROPDOWN LIST*/
+.dropdown-bigcontainer {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.dropdown-bigcontainer .productListHeader{
+    font-weight: bold;
+    margin-bottom: 10px;
+    margin-top: 70px;
+}
+
+.dropdown-wrapper {
+    display: flex; /* Use flexbox to align the children */
+    justify-content: center; /* Center the children horizontally */
+    align-items: center; /* Center the children vertically */
+    gap: 10px; /* This sets the space between the dropdowns */
+}
+
+.dropdown-container {
+    position: relative;
+    width: 200px; /* Fixed width for consistency */
+    display: flex; /* Use flex to align the arrow inside .dropdown-display */
+    align-items: center; /* Center align the contents */
+    justify-content: space-between; /* Spread out the contents */
+}
+
+.dropdown-display {
+    width: 200px;
+    height: 40px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: white;
+    cursor: pointer;
+    position: relative;
+    text-align: center; /* Center the text */
+    display: flex; /* Use flexbox here to help with centering text and arrow */
+    align-items: center; /* Align the text and arrow vertically */
+    justify-content: center; /* Centers the text inside the dropdown */
+}
+
+.dropdown-list {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 100;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    opacity: 0; /* Start fully transparent */
+    visibility: hidden; /* Start hidden */
+    transform: translateY(-20px); /* Start slightly above */
+    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s; /* Animate opacity, transform, and visibility */
+    align-items:center;
+    text-align: center; /* Centers the text inside the dropdown */
+}
+.dropdown-list.open {
+        opacity: 1; /* Fade in to fully opaque */
+        visibility: visible; /* Make visible */
+        transform: translateY(0px); /* Move to original position */
+ }
+
+
+.dropdown-list.open {
+        display: block; /* Show dropdown */
+}
+
+.dropdown-list div {
+        padding: 10px;
+        cursor: pointer;
+}
+
+.dropdown-list div:hover {
+    background-color: #f0f0f0;
+ }
+
+
+.dropdown-display::after {
+    content: '';
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%) rotate(180deg); /* Arrow points up initially */
+    border: solid transparent;
+    border-width: 0 6px 6px 6px; /* Create a sharper arrow */
+    border-bottom-color: black; /* The tip of the arrow is black */
+    display: inline-block;
+    transition: transform 0.3s ease;
 }
 

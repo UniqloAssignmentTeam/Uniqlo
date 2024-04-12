@@ -68,8 +68,8 @@
                 <p><b>Total Items: </b><span id="totalItemsLabel" class="total-items"></span></p>
                 <p><b>Total Price: RM </b><span id="totalPriceLabel" class="total-price"></span></p>
                 <div class="buttons-container">
-                    <button class="btn-checkout">Proceed to Checkout</button>
-                    <button class="btn-continue-shopping">Continue Shopping</button>
+                    <asp:Button ID="btnCheckout" runat="server" Text="Proceed to Checkout" CssClass="btn-checkout" PostBackUrl="~/Pages/Payment.aspx" />
+                    <asp:Button ID="btnContinueShopping" runat="server" Text="Continue Shopping" CssClass="btn-continue-shopping" PostBackUrl="~/Pages/Home.aspx" />
                 </div>
             </div>
         </div>
@@ -509,21 +509,6 @@
         <script src="../../../Javascript/productReview.js"></script>
         <script src="../../../Javascript/productAdminDDL.js"></script>
     </footer>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
