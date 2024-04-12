@@ -327,9 +327,12 @@
     Category
 </div>
 
-              <div class="col actionBtn">
-          <asp:Button ID="btnAction5" runat="server" Text="Button" />
-</div>
+           
+    <div class="col eclipse-container">
+
+    <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+   
+ </div>
     </div>
     
 
@@ -355,7 +358,7 @@
 
 
     <div class="modal-content">
-        <span class="close" onclick="closeModal('updateMoreModalContainer')">&times;</span>
+        <span class="close" onclick="closeModal('updateModalContainer')">&times;</span>
            <div class = "card-wrapper">
       <div class = "productItemCard">
         <!-- card left -->
@@ -423,7 +426,7 @@
 
      <div class="form-group">
     <span>Product ID:</span>
-    <input class="form-field" type="text" placeholder="domain.tld">
+    <input class="form-field" type="text">
 </div>
 
                     </div>
@@ -436,7 +439,7 @@
                <div class="product-details-info">
                        <div class="form-group">
     <span>Current Price:</span>
-    <input class="form-field" type="text" placeholder="domain.tld">
+    <input class="form-field" type="text">
 </div>
                   </div>
              
@@ -444,7 +447,7 @@
                <div class="product-details-info">
                         <div class="form-group">
     <span>Availability:</span>
-    <input class="form-field" type="text" placeholder="domain.tld">
+    <input class="form-field" type="text" >
 </div>
               </div>
 
@@ -452,7 +455,7 @@
                <div class="product-details-info">
                       <div class="form-group">
     <span>Category:</span>
-    <input class="form-field" type="text" placeholder="domain.tld">
+    <input class="form-field" type="text" >
 </div>
                  
               </div>
@@ -462,7 +465,7 @@
               <div class="product-details-info">
                         <div class="form-group">
     <span>Gender:</span>
-    <input class="form-field" type="text" placeholder="domain.tld">
+    <input class="form-field" type="text" >
 </div>
                  </div>
             
@@ -488,7 +491,7 @@
 
                        <div class="form-group">
     <span>S:</span>
-    <input class="form-field" type="text" placeholder="domain.tld">
+    <input class="form-field" type="text" >
 </div>
 
                     </div>
@@ -499,7 +502,7 @@
                       <div class="purchase-size">
                                <div class="form-group">
     <span>M:</span>
-    <input class="form-field" type="text" placeholder="domain.tld">
+    <input class="form-field" type="text" >
 </div>
                       </div>
                     
@@ -508,7 +511,7 @@
                       <div class="purchase-size">
                                <div class="form-group">
     <span>L:</span>
-    <input class="form-field" type="text" placeholder="domain.tld">
+    <input class="form-field" type="text" >
 </div>
                       </div>
 
@@ -517,7 +520,7 @@
                            
                               <div class="form-group">
     <span>XL:</span>
-    <input class="form-field" type="text" placeholder="domain.tld">
+    <input class="form-field" type="text" >
 </div>
 
                       </div>
@@ -535,10 +538,6 @@
       </div>
     </div>
   
-
-       
-
-    
 
 <div id="viewMoreModalContainer" class="modal">
 
@@ -752,13 +751,12 @@
          </div>
 
 
-
         <!-- card right -->
         <div class = "product-content">
          
                <div class="form-group">
     <span>Product Name</span>
-    <input class="form-field" type="text" placeholder="domain.tld">
+    <input class="form-field" type="text" >
 </div>
 
          
@@ -771,15 +769,10 @@
 </div>
               
 
-
-
-
-
-                
                <div class="product-details-info">
                        <div class="form-group">
     <span>Price</span>
-    <input class="form-field" type="text" placeholder="domain.tld">
+    <input class="form-field" type="text" >
 </div>
                   </div>
              
@@ -836,11 +829,6 @@
           
           </div>
 
-
-
-
-          
-
           <div class="productQtySizeSection">
 
               <div class="quantityHeader">QUANTITY</div> 
@@ -854,7 +842,7 @@
 
                        <div class="form-group">
     <span>S:</span>
-    <input class="form-field" type="text" placeholder="domain.tld">
+    <input class="form-field" type="text" >
 </div>
 
                     </div>
@@ -865,7 +853,7 @@
                       <div class="purchase-size">
                                <div class="form-group">
     <span>M:</span>
-    <input class="form-field" type="text" placeholder="domain.tld">
+    <input class="form-field" type="text" >
 </div>
                       </div>
                     
@@ -874,7 +862,7 @@
                       <div class="purchase-size">
                                <div class="form-group">
     <span>L:</span>
-    <input class="form-field" type="text" placeholder="domain.tld">
+    <input class="form-field" type="text" >
 </div>
                       </div>
 
@@ -883,7 +871,7 @@
                            
                               <div class="form-group">
     <span>XL:</span>
-    <input class="form-field" type="text" placeholder="domain.tld">
+    <input class="form-field" type="text" >
 </div>
 
                     
