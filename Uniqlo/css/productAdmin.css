@@ -103,6 +103,8 @@
   align-items:center;
     text-align: center; /* Centers the text inside the dropdown */
 }
+
+
 .dropdown-list.open {
         opacity: 1; /* Fade in to fully opaque */
         visibility: visible; /* Make visible */
@@ -174,6 +176,7 @@
     transition: color 500ms;
     margin-left: 10px;
     transition: background-color 250ms ease-out 100ms;
+    padding:10px;
 }
 
     .product-add:hover, .product-add:focus, .excel-export:hover, .excel-export:focus {
@@ -690,6 +693,7 @@
     .form-group > span {
         text-align: center;
         padding: 8px 12px;
+        width:30%;
         font-size: 14px;
         line-height: 25px;
         color: var(--group-color);
@@ -719,17 +723,29 @@
 
 
 
+.addProductBtn {
+    background-color: #EEF4FF;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    border-style: none;
+    box-sizing: border-box;
+    height: 40px;
+    cursor: pointer;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    transition: color 500ms;
+   margin-bottom:10px;
+   
+    padding: 10px;
+}
 
+.addProduct-restProduct{
+    display:flex;
+    margin-left:30px;
+    flex-direction:column;
 
-
-
-
-
-
-
-
-
-
+}
 /* Responsive Design */
 @media (max-width: 768px) {
     .row {

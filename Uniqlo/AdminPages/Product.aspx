@@ -64,8 +64,10 @@
       
        <button class="excel-export">Export</button>
         
-       
-        <button class="product-add" onclick="showModal('addProductModalContainer')">➕ Add Product</button>
+
+
+         <div  class="product-add" onclick="showModal('addProductModalContainer')">➕ Add Product</div>
+      
 
             </div>
 
@@ -745,74 +747,29 @@
            <div class = "card-wrapper">
       <div class = "productItemCard">
         <!-- card left -->
-        <div class = "product-imgs">
-          <div class = "img-display">
-            <div class = "img-showcase">
-                <img src="../../../Images/Categories/Woman/Tops/AIRismCottonShortSleeveT-Shirt1.jpg" alt = "uniqlo image"/>
-                <img src="../../../Images/Categories/Woman/Tops/AIRismCottonShortSleeveT-Shirt2.jpg" alt = "uniqlo image"/>
-                <img src="../../../Images/Categories/Woman/Tops/AIRismCottonShortSleeveT-Shirt3.jpg" alt = "uniqlo image"/>
-                <img src="../../../Images/Categories/Woman/Tops/AIRismCottonShortSleeveT-Shirt4.jpg" alt = "uniqlo image"/>
-            </div>
-          </div>
+       <h2 class = "product-title product-name">Uniqlo Add Product</h2>
 
-
-          <div class = "img-select">
-            <div class = "img-item">
-              <a href = "#" data-id = "1">
-                  <img src="../../../Images/Categories/Woman/Tops/AIRismCottonShortSleeveT-Shirt1.jpg" alt = "uniqlo image"/>
-              </a>
-            </div>
-            <div class = "img-item">
-              <a href = "#" data-id = "2">
-                  <img src="../../../Images/Categories/Woman/Tops/AIRismCottonShortSleeveT-Shirt2.jpg" alt = "uniqlo image"/>
-              </a>
-            </div>
-            <div class = "img-item">
-              <a href = "#" data-id = "3">
-                  <img src="../../../Images/Categories/Woman/Tops/AIRismCottonShortSleeveT-Shirt3.jpg" alt = "uniqlo image"/>
-              </a>
-            </div>
-            <div class = "img-item">
-              <a href = "#" data-id = "4">
-                  <img src="../../../Images/Categories/Woman/Tops/AIRismCottonShortSleeveT-Shirt4.jpg" alt = "uniqlo image"/>
-              </a>
-            </div>
-          </div>
-        </div>
-
-
-
-
+         </div>
 
 
 
         <!-- card right -->
         <div class = "product-content">
-          <h2 class = "product-title product-name">Red Top</h2>
-          
+         
+               <div class="form-group">
+    <span>Product Name</span>
+    <input class="form-field" type="text" placeholder="domain.tld">
+</div>
 
          
 
           <div class = "product-detail">
 
-            <div class="product-details-info"> 
-      <div class="product-details-head">
-      Item Description:
-      </div> 
-      <div class="product-details-items">
-    Item Description Here!
-      </div>
-   </div>
-            
-
-              <div class="product-details-info">
-
-     <div class="form-group">
-    <span>Product ID:</span>
-    <input class="form-field" type="text" placeholder="domain.tld">
+                        <div class="form-group">
+    <span>Description    </span>   
+    <textarea class="form-field" rows="4" cols="50"></textarea> 
 </div>
-
-                    </div>
+              
 
 
 
@@ -821,7 +778,7 @@
                 
                <div class="product-details-info">
                        <div class="form-group">
-    <span>Current Price:</span>
+    <span>Price</span>
     <input class="form-field" type="text" placeholder="domain.tld">
 </div>
                   </div>
@@ -830,15 +787,30 @@
                <div class="product-details-info">
                         <div class="form-group">
     <span>Availability:</span>
-    <input class="form-field" type="text" placeholder="domain.tld">
+    <div class="dropdown-container" onclick="toggleDropdown('dropdownList6', 'dropdownDisplay6')">
+  <div class="dropdown-display" id="dropdownDisplay6">Status</div>
+  <div class="dropdown-list" id="dropdownList6">
+    <div onclick="selectOption('In Stock', 'dropdownDisplay')">In Stock</div>
+    <div onclick="selectOption('Low In Stock', 'dropdownDisplay')">Low In Stock</div>
+    <div onclick="selectOption('No Stock', 'dropdownDisplay')">No Stock</div>
+      </div>
 </div>
+                            </div>
               </div>
 
            
                <div class="product-details-info">
                       <div class="form-group">
     <span>Category:</span>
-    <input class="form-field" type="text" placeholder="domain.tld">
+         
+<div class="dropdown-container" onclick="toggleDropdown('dropdownList5', 'dropdownDisplay5')">
+  <div class="dropdown-display" id="dropdownDisplay5">Status</div>
+  <div class="dropdown-list" id="dropdownList5">
+    <div onclick="selectOption('In Stock', 'dropdownDisplay')">In Stock</div>
+    <div onclick="selectOption('Low In Stock', 'dropdownDisplay')">Low In Stock</div>
+    <div onclick="selectOption('No Stock', 'dropdownDisplay')">No Stock</div>
+  </div>
+</div>
 </div>
                  
               </div>
@@ -846,9 +818,17 @@
 
              
               <div class="product-details-info">
-                        <div class="form-group">
-    <span>Gender:</span>
-    <input class="form-field" type="text" placeholder="domain.tld">
+                    
+                      <div class="form-group">
+    <span>Gender</span>
+   
+<div class="dropdown-container" onclick="toggleDropdown('dropdownList4', 'dropdownDisplay4')">
+  <div class="dropdown-display" id="dropdownDisplay4">Category</div>
+  <div class="dropdown-list" id="dropdownList4">
+    <div onclick="selectOption('Men', 'dropdownDisplay2')">Men</div>
+    <div onclick="selectOption('Women', 'dropdownDisplay2')">Women</div>
+    <div onclick="selectOption('Kids', 'dropdownDisplay2')">Kids</div>
+  </div>
 </div>
                  </div>
             
@@ -906,12 +886,15 @@
     <input class="form-field" type="text" placeholder="domain.tld">
 </div>
 
-                      </div>
-                   
-
-                   
-                 </div>
+                    
                   </div>
+              </div>
+
+   </div>
+               <div class="addProduct-restProduct">  
+       <div  class="addProductBtn">Add Product</div>
+                <div  class="addProductBtn">Reset</div>
+                   </div> 
               </div>
 
           </div>
