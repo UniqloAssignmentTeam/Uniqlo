@@ -27,8 +27,8 @@
                 </asp:Menu>
             </div>
 
-            <div id="search">
-                <div id="search-icon">
+            <div id="search" class="search">
+                <div id="search-icon" class="searchIcon">
                     <!--User-->
                     <div class="user-dropdown">
                         <i class="fa-regular fa-user user"></i>
@@ -39,7 +39,16 @@
                             <a href="Logout.aspx">Logout</a>
                         </div>
                     </div>
-
+                    <!--Customer Services-->
+                    <div class="user-dropdown">
+                        <i class="fa-solid fa-phone user"></i>
+                        <!-- Hidden menu that will be displayed on hover -->
+                        <div class="hiddenUserMenu">
+                            <a href="AboutUs.aspx">About Us</a>
+                            <a href="ContactUs.aspx">Contact Us</a>
+                        </div>
+                    </div>
+                    
                     <!--Cart-->
                     <a href="Cart.aspx" style="text-decoration: none;">
                         <i class="fa-solid fa-cart-shopping cart"></i>
@@ -48,7 +57,7 @@
                 </div>
                 <div class="wrap-items-master-search-bar" style="margin-top: 30px;">
                     <div class="masterSearch">
-                        <span class="searchMasterLabel"><i class="fa-solid fa-magnifying-glass"></i></span>
+                        <span class="searchMasterLabel"><i class="fa-solid fa-magnifying-glass" style="padding-left: 20px;"></i></span>
                         <input class="searchMasterInput" type="search" placeholder="Search" />
                     </div>
                 </div>
