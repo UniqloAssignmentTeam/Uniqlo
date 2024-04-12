@@ -9,68 +9,61 @@
         <h1>Shopping Cart</h1>
         
         <div class="cart-items-container">
-        <!-- Cart Item 1 -->
-        <div class="cart-item" id="cart1" data-product-id="1">
-            <div class="cart-item-image-container" style="width: 40%">
-                <img src="../../../Images/Categories/Woman/Tops/AIRismCottonShortSleeveT-Shirt1.jpg" style="width: 100%" />
-            </div>
-            <div class="item-details">
-                <div class="item-name">
-                    <h3><b>AIRism Cotton Short Sleeve T-Shirt</b></h3>
+            <!-- Cart Item 1 -->
+            <div class="cart-item" id="cart1" data-product-id="1">
+                <div class="cart-item-image-container">
+                    <img src="../../../Images/Categories/Woman/Tops/AIRismCottonShortSleeveT-Shirt1.jpg" alt="AIRism Cotton Short Sleeve T-Shirt"/>
+                    </div>
+                <div class="item-details">
+                    <div class="item-name">
+                        <h3><b>AIRism Cotton Short Sleeve T-Shirt</b></h3>
+                    </div>
+                    <div class="item-description">
+                        <p>Smooth "AIRism" fabric with the look of cotton. Refined fabric and design.</p>
+                    </div>
+                    <div class="item-details">
+                        <p><b>Size:</b> M</p> 
+                        <p><b>Stock Left:</b> 57</p>
+                    </div>
+                    <div class="item-price">
+                            <p style="text-decoration: line-through; margin-right: 10px;">RM 59.90</p>
+                            <p style="color: red;">RM 30.00</p>
+                    </div>
+                <p>Quantity: </p>
+             <input type = "number" class="qty" min = "0" value = "1">
+                <p class="item-subtotal"><b>Subtotal: RM <%= (30.00m * 1).ToString("F2") %></b></p>
+
                 </div>
-                <div class="item-price">
-                    <p style="margin-right: 10px;">
-                        <span style="text-decoration: line-through;">RM 59.90</span>
-                        <span style="color: red; margin-left: 10px;"><b>RM 30.00</b></span>
-                    </p>
-                </div>
-                <div class="item-size">
-                    <p>Size: M</p>
-                </div>
-                <div class="item-quantity">
-                    Quantity:
-                    <button class="quantity-edit" data-action="decrease">-</button>
-                    <span class="quantity">9</span>
-                    <button class="quantity-edit" data-action="increase">+</button>
-                </div>
-                <p class="item-subtotal"><b>Subtotal: RM <%= (89.99m * 9).ToString("F2") %></b></p>
-            </div>
-            <div class="item-actions">
-                <button class="btn-remove">Remove</button>
             </div>
         </div>
-            
+
         <!-- Cart Item 2 -->
         <div class="cart-item" id="cart2" data-product-id="2">
-            <div class="cart-item-image-container" style="width: 40%">
-                <img src="../../../Images/Categories/Woman/Bottoms/SweatCargoPants1.jpg" style="width: 100%" />
+            <div class="cart-item-image-container"">
+                <img src="../../../Images/Categories/Woman/Bottoms/SweatCargoPants1.jpg" alt="AIRism Cotton Short Sleeve T-Shirt"/>
             </div>
             <div class="item-details">
                 <div class="item-name">
                     <h3><b>Sweat Cargo Pants</b></h3>
                 </div>
-                <div class="item-price">
-                    <p style="margin-right: 10px;">
-                        <span style="text-decoration: line-through;">RM 120.00</span>
-                        <span style="color: red; margin-left: 10px;"><b>RM 79.90</b></span>
-                    </p>
-                </div>
-                <div class="item-size">
-                    <p>Size: M</p>
-                </div>
-                <div class="item-quantity">
-                    Quantity:
-                    <button class="quantity-edit" data-action="decrease">-</button>
-                    <span class="quantity">2</span>
-                    <button class="quantity-edit" data-action="increase">+</button>
-                </div>
-                <p class="item-subtotal"><b>Subtotal: RM <%= (79.90m * 2).ToString("F2") %></b></p>
-            </div>
-            <div class="item-actions">
-                <button class="btn-remove">Remove</button>
+             <div class="item-description">
+                 <p>Smooth "AIRism" fabric with the look of cotton. Refined fabric and design.</p>
+             </div>
+             <div class="item-details">
+                 <p><b>Size:</b> M</p> 
+                 <p><b>Stock Left:</b> 27</p>
+             </div>
+                    <div class="item-price">
+                            <p style="text-decoration: line-through; margin-right: 10px;">RM 120.00</p>
+                            <p style="color: red;">RM 79.90</p>
+                    </div>
+                <p>Quantity: </p>
+             <input type = "number" class="qty" min = "0" value = "1">
+                <p class="item-subtotal"><b>Subtotal: RM <%= (79.90m * 1).ToString("F2") %></b></p>
             </div>
         </div>
         
+
         <!-- Cart Summary -->
         <div class="cart-summary">
             <h3>Cart Summary</h3>
@@ -79,7 +72,7 @@
             <button class="btn-checkout">Proceed to Checkout</button>
         </div>
      </div>
-    </div>
+
 
     <script>
         // Calculate and display total items and total price
