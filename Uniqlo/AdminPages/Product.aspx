@@ -30,8 +30,8 @@
                </div>
             </div>
             <div class="btnExcel-Add">
-               <button class="excel-export">Export</button>
-               <div  class="product-add"><a href="AddProduct.aspx">➕ Add Product</a></div>
+               <button class="excel-export" style="color: #6F6F6F; font-size: 1rem; font-weight: 400;">Export</button>
+               <div  class="product-add"><a href="AddProduct.aspx" style="color: #6F6F6F; text-decoration: none; font-size: 1rem; font-weight: 400;">➕ Add Product</a></div>
             </div>
          </div>
       </div>
@@ -90,7 +90,7 @@
                <div class="eclipse-display" id="dropdownDisplay3" style="border:none;"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></div>
                <div class="eclipse-list" id="dropdownList3">
                   <div>View More</div>
-                  <div><a href="UpdateProduct.aspx">Update</a></div>
+                  <div><a href="UpdateProduct.aspx" style="color: #6F6F6F; text-decoration: none;">Update</a></div>
                   <div>Delete</div>
                </div>
             </div>
@@ -207,9 +207,9 @@
          </div>
       </div>
       
-                    <div class="viewMoreSection">
-    <a href="../AdminPages/Product.aspx" class="viewMoreButton">BACK</a>
-            </div>
+        <div class="viewMoreSection">
+            <   1..10  >
+        </div>
   
    </div>
    <div id="viewMoreModalContainer" class="modal">

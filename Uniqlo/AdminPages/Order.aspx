@@ -56,10 +56,10 @@
 
      <div class="btnExcel-Add">
       
-       <button class="excel-export">Export</button>
+       <button class="excel-export" style="color: #6F6F6F; font-size: 1rem; font-weight: 400;">Export</button>
         
 
-
+                        
             </div>
 
      
