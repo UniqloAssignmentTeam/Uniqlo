@@ -146,8 +146,9 @@
 
         <div class="eclipse-display" id="dropdownDisplay3" style="border:none;"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></div>
          <div class="eclipse-list" id="dropdownList3">
-        <div onclick="showModal('viewMoreModalContainer')">View More</div>
-        <div>Delete</div>
+             <a href="OrderItem.aspx"><div>View More</div></a>
+        
+       
        </div>
      </div>
   
@@ -300,8 +301,8 @@
 
 
 
-        <div class="pagination">
-    <button class="page-btn" onclick="goToNextPage()">Next Page</button>
+                    <div class="viewMoreSection">
+    <a href="../AdminPages/Order.aspx" class="viewMoreButton">BACK</a>
 </div>
 
 
@@ -310,171 +311,12 @@
 
 
   
-          
-
-<div id="viewMoreModalContainer" class="modal">
-
-
-    <div class="modal-content">
-        <span class="close" onclick="closeModal('viewMoreModalContainer')">&times;</span>
-           <div class = "card-wrapper">
-      <div class = "productItemCard">
-        <!-- card left -->
-        <div class = "product-imgs">
-            <h2 class = "product-title product-name" id="modalProductName">Red Top</h2>
-        </div>
-
-
-
-
-
-
-
-        <!-- card right -->
-        <div class = "product-content">
-        
-          
-
-         
-
-          <div class = "product-detail">
-
-            <div class="product-details-info"> 
-      <div class="product-details-head">
-      Item Description:
-      </div> 
-      <div class="product-details-items">
-    Item Description Here!
-      </div>
-   </div>
-            
-
-              <div class="product-details-info">
-
-
-
-
-                  <div class="product-details-head">
-                 
-                     Product ID: 
-                   </div>
-                 <div class="product-details-items">
-                     1001
-                  </div>
-                    </div>
-
-
-
-                
-               <div class="product-details-info">
-                   <div class="product-details-head"> Current Price:</div>
-                   <div class="product-details-items">  RM 59.90</div>  
-                  </div>
+   
              
-             
-               <div class="product-details-info">
-                    <div class="product-details-head">
-                     Available:
-                    </div>
-                    <div class="product-details-items"> In Stock</div> 
-              </div>
-
-           
-               <div class="product-details-info">
-                   <div class="product-details-head">
-                       Category: 
-                   </div>
-                    <div class="product-details-items">Tops</div>
-                 
-              </div>
-           
-
-             
-              <div class="product-details-info">
-                   <div class="product-details-head">
-                    Gender:
-                    </div>
-                    <div class="product-details-items"> Female</div>
-                 </div>
-            
-            
-          
-          </div>
-
-
-
-
-          
-
-          <div class="productQtySizeSection">
-
-              <div class="quantityHeader">QUANTITY</div> 
-  
-
-
-             
-                  <div class="purchase-size-item">
-
-
-
-                    <div class="purchase-size">
-
-                   <div class="purchase-size-size">
-                     S:
-                    </div>
-
-                    <div class="purchase-size-qty">
-                     100
-                    </div>
-
-                    </div>
-
-
-
-
-                      <div class="purchase-size">
-                          <div class="purchase-size-size">
-                            M:
-                        </div>
-
-                          <div class="purchase-size-qty"> 100</div>
-                      </div>
-                    
-
-
-                      <div class="purchase-size">
-                          <div class="purchase-size-size">
-                            L:
-                            </div>
-                          <div class="purchase-size-qty">
-                              100
-                          </div>
-                      </div>
-
-
-                      <div class="purchase-size">
-                           
-                          <div class="purchase-size-size">
-                             XL: 
-                          </div>
-                          <div class="purchase-size-qty"> 100 </div>
-
-                      </div>
-                   
-
-                   
-                 </div>
-                  </div>
-              </div>
-
-          </div>
-          
-       
-        </div>
-      </div>
-   </div>
-    </div>
+         </div>
     
+
+
     <footer>
 
         <script src="../Javascript/productBtnEclipse.js"></script>
