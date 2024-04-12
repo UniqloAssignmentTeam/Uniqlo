@@ -31,7 +31,7 @@
             </div>
             <div class="btnExcel-Add">
                <button class="excel-export">Export</button>
-               <div  class="product-add" onclick="showModal('addProductModalContainer')">➕ Add Product</div>
+                <a href="AddProduct.aspx" style="text-decoration:none;">  <div class="product-add"> ➕ Add Product</div> </a>
             </div>
          </div>
       </div>
@@ -95,6 +95,8 @@
                </div>
             </div>
          </div>
+          
+
          <!--Product 2-->
          <div class="row">
             <div class="col productid">
