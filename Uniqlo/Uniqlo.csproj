@@ -72,6 +72,7 @@
     <Content Include="AdminPages\Discount.aspx" />
     <Content Include="AdminPages\Login.aspx" />
     <Content Include="AdminPages\Order.aspx" />
+    <Content Include="AdminPages\OrderItem.aspx" />
     <Content Include="AdminPages\Product.aspx" />
     <Content Include="AdminPages\Report.aspx" />
     <Content Include="AdminPages\Staff.aspx" />
@@ -80,6 +81,7 @@
     <Content Include="App_Data\Uniqlo_log.ldf">
       <DependentUpon>Uniqlo.mdf</DependentUpon>
     </Content>
+    <Content Include="css\aboutUs.css" />
     <Content Include="css\Cart.css" />
     <Content Include="css\category.css" />
     <Content Include="css\ContactUs.css" />
@@ -88,6 +90,7 @@
     <Content Include="css\home.css" />
     <Content Include="css\Login.css" />
     <Content Include="css\master.css" />
+    <Content Include="css\OrderItem.css" />
     <Content Include="css\product.css" />
     <Content Include="css\productAdmin.css" />
     <Content Include="css\SignUp.css" />
@@ -208,6 +211,13 @@
     </Compile>
     <Compile Include="AdminPages\Order.aspx.designer.cs">
       <DependentUpon>Order.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AdminPages\OrderItem.aspx.cs">
+      <DependentUpon>OrderItem.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminPages\OrderItem.aspx.designer.cs">
+      <DependentUpon>OrderItem.aspx</DependentUpon>
     </Compile>
     <Compile Include="AdminPages\Product.aspx.cs">
       <DependentUpon>Product.aspx</DependentUpon>

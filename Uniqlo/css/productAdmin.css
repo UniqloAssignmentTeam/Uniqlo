@@ -225,26 +225,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 .table {
     max-width: 1100px;
     margin: 0 auto;
@@ -270,8 +250,8 @@
     /* Header specific styles */
 .row:first-child {
     font-weight: bold;
-    background-color: #007bff; /* Blue makes the header pop and looks great with white */
-    color: white;
+    background-color: white; /* Blue makes the header pop and looks great with white */
+    color: black;
 }
 
 .col {

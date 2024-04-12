@@ -7,11 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Uniqlo.Pages
+namespace Uniqlo.AdminPages
 {
 
 
-    public partial class Cart
+    public partial class OrderItem
     {
     }
 }

@@ -74,11 +74,12 @@
 
             .wishlist-heart-group input[type="checkbox"]:checked + label svg #heart-path {
                 animation: wishlist-heart-add 300ms forwards;
-                stroke: rgba(248, 51, 42, 1);
+                fill: white; /* Set default fill when checked */
+                stroke: white;
             }
 
         .wishlist-heart-group input[type="checkbox"] + label svg #heart-path {
-            transition: fill 200ms;
+            transition: fill 200ms, stroke 200ms;
         }
 
         .wishlist-heart-group input[type="checkbox"] + label:hover svg #heart-path {
