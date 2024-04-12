@@ -2,13 +2,22 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="main" runat="server">
 
 
-
-
-
     
+
+        <link href="../css/productAdmin.css" rel="stylesheet" />
+   <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+           <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+   
+    <style>
+
+        .dropdown-container{
+            margin-left:-180px;
+        }
+
+    </style>
     <div class="productBody">
 
- <h2>Product</h2>
+ <h2>Discount</h2>
 
        
 
@@ -26,42 +35,28 @@
 
      <div class="dropdown-wrapper">
 <div class="dropdown-container" onclick="toggleDropdown('dropdownList', 'dropdownDisplay')">
-  <div class="dropdown-display" id="dropdownDisplay">Status</div>
+  <div class="dropdown-display" id="dropdownDisplay">Gender</div>
   <div class="dropdown-list" id="dropdownList">
-    <div onclick="selectOption('In Stock', 'dropdownDisplay')">In Stock</div>
-    <div onclick="selectOption('Low In Stock', 'dropdownDisplay')">Low In Stock</div>
-    <div onclick="selectOption('No Stock', 'dropdownDisplay')">No Stock</div>
+    <div onclick="selectOption('Male', 'dropdownDisplay')">Male</div>
+    <div onclick="selectOption('Female', 'dropdownDisplay')">Female</div>
   </div>
 </div>
 
 
-<div class="dropdown-container" onclick="toggleDropdown('dropdownList2', 'dropdownDisplay2')">
-  <div class="dropdown-display" id="dropdownDisplay2">Category</div>
-  <div class="dropdown-list" id="dropdownList2">
-    <div onclick="selectOption('Men', 'dropdownDisplay2')">Men</div>
-    <div onclick="selectOption('Women', 'dropdownDisplay2')">Women</div>
-    <div onclick="selectOption('Kids', 'dropdownDisplay2')">Kids</div>
-  </div>
-</div>
 
        </div>
 
 
 
 
-
-
-
-
-
-
-
-
-
      <div class="btnExcel-Add">
       
-          <asp:Button ID="btnExcelExport" runat="server" Text="Export" CssClass="excel-export" ToolTip="Export To Excel" />  
-         <asp:Button ID="btnAddProduct" runat="server" Text="➕ Add Product" CssClass="product-add" ToolTip="Add Product" />
+       <button class="excel-export">Export</button>
+        
+
+
+         <div  class="product-add" onclick="showModal('addProductModalContainer')">➕ Add Staff</div>
+      
 
             </div>
 
@@ -80,41 +75,33 @@
 
 
 
-
-
-
-
 <div class="table">
 
    <!--Header-->
     <div class="row">
 
     <div class="col productid">
-        Product ID
+        Discount ID
     </div>
-  
-       <div class="col prodImageHeader">
-       <img src="../Images/uniqloKidsDresses.png" width="40" height="40" alt ="Product Image" Visible:"True" />
-    </div>
-        
+
     <div class="col name">
-        Product Name
+        Product ID
     </div>
 
      <div class="col status">
-     Status
+     Amount
  </div>
 
     <div class="col price">
-        Price (RM)
+        Status
     </div>
 
 <div class="col gender">
-    Gender
+    Start Date
 </div>
 
     <div class="col category">
-        Category
+        End Date
     </div>
            
        
@@ -135,9 +122,7 @@
   <div class="col productid">
       1001
   </div>
-     <div class="prodImage">
-  <img src="../Images/uniqloKidsDresses.png" width="40" height="40" alt ="Product Image" />
-</div>
+    
 
   <div class="col name">
       Product Name   Product
@@ -163,9 +148,8 @@
 
         <div class="eclipse-display" id="dropdownDisplay3" style="border:none;"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></div>
          <div class="eclipse-list" id="dropdownList3">
-          <div onclick="showModal('viewMoreModalContainer')">View More</div>
         <div onclick="showModal('updateModalContainer')">Update</div>
-        <div onclick="showModal('deleteModalContainer')">Delete</div>
+        <div>Delete</div>
        </div>
      </div>
   
@@ -281,7 +265,7 @@
     Gender
 </div>
  <div class="col category">
-     Category
+      jefferozf@gmail.com
  </div>
 
                <div class="col eclipse-container">
@@ -318,12 +302,15 @@
     Gender
 </div>
 <div class="col category">
-    Category
+  asdasd
 </div>
 
-              <div class="col actionBtn">
-          <asp:Button ID="btnAction5" runat="server" Text="Button" />
-</div>
+           
+    <div class="col eclipse-container">
+
+    <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+   
+ </div>
     </div>
     
 
@@ -342,28 +329,247 @@
 
 
 
-<div id="viewMoreModalContainer" class="modal">
+
+
+
+<div id="updateModalContainer" class="modal">
+
+
     <div class="modal-content">
-        <span class="close" onclick="closeModal('viewMoreModalContainer')">&times;</span>
-        <p>Some content for view more...</p>
-    </div>
+        <span class="close" onclick="closeModal('updateModalContainer')">&times;</span>
+           <div class = "card-wrapper">
+      <div class = "productItemCard">
+        <!-- card left -->
+        <div class = "product-imgs">
+          <div class = "img-display">
+            <div class = "img-showcase">
+                <img src="../../../Images/Categories/Woman/Tops/AIRismCottonShortSleeveT-Shirt1.jpg" alt = "uniqlo image"/>
+            </div>
+          </div>
+        </div>
+
+
+
+
+
+
+
+        <!-- card right -->
+        <div class = "product-content">
+          <h2 class = "product-title product-name">Staff Update</h2>
+          
+          <div class = "product-detail">
+
+
+              <div class="product-details-info">
+
+     <div class="form-group">
+    <span>Staff ID:</span>
+    <input class="form-field" type="text" disabled>
 </div>
 
+                    </div>
 
 
 
 
+
+                
+               <div class="product-details-info">
+                       <div class="form-group">
+    <span>Staff Name:</span>
+    <input class="form-field" type="text">
+</div>
+                  </div>
+             
+             
+               <div class="product-details-info">
+                        <div class="form-group">
+    <span>Gender:</span>
+       <div class="dropdown-container" onclick="toggleDropdown('dropdownList6', 'dropdownDisplay6')">
+  <div class="dropdown-display" id="dropdownDisplay8">Gender</div>
+  <div class="dropdown-list" id="dropdownList8">
+    <div onclick="selectOption('Male', 'dropdownDisplay')">Male</div>
+    <div onclick="selectOption('Female', 'dropdownDisplay')">Female</div>
+    
+      </div>
+</div>
+</div>
+              </div>
+
+           
+               <div class="product-details-info">
+                      <div class="form-group">
+    <span>Role:</span>
+                           
+    <div class="dropdown-container" onclick="toggleDropdown('dropdownList6', 'dropdownDisplay6')">
+  <div class="dropdown-display" id="dropdownDisplay7">Status</div>
+  <div class="dropdown-list" id="dropdownList7">
+    <div onclick="selectOption('Admin', 'dropdownDisplay')">Admin</div>
+    <div onclick="selectOption('Manager', 'dropdownDisplay')">Manager</div>
+    
+      </div>
+</div>
+                            </div>
+</div>
+                 
+              </div>
+           
+
+             
+              <div class="product-details-info">
+                        <div class="form-group">
+    <span>Contact No:</span>
+    <input class="form-field" type="text" >
+</div>
+                 </div>
+            
+                          <div class="product-details-info">
+                        <div class="form-group">
+    <span>Email:</span>
+    <input class="form-field" type="text" >
+</div>
+                 </div>
+                                                   <div class="addProduct-restProduct">  
+<div  class="addProductBtn"> Update</div>
+         
+            </div> 
+          </div>
+
+
+                               
+
+          
+
+              </div>
+                             
+          </div>
+                    
+       
+        </div>
+      </div>
     </div>
+  
+  
+          
+
+<div id="addProductModalContainer" class="modal">
 
 
+    <div class="modal-content">
+        <span class="close" onclick="closeModal('addProductModalContainer')">&times;</span>
+           <div class = "card-wrapper">
+      <div class = "productItemCard">
+        <!-- card left -->
+       <h2 class = "product-title product-name">Uniqlo Add Product</h2>
+
+         </div>
+
+
+        <!-- card right -->
+        <div class = "product-content">
+         
+
+         
+
+          <div class = "product-detail">
+
+
+               <div class="product-details-info">
+                       <div class="form-group">
+    <span>Staff Name</span>
+    <input class="form-field" type="text" >
+</div>
+                  </div>
+             
+             
+               <div class="product-details-info">
+                        <div class="form-group">
+    <span>Gender:</span>
+    <div class="dropdown-container" onclick="toggleDropdown('dropdownList6', 'dropdownDisplay6')">
+  <div class="dropdown-display" id="dropdownDisplay6">Male</div>
+  <div class="dropdown-list" id="dropdownList6">
+    <div onclick="selectOption('Male', 'dropdownDisplay')">Male</div>
+    <div onclick="selectOption('Female', 'dropdownDisplay')">Female</div>
+      </div>
+</div>
+                            </div>
+              </div>
+
+           
+               <div class="product-details-info">
+                      <div class="form-group">
+    <span>Category:</span>
+         
+<div class="dropdown-container" onclick="toggleDropdown('dropdownList5', 'dropdownDisplay5')">
+  <div class="dropdown-display" id="dropdownDisplay5">Admin</div>
+  <div class="dropdown-list" id="dropdownList5">
+    <div onclick="selectOption('Admin', 'dropdownDisplay')">Admin</div>
+    <div onclick="selectOption('Manager', 'dropdownDisplay')">Manager</div>
+    
+  </div>
+</div>
+</div>
+                 
+              </div>
+           
+
+             
+              <div class="product-details-info">
+                    
+                      <div class="form-group">
+    <span>Gender</span>
+   
+<div class="dropdown-container" onclick="toggleDropdown('dropdownList4', 'dropdownDisplay4')">
+  <div class="dropdown-display" id="dropdownDisplay4">Category</div>
+  <div class="dropdown-list" id="dropdownList4">
+    <div onclick="selectOption('Men', 'dropdownDisplay2')">Men</div>
+    <div onclick="selectOption('Women', 'dropdownDisplay2')">Women</div>
+    <div onclick="selectOption('Kids', 'dropdownDisplay2')">Kids</div>
+  </div>
+</div>
+                 </div>
+            
+            
+          
+          </div>
+              
+              <div class="product-details-info">
+                        <div class="form-group">
+    <span>Contact No:</span>
+    <input class="form-field" type="text" >
+</div>
+                 </div>
+            
+                          <div class="product-details-info">
+                        <div class="form-group">
+    <span>Email:</span>
+    <input class="form-field" type="text" >
+</div>
+                 </div>
+        
+               <div class="addProduct-restProduct">  
+       <div  class="addProductBtn">Add Staff</div>
+                <div  class="addProductBtn">Reset</div>
+                   </div> 
+              </div>
+
+          </div>
+          
+       
+        </div>
+      </div>
+  
+  
+    
     <footer>
 
-    <script src="../Javascript/productBtnEclipse.js"></script>
-    <script src="../Javascript/productAdminDDL.js"></script>
- 
-  
+        <script src="../Javascript/productBtnEclipse.js"></script>
+        <script src="../Javascript/productAdminDDL.js"></script>
+       
+      
 
-</footer>
+    </footer>
 
 
 </asp:Content>
