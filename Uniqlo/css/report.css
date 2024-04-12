@@ -156,7 +156,7 @@
     width: 150px; /* Fixed width for consistency */
     display: flex; /* Use flex to align the arrow inside .dropdown-display */
     align-items: center; /* Center align the contents */
- 
+    margin-bottom: 15px;
     margin-left: 940px;
 }
 
