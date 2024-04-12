@@ -62,14 +62,14 @@
                 <a href="https://www.youtube.com/user/UNIQLOMALAYSIA"><i class="fa-brands fa-youtube"></i></a>
             </div>
             <div class="footerNav">
-                <ul>
-                    <li><a href="Dashboard.aspx">Dashboard</a></li>
-                    <li><a href="Staff.aspx">Manage Staff</a></li>
-                    <li><a href="Product.aspx">Manage Product</a></li>
-                    <li><a href="ValueBuy.aspx">Manage Value Buy</a></li>
-                    <li><a href="Order.aspx">Manage Order</a></li>
-                    <li><a href="Report.aspx">Report</a></li>
-                </ul>
+                
+                    <a href="Dashboard.aspx">Dashboard</a>
+                    <a href="Staff.aspx">Manage Staff</a>
+                    <a href="Product.aspx">Manage Product</a>
+                    <a href="ValueBuy.aspx">Manage Value Buy</a>
+                    <a href="Order.aspx">Manage Order</a>
+                    <a href="Report.aspx">Report</a>
+                
             </div>
 
         </div>
