@@ -54,7 +54,13 @@
 .chart {
     display: flex;
 }
-
+.totalOrderChart{
+    display:flex;
+    
+    width:100%;
+    float:right;
+    padding-left:1000px;
+}
 /*OVERVIEW GRAPH*/
 .overviewGraph {
     margin-top: 70px;
@@ -138,4 +144,85 @@
 
 .outOfStock {
     color: red;
+}
+
+
+
+
+
+
+.dropdown-container {
+    position: relative;
+    width: 150px; /* Fixed width for consistency */
+    display: flex; /* Use flex to align the arrow inside .dropdown-display */
+    align-items: center; /* Center align the contents */
+ 
+    margin-left: 940px;
+}
+
+.dropdown-display {
+    width: 150px;
+    height: 40px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: white;
+    cursor: pointer;
+    position: relative;
+    text-align: center; /* Center the text */
+    display: flex; /* Use flexbox here to help with centering text and arrow */
+    align-items: center; /* Align the text and arrow vertically */
+    justify-content: center; /* Centers the text inside the dropdown */
+}
+
+.dropdown-list {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 100;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    opacity: 0; /* Start fully transparent */
+    visibility: hidden; /* Start hidden */
+    transform: translateY(-20px); /* Start slightly above */
+    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s; /* Animate opacity, transform, and visibility */
+    align-items: center;
+    text-align: center; /* Centers the text inside the dropdown */
+}
+
+
+    .dropdown-list.open {
+        opacity: 1; /* Fade in to fully opaque */
+        visibility: visible; /* Make visible */
+        transform: translateY(0px); /* Move to original position */
+    }
+
+
+    .dropdown-list.open {
+        display: block; /* Show dropdown */
+    }
+
+    .dropdown-list div {
+        padding: 10px;
+        cursor: pointer;
+    }
+
+        .dropdown-list div:hover {
+            background-color: #f0f0f0;
+        }
+
+
+.dropdown-display::after {
+    content: '';
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%) rotate(180deg); /* Arrow points up initially */
+    border: solid transparent;
+    border-width: 0 6px 6px 6px; /* Create a sharper arrow */
+    border-bottom-color: black; /* The tip of the arrow is black */
+    display: inline-block;
+    transition: transform 0.3s ease;
 }

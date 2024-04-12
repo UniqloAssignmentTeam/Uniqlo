@@ -63,14 +63,18 @@ function drawChart() {
 		['2006', 660, 1120],
 		['2007', 1030, 540]
 	]);
+	
 
 	var options = {
-		title: 'Company Performance',
+		title: 'Orders Completed',
 		curveType: 'function',
 		legend: { position: 'bottom' }
 	};
+	
 
 	var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
-
 	chart.draw(data, options);
+
+	
 }
+

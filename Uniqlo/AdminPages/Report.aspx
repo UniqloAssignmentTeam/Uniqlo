@@ -15,36 +15,21 @@
      </div>
         <!--OVERVIEW CONTAINER-->
     <div class="overview">
-        <div  class="orderCompleted" >
-        <div id="curve_chart" style="width: 100%; height:100%">         
-        </div>
+        <div  class="orderOnHold" >
+        <div id="curve_chart" style="width: 100%; height:100%"></div>
             </div>
+
         <div class="orderCompleted">
-            <div>
-                <i class="fa-solid fa-receipt order"></i>
-            </div>
-            <div class="overviewContent">
-                <h2>100 orders</h2>
-                <p class="overviewP">Completed</p>
+            <div id="curve_chart2" style="width: 100%; height:100%">         
             </div>
         </div>
+
         <div class="productOutOfStock">
-            <div>
-                <i class="fa-solid fa-boxes-stacked product"></i>
-            </div>
-            <div class="overviewContent">
-                <h2>5 products</h2>
-                <p class="overviewP">Out of stock</p>
-            </div>
+            <div id="curve_chart3" style="width: 100%; height:100%"></div>
         </div>
+
         <div class="activeUser">
-            <div>
-                <i class="fa-solid fa-users users"></i>
-            </div>
-            <div class="overviewContent">
-                <h2>10 register User</h2>
-                <p class="overviewP">Within 3 months</p>
-            </div>
+           <div id="curve_chart4" style="width: 100%; height:100%"></div>
         </div>
     </div>
 
@@ -54,129 +39,40 @@
     <div class="header">
         <h2>Total Orders In 2024</h2>
         <p>Payment received across all channels</p>
-    </div>
+       
 
-    <!--LINE CHART-->
-    <canvas id="myChart" style="width:100%;"></canvas>
+
+
+         <div class="dropdown-container" onclick="toggleDropdown('dropdownList', 'dropdownDisplay')">
+      <div class="dropdown-display" id="dropdownDisplay">Year</div>
+      <div class="dropdown-list" id="dropdownList">
+         <div onclick="selectOption('2024', 'dropdownDisplay')">2024</div>
+         <div onclick="selectOption('2023', 'dropdownDisplay')">2023</div>
+         <div onclick="selectOption('2022', 'dropdownDisplay')">2022</div>
+      </div>
+   </div>
+</div>
+           
     
 
-    <!--OVERVIEW GRAPH-->
-    <div class="overviewGraph">
-        <div class="ttlOrder">
-            <div class="overviewName">
-                <h3>Total Orders</h3>
-                <h3 class="amt">16,289</h3>
-            </div>
-            <div class="overviewDetails">
-                <p>Last 7 days</p>
-            </div>
-            <div>
-                <canvas id="barChart"></canvas>
-            </div>
-        </div>
-        <div class="newUser">
-            <div class="overviewName">
-                <h3>Top 5 Product Sold</h3>
-            </div>
+    <!--LINE CHART-->
+        
+    <canvas id="myChart" style="width:100%;"></canvas>
+   
 
-            <div class="table">
-                <div class="row">
-                    <div class="col prod">
-                        Product
-                    </div>
-                    <div class="col ord">
-                        Orders
-                    </div>
-                    <div class="col stat">
-                        Status
-                    </div>
-                    <div class="col price">
-                        Price
-                    </div>
-                </div>
-                <hr />
-                <div class="row">
-                    <div class="col prod">
-                        Mini Short Sleeve T-Shirt
-                    </div>
-                    <div class="col ord">
-                        1,500
-                    </div>
-                    <div class="col stat inStock">
-                        In Stock
-                    </div>
-                    <div class="col price">
-                        RM 74,850
-                    </div>
-                </div>
-                <hr />
-                <div class="row">
-                    <div class="col prod">
-                        AIRism Cotton Sleeveless T-Shirt
-                    </div>
-                    <div class="col ord">
-                        1,300
-                    </div>
-                    <div class="col stat inStock">
-                        In Stock
-                    </div>
-                    <div class="col price">
-                        RM 74,850
-                    </div>
-                </div>
-                <hr />
-                <div class="row">
-                    <div class="col prod">
-                        Pleated Straight Pants
-                    </div>
-                    <div class="col ord">
-                        1,000
-                    </div>
-                    <div class="col stat lowInStock">
-                        Low In Stock
-                    </div>
-                    <div class="col price">
-                        RM 149,900
-                    </div>
-                </div>
-                <hr />
-                <div class="row">
-                    <div class="col prod">
-                        Crew Neck Short Sleeve T-Shirt
-                    </div>
-                    <div class="col ord">
-                        800
-                    </div>
-                    <div class="col stat inStock">
-                        In Stock
-                    </div>
-                    <div class="col price">
-                        RM 39,920
-                    </div>
-                </div>
-                <hr />                    
-                <div class="row">
-                    <div class="col prod">
-                        KIDS AIRism Cotton Graphic Short Sleeve T-Shirt
-                    </div>
-                    <div class="col ord">
-                        800
-                    </div>
-                    <div class="col stat inStock">
-                        In Stock
-                    </div>
-                    <div class="col price">
-                        RM 39,920
-                    </div>
-                </div>
-                <hr />
-            </div>
-        </div>
-    </div>
+    <!--OVERVIEW GRAPH-->
+  
+      
+           
+           
+        
+       
+   
 </div>    
 <footer>
+    <script src="../Javascript/productAdminDDL.js"></script>
     <script src="../Javascript/lineChart.js"></script>
-    <script src="../Javascript/barChartTtlOder.js"></script>
+    <script src="../Javascript/orderCompleted.js"></script>
   
 </footer>
 
