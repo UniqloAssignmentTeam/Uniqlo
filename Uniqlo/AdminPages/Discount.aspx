@@ -11,7 +11,7 @@
     <style>
 
         .dropdown-container{
-            margin-left:-180px;
+            margin-left:-150px;
         }
 
     </style>
@@ -35,10 +35,10 @@
 
      <div class="dropdown-wrapper">
 <div class="dropdown-container" onclick="toggleDropdown('dropdownList', 'dropdownDisplay')">
-  <div class="dropdown-display" id="dropdownDisplay">Gender</div>
+  <div class="dropdown-display" id="dropdownDisplay">Status</div>
   <div class="dropdown-list" id="dropdownList">
-    <div onclick="selectOption('Male', 'dropdownDisplay')">Male</div>
-    <div onclick="selectOption('Female', 'dropdownDisplay')">Female</div>
+    <div onclick="selectOption('Valid', 'dropdownDisplay')">Valid</div>
+    <div onclick="selectOption('Invalid', 'dropdownDisplay')">Invalid</div>
   </div>
 </div>
 
@@ -55,7 +55,7 @@
         
 
 
-         <div  class="product-add" onclick="showModal('addProductModalContainer')">➕ Add Staff</div>
+         <div  class="product-add" onclick="showModal('addProductModalContainer')">➕ Add Discount</div>
       
 
             </div>

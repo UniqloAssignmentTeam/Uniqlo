@@ -74,11 +74,12 @@
 
             .wishlist-heart-group input[type="checkbox"]:checked + label svg #heart-path {
                 animation: wishlist-heart-add 300ms forwards;
-                stroke: rgba(248, 51, 42, 1);
+                fill: white; /* Set default fill when checked */
+                stroke: white;
             }
 
         .wishlist-heart-group input[type="checkbox"] + label svg #heart-path {
-            transition: fill 200ms;
+            transition: fill 200ms, stroke 200ms;
         }
 
         .wishlist-heart-group input[type="checkbox"] + label:hover svg #heart-path {
@@ -177,9 +178,12 @@
 
 /* Buttons for adding to cart and removing from the wishlist */
 .product-actions {
+    position: relative; /* Establishes a positioning context for absolute children */
     display: flex;
-    justify-content: space-between; /* Space between buttons */
+    justify-content: space-between;
+    padding-top: 20px; /* Provide enough space for the message */
 }
+
 
 .btnMoveToCart, .btnRemove {
     padding: 8px 16px;
@@ -196,8 +200,16 @@
     background-color: #4CAF50; /* Green background for add to cart */
 }
 
+.btnMoveToCart:hover {
+    background-color: green; /* Green background for add to cart */
+}
+
 .btnRemove {
     background-color: #f44336; /* Red background for remove */
+}
+
+.btnRemove:hover {
+    background-color: red; /* Red background for remove */
 }
 
 /* Responsive design adjustments */
@@ -217,6 +229,18 @@
     .wishlistItemCard {
         width: calc(50% - 20px); /* Adjust width for two items per row on smaller screens */
     }
+}
+
+.action-message {
+    position: absolute;
+    top: -5px; /* Closer to the button, adjust this value as needed */
+    left: 0;
+    width: 100%;
+    text-align: center;
+    display: none; /* Start hidden */
+    color: #4CAF50; /* Initial color, changes based on action */
+    font-weight: bold;
+    font-size: 0.9em; /* Adjust font size if necessary */
 }
 
 

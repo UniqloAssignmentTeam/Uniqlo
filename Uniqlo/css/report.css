@@ -1,0 +1,228 @@
+﻿.bodyContent {
+    max-width: 1100px;
+    position: relative;
+    margin: auto;
+}
+
+.header {
+    padding-top: 30px;
+}
+
+    .header p {
+        margin-top: -10px;
+        margin-bottom: 30px;
+    }
+
+.space {
+    margin-top: 50px;
+}
+
+/*OVERVIEW SECTION*/
+.overview, .overviewGraph {
+    display: flex;
+}
+
+.orderOnHold, .orderCompleted, .productOutOfStock, .activeUser {
+    background-color: ghostwhite;
+    width: 25%;
+    height: 180px;
+    margin-right: 20px;
+    border-radius: 10px;
+    display: flex;
+    box-shadow: 2px 4px 6px 0 rgba(0, 0, 0, 0.2);
+}
+
+    .orderOnHold:hover, .orderCompleted:hover, .productOutOfStock:hover, .activeUser:hover {
+        transform: translate3D(0,-1px,0) scale(1.05);
+        transition: all .5s ease;
+    }
+
+.truck, .order, .product, .users {
+    font-size: 50px;
+    margin: 60px 5px 60px 20px;
+}
+
+.overviewContent {
+    margin: 40px 5px 40px 20px;
+}
+
+.overviewP {
+    margin-top: -15px;
+}
+
+/*GRAPH*/
+.chart {
+    display: flex;
+}
+.totalOrderChart{
+    display:flex;
+    
+    width:100%;
+    float:right;
+    padding-left:1000px;
+}
+/*OVERVIEW GRAPH*/
+.overviewGraph {
+    margin-top: 70px;
+}
+
+.ttlOrder, .newUser {
+    background-color: ghostwhite;
+    width: 50%;
+    height: 430px;
+    border-radius: 10px;
+    box-shadow: 2px 4px 6px 0 rgba(0, 0, 0, 0.2);
+    padding: 0px 10px 0px 10px;
+    margin: 30px 20px 100px 0px;
+}
+
+    .ttlOrder:hover, .newUser:hover {
+        transform: translate3D(0,-1px,0) scale(1.03);
+        transition: all .5s ease;
+    }
+
+.overviewName {
+    display: flex;
+}
+
+    .overviewName .amt {
+        padding-left: 280px;
+    }
+
+
+.overviewDetails {
+    margin-top: -30px;
+    margin-bottom: 45px;
+}
+
+.container {
+    width: 80%;
+    margin: 20px auto;
+}
+
+.p {
+    text-align: center;
+    font-size: 14px;
+    padding-top: 140px;
+}
+
+
+/*TABLE OVERVIEW*/
+.row {
+    display: flex;
+}
+
+.col {
+    width: 100%;
+    margin-left: 15px;
+    padding: 5px 0px 5px 0px;
+}
+
+.prod {
+    width: 45%;
+}
+
+.ord {
+    width: 10%;
+}
+
+.stat {
+    width: 25%;
+}
+
+.price {
+    width: 20%;
+}
+
+.inStock {
+    color: green;
+}
+
+.lowInStock {
+    color: #8B8000;
+}
+
+.outOfStock {
+    color: red;
+}
+
+
+
+
+
+
+.dropdown-container {
+    position: relative;
+    width: 150px; /* Fixed width for consistency */
+    display: flex; /* Use flex to align the arrow inside .dropdown-display */
+    align-items: center; /* Center align the contents */
+ 
+    margin-left: 940px;
+}
+
+.dropdown-display {
+    width: 150px;
+    height: 40px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: white;
+    cursor: pointer;
+    position: relative;
+    text-align: center; /* Center the text */
+    display: flex; /* Use flexbox here to help with centering text and arrow */
+    align-items: center; /* Align the text and arrow vertically */
+    justify-content: center; /* Centers the text inside the dropdown */
+}
+
+.dropdown-list {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 100;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    opacity: 0; /* Start fully transparent */
+    visibility: hidden; /* Start hidden */
+    transform: translateY(-20px); /* Start slightly above */
+    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s; /* Animate opacity, transform, and visibility */
+    align-items: center;
+    text-align: center; /* Centers the text inside the dropdown */
+}
+
+
+    .dropdown-list.open {
+        opacity: 1; /* Fade in to fully opaque */
+        visibility: visible; /* Make visible */
+        transform: translateY(0px); /* Move to original position */
+    }
+
+
+    .dropdown-list.open {
+        display: block; /* Show dropdown */
+    }
+
+    .dropdown-list div {
+        padding: 10px;
+        cursor: pointer;
+    }
+
+        .dropdown-list div:hover {
+            background-color: #f0f0f0;
+        }
+
+
+.dropdown-display::after {
+    content: '';
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%) rotate(180deg); /* Arrow points up initially */
+    border: solid transparent;
+    border-width: 0 6px 6px 6px; /* Create a sharper arrow */
+    border-bottom-color: black; /* The tip of the arrow is black */
+    display: inline-block;
+    transition: transform 0.3s ease;
+}
