@@ -146,7 +146,7 @@
 
         <div class="eclipse-display" id="dropdownDisplay3" style="border:none;"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></div>
          <div class="eclipse-list" id="dropdownList3">
-             <a href="OrderItem.aspx"><div>View More</div></a>
+             <a href="OrderItem.aspx" style="text-decoration: none; color: #6F6F6F;"><div>View More</div></a>
         
        
        </div>
@@ -302,7 +302,7 @@
 
 
                     <div class="viewMoreSection">
-    <a href="../AdminPages/Order.aspx" class="viewMoreButton">BACK</a>
+    <   1..10  >
 </div>
 
 

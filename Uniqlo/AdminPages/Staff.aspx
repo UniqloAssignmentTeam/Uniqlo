@@ -325,9 +325,9 @@
 
 
 
-<div class="viewMoreSection">
-    <a class="viewMoreButton">LOAD MORE</a>
-</div>
+        <div class="viewMoreSection">
+            <   1..10  >
+        </div>
 
 
 

@@ -4,10 +4,9 @@
     margin: auto;
 }
 
-/* Header styling */
+/*HEADER*/
 .header {
     margin-top: 80px;
-    text-align: center;
 }
 
 /* General layout for product cards in the wishlist */
@@ -16,6 +15,7 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between; /* Ensures even spacing between items */
+    margin-bottom: 100px;
 }
 
     .wishlistContainer .product-price {

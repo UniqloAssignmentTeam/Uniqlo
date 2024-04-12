@@ -311,9 +311,9 @@
 
 
 
-        <div class="pagination">
-    <button class="page-btn" onclick="goToNextPage()">Next Page</button>
-</div>
+                    <div class="viewMoreSection">
+            <   1..10  >
+        </div>
 
 
 
@@ -550,6 +550,9 @@
         </div>
       </div>
   
+
+
+
  </div>
     
     <footer>
