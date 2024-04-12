@@ -63,9 +63,10 @@
 
         <!--LINE CHART-->
         <canvas id="myChart" style="width:100%;"></canvas>
-        
+        <div class="space"></div>
        </div>
       
+        
     <footer>
         <script src="../Javascript/lineChart.js"></script>
         <script src="../Javascript/barChartTtlOder.js"></script>

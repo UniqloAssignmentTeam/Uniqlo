@@ -226,3 +226,6 @@
     display: inline-block;
     transition: transform 0.3s ease;
 }
+.space {
+    margin-top: 50px;
+}

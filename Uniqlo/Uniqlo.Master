@@ -46,7 +46,12 @@
                     </a>
                     
                 </div>
-                <asp:TextBox ID="SearchBox" runat="server" CssClass="SearchBox" placeholder="Search" MaxLength="30"></asp:TextBox>
+                <div class="wrap-items-master-search-bar" style="margin-top: 30px;">
+                    <div class="masterSearch">
+                        <span class="searchMasterLabel"><i class="fa-solid fa-magnifying-glass"></i></span>
+                        <input class="searchMasterInput" type="search" placeholder="Search" />
+                    </div>
+                </div>
             </div>
         </div>
         <div class="siteMapPath">
