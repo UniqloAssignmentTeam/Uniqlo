@@ -89,6 +89,7 @@
     <Content Include="css\delivery.css" />
     <Content Include="css\home.css" />
     <Content Include="css\Login.css" />
+    <Content Include="css\logout.css" />
     <Content Include="css\master.css" />
     <Content Include="css\OrderItem.css" />
     <Content Include="css\product.css" />
