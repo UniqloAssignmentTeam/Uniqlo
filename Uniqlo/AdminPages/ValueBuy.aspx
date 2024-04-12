@@ -1,10 +1,10 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin.Master" AutoEventWireup="true" CodeBehind="ValueBuy.aspx.cs" Inherits="Uniqlo.AdminPages.ValueBuy" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="main" runat="server">
-    <head>
+    <header>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
         <link href="../css/ValueBuy.css" rel="stylesheet" />
         <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
-    </head>
+    </header>
     <div class="productBody">
         <header>
             <h2>Manage Value Buy Products</h2>
