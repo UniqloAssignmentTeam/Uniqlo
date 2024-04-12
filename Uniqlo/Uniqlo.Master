@@ -27,7 +27,7 @@
                 </asp:Menu>
             </div>
 
-            <div id="search" class="search">
+            <div id="search" class="searchMasterPagee">
                 <div id="search-icon" class="searchIcon">
                     <!--User-->
                     <div class="user-dropdown">
