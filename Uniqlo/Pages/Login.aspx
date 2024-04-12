@@ -1,34 +1,73 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Uniqlo.Master" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="Uniqlo.Pages.Login" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="main" runat="server">
 
-<head>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="../css/Login.css" rel="stylesheet" />
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<!DOCTYPE html> 
+<html lang="en"> 
 
-</head>
-<body>
-    <div class="mainBody">
-<div class="container">
-  <h2>Login</h2>
-  <form>
-    <div class="form-group">
-      <label for="email">Email:</label>
-        <asp:TextBox id="email" type="email" class="form-control" placeholder="Enter email" runat="server"></asp:TextBox>
-    </div>
-    <div class="form-group">
-      <label for="pwd">Password:</label>
-       <asp:TextBox id="password" type="password" class="form-control" placeholder="Enter password" runat="server"></asp:TextBox>
-    </div>
-    <div class="checkboxPassword">
-      <label><input type="checkbox"> Show My Password</label>
-    </div>
-      <asp:Button ID="BtnLogin" runat="server" Text="Login" OnClick="BtnLogin_Click" />
-      <p><a href="SignUp.aspx">Sign Up Here</a> if you haven't register an account</p>
-  </form>
-</div>
-</div>
+<head> 
+	<meta charset="UTF-8"> 
+	<meta name="viewport" content= 
+		"width=device-width,initial-scale=1.0"> 
+	<title>Social Media Login Form</title> 
+    <link href="../css/Login.css" rel="stylesheet" />
+	<link rel="stylesheet" href= 
+"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"> 
+</head> 
+
+<body> 
+	<div class="login-container"> 
+		<h1>GeeksforGeeks</h1> 
+		<h3>Social Media Login</h3> 
+		<div class="login-form"> 
+			<input type="text"
+				id="email"
+				placeholder="Email"
+				autocomplete="off" required> 
+			<input type="password"
+				id="password"
+				placeholder="Password"
+				autocomplete="off" required> 
+			<button onclick="submitForm()">Login</button> 
+		</div> 
+		<div class="social-buttons"> 
+			<button class="facebook"> 
+				<i class="fab fa-facebook-f"></i> 
+				Login with Facebook 
+			</button> 
+			<button class="twitter"> 
+				<i class="fab fa-twitter"></i> 
+				Login with Twitter 
+			</button> 
+			<button class="google"> 
+				<i class="fab fa-google"></i> 
+				Login with Google 
+			</button> 
+			<button class="instagram"> 
+				<i class="fab fa-instagram"></i> 
+				Login with Instagram 
+			</button> 
+		</div> 
+	</div> 
+
+	<script> 
+        function submitForm() {
+            const email =
+                document.getElementById('email').value;
+            const password =
+                document.getElementById('password').value;
+
+            window.alert('The form is submitted');
+
+            document.getElementById('email').value = '';
+            document.getElementById('password').value = '';
+        }
+    </script> 
 </body> 
+
+</html>
+
+
+
 
 
 

@@ -3,73 +3,123 @@
     position: relative;
     margin: auto;
 }
-/* Container styles */
-.container {
-    max-width: 400px;
-    margin: 50px auto;
+/*style.css*/
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+h1 {
+    color: green;
+}
+
+.login-container {
+    background-color: rgb(152, 204, 152);
+    border: 2px solid green;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: #f9f9f9;
-}
-
-/* Heading styles */
-h2 {
     text-align: center;
-}
-
-/* Form group styles */
-.form-group {
-    margin-bottom: 20px;
-    width: 95%;
-}
-
-/* Label styles */
-label {
-    font-weight: bold;
-}
-
-/* Textbox styles */
-.form-control {
+    color: green;
+    max-width: 400px;
     width: 100%;
-    padding: 10px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
 }
 
-/* Checkbox styles */
-.checkboxPassword {
-    margin-bottom: 20px;
-}
-
-    .checkboxPassword label {
-        font-weight: normal;
+    .login-container h2 {
+        margin-bottom: 20px;
     }
 
-/* Button styles */
-#BtnLogin {
-    width: 100%;
-    padding: 10px;
-    font-size: 16px;
-    border: none;
-    border-radius: 5px;
-    background-color: #007bff;
-    color: #fff;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 50px;
 }
 
-    #BtnLogin:hover {
-        background-color: #0056b3;
+    .login-form input {
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 12px;
     }
 
-/* Paragraph styles */
-p {
-    text-align: center;
+    .login-form button {
+        background-color: #4285f4;
+        color: #fff;
+        border: none;
+        padding: 10px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+    }
+
+.social-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 20px;
 }
 
-/* Link styles */
-a {
-    color: #007bff;
+    .social-buttons button {
+        color: #fff;
+        border: none;
+        padding: 10px;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+        .social-buttons button.facebook {
+            background-color: #4c70bd;
+        }
+
+        .social-buttons button.twitter {
+            background-color: #2ca7f3;
+        }
+
+        .social-buttons button.google {
+            background-color: #f15847;
+        }
+
+        .social-buttons button.instagram {
+            background-color: #e650a5;
+        }
+
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 9px;
+}
+
+    .social-icons i {
+        font-size: 24px;
+        color: #4285f4;
+    }
+
+i {
+    margin-right: 10px;
+}
+
+.social-icons i.facebook {
+    color: #3b5998;
+}
+
+.social-icons i.twitter {
+    color: #1da1f2;
+}
+
+.social-icons i.google {
+    color: #db4a39;
+}
+
+.social-icons i.instagram {
+    color: #C13584;
 }
