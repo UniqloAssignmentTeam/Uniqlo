@@ -12,6 +12,12 @@
         .dropdown-wrapper{
             margin-left:-24px;
         }
+        .inStock{
+            color:black;
+        }
+        .lowInStock{
+            color:black;
+        }
     </style>
     <div class="productBody">
 
@@ -89,9 +95,7 @@
         Staff ID
     </div>
   
-       <div class="col prodImageHeader">
-       <img src="../Images/uniqloKidsDresses.png" width="40" height="40" alt ="Product Image" Visible:"True" />
-    </div>
+      
         
     <div class="col name">
         Staff Name
@@ -131,26 +135,23 @@
   <div class="col productid">
       1001
   </div>
-     <div class="prodImage">
-  <img src="../Images/uniqloKidsDresses.png" width="40" height="40" alt ="Product Image" />
-</div>
-
+   
   <div class="col name">
-      Product Name   Product
+     Janice Lee Jia Minn
       </div>
 
    <div class="col inStock">
-     In Stock
+   Female
  </div>
 
   <div class="col price">
-      100.00
+      Manager
   </div>
   <div class="col gender">
-    Gender
+    019111111
 </div>
   <div class="col category">
-      Category
+      janiceljm-pm21@gmail.com
   </div>
 
 
@@ -176,26 +177,24 @@
       1002
  </div>
 
-   <div class="prodImage">
-    <img src="../Images/uniqloKidsDresses.png" width="40" height="40" alt ="Product Image" />
-</div>
+  
 
  <div class="col name">
-     Product Name
+     Jeffer Ooi Zhe Feng
  </div>
 
      <div class="col lowInStock">
-     Low In Stock
+    Male
  </div>
 
  <div class="col price">
-    99.00
+   Admin
  </div>
    <div class="col gender">
-    Gender
+    0191111111
 </div>
  <div class="col category">
-     Category
+     jefferozf-pm21@gmail.com
  </div>
 
     <div class="col eclipse-container">
@@ -219,26 +218,24 @@
       1003
  </div>
 
-   <div class="prodImage">
-    <img src="../Images/uniqloKidsDresses.png" width="40" height="40" alt ="Product Image" />
-</div>
+   
 
  <div class="col name">
-     Product Name
+     Oh Beng Yee
  </div>
 
    <div class="col stat inStock">
-    In Stock
+    Male
 </div>
 
  <div class="col price">
-    130.00
+    Admin
  </div>
    <div class="col gender">
-    Gender
+    0191111111
 </div>
  <div class="col category">
-     Category
+     ohby-pv21@gmail.com
  </div>
 
              <div class="col eclipse-container">
@@ -257,26 +254,24 @@
       1004
  </div>
 
-   <div class="prodImage">
-    <img src="../Images/uniqloKidsDresses.png" width="40" height="40" alt ="Product Image" />
-</div>
+   
 
  <div class="col name">
-     Product Name
+     Tan Chee Han
       </div>
 
   <div class="col stat inStock">
-     In Stock
+     Male
  </div>
 
  <div class="col price">
-     12.00
+     Admin
  </div>
    <div class="col gender">
-    Gender
+    0191111111
 </div>
  <div class="col category">
-      jefferozf@gmail.com
+      tanch-pm21@gmail.com
  </div>
 
                <div class="col eclipse-container">
@@ -294,26 +289,24 @@
     1005
 </div>
 
-   <div class="prodImage">
-    <img src="../Images/uniqloKidsDresses.png" width="40" height="40" alt ="Product Image" />
-</div>
+   
 
 <div class="col name">
-    Product Name
+    Yip Yong
 </div>
 
       <div class="col lowInStock">
-     Low In Stock
+     Male
  </div>
 
 <div class="col price">
-    112.00
+    Admin
 </div>
           <div class="col gender">
-    Gender
+    019111111
 </div>
 <div class="col category">
-  asdasd
+  yipy-pm21@gmail.com
 </div>
 
            
@@ -332,11 +325,9 @@
 
 
 
-        <div class="pagination">
-    <button class="page-btn" onclick="goToNextPage()">Next Page</button>
+<div class="viewMoreSection">
+    <a class="viewMoreButton">LOAD MORE</a>
 </div>
-
-
 
 
 
