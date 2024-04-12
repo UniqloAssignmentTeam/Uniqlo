@@ -46,18 +46,22 @@
             <div class="column">
                 <div class="card">
                     <div class="img">
-                        <img src="../Images/uniqloWomenTop.jpg" class="img" alt="img" draggable="false" />
+                        <a href="Categories/Women/Tops.aspx" class="tooltip">
+                            <img src="../Images/womenTopBanner.png" class="img" alt="img" draggable="false"/>
+                            <span class="tooltiptext">Click Here</span>
+                        </a>
                     </div>
-                    <h3>Tops</h3>
                 </div>
             </div>
 
             <div class="column">
                 <div class="card">
                     <div class="img">
-                        <img src="../Images/uniqloWomenPants.jpg" class="img" alt="img" draggable="false"/>
+                        <a href="Categories/Women/Bottoms.aspx" class="tooltip">
+                            <img src="../Images/womanBottomBanner.png" class="img" alt="img" draggable="false"/>
+                            <span class="tooltiptext">Click Here</span>
+                        </a>
                     </div>
-                    <h3>Bottoms</h3>
                 </div>
             </div>
         </div>
@@ -68,18 +72,22 @@
             <div class="column">
                 <div class="card">
                     <div class="img">
-                        <img src="../Images/uniqloMenTop.jpg" class="img" alt="img" draggable="false" />
+                        <a href="Categories/Men/Tops.aspx" class="tooltip">
+                            <img src="../Images/menTopBanner.png" class="img" alt="img" draggable="false"/>
+                            <span class="tooltiptext">Click Here</span>
+                        </a>
                     </div>
-                    <h3>Tops</h3>
                 </div>
             </div>
 
             <div class="column">
                 <div class="card">
                     <div class="img">
-                        <img src="../Images/uniqloMenPants.jpg" class="img" alt="img" draggable="false" />
+                        <a href="Categories/Men/Bottoms.aspx" class="tooltip">
+                            <img src="../Images/menBottomBanner.jpg" class="img" alt="img" draggable="false"/>
+                            <span class="tooltiptext">Click Here</span>
+                        </a>
                     </div>
-                    <h3>Bottoms</h3>
                 </div>
             </div>
         </div>

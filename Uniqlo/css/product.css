@@ -10,111 +10,63 @@
 }
 
 /*CARD SLIDER*/
-.wrapper {
-    max-width: 1100px;
-    width: 100%;
-    position: relative;
-    margin: auto;
-    margin-top: 20px;
+/* Slideshow container */
+.slideshow-container {
+  max-width: 1200px;
+  position: relative;
+  margin: auto;
 }
 
-.wrapper i {
-    top: 50%;
-    height: 50px;
-    width: 50px;
-    cursor: pointer;
-    font-size: 1.25rem;
-    position: absolute;
-    text-align: center;
-    line-height: 50px;
-    background: #fff;
-    border-radius: 50%;
-    box-shadow: 0 3px 6px rgba(0,0,0,0.23);
-    transform: translateY(-50%);
-    transition: transform 0.1s linear;
+/* Next & previous buttons */
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  padding: 16px;
+  margin-top: -22px;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
 }
 
-.wrapper i:active {
-    transform: translateY(-50%) scale(0.85);
+/* Position the "next button" to the right */
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
 }
 
-.wrapper i:first-child {
-    left: -22px;
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover, .next:hover {
+  background-color: rgba(0,0,0,0.8);
 }
 
-.wrapper i:last-child {
-    right: -22px;
+/* Number text (1/3 etc) */
+.numbertext {
+  color: #f2f2f2;
+  font-size: 12px;
+  padding: 8px 12px;
+  position: absolute;
+  top: 0;
 }
 
-.wrapper .carousel {
-    display: grid;
-    grid-auto-flow: column;
-    grid-auto-columns: calc((100% / 3) - 12px);
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    gap: 16px;
-    border-radius: 8px;
-    scroll-behavior: smooth;
-    scrollbar-width: none;
+/* Fading animation */
+.fade {
+  animation-name: fade;
+  animation-duration: 1.5s;
 }
 
-.carousel::-webkit-scrollbar {
-    display: none;
+@keyframes fade {
+  from {opacity: .4} 
+  to {opacity: 1}
 }
 
-.carousel.no-transition {
-    scroll-behavior: auto;
-}
-
-.carousel.dragging {
-    scroll-snap-type: none;
-    scroll-behavior: auto;
-}
-
-.carousel.dragging .card {
-    cursor: grab;
-    user-select: none;
-}
-
-.carousel :where(.card, .img) {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.carousel .card {
-    scroll-snap-align: start;
-    height: 342px;
-    list-style: none;
-    background: #fff;
-    cursor: pointer;
-    padding-bottom: 15px;
-    flex-direction: column;
-    border-radius: 8px;
-}
-
-.carousel .card .img {
-    height: 250px;
-    width: 250px;
-    border-radius: 5px;
-}
-
-.card .img img {
-    width: 250px;
-    height: 250px;
-    border-radius: 5px;
-    object-fit: cover;
-}
-
-.carousel .card h2 {
-    font-weight: 500;
-    font-size: 1.56rem;
-    margin: 30px 0 5px;
-}
-
-.carousel .card span {
-    color: #6A6D78;
-    font-size: 1.31rem;
+/* On smaller screens, decrease text size */
+@media only screen and (max-width: 300px) {
+  .prev, .next,.text {font-size: 11px}
 }
 
 /*LIMITED OFFER CARD*/
@@ -348,24 +300,28 @@
         font-weight: 400;
     }
 
+.product-price{
+    display: flex;
+}
+
 .last-price span {
     color: #f64749;
     text-decoration: line-through;
 }
 
 .new-price span {
-    color: #256eff;
+    padding-left: 10px;
 }
 
 .product-detail h2 {
     text-transform: capitalize;
     color: #12263a;
-    padding-bottom: 0.6rem;
+    margin-top: -7px;
 }
 
 .product-detail p {
     font-size: 0.9rem;
-    padding: 0.3rem;
+    padding: 0px 0px 10px 0px;
     opacity: 0.8;
 }
 
@@ -453,7 +409,8 @@
 }
 
 .purchase-info input[type="number"] {
-    height: 50px;
+    height: 40px;
+    margin-top: -12px;
 }
 
 
@@ -588,6 +545,7 @@
 /*SIZE SELECTION*/
 .productQtySizeSection{
     display: flex;
+    margin-top: -10px;
 }
 
 .custom-radio-list input[type='radio'] {
@@ -598,10 +556,13 @@
 
 .custom-radio-list label {
     border: 2px solid black;
-    padding: 10px;
+    padding: 7px 10px 10px 10px;
     margin: 0 10px 0 0;
     display: inline-block;
     cursor: pointer;
+    width: 40px;
+    height: 40px;
+    margin-top: -12px;
 }
 
 .custom-radio-list input[type='radio']:checked + label {
@@ -993,4 +954,49 @@
     text-align: center;
     border-top: 1px solid grey;
     padding:30px 0px;
+}
+
+/*PURCHASE COLOR SECTION*/
+.productColorSection {
+    width: 100%;
+    height: 80px;
+}
+
+.purchase-color {
+    width: 100%;
+    height: 100%;
+}
+
+.purchase-color-item{
+    display: flex;
+    margin-top: -10px;
+}
+
+.purchase-color-items {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+    border: 1px solid #d4cbd0;
+    border-radius: 99px;
+}
+
+.color-radio-list input[type="radio"] + label {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+    border: 1px solid #d4cbd0;
+    border-radius: 50%;
+    cursor: pointer;
+    display: inline-block;
+    background-color: #FFF; 
+    text-indent: -9999px;
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+.color-radio-list input[type="radio"] {
+    display: none; 
+}
+
+.color-radio-list input[type="radio"]:checked + label {
+    box-shadow: 0px 0px 10px 3px rgba(0,0,0,0.2); 
 }

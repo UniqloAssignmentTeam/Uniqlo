@@ -119,6 +119,8 @@
     <Content Include="Images\Categories\Woman\Tops\AIRismCottonShortSleeveT-Shirt2.jpg" />
     <Content Include="Images\Categories\Woman\Tops\AIRismCottonShortSleeveT-Shirt3.jpg" />
     <Content Include="Images\Categories\Woman\Tops\AIRismCottonShortSleeveT-Shirt4.jpg" />
+    <Content Include="Images\menBottomBanner.jpg" />
+    <Content Include="Images\menTopBanner.png" />
     <Content Include="Images\storeLocator.jpg" />
     <Content Include="Images\Uniqlo-Logos.png" />
     <Content Include="Images\uniqloKidsDresses.png" />
@@ -137,8 +139,11 @@
     <Content Include="Images\uniqloWomenTop.jpg" />
     <Content Include="Images\valueBuy.jpg" />
     <Content Include="Images\valueBuyBanner.jpg" />
+    <Content Include="Images\womanBottomBanner.png" />
+    <Content Include="Images\womenTopBanner.png" />
     <Content Include="Javascript\addToCartButton.js" />
     <Content Include="Javascript\barChartTtlOder.js" />
+    <Content Include="Javascript\colorRadioList.js" />
     <Content Include="Javascript\ContactUs.js" />
     <Content Include="Javascript\lineChart.js" />
     <Content Include="Javascript\modalProduct.js" />
@@ -168,6 +173,7 @@
     <Content Include="Pages\Invoice.aspx" />
     <Content Include="Pages\Login.aspx" />
     <Content Include="Pages\Logout.aspx" />
+    <Content Include="Pages\OrderHistory.aspx" />
     <Content Include="Pages\Payment.aspx" />
     <Content Include="Pages\Profile.aspx" />
     <Content Include="Pages\SignUp.aspx" />
@@ -371,6 +377,13 @@
     </Compile>
     <Compile Include="Pages\Logout.aspx.designer.cs">
       <DependentUpon>Logout.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\OrderHistory.aspx.cs">
+      <DependentUpon>OrderHistory.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\OrderHistory.aspx.designer.cs">
+      <DependentUpon>OrderHistory.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Payment.aspx.cs">
       <DependentUpon>Payment.aspx</DependentUpon>

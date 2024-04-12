@@ -534,8 +534,8 @@
                   </div>
 
                   <div class = "product-price">
-                    <p class = "last-price">Old Price: <span>RM 59.90</span></p>
-                    <p class = "new-price">New Price: <span id="modalProductPrice" class="product-price"></span></p>
+                    <p class = "last-price">Price: <span>RM 59.90</span></p>
+                    <p class = "new-price"><span id="modalProductPrice" class="product-price"></span></p>
                   </div>
 
                   <div class = "product-detail">
@@ -548,6 +548,20 @@
                       <li>Shipping Fee: <span>Free of charge for order with total value above RM150. Additional RM20 shipping fees for order below RM150.</span></li>
                     </ul>
                   </div>
+
+                  <div class="productColorSection">
+                        <div class="purchase-color">
+                            <h3>Color:
+                                <label id="color">White</label></h3>
+                            <div class="purchase-color-item">
+                                <asp:RadioButtonList ID="RadioButtonList2" runat="server" RepeatDirection="Horizontal" ValidateRequestMode="Enabled" Visible="True" CssClass="color-radio-list">
+                                    <asp:ListItem Value="#"></asp:ListItem>
+                                    <asp:ListItem Value="#"></asp:ListItem>
+                                    <asp:ListItem Value="#"></asp:ListItem>
+                                </asp:RadioButtonList>
+                            </div>
+                        </div>
+                    </div>
 
                   <div class="productQtySizeSection">
                       <div class="purchase-size">
@@ -893,5 +907,6 @@
         <script src="../../../Javascript/productSize.js"></script>
         <script src="../../../Javascript/productReview.js"></script>
         <script src="../../../Javascript/productAdminDDL.js"></script>
+        <script src="../../../Javascript/colorRadioList.js"></script>
     </footer>
 </asp:Content>

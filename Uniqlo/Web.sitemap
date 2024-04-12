@@ -13,7 +13,10 @@
 	  </siteMapNode>
     <siteMapNode url="Pages/WishList.aspx" title="Wish List"/>
     <siteMapNode url="Pages/ValueBuy.aspx" title="Value Buy"/>
+    <siteMapNode url="Pages/OrderHistory.aspx" title="Order History"/>
+	 <!--
     <siteMapNode url="Pages/AboutUs.aspx" title="About Us"/>
+	-->
     <siteMapNode url="Pages/ContactUs.aspx" title="Contact Us"/>
   </siteMapNode>
 </siteMap>
