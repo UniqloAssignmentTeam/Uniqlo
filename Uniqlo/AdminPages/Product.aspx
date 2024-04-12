@@ -30,8 +30,8 @@
                </div>
             </div>
             <div class="btnExcel-Add">
-               <button class="excel-export">Export</button>
-                <a href="AddProduct.aspx" style="text-decoration:none;">  <div class="product-add"> ➕ Add Product</div> </a>
+               <button class="excel-export" style="color: #6F6F6F; font-size: 1rem; font-weight: 400;">Export</button>
+               <div  class="product-add"><a href="AddProduct.aspx" style="color: #6F6F6F; text-decoration: none; font-size: 1rem; font-weight: 400;">➕ Add Product</a></div>
             </div>
          </div>
       </div>
@@ -89,8 +89,8 @@
             <div class="col eclipse-container" onclick="toggleDropdown('dropdownList3', 'dropdownDisplay3')">
                <div class="eclipse-display" id="dropdownDisplay3" style="border:none;"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></div>
                <div class="eclipse-list" id="dropdownList3">
-                  <div onclick="showModal('viewMoreModalContainer')">View More</div>
-                   <a href="UpdateProduct.aspx" style="text-decoration:none;"><div>Update</div></a>
+                  <div>View More</div>
+                  <div><a href="UpdateProduct.aspx" style="color: #6F6F6F; text-decoration: none;">Update</a></div>
                   <div>Delete</div>
                </div>
             </div>
@@ -207,122 +207,10 @@
          </div>
       </div>
       
-                    <div class="viewMoreSection">
-    <a href="../AdminPages/Product.aspx" class="viewMoreButton">BACK</a>
-            </div>
-      <div id="updateModalContainer" class="modal">
-         <div class="modal-content">
-            <span class="close" onclick="closeModal('updateModalContainer')">&times;</span>
-            <div class = "card-wrapper">
-               <div class = "productItemCard">
-                  <!-- card left -->
-                  <div class = "product-imgs">
-                     <div class = "img-display">
-                        <div class = "img-showcase">
-                           <img src="../../../Images/Categories/Woman/Tops/AIRismCottonShortSleeveT-Shirt1.jpg" alt = "uniqlo image"/>
-                           <img src="../../../Images/Categories/Woman/Tops/AIRismCottonShortSleeveT-Shirt2.jpg" alt = "uniqlo image"/>
-                           <img src="../../../Images/Categories/Woman/Tops/AIRismCottonShortSleeveT-Shirt3.jpg" alt = "uniqlo image"/>
-                           <img src="../../../Images/Categories/Woman/Tops/AIRismCottonShortSleeveT-Shirt4.jpg" alt = "uniqlo image"/>
-                        </div>
-                     </div>
-                     <div class = "img-select">
-                        <div class = "img-item">
-                           <a href = "#" data-id = "1">
-                           <img src="../../../Images/Categories/Woman/Tops/AIRismCottonShortSleeveT-Shirt1.jpg" alt = "uniqlo image"/>
-                           </a>
-                        </div>
-                        <div class = "img-item">
-                           <a href = "#" data-id = "2">
-                           <img src="../../../Images/Categories/Woman/Tops/AIRismCottonShortSleeveT-Shirt2.jpg" alt = "uniqlo image"/>
-                           </a>
-                        </div>
-                        <div class = "img-item">
-                           <a href = "#" data-id = "3">
-                           <img src="../../../Images/Categories/Woman/Tops/AIRismCottonShortSleeveT-Shirt3.jpg" alt = "uniqlo image"/>
-                           </a>
-                        </div>
-                        <div class = "img-item">
-                           <a href = "#" data-id = "4">
-                           <img src="../../../Images/Categories/Woman/Tops/AIRismCottonShortSleeveT-Shirt4.jpg" alt = "uniqlo image"/>
-                           </a>
-                        </div>
-                     </div>
-                  </div>
-                  <!-- card right -->
-                  <div class = "product-content">
-                     <h2 class = "product-title product-name">Red Top</h2>
-                     <div class = "product-detail">
-                        <div class="product-details-info">
-                           <div class="product-details-head">
-                              Item Description
-                           </div>
-                           <div class="product-details-items">
-                              Item Description Here!
-                           </div>
-                        </div>
-                        <div class="product-details-info">
-                           <div class="form-group">
-                              <span>Product ID</span>
-                              <input class="form-field" type="text" disabled>
-                           </div>
-                        </div>
-                        <div class="product-details-info">
-                           <div class="form-group">
-                              <span>Price</span>
-                              <input class="form-field" type="text">
-                           </div>
-                        </div>
-                        <div class="product-details-info">
-                           <div class="form-group">
-                              <span>Availability</span>
-                              <input class="form-field" type="text" >
-                           </div>
-                        </div>
-                        <div class="product-details-info">
-                           <div class="form-group">
-                              <span>Category</span>
-                              <input class="form-field" type="text" >
-                           </div>
-                        </div>
-                        <div class="product-details-info">
-                           <div class="form-group">
-                              <span>Gender</span>
-                              <input class="form-field" type="text" >
-                           </div>
-                        </div>
-                     </div>
-                     <div class="productQtySizeSection">
-                        <div class="quantityHeader">QUANTITY</div>
-                        <div class="purchase-size-item">
-                           <div class="form-group">
-                              <span>S:</span>
-                              <input class="form-field" type="text" >
-                           </div>
-                        </div>
-                        <div class="purchase-size">
-                           <div class="form-group">
-                              <span>M:</span>
-                              <input class="form-field" type="text" >
-                           </div>
-                        </div>
-                        <div class="purchase-size">
-                           <div class="form-group">
-                              <span>L:</span>
-                              <input class="form-field" type="text" >
-                           </div>
-                        </div>
-                        <div class="purchase-size">
-                           <div class="form-group">
-                              <span>XL:</span>
-                              <input class="form-field" type="text" >
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-            </div>
-         </div>
-      </div>
+        <div class="viewMoreSection">
+            <   1..10  >
+        </div>
+  
    </div>
    <div id="viewMoreModalContainer" class="modal">
       <div class="modal-content">
