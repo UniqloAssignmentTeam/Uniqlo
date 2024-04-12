@@ -1,6 +1,11 @@
 ﻿    <%@ Page Title="" Language="C#" MasterPageFile="~/Admin.Master" AutoEventWireup="true" CodeBehind="AddProduct.aspx.cs" Inherits="Uniqlo.AdminPages.AddProduct" %>
     <asp:Content ID="Content1" ContentPlaceHolderID="main" runat="server">
     
+        <header>
+            <link href="../css/addProduct.css" rel="stylesheet" />
+        </header>
+
+
         <style>
             .Body {
                 max-width: 1100px;
@@ -10,31 +15,38 @@
             .modal-content {
         background-color: #fefefe;
         margin: 5% auto; /* 5% from the top and centered */
-        padding: 80px 20px 20px 20px;
+        padding: 10px 20px 20px 20px;
         border: 1px solid #888;
         width: 80%; /* Could be more or less, depending on screen size */
         border-radius: 5px;
         margin-bottom: 120px;
     }
-            
+            .product-name{
+               
+                border:1px solid black;
+               padding-left:400px;
+            }
 
-
-        
         </style>
+
+
         <div class="Body">
-               <div id="addProductModalContainer" class="modal">
+            <div class="container">
+                 <div class = "productItemCard">
+    <h2 class = "product-title product-name">Uniqlo Add Product</h2>
+ </div>
           <div class="modal-content">
-             <div class = "card-wrapper">
-                <div class = "productItemCard">
-                   <!-- card left -->
-                   <h2 class = "product-title product-name">Uniqlo Add Product</h2>
-                </div>
-                <!-- card right -->
+
+
+
                 <div class = "product-content">
+
+
                    <div class="form-group">
                       <span>Product Name</span>
                       <input class="form-field" type="text" >
                    </div>
+
                    <div class = "product-detail">
                       <div class="form-group">
                          <span>Description    </span>   
@@ -84,11 +96,20 @@
                    </div>
                
                 </div>
-             </div>
-          </div>
-       </div>
 
-        </div>
+
+
+
+
+
+
+
+
+             </div>
+       </div>
+</div>
+
+
 
 <script>
     // Function to create a new table for a color
