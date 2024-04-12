@@ -60,24 +60,6 @@
                     <h3>Bottoms</h3>
                 </div>
             </div>
-  
-            <div class="column">
-                <div class="card">
-                     <div class="img">
-                         <img src="../Images/uniqloWomanOuterwear.jpg" class="img" alt="img" draggable="false"/>
-                    </div>
-                    <h3>Outerwear</h3>
-                </div>
-            </div>
-  
-            <div class="column">
-                <div class="card">
-                    <div class="img">
-                        <img src="../Images/uniqloWomanDress.jpg" class="img" alt="img" draggable="false" />
-                    </div>
-                    <h3>Dresses and Skirts</h3>
-                </div>
-            </div>
         </div>
 
         <!--MEN SECTION-->
@@ -98,64 +80,6 @@
                         <img src="../Images/uniqloMenPants.jpg" class="img" alt="img" draggable="false" />
                     </div>
                     <h3>Bottoms</h3>
-                </div>
-            </div>
-  
-            <div class="column">
-                <div class="card">
-                     <div class="img">
-                         <img src="../Images/uniqloMenOuterwear.jpg" class="img" alt="img" draggable="false" />
-                    </div>
-                    <h3>Outerwear</h3>
-                </div>
-            </div>
-  
-            <div class="column">
-                <div class="card">
-                    <div class="img">
-                        <img src="../Images/uniqloMenAccessories.jpg" class="img" alt="img" draggable="false" />
-                    </div>
-                    <h3>Accessories</h3>
-                </div>
-            </div>
-        </div>
-
-        <!--KID SECTION-->
-        <h2>Kids</h2>
-        <div class="row">
-            <div class="column">
-                <div class="card">
-                    <div class="img">
-                        <img src="../Images/uniqloKidsTop.jpg" class="img" alt="img" draggable="false" />
-                    </div>
-                    <h3>Tops</h3>
-                </div>
-            </div>
-
-            <div class="column">
-                <div class="card">
-                    <div class="img">
-                        <img src="../Images/uniqloKidsPants.png" class="img" alt="img" draggable="false" />
-                    </div>
-                    <h3>Bottoms</h3>
-                </div>
-            </div>
-  
-            <div class="column">
-                <div class="card">
-                     <div class="img">
-                         <img src="../Images/uniqloKidsOuterwear.jpeg" class="img" alt="img" draggable="false" />
-                    </div>
-                    <h3>Outerwear</h3>
-                </div>
-            </div>
-  
-            <div class="column">
-                <div class="card">
-                    <div class="img">
-                        <img src="../Images/uniqloKidsDresses.png" class="img" alt="img" draggable="false" />
-                    </div>
-                    <h3>Dresses and Skirts</h3>
                 </div>
             </div>
         </div>

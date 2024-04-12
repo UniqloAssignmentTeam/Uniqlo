@@ -5,20 +5,10 @@
 		  <siteMapNode url="Pages/Categories/Women/Main.aspx" title="Women">
 			  <siteMapNode url="Pages/Categories/Women/Tops.aspx" title="Tops"/>
 			  <siteMapNode url="Pages/Categories/Women/Bottoms.aspx" title="Bottoms"/>
-			  <siteMapNode url="Pages/Categories/Women/Outerwear.aspx" title="Outerwear"/>
-			  <siteMapNode url="Pages/Categories/Women/DressesSkirt.aspx" title="Dresses and Skirts"/>
 		  </siteMapNode>
 		  <siteMapNode url="Pages/Categories/Men/Main.aspx" title="Men">
 			  <siteMapNode url="Pages/Categories/Men/Tops.aspx" title="Tops"/>
 			  <siteMapNode url="Pages/Categories/Men/Bottoms.aspx" title="Bottoms"/>
-			  <siteMapNode url="Pages/Categories/Men/Outerwear.aspx" title="Outerwear"/>
-			  <siteMapNode url="Pages/Categories/Men/Accessories.aspx" title="Accessories"/>
-		  </siteMapNode>
-		  <siteMapNode url="Pages/Categories/Kids/Main.aspx" title="Kids">
-			  <siteMapNode url="Pages/Categories/Kids/Tops.aspx" title="Tops"/>
-			  <siteMapNode url="Pages/Categories/Kids/Bottoms.aspx" title="Bottoms"/>
-			  <siteMapNode url="Pages/Categories/Kids/Outerwear.aspx" title="Outerwear"/>
-			  <siteMapNode url="Pages/Categories/Kids/DressesSkirt.aspx" title="Dresses and Skirts"/>
 		  </siteMapNode>
 	  </siteMapNode>
     <siteMapNode url="Pages/WishList.aspx" title="Wish List"/>
