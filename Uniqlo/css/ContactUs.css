@@ -46,10 +46,10 @@
     background-color: #e0f7fa; /* Light blue to mimic a message bubble */
     padding: 10px 15px;
     border-radius: 20px;
-    max-width: 80%;
+    max-width: 60%;
     margin-bottom: 10px;
     color: #333;
-    font-size: 0.9rem;
+    font-size: 16px;
     margin-left: auto; /* Align to the right */
     position: relative;
 }

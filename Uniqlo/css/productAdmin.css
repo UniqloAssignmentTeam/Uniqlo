@@ -6,14 +6,11 @@
 
 }
 
-.productQtySizeSection {
+.addProductQtySizeSection {
     display: none; /* Hide the section by default */
 }
 
-/* Style for radio buttons */
-.color-radio input[type="radio"] {
-    display: none;
-}
+
 
 .color-radio label {
     display: inline-block;
@@ -334,7 +331,7 @@
     top: 100%;
     left: 0;
     z-index: 100;
-    width: 100%;
+    width: 150px;
     border: 1px solid #ccc;
     border-radius: 5px;
     background-color: white;
@@ -532,11 +529,6 @@
 
 
 
-
-.product-content {
-   
- 
-}
 
 .product-content {
     margin: 0px;

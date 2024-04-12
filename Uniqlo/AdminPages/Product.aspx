@@ -31,7 +31,7 @@
             </div>
             <div class="btnExcel-Add">
                <button class="excel-export">Export</button>
-               <div  class="product-add" onclick="showModal('addProductModalContainer')">➕ Add Product</div>
+                <a href="AddProduct.aspx" style="text-decoration:none;">  <div class="product-add"> ➕ Add Product</div> </a>
             </div>
          </div>
       </div>
@@ -90,11 +90,13 @@
                <div class="eclipse-display" id="dropdownDisplay3" style="border:none;"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></div>
                <div class="eclipse-list" id="dropdownList3">
                   <div onclick="showModal('viewMoreModalContainer')">View More</div>
-                  <div onclick="showModal('updateModalContainer')">Update</div>
+                   <a href="UpdateProduct.aspx" style="text-decoration:none;"><div>Update</div></a>
                   <div>Delete</div>
                </div>
             </div>
          </div>
+          
+
          <!--Product 2-->
          <div class="row">
             <div class="col productid">
@@ -204,9 +206,10 @@
             </div>
          </div>
       </div>
-      <div class="pagination">
-         <button class="page-btn" onclick="goToNextPage()">Next Page</button>
-      </div>
+      
+                    <div class="viewMoreSection">
+    <a href="../AdminPages/Product.aspx" class="viewMoreButton">BACK</a>
+            </div>
       <div id="updateModalContainer" class="modal">
          <div class="modal-content">
             <span class="close" onclick="closeModal('updateModalContainer')">&times;</span>
@@ -402,7 +405,7 @@
                         <div class="product-details-items"> Female</div>
                      </div>
                   </div>
-                  <div class="productQtySizeSection">
+                  <div class="viewProductQtySizeSection">
                      <div class="quantityHeader">QUANTITY</div>
                       <div class="color-radio">
     <!-- Radio buttons -->
@@ -521,7 +524,7 @@
     <button id="addColorButton">Add color</button>
 </div>
 
-<div class="productQtySizeSection">
+<div class="addProductQtySizeSection">
    <div class="quantityHeader">QUANTITY</div>
    <div class="purchase-size-item">
       <div class="form-group">

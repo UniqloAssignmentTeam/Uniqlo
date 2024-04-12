@@ -104,19 +104,23 @@
   left: -999999px;
   position: absolute;
   top: -999999px;
+  display: none;
 }
 
-.wishlist-heart-group input[type="checkbox"] + label svg {
-  transform: rotate(0deg);
-}
+    .wishlist-heart-group input[type="checkbox"] + label svg {
+        transform: rotate(0deg);
+        fill: #ccc;
+    }
 
 .wishlist-heart-group input[type="checkbox"]:checked + label svg {
   animation: wishlist-heart-wiggle 400ms 50ms forwards ease-in-out;
+  fill: red;
 }
 
 .wishlist-heart-group input[type="checkbox"]:checked + label svg #heart-path {
   animation: wishlist-heart-add 300ms forwards;
   stroke: rgba(248, 51, 42, 1);
+  fill: red; 
 }
 
 .wishlist-heart-group input[type="checkbox"] + label svg #heart-path {
@@ -127,11 +131,6 @@
   transition: stroke 150ms linear;
   stroke: rgba(248, 51, 42, 1);
 }
-
-    .wishlist-heart-group input[type="checkbox"]:checked + label .heart-svg #heart-path {
-        fill: red; /* Fill the heart icon with red */
-        stroke: red;
-    }
 
 .wishlist-heart-group input[type="checkbox"] + label:before {
   align-items: center;
@@ -165,6 +164,10 @@
   display: inline-block;
   position: relative;
   width: 100%;
+}
+
+#wishlistMessage {
+    color: red;
 }
 
 @keyframes wishlist-heart-wiggle {
@@ -453,7 +456,7 @@
 .product-detail h2 {
     text-transform: capitalize;
     color: #12263a;
-    padding-bottom: 0.6rem;
+    margin-top: -7px;
 }
 
 .product-detail p {
@@ -546,7 +549,8 @@
 }
 
 .purchase-info input[type="number"] {
-    height: 50px;
+    height: 40px;
+    margin-top: -12px;
 }
 
 
@@ -679,8 +683,9 @@
 }
 
 /*SIZE SELECTION*/
-.productQtySizeSection{
+.productQtySizeSection {
     display: flex;
+    margin-top: -10px;
 }
 
 .custom-radio-list input[type='radio'] {
@@ -691,11 +696,15 @@
 
 .custom-radio-list label {
     border: 2px solid black;
-    padding: 10px;
+    padding: 7px 10px 10px 10px;
     margin: 0 10px 0 0;
     display: inline-block;
     cursor: pointer;
+    width: 40px;
+    height: 40px;
+    margin-top: -12px;
 }
+
 
 .custom-radio-list input[type='radio']:checked + label {
     background-color: black; 
@@ -899,4 +908,75 @@
 .viewMoreSection {
     text-align: center;
     margin: 60px 0px 60px 0px;
+}
+
+
+/*PURCHASE COLOR SECTION*/
+.productColorSection {
+    width: 100%;
+    height: 80px;
+}
+
+.purchase-color {
+    width: 100%;
+    height: 100%;
+}
+
+.purchase-color-item{
+    display: flex;
+    margin-top: -10px;
+}
+
+.purchase-color-items {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+    border: 1px solid #d4cbd0;
+    border-radius: 99px;
+}
+
+.color-radio-list input[type="radio"] + label {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+    border: 1px solid #d4cbd0;
+    border-radius: 50%;
+    cursor: pointer;
+    display: inline-block;
+    background-color: #FFF; 
+    text-indent: -9999px;
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+.color-radio-list input[type="radio"] {
+    display: none; 
+}
+
+.color-radio-list input[type="radio"]:checked + label {
+    box-shadow: 0px 0px 10px 3px rgba(0,0,0,0.2); 
+}
+
+
+
+.limitedOfferContainer .product-price {
+    font-size: 1rem;
+    font-weight: 700;
+    display: flex;
+}
+
+    .product-price span {
+        font-weight: 400;
+    }
+
+.product-price{
+    display: flex;
+}
+
+.last-price span {
+    color: #f64749;
+    text-decoration: line-through;
+}
+
+.new-price span {
+    padding-left: 10px;
 }

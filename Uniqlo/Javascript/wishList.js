@@ -94,3 +94,64 @@ function showHeartIcons() {
         icon.style.display = ''; // Reset display property
     });
 }
+
+document.addEventListener('DOMContentLoaded', function () {
+    var wishlistLabels = document.querySelectorAll('.wishlist-heart-group label');
+
+    wishlistLabels.forEach(function (label) {
+        label.addEventListener('click', function (event) {
+            event.preventDefault(); // Prevent the default action
+            var checkbox = this.previousElementSibling; // Get the checkbox related to this label
+
+            if (checkbox) {
+                checkbox.checked = !checkbox.checked; // Toggle the checkbox state
+                toggleHeartIcon(checkbox, checkbox.checked); // Toggle the heart icon color based on checkbox state
+                event.stopPropagation(); // Stop further propagation of the event
+            }
+        });
+    });
+
+    function toggleHeartIcon(checkbox, isChecked) {
+        var heartPath = checkbox.nextElementSibling.querySelector('path');
+        if (isChecked) {
+            heartPath.style.fill = 'white';
+            heartPath.style.stroke = 'grey'; // Change the stroke to grey when checked
+        } else {
+            heartPath.style.fill = 'red';
+            heartPath.style.stroke = 'red'; // Revert the stroke to red when unchecked
+        }
+    }
+
+
+
+    const addToCartButtons = document.querySelectorAll('.btnMoveToCart');
+    const removeFromCartButtons = document.querySelectorAll('.btnRemove');
+
+    addToCartButtons.forEach(button => {
+        button.addEventListener('click', function (event) {
+            event.preventDefault();
+            event.stopPropagation();
+            const messageElement = this.closest('.product-actions').querySelector('.action-message');
+            messageElement.textContent = 'Item has been added to cart';
+            messageElement.style.display = 'block';
+            messageElement.style.color = '#4CAF50'; // Green color for added
+            setTimeout(() => {
+                messageElement.style.display = 'none';
+            }, 3500); // Hide after 3 seconds
+        });
+    });
+
+    removeFromCartButtons.forEach(button => {
+        button.addEventListener('click', function (event) {
+            event.preventDefault();
+            event.stopPropagation();
+            const messageElement = this.closest('.product-actions').querySelector('.action-message');
+            messageElement.textContent = 'Item has been removed';
+            messageElement.style.display = 'block';
+            messageElement.style.color = '#f44336'; // Red color for removed
+            setTimeout(() => {
+                messageElement.style.display = 'none';
+            }, 3500); // Hide after 3 seconds
+        });
+    });
+});

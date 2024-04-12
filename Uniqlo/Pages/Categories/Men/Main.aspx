@@ -6,44 +6,25 @@
     <div class="productBody">
         <!--CATEGORY SECTION-->
         <h1 class="genderHeader">Search by Category</h1>
-        <div class="wrapper">
-            <i id="left" class="fa-solid fa-angle-left"></i>
-            <ul class="carousel">
-                <li class="card">
-                    <a href="Tops.aspx" style="text-decoration:none; color: black; text-align: center;">
-                        <div class="img">
-                            <img src="../../../Images/uniqloWomenTop.jpg" alt="img" draggable="false"/>
-                        </div>
-                        <h2>Tops</h2>
-                    </a>
-                </li>
-                <li class="card">
-                    <a href="Bottoms.aspx" style="text-decoration:none; color: black; text-align: center;">
-                        <div class="img">
-                            <img src="../../../Images/uniqloWomenPants.jpg" alt="img" draggable="false"/>
-                        </div>
-                        <h2>Bottoms</h2>
-                    </a>
-                </li>
-                <li class="card">
-                    <a href="Outerwear.aspx" style="text-decoration:none; color: black; text-align: center;">
-                        <div class="img">
-                            <img src="../../../Images/uniqloWomanOuterwear.jpg" alt="img" draggable="false"/>
-                        </div>
-                        <h2>Outerwear</h2>
-                    </a>
-                </li>
-                <li class="card">
-                    <a href="DressesSkirt.aspx" style="text-decoration:none; color: black; text-align: center;">
-                        <div class="img">
-                            <img src="../../../Images/uniqloWomanDress.jpg" alt="img" draggable="false"/>
-                        </div>
-                        <h2>Dresses and Skirts</h2>
-                    </a>
-                </li>
-            </ul>
-            <i id="right" class="fa-solid fa-angle-right"></i>
-        </div>
+        <div class="slideshow-container">
+            <div class="mySlides fade">
+                <div class="numbertext">1 / 2</div>
+                <a href="Tops.aspx">
+                    <img src="../../../Images/menTopBanner.png"  style="width: 100%; height: 400px;"/>
+                 </a>
+            </div>
+
+            <div class="mySlides fade">
+                <div class="numbertext">2 / 2</div>
+                <a href="Bottoms.aspx">
+                    <img src="../../../Images/menBottomBanner.jpg" style="width: 100%; height: 400px;"/>
+                </a>
+            </div>
+
+            <a class="prev" onclick="plusSlides(-1)">❮</a>
+            <a class="next" onclick="plusSlides(1)">❯</a>
+
+         </div>
 
         <!--LIMITED OFFER CARD-->
         <h1 class="genderHeader">Limited Offers</h1>
@@ -240,9 +221,9 @@
                     <span>4.7(21)</span>
                   </div>
 
-                  <div class = "product-price">
-                    <p class = "last-price">Old Price: <span>RM 59.90</span></p>
-                    <p class = "new-price">New Price: <span id="modalProductPrice" class="product-price"></span></p>
+                 <div class = "product-price">
+                    <p class = "last-price">Price: <span>RM 59.90</span></p>
+                    <p class = "new-price"><span id="modalProductPrice" class="product-price"></span></p>
                   </div>
 
                   <div class = "product-detail">
@@ -255,6 +236,20 @@
                       <li>Shipping Fee: <span>Free of charge for order with total value above RM150. Additional RM20 shipping fees for order below RM150.</span></li>
                     </ul>
                   </div>
+
+                    <div class="productColorSection">
+                        <div class="purchase-color">
+                            <h3>Color:
+                                <label id="color">White</label></h3>
+                            <div class="purchase-color-item">
+                                <asp:RadioButtonList ID="RadioButtonList2" runat="server" RepeatDirection="Horizontal" ValidateRequestMode="Enabled" Visible="True" CssClass="color-radio-list">
+                                    <asp:ListItem Value="#"></asp:ListItem>
+                                    <asp:ListItem Value="#"></asp:ListItem>
+                                    <asp:ListItem Value="#"></asp:ListItem>
+                                </asp:RadioButtonList>
+                            </div>
+                        </div>
+                    </div>
 
                   <div class="productQtySizeSection">
                       <div class="purchase-size">
@@ -593,7 +588,7 @@
        
 
     <footer>
-        <script src="../../../Javascript/product.js"></script>
+        <script src="../../../Javascript/slider.js"></script>
         <script src="../../../Javascript/modalProduct.js"></script>
         <script src="../../../Javascript/productItem.js"></script>
         <script src="../../../Javascript/addToCartButton.js"></script>
@@ -601,5 +596,6 @@
         <script src="../../../Javascript/productReview.js"></script>
         <script src="../../../Javascript/wishList.js"></script>
         <script src="../../../Javascript/productAdminDDL.js"></script>
+        <script src="../../../Javascript/colorRadioList.js"></script>
     </footer>
 </asp:Content>
