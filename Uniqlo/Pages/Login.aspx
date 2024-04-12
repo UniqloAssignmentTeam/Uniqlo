@@ -1,7 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Uniqlo.Master" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="Uniqlo.Pages.Login" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="main" runat="server">
 
-<html>
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="../css/Login.css" rel="stylesheet" />
@@ -31,9 +30,6 @@
 </div>
 </body> 
 
-
-
-</html>
 
 
 </asp:Content>

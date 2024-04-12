@@ -13,7 +13,7 @@
             <div class="cart-item" id="cart1" data-product-id="1">
                 <div class="cart-item-image-container">
                     <img src="../../../Images/Categories/Woman/Tops/AIRismCottonShortSleeveT-Shirt1.jpg" alt="AIRism Cotton Short Sleeve T-Shirt"/>
-                    </div>
+                </div>
                 <div class="item-details">
                     <div class="item-name">
                         <h3><b>AIRism Cotton Short Sleeve T-Shirt</b></h3>
@@ -26,68 +26,70 @@
                         <p><b>Stock Left:</b> 57</p>
                     </div>
                     <div class="item-price">
-                            <p style="text-decoration: line-through; margin-right: 10px;">RM 59.90</p>
-                            <p style="color: red;">RM 30.00</p>
+                        <p style="text-decoration: line-through; margin-right: 10px;">RM 59.90</p>
+                        <p style="color: red;">RM 30.00</p>
                     </div>
-                <p>Quantity: </p>
-             <input type = "number" class="qty" min = "0" value = "1">
-                <p class="item-subtotal"><b>Subtotal: RM <%= (30.00m * 1).ToString("F2") %></b></p>
-
+                    <p>Quantity: </p>
+                    <input type="number" class="qty" min="0" value="1">
+                    <p class="item-subtotal"><b>Subtotal: RM 30.00</b></p>
                 </div>
             </div>
-        </div>
 
-        <!-- Cart Item 2 -->
-        <div class="cart-item" id="cart2" data-product-id="2">
-            <div class="cart-item-image-container"">
-                <img src="../../../Images/Categories/Woman/Bottoms/SweatCargoPants1.jpg" alt="AIRism Cotton Short Sleeve T-Shirt"/>
-            </div>
-            <div class="item-details">
-                <div class="item-name">
-                    <h3><b>Sweat Cargo Pants</b></h3>
+            <!-- Cart Item 2 -->
+            <div class="cart-item" id="cart2" data-product-id="2">
+                <div class="cart-item-image-container">
+                    <img src="../../../Images/Categories/Woman/Bottoms/SweatCargoPants1.jpg" alt="Sweat Cargo Pants"/>
                 </div>
-             <div class="item-description">
-                 <p>Smooth "AIRism" fabric with the look of cotton. Refined fabric and design.</p>
-             </div>
-             <div class="item-details">
-                 <p><b>Size:</b> M</p> 
-                 <p><b>Stock Left:</b> 27</p>
-             </div>
+                <div class="item-details">
+                    <div class="item-name">
+                        <h3><b>Sweat Cargo Pants</b></h3>
+                    </div>
+                    <div class="item-description">
+                        <p>Smooth "AIRism" fabric with the look of cotton. Refined fabric and design.</p>
+                    </div>
+                    <div class="item-details">
+                        <p><b>Size:</b> M</p> 
+                        <p><b>Stock Left:</b> 27</p>
+                    </div>
                     <div class="item-price">
-                            <p style="text-decoration: line-through; margin-right: 10px;">RM 120.00</p>
-                            <p style="color: red;">RM 79.90</p>
+                        <p style="text-decoration: line-through; margin-right: 10px;">RM 120.00</p>
+                        <p style="color: red;">RM 79.90</p>
                     </div>
-                <p>Quantity: </p>
-             <input type = "number" class="qty" min = "0" value = "1">
-                <p class="item-subtotal"><b>Subtotal: RM <%= (79.90m * 1).ToString("F2") %></b></p>
+                    <p>Quantity: </p>
+                    <input type="number" class="qty" min="0" value="1">
+                    <p class="item-subtotal"><b>Subtotal: RM 79.90</b></p>
+                </div>
+            </div>
+
+            <!-- Cart Summary -->
+            <div class="cart-summary">
+                <h3>Cart Summary</h3>
+                <p><b>Total Items: </b><span id="totalItemsLabel" class="total-items"></span></p>
+                <p><b>Total Price: RM </b><span id="totalPriceLabel" class="total-price"></span></p>
+                <div class="buttons-container">
+                    <button class="btn-checkout">Proceed to Checkout</button>
+                    <button class="btn-continue-shopping">Continue Shopping</button>
+                </div>
             </div>
         </div>
-        
 
-        <!-- Cart Summary -->
-        <div class="cart-summary">
-            <h3>Cart Summary</h3>
-            <p><b>Total Items: </b><span id="totalItemsLabel" class="total-items"></span></p>
-            <p><b>Total Price: RM </b><span id="totalPriceLabel" class="total-price"></span></p>
-            <button class="btn-checkout">Proceed to Checkout</button>
-        </div>
-     </div>
+        <script>
+            // Calculate and display total items and total price
+            window.addEventListener('DOMContentLoaded', (event) => {
+                var cartItems = document.querySelectorAll('.cart-item');
+                var totalItems = 0;
+                var totalPrice = 0;
 
+                cartItems.forEach(function (cartItem) {
+                    var quantity = parseInt(cartItem.querySelector('.qty').value);
+                    var subtotal = parseFloat(cartItem.querySelector('.item-subtotal').textContent.replace('Subtotal: RM ', ''));
+                    totalItems += quantity;
+                    totalPrice += subtotal;
+                });
 
-    <script>
-        // Calculate and display total items and total price
-        var cartItems = document.querySelectorAll('.cart-item');
-        var totalItems = 0;
-        var totalPrice = 0;
-
-        cartItems.forEach(function (cartItem) {
-            var quantity = parseInt(cartItem.querySelector('.quantity').textContent);
-            var subtotal = parseFloat(cartItem.querySelector('.item-subtotal').textContent.replace('Subtotal: RM ', ''));
-            totalItems += quantity;
-            totalPrice += subtotal;
-        });
-
-        document.getElementById('totalItemsLabel').textContent = totalItems;
-        document.getElementById('totalPriceLabel').textContent = totalPrice.toFixed(2);
-    </script>
+                document.getElementById('totalItemsLabel').textContent = totalItems;
+                document.getElementById('totalPriceLabel').textContent = totalPrice.toFixed(2);
+            });
+        </script>
+    </div>
 </asp:Content>

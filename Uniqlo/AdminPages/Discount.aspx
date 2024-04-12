@@ -11,7 +11,7 @@
     <style>
 
         .dropdown-container{
-            margin-left:-180px;
+            margin-left:-150px;
         }
 
     </style>
@@ -35,10 +35,10 @@
 
      <div class="dropdown-wrapper">
 <div class="dropdown-container" onclick="toggleDropdown('dropdownList', 'dropdownDisplay')">
-  <div class="dropdown-display" id="dropdownDisplay">Gender</div>
+  <div class="dropdown-display" id="dropdownDisplay">Status</div>
   <div class="dropdown-list" id="dropdownList">
-    <div onclick="selectOption('Male', 'dropdownDisplay')">Male</div>
-    <div onclick="selectOption('Female', 'dropdownDisplay')">Female</div>
+    <div onclick="selectOption('Valid', 'dropdownDisplay')">Valid</div>
+    <div onclick="selectOption('Invalid', 'dropdownDisplay')">Invalid</div>
   </div>
 </div>
 
@@ -55,7 +55,7 @@
         
 
 
-         <div  class="product-add" onclick="showModal('addProductModalContainer')">➕ Add Staff</div>
+         <div  class="product-add" onclick="showModal('addProductModalContainer')">➕ Add Discount</div>
       
 
             </div>
@@ -165,10 +165,6 @@
       1002
  </div>
 
-   <div class="prodImage">
-    <img src="../Images/uniqloKidsDresses.png" width="40" height="40" alt ="Product Image" />
-</div>
-
  <div class="col name">
      Product Name
  </div>
@@ -208,9 +204,7 @@
       1003
  </div>
 
-   <div class="prodImage">
-    <img src="../Images/uniqloKidsDresses.png" width="40" height="40" alt ="Product Image" />
-</div>
+   
 
  <div class="col name">
      Product Name
@@ -246,9 +240,7 @@
       1004
  </div>
 
-   <div class="prodImage">
-    <img src="../Images/uniqloKidsDresses.png" width="40" height="40" alt ="Product Image" />
-</div>
+  
 
  <div class="col name">
      Product Name
@@ -283,9 +275,7 @@
     1005
 </div>
 
-   <div class="prodImage">
-    <img src="../Images/uniqloKidsDresses.png" width="40" height="40" alt ="Product Image" />
-</div>
+   
 
 <div class="col name">
     Product Name
@@ -356,7 +346,7 @@
 
         <!-- card right -->
         <div class = "product-content">
-          <h2 class = "product-title product-name">Staff Update</h2>
+          <h2 class = "product-title product-name">Discount Update</h2>
           
           <div class = "product-detail">
 
@@ -364,7 +354,7 @@
               <div class="product-details-info">
 
      <div class="form-group">
-    <span>Staff ID:</span>
+    <span>Discount ID:</span>
     <input class="form-field" type="text" disabled>
 </div>
 
@@ -560,7 +550,7 @@
         </div>
       </div>
   
-  
+ </div>
     
     <footer>
 

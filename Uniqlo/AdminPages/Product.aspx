@@ -204,9 +204,10 @@
             </div>
          </div>
       </div>
-      <div class="pagination">
-         <button class="page-btn" onclick="goToNextPage()">Next Page</button>
-      </div>
+      
+                    <div class="viewMoreSection">
+    <a href="../AdminPages/Product.aspx" class="viewMoreButton">BACK</a>
+            </div>
       <div id="updateModalContainer" class="modal">
          <div class="modal-content">
             <span class="close" onclick="closeModal('updateModalContainer')">&times;</span>
@@ -251,7 +252,7 @@
                      <div class = "product-detail">
                         <div class="product-details-info">
                            <div class="product-details-head">
-                              Item Description:
+                              Item Description
                            </div>
                            <div class="product-details-items">
                               Item Description Here!
@@ -259,31 +260,31 @@
                         </div>
                         <div class="product-details-info">
                            <div class="form-group">
-                              <span>Product ID:</span>
+                              <span>Product ID</span>
+                              <input class="form-field" type="text" disabled>
+                           </div>
+                        </div>
+                        <div class="product-details-info">
+                           <div class="form-group">
+                              <span>Price</span>
                               <input class="form-field" type="text">
                            </div>
                         </div>
                         <div class="product-details-info">
                            <div class="form-group">
-                              <span>Current Price:</span>
-                              <input class="form-field" type="text">
-                           </div>
-                        </div>
-                        <div class="product-details-info">
-                           <div class="form-group">
-                              <span>Availability:</span>
+                              <span>Availability</span>
                               <input class="form-field" type="text" >
                            </div>
                         </div>
                         <div class="product-details-info">
                            <div class="form-group">
-                              <span>Category:</span>
+                              <span>Category</span>
                               <input class="form-field" type="text" >
                            </div>
                         </div>
                         <div class="product-details-info">
                            <div class="form-group">
-                              <span>Gender:</span>
+                              <span>Gender</span>
                               <input class="form-field" type="text" >
                            </div>
                         </div>

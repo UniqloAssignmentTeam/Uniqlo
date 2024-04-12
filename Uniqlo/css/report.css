@@ -1,0 +1,141 @@
+﻿.bodyContent {
+    max-width: 1100px;
+    position: relative;
+    margin: auto;
+}
+
+.header {
+    padding-top: 30px;
+}
+
+    .header p {
+        margin-top: -10px;
+        margin-bottom: 30px;
+    }
+
+.space {
+    margin-top: 50px;
+}
+
+/*OVERVIEW SECTION*/
+.overview, .overviewGraph {
+    display: flex;
+}
+
+.orderOnHold, .orderCompleted, .productOutOfStock, .activeUser {
+    background-color: ghostwhite;
+    width: 25%;
+    height: 180px;
+    margin-right: 20px;
+    border-radius: 10px;
+    display: flex;
+    box-shadow: 2px 4px 6px 0 rgba(0, 0, 0, 0.2);
+}
+
+    .orderOnHold:hover, .orderCompleted:hover, .productOutOfStock:hover, .activeUser:hover {
+        transform: translate3D(0,-1px,0) scale(1.05);
+        transition: all .5s ease;
+    }
+
+.truck, .order, .product, .users {
+    font-size: 50px;
+    margin: 60px 5px 60px 20px;
+}
+
+.overviewContent {
+    margin: 40px 5px 40px 20px;
+}
+
+.overviewP {
+    margin-top: -15px;
+}
+
+/*GRAPH*/
+.chart {
+    display: flex;
+}
+
+/*OVERVIEW GRAPH*/
+.overviewGraph {
+    margin-top: 70px;
+}
+
+.ttlOrder, .newUser {
+    background-color: ghostwhite;
+    width: 50%;
+    height: 430px;
+    border-radius: 10px;
+    box-shadow: 2px 4px 6px 0 rgba(0, 0, 0, 0.2);
+    padding: 0px 10px 0px 10px;
+    margin: 30px 20px 100px 0px;
+}
+
+    .ttlOrder:hover, .newUser:hover {
+        transform: translate3D(0,-1px,0) scale(1.03);
+        transition: all .5s ease;
+    }
+
+.overviewName {
+    display: flex;
+}
+
+    .overviewName .amt {
+        padding-left: 280px;
+    }
+
+
+.overviewDetails {
+    margin-top: -30px;
+    margin-bottom: 45px;
+}
+
+.container {
+    width: 80%;
+    margin: 20px auto;
+}
+
+.p {
+    text-align: center;
+    font-size: 14px;
+    padding-top: 140px;
+}
+
+
+/*TABLE OVERVIEW*/
+.row {
+    display: flex;
+}
+
+.col {
+    width: 100%;
+    margin-left: 15px;
+    padding: 5px 0px 5px 0px;
+}
+
+.prod {
+    width: 45%;
+}
+
+.ord {
+    width: 10%;
+}
+
+.stat {
+    width: 25%;
+}
+
+.price {
+    width: 20%;
+}
+
+.inStock {
+    color: green;
+}
+
+.lowInStock {
+    color: #8B8000;
+}
+
+.outOfStock {
+    color: red;
+}

@@ -5,9 +5,9 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace Uniqlo.Pages.Categories.Men
+namespace Uniqlo.AdminPages
 {
-    public partial class Outerwear : System.Web.UI.Page
+    public partial class OrderItem : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
