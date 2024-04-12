@@ -88,7 +88,8 @@
                 <a href="Home.aspx">Home</a>
                 <a href="ValueBuy.aspx">Value Buy</a>
                 <a href="WishList.aspx">Wish List</a>
-                <a href="AboutUs.aspx">About Us</a>
+                <a href="WishList.aspx">Order History</a>
+                <a href="OrderHistory.aspx">About Us</a>
                 <a href="ContactUs.aspx">Contact Us</a>       
             </div>
             <div class="footerBottom">
