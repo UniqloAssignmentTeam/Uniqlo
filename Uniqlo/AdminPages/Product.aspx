@@ -204,9 +204,10 @@
             </div>
          </div>
       </div>
-      <div class="pagination">
-         <button class="page-btn" onclick="goToNextPage()">Next Page</button>
-      </div>
+      
+                    <div class="viewMoreSection">
+    <a href="../AdminPages/Product.aspx" class="viewMoreButton">BACK</a>
+            </div>
       <div id="updateModalContainer" class="modal">
          <div class="modal-content">
             <span class="close" onclick="closeModal('updateModalContainer')">&times;</span>
