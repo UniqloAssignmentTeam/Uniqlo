@@ -6,7 +6,7 @@
 
 }
 
-.productQtySizeSection {
+.addProductQtySizeSection {
     display: none; /* Hide the section by default */
 }
 
@@ -529,11 +529,6 @@
 
 
 
-
-.product-content {
-   
- 
-}
 
 .product-content {
     margin: 0px;
