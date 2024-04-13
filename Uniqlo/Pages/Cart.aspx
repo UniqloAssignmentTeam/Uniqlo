@@ -72,7 +72,7 @@
                 <p><b>Coupon: - </b><span id="totalCouponLabel" class="total-coupon"></span></p>
                 <p><b>Total Price (incl. tax): RM </b><span id="totalPriceLabel" class="total-price"></span></p>
                 <div class="buttons-container">
-                    <asp:Button ID="btnCheckout" runat="server" Text="Proceed to Checkout" CssClass="btn-checkout" PostBackUrl="~/Pages/Payment.aspx" />
+                    <asp:Button ID="btnCheckout" runat="server" Text="Proceed to Checkout" CssClass="btn-checkout" PostBackUrl="~/Pages/Delivery.aspx" />
                     <asp:Button ID="btnContinueShopping" runat="server" Text="Continue Shopping" CssClass="btn-continue-shopping" PostBackUrl="~/Pages/Home.aspx" />
                 </div>
             </div>

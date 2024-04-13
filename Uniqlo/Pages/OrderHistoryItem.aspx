@@ -7,7 +7,17 @@
     <div class="productBody">
         <header>
             <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet" />
+            <style>
+                button:hover {
+                  background-color: #d0d0d0; /* Darker grey color */
+                }
+
+            </style>
         </header>
+        <div class="" style="margin: 20px 0px; border: 2px solid white; width: 50px; height: 50px; padding: 10px 10px 10px 15px; background-color: #f0f0f0; border-radius: 99%;">
+            <a href="#" style="color: #6F6F6F; text-decoration: none;"><i class="fa fa-arrow-left" aria-hidden="true"></i></a>
+        </div>
+        
         <h1>ORDER HISTORY ITEM</h1>
        
         <div class="cart-items-container">
@@ -79,7 +89,7 @@
                 <p><b>Total Items: </b><span id="totalItemsLabel" class="total-items"></span></p>
                 <p><b>Total Price: RM </b><span id="totalPriceLabel" class="total-price"></span></p>
                 <div class="viewMoreSection">
-                    <a href="Profile.aspx" class="viewMoreButton">BACK</a>
+                    <a href="#" class="viewMoreButton">Order Received</a>
                 </div>
             </div>
         </div>
