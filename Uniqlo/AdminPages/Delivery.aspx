@@ -18,19 +18,6 @@
 .status {
     flex-basis: 10%;
 }
-.inStock {
-    flex-basis: 10%;
-    color: #28a745;
-}
-.noStock{
-    flex-basis:10%;
-    color:red;
-}
-.lowInStock {
-    flex-basis: 10%;
-    color: #ffc107;
-}
-/* Price Column */
 
 .gender {
     flex-basis: 10%;

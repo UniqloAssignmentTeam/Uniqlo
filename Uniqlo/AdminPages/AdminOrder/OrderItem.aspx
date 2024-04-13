@@ -78,7 +78,7 @@
                 <p><b>Total Items: </b><span id="totalItemsLabel" class="total-items"></span></p>
                 <p><b>Total Price: RM </b><span id="totalPriceLabel" class="total-price"></span></p>
                 <div class="viewMoreSection">
-                    <a href="../AdminPages/Order.aspx" class="viewMoreButton">BACK</a>
+                    <a href="Order.aspx" class="viewMoreButton">BACK</a>
                 </div>
             </div>
         </div>
