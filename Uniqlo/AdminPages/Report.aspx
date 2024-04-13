@@ -10,8 +10,7 @@
      <div class="bodyContent">
      <!--HEADING-->
      <div class="header">
-         <h2>Report</h2>
-         <p>Here’s what’s going on at your business right now</p>
+         <h2 class="h2">UNIQLO REPORT</h2>
      </div>
         <!--OVERVIEW CONTAINER-->
     <div class="overview">

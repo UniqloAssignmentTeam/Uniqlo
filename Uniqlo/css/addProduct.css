@@ -68,7 +68,7 @@ label {
     font-weight: bold;
 }
 
-input[type="text"], input[type="number"],
+input[type="text"], input[type="number"], input[type="date"],
 textarea {
     width: 100%;
     padding: 10px;

@@ -10,127 +10,204 @@
     align-items: center; /* Vertically centers the login-container */
 }
 
-/* login-container styles */
-.login-container {
-    background-color: #eee; /* Light gray background color */
-    border: 2px solid black;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    padding: 30px;
-    text-align: center;
-    max-width: 400px; /* Limits the width to maintain focus on the form */
+/* Google Fonts - Poppins */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+.content{
+    width:auto;
+    height:auto;
+}
+.container {
+    height: 100vh;
     width: 100%;
-    height: 70%; /* Adjusts the height based on content */
-    box-sizing: border-box; /* Ensures padding does not increase the width or height */
-    overflow: hidden; /* Hides any content that overflows from the container */
-}
-
-    width: 100%; /* Ensures the container does not exceed its maximum width */
-    box-sizing: border-box; /* Helps keep padding inside container dimensions */
-}
-
-    .login-container h2 {
-        margin-bottom: 20px;
-    }
-
-.login-form {
     display: flex;
-    flex-direction: column;
-    gap: 10px;
-    margin-bottom: 50px;
+    align-items: center;
+    justify-content: center;
+    background-color: #eee;
+    column-gap: 30px;
+}
+
+.form {
+    position: absolute;
+    max-width: 430px;
+    width: 100%;
+    padding: 30px;
+    border-radius: 6px;
+    background: #FFF;
 
 }
 
-    .login-form input {
-        padding: 10px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        font-size: 12px;
+    .form.signup {
+        opacity: 0;
+        pointer-events: none;
     }
 
-    .login-form button {
-        background-color: #4285f4;
-        color: #fff;
-        border: none;
-        padding: 10px;
-        border-radius: 5px;
-        cursor: pointer;
-        font-size: 16px;
-    }
+.forms.show-signup .form.signup {
+    opacity: 1;
+    pointer-events: auto;
+}
 
-.social-buttons {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
+.forms.show-signup .form.login {
+    opacity: 0;
+    pointer-events: none;
+}
+
+header {
+    font-size: 28px;
+    font-weight: 600;
+    color: #232836;
+    text-align: center;
+}
+
+form {
+    margin-top: 30px;
+}
+
+.form .field {
+    position: relative;
+    height: 50px;
+    width: 100%;
     margin-top: 20px;
+    border-radius: 6px;
 }
 
-    .social-buttons button {
-        color: #fff;
-        border: none;
-        padding: 10px;
-        border-radius: 6px;
-        cursor: pointer;
-        font-size: 16px;
+.field input,
+.field button {
+    height: 100%;
+    width: 100%;
+    border: none;
+    font-size: 16px;
+    font-weight: 400;
+    border-radius: 6px;
+}
+
+.field input {
+    outline: none;
+    padding: 0 15px;
+    border: 1px solid#CACACA;
+}
+
+    .field input:focus {
+        border-bottom-width: 2px;
+    }
+
+.eye-icon {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    font-size: 18px;
+    color: #8b8b8b;
+    cursor: pointer;
+    padding: 5px;
+}
+
+.field button {
+    color: #fff;
+    background-color: red;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+    .field button:hover {
+        background-color: darkred;
+    }
+
+.form-link {
+    text-align: center;
+    margin-top: 10px;
+}
+
+    .form-link span,
+    .form-link a {
+        font-size: 14px;
+        font-weight: 400;
+        color: #232836;
+    }
+
+.form a {
+    color: #0171d3;
+    text-decoration: none;
+}
+
+.form-content a:hover {
+    text-decoration: underline;
+}
+
+.line {
+    position: relative;
+    height: 1px;
+    width: 100%;
+    margin: 36px 0;
+    background-color: #d4d4d4;
+}
+
+    .line::before {
+        content: 'Or';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: #FFF;
+        color: #8b8b8b;
+        padding: 0 15px;
+    }
+
+.media-options a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+a.facebook {
+    color: #fff;
+    background-color: #4267b2;
+}
+
+    a.facebook .facebook-icon {
+        height: 28px;
+        width: 28px;
+        color: #0171d3;
+        font-size: 20px;
+        border-radius: 50%;
         display: flex;
         align-items: center;
         justify-content: center;
+        background-color: #fff;
     }
 
-        .social-buttons button.facebook {
-            background-color: #4c70bd;
-        }
-
-        .social-buttons button.twitter {
-            background-color: #2ca7f3;
-        }
-
-        .social-buttons button.google {
-            background-color: #f15847;
-        }
-
-        .social-buttons button.instagram {
-            background-color: #e650a5;
-        }
-
-
-
-
-
-.social-icons i.facebook {
-    color: #3b5998;
+.facebook-icon,
+img.google-img {
+    position: absolute;
+    top: 50%;
+    left: 15px;
+    transform: translateY(-50%);
 }
 
-.social-icons i.twitter {
-    color: #1da1f2;
+img.google-img {
+    height: 20px;
+    width: 20px;
+    object-fit: cover;
 }
 
-.social-icons i.google {
-    color: #db4a39;
+a.google {
+    border: 1px solid #CACACA;
 }
 
-.social-icons i.instagram {
-    color: #C13584;
-}
-.main_btnlogin {
-    background-color: red; /* Google blue color */
-    color: white; /* White text color */
-    padding: 12px 20px; /* Padding for comfortable clicking (top/bottom, left/right) */
-    border: none; /* Remove default button border */
-    border-radius: 8px; /* Rounded corners */
-    font-size: 16px; /* Font size of the button text */
-    font-weight: bold; /* Make the text bold */
-    cursor: pointer; /* Change cursor to a pointer when hovering over the button */
-    transition: background-color 0.3s ease; /* Smooth transition effect */
-    outline: none; /* Remove default focus outline */
-}
-
-    /* Hover effect for the button */
-    .main_btnlogin:hover {
-        background-color: darkred; /* Darker blue color on hover */
+    a.google span {
+        font-weight: 500;
+        opacity: 0.6;
+        color: #232836;
     }
 
-    /* Focus effect for the button */
-    .main_btnlogin:focus {
-        box-shadow: 0 0 5px rgba(66, 133, 244, 0.5); /* Slight shadow when focused */
+@media screen and (max-width: 400px) {
+    .form {
+        padding: 20px 10px;
     }
+}

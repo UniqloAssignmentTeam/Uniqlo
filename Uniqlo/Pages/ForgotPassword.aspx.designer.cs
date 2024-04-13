@@ -7,11 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Uniqlo.AdminPages
+namespace Uniqlo.Pages
 {
 
 
-    public partial class test
+    public partial class ForgotPassword
     {
     }
 }
