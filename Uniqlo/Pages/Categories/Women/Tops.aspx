@@ -2,9 +2,14 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="main" runat="server">
     <header>
         <link href="../../../css/category.css" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
     </header>
     <div class="categoryBody">
-        <h1 class="bestSellerHeader">Best Sellers</h1>
+        <h1 class="bestSellerHeader">Women's Tops</h1>
+        <h2 class="bestSellerHeader" style="margin-top: -4px;">Best Seller</h2>
+               
         <div class="wrapper">
             <i id="left" class="fa-solid fa-angle-left"></i>
             <ul class="carousel">
@@ -156,18 +161,26 @@
         <!--PRODUCT LIST-->
         <div>
             <!--DROP DOWN LIST-->
-            <div class="dropdown-bigcontainer">
-                <div class="productListHeader">Sort By</div>
-                <div class="dropdown-container" onclick="toggleDropdown('dropdownList2', 'dropdownDisplay2')">
-                    <div class="dropdown-display" id="dropdownDisplay2">All</div>
-                    <div class="dropdown-list" id="dropdownList2">
-                        <div onclick="selectOption('Price: Low to High', 'dropdownDisplay2')">Price: Low to High</div>
-                        <div onclick="selectOption('Price: High to Low', 'dropdownDisplay2')">Price: High to Low</div>
-                        <div onclick="selectOption('Top Rated', 'dropdownDisplay2')">Top Rated</div>
-                    </div>
-                </div>     
-            </div>
+            <div style="display: flex;">
+                <div class="dropdown-bigcontainer">
+                    <div class="productListHeader">Sort By</div>
+                    <div class="dropdown-container" onclick="toggleDropdown('dropdownList2', 'dropdownDisplay2')">
+                        <div class="dropdown-display" id="dropdownDisplay2">All</div>
+                        <div class="dropdown-list" id="dropdownList2">
+                            <div onclick="selectOption('Price: Low to High', 'dropdownDisplay2')">Price: Low to High</div>
+                            <div onclick="selectOption('Price: High to Low', 'dropdownDisplay2')">Price: High to Low</div>
+                            <div onclick="selectOption('Top Rated', 'dropdownDisplay2')">Top Rated</div>
+                        </div>
+                    </div>     
+                </div>
 
+                <div class="wrap-items-search-buttons" style="margin-top: 85px;">
+                    <div class="search">
+                        <span class="material-symbols-outlined">search</span>
+                        <input class="search-input" type="search" placeholder="Search" />
+                    </div>
+                </div>
+            </div>
             <!--PRODUCT LIST DISPLAY HERE-->
             <div class="limitedOfferCardBigContainer">
                 <!--START OF COLUMN-->

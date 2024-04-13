@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin.Master" AutoEventWireup="true" CodeBehind="Product.aspx.cs" Inherits="Uniqlo.AdminPages.Product" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="main" runat="server">
     <header>
-       <link href="../../css/productAdmin.css" rel="stylesheet" />
+        <link href="../../css/Admin/adminProduct.css" rel="stylesheet" />
        <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 
@@ -114,14 +114,14 @@
             <div class="dropdown-wrapper">
              
      <div class="dropdown-container" onclick="toggleDropdown('dropdownList', 'dropdownDisplay')">
-         <div class="dropdown-display" id="dropdownDisplay">Wear</div>
+         <div class="dropdown-display" id="dropdownDisplay">Category</div>
          <div class="dropdown-list" id="dropdownList">
              <div onclick="selectOption('Tops', 'dropdownDisplay')">Tops</div>
              <div onclick="selectOption('Bottom', 'dropdownDisplay')">Bottom</div>
          </div>
      </div>
                <div class="dropdown-container" onclick="toggleDropdown('dropdownList2', 'dropdownDisplay2')">
-                  <div class="dropdown-display" id="dropdownDisplay2">Category</div>
+                  <div class="dropdown-display" id="dropdownDisplay2">Gender</div>
                   <div class="dropdown-list" id="dropdownList2">
                      <div onclick="selectOption('Men', 'dropdownDisplay2')">Men</div>
                      <div onclick="selectOption('Women', 'dropdownDisplay2')">Women</div>
@@ -146,7 +146,7 @@
                Product Name
             </div>
             <div class="col wear">
-               Wear
+               Category
             </div>
             <div class="col price">
                Price (RM)
@@ -154,9 +154,7 @@
             <div class="col gender">
                Gender
             </div>
-            <div class="col category">
-               Category
-            </div>
+          
             <div class="col eclipse-container">
                <asp:Button ID="Button1" runat="server" Text="Button" Visible="False" />
             </div>
@@ -179,9 +177,7 @@
             <div class="col gender">
                Gender
             </div>
-            <div class="col category">
-               Category
-            </div>
+            
             <div class="col eclipse-container" onclick="toggleDropdown('dropdownList3', 'dropdownDisplay3')">
                <div class="eclipse-display" id="dropdownDisplay3" style="border:none;"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></div>
                <div class="eclipse-list" id="dropdownList3">
@@ -202,18 +198,17 @@
             <div class="col name">
                Product Name
             </div>
+              <div class="col price">
+    99.00
+ </div>
             <div class="col wear">
                Low In Stock
             </div>
-            <div class="col price">
-               99.00
-            </div>
+           
             <div class="col gender">
                Gender
             </div>
-            <div class="col category">
-               Category
-            </div>
+          
             <div class="col eclipse-container">
                <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
             </div>
@@ -227,18 +222,17 @@
             <div class="col name">
                Product Name
             </div>
+             <div class="col price">
+   130.00
+</div>
             <div class="col wear">
                In Stock
             </div>
-            <div class="col price">
-               130.00
-            </div>
+            
             <div class="col gender">
                Gender
             </div>
-            <div class="col category">
-               Category
-            </div>
+          
             <div class="col eclipse-container">
                <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
             </div>
@@ -252,18 +246,17 @@
             <div class="col name">
                Product Name
             </div>
+             <div class="col price">
+   12.00
+</div>
             <div class="col wear">
                In Stock
             </div>
-            <div class="col price">
-               12.00
-            </div>
+            
             <div class="col gender">
                Gender
             </div>
-            <div class="col category">
-               Category
-            </div>
+           
             <div class="col eclipse-container">
                <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
             </div>
@@ -277,18 +270,17 @@
             <div class="col name">
                Product Name
             </div>
+             <div class="col price">
+   112.00
+</div>
             <div class="col wear">
                Low In Stock
             </div>
-            <div class="col price">
-               112.00
-            </div>
+            
             <div class="col gender">
                Gender
             </div>
-            <div class="col category">
-               Category
-            </div>
+            
             <div class="col eclipse-container">
                <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
             </div>

@@ -1,6 +1,6 @@
 ﻿/* Container */
 .container {
-    max-width: 90%; /* Limit the width for better focus */
+    max-width: 100%; /* Limit the width for better focus */
     margin: auto;
     padding: 20px;
 }

@@ -18,7 +18,7 @@
             </div>
             
             <div id="menu" class="menu">
-                <asp:Menu ID="Menu1" runat="server" DataSourceID="SiteMapDataSource1" BackColor="GhostWhite" ForeColor="Black" Orientation="Horizontal" StaticDisplayLevels="2" StaticSubMenuIndent="30px" Font-Bold="True" Font-Size="20px" Font-Underline="False" CssClass="main-menu">
+                <asp:Menu ID="Menu1" runat="server" DataSourceID="SiteMapDataSource1" BackColor="GhostWhite" ForeColor="Black" Orientation="Horizontal" StaticDisplayLevels="2" StaticSubMenuIndent="30px"  Font-Size="20px" Font-Underline="False" CssClass="main-menu">
                     <DynamicHoverStyle CssClass="dynamic-menu-hover" />
                     <DynamicMenuItemStyle ForeColor="Black" CssClass="dynamic-menu-item"/>
                     <DynamicMenuStyle CssClass="dynamic-menu-item" />
@@ -55,12 +55,6 @@
                         <i class="fa-solid fa-cart-shopping cart"></i>
                     </a>
                     
-                </div>
-                <div class="wrap-items-master-search-bar" style="margin-top: 30px;">
-                    <div class="masterSearch">
-                        <span class="searchMasterLabel"><i class="fa-solid fa-magnifying-glass" style="padding-left: 20px;"></i></span>
-                        <input class="searchMasterInput" type="search" placeholder="Search" />
-                    </div>
                 </div>
             </div>
         </div>

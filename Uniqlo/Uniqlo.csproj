@@ -91,13 +91,18 @@
     <Content Include="AdminPages\AdminProduct\UpdateProduct.aspx" />
     <Content Include="AdminPages\AdminStaff\UpdateStaff.aspx" />
     <Content Include="AdminPages\AdminProduct\viewMoreProduct.aspx" />
-    <Content Include="AdminPages\test.aspx" />
     <Content Include="App_Data\Uniqlo.mdf" />
     <Content Include="App_Data\Uniqlo_log.ldf">
       <DependentUpon>Uniqlo.mdf</DependentUpon>
     </Content>
     <Content Include="css\aboutUs.css" />
-    <Content Include="css\addProduct.css" />
+    <Content Include="css\Admin\addDiscount.css" />
+    <Content Include="css\Admin\addProduct.css" />
+    <Content Include="css\Admin\addStaff.css" />
+    <Content Include="css\Admin\adminDelivery.css" />
+    <Content Include="css\Admin\adminDiscount.css" />
+    <Content Include="css\Admin\adminOrder.css" />
+    <Content Include="css\Admin\adminStaff.css" />
     <Content Include="css\Cart.css" />
     <Content Include="css\category.css" />
     <Content Include="css\ContactUs.css" />
@@ -107,11 +112,11 @@
     <Content Include="css\Login.css" />
     <Content Include="css\logout.css" />
     <Content Include="css\master.css" />
-    <Content Include="css\OrderItem.css" />
+    <Content Include="css\Admin\OrderItem.css" />
     <Content Include="css\product.css" />
-    <Content Include="css\productAdmin.css" />
+    <Content Include="css\Admin\adminProduct.css" />
     <Content Include="css\Profile.css" />
-    <Content Include="css\report.css" />
+    <Content Include="css\Admin\report.css" />
     <Content Include="css\SignUp.css" />
     <Content Include="css\style.css" />
     <Content Include="css\style1.css" />
@@ -214,6 +219,7 @@
     <Content Include="Pages\Payment.aspx" />
     <Content Include="Pages\Profile.aspx" />
     <Content Include="Pages\SignUp.aspx" />
+    <Content Include="Pages\TrackDelivery.aspx" />
     <Content Include="Pages\ValueBuy.aspx" />
     <Content Include="Pages\WishList.aspx" />
     <Content Include="Web.config" />
@@ -337,13 +343,6 @@
     </Compile>
     <Compile Include="AdminPages\AdminProduct\viewMoreProduct.aspx.designer.cs">
       <DependentUpon>viewMoreProduct.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="AdminPages\test.aspx.cs">
-      <DependentUpon>test.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="AdminPages\test.aspx.designer.cs">
-      <DependentUpon>test.aspx</DependentUpon>
     </Compile>
     <Compile Include="Category.cs">
       <DependentUpon>Model1.tt</DependentUpon>
@@ -535,6 +534,13 @@
     <Compile Include="Pages\SignUp.aspx.designer.cs">
       <DependentUpon>SignUp.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Pages\TrackDelivery.aspx.cs">
+      <DependentUpon>TrackDelivery.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\TrackDelivery.aspx.designer.cs">
+      <DependentUpon>TrackDelivery.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Pages\ValueBuy.aspx.cs">
       <DependentUpon>ValueBuy.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -574,9 +580,6 @@
     </Compile>
     <Compile Include="Uniqlo.Master.designer.cs">
       <DependentUpon>Uniqlo.Master</DependentUpon>
-    </Compile>
-    <Compile Include="Wishlist.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="WishlistItem.cs">
       <DependentUpon>Model1.tt</DependentUpon>

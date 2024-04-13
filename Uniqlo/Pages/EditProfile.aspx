@@ -110,9 +110,16 @@
                     <input type="text" id="country" name="country" value="Malaysia">
                 </div>
 
+                <div class="form-group">
+                    <label for="file">Profile Photo:</label>
+                    <input type="file" name="file" value="file">
+                </div>
+
                 <!-- Submit Button -->
                 <div class="form-group">
                     <button type="submit">Save Changes</button>
+                    <button class="back-button" type="button" onclick="window.history.back();">Back</button>
+              
                 </div>
             </form>
         </div>

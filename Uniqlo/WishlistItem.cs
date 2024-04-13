@@ -15,10 +15,10 @@ namespace Uniqlo
     public partial class WishlistItem
     {
         public int WishlistItem_ID { get; set; }
-        public Nullable<int> Product_ID { get; set; }
-        public Nullable<int> Wishlist_ID { get; set; }
+        public int Product_ID { get; set; }
+        public int Customer_ID { get; set; }
     
+        public virtual Customer Customer { get; set; }
         public virtual Product Product { get; set; }
-        public virtual Wishlist Wishlist { get; set; }
     }
 }

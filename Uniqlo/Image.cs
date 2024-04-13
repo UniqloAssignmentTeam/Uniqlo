@@ -16,8 +16,8 @@ namespace Uniqlo
     {
         public int Image_ID { get; set; }
         public string ImagePath { get; set; }
-        public Nullable<int> Product_ID { get; set; }
+        public int Quantity_ID { get; set; }
     
-        public virtual Product Product { get; set; }
+        public virtual Quantity Quantity { get; set; }
     }
 }

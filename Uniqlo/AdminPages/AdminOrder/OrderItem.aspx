@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin.Master" AutoEventWireup="true" CodeBehind="OrderItem.aspx.cs" Inherits="Uniqlo.AdminPages.OrderItem" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="main" runat="server">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-    <link href="../../css/OrderItem.css" rel="stylesheet" />
+    <link href="../../css/Admin/OrderItem.css" rel="stylesheet" />
 
     <div class="productBody">
         <header>
