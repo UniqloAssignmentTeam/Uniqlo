@@ -130,8 +130,8 @@
                </div>
             </div>
             <div class="btnExcel-Add">
-               <button class="excel-export" style="color: #6F6F6F; font-size: 1rem; font-weight: 400;">Export</button>
-               <div  class="product-add"><a href="AddProduct.aspx" style="color: #6F6F6F; text-decoration: none; font-size: 1rem; font-weight: 400;">➕ Add Product</a></div>
+               <button class="excel-export" >Export</button>
+               <div  class="product-add"><a href="AddProduct.aspx" style="color: #6F6F6F; text-decoration: none; font-size: 1rem; font-weight: bold;">➕ Add Product</a></div>
             </div>
          </div>
       </div>
@@ -317,137 +317,6 @@
        <!--DELETE CONFIRMATION END-->
   
    </div>
-   <div id="viewMoreModalContainer" class="modal">
-      <div class="modal-content">
-         <span class="close" onclick="closeModal('viewMoreModalContainer')">&times;</span>
-         <div class = "card-wrapper">
-            <div class = "productItemCard">
-               <!-- card left -->
-               <div class = "product-imgs">
-                  <div class = "img-display">
-                     <div class = "img-showcase">
-                        <img src="../../../Images/Categories/Woman/Tops/AIRismCottonShortSleeveT-Shirt1.jpg" alt = "uniqlo image"/>
-                        <img src="../../../Images/Categories/Woman/Tops/AIRismCottonShortSleeveT-Shirt2.jpg" alt = "uniqlo image"/>
-                        <img src="../../../Images/Categories/Woman/Tops/AIRismCottonShortSleeveT-Shirt3.jpg" alt = "uniqlo image"/>
-                        <img src="../../../Images/Categories/Woman/Tops/AIRismCottonShortSleeveT-Shirt4.jpg" alt = "uniqlo image"/>
-                     </div>
-                  </div>
-                  <div class = "img-select">
-                     <div class = "img-item">
-                        <a href = "#" data-id = "1">
-                        <img src="../../../Images/Categories/Woman/Tops/AIRismCottonShortSleeveT-Shirt1.jpg" alt = "uniqlo image"/>
-                        </a>
-                     </div>
-                     <div class = "img-item">
-                        <a href = "#" data-id = "2">
-                        <img src="../../../Images/Categories/Woman/Tops/AIRismCottonShortSleeveT-Shirt2.jpg" alt = "uniqlo image"/>
-                        </a>
-                     </div>
-                     <div class = "img-item">
-                        <a href = "#" data-id = "3">
-                        <img src="../../../Images/Categories/Woman/Tops/AIRismCottonShortSleeveT-Shirt3.jpg" alt = "uniqlo image"/>
-                        </a>
-                     </div>
-                     <div class = "img-item">
-                        <a href = "#" data-id = "4">
-                        <img src="../../../Images/Categories/Woman/Tops/AIRismCottonShortSleeveT-Shirt4.jpg" alt = "uniqlo image"/>
-                        </a>
-                     </div>
-                  </div>
-               </div>
-               <!-- card right -->
-               <div class = "product-content">
-                  <h2 class = "product-title product-name" id="modalProductName">Red Top</h2>
-                  <div class = "product-detail">
-                     <div class="product-details-info">
-                        <div class="product-details-head">
-                           Item Description:
-                        </div>
-                        <div class="product-details-items">
-                           Item Description Here!
-                        </div>
-                     </div>
-                     <div class="product-details-info">
-                        <div class="product-details-head">
-                           Product ID: 
-                        </div>
-                        <div class="product-details-items">
-                           1001
-                        </div>
-                     </div>
-                     <div class="product-details-info">
-                        <div class="product-details-head"> Current Price:</div>
-                        <div class="product-details-items">  RM 59.90</div>
-                     </div>
-                     <div class="product-details-info">
-                        <div class="product-details-head">
-                           Available:
-                        </div>
-                        <div class="product-details-items"> In Stock</div>
-                     </div>
-                     <div class="product-details-info">
-                        <div class="product-details-head">
-                           Category: 
-                        </div>
-                        <div class="product-details-items">Tops</div>
-                     </div>
-                     <div class="product-details-info">
-                        <div class="product-details-head">
-                           Gender:
-                        </div>
-                        <div class="product-details-items"> Female</div>
-                     </div>
-                  </div>
-                  <div class="viewProductQtySizeSection">
-                     <div class="quantityHeader">QUANTITY</div>
-                      <div class="color-radio">
-    <!-- Radio buttons -->
-    <input type="radio" id="red" name="color" value="red">
-    <label for="red"></label>
-
-    <input type="radio" id="green" name="color" value="green">
-    <label for="green"></label>
-
-    <input type="radio" id="blue" name="color" value="blue">
-    <label for="blue"></label>
-</div>
-                     <div class="purchase-size-item">
-                        <div class="purchase-size">
-                           <div class="purchase-size-size">
-                              S:
-                           </div>
-                           <div class="purchase-size-qty">
-                              100
-                           </div>
-                        </div>
-                        <div class="purchase-size">
-                           <div class="purchase-size-size">
-                              M:
-                           </div>
-                           <div class="purchase-size-qty"> 100</div>
-                        </div>
-                        <div class="purchase-size">
-                           <div class="purchase-size-size">
-                              L:
-                           </div>
-                           <div class="purchase-size-qty">
-                              100
-                           </div>
-                        </div>
-                        <div class="purchase-size">
-                           <div class="purchase-size-size">
-                              XL: 
-                           </div>
-                           <div class="purchase-size-qty"> 100 </div>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-            </div>
-         </div>
-      </div>
-
-
    </div>
    
    <footer>
