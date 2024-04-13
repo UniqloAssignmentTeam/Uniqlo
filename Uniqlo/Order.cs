@@ -22,8 +22,8 @@ namespace Uniqlo
         }
     
         public int Order_ID { get; set; }
-        public Nullable<int> Customer_ID { get; set; }
-        public Nullable<double> TotalPrice { get; set; }
+        public int Customer_ID { get; set; }
+        public Nullable<double> Subtotal { get; set; }
     
         public virtual Customer Customer { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

@@ -581,9 +581,6 @@
     <Compile Include="Uniqlo.Master.designer.cs">
       <DependentUpon>Uniqlo.Master</DependentUpon>
     </Compile>
-    <Compile Include="Wishlist.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
     <Compile Include="WishlistItem.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>

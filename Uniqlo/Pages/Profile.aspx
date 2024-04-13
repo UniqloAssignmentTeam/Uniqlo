@@ -19,8 +19,12 @@
                     <span class="info-label">Email:</span>
                     <span class="info-value">cjtan@gmail.com</span>
                 </div>
+                 <div class="info-item">
+                    <span class="info-label">Gender:</span>
+                    <span class="info-value">Male</span>
+                </div>
                 <div class="info-item">
-                    <span class="info-label">Phone No.:</span>
+                    <span class="info-label">Phone No:</span>
                     <span class="info-value">014 816-9029</span>
                 </div>
                 <div class="info-item">
@@ -66,7 +70,10 @@
         <div class="col gender">Total Amount</div>
         <div class="col category">Total Item</div>
         <div class="col wear">Date</div>
+        <div class="col status">Status</div>
         <div class="col eclipse-container">
+        
+        <div class="col status"></div>
             <asp:Button ID="Button1" runat="server" Text="Button" Visible="False" />
         </div>
     </div>
@@ -74,10 +81,10 @@
     <!-- Product 1 -->
     <div class="row">
         <div class="col productid">1001</div>
-       
         <div class="col gender">RM 109.90</div>
         <div class="col category">1</div>
         <div class="col wear">14/3/2024</div>
+        <div class="col status">Delivered</div>
         <div class="col eclipse-container" onclick="toggleDropdown('dropdownList3', 'dropdownDisplay3')">
             <div class="eclipse-display" id="dropdownDisplay3" style="border:none;"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></div>
             <div class="eclipse-list" id="dropdownList3">
@@ -89,20 +96,21 @@
     <!-- Product 2 -->
     <div class="row">
         <div class="col productid">1002</div>
-   
         <div class="col gender">RM 100.00</div>
         <div class="col category">4</div>
         <div class="col wear">14/3/2024</div>
+        <div class="col status">Out for delivery</div>
         <div class="col eclipse-container"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></div>
     </div>
 
     <!-- Product 3 -->
     <div class="row">
         <div class="col productid">1003</div>
-     
         <div class="col gender">RM 12.00</div>
         <div class="col category">8</div>
         <div class="col wear">14/3/2024</div>
+        <div class="col status">Delivered
+    </div>
         <div class="col eclipse-container"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></div>
     </div>
 
@@ -114,6 +122,7 @@
         <div class="col gender">RM 45.00</div>
         <div class="col category">12</div>
         <div class="col wear">12/3/2024</div>
+        <div class="col status">Delivered</div>
         <div class="col eclipse-container"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></div>
     </div>
 
@@ -125,6 +134,7 @@
         <div class="col gender">RM 50.00</div>
         <div class="col category">1</div>
         <div class="col wear">12/3/2024</div>
+        <div class="col status">Delivered</div>
         <div class="col eclipse-container"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></div>
     </div>
 </div>

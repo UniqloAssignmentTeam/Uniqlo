@@ -15,8 +15,9 @@ namespace Uniqlo
     public partial class Review
     {
         public int Review_ID { get; set; }
-        public Nullable<int> OrderList_ID { get; set; }
+        public int OrderList_ID { get; set; }
         public Nullable<int> Rating { get; set; }
+        public string Review1 { get; set; }
         public Nullable<System.DateTime> Date_Submitted { get; set; }
     
         public virtual OrderList OrderList { get; set; }
