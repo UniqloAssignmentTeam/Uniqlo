@@ -2,7 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="main" runat="server">
 
             <header>
-            <link href="../css/addProduct.css" rel="stylesheet" />
+            <link href="../../css/addProduct.css" rel="stylesheet" />
         </header>
        
  
@@ -10,7 +10,7 @@
  
            <div class="container">
         <div class="productItemCard">
-            <h2 class="product-title">Uniqlo Add Staff</h2>
+            <h2 class="product-title">UNIQLO ADD STAFF</h2>
         </div>
         <div class="modal-content">
             
@@ -72,7 +72,7 @@
 
 
         <footer>
-        <script src="../Javascript/productAdminDDL.js"></script>
+        <script src="../../Javascript/productAdminDDL.js"></script>
             </footer>
 
 

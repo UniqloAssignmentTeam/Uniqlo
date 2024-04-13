@@ -3,7 +3,7 @@
 
 
                 <header>
-            <link href="../css/addProduct.css" rel="stylesheet" />
+            <link href="../../css/addProduct.css" rel="stylesheet" />
         </header>
        
  
@@ -11,7 +11,7 @@
  
            <div class="container">
         <div class="productItemCard">
-            <h2 class="product-title">Uniqlo Update Staff</h2>
+            <h2 class="product-title">UNIQLO UPDATE STAFF</h2>
         </div>
         <div class="modal-content">
             
@@ -77,7 +77,7 @@
 
 
         <footer>
-        <script src="../Javascript/productAdminDDL.js"></script>
+        <script src="../../Javascript/productAdminDDL.js"></script>
             </footer>
 
 </asp:Content>

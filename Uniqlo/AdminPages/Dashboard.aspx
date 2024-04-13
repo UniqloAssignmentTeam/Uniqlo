@@ -8,7 +8,7 @@
     <div class="bodyContent">
         <!--HEADING-->
         <div class="header">
-            <h2>Dashboard</h2>
+            <h2>UNIQLO DASHBOARD</h2>
             <p>Here’s what’s going on at your business right now</p>
         </div>
     

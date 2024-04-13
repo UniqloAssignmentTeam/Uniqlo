@@ -3,7 +3,7 @@
 
     
         <header>
-            <link href="../css/addProduct.css" rel="stylesheet" />
+            <link href="../../css/addProduct.css" rel="stylesheet" />
         </header>
        
     <style>
@@ -37,7 +37,7 @@ color: black;
  
            <div class="container">
         <div class="productItemCard">
-            <h2 class="product-title">Uniqlo View Product</h2>
+            <h2 class="product-title">UNIQLO VIEW PRODUCT</h2>
         </div>
         <div class="modal-content">
             <div class="upload-image-section">
@@ -145,7 +145,7 @@ color: black;
 
         <footer>
 
-        <script src="../Javascript/productAdminDDL.js"></script>
+        <script src="../../Javascript/productAdminDDL.js"></script>
             </footer>
 
 
