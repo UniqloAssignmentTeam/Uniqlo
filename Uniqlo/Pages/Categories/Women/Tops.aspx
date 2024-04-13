@@ -5,6 +5,7 @@
     </header>
     <div class="categoryBody">
         <h1 class="bestSellerHeader">Women's Tops</h1>
+        <h2 class="bestSellerHeader" style="margin-top: -4px;">Best Seller</h2>
         <div class="wrapper">
             <i id="left" class="fa-solid fa-angle-left"></i>
             <ul class="carousel">

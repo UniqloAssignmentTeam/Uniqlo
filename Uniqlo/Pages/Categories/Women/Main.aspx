@@ -5,7 +5,7 @@
     </header>
     <div class="productBody">
         <!--CATEGORY SECTION-->
-        <h1 class="genderHeader">Search by Category</h1>
+        <h1 class="genderHeader">Women</h1>
 
         <div class="slideshow-container">
             <div class="mySlides fade">
