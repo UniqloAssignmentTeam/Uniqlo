@@ -51,7 +51,7 @@
   <div class="dropdown-display" id="dropdownDisplay2">Role</div>
   <div class="dropdown-list" id="dropdownList2">
     <div onclick="selectOption('Admin', 'dropdownDisplay2')">Admin</div>
-    <div onclick="selectOption('Manager', 'dropdownDisplay2')">Admin Manager</div>
+    <div onclick="selectOption('Manager', 'dropdownDisplay2')">Manager</div>
   </div>
 </div>
 
@@ -159,7 +159,8 @@
 
         <div class="eclipse-display" id="dropdownDisplay3" style="border:none;"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></div>
          <div class="eclipse-list" id="dropdownList3">
-        <div onclick="showModal('updateModalContainer')">Update</div>
+         <a href="UpdateStaff.aspx" style="text-decoration:none;"><div>Update</div></a>
+          
         <div>Delete</div>
        </div>
      </div>
