@@ -139,8 +139,8 @@
                 </div>
 
                 <div class="btnExcel-Add">
-                    <button class="excel-export" style="color: #6F6F6F; font-size: 1rem; font-weight: 400;">Export</button>
-                    <a href="AddStaff.aspx" style="color: #6F6F6F; text-decoration: none;">
+                    <button class="excel-export" style="color: #6F6F6F; font-weight:bold;">Export</button>
+                    <a href="AddStaff.aspx" style="color: #6F6F6F; text-decoration: none; font-weight:bold;">
                         <div class="product-add">➕ Add Staff</div>
                     </a>
                 </div>
@@ -172,7 +172,7 @@
                 <div class="col eclipse-container" onclick="toggleDropdown('dropdownList3', 'dropdownDisplay3')">
                     <div class="eclipse-display" id="dropdownDisplay3" style="border:none;"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></div>
                     <div class="eclipse-list" id="dropdownList3">
-                        <a href="UpdateStaff.aspx" style="text-decoration:none;"><div>Update</div></a>
+                        <a href="UpdateStaff.aspx" style="text-decoration:none; color:#6F6F6F;"><div>Update</div></a>
                         <div onclick="document.getElementById('id01').style.display='block'">Delete</div>
                     </div>
                 </div>

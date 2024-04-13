@@ -31,7 +31,7 @@
                     <input class="search-input" type="search" placeholder="Search" />
                 </div>
                 <div class="btnExcel-Add">
-                    <button class="excel-export" style="color: #6F6F6F; font-size: 1rem; font-weight: 400;">Export</button>
+                    <button class="excel-export" style="color: #6F6F6F; font-weight:bold;">Export</button>
                 </div>
             </div>
         </div>

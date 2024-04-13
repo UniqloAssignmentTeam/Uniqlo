@@ -37,8 +37,8 @@
                     </div>
                 </div>
                 <div class="btnExcel-Add">
-                    <button class="excel-export" style="color: #6F6F6F; font-size: 1rem; font-weight: 400;">Export</button>
-                    <a href="addDiscount.aspx" style="text-decoration: none; color: #6F6F6F;">
+                    <button class="excel-export" style="color: #6F6F6F; font-size: 1rem; font-weight:bold;">Export</button>
+                    <a href="addDiscount.aspx" style="text-decoration: none; color: #6F6F6F; font-weight:bold;">
                         <div class="product-add">➕ Add Discount</div>
                     </a>
                 </div>
