@@ -18,7 +18,7 @@
             </div>
 
             <div id="menu">
-                <asp:Menu ID="Menu2" runat="server" DataSourceID="SiteMapDataSource2" BackColor="GhostWhite" ForeColor="Black" Orientation="Horizontal" StaticDisplayLevels="2" StaticSubMenuIndent="30px" Font-Bold="True" Font-Size="20px" Font-Underline="False" CssClass="main-menu">
+                <asp:Menu ID="Menu2" runat="server" DataSourceID="SiteMapDataSource2" BackColor="GhostWhite" ForeColor="Black" Orientation="Horizontal" StaticDisplayLevels="2" StaticSubMenuIndent="30px" Font-Bold="True" Font-Size="20px" Font-Underline="False" CssClass="admin-main-menu">
                     <DynamicHoverStyle CssClass="dynamic-menu-hover" />
                     <DynamicMenuItemStyle ForeColor="Black" CssClass="dynamic-menu-item" />
                     <DynamicMenuStyle CssClass="dynamic-menu-item" />
@@ -29,25 +29,19 @@
             </div>
 
             <div id="adminSearch">
-                <div id="search-icon" style="margin-top: -30px;">
+                <div id="search-icon" style="margin-top: -30px; margin-right: 150px;">
                     <!--User-->
                     <div class="user-dropdown" >
                         <i class="fa-regular fa-user user"></i>
                         <!-- Hidden menu that will be displayed on hover -->
                         <div class="hiddenUserMenu">
-                            <a href="/Profile">Profile</a>
-                            <a href="/Login">Login</a>
-                            <a href="/Logout">Logout</a>
+                            <a href="/AdminPages/Profile">Profile</a>
+                            <a href="/AdminPages/Login">Login</a>
+                            <a href="/AdminPages/Logout">Logout</a>
                         </div>
                     </div>
 
                 </div>
-                <div class="wrap-items-master-search-bar" style="margin-top: -30px;">
-                     <div class="masterSearch">
-                        <span class="searchMasterLabel"><i class="fa-solid fa-magnifying-glass" style="padding-left: 20px;"></i></span>
-                         <input class="searchMasterInput" type="search" placeholder="Search" />
-                     </div>
-                 </div>
             </div>
         </div>
        
