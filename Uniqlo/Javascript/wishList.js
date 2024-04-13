@@ -145,7 +145,11 @@ document.addEventListener('DOMContentLoaded', function () {
         button.addEventListener('click', function (event) {
             event.preventDefault();
             event.stopPropagation();
-            const messageElement = this.closest('.product-actions').querySelector('.action-message');
+            const parentItem = this.closest('.wishlistItemCard'); // Find the parent wishlist item
+            parentItem.remove(); // Remove the entire wishlist item from the DOM
+
+            // Display the message
+            const messageElement = parentItem.querySelector('.action-message');
             messageElement.textContent = 'Item has been removed';
             messageElement.style.display = 'block';
             messageElement.style.color = '#f44336'; // Red color for removed

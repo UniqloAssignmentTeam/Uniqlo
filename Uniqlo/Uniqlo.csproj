@@ -156,6 +156,7 @@
     <Content Include="Javascript\addColor.js" />
     <Content Include="Javascript\addToCartButton.js" />
     <Content Include="Javascript\barChartTtlOder.js" />
+    <Content Include="Javascript\cart.js" />
     <Content Include="Javascript\colorRadioList.js" />
     <Content Include="Javascript\ContactUs.js" />
     <Content Include="Javascript\lineChart.js" />
