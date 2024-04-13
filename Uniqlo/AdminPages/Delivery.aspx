@@ -2,7 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="main" runat="server">
     <style>
         .dropdown-wrapper{
-            margin-right:520px
+            margin-right:310px
         }
         .wrap-items-search-buttons{
         justify-content:normal;
@@ -54,6 +54,11 @@
                   </div>
                </div>
             </div>
+              <div class="btnExcel-Add">
+     <button class="excel-export" style="color: #6F6F6F; font-size: 1rem; font-weight:bold;">Export</button>
+     
+    
+ </div>
          </div>
       </div>
       <div class="table">
