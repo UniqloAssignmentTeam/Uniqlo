@@ -12,11 +12,12 @@
         <asp:SiteMapDataSource ID="SiteMapDataSource1" runat="server" SiteMapProvider="UserSiteMapProvider"/>
         
         <div id="header">
+            
             <div>
                 <img src="Images/Uniqlo-Logos.png" class="uniqlo-icon" runat="server"/>
             </div>
-           
-            <div id="menu">
+            
+            <div id="menu" class="menu">
                 <asp:Menu ID="Menu1" runat="server" DataSourceID="SiteMapDataSource1" BackColor="GhostWhite" ForeColor="Black" Orientation="Horizontal" StaticDisplayLevels="2" StaticSubMenuIndent="30px" Font-Bold="True" Font-Size="20px" Font-Underline="False" CssClass="main-menu">
                     <DynamicHoverStyle CssClass="dynamic-menu-hover" />
                     <DynamicMenuItemStyle ForeColor="Black" CssClass="dynamic-menu-item"/>
@@ -63,6 +64,8 @@
                 </div>
             </div>
         </div>
+
+
         <div class="siteMapPath">
             <asp:SiteMapPath ID="SiteMapPath1" runat="server" SiteMapProvider="UserSiteMapProvider"></asp:SiteMapPath>
         </div>
@@ -71,7 +74,7 @@
             <asp:ContentPlaceHolder ID="main" runat="server">
             </asp:ContentPlaceHolder>
         </div>
-
+        
 
 
 
