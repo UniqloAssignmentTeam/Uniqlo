@@ -11,7 +11,7 @@ namespace Uniqlo.AdminPages
 {
 
 
-    public partial class test
+    public partial class UpdateStaff
     {
     }
 }

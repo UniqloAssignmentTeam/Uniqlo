@@ -1,23 +1,108 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin.Master" AutoEventWireup="true" CodeBehind="Discount.aspx.cs" Inherits="Uniqlo.AdminPages.Discount" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin.Master" AutoEventWireup="true" CodeBehind="Staff.aspx.cs" Inherits="Uniqlo.AdminPages.Staff" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="main" runat="server">
 
 
-    
+
 
         <link href="../css/productAdmin.css" rel="stylesheet" />
    <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
            <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
    
     <style>
-
-        .dropdown-container{
-            margin-left:-150px;
+        .dropdown-wrapper{
+            margin-left:-24px;
+        }
+        .inStock{
+            color:black;
+        }
+        .lowInStock{
+            color:black;
         }
 
+        /* Float cancel and delete buttons and add an equal width */
+        .confirmationCancelbtn, .confirmationDeletebtn {
+          float: left;
+          width: 50%;
+        }
+
+        /* Add a color to the cancel button */
+        .confirmationCancelbtn {
+          background-color: #ccc;
+          color: black;
+        }
+
+        /* Add a color to the delete button */
+        .confirmationDeletebtn {
+          background-color: #f44336;
+        }
+
+        /* Add padding and center-align text to the container */
+        .confirmationContainer {
+          padding: 16px;
+          text-align: center;
+        }
+
+        /* The Modal (background) */
+        .confirmationModal {
+          display: none; /* Hidden by default */
+          position: fixed; /* Stay in place */
+          z-index: 1; /* Sit on top */
+          left: 0;
+          top: 0;
+          width: 100%; /* Full width */
+          height: 100%; /* Full height */
+          overflow: auto; /* Enable scroll if needed */
+          background-color: #474e5d;
+          padding-top: 50px;
+        }
+
+        /* Modal Content/Box */
+        .confirmation-modal-content {
+          background-color: #fefefe;
+          margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+          border: 1px solid #888;
+          width: 80%; /* Could be more or less, depending on screen size */
+        }
+
+        /* Style the horizontal ruler */
+        hr {
+          border: 1px solid #f1f1f1;
+          margin-bottom: 25px;
+        }
+ 
+        /* The Modal Close Button (x) */
+        .confirmationClose {
+          position: absolute;
+          right: 35px;
+          top: 15px;
+          font-size: 40px;
+          font-weight: bold;
+          color: #f1f1f1;
+        }
+
+        .confirmationClose:hover,
+        .confirmationClose:focus {
+          color: #f44336;
+          cursor: pointer;
+        }
+
+        /* Clear floats */
+        .confirmationClearFix::after {
+          content: "";
+          clear: both;
+          display: table;
+        }
+
+        /* Change styles for cancel button and delete button on extra small screens */
+        @media screen and (max-width: 300px) {
+          .confirmationCancelbtn, .confirmationDeletebtn {
+             width: 100%;
+          }
+        }
     </style>
     <div class="productBody">
 
- <h2>Discount</h2>
+ <h2>Staff</h2>
 
        
 
@@ -35,25 +120,35 @@
 
      <div class="dropdown-wrapper">
 <div class="dropdown-container" onclick="toggleDropdown('dropdownList', 'dropdownDisplay')">
-  <div class="dropdown-display" id="dropdownDisplay">Status</div>
+  <div class="dropdown-display" id="dropdownDisplay">Gender</div>
   <div class="dropdown-list" id="dropdownList">
-    <div onclick="selectOption('Valid', 'dropdownDisplay')">Valid</div>
-    <div onclick="selectOption('Invalid', 'dropdownDisplay')">Invalid</div>
+    <div onclick="selectOption('Male', 'dropdownDisplay')">Male</div>
+    <div onclick="selectOption('Female', 'dropdownDisplay')">Female</div>
   </div>
 </div>
 
 
+<div class="dropdown-container" onclick="toggleDropdown('dropdownList2', 'dropdownDisplay2')">
+  <div class="dropdown-display" id="dropdownDisplay2">Role</div>
+  <div class="dropdown-list" id="dropdownList2">
+    <div onclick="selectOption('Admin', 'dropdownDisplay2')">Admin</div>
+    <div onclick="selectOption('Manager', 'dropdownDisplay2')">Manager</div>
+  </div>
+</div>
 
        </div>
 
-    
+
 
 
      <div class="btnExcel-Add">
-       <button class="excel-export" style="color: #6F6F6F; font-size: 1rem; font-weight: 400;">Export</button>
-        <a href="addDiscount.aspx" style="text-decoration: none; color: #6F6F6F;"> <div class="product-add" >➕ Add Discount</div></a>
       
+       <button class="excel-export" style="color: #6F6F6F; font-size: 1rem; font-weight: 400;">Export</button>
+        
 
+         
+       <a href="AddStaff.aspx" style="color: #6F6F6F; text-decoration: none;"><div  class="product-add">➕ Add Staff</div></a>
+     
             </div>
 
      
@@ -77,27 +172,29 @@
     <div class="row">
 
     <div class="col productid">
-        Discount ID
+        Staff ID
     </div>
-
+  
+      
+        
     <div class="col name">
-        Product ID
+        Staff Name
     </div>
 
      <div class="col status">
-     Amount
+     Gender
  </div>
 
     <div class="col price">
-        Status
+        Role
     </div>
 
 <div class="col gender">
-    Start Date
+    Contact No
 </div>
 
     <div class="col category">
-        End Date
+        Email
     </div>
            
        
@@ -118,24 +215,23 @@
   <div class="col productid">
       1001
   </div>
-    
-
+   
   <div class="col name">
-      Product Name   Product
+     Janice Lee Jia Minn
       </div>
 
    <div class="col inStock">
-     In Stock
+   Female
  </div>
 
   <div class="col price">
-      100.00
+      Manager
   </div>
   <div class="col gender">
-    Gender
+    019111111
 </div>
   <div class="col category">
-      Category
+      janiceljm-pm21@gmail.com
   </div>
 
 
@@ -144,8 +240,10 @@
 
         <div class="eclipse-display" id="dropdownDisplay3" style="border:none;"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></div>
          <div class="eclipse-list" id="dropdownList3">
-     
-             <a href="UpdateDiscount.aspx">   <div>Update</div></a>
+        <div onclick="showModal('updateModalContainer')">Update</div>
+        <div><a href="#" onclick="document.getElementById('id01').style.display='block'">Delete</a></div>
+         <a href="UpdateStaff.aspx" style="text-decoration:none;"><div>Update</div></a>
+          
         <div>Delete</div>
        </div>
      </div>
@@ -162,22 +260,24 @@
       1002
  </div>
 
+  
+
  <div class="col name">
-     Product Name
+     Jeffer Ooi Zhe Feng
  </div>
 
      <div class="col lowInStock">
-     Low In Stock
+    Male
  </div>
 
  <div class="col price">
-    99.00
+   Admin
  </div>
    <div class="col gender">
-    Gender
+    0191111111
 </div>
  <div class="col category">
-     Category
+     jefferozf-pm21@gmail.com
  </div>
 
     <div class="col eclipse-container">
@@ -204,21 +304,21 @@
    
 
  <div class="col name">
-     Product Name
+     Oh Beng Yee
  </div>
 
    <div class="col stat inStock">
-    In Stock
+    Male
 </div>
 
  <div class="col price">
-    130.00
+    Admin
  </div>
    <div class="col gender">
-    Gender
+    0191111111
 </div>
  <div class="col category">
-     Category
+     ohby-pv21@gmail.com
  </div>
 
              <div class="col eclipse-container">
@@ -237,24 +337,24 @@
       1004
  </div>
 
-  
+   
 
  <div class="col name">
-     Product Name
+     Tan Chee Han
       </div>
 
   <div class="col stat inStock">
-     In Stock
+     Male
  </div>
 
  <div class="col price">
-     12.00
+     Admin
  </div>
    <div class="col gender">
-    Gender
+    0191111111
 </div>
  <div class="col category">
-      jefferozf@gmail.com
+      tanch-pm21@gmail.com
  </div>
 
                <div class="col eclipse-container">
@@ -275,21 +375,21 @@
    
 
 <div class="col name">
-    Product Name
+    Yip Yong
 </div>
 
       <div class="col lowInStock">
-     Low In Stock
+     Male
  </div>
 
 <div class="col price">
-    112.00
+    Admin
 </div>
           <div class="col gender">
-    Gender
+    019111111
 </div>
 <div class="col category">
-  asdasd
+  yipy-pm21@gmail.com
 </div>
 
            
@@ -308,11 +408,9 @@
 
 
 
-                    <div class="viewMoreSection">
+        <div class="viewMoreSection">
             <   1..10  >
         </div>
-
-
 
 
 
@@ -343,7 +441,7 @@
 
         <!-- card right -->
         <div class = "product-content">
-          <h2 class = "product-title product-name">Discount Update</h2>
+          <h2 class = "product-title product-name">Staff Update</h2>
           
           <div class = "product-detail">
 
@@ -351,7 +449,7 @@
               <div class="product-details-info">
 
      <div class="form-group">
-    <span>Discount ID:</span>
+    <span>Staff ID:</span>
     <input class="form-field" type="text" disabled>
 </div>
 
@@ -546,17 +644,32 @@
        
         </div>
       </div>
+
+
+        <!--DELETE CONFIRMATION-->
+        <div id="id01" class="confirmationModal">
+          <span onclick="document.getElementById('id01').style.display='none'" class="confirmationClose" title="Close Modal">×</span>
+          <div class="confirmation-modal-content">
+            <div class="confirmationContainer">
+              <h1>Delete Account</h1>
+              <p>Are you sure you want to delete your account?</p>
+    
+              <div class="confirmationClearFix">
+                <button type="button" onclick="document.getElementById('id01').style.display='none'" class="confirmationCancelbtn">Cancel</button>
+                <button type="button" onclick="document.getElementById('id01').style.display='none'" class="confirmationDeletebtn">Delete</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+    </div>
   
-
-
-
- </div>
     
     <footer>
 
-        <script src="../Javascript/productBtnEclipse.js"></script>
+                <script src="../Javascript/productBtnEclipse.js"></script>
         <script src="../Javascript/productAdminDDL.js"></script>
-       
+      
       
 
     </footer>
