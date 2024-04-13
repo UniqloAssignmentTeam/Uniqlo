@@ -18,7 +18,7 @@ namespace Uniqlo
         public Customer()
         {
             this.Orders = new HashSet<Order>();
-            this.Wishlists = new HashSet<Wishlist>();
+            this.WishlistItems = new HashSet<WishlistItem>();
         }
     
         public int Customer_ID { get; set; }
@@ -32,10 +32,11 @@ namespace Uniqlo
         public string Country { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
+        public string ProfileImage_Path { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Order> Orders { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Wishlist> Wishlists { get; set; }
+        public virtual ICollection<WishlistItem> WishlistItems { get; set; }
     }
 }

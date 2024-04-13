@@ -34,7 +34,7 @@
                     <div class="mb-4">
                         <br /><br />
 
-                        <h4 class="font-weight-semi-bold mb-4">Delivery Address</h4>
+                        <h4 class="font-weight-semi-bold mb-4">Delivery Address<i class="fas fa-map-marker-alt" onclick="openGoogleMaps()" data-bs-toggle="tooltip" title="Click to auto-detect your current location"></i></h4>
                         <div class="row">
 
                             <div class="col-md-6 form-group">
@@ -69,6 +69,14 @@
                                 <label>City</label>
                                 <input class="form-control" name="city" type="text" placeholder="Penang" required>
                             </div>
+
+
+                            <div class="col-md-12 form-group">
+    <label>
+        <br />
+        Delivery Instruction (If Any)</label>
+    <input class="form-control" name="city" type="text" placeholder="" required>
+</div>
                         </div>
 
                     </div>

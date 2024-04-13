@@ -16,9 +16,9 @@ namespace Uniqlo
     {
         public int Payment_ID { get; set; }
         public Nullable<int> Delivery_ID { get; set; }
-        public Nullable<int> Order_ID { get; set; }
+        public int Order_ID { get; set; }
         public Nullable<double> Shipping_Amount { get; set; }
-        public Nullable<System.DateTime> DateTime { get; set; }
+        public Nullable<System.DateTime> Payment_DateTime { get; set; }
     
         public virtual Delivery Delivery { get; set; }
         public virtual Order Order { get; set; }

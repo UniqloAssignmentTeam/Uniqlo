@@ -96,20 +96,25 @@
       <DependentUpon>Uniqlo.mdf</DependentUpon>
     </Content>
     <Content Include="css\aboutUs.css" />
+    <Content Include="css\Admin\addDiscount.css" />
     <Content Include="css\Admin\addProduct.css" />
+    <Content Include="css\Admin\addStaff.css" />
+    <Content Include="css\Admin\adminDelivery.css" />
     <Content Include="css\Admin\adminDiscount.css" />
+    <Content Include="css\Admin\adminOrder.css" />
+    <Content Include="css\Admin\adminStaff.css" />
     <Content Include="css\Cart.css" />
     <Content Include="css\category.css" />
     <Content Include="css\ContactUs.css" />
     <Content Include="css\dashboard.css" />
-    <Content Include="css\Admin\delivery.css" />
+    <Content Include="css\delivery.css" />
     <Content Include="css\home.css" />
     <Content Include="css\Login.css" />
     <Content Include="css\logout.css" />
     <Content Include="css\master.css" />
     <Content Include="css\Admin\OrderItem.css" />
     <Content Include="css\product.css" />
-    <Content Include="css\Admin\productAdmin.css" />
+    <Content Include="css\Admin\adminProduct.css" />
     <Content Include="css\Profile.css" />
     <Content Include="css\Admin\report.css" />
     <Content Include="css\SignUp.css" />
@@ -575,9 +580,6 @@
     </Compile>
     <Compile Include="Uniqlo.Master.designer.cs">
       <DependentUpon>Uniqlo.Master</DependentUpon>
-    </Compile>
-    <Compile Include="Wishlist.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="WishlistItem.cs">
       <DependentUpon>Model1.tt</DependentUpon>

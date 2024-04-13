@@ -13,10 +13,10 @@ namespace Uniqlo
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class UniqloEntities1 : DbContext
+    public partial class UniqloEntities2 : DbContext
     {
-        public UniqloEntities1()
-            : base("name=UniqloEntities1")
+        public UniqloEntities2()
+            : base("name=UniqloEntities2")
         {
         }
     
@@ -38,7 +38,6 @@ namespace Uniqlo
         public virtual DbSet<Review> Reviews { get; set; }
         public virtual DbSet<Shipping_Address> Shipping_Address { get; set; }
         public virtual DbSet<Staff> Staffs { get; set; }
-        public virtual DbSet<Wishlist> Wishlists { get; set; }
         public virtual DbSet<WishlistItem> WishlistItems { get; set; }
     }
 }

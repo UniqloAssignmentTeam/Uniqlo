@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin.Master" AutoEventWireup="true" CodeBehind="Report.aspx.cs" Inherits="Uniqlo.AdminPages.Report" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="main" runat="server">
       <header>
-          <link href="../css/report.css" rel="stylesheet" />
+          <link href="../css/Admin/report.css" rel="stylesheet" />
            <script src="https://www.gstatic.com/charts/loader.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
   

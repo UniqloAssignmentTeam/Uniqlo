@@ -3,7 +3,7 @@
 
                 <header>
                    
-                    <link href="../../css/Admin/adminDiscount.css" rel="stylesheet" />
+                    <link href="../../css/Admin/addDiscount.css" rel="stylesheet" />
         </header>
        
  

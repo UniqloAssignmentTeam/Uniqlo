@@ -4,7 +4,7 @@
         <link href="../../../css/category.css" rel="stylesheet" />
     </header>
     <div class="categoryBody">
-        <h1 class="bestSellerHeader">Best Sellers</h1>
+        <h1 class="bestSellerHeader">Women's Bottoms</h1>
         <div class="wrapper">
             <i id="left" class="fa-solid fa-angle-left"></i>
             <ul class="carousel">

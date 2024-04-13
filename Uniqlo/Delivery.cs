@@ -21,9 +21,9 @@ namespace Uniqlo
         }
     
         public int Delivery_ID { get; set; }
-        public Nullable<int> Address_ID { get; set; }
-        public string DeliveryNote { get; set; }
-        public string DeliveryStatus { get; set; }
+        public int Address_ID { get; set; }
+        public string Delivery_Note { get; set; }
+        public string Delivery_Status { get; set; }
     
         public virtual Shipping_Address Shipping_Address { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
