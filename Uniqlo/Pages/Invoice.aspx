@@ -2,10 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="main" runat="server">
     <header>
         <style>
-        body {
-            font-family: Arial, sans-serif;
-        }
-
+        
         .invoice-header {
             display: flex;
             justify-content: space-between;
