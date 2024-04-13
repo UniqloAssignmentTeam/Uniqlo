@@ -2,8 +2,8 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="main" runat="server">
 
                 <header>
-                    <link href="../../css/addProduct.css" rel="stylesheet" />
-          
+                   
+                    <link href="../../css/Admin/adminDiscount.css" rel="stylesheet" />
         </header>
        
  

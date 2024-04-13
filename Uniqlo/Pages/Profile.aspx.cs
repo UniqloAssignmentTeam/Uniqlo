@@ -18,5 +18,10 @@ namespace Uniqlo.Pages
         {
             Response.Redirect("EditProfile.aspx");
         }
+
+        protected void btnBack_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Profile.aspx");
+        }
     }
 }
