@@ -11,6 +11,7 @@
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     text-align: center;
+    border: 1px solid #ccc; /* Added border for visual clarity */
 }
 
     .contact-container h2 {
@@ -37,18 +38,18 @@
     min-height: 200px;
     overflow-y: auto;
     background-color: #ffffff;
-    border: 1px solid #ddd;
+    border: 1px solid grey;
     border-radius: 8px;
     padding: 10px;
 }
 
 .chatbot-message {
-    background-color: #e0f7fa; /* Light blue to mimic a message bubble */
-    padding: 10px 15px;
+    background-color: lightblue; /* Light blue to mimic a message bubble */
+    padding: 5px 15px;
     border-radius: 20px;
-    max-width: 60%;
+    max-width: fit-content;
     margin-bottom: 10px;
-    color: #333;
+    color: black;
     font-size: 16px;
     margin-left: auto; /* Align to the right */
     position: relative;
@@ -62,7 +63,7 @@
     .chatbot-input input {
         flex: 1;
         padding: 10px;
-        border: 2px solid #ddd;
+        border: 2px solid grey;
         border-radius: 20px;
         outline: none;
     }
