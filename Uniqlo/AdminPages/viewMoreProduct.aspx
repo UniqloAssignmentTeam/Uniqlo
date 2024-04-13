@@ -6,12 +6,38 @@
             <link href="../css/addProduct.css" rel="stylesheet" />
         </header>
        
- 
+    <style>
+        
+.button-container {
+    display: flex;
+    text-align: center;
+    margin: 60px 0px 60px 0px;
+    width: 100%;
+    margin-top: 50px;
+    margin-left: 210px;
+}
+.cancel-button {
+   border: 2px solid lightgrey;
+padding: 20px 180px 20px 180px;
+background: none;
+outline: none;
+font-weight: bold;
+cursor: pointer;
+transition: all 0.5s ease;
+text-decoration: none;
+color: black;
+}
+
+    .continue-button:hover, .cancel-button:hover, .addColor-button:hover {
+        background-color: black;
+        color: white;
+    }
+    </style>
  
  
            <div class="container">
         <div class="productItemCard">
-            <h2 class="product-title">Uniqlo Add Product</h2>
+            <h2 class="product-title">Uniqlo View Product</h2>
         </div>
         <div class="modal-content">
             <div class="upload-image-section">
@@ -57,11 +83,7 @@
                 <input class="form-field" type="text" value="Men" disabled>
                 </div>
 
-                <div class="form-group">
-                    <label for="productName">Color</label>
-                    <input type="text" id="newColorInput">
-                    <button id="addColorButton" class="addColor-button">Add color</button>
-                </div>
+             
             </div>
 
              <table class="sizeQtyTable">
@@ -75,7 +97,7 @@
              <td>
                  <div class="form-group">
                      <label for="productName">XL</label>
-                     <input type="number" class="form-field" placeholder="122">
+                     <input type="number" class="form-field" placeholder="122" disabled>
                  </div>
              </td>
              <td></td>
@@ -84,7 +106,7 @@
              <td>
                  <div class="form-group">
                      <label for="productName">M</label>
-                     <input type="number" class="form-field" placeholder="123">
+                     <input type="number" class="form-field" placeholder="123" disabled>
                  </div>
              </td>
              <td></td>
@@ -93,7 +115,7 @@
              <td>
                  <div class="form-group">
                      <label for="productName">L</label>
-                     <input type="number" class="form-field" placeholder="124">
+                     <input type="number" class="form-field" placeholder="124" disabled>
                  </div>
              </td>
              <td></td>
@@ -102,7 +124,7 @@
              <td>
                  <div class="form-group">
                      <label for="productName">XL</label>
-                     <input type="number" class="form-field" placeholder="122">
+                     <input type="number" class="form-field" placeholder="122" disabled>
                  </div>
              </td>
              <td></td>
@@ -112,11 +134,9 @@
 
             <div class="button-container">
                 <div class="cancel-div">
-                    <a href="Product.aspx" class="cancel-button">Cancel</a>
+                    <a href="Product.aspx" class="cancel-button" style="width:100%;">BACK</a>
                 </div>
-                <div class="continue-div">
-                    <a href="Product.aspx" class="continue-button">Update</a>
-                </div>
+               
             </div>
         </div>
     </div>

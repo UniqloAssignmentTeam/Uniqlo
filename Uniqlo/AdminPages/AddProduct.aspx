@@ -46,17 +46,17 @@
                 <div class="form-group">
                     <label for="productName">Wear</label>
                     <div class="dropdown-container" onclick="toggleDropdown('dropdownList', 'dropdownDisplay')">
-                        <div class="dropdown-display" id="dropdownDisplay">Category</div>
+                        <div class="dropdown-display" id="dropdownDisplay">Tops</div>
                         <div class="dropdown-list" id="dropdownList">
                             <div onclick="selectOption('Tops', 'dropdownDisplay')">Tops</div>
                             <div onclick="selectOption('Bottom', 'dropdownDisplay')">Bottom</div>
                         </div>
                     </div>
-
+                   </div>
                 <div class="form-group">
                     <label for="productName">Category</label>
                     <div class="dropdown-container" onclick="toggleDropdown('dropdownList2', 'dropdownDisplay2')">
-                        <div class="dropdown-display" id="dropdownDisplay2">Category</div>
+                        <div class="dropdown-display" id="dropdownDisplay2">Men</div>
                         <div class="dropdown-list" id="dropdownList2">
                             <div onclick="selectOption('Men', 'dropdownDisplay2')">Men</div>
                             <div onclick="selectOption('Women', 'dropdownDisplay2')">Women</div>
@@ -85,88 +85,91 @@
         </div>
     </div>
     
-
+            
 
         <footer>
+        <script>
+            // Function to create a new table for a color
+            function createColorTable(color) {
+                var tableHtml = `
 
-<script>
-    // Function to create a new table for a color
-    function createColorTable(color) {
-        var tableHtml = `
-        
-        <table class="sizeQtyTable">
-            <thead>
-                <tr>
-                    <th><h2>${color}</h2></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>
-                        <div class="form-group">
-                            <label for="productName">XL</label>
-                            <input type="number" class="form-field" placeholder="Quantity">
-                        </div>
-                    </td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>
-                        <div class="form-group">
-                            <label for="productName">M</label>
-                            <input type="number" class="form-field" placeholder="Quantity">
-                        </div>
-                    </td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>
-                        <div class="form-group">
-                            <label for="productName">L</label>
-                            <input type="number" class="form-field" placeholder="Quantity">
-                        </div>
-                    </td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>
-                        <div class="form-group">
-                            <label for="productName">XL</label>
-                            <input type="number" class="form-field" placeholder="Quantity">
-                        </div>
-                    </td>
-                    <td></td>
-                </tr>
-            </tbody>
-        </table>
+    <table class="sizeQtyTable">
+        <thead>
+            <tr>
+                <th><h2>${color}</h2></th>
+                <th><button class="addColor-button" onclick="deleteColorTable(this)">Delete</button></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <div class="form-group">
+                        <label for="productName">XL</label>
+                        <input type="number" class="form-field" placeholder="Quantity">
+                    </div>
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="form-group">
+                        <label for="productName">M</label>
+                        <input type="number" class="form-field" placeholder="Quantity">
+                    </div>
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="form-group">
+                        <label for="productName">L</label>
+                        <input type="number" class="form-field" placeholder="Quantity">
+                    </div>
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="form-group">
+                        <label for="productName">XL</label>
+                        <input type="number" class="form-field" placeholder="Quantity">
+                    </div>
+                </td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
     `;
-        return tableHtml;
-    }
+                return tableHtml;
+            }
 
-    // Event listener for the "Add color" button
-    document.getElementById('addColorButton').addEventListener('click', function (event) {
-        event.preventDefault(); // Prevent default form submission behavior
-        var newColorInput = document.getElementById('newColorInput');
-        var color = newColorInput.value.trim(); // Get the entered color value
-        if (color !== '') {
-            var colorTablesContainer = document.getElementById('colorTablesContainer');
-            // Create a new table for the entered color
-            var newColorTable = document.createElement('div');
-            newColorTable.innerHTML = createColorTable(color);
-            // Append the new table to the container
-            colorTablesContainer.appendChild(newColorTable);
-            // Clear the input field
-            newColorInput.value = '';
-        } else {
-            alert('Please enter a color.');
-        }
-    });
+            // Function to delete a color table
+            function deleteColorTable(button) {
+                var colorTableWrapper = button.closest('.color-table-wrapper');
+                colorTableWrapper.remove();
+            }
+
+            // Event listener for the "Add color" button
+            document.getElementById('addColorButton').addEventListener('click', function (event) {
+                event.preventDefault();
+                var newColorInput = document.getElementById('newColorInput');
+                var color = newColorInput.value.trim();
+                if (color !== '') {
+                    var colorTablesContainer = document.getElementById('colorTablesContainer');
+                    var newColorTable = document.createElement('div');
+                    newColorTable.innerHTML = createColorTable(color);
+                    colorTablesContainer.appendChild(newColorTable);
+                    newColorInput.value = '';
+                } else {
+                    alert('Please enter a color.');
+                }
+            });
 
 
 
-    
 
-</script>
+
+        </script>
         <script src="../Javascript/productAdminDDL.js"></script>
             </footer>
     </asp:Content>
