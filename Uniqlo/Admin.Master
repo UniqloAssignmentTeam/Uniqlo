@@ -70,10 +70,11 @@
             <div class="footerNav">
                 
                     <a href="Dashboard.aspx">Dashboard</a>
-                    <a href="Staff.aspx">Manage Staff</a>
-                    <a href="Product.aspx">Manage Product</a>
-                    <a href="ValueBuy.aspx">Manage Value Buy</a>
-                    <a href="Order.aspx">Manage Order</a>
+                    <a href="Staff.aspx">Staff</a>
+                    <a href="Product.aspx">Product</a>
+                    <a href="ValueBuy.aspx">Discount</a>
+                    <a href="Order.aspx">Order</a>
+                    <a href="Delivery.aspx">Delivery</a>
                     <a href="Report.aspx">Report</a>
                 
             </div>

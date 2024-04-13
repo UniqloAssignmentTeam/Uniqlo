@@ -102,6 +102,7 @@
     <Content Include="css\OrderItem.css" />
     <Content Include="css\product.css" />
     <Content Include="css\productAdmin.css" />
+    <Content Include="css\Profile.css" />
     <Content Include="css\report.css" />
     <Content Include="css\SignUp.css" />
     <Content Include="css\style.css" />
@@ -171,6 +172,7 @@
     <Content Include="Pages\ConfirmPayment.aspx" />
     <Content Include="Pages\ContactUs.aspx" />
     <Content Include="Pages\Delivery.aspx" />
+    <Content Include="Pages\EditProfile.aspx" />
     <Content Include="Pages\Home.aspx" />
     <Content Include="Pages\Categories\Men\Bottoms.aspx" />
     <Content Include="Pages\Categories\Men\Main.aspx" />
@@ -350,6 +352,13 @@
     </Compile>
     <Compile Include="Pages\Delivery.aspx.designer.cs">
       <DependentUpon>Delivery.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\EditProfile.aspx.cs">
+      <DependentUpon>EditProfile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\EditProfile.aspx.designer.cs">
+      <DependentUpon>EditProfile.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Home.aspx.cs">
       <DependentUpon>Home.aspx</DependentUpon>
