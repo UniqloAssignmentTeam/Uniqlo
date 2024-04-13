@@ -1,0 +1,778 @@
+﻿.productBody {
+    max-width: 1100px;
+    position: relative;
+    margin: auto;
+    margin-top: 40px;
+}
+
+.addProductQtySizeSection {
+    display: none; /* Hide the section by default */
+}
+
+
+
+.color-radio label {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    margin: 5px;
+    border: 3px solid transparent; /* Border initially transparent */
+    cursor: pointer;
+}
+
+/* Define colors for radio buttons */
+#red + label {
+    background-color: red;
+}
+
+#green + label {
+    background-color: green;
+}
+
+#blue + label {
+    background-color: blue;
+}
+
+/* Style for selected radio button */
+.color-radio input[type="radio"]:checked + label {
+    border-color: black; /* Solid black border when selected */
+}
+
+
+
+.crudProduct {
+    padding: 15px; /* Add padding inside the border */
+    background-color: whitesmoke;
+    max-width: 1100px;
+}
+
+
+
+.wrap-items-search-buttons {
+    display: flex;
+    justify-content: space-between; /* This will spread out the child elements */
+    align-items: center; /* Vertically centers the child elements in the container */
+    padding: 0 20px; /* Add padding on sides */
+    /* Adds a gap between the search bar and other elements if needed */
+}
+
+.search {
+    --padding: 5px;
+    width: 350px; /* Makes the search bar take up the available space */
+    display: flex;
+    align-items: center;
+    padding: var(--padding);
+    border-radius: 28px;
+    background: white;
+    transition: box-shadow 0.25s;
+    border: 1px solid #ccc;
+    /* Add some margin to the right if you want to separate it from other elements */
+}
+
+    .search:focus-within {
+        box-shadow: 0 0 2px rgba(0,0,0,0.75);
+    }
+
+.search-input {
+    font-size: 16px;
+    color: #333333;
+    margin-left: var(--padding);
+    outline: none;
+    border: none;
+    background: transparent;
+    flex-grow: 1; /* Allows the input to fill the space inside the search div */
+}
+
+    .search-input::placeholder, .material-symbols-outlined {
+        color: rgba(0,0,0,0.5);
+        padding: var(--padding); /* Adds padding around the icon */
+    }
+
+.dropdown-wrapper {
+    display: flex; /* Use flexbox to align the children */
+    justify-content: center; /* Center the children horizontally */
+    align-items: center; /* Center the children vertically */
+    gap: 10px; /* This sets the space between the dropdowns */
+}
+
+.dropdown-container {
+    position: relative;
+    width: 150px; /* Fixed width for consistency */
+    display: flex; /* Use flex to align the arrow inside .dropdown-display */
+    align-items: center; /* Center align the contents */
+    justify-content: space-between; /* Spread out the contents */
+}
+
+.dropdown-display {
+    width: 150px;
+    height: 40px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: white;
+    cursor: pointer;
+    position: relative;
+    text-align: center; /* Center the text */
+    display: flex; /* Use flexbox here to help with centering text and arrow */
+    align-items: center; /* Align the text and arrow vertically */
+    justify-content: center; /* Centers the text inside the dropdown */
+    font-weight: bold;
+}
+
+.dropdown-list {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 100;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    opacity: 0; /* Start fully transparent */
+    visibility: hidden; /* Start hidden */
+    transform: translateY(-20px); /* Start slightly above */
+    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s; /* Animate opacity, transform, and visibility */
+    align-items: center;
+    text-align: center; /* Centers the text inside the dropdown */
+}
+
+
+    .dropdown-list.open {
+        opacity: 1; /* Fade in to fully opaque */
+        visibility: visible; /* Make visible */
+        transform: translateY(0px); /* Move to original position */
+    }
+
+
+    .dropdown-list.open {
+        display: block; /* Show dropdown */
+    }
+
+    .dropdown-list div {
+        padding: 10px;
+        cursor: pointer;
+    }
+
+        .dropdown-list div:hover {
+            background-color: #f0f0f0;
+        }
+
+
+.dropdown-display::after {
+    content: '';
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%) rotate(180deg); /* Arrow points up initially */
+    border: solid transparent;
+    border-width: 0 6px 6px 6px; /* Create a sharper arrow */
+    border-bottom-color: black; /* The tip of the arrow is black */
+    display: inline-block;
+    transition: transform 0.3s ease;
+}
+
+
+
+
+.btnExcel-Add {
+    margin-left: 150px;
+    display: flex;
+}
+
+.excel-export {
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 5px;
+    border-style: none;
+    box-sizing: border-box;
+    height: 40px;
+    cursor: pointer;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    transition: background-color 250ms ease-out 100ms;
+    color: #6F6F6F;
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.product-add {
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    border-style: none;
+    box-sizing: border-box;
+    height: 40px;
+    cursor: pointer;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    transition: color 500ms;
+    margin-left: 10px;
+    transition: background-color 250ms ease-out 100ms;
+    padding: 10px;
+}
+
+    .product-add:hover, .product-add:focus, .excel-export:hover, .excel-export:focus {
+        background-color: lightgrey;
+    }
+
+
+
+
+
+
+
+.table {
+    max-width: 1100px;
+    margin: 0 auto;
+    border: 2px solid ghostwhite;
+    box-sizing: border-box;
+}
+
+
+.row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    width: 100%; /* Ensures row does not exceed its container's width */
+    box-sizing: border-box; /* Include this as well */
+}
+
+
+.table .row:nth-child(even) {
+    background-color: #fafafa; /* very light grey for every even row */
+}
+
+/* Header specific styles */
+.row:first-child {
+    font-weight: bold;
+    background-color: white; /* Blue makes the header pop and looks great with white */
+}
+
+.col {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    flex-grow: 0; /* Do not allow columns to grow */
+    flex-shrink: 0; /* Do not allow columns to shrink */
+    height: 50px; /* Adjust height automatically */
+    justify-content: center;
+    word-break: break-all
+}
+
+.prodImageHeader {
+    display: none;
+}
+
+.productid, .price {
+    flex: 0 0 10%; /* Set a base width */
+}
+
+
+
+/* Name Column */
+.name {
+    flex-grow: 1; /* Allow this column to grow and take up remaining space */
+}
+
+.category {
+    flex-basis: 10%;
+}
+
+/* Price Column */
+
+.gender {
+    flex-basis: 10%;
+}
+/* Category Column */
+.category {
+    min-width: 0;
+    flex-basis: 10%;
+    word-wrap: break-word;
+}
+
+
+
+
+.eclipse-container {
+    display: flex;
+    position: relative;
+    flex-basis: 8%;
+}
+
+.eclipse-display {
+    cursor: pointer;
+    flex-basis: 8%;
+}
+
+.eclipse-list {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 100;
+    width: 150px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    opacity: 0; /* Start fully transparent */
+    visibility: hidden; /* Start hidden */
+    transform: translateY(-20px); /* Start slightly above */
+    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s; /* Animate opacity, transform, and visibility */
+    align-items: center;
+    text-align: center; /* Centers the text inside the dropdown */
+}
+
+    .eclipse-list.open {
+        opacity: 1; /* Fade in to fully opaque */
+        visibility: visible; /* Make visible */
+        transform: translateY(0px); /* Move to original position */
+    }
+
+
+    .eclipse-list.open {
+        display: block; /* Show dropdown */
+    }
+
+    .eclipse-list div {
+        padding: 10px;
+        cursor: pointer;
+    }
+
+        .eclipse-list div:hover {
+            background-color: #f0f0f0;
+        }
+
+
+
+
+
+
+
+.user-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.hiddenUserMenu {
+    display: none;
+    position: absolute;
+    background-color: ghostwhite;
+    border-radius: 10px;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+    .hiddenUserMenu a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+    }
+
+        .hiddenUserMenu a:hover {
+            background-color: #C8C7C7;
+            border-radius: 10px;
+        }
+
+.user-dropdown:hover .hiddenUserMenu {
+    display: block;
+}
+
+
+
+.viewMoreSection {
+    text-align: center;
+    margin: 60px 0px 60px 0px;
+}
+
+.viewMoreButton {
+    border: 2px solid black;
+    padding: 20px 180px 20px 180px;
+    background: none;
+    outline: none;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.5s ease;
+    text-decoration: none;
+    color: black;
+}
+
+    .viewMoreButton:hover {
+        background-color: black;
+        color: white;
+    }
+
+
+
+/*MODAL BOX*/
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    padding-top: 90px;
+}
+
+/* Modal Content */
+.modal-content {
+    background-color: #fefefe;
+    margin: 5% auto; /* 5% from the top and centered */
+    padding: 80px 20px 20px 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+    border-radius: 5px;
+    margin-bottom: 120px;
+}
+
+/* The Close Button */
+.close, .closeReview {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    margin-top: -50px;
+    margin-right: 20px;
+}
+
+    .close:hover,
+    .close:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    .closeReview:hover,
+    .closeReview:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+
+
+/*PRODUCT ITEM*/
+.card-wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.img-showcase img, .img-item img {
+    width: 100%;
+    display: block;
+}
+
+.img-display {
+    overflow: hidden;
+}
+
+.img-showcase {
+    display: flex;
+    width: 100%;
+    transition: all 0.5s ease;
+}
+
+    .img-showcase img {
+        min-width: 100%;
+    }
+
+.img-select {
+    display: flex;
+}
+
+.img-item {
+    margin: 0.3rem;
+}
+
+    .img-item:nth-child(1),
+    .img-item:nth-child(2),
+    .img-item:nth-child(3) {
+        margin-right: 0;
+    }
+
+    .img-item:hover {
+        opacity: 0.8;
+    }
+
+
+
+
+
+
+
+
+.product-content {
+    margin: 0px;
+    padding: 0px;
+}
+
+
+
+.product-details-info {
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.product-details-head {
+    font-size: 1.0em;
+    font-weight: bold;
+}
+
+.product-details-items {
+    padding-left: 8px;
+}
+
+
+.purchase-size-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.purchase-size {
+    display: flex;
+}
+
+.descriptionItem {
+    display: unset;
+}
+
+.purchase-size-size {
+    font-size: 1.0em;
+    font-weight: bold;
+}
+
+.purchase-size-qty {
+    padding-left: 8px;
+}
+
+
+
+
+
+@media screen and (min-width: 992px) {
+    .productItemCard {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: 1.5rem;
+    }
+
+    .card-wrapper {
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .product-imgs {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .product-content {
+        padding-top: 0;
+    }
+}
+
+@keyframes txt2 {
+    0%, 80% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+
+
+
+
+
+:root {
+    --input-color: #99A3BA;
+    --input-border: #CDD9ED;
+    --input-background: #fff;
+    --input-placeholder: #CBD1DC;
+    --input-border-focus: #275EFE;
+    --group-color: var(--input-color);
+    --group-border: var(--input-border);
+    --group-background: #EEF4FF;
+    --group-color-focus: #fff;
+    --group-border-focus: var(--input-border-focus);
+    --group-background-focus: #678EFE;
+}
+
+.form-field {
+    display: block;
+    width: 100%;
+    padding: 8px 16px;
+    line-height: 25px;
+    font-size: 14px;
+    font-weight: 500;
+    font-family: inherit;
+    border-radius: 6px;
+    -webkit-appearance: none;
+    color: var(--input-color);
+    border: 1px solid var(--input-border);
+    background: var(--input-background);
+    transition: border .3s ease;
+}
+
+    .form-field::placeholder {
+        color: var(--input-placeholder);
+    }
+
+    .form-field:focus {
+        outline: none;
+        border-color: var(--input-border-focus);
+    }
+
+.form-group {
+    position: relative;
+    display: flex;
+    width: 100%;
+}
+
+    .form-group > span,
+    .form-group .form-field {
+        white-space: nowrap;
+        display: block;
+    }
+
+        .form-group .form-field:not(:first-child):not(:last-child) {
+            border-radius: 0;
+        }
+
+        .form-group .form-field:first-child {
+            border-radius: 6px 0 0 6px;
+        }
+
+        .form-group .form-field:last-child {
+            border-radius: 0 6px 6px 0;
+        }
+
+        .form-group .form-field:not(:first-child) {
+        }
+
+    .form-group .form-field {
+        position: relative;
+        z-index: 1;
+        flex: 1 1 auto;
+        width: 1%;
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+
+    .form-group > span {
+        text-align: center;
+        padding: 8px 12px;
+        width: 30%;
+        font-size: 14px;
+        line-height: 25px;
+        color: var(--group-color);
+        background: var(--group-background);
+        border: 1px solid var(--group-border);
+        transition: background .3s ease, border .3s ease, color .3s ease;
+    }
+
+    .form-group:focus-within > span {
+        color: var(--group-color-focus);
+        background: var(--group-background-focus);
+        border-color: var(--group-border-focus);
+    }
+
+
+
+
+body .form-group {
+    max-width: 360px;
+}
+
+    body .form-group:not(:last-child) {
+        margin-bottom: 32px;
+    }
+
+
+
+
+
+.addProductBtn {
+    background-color: #EEF4FF;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    border-style: none;
+    box-sizing: border-box;
+    height: 40px;
+    cursor: pointer;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    transition: color 500ms;
+    margin-bottom: 10px;
+    padding: 10px;
+}
+
+.addProduct-restProduct {
+    display: flex;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.page-link {
+    border: 1px solid #ddd;
+    padding: 8px 16px;
+    margin: 0 4px;
+    text-decoration: none;
+    color: #666;
+    background-color: #f9f9f9;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+    .page-link:hover:not(.active) {
+        background-color: #e9e9e9;
+        color: #333;
+    }
+
+.active {
+    background-color: lightgrey;
+    color: white;
+    border: 1px solid #4CAF50;
+}
+
+.page-link:first-child,
+.page-link:last-child {
+    border-radius: 5px;
+}
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .row {
+        flex-direction: column;
+    }
+
+    .col {
+        width: 100%;
+        padding: 10px;
+        border-right: none; /* Remove vertical line on mobile */
+    }
+
+    .row:first-child {
+        background: #4c9a2a; /* Keep the header green on mobile */
+    }
+}

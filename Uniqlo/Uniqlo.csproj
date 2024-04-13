@@ -96,21 +96,22 @@
       <DependentUpon>Uniqlo.mdf</DependentUpon>
     </Content>
     <Content Include="css\aboutUs.css" />
-    <Content Include="css\addProduct.css" />
+    <Content Include="css\Admin\addProduct.css" />
+    <Content Include="css\Admin\adminDiscount.css" />
     <Content Include="css\Cart.css" />
     <Content Include="css\category.css" />
     <Content Include="css\ContactUs.css" />
     <Content Include="css\dashboard.css" />
-    <Content Include="css\delivery.css" />
+    <Content Include="css\Admin\delivery.css" />
     <Content Include="css\home.css" />
     <Content Include="css\Login.css" />
     <Content Include="css\logout.css" />
     <Content Include="css\master.css" />
-    <Content Include="css\OrderItem.css" />
+    <Content Include="css\Admin\OrderItem.css" />
     <Content Include="css\product.css" />
-    <Content Include="css\productAdmin.css" />
+    <Content Include="css\Admin\productAdmin.css" />
     <Content Include="css\Profile.css" />
-    <Content Include="css\report.css" />
+    <Content Include="css\Admin\report.css" />
     <Content Include="css\SignUp.css" />
     <Content Include="css\style.css" />
     <Content Include="css\style1.css" />
