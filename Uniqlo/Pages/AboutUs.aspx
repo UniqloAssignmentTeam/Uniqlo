@@ -11,7 +11,7 @@
                 Uniqlo is a Japanese clothing company that offers innovative and functional apparel for people of all
                 ages. We are dedicated to providing high-quality, comfortable clothing at affordable prices.
             </p>
-            <img src="../Images/uniqlostore.jpg" />
+            <img src="../Images/uniqlostore.jpg" width="100%"/>
             <p>
                 Our mission is to create a better life for our customers by constantly improving our products and
                 exploring new technologies and designs. We are committed to sustainability and ethical practices in all
@@ -26,7 +26,7 @@
                 that combines fashion and functionality, always keeping our customers' needs in mind.
             </p>
         </section>
-             <img src="../Images/Uniqlo-Logos.png" /><img src="../Images/storeLocator.jpg" />
+             <img src="../Images/storeLocator.jpg" width="100%"/>
         <section class="values-section">
             <h2>Our Values</h2>
             <ul>
@@ -37,7 +37,7 @@
                 
                 
             </ul>
-         <p><img src="../Images/3R.jpg" /></p>
+         <p><img src="../Images/3R.jpg" width="100%"/></p>
         </section>
          </div>
     </main>

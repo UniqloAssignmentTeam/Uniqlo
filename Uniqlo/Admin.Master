@@ -35,13 +35,19 @@
                         <i class="fa-regular fa-user user"></i>
                         <!-- Hidden menu that will be displayed on hover -->
                         <div class="hiddenUserMenu">
-                            <a href="/profile">Profile</a>
-                            <a href="/logout">Logout</a>
+                            <a href="/Profile">Profile</a>
+                            <a href="/Login">Login</a>
+                            <a href="/Logout">Logout</a>
                         </div>
                     </div>
 
                 </div>
-                <asp:TextBox ID="SearchBox" runat="server" CssClass="SearchBox" placeholder="Search" MaxLength="30"></asp:TextBox>
+                <div class="wrap-items-master-search-bar" style="margin-top: -38px;">
+                     <div class="masterSearch">
+                        <span class="searchMasterLabel"><i class="fa-solid fa-magnifying-glass" style="padding-left: 20px;"></i></span>
+                         <input class="searchMasterInput" type="search" placeholder="Search" />
+                     </div>
+                 </div>
             </div>
         </div>
         <div class="siteMapPath">
@@ -64,10 +70,11 @@
             <div class="footerNav">
                 
                     <a href="Dashboard.aspx">Dashboard</a>
-                    <a href="Staff.aspx">Manage Staff</a>
-                    <a href="Product.aspx">Manage Product</a>
-                    <a href="ValueBuy.aspx">Manage Value Buy</a>
-                    <a href="Order.aspx">Manage Order</a>
+                    <a href="Staff.aspx">Staff</a>
+                    <a href="Product.aspx">Product</a>
+                    <a href="ValueBuy.aspx">Discount</a>
+                    <a href="Order.aspx">Order</a>
+                    <a href="Delivery.aspx">Delivery</a>
                     <a href="Report.aspx">Report</a>
                 
             </div>

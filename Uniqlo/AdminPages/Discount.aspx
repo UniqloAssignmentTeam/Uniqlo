@@ -46,12 +46,12 @@
 
        </div>
 
-
+    
 
 
      <div class="btnExcel-Add">
        <button class="excel-export" style="color: #6F6F6F; font-size: 1rem; font-weight: 400;">Export</button>
-         <div  class="product-add" onclick="showModal('addProductModalContainer')" style="font-size: 1rem; font-weight: 400;">➕ Add Discount</div>
+        <a href="addDiscount.aspx" style="text-decoration: none; color: #6F6F6F;"> <div class="product-add" >➕ Add Discount</div></a>
       
 
             </div>
@@ -144,7 +144,8 @@
 
         <div class="eclipse-display" id="dropdownDisplay3" style="border:none;"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></div>
          <div class="eclipse-list" id="dropdownList3">
-        <div onclick="showModal('updateModalContainer')">Update</div>
+     
+             <a href="UpdateDiscount.aspx">   <div>Update</div></a>
         <div>Delete</div>
        </div>
      </div>

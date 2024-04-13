@@ -31,7 +31,6 @@
     width: 100%;
     padding: 8px 16px;
     line-height: 25px;
-    font-size: 14px;
     font-weight: 500;
     font-family: inherit;
     border-radius: 6px;
@@ -91,7 +90,19 @@
     .form-group > span {
         text-align: center;
         padding: 8px 12px;
-        width: 30%;
+        width: 35%;
+        font-size: 14px;
+        line-height: 25px;
+        color: black;
+        background: var(--group-background);
+        border: 1px solid var(--group-border);
+        transition: background .3s ease, border .3s ease, color .3s ease;
+    }
+
+    .form-group > .size-size {
+        text-align: center;
+        padding: 8px 12px;
+        width: 100%;
         font-size: 14px;
         line-height: 25px;
         color: black;
@@ -203,3 +214,28 @@ body .form-group {
     display: inline-block;
     transition: transform 0.3s ease;
 }
+
+
+.product-add {
+    width:20%;
+    background-color: lightgrey;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    border-style: none;
+    box-sizing: border-box;
+    height: 40px;
+    cursor: pointer;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    transition: color 500ms;
+   
+    transition: background-color 250ms ease-out 100ms;
+    padding: 10px;
+    margin-top:15px;
+    margin-left:280px;
+}
+
+    .product-add:hover, .product-add:focus, .excel-export:hover, .excel-export:focus {
+        background-color: grey;
+    }

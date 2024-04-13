@@ -49,6 +49,7 @@ body {
     padding-right: 15px;
     color: black;
     text-decoration: none;
+    margin-top: 15px;
 }
 
 .user-dropdown {
@@ -83,24 +84,57 @@ body {
     display: block;
 }
 
-
-#search {
+/*SEARCH BAR*/
+.searchMasterPagee{
     display: flex;
-    padding-top: 65px;
-    padding-left: 240px;
+    margin-left: 180px;
+}
+.searchIcon {
+    margin-top:65px;
+    
 }
 
-#search-icon {
-    padding: 10px 15px 0px 0px;
+.wrap-items-master-search-bar {
+    display: flex;
+    justify-content: space-between; /* This will spread out the child elements */
+    align-items: center; /* Vertically centers the child elements in the container */
+    padding: 0 20px; /* Add padding on sides */
+    /* Adds a gap between the search bar and other elements if needed */
+    
 }
 
-.SearchBox {
-    height: 35px;
-    width: 200px;
-    border: 1.5px solid grey;
+.masterSearch {
+    --padding: 5px;
+    width: 350px; /* Makes the search bar take up the available space */
+    display: flex;
+    align-items: center;
+    padding: var(--padding);
+    border-radius: 28px;
+    background: white;
+    transition: box-shadow 0.25s;
+    border: 1px solid #ccc;
+    height: 45px;
+    /* Add some margin to the right if you want to separate it from other elements */
+}
+
+    .masterSearch:focus-within {
+        box-shadow: 0 0 2px rgba(0,0,0,0.75);
+    }
+
+.searchMasterInput {
+    font-size: 16px;
+    color: #333333;
+    margin-left: var(--padding);
     outline: none;
-    border-radius: 5px;
+    border: none;
+    background: transparent;
+    flex-grow: 1; /* Allows the input to fill the space inside the search div */
 }
+
+    .searchMasterInput::placeholder, .masterSearchLabel {
+        color: rgba(0,0,0,0.5);
+        padding: var(--padding); /* Adds padding around the icon */
+    }
 
 
 /*FOOTER*/

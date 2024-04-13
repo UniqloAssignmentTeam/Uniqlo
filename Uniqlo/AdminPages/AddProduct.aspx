@@ -31,6 +31,7 @@
            .imgimput{
                display:flex;
                flex-direction:column;
+               margin-left:0px;
            }
            .sizeQtyTable{
                border:1px solid black;
@@ -40,8 +41,13 @@
            th,td{
                border:1px solid black;
            }
-           
-           
+          .product-content{
+              display:flex;
+              flex-direction:column;
+              align-content:center;
+              padding-left:230px;
+          }
+
         </style>
 
 
@@ -115,7 +121,7 @@
 </div>
 
 <!-- Table for color, size, and quantity -->
-<div id="colorTablesContainer"></div>
+
 
 
 
@@ -126,9 +132,9 @@
                       </div>
                     
                             
-                               
+                         <div id="colorTablesContainer"></div>      
                             
-
+  <div  class="product-add">Add Product</div>
                       
                       
 
@@ -165,25 +171,25 @@
                 <tbody>
                     <tr>
                         <td>  <div class="form-group">
-                             <span style="padding-right:25px;">S</span>
+                             <span class="size-size">S</span>
                                  </div></td>
                         <td><input type="number" class="form-field" placeholder="Quantity"></td>
                     </tr>
                     <tr>
                         <td><div class="form-group">
-                             <span>M</span>
+                             <span class="size-size">M</span>
                                  </div></td>
                         <td><input type="number" class="form-field" placeholder="Quantity"></td>
                     </tr>
                     <tr>
                         <td><div class="form-group">
-                             <span>L</span>
+                             <span class="size-size">L</span>
                                  </div></td>
                         <td><input type="number" class="form-field" placeholder="Quantity"></td>
                     </tr>
                     <tr>
                         <td><div class="form-group">
-                             <span>XL</span>
+                             <span class="size-size">XL</span>
                                  </div></td>
                         <td><input type="number" class="form-field" placeholder="Quantity"></td>
                     </tr>
