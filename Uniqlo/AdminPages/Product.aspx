@@ -89,7 +89,7 @@
             <div class="col eclipse-container" onclick="toggleDropdown('dropdownList3', 'dropdownDisplay3')">
                <div class="eclipse-display" id="dropdownDisplay3" style="border:none;"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></div>
                <div class="eclipse-list" id="dropdownList3">
-                  <div>View More</div>
+                  <div><a href="viewMoreProduct.aspx" style="color: #6F6F6F; text-decoration: none;">View More</a></div>
                   <div><a href="UpdateProduct.aspx" style="color: #6F6F6F; text-decoration: none;">Update</a></div>
                   <div>Delete</div>
                </div>

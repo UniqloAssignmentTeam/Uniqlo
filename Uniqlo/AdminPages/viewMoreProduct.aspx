@@ -1,6 +1,7 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin.Master" AutoEventWireup="true" CodeBehind="UpdateProduct.aspx.cs" Inherits="Uniqlo.AdminPages.UpdateProduct" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin.Master" AutoEventWireup="true" CodeBehind="viewMoreProduct.aspx.cs" Inherits="Uniqlo.AdminPages.viewMoreProduct" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="main" runat="server">
-          
+
+    
         <header>
             <link href="../css/addProduct.css" rel="stylesheet" />
         </header>
@@ -37,29 +38,23 @@
 </div>
                 <div class="form-group">
                     <label for="productName">Product Name</label>
-                    <input type="text" name="productName" value="AIRism Cotton Short Sleeve T-Shirt">
+                    <input type="text" name="productName" value="AIRism Cotton Short Sleeve T-Shirt" disabled>
                 </div>
 
                 <div class="form-group">
                     <label for="productName">Description</label>
-                    <textarea class="form-field" rows="4" cols="50">Smooth AIRism fabric with the look of cotton. Refined fabric and design.</textarea>
+                    <textarea class="form-field" rows="4" cols="50" disabled>Smooth AIRism fabric with the look of cotton. Refined fabric and design.</textarea>
                 </div>
 
                 <div class="form-group">
                     <label for="productName">Price</label>
-                    <input class="form-field" type="text" value="RM 30.00">
+                    <input class="form-field" type="text" value="RM 30.00" disabled>
                 </div>
 
                 <div class="form-group">
+         
                     <label for="productName">Category</label>
-                    <div class="dropdown-container" onclick="toggleDropdown('dropdownList2', 'dropdownDisplay2')">
-                        <div class="dropdown-display" id="dropdownDisplay2">Men</div>
-                        <div class="dropdown-list" id="dropdownList2">
-                            <div onclick="selectOption('Men', 'dropdownDisplay2')">Men</div>
-                            <div onclick="selectOption('Women', 'dropdownDisplay2')">Women</div>
-                            <div onclick="selectOption('Kids', 'dropdownDisplay2')">Kids</div>
-                        </div>
-                    </div>
+                <input class="form-field" type="text" value="Men" disabled>
                 </div>
 
                 <div class="form-group">
@@ -132,6 +127,11 @@
 
         <script src="../Javascript/productAdminDDL.js"></script>
             </footer>
+
+
+
+
+
 
 
 </asp:Content>

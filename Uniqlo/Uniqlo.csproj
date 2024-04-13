@@ -79,9 +79,11 @@
     <Content Include="AdminPages\Product.aspx" />
     <Content Include="AdminPages\Report.aspx" />
     <Content Include="AdminPages\Staff.aspx" />
+    <Content Include="AdminPages\test.aspx" />
     <Content Include="AdminPages\UpdateDiscount.aspx" />
     <Content Include="AdminPages\UpdateProduct.aspx" />
     <Content Include="AdminPages\ValueBuy.aspx" />
+    <Content Include="AdminPages\viewMoreProduct.aspx" />
     <Content Include="App_Data\Uniqlo.mdf" />
     <Content Include="App_Data\Uniqlo_log.ldf">
       <DependentUpon>Uniqlo.mdf</DependentUpon>
@@ -104,6 +106,7 @@
     <Content Include="css\SignUp.css" />
     <Content Include="css\style.css" />
     <Content Include="css\style1.css" />
+    <Content Include="css\test.css" />
     <Content Include="css\ValueBuy.css" />
     <Content Include="css\WishList.css" />
     <Content Include="Images\3R.jpg" />
@@ -278,6 +281,13 @@
     <Compile Include="AdminPages\Staff.aspx.designer.cs">
       <DependentUpon>Staff.aspx</DependentUpon>
     </Compile>
+    <Compile Include="AdminPages\test.aspx.cs">
+      <DependentUpon>test.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminPages\test.aspx.designer.cs">
+      <DependentUpon>test.aspx</DependentUpon>
+    </Compile>
     <Compile Include="AdminPages\UpdateDiscount.aspx.cs">
       <DependentUpon>UpdateDiscount.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -298,6 +308,13 @@
     </Compile>
     <Compile Include="AdminPages\ValueBuy.aspx.designer.cs">
       <DependentUpon>ValueBuy.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AdminPages\viewMoreProduct.aspx.cs">
+      <DependentUpon>viewMoreProduct.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminPages\viewMoreProduct.aspx.designer.cs">
+      <DependentUpon>viewMoreProduct.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\AboutUs.aspx.cs">
       <DependentUpon>AboutUs.aspx</DependentUpon>
