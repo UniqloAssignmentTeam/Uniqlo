@@ -2,27 +2,28 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="main" runat="server">
     <style>
         .dropdown-wrapper{
-            margin-right:520px
+            margin-right:310px
         }
         .wrap-items-search-buttons{
         justify-content:normal;
         }
 
-        
-/* Name Column */
-.name {
-   flex-grow:1; /* Allow this column to grow and take up remaining space */
+       .name {
+   flex-grow:1; 
     
-
 }
-.status {
+       .status {
     flex-basis: 10%;
 }
+
 
 .gender {
+   
     flex-basis: 10%;
+
 }
-/* Category Column */
+
+
 .category {
     min-width: 0;
     flex-basis: 10%;
@@ -32,7 +33,7 @@
 
     </style>
 
-       <link href="../css/productAdmin.css" rel="stylesheet" />
+    <link href="../css/Admin/adminDelivery.css" rel="stylesheet" />
    <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
    <div class="productBody">
@@ -53,6 +54,11 @@
                   </div>
                </div>
             </div>
+              <div class="btnExcel-Add">
+     <button class="excel-export" style="color: #6F6F6F; font-size: 1rem; font-weight:bold;">Export</button>
+     
+    
+ </div>
          </div>
       </div>
       <div class="table">
