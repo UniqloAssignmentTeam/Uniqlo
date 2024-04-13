@@ -25,3 +25,7 @@ links.forEach(link => {
         forms.classList.toggle("show-signup");
     })
 })
+
+function Button1_Click() {
+    alert("Hello! I am an alert box!");
+}
