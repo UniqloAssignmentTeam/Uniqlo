@@ -1,14 +1,24 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin.Master" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="Uniqlo.AdminPages.Login" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="main" runat="server">
-    <style>/* Container */
+    <style>
+.bigDong{
+    margin: 0 auto;
+    max-width: 1100px;
+    position:relative;
+    align-content:center;
+    align-items:center;
+}       
+        /* Container */
 .container {
-    width: 300px; /* Fixed width for the container */
-    margin: 0 auto; /* Center the container horizontally */
+    width: 50%; /* Fixed width for the container */
+    margin: 100px auto; /* Center the container horizontally */
     padding: 20px;
     background-color: white; /* White background */
     border-radius: 10px; /* Rounded corners */
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
     height:90%;
+    align-content:center;
+    align-items:center;
 }
 
 /* Center */
@@ -87,12 +97,11 @@ input[type="submit"]:hover {
     background-color: #357ae8; /* Darker blue on hover */
 }
 </style>
-
-    <title>Home</title>
+    <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-    <link rel="stylesheet" href="styles.css" />
     </head>
+    <div class="bigDong">
     <div class="container">
         <div class="center">
             <h1>Login</h1>
@@ -105,12 +114,12 @@ input[type="submit"]:hover {
                 <div class="txt_field">
                     <input type="password" name="password" required placeholder="Password">
                     <span></span>
+                </div>         
+                <asp:Button ID="btnLogin" runat="server" name="submit" type="Submit" value="Login" Text="Login" OnClick="btnLogin_Click" />
 
-                </div>
-                <div class="pass">Forget Password?</div>
-                <input name="submit" type="Submit" value="Login">
             </form>
         </div>
     </div>
+        </div>
 
 </asp:Content>
