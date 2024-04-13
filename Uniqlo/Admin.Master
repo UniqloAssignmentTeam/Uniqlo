@@ -29,9 +29,9 @@
             </div>
 
             <div id="adminSearch">
-                <div id="search-icon">
+                <div id="search-icon" style="margin-top: -30px;">
                     <!--User-->
-                    <div class="user-dropdown">
+                    <div class="user-dropdown" >
                         <i class="fa-regular fa-user user"></i>
                         <!-- Hidden menu that will be displayed on hover -->
                         <div class="hiddenUserMenu">
@@ -42,7 +42,7 @@
                     </div>
 
                 </div>
-                <div class="wrap-items-master-search-bar" style="margin-top: -38px;">
+                <div class="wrap-items-master-search-bar" style="margin-top: -30px;">
                      <div class="masterSearch">
                         <span class="searchMasterLabel"><i class="fa-solid fa-magnifying-glass" style="padding-left: 20px;"></i></span>
                          <input class="searchMasterInput" type="search" placeholder="Search" />

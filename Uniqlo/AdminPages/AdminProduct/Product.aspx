@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin.Master" AutoEventWireup="true" CodeBehind="Product.aspx.cs" Inherits="Uniqlo.AdminPages.Product" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="main" runat="server">
-   <link href="../css/productAdmin.css" rel="stylesheet" />
+   <link href="../../css/productAdmin.css" rel="stylesheet" />
    <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
    <div class="productBody">
@@ -41,9 +41,7 @@
             <div class="col productid">
                Product ID
             </div>
-            <div class="col prodImageHeader">
-               <img src="../Images/uniqloKidsDresses.png" width="40" height="40" alt ="Product Image" Visible:"True" />
-            </div>
+           
             <div class="col name">
                Product Name
             </div>
@@ -68,9 +66,7 @@
             <div class="col productid">
                1001
             </div>
-            <div class="prodImage">
-               <img src="../Images/uniqloKidsDresses.png" width="40" height="40" alt ="Product Image" />
-            </div>
+            
             <div class="col name">
                Product Name   Product
             </div>
@@ -102,13 +98,11 @@
             <div class="col productid">
                1002
             </div>
-            <div class="prodImage">
-               <img src="../Images/uniqloKidsDresses.png" width="40" height="40" alt ="Product Image" />
-            </div>
+           
             <div class="col name">
                Product Name
             </div>
-            <div class="col lowInStock">
+            <div class="col wear">
                Low In Stock
             </div>
             <div class="col price">
@@ -129,13 +123,11 @@
             <div class="col productid">
                1003
             </div>
-            <div class="prodImage">
-               <img src="../Images/uniqloKidsDresses.png" width="40" height="40" alt ="Product Image" />
-            </div>
+          
             <div class="col name">
                Product Name
             </div>
-            <div class="col stat inStock">
+            <div class="col wear">
                In Stock
             </div>
             <div class="col price">
@@ -156,13 +148,11 @@
             <div class="col productid">
                1004
             </div>
-            <div class="prodImage">
-               <img src="../Images/uniqloKidsDresses.png" width="40" height="40" alt ="Product Image" />
-            </div>
+           
             <div class="col name">
                Product Name
             </div>
-            <div class="col stat inStock">
+            <div class="col wear">
                In Stock
             </div>
             <div class="col price">
@@ -183,13 +173,11 @@
             <div class="col productid">
                1005
             </div>
-            <div class="prodImage">
-               <img src="../Images/uniqloKidsDresses.png" width="40" height="40" alt ="Product Image" />
-            </div>
+           
             <div class="col name">
                Product Name
             </div>
-            <div class="col lowInStock">
+            <div class="col wear">
                Low In Stock
             </div>
             <div class="col price">
@@ -342,115 +330,10 @@
          </div>
       </div>
    </div>
-   <div id="addProductModalContainer" class="modal">
-      <div class="modal-content">
-         <span class="close" onclick="closeModal('addProductModalContainer')">&times;</span>
-         <div class = "card-wrapper">
-            <div class = "productItemCard">
-               <!-- card left -->
-               <h2 class = "product-title product-name">Uniqlo Add Product</h2>
-            </div>
-            <!-- card right -->
-            <div class = "product-content">
-               <div class="form-group">
-                  <span>Product Name</span>
-                  <input class="form-field" type="text" >
-               </div>
-               <div class = "product-detail">
-                  <div class="form-group">
-                     <span>Description    </span>   
-                     <textarea class="form-field" rows="4" cols="50"></textarea> 
-                  </div>
-                  <div class="product-details-info">
-                     <div class="form-group">
-                        <span>Price</span>
-                        <input class="form-field" type="text" >
-                     </div>
-                  </div>
-                  <div class="product-details-info">
-                     <div class="form-group">
-                        <span>Availability:</span>
-                        <div class="dropdown-container" onclick="toggleDropdown('dropdownList6', 'dropdownDisplay6')">
-                           <div class="dropdown-display" id="dropdownDisplay6">Status</div>
-                           <div class="dropdown-list" id="dropdownList6">
-                              <div onclick="selectOption('In Stock', 'dropdownDisplay')">In Stock</div>
-                              <div onclick="selectOption('Low In Stock', 'dropdownDisplay')">Low In Stock</div>
-                              <div onclick="selectOption('No Stock', 'dropdownDisplay')">No Stock</div>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-                  <div class="product-details-info">
-                     <div class="form-group">
-                        <span>Category:</span>
-                        <div class="dropdown-container" onclick="toggleDropdown('dropdownList5', 'dropdownDisplay5')">
-                           <div class="dropdown-display" id="dropdownDisplay5">Status</div>
-                           <div class="dropdown-list" id="dropdownList5">
-                              <div onclick="selectOption('In Stock', 'dropdownDisplay')">In Stock</div>
-                              <div onclick="selectOption('Low In Stock', 'dropdownDisplay')">Low In Stock</div>
-                              <div onclick="selectOption('No Stock', 'dropdownDisplay')">No Stock</div>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-                  <div class="product-details-info">
-                     <div class="form-group">
-                        <span>Gender</span>
-                        <div class="dropdown-container" onclick="toggleDropdown('dropdownList4', 'dropdownDisplay4')">
-                           <div class="dropdown-display" id="dropdownDisplay4">Category</div>
-                           <div class="dropdown-list" id="dropdownList4">
-                              <div onclick="selectOption('Men', 'dropdownDisplay2')">Men</div>
-                              <div onclick="selectOption('Women', 'dropdownDisplay2')">Women</div>
-                              <div onclick="selectOption('Kids', 'dropdownDisplay2')">Kids</div>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-
-                   <div class="add-color-section">
-    <input type="text" id="newColorInput" placeholder="New color">
-    <button id="addColorButton">Add color</button>
-</div>
-
-<div class="addProductQtySizeSection">
-   <div class="quantityHeader">QUANTITY</div>
-   <div class="purchase-size-item">
-      <div class="form-group">
-         <span>S:</span>
-         <input class="form-field" type="text" >
-      </div>
-   </div>
-   <div class="purchase-size">
-      <div class="form-group">
-         <span>M:</span>
-         <input class="form-field" type="text" >
-      </div>
-   </div>
-   <div class="purchase-size">
-      <div class="form-group">
-         <span>L:</span>
-         <input class="form-field" type="text" >
-      </div>
-   </div>
-   <div class="purchase-size">
-      <div class="form-group">
-         <span>XL:</span>
-         <input class="form-field" type="text" >
-      </div>
-   </div>
-</div>
-               </div>
-               <div class="addProduct-restProduct">
-                  <div  class="addProductBtn">Add Product</div>
-                  <div  class="addProductBtn">Reset</div>
-               </div>
-            </div>
-         </div>
-      </div>
-   </div>
+   
    <footer>
-      <script src="../Javascript/productBtnEclipse.js"></script>
-      <script src="../Javascript/productAdminDDL.js"></script>
+      <script src="../../Javascript/productBtnEclipse.js"></script>
+      <script src="../../Javascript/productAdminDDL.js"></script>
         <script>
             document.getElementById('addColorButton').addEventListener('click', function () {
                 var productQtySizeSection = document.querySelector('.productQtySizeSection');
