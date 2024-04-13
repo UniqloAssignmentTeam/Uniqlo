@@ -2,10 +2,19 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="main" runat="server">
     <header>
         <link href="../../../css/category.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     </header>
     <div class="categoryBody">
         <h1 class="bestSellerHeader">Men's Bottoms</h1>
         <h2 class="bestSellerHeader" style="margin-top: -4px;">Best Seller</h2>
+
+          <div class="wrap-items-search-buttons">
+           <div class="search">
+      <span class="material-symbols-outlined">search</span>
+      <input class="search-input" type="search" placeholder="Search" />
+   </div>
+             </div>
+
         <div class="wrapper">
             <i id="left" class="fa-solid fa-angle-left"></i>
             <ul class="carousel">
