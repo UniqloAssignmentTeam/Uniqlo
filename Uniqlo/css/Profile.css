@@ -86,35 +86,131 @@
 
     /* Order History CSS*/
 
-/* Order History Section */
-.order-history {
-    margin-top: 20px; /* Add space above the order history section */
-    background-color: #fff;
+
+.table {
+    max-width: 1100px;
+    margin: 0 auto;
+    border: 2px solid ghostwhite;
+    box-sizing: border-box;
 }
 
-    .order-history h4 {
-        margin-bottom: 10px; /* Space between the heading and the table */
-        font-size: 20px; /* Adjust font size as desired */
-        color: #333; /* Darker text color */
-        background-color: #f5f5f5;
+
+.row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    width: 100%; /* Ensures row does not exceed its container's width */
+    box-sizing: border-box; /* Include this as well */
+}
+
+
+.table .row:nth-child(even) {
+    background-color: #fafafa; /* very light grey for every even row */
+}
+
+/* Header specific styles */
+.row:first-child {
+    font-weight: bold;
+    background-color: white; /* Blue makes the header pop and looks great with white */
+}
+
+.col {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    flex-grow: 0; /* Do not allow columns to grow */
+    flex-shrink: 0; /* Do not allow columns to shrink */
+    height: 50px; /* Adjust height automatically */
+    justify-content: center;
+    word-break: break-all
+}
+
+.prodImageHeader {
+    display: none;
+}
+
+.productid, .price {
+    flex: 0 0 10%; /* Set a base width */
+}
+
+
+
+/* Name Column */
+.name {
+    flex-grow: 1; /* Allow this column to grow and take up remaining space */
+}
+
+.wear {
+    flex-basis: 10%;
+}
+
+/* Price Column */
+
+.gender {
+    flex-basis: 10%;
+}
+/* Category Column */
+.category {
+    min-width: 0;
+    flex-basis: 10%;
+    word-wrap: break-word;
+}
+
+
+
+.eclipse-container {
+    display: flex;
+    position: relative;
+    flex-basis: 8%;
+}
+
+.eclipse-display {
+    cursor: pointer;
+    flex-basis: 8%;
+}
+
+.eclipse-list {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 100;
+    width: 150px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    opacity: 0; /* Start fully transparent */
+    visibility: hidden; /* Start hidden */
+    transform: translateY(-20px); /* Start slightly above */
+    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s; /* Animate opacity, transform, and visibility */
+    align-items: center;
+    text-align: center; /* Centers the text inside the dropdown */
+}
+
+    .eclipse-list.open {
+        opacity: 1; /* Fade in to fully opaque */
+        visibility: visible; /* Make visible */
+        transform: translateY(0px); /* Move to original position */
     }
 
-.order-history-table {
-    width: 100%; /* Full width of the container */
-    border-collapse: collapse; /* Remove cell spacing */
-    border: 1px solid #ddd; /* Border around the table */
-}
 
-    .order-history-table th, .order-history-table td {
+    .eclipse-list.open {
+        display: block; /* Show dropdown */
+    }
+
+    .eclipse-list div {
         padding: 10px;
-        text-align: left;
-        border-bottom: 1px solid #ddd; /* Borders between rows */
+        cursor: pointer;
     }
 
-    .order-history-table th {
-        background-color: #f5f5f5; /* Light gray background for the header */
-    }
+        .eclipse-list div:hover {
+            background-color: #f0f0f0;
+        }
 
-    .order-history-table tr:hover {
-        background-color: #f9f9f9; /* Light gray background on row hover */
-    }
+
+.viewMoreSection {
+    text-align: center;
+    margin: 60px 0px 60px 0px;
+}
+
