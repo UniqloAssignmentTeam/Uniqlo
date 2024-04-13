@@ -14,19 +14,13 @@ namespace Uniqlo
     
     public partial class Discount
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Discount()
-        {
-            this.Products = new HashSet<Product>();
-        }
-    
         public int Discount_ID { get; set; }
         public double Discount_Amount { get; set; }
         public string Status { get; set; }
         public System.DateTime Start_Date { get; set; }
         public System.DateTime End_Date { get; set; }
+        public int Product_ID { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Product> Products { get; set; }
+        public virtual Product Product { get; set; }
     }
 }
