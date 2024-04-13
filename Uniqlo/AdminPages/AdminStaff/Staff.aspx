@@ -13,22 +13,36 @@
     flex-basis:20%;
     }
 
+
         /* Float cancel and delete buttons and add an equal width */
-        .confirmationCancelbtn, .confirmationDeletebtn {
+        confirmationClearFix {
           float: left;
-          width: 50%;
+          width: calc((100% / 2) - 10px);
+          margin-top: 100px;
+          padding: 20px 0px 20px 0px;
+          border: 2px solid black;
         }
 
         /* Add a color to the cancel button */
-        .confirmationCancelbtn {
-          background-color: #ccc;
-          color: black;
+        .confirmationCancelbtn, .confirmationDeletebtn {
+            border: 2px solid black;
+            padding: 20px 180px 20px 180px;
+            background: none;
+            outline: none;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.5s ease;
+            width: 100%;
+            text-decoration: none;
+            color: black;
         }
-
-        /* Add a color to the delete button */
-        .confirmationDeletebtn {
-          background-color: #f44336;
-        }
+        
+        .confirmationDeletebtn:hover, 
+        .confirmationCancelbtn:hover {
+            background-color: black;
+            color: white;
+        }             
+           
 
         /* Add padding and center-align text to the container */
         .confirmationContainer {
@@ -45,9 +59,10 @@
           top: 0;
           width: 100%; /* Full width */
           height: 100%; /* Full height */
-          overflow: auto; /* Enable scroll if needed */
-          background-color: #474e5d;
+          background-color: rgb(0,0,0); /* Fallback color */
+          background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
           padding-top: 50px;
+          margin-top: 100px;
         }
 
         /* Modal Content/Box */
@@ -56,19 +71,21 @@
           margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
           border: 1px solid #888;
           width: 80%; /* Could be more or less, depending on screen size */
+          height: 400px;
         }
 
-        /* Style the horizontal ruler */
-        hr {
-          border: 1px solid #f1f1f1;
-          margin-bottom: 25px;
+        
+        .confirmation-modal-content h1{
+            margin-top: 60px;
+        }
+
+        .confirmation-modal-content p{
+            margin-top: 30px;
         }
  
         /* The Modal Close Button (x) */
         .confirmationClose {
-          position: absolute;
-          right: 35px;
-          top: 15px;
+          float: right;
           font-size: 40px;
           font-weight: bold;
           color: #f1f1f1;
@@ -158,7 +175,7 @@
                     <div class="eclipse-display" id="dropdownDisplay3" style="border:none;"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></div>
                     <div class="eclipse-list" id="dropdownList3">
                         <a href="UpdateStaff.aspx" style="text-decoration:none;"><div>Update</div></a>
-                        <div>Delete</div>
+                        <div onclick="document.getElementById('id01').style.display='block'">Delete</div>
                     </div>
                 </div>
             </div>
@@ -218,21 +235,13 @@
             <   1..10  >
         </div>
 
-        <footer>
-            <script src="../../Javascript/productBtnEclipse.js"></script>
-            <script src="../../Javascript/productAdminDDL.js"></script>
-        </footer>
-    </div>
-
-
-
-        <!--DELETE CONFIRMATION-->
+                <!--DELETE CONFIRMATION-->
         <div id="id01" class="confirmationModal">
-          <span onclick="document.getElementById('id01').style.display='none'" class="confirmationClose" title="Close Modal">×</span>
           <div class="confirmation-modal-content">
             <div class="confirmationContainer">
-              <h1>Delete Account</h1>
-              <p>Are you sure you want to delete your account?</p>
+                <span onclick="document.getElementById('id01').style.display='none'" class="confirmationClose" title="Close Modal">×</span>
+                <h1>Delete Account</h1>
+                <p>Are you sure you want to delete your account?</p>
     
               <div class="confirmationClearFix">
                 <button type="button" onclick="document.getElementById('id01').style.display='none'" class="confirmationCancelbtn">Cancel</button>
@@ -241,14 +250,19 @@
             </div>
           </div>
         </div>
+    </div>
+
+
+
+
 
  
   
     
     <footer>
 
-                <script src="../Javascript/productBtnEclipse.js"></script>
-        <script src="../Javascript/productAdminDDL.js"></script>
+            <script src="../../Javascript/productBtnEclipse.js"></script>
+            <script src="../../Javascript/productAdminDDL.js"></script>
       
       
 
