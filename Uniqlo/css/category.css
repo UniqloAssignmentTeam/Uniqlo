@@ -1127,3 +1127,45 @@
 .color-radio-list input[type="radio"]:checked + label {
     box-shadow: 0px 0px 10px 3px rgba(0,0,0,0.2); 
 }
+
+
+
+.wrap-items-search-buttons {
+    display: flex;
+    justify-content: space-between; /* This will spread out the child elements */
+    align-items: center; /* Vertically centers the child elements in the container */
+    padding: 0 20px; /* Add padding on sides */
+    /* Adds a gap between the search bar and other elements if needed */
+}
+
+.search {
+    --padding: 5px;
+    width: 350px; /* Makes the search bar take up the available space */
+    display: flex;
+    align-items: center;
+    padding: var(--padding);
+    border-radius: 28px;
+    background: white;
+    transition: box-shadow 0.25s;
+    border: 1px solid #ccc;
+    /* Add some margin to the right if you want to separate it from other elements */
+}
+
+    .search:focus-within {
+        box-shadow: 0 0 2px rgba(0,0,0,0.75);
+    }
+
+.search-input {
+    font-size: 16px;
+    color: #333333;
+    margin-left: var(--padding);
+    outline: none;
+    border: none;
+    background: transparent;
+    flex-grow: 1; /* Allows the input to fill the space inside the search div */
+}
+
+    .search-input::placeholder, .material-symbols-outlined {
+        color: rgba(0,0,0,0.5);
+        padding: var(--padding); /* Adds padding around the icon */
+    }

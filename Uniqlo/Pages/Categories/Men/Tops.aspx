@@ -5,6 +5,12 @@
     </header>
     <div class="categoryBody">
         <h1 class="bestSellerHeader">Men's Tops</h1>
+               <div class="wrap-items-search-buttons">
+        <div class="search">
+   <span class="material-symbols-outlined">search</span>
+   <input class="search-input" type="search" placeholder="Search" />
+</div>
+          </div>
         <div class="wrapper">
             <i id="left" class="fa-solid fa-angle-left"></i>
             <ul class="carousel">
