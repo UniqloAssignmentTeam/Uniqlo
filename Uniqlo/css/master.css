@@ -139,8 +139,7 @@ body {
 }
 .searchMasterPagee {
     display: flex;
-    align-items: center; /* Align items vertically */
-    margin-left: 20px; /* Adjust margin as needed */
+    margin-left: 250px;
 }
 .searchIcon {
     margin-top: 15px;
