@@ -211,3 +211,16 @@ a.google {
         padding: 20px 10px;
     }
 }
+
+.Gender {
+    margin-top: 10px; /* Add some spacing from other elements */
+    position: relative;
+    height: 50px;
+    width: 100%;
+    margin-top: 20px;
+    border-radius: 6px;
+    display: inline;
+}
+.rblGender {
+    ;
+}

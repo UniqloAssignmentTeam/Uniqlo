@@ -28,11 +28,12 @@
                             <a href="ForgotPassword.aspx" class="forgot-pass">Forgot password?</a>
                         </div>
                         <div class="field button-field">
-                            <button>Login</button>
+                           <button href="Pages/Home.aspx">Login</button>
+                            
                         </div>
                     </form>
                     <div class="form-link">
-                        <span>Don't have an account? <a href="#" class="link signup-link">Sign Up</a></span>
+                        <span>Don't have an account? <a href="SignUp.aspx" class="link signup-link">Sign Up</a></span>
                     </div>
                 </div>
                 <div class="line"></div>
@@ -68,6 +69,7 @@
             <!-- Create Password Field -->
             <div class="field input-field">
                 <input type="password" placeholder="Create password" class="password" required>
+                <i class='bx bx-hide eye-icon'></i>
             </div>
 
             <!-- Confirm Password Field -->
@@ -76,32 +78,29 @@
                 <i class='bx bx-hide eye-icon'></i>
             </div>
 
-            <!-- Gender Field using Radio Button List -->
-            <div class="field input-field">
-                <label for="gender">Gender:</label>
-                <div id="gender" class="gender-options">
-                    <input type="radio" id="male" name="gender" value="M" required>
-                    <label for="male">Male</label>
-                    
-                    <input type="radio" id="female" name="gender" value="F" required>
-                    <label for="female">Female</label>
-                </div>
-            </div>
-
-            <!-- Phone Number Field -->
-            <div class="field input-field">
+               <!-- Phone Number Field -->
+             <div class="field input-field">
                 <input type="text" placeholder="Phone Number" class="input" required>
+             </div>
+            <br />
+            <div class="Gender:">
+            <asp:Label ID="lblGender" runat="server" Text="Gender"></asp:Label>
+            <asp:RadioButtonList ID="rblGender" runat="server">
+                <asp:ListItem>Male</asp:ListItem> <asp:ListItem>Female</asp:ListItem>
+            </asp:RadioButtonList>
             </div>
+         
 
             <!-- Sign Up Button -->
             <div class="field button-field">
-                <button type="submit">Sign Up</button>
+                <button type="submit" onclick="alert('Registration Successfully')">Sign Up</button>
+ 
             </div>
         </form>
 
         <!-- Redirect to Login -->
         <div class="form-link">
-            <span>Already have an account? <a href="login.aspx" class="link login-link">Login</a></span>
+            <span>Already have an account? <a href="Login.aspx" class="link login-link">Login</a></span>
         </div>
     </div>
     
@@ -110,13 +109,13 @@
     
     <!-- Social Login Options -->
     <div class="media-options">
-        <a href="#" class="field facebook">
+        <a href="facebook.com" class="field facebook">
             <i class='bx bxl-facebook facebook-icon'></i>
             <span>Login with Facebook</span>
         </a>
     </div>
     <div class="media-options">
-        <a href="#" class="field google">
+        <a href="google.com" class="field google">
             <img src="#" alt="" class="google-img">
             <span>Login with Google</span>
         </a>
@@ -126,7 +125,7 @@
         </section>
         <!-- JavaScript -->
     <script src="../Javascript/Login.js"></script>
-    </body>
+
 
 
 </asp:Content>

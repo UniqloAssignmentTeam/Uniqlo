@@ -18,5 +18,10 @@ namespace Uniqlo.Pages
         {
             Response.Redirect("Home.aspx");
         }
+
+        protected void btnSignUp_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Home.aspx");
+        }
     }
 }

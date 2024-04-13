@@ -18,6 +18,10 @@
     flex-direction: column;
 }
 
+.cart-summary-container {
+    flex-direction: column;
+}
+
 .cart-item {
     display: flex;
     align-items: center;
@@ -190,7 +194,7 @@ div.cart-summary {
     right: 10px;
     cursor: pointer;
     font-size: 24px;
-    color: black; 
+    color: black;
     z-index: 1;
     transition: color 0.3s ease;
 }
@@ -226,7 +230,7 @@ div.cart-summary {
     background-color: rgb(0,0,0); /* Fallback color */
     background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
     padding-top: 90px;
-    z-index: 1000;
+    z-index: 1001;
 }
 
 /* Modal Content */
@@ -238,6 +242,7 @@ div.cart-summary {
     width: 80%; /* Could be more or less, depending on screen size */
     border-radius: 5px;
     margin-bottom: 120px;
+    z-index: 1002;
 }
 
 /* The Close Button */
@@ -358,9 +363,9 @@ div.cart-summary {
     display: flex;
 }
 
-    .product-price span {
-        font-weight: 400;
-    }
+.product-price span {
+    font-weight: 400;
+}
 
 .last-price span {
     color: #f64749;
@@ -412,7 +417,7 @@ div.cart-summary {
     outline: none;
     width: 100px;
     height: 30px;
-    margin-top:-1px;
+    margin-top: -1px;
 }
 
 .social-links {
@@ -487,107 +492,120 @@ div.cart-summary {
     font-weight: bold;
 }
 
-.cart-button:active {
-	transform: scale(.9);
-}
+    .cart-button:active {
+        transform: scale(.9);
+    }
 
-.cart-button .fa-shopping-cart {
-	position: absolute;
-	z-index: 2;
-	top: 50%;
-	left: -10%;
-	font-size: 2em;
-	transform: translate(-50%,-50%);
-    color: black;
-}
-.cart-button .fa-shirt {
-	position: absolute;
-	z-index: 3;
-	top: -20%;
-	left: 52%;
-	font-size: 1.2em;
-	transform: translate(-50%,-50%);
-    color: black;
-}
-.cart-button span {
-	position: absolute;
-	z-index: 3;
-	left: 50%;
-	top: 50%;
-	font-size: 1.2em;
-	color: black;
-	transform: translate(-50%,-50%);
-}
+    .cart-button .fa-shopping-cart {
+        position: absolute;
+        z-index: 2;
+        top: 50%;
+        left: -10%;
+        font-size: 2em;
+        transform: translate(-50%,-50%);
+        color: black;
+    }
 
-.cart-button:hover {
-    background-color: black;
-    color: white;
-}
+    .cart-button .fa-shirt {
+        position: absolute;
+        z-index: 3;
+        top: -20%;
+        left: 52%;
+        font-size: 1.2em;
+        transform: translate(-50%,-50%);
+        color: black;
+    }
 
-.cart-button:hover span {
-    color: white;
-}
+    .cart-button span {
+        position: absolute;
+        z-index: 3;
+        left: 50%;
+        top: 50%;
+        font-size: 1.2em;
+        color: black;
+        transform: translate(-50%,-50%);
+    }
 
+    .cart-button:hover {
+        background-color: black;
+        color: white;
+    }
 
-.cart-button:hover .fas,
-.cart-button:hover .fa-shopping-cart,
-.cart-button:hover .fa-shirt {
-    color: white;
-}
+        .cart-button:hover span {
+            color: white;
+        }
 
 
-.cart-button span.add-to-cart {
-	opacity: 1;
-}
-.cart-button span.added {
-	opacity: 0;
-}
+        .cart-button:hover .fas,
+        .cart-button:hover .fa-shopping-cart,
+        .cart-button:hover .fa-shirt {
+            color: white;
+        }
 
-.cart-button.clicked .fa-shopping-cart {
-	animation: cart 1.5s ease-in-out forwards;
-}
-.cart-button.clicked .fa-shirt {
-	animation: shirt 1.5s ease-in-out forwards;
-}
-.cart-button.clicked span.add-to-cart {
-	animation: txt1 1.5s ease-in-out forwards;
-}
-.cart-button.clicked span.added {
-	animation: txt2 1.5s ease-in-out forwards;
-}
+
+    .cart-button span.add-to-cart {
+        opacity: 1;
+    }
+
+    .cart-button span.added {
+        opacity: 0;
+    }
+
+    .cart-button.clicked .fa-shopping-cart {
+        animation: cart 1.5s ease-in-out forwards;
+    }
+
+    .cart-button.clicked .fa-shirt {
+        animation: shirt 1.5s ease-in-out forwards;
+    }
+
+    .cart-button.clicked span.add-to-cart {
+        animation: txt1 1.5s ease-in-out forwards;
+    }
+
+    .cart-button.clicked span.added {
+        animation: txt2 1.5s ease-in-out forwards;
+    }
 
 
 @keyframes cart {
-	0% {
-		left: -10%;
-	}
-	40%, 60% {
-		left: 50%;
-	}
-	100% {
-		left: 110%;
-	}
+    0% {
+        left: -10%;
+    }
+
+    40%, 60% {
+        left: 50%;
+    }
+
+    100% {
+        left: 110%;
+    }
 }
+
 @keyframes shirt {
-	0%, 40% {
-		top: -20%;
-	}
-	60% {
-		top: 40%;
-		left: 52%;
-	}
-	100% {
-		top: 40%;
-		left: 112%;
-	}
+    0%, 40% {
+        top: -20%;
+    }
+
+    60% {
+        top: 40%;
+        left: 52%;
+    }
+
+    100% {
+        top: 40%;
+        left: 112%;
+    }
 }
+
 @keyframes txt1 {
-	0% {
-		opacity: 1;
-	}
-	20%, 100% {
-		opacity: 0;
-	}
+    0% {
+        opacity: 1;
+    }
+
+    20%, 100% {
+        opacity: 0;
+    }
 }
 
 @keyframes txt2 {
@@ -607,9 +625,9 @@ div.cart-summary {
 }
 
 .custom-radio-list input[type='radio'] {
-    opacity: 0; 
-    position: absolute; 
-    width: 0; 
+    opacity: 0;
+    position: absolute;
+    width: 0;
 }
 
 .custom-radio-list label {
@@ -625,17 +643,17 @@ div.cart-summary {
 
 
 .custom-radio-list input[type='radio']:checked + label {
-    background-color: black; 
+    background-color: black;
     color: white;
 }
 
-.purchase-info{
+.purchase-info {
     margin-left: 50px;
 }
 
 /*REVIEW SECTION*/
-.reviewRatingNumUser{
-    margin:10px;
+.reviewRatingNumUser {
+    margin: 10px;
 }
 
 .reviewSection {
@@ -643,7 +661,7 @@ div.cart-summary {
     margin: 0 auto;
 }
 
-.reviewRatingAndBar{
+.reviewRatingAndBar {
     display: flex;
 }
 
@@ -658,7 +676,7 @@ div.cart-summary {
     color: #ffc107;
 }
 
-.reviewRating h3{
+.reviewRating h3 {
     margin: 7px;
 }
 
@@ -676,7 +694,7 @@ div.cart-summary {
     margin-top: 5px;
 }
 
-.number{
+.number {
     padding-right: 30px;
 }
 
@@ -724,28 +742,27 @@ div.cart-summary {
 
 .commentSection {
     max-width: 1200px;
-
 }
 
-.commentRatingSection{
+.commentRatingSection {
     display: flex;
     font-style: italic;
     margin-bottom: 20px;
 }
 
-.commentRatingSectionStars{
+.commentRatingSectionStars {
     margin-right: 20px;
 }
 
-.commentRatingSectionDetails{
+.commentRatingSectionDetails {
     text-align: justify;
 }
 
-.commentSectionNewRow{
+.commentSectionNewRow {
     margin-bottom: 50px;
 }
 
-.reviewSection .viewMoreSection{
+.reviewSection .viewMoreSection {
     margin-top: 80px;
 }
 
@@ -764,36 +781,37 @@ div.cart-summary {
     color: black;
 }
 
-.viewMoreReviewButton:hover {
-    background-color: black;
-    color: white;
-}
+    .viewMoreReviewButton:hover {
+        background-color: black;
+        color: white;
+    }
 
 .reviewModal {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
-    z-index: 2; /* Sit on top */
+    z-index: 1003; /* Sit on top */
     left: 0;
     top: 0;
     width: 100%; /* Full width */
     height: 100%; /* Full height */
     overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
     background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
     padding-top: 90px;
 }
 
-/* Modal Content */
 .review-modal-content {
     background-color: #fefefe;
     position: absolute;
-    margin: 5% auto; /* 5% from the top and centered */
-    padding: 80px 20px 0px 20px;
+    top: 50%; /* Center vertically */
+    left: 50%; /* Center horizontally */
+    transform: translate(-50%, -50%); /* Adjust position to truly center the modal */
+    padding: 20px;
+    padding-top: 700px;
     border: 1px solid #888;
+    border-radius: 5px;
     width: 80%; /* Could be more or less, depending on screen size */
     max-width: 1200px; /* Max width for large screens, adjust as needed */
-    border-radius: 5px;
-    right: 150px;
+    z-index: 1004; /* Ensure modal content is above the modal background */
 }
 
 
@@ -804,22 +822,22 @@ div.cart-summary {
 .reviewModalRatingSection {
     float: right;
     width: 100%;
-    text-align:right;
+    text-align: right;
     padding-top: 20px;
 }
 
-.reviewStar{
+.reviewStar {
     margin: 0px 5px;
 }
 
-.reviewSectionDropDownLists{
-    display:flex;
+.reviewSectionDropDownLists {
+    display: flex;
 }
 
-.noMoreRatingFound{
+.noMoreRatingFound {
     text-align: center;
     border-top: 1px solid grey;
-    padding:30px 0px;
+    padding: 30px 0px;
 }
 
 /*VIEW MORE BUTTON*/
@@ -840,7 +858,7 @@ div.cart-summary {
     height: 100%;
 }
 
-.purchase-color-item{
+.purchase-color-item {
     display: flex;
     margin-top: -10px;
 }
@@ -861,18 +879,18 @@ div.cart-summary {
     border-radius: 50%;
     cursor: pointer;
     display: inline-block;
-    background-color: #FFF; 
+    background-color: #FFF;
     text-indent: -9999px;
     transition: box-shadow 0.3s ease-in-out;
 }
 
 .color-radio-list input[type="radio"] {
-    display: none; 
+    display: none;
 }
 
-.color-radio-list input[type="radio"]:checked + label {
-    box-shadow: 0px 0px 10px 3px rgba(0,0,0,0.2); 
-}
+    .color-radio-list input[type="radio"]:checked + label {
+        box-shadow: 0px 0px 10px 3px rgba(0,0,0,0.2);
+    }
 
 
 
@@ -882,11 +900,11 @@ div.cart-summary {
     display: flex;
 }
 
-    .product-price span {
-        font-weight: 400;
-    }
+.product-price span {
+    font-weight: 400;
+}
 
-.product-price{
+.product-price {
     display: flex;
 }
 
@@ -898,4 +916,3 @@ div.cart-summary {
 .new-price span {
     padding-left: 10px;
 }
-
