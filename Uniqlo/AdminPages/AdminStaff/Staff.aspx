@@ -9,12 +9,9 @@
         .dropdown-wrapper {
             margin-left: -24px;
         }
-        .inStock {
-            color: black;
-        }
-        .lowInStock {
-            color: black;
-        }
+        .category{
+    flex-basis:20%;
+    }
 
         /* Float cancel and delete buttons and add an equal width */
         .confirmationCancelbtn, .confirmationDeletebtn {
@@ -140,10 +137,10 @@
             <div class="row">
                 <div class="col productid">Staff ID</div>
                 <div class="col name">Staff Name</div>
+                <div class="col category">Email</div>
                 <div class="col wear">Gender</div>
                 <div class="col price">Role</div>
                 <div class="col gender">Contact No</div>
-                <div class="col category">Email</div>
                 <div class="col eclipse-container">
                     <asp:Button ID="Button1" runat="server" Text="Button" Visible="False" />
                 </div>
@@ -153,10 +150,10 @@
             <div class="row">
                 <div class="col productid">1001</div>
                 <div class="col name">Janice Lee Jia Minn</div>
+                <div class="col category">janiceljm-pm21@gmail.com</div>
                 <div class="col wear">Female</div>
                 <div class="col price">Manager</div>
                 <div class="col gender">019111111</div>
-                <div class="col category">janiceljm-pm21@gmail.com</div>
                 <div class="col eclipse-container" onclick="toggleDropdown('dropdownList3', 'dropdownDisplay3')">
                     <div class="eclipse-display" id="dropdownDisplay3" style="border:none;"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></div>
                     <div class="eclipse-list" id="dropdownList3">
@@ -176,10 +173,10 @@
             <div class="row">
                 <div class="col productid">1002</div>
                 <div class="col name">Jeffer Ooi Zhe Feng</div>
+                <div class="col category">jefferozf-pm21@gmail.com</div>
                 <div class="col wear">Male</div>
                 <div class="col price">Admin</div>
                 <div class="col gender">0191111111</div>
-                <div class="col category">jefferozf-pm21@gmail.com</div>
                 <div class="col eclipse-container"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></div>
             </div>
 
@@ -187,10 +184,10 @@
             <div class="row">
                 <div class="col productid">1003</div>
                 <div class="col name">Oh Beng Yee</div>
+                <div class="col category">ohby-pv21@gmail.com</div>
                 <div class="col wear">Male</div>
                 <div class="col price">Admin</div>
                 <div class="col gender">0191111111</div>
-                <div class="col category">ohby-pv21@gmail.com</div>
                 <div class="col eclipse-container"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></div>
             </div>
 
@@ -198,10 +195,10 @@
             <div class="row">
                 <div class="col productid">1004</div>
                 <div class="col name">Tan Chee Han</div>
+                <div class="col category">tanch-pm21@gmail.com</div>
                 <div class="col wear">Male</div>
                 <div class="col price">Admin</div>
                 <div class="col gender">0191111111</div>
-                <div class="col category">tanch-pm21@gmail.com</div>
                 <div class="col eclipse-container"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></div>
             </div>
 
@@ -209,10 +206,10 @@
             <div class="row">
                 <div class="col productid">1005</div>
                 <div class="col name">Yip Yong</div>
+                <div class="col category">yipy-pm21@gmail.com</div>
                 <div class="col wear">Male</div>
                 <div class="col price">Admin</div>
                 <div class="col gender">019111111</div>
-                <div class="col category">yipy-pm21@gmail.com</div>
                 <div class="col eclipse-container"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></div>
             </div>
         </div>
