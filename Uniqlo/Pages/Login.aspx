@@ -1,42 +1,95 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Uniqlo.Master" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="Uniqlo.Pages.Login" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="main" runat="server">
-<head> 
-	<meta charset="UTF-8"> 
-	<meta name="viewport" content= 
-		"width=device-width,initial-scale=1.0"> 
-	<title>Social Media Login Form</title> 
-    <link href="../css/Login.css" rel="stylesheet" />
-	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet" />
-</head> 
+ <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title> Responsive Login and Signup Form </title>
+        <!-- CSS -->
+     <link href="../css/Login.css" rel="stylesheet" />
+                
+        <!-- Boxicons CSS -->
+        <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+                        
+    </head>
+        <section class="container forms">
+            <div class="form login">
+                <div class="form-content">
+                    <header>Login</header>
+                    <form action="#">
+                        <div class="field input-field">
+                            <input type="email" placeholder="Email" class="input">
+                        </div>
+                        <div class="field input-field">
+                            <input type="password" placeholder="Password" class="password">
+                            <i class='bx bx-hide eye-icon'></i>
+                        </div>
+                        <div class="form-link">
+                            <a href="#" class="forgot-pass">Forgot password?</a>
+                        </div>
+                        <div class="field button-field">
+                            <button>Login</button>
+                        </div>
+                    </form>
+                    <div class="form-link">
+                        <span>Don't have an account? <a href="#" class="link signup-link">Signup</a></span>
+                    </div>
+                </div>
+                <div class="line"></div>
+                <div class="media-options">
+                    <a href="#" class="field facebook">
+                        <i class='bx bxl-facebook facebook-icon'></i>
+                        <span>Login with Facebook</span>
+                    </a>
+                </div>
+                <div class="media-options">
+                    <a href="#" class="field google">
+                        <img src="#" alt="" class="google-img">
+                        <span>Login with Google</span>
+                    </a>
+                </div>
+            </div>
+            <!-- Signup Form -->
+            <div class="form signup">
+                <div class="form-content">
+                    <header>Sign Up</header>
+                    <form action="#">
+                        <div class="field input-field">
+                            <input type="email" placeholder="Email" class="input">
+                        </div>
+                        <div class="field input-field">
+                            <input type="password" placeholder="Create password" class="password">
+                        </div>
+                        <div class="field input-field">
+                            <input type="password" placeholder="Confirm password" class="password">
+                            <i class='bx bx-hide eye-icon'></i>
+                        </div>
+                        <div class="field button-field">
+                            <button>Signup</button>
+                        </div>
+                    </form>
+                    <div class="form-link">
+                        <span>Already have an account? <a href="#" class="link login-link">Login</a></span>
+                    </div>
+                </div>
+                <div class="line"></div>
+                <div class="media-options">
+                    <a href="#" class="field facebook">
+                        <i class='bx bxl-facebook facebook-icon'></i>
+                        <span>Login with Facebook</span>
+                    </a>
+                </div>
+                <div class="media-options">
+                    <a href="#" class="field google">
+                        <img src="#" alt="" class="google-img">
+                        <span>Login with Google</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+        <!-- JavaScript -->
+    <script src="../Javascript/Login.js"></script>
+    </body>
 
-
-    <div class="mainBody">
-	<div class="login-container"> 
-		<h1><img src="../Images/Uniqlo-Logos.png" /></h1> 
-		<h3>Login</h3> 
-		<div class="login-form"> 
-			<input type="text"
-				id="email"
-				placeholder="Email"
-				autocomplete="off" required> 
-			<input type="password"
-				id="password"
-				placeholder="Password"
-				autocomplete="off" required> 
-			<asp:Button ID="btnLogin" runat="server" Text="Login" OnClick="btnLogin_Click" CssClass="main_btnlogin" />
-		</div> 
-		<div class="social-buttons"> 
-			<button class="facebook"> 
-				<i class="fab fa-facebook-f"></i>&nbsp
-				Login with Facebook</button> 
-			<button class="google"> 
-				<i class="fab fa-google"></i> &nbsp
-				Login with Google 
-			</button> 
-		</div> 
-        <p>Do not have an account?Click
-			<a href="SignUp.aspx">here</a> to register</p>
-	</div> 
-		</div>
 
 </asp:Content>
