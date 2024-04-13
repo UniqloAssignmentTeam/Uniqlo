@@ -2,7 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="main" runat="server">
     
                         <header>
-          <link href="../css/addProduct.css" rel="stylesheet" />
+    <link href="../../css/addProduct.css" rel="stylesheet" />
       </header>
      
  
@@ -54,10 +54,10 @@
         
           <div class="button-container">
               <div class="cancel-div">
-                  <a href="Staff.aspx" class="cancel-button">Cancel</a>
+                  <a href="Discount.aspx" class="cancel-button">CANCEL</a>
               </div>
               <div class="continue-div">
-                  <a href="Staff.aspx" class="continue-button">Add</a>
+                  <a href="Discount.aspx" class="continue-button">UPDATE</a>
               </div>
           </div>
       </div>
@@ -66,7 +66,7 @@
 
 
       <footer>
-      <script src="../Javascript/productAdminDDL.js"></script>
+      <script src="../../Javascript/productAdminDDL.js"></script>
           </footer>
 
 </asp:Content>
