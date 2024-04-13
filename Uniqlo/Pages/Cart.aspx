@@ -7,59 +7,61 @@
             <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet" />
         </header>
         <h1>Shopping Cart</h1>
-        
-        <div class="cart-items-container">
-            <!-- Cart Item 1 -->
-            <div class="cart-item" id="cart1" data-product-id="1">
-            <span class="remove-item">&times;</span>        
-                <div class="cart-item-image-container">
-                    <img src="../../../Images/Categories/Woman/Tops/AIRismCottonShortSleeveT-Shirt1.jpg" alt="AIRism Cotton Short Sleeve T-Shirt"/>
-                </div>
-                <div class="item-details">
-                    <div class="item-name">
-                        <h3><b>AIRism Cotton Short Sleeve T-Shirt</b></h3>
-                    </div>
-                    <div class="item-description"> 
-                        <p>Smooth "AIRism" fabric with the look of cotton. Refined fabric and design.</p><br />
-                    </div>
-                    <div class="item-details">
-                        <p><b>Size:</b> M</p> 
-                        <p><b>Stock Left:</b> 57</p>
-                    </div>
-                    <div class="item-price">
-                        <p style="text-decoration: line-through; margin-right: 10px;">RM 59.90</p>
-                        <p style="color: red;">RM 30.00</p>
-                    </div>
-                    <p>Quantity: </p>
-                    <input type="number" class="qty" min="0" value="1">
-                    <p class="item-subtotal"><b>Subtotal: RM 30.00</b></p>
-                </div>
-            </div>
 
-            <!-- Cart Item 2 -->
-            <div class="cart-item" id="cart2" data-product-id="2">
-            <span class="remove-item">&times;</span>
-                <div class="cart-item-image-container">
-                    <img src="../../../Images/Categories/Woman/Bottoms/SweatCargoPants1.jpg" alt="Sweat Cargo Pants"/>
-                </div>
-                <div class="item-details">
-                    <div class="item-name">
-                        <h3><b>Sweat Cargo Pants</b></h3>
-                    </div>
-                    <div class="item-description">
-                        <p>Smooth "AIRism" fabric with the look of cotton. Refined fabric and design.</p>
+        <div class="cart-page-container">
+            <div class="cart-items-container">
+                <!-- Cart Item 1 -->
+                <div class="cart-item" id="cart1" data-product-id="1">
+                    <span class="remove-item">&times;</span>
+                    <div class="cart-item-image-container">
+                        <img src="../../../Images/Categories/Woman/Tops/AIRismCottonShortSleeveT-Shirt1.jpg" alt="AIRism Cotton Short Sleeve T-Shirt"/>
                     </div>
                     <div class="item-details">
-                        <p><b>Size:</b> M</p> 
-                        <p><b>Stock Left:</b> 27</p>
+                        <div class="item-name">
+                            <h3><b>AIRism Cotton Short Sleeve T-Shirt</b></h3>
+                        </div>
+                        <div class="item-description"> 
+                            <p>Smooth "AIRism" fabric with the look of cotton. Refined fabric and design.</p><br />
+                        </div>
+                        <div class="item-details">
+                            <p><b>Size:</b> M</p> 
+                            <p><b>Stock Left:</b> 57</p>
+                        </div>
+                        <div class="item-price">
+                            <p style="text-decoration: line-through; margin-right: 10px;">RM 59.90</p>
+                            <p style="color: red;">RM 30.00</p>
+                        </div>
+                        <p>Quantity: </p>
+                        <input type="number" class="qty" min="0" value="1">
+                        <p class="item-subtotal"><b>Subtotal: RM 30.00</b></p>
                     </div>
-                    <div class="item-price">
-                        <p style="text-decoration: line-through; margin-right: 10px;">RM 120.00</p>
-                        <p style="color: red;">RM 79.90</p>
+                </div>
+
+                <!-- Cart Item 2 -->
+                <div class="cart-item" id="cart2" data-product-id="2">
+                    <span class="remove-item">&times;</span>
+                    <div class="cart-item-image-container">
+                        <img src="../../../Images/Categories/Woman/Bottoms/SweatCargoPants1.jpg" alt="Sweat Cargo Pants"/>
                     </div>
-                    <p>Quantity: </p>
-                    <input type="number" class="qty" min="0" value="1">
-                    <p class="item-subtotal"><b>Subtotal: RM 79.90</b></p>
+                    <div class="item-details">
+                        <div class="item-name">
+                            <h3><b>Sweat Cargo Pants</b></h3>
+                        </div>
+                        <div class="item-description">
+                            <p>Smooth "AIRism" fabric with the look of cotton. Refined fabric and design.</p>
+                        </div>
+                        <div class="item-details">
+                            <p><b>Size:</b> M</p> 
+                            <p><b>Stock Left:</b> 27</p>
+                        </div>
+                        <div class="item-price">
+                            <p style="text-decoration: line-through; margin-right: 10px;">RM 120.00</p>
+                            <p style="color: red;">RM 79.90</p>
+                        </div>
+                        <p>Quantity: </p>
+                        <input type="number" class="qty" min="0" value="1">
+                        <p class="item-subtotal"><b>Subtotal: RM 79.90</b></p>
+                    </div>
                 </div>
             </div>
 
@@ -68,15 +70,13 @@
                 <h3>Cart Summary</h3>
                 <p><b>Total Items: </b><span id="totalItemsLabel" class="total-items"></span></p>
                 <p><b>Subtotal: RM </b><span id="totalSubtotalLabel" class="total-subtotal"></span></p>
-                <p><b>Tax (10%): RM </b><span id="totalTaxLabel" class="total-tax"></span></p>
-                <p><b>Coupon: - </b><span id="totalCouponLabel" class="total-coupon"></span></p>
-                <p><b>Total Price (incl. tax): RM </b><span id="totalPriceLabel" class="total-price"></span></p>
                 <div class="buttons-container">
-                    <asp:Button ID="btnCheckout" runat="server" Text="Proceed to Checkout" CssClass="btn-checkout" PostBackUrl="~/Pages/Payment.aspx" />
+                    <asp:Button ID="btnCheckout" runat="server" Text="Proceed to Checkout" CssClass="btn-checkout" PostBackUrl="~/Pages/Delivery.aspx" />
                     <asp:Button ID="btnContinueShopping" runat="server" Text="Continue Shopping" CssClass="btn-continue-shopping" PostBackUrl="~/Pages/Home.aspx" />
                 </div>
             </div>
         </div>
+
 
 
 

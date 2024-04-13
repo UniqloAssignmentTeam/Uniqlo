@@ -287,6 +287,10 @@
             background-color: #f0f0f0;
         }
 
+.dropdown-container:nth-child(2) { /* Assuming 'Category' is the second dropdown */
+    margin-right: 14px; /* Adjust this value as needed for desired spacing */
+}
+
 
 .dropdown-display::after {
     content: '';

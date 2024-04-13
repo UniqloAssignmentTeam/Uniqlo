@@ -32,6 +32,13 @@
                         <div onclick="selectOption('Men', 'dropdownDisplay2')">Men</div>
                     </div>
                 </div>
+                <div class="dropdown-container" onclick="toggleDropdown('dropdownList3', 'dropdownDisplay3')" style="margin-right: 15px;">
+                    <div class="dropdown-display" id="dropdownDisplay3">Gender</div>
+                    <div class="dropdown-list" id="dropdownList3">
+                        <div onclick="selectOption('M', 'dropdownDisplay3')">M</div>
+                        <div onclick="selectOption('F', 'dropdownDisplay3')">F</div>
+                    </div>
+                </div>
             </div>
         </div>
         <!--LIMITED OFFER START-->
