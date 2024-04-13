@@ -7,7 +7,7 @@
         <header>
             <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet" />
         </header>
-        <h1>Order History</h1>
+        <h1>ORDER HISTORY ITEM</h1>
        
         <div class="cart-items-container">
             <!-- Cart Item 1 -->
@@ -78,7 +78,7 @@
                 <p><b>Total Items: </b><span id="totalItemsLabel" class="total-items"></span></p>
                 <p><b>Total Price: RM </b><span id="totalPriceLabel" class="total-price"></span></p>
                 <div class="viewMoreSection">
-                    <a href="../AdminPages/Order.aspx" class="viewMoreButton">BACK</a>
+                    <a href="Order.aspx" class="viewMoreButton">BACK</a>
                 </div>
             </div>
         </div>

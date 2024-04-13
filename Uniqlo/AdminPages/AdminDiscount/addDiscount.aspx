@@ -11,7 +11,7 @@
  
            <div class="container">
         <div class="productItemCard">
-            <h2 class="product-title">Uniqlo Add Discount</h2>
+            <h2 class="product-title">UNIQLO ADD DISCOUNT</h2>
         </div>
         <div class="modal-content">
             

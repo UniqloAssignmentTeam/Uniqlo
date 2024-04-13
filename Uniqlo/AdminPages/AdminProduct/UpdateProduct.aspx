@@ -10,7 +10,7 @@
  
            <div class="container">
         <div class="productItemCard">
-            <h2 class="product-title">Uniqlo Update Product</h2>
+            <h2 class="product-title">UNIQLO UPDATE PRODUCT</h2>
         </div>
         <div class="modal-content">
             <div class="upload-image-section">

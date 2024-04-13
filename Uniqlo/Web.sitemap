@@ -1,17 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
-  <siteMapNode url="Pages/Home.aspx" title="Home">
+  <siteMapNode url="Pages/Home.aspx" title="HOME">
 	  <siteMapNode title="Category">
-		  <siteMapNode url="Pages/Categories/Women/Main.aspx" title="Women">
-			  <siteMapNode url="Pages/Categories/Women/Tops.aspx" title="Tops"/>
-			  <siteMapNode url="Pages/Categories/Women/Bottoms.aspx" title="Bottoms"/>
+		  <siteMapNode url="Pages/Categories/Women/Main.aspx" title="WOMEN">
+			  <siteMapNode url="Pages/Categories/Women/Tops.aspx" title="TOPS"/>
+			  <siteMapNode url="Pages/Categories/Women/Bottoms.aspx" title="BOTTOMS"/>
 		  </siteMapNode>
-		  <siteMapNode url="Pages/Categories/Men/Main.aspx" title="Men">
-			  <siteMapNode url="Pages/Categories/Men/Tops.aspx" title="Tops"/>
-			  <siteMapNode url="Pages/Categories/Men/Bottoms.aspx" title="Bottoms"/>
+		  <siteMapNode url="Pages/Categories/Men/Main.aspx" title="MEN">
+			  <siteMapNode url="Pages/Categories/Men/Tops.aspx" title="TOPS"/>
+			  <siteMapNode url="Pages/Categories/Men/Bottoms.aspx" title="BOTTOMS"/>
 		  </siteMapNode>
 	  </siteMapNode>
-    <siteMapNode url="Pages/WishList.aspx" title="Wish List"/>
-    <siteMapNode url="Pages/ValueBuy.aspx" title="Value Buy"/>
+    <siteMapNode url="Pages/WishList.aspx" title="WISH LIST"/>
+    <siteMapNode url="Pages/ValueBuy.aspx" title="VALUE BUY"/>
   </siteMapNode>
 </siteMap>

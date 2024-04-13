@@ -9,10 +9,18 @@
         .dropdown-container {
             margin-left: -150px;
         }
+        .wear{
+            flex-basis:10%;
+        }
+        .price{
+            flex-basis:15%;
+        }
+       
+
     </style>
 
     <div class="productBody">
-        <h2>Discount</h2>
+        <h2>UNIQLO DISCOUNT</h2>
         <div class="crudProduct">
             <div class="wrap-items-search-buttons">
                 <div class="search">
@@ -41,7 +49,7 @@
             <div class="row">
                 <div class="col productid">Discount ID</div>
                 <div class="col name">Product ID</div>
-                <div class="col status">Amount</div>
+                <div class="col wear">Amount</div>
                 <div class="col price">Status</div>
                 <div class="col gender">Start Date</div>
                 <div class="col category">End Date</div>
@@ -58,9 +66,9 @@
                 <div class="col gender">11/2/2024</div>
                 <div class="col category">15/2/2024</div>
                 <div class="col eclipse-container" onclick="toggleDropdown('dropdownList3', 'dropdownDisplay3')">
-                    <div class="eclipse-display" id="dropdownDisplay3" style="border:none;"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></div>
+                    <div class="eclipse-display" id="dropdownDisplay3" style="border:none;"><i class="fa fa-ellipsis-v" aria-hidden="true" style="color:#6F6F6F;"></i></div>
                     <div class="eclipse-list" id="dropdownList3">
-                        <a href="UpdateDiscount.aspx" style="text-decoration:none;">
+                        <a href="UpdateDiscount.aspx" style="text-decoration:none; color:#6F6F6F;">
                             <div>Update</div>
                         </a>
                         <div>Delete</div>
@@ -71,7 +79,7 @@
             <div class="row">
                 <div class="col productid">1002</div>
                 <div class="col name">Product Name</div>
-                <div class="col lowInStock">Low In Stock</div>
+                <div class="col wear">Low In Stock</div>
                 <div class="col price">99.00</div>
                 <div class="col gender">Gender</div>
                 <div class="col category">Category</div>
@@ -83,7 +91,7 @@
             <div class="row">
                 <div class="col productid">1003</div>
                 <div class="col name">Product Name</div>
-                <div class="col stat inStock">In Stock</div>
+                <div class="col wear">In Stock</div>
                 <div class="col price">130.00</div>
                 <div class="col gender">Gender</div>
                 <div class="col category">Category</div>
@@ -95,7 +103,7 @@
             <div class="row">
                 <div class="col productid">1004</div>
                 <div class="col name">Product Name</div>
-                <div class="col stat inStock">In Stock</div>
+                <div class="col  wear">In Stock</div>
                 <div class="col price">12.00</div>
                 <div class="col gender">Gender</div>
                 <div class="col category">jefferozf@gmail.com</div>
@@ -107,7 +115,7 @@
             <div class="row">
                 <div class="col productid">1005</div>
                 <div class="col name">Product Name</div>
-                <div class="col lowInStock">Low In Stock</div>
+                <div class="col wear">Low In Stock</div>
                 <div class="col price">112.00</div>
                 <div class="col gender">Gender</div>
                 <div class="col category">asdasd</div>

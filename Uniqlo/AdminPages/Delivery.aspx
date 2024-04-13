@@ -18,19 +18,6 @@
 .status {
     flex-basis: 10%;
 }
-.inStock {
-    flex-basis: 10%;
-    color: #28a745;
-}
-.noStock{
-    flex-basis:10%;
-    color:red;
-}
-.lowInStock {
-    flex-basis: 10%;
-    color: #ffc107;
-}
-/* Price Column */
 
 .gender {
     flex-basis: 10%;
@@ -49,7 +36,7 @@
    <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
    <div class="productBody">
-      <h2>Delivery</h2>
+      <h2>UNIQLO DELIVERY</h2>
       <div class="crudProduct">
          <div class="wrap-items-search-buttons">
             <div class="search">

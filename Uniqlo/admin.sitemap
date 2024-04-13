@@ -1,11 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
-	<siteMapNode url="AdminPages/Dashboard.aspx" title="Dashboard">
-		<siteMapNode url="AdminPages/AdminStaff/Staff.aspx" title="Staff"/>
-		<siteMapNode url="AdminPages/AdminProduct/Product.aspx" title="Product"/>
-		<siteMapNode url="AdminPages/AdminDiscount/Discount.aspx" title="Discount"/>
-		<siteMapNode url="AdminPages/AdminOrder/Order.aspx" title="Order"/>
-		<siteMapNode url="AdminPages/Delivery.aspx" title="Delivery"/>
-		<siteMapNode url="AdminPages/Report.aspx" title="Reports"/>
+	<siteMapNode url="AdminPages/Dashboard.aspx" title="DASHBOARD">
+		<siteMapNode url="AdminPages/AdminStaff/Staff.aspx" title="STAFF"/>
+		<siteMapNode url="AdminPages/AdminProduct/Product.aspx" title="PRODUCT"/>
+		<siteMapNode url="AdminPages/AdminDiscount/Discount.aspx" title="DISCOUNT"/>
+		<siteMapNode url="AdminPages/AdminOrder/Order.aspx" title="ORDER"/>
+		<siteMapNode url="AdminPages/Delivery.aspx" title="DELIVERY"/>
+		<siteMapNode url="AdminPages/Report.aspx" title="REPORTS"/>
 	</siteMapNode>
 </siteMap>
