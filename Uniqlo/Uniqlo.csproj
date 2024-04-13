@@ -158,6 +158,7 @@
     <Content Include="Javascript\colorRadioList.js" />
     <Content Include="Javascript\ContactUs.js" />
     <Content Include="Javascript\lineChart.js" />
+    <Content Include="Javascript\Login.js" />
     <Content Include="Javascript\modalProduct.js" />
     <Content Include="Javascript\modalProductItem.js" />
     <Content Include="Javascript\orderCompleted.js" />
