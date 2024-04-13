@@ -14,19 +14,15 @@
     }
 
 
-        /* Float cancel and delete buttons and add an equal width */
-        confirmationClearFix {
-          float: left;
-          width: calc((100% / 2) - 10px);
-          margin-top: 100px;
-          padding: 20px 0px 20px 0px;
-          border: 2px solid black;
+        .confirmationClearFix{
+            width: 100%;
+            margin-top: 90px;
         }
 
         /* Add a color to the cancel button */
         .confirmationCancelbtn, .confirmationDeletebtn {
             border: 2px solid black;
-            padding: 20px 180px 20px 180px;
+            padding: 20px 150px 20px 150px;
             background: none;
             outline: none;
             font-weight: bold;
@@ -35,6 +31,8 @@
             width: 100%;
             text-decoration: none;
             color: black;
+            width: calc((100% / 2) - 20px);
+            
         }
         
         .confirmationDeletebtn:hover, 
@@ -93,7 +91,7 @@
 
         .confirmationClose:hover,
         .confirmationClose:focus {
-          color: #f44336;
+          color: black;
           cursor: pointer;
         }
 
