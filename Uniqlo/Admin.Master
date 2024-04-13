@@ -18,7 +18,7 @@
             </div>
 
             <div id="menu">
-                <asp:Menu ID="Menu2" runat="server" DataSourceID="SiteMapDataSource2" BackColor="GhostWhite" ForeColor="Black" Orientation="Horizontal" StaticDisplayLevels="2" StaticSubMenuIndent="30px" Font-Bold="True" Font-Size="20px" Font-Underline="False" CssClass="main-menu">
+                <asp:Menu ID="Menu2" runat="server" DataSourceID="SiteMapDataSource2" BackColor="GhostWhite" ForeColor="Black" Orientation="Horizontal" StaticDisplayLevels="2" StaticSubMenuIndent="30px" Font-Bold="True" Font-Size="20px" Font-Underline="False" CssClass="admin-main-menu">
                     <DynamicHoverStyle CssClass="dynamic-menu-hover" />
                     <DynamicMenuItemStyle ForeColor="Black" CssClass="dynamic-menu-item" />
                     <DynamicMenuStyle CssClass="dynamic-menu-item" />
