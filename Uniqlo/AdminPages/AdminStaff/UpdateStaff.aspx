@@ -3,7 +3,7 @@
 
 
                 <header>
-            <link href="../css/addProduct.css" rel="stylesheet" />
+            <link href="../../css/addProduct.css" rel="stylesheet" />
         </header>
        
  
@@ -77,7 +77,7 @@
 
 
         <footer>
-        <script src="../Javascript/productAdminDDL.js"></script>
+        <script src="../../Javascript/productAdminDDL.js"></script>
             </footer>
 
 </asp:Content>
