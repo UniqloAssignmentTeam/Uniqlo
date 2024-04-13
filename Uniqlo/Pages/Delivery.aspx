@@ -69,6 +69,14 @@
                                 <label>City</label>
                                 <input class="form-control" name="city" type="text" placeholder="Penang" required>
                             </div>
+
+
+                            <div class="col-md-12 form-group">
+    <label>
+        <br />
+        Delivery Instruction (If Any)</label>
+    <input class="form-control" name="city" type="text" placeholder="" required>
+</div>
                         </div>
 
                     </div>
