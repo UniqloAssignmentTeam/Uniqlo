@@ -113,6 +113,8 @@
                 <!-- Submit Button -->
                 <div class="form-group">
                     <button type="submit">Save Changes</button>
+                    <button class="back-button" type="button" onclick="window.history.back();">Back</button>
+              
                 </div>
             </form>
         </div>

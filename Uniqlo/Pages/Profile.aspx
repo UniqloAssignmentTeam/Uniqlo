@@ -46,6 +46,7 @@
                 <br />
                 <div class="edit-profile">
                     <asp:Button ID="btnEditProfile" runat="server" Text="Edit Profile" CssClass="edit-button" OnClick="btnEditProfile_Click" />
+                    
                 </div>
             </div>
         </div>
