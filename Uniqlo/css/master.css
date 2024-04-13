@@ -282,3 +282,7 @@ body {
     position: relative;
     margin: auto;
 }
+
+.main-menu{
+    margin-top: -30px;
+}
