@@ -4,7 +4,6 @@
         <style>
         body {
             font-family: Arial, sans-serif;
-            padding: 20px;
         }
 
         .invoice-header {
@@ -91,19 +90,17 @@
                 <div class="col-lg-12">
                     <div class="mb-4">
                         <br /><br />
-                        <h4 class="font-weight-semi-bold mb-4">Invoice</h4>
+                        
                         <div class="card border-secondary mb-5">
                             <div class="card-header bg-secondary border-0">
                                 <h4 class="font-weight-semi-bold m-0">Invoice</h4>
                             </div>
                             <div class="card-body">
-                                <div class="invoice-details">
+                                <div class="invoice-details" >
                                     <div>
                                         <p><strong>Payment ID:</strong> Payment_id()</p>
                                         <p><strong>Date & Time:</strong> getDateTime()</p>
-                                    </div>
-
-                                    <div>
+                                        <br />
                                         <p><strong>Customer Name:</strong>getName()</p>
                                         <p><strong>Address:</strong>getAddress()</p>
                                         <p><strong>Email:</strong> getEmail()</p>
@@ -132,7 +129,7 @@
                                     </tbody>
                                 </table>
 
-                                <div class="invoice-container" style="text-align: left; display:flex; flex-direction: column; align-items: end">
+                                <div class="invoice-container">
                                     <div class="invoice-details pr-5 pt-3" style="display: block;">
                                         <p><strong>Total Price:</strong> RM getTotal_price())</p>
                                         <p><strong>Shipping Charges:</strong> RM getShipping_amount()</p>
@@ -144,7 +141,8 @@
                                     </div>
                                 </div>
 
-                                <div class="invoice-footer">
+                                <div class="invoice-footer"style="text-align: center;">
+                                    <p>The invoice has been send to user@gmail.com</p>
                                     <p>Thank you for your purchase. To check on the status of your order, please visit <a href="profile.jsp">Here</a>.</p>
                                 </div>
                             </div>
