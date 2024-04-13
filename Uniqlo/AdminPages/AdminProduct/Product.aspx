@@ -180,7 +180,7 @@
                Gender
             </div>
             <div class="col category">
-               Category
+               Tops
             </div>
             <div class="col eclipse-container" onclick="toggleDropdown('dropdownList3', 'dropdownDisplay3')">
                <div class="eclipse-display" id="dropdownDisplay3" style="border:none;"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></div>
