@@ -53,4 +53,3 @@ function calculateTax(subtotal) {
     document.getElementById('totalTaxLabel').textContent = taxAmount.toFixed(2);
     document.getElementById('totalPriceLabel').textContent = totalWithTax.toFixed(2);
 }
-
