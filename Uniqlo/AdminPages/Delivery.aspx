@@ -8,21 +8,22 @@
         justify-content:normal;
         }
 
-        
-/* Name Column */
-.name {
-   flex-grow:1; /* Allow this column to grow and take up remaining space */
+       .name {
+   flex-grow:1; 
     
-
 }
-.status {
+       .status {
     flex-basis: 10%;
 }
+
 
 .gender {
+   
     flex-basis: 10%;
+
 }
-/* Category Column */
+
+
 .category {
     min-width: 0;
     flex-basis: 10%;
@@ -32,7 +33,7 @@
 
     </style>
 
-       <link href="../css/productAdmin.css" rel="stylesheet" />
+    <link href="../css/Admin/adminDelivery.css" rel="stylesheet" />
    <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
    <div class="productBody">
