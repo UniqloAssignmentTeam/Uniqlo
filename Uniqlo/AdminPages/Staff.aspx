@@ -66,7 +66,7 @@
         
 
          
-       <a href="AddStaff.aspx"><div  class="product-add">➕ Add Staff</div></a>
+       <a href="AddStaff.aspx" style="color: #6F6F6F; text-decoration: none;"><div  class="product-add">➕ Add Staff</div></a>
      
             </div>
 

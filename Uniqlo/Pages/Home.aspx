@@ -8,18 +8,22 @@
     <div class="homeBody">
         <div class="slideshow-container">
             <div class="mySlides fade">
-                  <div class="numbertext">1 / 3</div>
-                  <img src="../Images/storeLocator.jpg" style="width:100%"/>
+                  <div class="numbertext">1 / 4</div>
+                  <a href="AboutUs.aspx"><img src="../Images/storeLocator.jpg" style="width:100%; height: 650px;"/></a>
             </div>
 
             <div class="mySlides fade">
-                  <div class="numbertext">2 / 3</div>
-                  <img src="../Images/valueBuy.jpg" style="width:100%"/>
+                  <div class="numbertext">2 / 4</div>
+                  <a href="ValueBuy.aspx"><img src="../Images/valueBuy.jpg" style="width:100%; height: 650px;"/></a>
             </div>
 
             <div class="mySlides fade">
-                  <div class="numbertext">3 / 3</div>
-                  <img src="../Images/accessories.jpg" style="width:100%"/>
+                  <div class="numbertext">3 / 4</div>
+                  <a href="Categories/Women/Main.aspx"><img src="../Images/uniqloWomanBigBanner.jpg" style="width:100%; height: 650px;" /></a>
+            </div>            
+            <div class="mySlides fade">
+                  <div class="numbertext">4 / 4</div>
+                  <a href="Categories/Men/Main.aspx"><img src="../Images/uniqloMenBigBanner.jpg" style="width:100%; height: 650px;" /></a>
             </div>
 
             <a class="prev" onclick="plusSlides(-1)">❮</a>
@@ -30,18 +34,19 @@
            <span class="dot" onclick="currentSlide(1)"></span> 
            <span class="dot" onclick="currentSlide(2)"></span> 
            <span class="dot" onclick="currentSlide(3)"></span> 
+           <span class="dot" onclick="currentSlide(4)"></span> 
         </div>
 
         <!--VALUE BUY Banner-->
         <div class="banner fade">
-            <img src="../Images/valueBuyBanner.jpg" style="width: 100%;" />
+            <a href="ValueBuy.aspx"><img src="../Images/valueBuyBanner.jpg" style="width: 100%;" /></a>
         </div>
 
         <!-- INFORMATION CARD FOR CATEGORY-->
         <h1>Category</h1>
 
         <!--WOMAN SECTION-->
-        <h2>Women</h2>
+        <h2><a href="Categories/Women/Main.aspx" style="color: #6F6F6F; text-decoration: none;">Women</a></h2>
         <div class="row">
             <div class="column">
                 <div class="card">
@@ -67,7 +72,7 @@
         </div>
 
         <!--MEN SECTION-->
-        <h2>Men</h2>
+        <h2><a href="Categories/Men/Main.aspx" style="color: #6F6F6F; text-decoration: none;">Men</a></h2>
         <div class="row">
             <div class="column">
                 <div class="card">

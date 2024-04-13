@@ -121,9 +121,10 @@
                         </div>
                     </div>
 
-                    <div class="card-footer border-secondary bg-transparent">
-                        <button class="btn btn-lg btn-block btn-primary font-weight-bold my-3 py-3"><a style="text-decoration:none; color:black" href="Payment.aspx">Next</a></button>
-                    </div>
+                        <!--VIEWMORE BUTTON-->
+                        <div class="viewMoreSection">
+                            <a href="Payment.aspx" class="viewMoreButton">Next</a>
+                        </div>
 
                 </div>
             </form>          

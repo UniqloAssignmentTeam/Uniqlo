@@ -218,6 +218,7 @@
     transition: 0.3s;
     width: calc(33.33% - 20px); /* Adjust width for three items per row */
     margin: 10px;
+    margin-bottom: 30px;
     cursor: pointer;
     background-color: #fff; /* Background color for the card */
 }
