@@ -50,9 +50,7 @@
                  </div>
             </div>
         </div>
-        <div class="siteMapPath">
-            <asp:SiteMapPath ID="SiteMapPath2" runat="server" SiteMapProvider="AdminSiteMapProvider"></asp:SiteMapPath>
-        </div>
+       
 
         <div id="content">
             <asp:ContentPlaceHolder ID="main" runat="server">

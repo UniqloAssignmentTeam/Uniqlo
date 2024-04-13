@@ -7,7 +7,7 @@
         <header>
             <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet" />
         </header>
-        <h1>Order History</h1>
+        <h1>ORDER HISTORY ITEM</h1>
        
         <div class="cart-items-container">
             <!-- Cart Item 1 -->

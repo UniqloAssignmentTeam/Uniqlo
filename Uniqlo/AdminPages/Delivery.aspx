@@ -36,7 +36,7 @@
    <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
    <div class="productBody">
-      <h2>Delivery</h2>
+      <h2>UNIQLO DELIVERY</h2>
       <div class="crudProduct">
          <div class="wrap-items-search-buttons">
             <div class="search">

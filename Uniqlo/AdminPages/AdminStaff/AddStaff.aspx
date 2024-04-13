@@ -10,7 +10,7 @@
  
            <div class="container">
         <div class="productItemCard">
-            <h2 class="product-title">Uniqlo Add Staff</h2>
+            <h2 class="product-title">UNIQLO ADD STAFF</h2>
         </div>
         <div class="modal-content">
             

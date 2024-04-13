@@ -20,7 +20,7 @@
     </style>
 
     <div class="productBody">
-        <h2>Discount</h2>
+        <h2>UNIQLO DISCOUNT</h2>
         <div class="crudProduct">
             <div class="wrap-items-search-buttons">
                 <div class="search">
@@ -66,9 +66,9 @@
                 <div class="col gender">11/2/2024</div>
                 <div class="col category">15/2/2024</div>
                 <div class="col eclipse-container" onclick="toggleDropdown('dropdownList3', 'dropdownDisplay3')">
-                    <div class="eclipse-display" id="dropdownDisplay3" style="border:none;"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></div>
+                    <div class="eclipse-display" id="dropdownDisplay3" style="border:none;"><i class="fa fa-ellipsis-v" aria-hidden="true" style="color:#6F6F6F;"></i></div>
                     <div class="eclipse-list" id="dropdownList3">
-                        <a href="UpdateDiscount.aspx" style="text-decoration:none;">
+                        <a href="UpdateDiscount.aspx" style="text-decoration:none; color:#6F6F6F;">
                             <div>Update</div>
                         </a>
                         <div>Delete</div>
