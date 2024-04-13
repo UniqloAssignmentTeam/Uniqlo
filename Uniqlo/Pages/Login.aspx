@@ -29,19 +29,13 @@
 			<button class="facebook"> 
 				<i class="fab fa-facebook-f"></i>&nbsp
 				Login with Facebook</button> 
-			<button class="twitter"> 
-				<i class="fab fa-twitter"></i> &nbsp
-				Login with Twitter 
-			</button> 
 			<button class="google"> 
 				<i class="fab fa-google"></i> &nbsp
 				Login with Google 
 			</button> 
-			<button class="instagram"> 
-				<i class="fab fa-instagram"></i> &nbsp
-				Login with Instagram 
-			</button> 
 		</div> 
+        <p>Do not have an account?Click
+			<a href="SignUp.aspx">here</a> to register</p>
 	</div> 
 		</div>
 

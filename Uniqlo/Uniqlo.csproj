@@ -79,9 +79,11 @@
     <Content Include="AdminPages\Product.aspx" />
     <Content Include="AdminPages\Report.aspx" />
     <Content Include="AdminPages\Staff.aspx" />
+    <Content Include="AdminPages\test.aspx" />
     <Content Include="AdminPages\UpdateDiscount.aspx" />
     <Content Include="AdminPages\UpdateProduct.aspx" />
     <Content Include="AdminPages\ValueBuy.aspx" />
+    <Content Include="AdminPages\viewMoreProduct.aspx" />
     <Content Include="App_Data\Uniqlo.mdf" />
     <Content Include="App_Data\Uniqlo_log.ldf">
       <DependentUpon>Uniqlo.mdf</DependentUpon>
@@ -100,10 +102,12 @@
     <Content Include="css\OrderItem.css" />
     <Content Include="css\product.css" />
     <Content Include="css\productAdmin.css" />
+    <Content Include="css\Profile.css" />
     <Content Include="css\report.css" />
     <Content Include="css\SignUp.css" />
     <Content Include="css\style.css" />
     <Content Include="css\style1.css" />
+    <Content Include="css\test.css" />
     <Content Include="css\ValueBuy.css" />
     <Content Include="css\WishList.css" />
     <Content Include="Images\3R.jpg" />
@@ -170,6 +174,7 @@
     <Content Include="Pages\ConfirmPayment.aspx" />
     <Content Include="Pages\ContactUs.aspx" />
     <Content Include="Pages\Delivery.aspx" />
+    <Content Include="Pages\EditProfile.aspx" />
     <Content Include="Pages\Home.aspx" />
     <Content Include="Pages\Categories\Men\Bottoms.aspx" />
     <Content Include="Pages\Categories\Men\Main.aspx" />
@@ -280,6 +285,13 @@
     <Compile Include="AdminPages\Staff.aspx.designer.cs">
       <DependentUpon>Staff.aspx</DependentUpon>
     </Compile>
+    <Compile Include="AdminPages\test.aspx.cs">
+      <DependentUpon>test.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminPages\test.aspx.designer.cs">
+      <DependentUpon>test.aspx</DependentUpon>
+    </Compile>
     <Compile Include="AdminPages\UpdateDiscount.aspx.cs">
       <DependentUpon>UpdateDiscount.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -300,6 +312,13 @@
     </Compile>
     <Compile Include="AdminPages\ValueBuy.aspx.designer.cs">
       <DependentUpon>ValueBuy.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AdminPages\viewMoreProduct.aspx.cs">
+      <DependentUpon>viewMoreProduct.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminPages\viewMoreProduct.aspx.designer.cs">
+      <DependentUpon>viewMoreProduct.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\AboutUs.aspx.cs">
       <DependentUpon>AboutUs.aspx</DependentUpon>
@@ -335,6 +354,13 @@
     </Compile>
     <Compile Include="Pages\Delivery.aspx.designer.cs">
       <DependentUpon>Delivery.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\EditProfile.aspx.cs">
+      <DependentUpon>EditProfile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\EditProfile.aspx.designer.cs">
+      <DependentUpon>EditProfile.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Home.aspx.cs">
       <DependentUpon>Home.aspx</DependentUpon>
