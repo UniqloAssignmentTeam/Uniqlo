@@ -67,24 +67,22 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="AdminPages\addDiscount.aspx" />
+    <Content Include="AdminPages\AdminDiscount\addDiscount.aspx" />
     <Content Include="AdminPages\AdminProduct\AddProduct.aspx" />
     <Content Include="AdminPages\AdminStaff\AddStaff.aspx" />
     <Content Include="AdminPages\Dashboard.aspx" />
     <Content Include="AdminPages\Delivery.aspx" />
-    <Content Include="AdminPages\Discount.aspx" />
+    <Content Include="AdminPages\AdminDiscount\Discount.aspx" />
     <Content Include="AdminPages\Login.aspx" />
-    <Content Include="AdminPages\Order.aspx" />
-    <Content Include="AdminPages\OrderItem.aspx" />
+    <Content Include="AdminPages\AdminOrder\Order.aspx" />
+    <Content Include="AdminPages\AdminOrder\OrderItem.aspx" />
     <Content Include="AdminPages\AdminProduct\Product.aspx" />
     <Content Include="AdminPages\Report.aspx" />
     <Content Include="AdminPages\AdminStaff\Staff.aspx" />
-    <Content Include="AdminPages\test.aspx" />
-    <Content Include="AdminPages\UpdateDiscount.aspx" />
+    <Content Include="AdminPages\AdminDiscount\UpdateDiscount.aspx" />
     <Content Include="AdminPages\AdminProduct\UpdateProduct.aspx" />
     <Content Include="AdminPages\AdminStaff\UpdateStaff.aspx" />
-    <Content Include="AdminPages\ValueBuy.aspx" />
-    <Content Include="AdminPages\viewMoreProduct.aspx" />
+    <Content Include="AdminPages\AdminProduct\viewMoreProduct.aspx" />
     <Content Include="App_Data\Uniqlo.mdf" />
     <Content Include="App_Data\Uniqlo_log.ldf">
       <DependentUpon>Uniqlo.mdf</DependentUpon>
@@ -204,11 +202,11 @@
     <Compile Include="Admin.Master.designer.cs">
       <DependentUpon>Admin.Master</DependentUpon>
     </Compile>
-    <Compile Include="AdminPages\addDiscount.aspx.cs">
+    <Compile Include="AdminPages\AdminDiscount\addDiscount.aspx.cs">
       <DependentUpon>addDiscount.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="AdminPages\addDiscount.aspx.designer.cs">
+    <Compile Include="AdminPages\AdminDiscount\addDiscount.aspx.designer.cs">
       <DependentUpon>addDiscount.aspx</DependentUpon>
     </Compile>
     <Compile Include="AdminPages\AdminProduct\AddProduct.aspx.cs">
@@ -239,11 +237,11 @@
     <Compile Include="AdminPages\Delivery.aspx.designer.cs">
       <DependentUpon>Delivery.aspx</DependentUpon>
     </Compile>
-    <Compile Include="AdminPages\Discount.aspx.cs">
+    <Compile Include="AdminPages\AdminDiscount\Discount.aspx.cs">
       <DependentUpon>Discount.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="AdminPages\Discount.aspx.designer.cs">
+    <Compile Include="AdminPages\AdminDiscount\Discount.aspx.designer.cs">
       <DependentUpon>Discount.aspx</DependentUpon>
     </Compile>
     <Compile Include="AdminPages\Login.aspx.cs">
@@ -253,18 +251,18 @@
     <Compile Include="AdminPages\Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
-    <Compile Include="AdminPages\Order.aspx.cs">
+    <Compile Include="AdminPages\AdminOrder\Order.aspx.cs">
       <DependentUpon>Order.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="AdminPages\Order.aspx.designer.cs">
+    <Compile Include="AdminPages\AdminOrder\Order.aspx.designer.cs">
       <DependentUpon>Order.aspx</DependentUpon>
     </Compile>
-    <Compile Include="AdminPages\OrderItem.aspx.cs">
+    <Compile Include="AdminPages\AdminOrder\OrderItem.aspx.cs">
       <DependentUpon>OrderItem.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="AdminPages\OrderItem.aspx.designer.cs">
+    <Compile Include="AdminPages\AdminOrder\OrderItem.aspx.designer.cs">
       <DependentUpon>OrderItem.aspx</DependentUpon>
     </Compile>
     <Compile Include="AdminPages\AdminProduct\Product.aspx.cs">
@@ -288,18 +286,11 @@
     <Compile Include="AdminPages\AdminStaff\Staff.aspx.designer.cs">
       <DependentUpon>Staff.aspx</DependentUpon>
     </Compile>
-    <Compile Include="AdminPages\test.aspx.cs">
-      <DependentUpon>test.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="AdminPages\test.aspx.designer.cs">
-      <DependentUpon>test.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="AdminPages\UpdateDiscount.aspx.cs">
+    <Compile Include="AdminPages\AdminDiscount\UpdateDiscount.aspx.cs">
       <DependentUpon>UpdateDiscount.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="AdminPages\UpdateDiscount.aspx.designer.cs">
+    <Compile Include="AdminPages\AdminDiscount\UpdateDiscount.aspx.designer.cs">
       <DependentUpon>UpdateDiscount.aspx</DependentUpon>
     </Compile>
     <Compile Include="AdminPages\AdminProduct\UpdateProduct.aspx.cs">
@@ -316,18 +307,11 @@
     <Compile Include="AdminPages\AdminStaff\UpdateStaff.aspx.designer.cs">
       <DependentUpon>UpdateStaff.aspx</DependentUpon>
     </Compile>
-    <Compile Include="AdminPages\ValueBuy.aspx.cs">
-      <DependentUpon>ValueBuy.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="AdminPages\ValueBuy.aspx.designer.cs">
-      <DependentUpon>ValueBuy.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="AdminPages\viewMoreProduct.aspx.cs">
+    <Compile Include="AdminPages\AdminProduct\viewMoreProduct.aspx.cs">
       <DependentUpon>viewMoreProduct.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="AdminPages\viewMoreProduct.aspx.designer.cs">
+    <Compile Include="AdminPages\AdminProduct\viewMoreProduct.aspx.designer.cs">
       <DependentUpon>viewMoreProduct.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\AboutUs.aspx.cs">
