@@ -29,8 +29,8 @@
     border-radius: 16px;
     border: 1px solid lightgrey;
     margin: 20px;
-    margin-left: 235px;
-    width: 350px; /* Adjust the width as necessary */
+    margin-left:180px;
+    width: 60%; /* Adjust the width as necessary */
     padding-left: 20px;
     padding-right: 20px;
     padding-bottom: 20px;
@@ -58,9 +58,6 @@
 }
 
 
-.form-group {
-  
-}
 
 label {
     display: block;
@@ -195,41 +192,61 @@ body .form-group {
         background-color: grey;
     }
 
+
+
 .image-gallery {
-    display: flex;
+   
+    justify-content: center; /* Center items horizontally */
+    align-items: center; /* Center items vertically */
     padding: 10px;
-    gap: 10px; /* Space between images */
-    background: #f0f0f0;
+    background: #f0f0f0;    
     border-radius: 10px;
-    margin: 20px auto;
-    width: 80%; /* Container width, adjust as needed */
+    width: 200px; /* Container width, adjust as needed */
     overflow: hidden; /* Ensures the content fits within the padding */
+    border:1px solid lightgrey;
+    margin-left:10px;
 }
 
 .image-box {
-    flex: 1;
+    flex-grow: 1; /* Allow the image box to grow and fill space */
+    display: flex;
+    justify-content: center; /* Center items horizontally */
+    align-items: center; /* Center items vertically */
     border-radius: 10px;
-    overflow: hidden;
+    overflow: hidden; /* Ensures the content fits within the padding */
+    height:100px;
 }
 
     .image-box img {
-        width: 100%; /* Scale the width to fit the container */
-        height: auto; /* Scale the height automatically */
-        object-fit: cover; /* Cover the box area, might crop some parts of the image */
-        display: block; /* Remove any extra line-height space below the image */
+        width: 100%; /* Adjust width to fill the container */
+        height: auto; /* Adjust height automatically */
+        object-fit: cover; /* Cover the box area, may crop parts of the image */
+ 
     }
 
 .add-image {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
+    position: absolute;
+  
+    
+    width: 50px; /* Size of the button */
+    height: 50px; /* Size of the button */
+    background-color: white;
     border: 2px dashed #c0c0c0;
+    border-radius: 50%; /* Makes it circular */
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 24px;
     cursor: pointer;
+   
+    line-height: 50px; /* Vertically center the plus sign */
 }
+
+
+
+
+
+
 
 .button-container {
     display: flex;
