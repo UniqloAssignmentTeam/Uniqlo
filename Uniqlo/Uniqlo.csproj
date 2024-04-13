@@ -150,6 +150,7 @@
     <Content Include="Images\valueBuyBanner.jpg" />
     <Content Include="Images\womanBottomBanner.png" />
     <Content Include="Images\womenTopBanner.png" />
+    <Content Include="Javascript\addColor.js" />
     <Content Include="Javascript\addToCartButton.js" />
     <Content Include="Javascript\barChartTtlOder.js" />
     <Content Include="Javascript\colorRadioList.js" />

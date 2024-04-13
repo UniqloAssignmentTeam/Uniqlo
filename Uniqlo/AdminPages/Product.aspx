@@ -12,14 +12,14 @@
                <input class="search-input" type="search" placeholder="Search" />
             </div>
             <div class="dropdown-wrapper">
-               <div class="dropdown-container" onclick="toggleDropdown('dropdownList', 'dropdownDisplay')">
-                  <div class="dropdown-display" id="dropdownDisplay">Status</div>
-                  <div class="dropdown-list" id="dropdownList">
-                     <div onclick="selectOption('In Stock', 'dropdownDisplay')">In Stock</div>
-                     <div onclick="selectOption('Low In Stock', 'dropdownDisplay')">Low In Stock</div>
-                     <div onclick="selectOption('No Stock', 'dropdownDisplay')">No Stock</div>
-                  </div>
-               </div>
+             
+     <div class="dropdown-container" onclick="toggleDropdown('dropdownList', 'dropdownDisplay')">
+         <div class="dropdown-display" id="dropdownDisplay">Wear</div>
+         <div class="dropdown-list" id="dropdownList">
+             <div onclick="selectOption('Tops', 'dropdownDisplay')">Tops</div>
+             <div onclick="selectOption('Bottom', 'dropdownDisplay')">Bottom</div>
+         </div>
+     </div>
                <div class="dropdown-container" onclick="toggleDropdown('dropdownList2', 'dropdownDisplay2')">
                   <div class="dropdown-display" id="dropdownDisplay2">Category</div>
                   <div class="dropdown-list" id="dropdownList2">
@@ -47,8 +47,8 @@
             <div class="col name">
                Product Name
             </div>
-            <div class="col status">
-               Status
+            <div class="col wear">
+               Wear
             </div>
             <div class="col price">
                Price (RM)
@@ -74,8 +74,8 @@
             <div class="col name">
                Product Name   Product
             </div>
-            <div class="col inStock">
-               In Stock
+            <div class="col wear">
+              Tops
             </div>
             <div class="col price">
                100.00
