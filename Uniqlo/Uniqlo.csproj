@@ -91,6 +91,7 @@
     <Content Include="AdminPages\AdminProduct\UpdateProduct.aspx" />
     <Content Include="AdminPages\AdminStaff\UpdateStaff.aspx" />
     <Content Include="AdminPages\AdminProduct\viewMoreProduct.aspx" />
+    <Content Include="AdminPages\test.aspx" />
     <Content Include="App_Data\Uniqlo.mdf" />
     <Content Include="App_Data\Uniqlo_log.ldf">
       <DependentUpon>Uniqlo.mdf</DependentUpon>
@@ -171,6 +172,7 @@
     <Content Include="Javascript\modalProduct.js" />
     <Content Include="Javascript\modalProductItem.js" />
     <Content Include="Javascript\orderCompleted.js" />
+    <Content Include="Javascript\Pagination.js" />
     <Content Include="Javascript\product.js" />
     <Content Include="Javascript\productAdminDDL.js" />
     <Content Include="Javascript\productAdminDDLCategory.js" />
@@ -335,6 +337,13 @@
     </Compile>
     <Compile Include="AdminPages\AdminProduct\viewMoreProduct.aspx.designer.cs">
       <DependentUpon>viewMoreProduct.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AdminPages\test.aspx.cs">
+      <DependentUpon>test.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminPages\test.aspx.designer.cs">
+      <DependentUpon>test.aspx</DependentUpon>
     </Compile>
     <Compile Include="Category.cs">
       <DependentUpon>Model1.tt</DependentUpon>

@@ -229,9 +229,17 @@
             </div>
         </div>
 
-        <div class="viewMoreSection">
-            <   1..10  >
-        </div>
+                      <div class="pagination">
+    <a href="#" class="page-link" onclick="changePage('prev')">&laquo;</a>
+    <a href="#" class="page-link active" onclick="changePage(1)">1</a>
+    <a href="#" class="page-link" onclick="changePage(2)">2</a>
+    <a href="#" class="page-link" onclick="changePage(3)">3</a>
+    <a href="#" class="page-link" onclick="changePage(4)">4</a>
+    <a href="#" class="page-link" onclick="changePage(5)">5</a>
+
+   
+    <a href="#" class="page-link" onclick="changePage('next')">&raquo;</a>
+</div>
 
                 <!--DELETE CONFIRMATION-->
         <div id="id01" class="confirmationModal">

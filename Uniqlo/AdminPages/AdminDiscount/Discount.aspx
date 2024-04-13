@@ -154,8 +154,8 @@
             <div class="row">
                 <div class="col productid">1001</div>
                 <div class="col name">Product Name</div>
-                <div class="col wear">Valid</div>
-                <div class="col price">100.00</div>
+                <div class="col wear">100.00</div>
+                <div class="col price">Valid</div>
                 <div class="col gender">11/2/2024</div>
                 <div class="col category">15/2/2024</div>
                 <div class="col eclipse-container" onclick="toggleDropdown('dropdownList3', 'dropdownDisplay3')">
@@ -218,9 +218,17 @@
             </div>
         </div>
 
-        <div class="viewMoreSection">
-            <   1..10  >
-        </div>
+                    <div class="pagination">
+    <a href="#" class="page-link" onclick="changePage('prev')">&laquo;</a>
+    <a href="#" class="page-link active" onclick="changePage(1)">1</a>
+    <a href="#" class="page-link" onclick="changePage(2)">2</a>
+    <a href="#" class="page-link" onclick="changePage(3)">3</a>
+    <a href="#" class="page-link" onclick="changePage(4)">4</a>
+    <a href="#" class="page-link" onclick="changePage(5)">5</a>
+
+   
+    <a href="#" class="page-link" onclick="changePage('next')">&raquo;</a>
+</div>
 
          <!--DELETE CONFIRMATION-->
         <div id="id01" class="confirmationModal">

@@ -741,6 +741,39 @@
   
 
 }
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.page-link {
+    border: 1px solid #ddd;
+    padding: 8px 16px;
+    margin: 0 4px;
+    text-decoration: none;
+    color: #666;
+    background-color: #f9f9f9;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+    .page-link:hover:not(.active) {
+        background-color: #e9e9e9;
+        color: #333;
+    }
+
+.active {
+    background-color: lightgrey;
+    color: white;
+    border: 1px solid #4CAF50;
+}
+
+.page-link:first-child,
+.page-link:last-child {
+    border-radius: 5px;
+}
+
+
 /* Responsive Design */
 @media (max-width: 768px) {
     .row {
