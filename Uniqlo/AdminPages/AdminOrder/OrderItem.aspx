@@ -102,7 +102,7 @@
                 <p><b>Shipping Charges : </b>RM20</p>
                 <p><b>Total: </b>RM129.90</p>
                 <div class="viewMoreSection">
-                    <a href="Order.aspx" class="viewMoreButton">Submit</a>
+                    <a href="#" class="viewMoreButton">Submit</a>
                 </div>
             </div>
         </div>

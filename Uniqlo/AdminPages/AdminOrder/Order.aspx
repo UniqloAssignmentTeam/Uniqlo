@@ -30,7 +30,7 @@
                     <span class="material-symbols-outlined">search</span>
                     <input class="search-input" type="search" placeholder="Search" />
                 </div>
-                 <div class="dropdown-wrapper">
+                 <div class="dropdown-wrapper" style="margin-left: -130px;">
      <div class="dropdown-container" onclick="toggleDropdown('dropdownList', 'dropdownDisplay')">
          <div class="dropdown-display" id="dropdownDisplay">Status</div>
          <div class="dropdown-list" id="dropdownList">
