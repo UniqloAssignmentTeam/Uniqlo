@@ -41,10 +41,10 @@
             <div class="row">
                 <div class="col productid">Order ID</div>
                 <div class="col name">Customer Name</div>
-                <div class="col price">Order Number</div>
-                <div class="col gender">Sub Amount</div>
-                <div class="col category">Total Item</div>
-                <div class="col wear">Date</div>
+                <div class="col price">Total Amount</div>
+                <div class="col gender">Total Item</div>
+                <div class="col category">Date</div>
+                <div class="col wear">Status</div>
                 <div class="col eclipse-container">
                     <asp:Button ID="Button1" runat="server" Text="Button" Visible="False" />
                 </div>
@@ -56,8 +56,8 @@
                 <div class="col name">Janice Lee</div>
                 <div class="col price">111</div>
                 <div class="col gender">RM 109.90</div>
-                <div class="col category">1</div>
-                <div class="col wear">14/3/2024</div>
+                <div class="col category">14/3/2024</div>
+                <div class="col wear">1</div>
                 <div class="col eclipse-container" onclick="toggleDropdown('dropdownList3', 'dropdownDisplay3')">
                     <div class="eclipse-display" id="dropdownDisplay3" style="border:none;"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></div>
                     <div class="eclipse-list" id="dropdownList3">
@@ -72,8 +72,8 @@
                 <div class="col name">Jeffer Ooi</div>
                 <div class="col price">112</div>
                 <div class="col gender">RM 100.00</div>
-                <div class="col category">4</div>
-                <div class="col wear">14/3/2024</div>
+                <div class="col category">14/3/2024</div>
+                <div class="col wear">4</div>
                 <div class="col eclipse-container"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></div>
             </div>
 
@@ -83,8 +83,8 @@
                 <div class="col name">Oh Beng Yee</div>
                 <div class="col price">113</div>
                 <div class="col gender">RM 12.00</div>
-                <div class="col category">8</div>
-                <div class="col wear">14/3/2024</div>
+                <div class="col category">14/3/2024</div>
+                <div class="col wear">8</div>
                 <div class="col eclipse-container"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></div>
             </div>
 
@@ -94,8 +94,8 @@
                 <div class="col name">Tan Chee Han</div>
                 <div class="col price">114</div>
                 <div class="col gender">RM 45.00</div>
-                <div class="col category">12</div>
-                <div class="col wear">12/3/2024</div>
+                <div class="col category">12/3/2024</div>
+                <div class="col wear">12</div>
                 <div class="col eclipse-container"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></div>
             </div>
 
@@ -105,8 +105,8 @@
                 <div class="col name">Yip Yong</div>
                 <div class="col price">115</div>
                 <div class="col gender">RM 50.00</div>
-                <div class="col category">1</div>
-                <div class="col wear">12/3/2024</div>
+                <div class="col category">12/3/2024</div>
+                <div class="col wear">1</div>
                 <div class="col eclipse-container"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></div>
             </div>
         </div>

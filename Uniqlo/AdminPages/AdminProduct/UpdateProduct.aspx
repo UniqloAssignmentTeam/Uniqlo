@@ -41,7 +41,7 @@
          <div class="dropdown-display" id="dropdownDisplay">Tops</div>
          <div class="dropdown-list" id="dropdownList">
              <div onclick="selectOption('Tops', 'dropdownDisplay')">Tops</div>
-             <div onclick="selectOption('Bottom', 'dropdownDisplay')">Bottom</div>
+             <div onclick="selectOption('Bottom', 'dropdownDisplay')">Bottoms</div>
          </div>
      </div>
                 </div>
@@ -52,7 +52,6 @@
          <div class="dropdown-list" id="dropdownList2">
              <div onclick="selectOption('Men', 'dropdownDisplay2')">Men</div>
              <div onclick="selectOption('Women', 'dropdownDisplay2')">Women</div>
-             <div onclick="selectOption('Kids', 'dropdownDisplay2')">Kids</div>
          </div>
      </div>
  </div>
@@ -231,7 +230,7 @@
 
 
                 </script>
-        <script src="../Javascript/productAdminDDL.js"></script>
+            <script src="../../Javascript/productAdminDDL.js"></script>
             </footer>
 
 

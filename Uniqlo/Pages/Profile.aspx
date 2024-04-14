@@ -4,17 +4,13 @@
         <link href="../css/Profile.css" rel="stylesheet" />
       
     </header>
-    <div class="container">
+    <div class="container" style="margin: auto; max-width: 1100px; position: relative;">
         <div class="main-body">
             <div class="profile-header">
                 <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="User Avatar" class="avatar">
                 <h4 class="username">Tan Choo Jun</h4>
             </div>
-            <div class="profile-info">
-                <div class="info-item">
-                    <span class="info-label">Full Name:</span>
-                    <span class="info-value">Kenneth Valdez</span>
-                </div>
+
                 <div class="info-item">
                     <span class="info-label">Email:</span>
                     <span class="info-value">cjtan@gmail.com</span>
@@ -24,7 +20,7 @@
                     <span class="info-value">Male</span>
                 </div>
                 <div class="info-item">
-                    <span class="info-label">Phone No:</span>
+                    <span class="info-label">Contact No:</span>
                     <span class="info-value">014 816-9029</span>
                 </div>
                 <div class="info-item">
@@ -56,7 +52,7 @@
         </div>
     </div>
 
-    <div class="container">
+    <div class="container" style="margin: auto; max-width: 1100px; position: relative;">
     <div class="main-body">
         <!-- Existing profile information goes here -->
         
@@ -65,15 +61,14 @@
     <!-- Header -->
     <div class="row">
         <div class="col productid">Order ID</div>
-       
-      
         <div class="col gender">Total Amount</div>
         <div class="col category">Total Item</div>
         <div class="col wear">Date</div>
-        <div class="col status">Status</div>
+        <div class="col price">Status</div>
+
         <div class="col eclipse-container">
         
-        <div class="col status"></div>
+        <div class=""></div>
             <asp:Button ID="Button1" runat="server" Text="Button" Visible="False" />
         </div>
     </div>
@@ -84,7 +79,7 @@
         <div class="col gender">RM 109.90</div>
         <div class="col category">1</div>
         <div class="col wear">14/3/2024</div>
-        <div class="col status">Delivered</div>
+        <div class="col price">Delivered</div>
         <div class="col eclipse-container" onclick="toggleDropdown('dropdownList3', 'dropdownDisplay3')">
             <div class="eclipse-display" id="dropdownDisplay3" style="border:none;"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></div>
             <div class="eclipse-list" id="dropdownList3">
@@ -99,7 +94,7 @@
         <div class="col gender">RM 100.00</div>
         <div class="col category">4</div>
         <div class="col wear">14/3/2024</div>
-        <div class="col status">Out for delivery</div>
+        <div class="col price">Out for delivery</div>
         <div class="col eclipse-container"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></div>
     </div>
 
@@ -109,7 +104,7 @@
         <div class="col gender">RM 12.00</div>
         <div class="col category">8</div>
         <div class="col wear">14/3/2024</div>
-        <div class="col status">Delivered
+        <div class="col price">Delivered
     </div>
         <div class="col eclipse-container"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></div>
     </div>
@@ -122,7 +117,7 @@
         <div class="col gender">RM 45.00</div>
         <div class="col category">12</div>
         <div class="col wear">12/3/2024</div>
-        <div class="col status">Delivered</div>
+        <div class="col price">Delivered</div>
         <div class="col eclipse-container"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></div>
     </div>
 
@@ -134,13 +129,21 @@
         <div class="col gender">RM 50.00</div>
         <div class="col category">1</div>
         <div class="col wear">12/3/2024</div>
-        <div class="col status">Delivered</div>
+        <div class="col price">Delivered</div>
         <div class="col eclipse-container"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></div>
     </div>
 </div>
-                <div class="viewMoreSection">
-    <   1..10  >
-</div>
+        <div class="pagination">
+            <a href="#" class="page-link" onclick="changePage('prev')">&laquo;</a>
+            <a href="#" class="page-link active" onclick="changePage(1)">1</a>
+            <a href="#" class="page-link" onclick="changePage(2)">2</a>
+            <a href="#" class="page-link" onclick="changePage(3)">3</a>
+            <a href="#" class="page-link" onclick="changePage(4)">4</a>
+            <a href="#" class="page-link" onclick="changePage(5)">5</a>
+
+
+            <a href="#" class="page-link" onclick="changePage('next')">&raquo;</a>
+        </div>
 
     </div>
         

@@ -117,7 +117,7 @@
          <div class="dropdown-display" id="dropdownDisplay">Category</div>
          <div class="dropdown-list" id="dropdownList">
              <div onclick="selectOption('Tops', 'dropdownDisplay')">Tops</div>
-             <div onclick="selectOption('Bottom', 'dropdownDisplay')">Bottom</div>
+             <div onclick="selectOption('Bottom', 'dropdownDisplay')">Bottoms</div>
          </div>
      </div>
                <div class="dropdown-container" onclick="toggleDropdown('dropdownList2', 'dropdownDisplay2')">
@@ -305,12 +305,12 @@
             <div class="confirmation-modal-content">
                 <div class="confirmationContainer">
                     <span onclick="document.getElementById('id01').style.display='none'" class="confirmationClose" title="Close Modal">×</span>
-                    <h1>Delete Account</h1>
-                    <p>Are you sure you want to delete your account?</p>
+                    <h1>Remove Product</h1>
+                    <p>Are you sure you want to remove this product?</p>
 
                     <div class="confirmationClearFix">
                         <button type="button" onclick="document.getElementById('id01').style.display='none'" class="confirmationCancelbtn">Cancel</button>
-                        <button type="button" onclick="document.getElementById('id01').style.display='none'" class="confirmationDeletebtn">Delete</button>
+                        <button type="button" onclick="document.getElementById('id01').style.display='none'" class="confirmationDeletebtn">Remove</button>
                     </div>
                 </div>
             </div>

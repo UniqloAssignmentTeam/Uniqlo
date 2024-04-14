@@ -39,15 +39,15 @@
 
                             <div class="col-md-6 form-group">
                                 <label>Name</label>
-                                <input class="form-control" type="text" value=""  readonly="readonly">
+                                <input class="form-control" type="text" value="Tan Choo Jun"  readonly="readonly">
                             </div>
                             <div class="col-md-6 form-group">
                                 <label>E-mail</label>
-                                <input class="form-control" type="text" value="" readonly="readonly">
+                                <input class="form-control" type="text" value="cjtan@gmail.com" readonly="readonly">
                             </div>
                             <div class="col-md-6 form-group">
-                                <label>Mobile No</label>
-                                <input class="form-control" type="text"  value="" readonly="readonly">
+                                <label>Contact No</label>
+                                <input class="form-control" type="text"  value="014 816-9029" readonly="readonly">
                             </div>
                             <div class="col-md-6 form-group">
                                 <label>Country</label>
@@ -55,19 +55,19 @@
                             </div>
                             <div class="col-md-6 form-group">
                                 <label>Address Line</label>
-                                <input class="form-control" name="address" type="text" placeholder="123 Street" required>
+                                <input class="form-control" name="address" type="text" placeholder="123 Street" value="1, Jalan Lembah Permai" required>
                             </div>
                             <div class="col-md-6 form-group">
                                 <label>Post Code</label>
-                                <input class="form-control" name="postcode" type="text" placeholder="11500" pattern="[0-9]{5}" oninput="this.value=this.value.replace(/[^0-9]/g,'');" maxlength="5" required>
+                                <input class="form-control" name="postcode" type="text" placeholder="11500" pattern="[0-9]{5}" oninput="this.value=this.value.replace(/[^0-9]/g,'');" maxlength="5" value="11900" required>
                             </div>
                             <div class="col-md-6 form-group">
                                 <label>State</label>
-                                <input class="form-control" name="state" type="text" placeholder="George Town" required>
+                                <input class="form-control" name="state" type="text" placeholder="George Town" value="Penang" required>
                             </div>
                             <div class="col-md-6 form-group">
                                 <label>City</label>
-                                <input class="form-control" name="city" type="text" placeholder="Penang" required>
+                                <input class="form-control" name="city" type="text" placeholder="Penang" value="Tanjung Bungah" required>
                             </div>
 
 
