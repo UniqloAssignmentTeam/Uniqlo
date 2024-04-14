@@ -588,6 +588,7 @@
        
 
     <footer>
+        <script src="../../../Javascript/category.js"></script>
         <script src="../../../Javascript/slider.js"></script>
         <script src="../../../Javascript/modalProduct.js"></script>
         <script src="../../../Javascript/productItem.js"></script>

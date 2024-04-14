@@ -913,6 +913,7 @@
 
 
     <footer>
+        <script src="../../../Javascript/wishlist.js"></script>
         <script src="../../../Javascript/product.js"></script>
         <script src="../../../Javascript/modalProductItem.js"></script>
         <script src="../../../Javascript/productItem.js"></script>
