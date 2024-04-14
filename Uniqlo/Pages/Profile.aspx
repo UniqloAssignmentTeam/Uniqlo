@@ -50,7 +50,7 @@
                 <br />
                 <div class="edit-profile">
                     <asp:Button ID="btnEditProfile" runat="server" Text="Edit Profile" CssClass="edit-button" OnClick="btnEditProfile_Click" />
-                    
+                    <asp:Button ID="btnChgPass" runat="server" Text="Change Password" CssClass="edit-button" OnClick="btnChgPass_Click" />
                 </div>
             </div>
         </div>
