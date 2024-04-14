@@ -39,10 +39,6 @@
                             <i class="fas fa-star-half-alt star"></i>
                             <span>4.7 (21)</span>
                     </div>
-                    <div class="product-details">
-                        <p><b>Size:</b> M</p> 
-                        <p><b>Stock Left:</b> 57</p>
-                    </div>
                     <div class="product-price">
                             <p style="text-decoration: line-through; margin-right: 10px;">RM 59.90</p>
                             <p style="color: red;">RM 30.00</p>
@@ -85,10 +81,6 @@
                             <i class="fas fa-star star"></i>
                             <i class="fas fa-star star"></i>
                             <span>5.0 (50)</span>
-                    </div>
-                    <div class="product-details">
-                        <p><b>Size:</b> S</p> 
-                        <p><b>Stock Left:</b> 43</p>
                     </div>
                         <div class="product-price">
                             <p style="text-decoration: line-through; margin-right: 10px;">RM 120.00</p>
@@ -133,10 +125,6 @@
                             <i class="fa-regular fa-star star"></i>
                             <span>4.0 (15)</span>
                     </div>
-                    <div class="product-details">
-                        <p><b>Size:</b> S</p> 
-                        <p><b>Stock Left:</b> 26</p>
-                    </div>
                         <div class="product-price">
                             <p>RM 79.90</p>
                         </div>
@@ -179,10 +167,6 @@
                             <i class="fas fa-star-half-alt star"></i>
                             <span>4.2 (5)</span>
                         </div>
-                    <div class="product-details">
-                        <p><b>Size:</b> M</p> 
-                        <p><b>Stock Left:</b> 36</p>
-                    </div>
                         <div class="product-price">
                             <p style="text-decoration: line-through; margin-right: 10px;">RM 159.90</p>
                             <p style="color: red;">RM 129.90</p>
@@ -226,10 +210,6 @@
                             <i class="fas fa-star-half-alt star"></i>
                             <span>4.5 (27)</span>
                         </div>
-                    <div class="product-details">
-                        <p><b>Size:</b> S</p> 
-                        <p><b>Stock Left:</b> 43</p>
-                    </div>
                         <div class="product-price">
                             <p>RM 79.90</p>
                         </div>
@@ -272,10 +252,6 @@
                             <i class="fa-regular fa-star star"></i>
                             <span>4.1 (19)</span>
                         </div>
-                    <div class="product-details">
-                        <p><b>Size:</b> M</p> 
-                        <p><b>Stock Left:</b> 17</p>
-                    </div>
                         <div class="product-price">
                             <p style="text-decoration: line-through; margin-right: 10px;">RM 159.90</p>
                             <p style="color: red;">RM 129.90</p>

@@ -5,7 +5,7 @@
     </header>
     <div class="productBody">
         <!--CATEGORY SECTION-->
-        <h1 class="genderHeader">Search by Category</h1>
+        <h1 class="genderHeader">Men</h1>
         <div class="slideshow-container">
             <div class="mySlides fade">
                 <div class="numbertext">1 / 2</div>
@@ -588,6 +588,7 @@
        
 
     <footer>
+        <script src="../../../Javascript/category.js"></script>
         <script src="../../../Javascript/slider.js"></script>
         <script src="../../../Javascript/modalProduct.js"></script>
         <script src="../../../Javascript/productItem.js"></script>

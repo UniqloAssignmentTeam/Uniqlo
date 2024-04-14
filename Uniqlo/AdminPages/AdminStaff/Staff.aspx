@@ -132,6 +132,7 @@
                     <div class="dropdown-container" onclick="toggleDropdown('dropdownList2', 'dropdownDisplay2')">
                         <div class="dropdown-display" id="dropdownDisplay2">Role</div>
                         <div class="dropdown-list" id="dropdownList2">
+                            <div onclick="selectOption('Staff', 'dropdownDisplay2')">Staff</div>
                             <div onclick="selectOption('Admin', 'dropdownDisplay2')">Admin</div>
                             <div onclick="selectOption('Manager', 'dropdownDisplay2')">Manager</div>
                         </div>
@@ -246,12 +247,12 @@
           <div class="confirmation-modal-content">
             <div class="confirmationContainer">
                 <span onclick="document.getElementById('id01').style.display='none'" class="confirmationClose" title="Close Modal">×</span>
-                <h1>Delete Account</h1>
-                <p>Are you sure you want to delete your account?</p>
+                <h1>Remove Staff</h1>
+                <p>Are you sure you want to remove the staff?</p>
     
               <div class="confirmationClearFix">
                 <button type="button" onclick="document.getElementById('id01').style.display='none'" class="confirmationCancelbtn">Cancel</button>
-                <button type="button" onclick="document.getElementById('id01').style.display='none'" class="confirmationDeletebtn">Delete</button>
+                <button type="button" onclick="document.getElementById('id01').style.display='none'" class="confirmationDeletebtn">Remove</button>
               </div>
             </div>
           </div>
@@ -270,7 +271,7 @@
             <script src="../../Javascript/productBtnEclipse.js"></script>
             <script src="../../Javascript/productAdminDDL.js"></script>
       
-      
+        <script src="../../Javascript/Pagination.js"></script>
 
     </footer>
 

@@ -1,6 +1,8 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Uniqlo.Master" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="Uniqlo.Pages.Login" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="main" runat="server">
  <head>
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-k6RqeWeci5ZR/Lv4MR0sA0FfDOMo5qVmj7PeIv6m4H+7elXyCfN6n10fRFBgCnp9auHX8zFH2KsXoD6/ZT8p0A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,7 +15,7 @@
                         
     </head>
         <section class="container forms">
-            <div class="form login">
+            <div class="form login" style="left: 0px; top: 0px">
                 <div class="form-content">
                     <header>Login</header>
                     <form action="#">
@@ -43,12 +45,12 @@
                         <span>Login with Facebook</span>
                     </a>
                 </div>
-                <div class="media-options">
-                    <a href="#" class="field google">
-                        <img src="#" alt="" class="google-img">
-                        <span>Login with Google</span>
-                    </a>
-                </div>
+                    <div class="media-options">
+                <a href="google.com" class="field google">
+                 <i class="fa-brands fa-google"></i>  
+            <span>Login with Google</span>
+        </a>
+    </div>
             </div>
 
 <!-- Signup Form -->
@@ -80,12 +82,13 @@
 
                <!-- Phone Number Field -->
              <div class="field input-field">
-                <input type="text" placeholder="Phone Number" class="input" required>
+                <input type="text" placeholder="Contact Number" class="input" required>
+ 
              </div>
             <br />
             <div class="Gender:">
             <asp:Label ID="lblGender" runat="server" Text="Gender"></asp:Label>
-            <asp:RadioButtonList ID="rblGender" runat="server">
+            <asp:RadioButtonList ID="rblGender" runat="server" RepeatDirection="Horizontal">
                 <asp:ListItem>Male</asp:ListItem> <asp:ListItem>Female</asp:ListItem>
             </asp:RadioButtonList>
             </div>
@@ -93,7 +96,7 @@
 
             <!-- Sign Up Button -->
             <div class="field button-field">
-                <button type="submit" onclick="alert('Registration Successfully')">Sign Up</button>
+                <button type="submit" onclick="alert('Registration Successfully')">Sign Uputton>
  
             </div>
         </form>
@@ -116,7 +119,7 @@
     </div>
     <div class="media-options">
         <a href="google.com" class="field google">
-            <img src="#" alt="" class="google-img">
+             <i class="fa-brands fa-google"></i>  
             <span>Login with Google</span>
         </a>
     </div>

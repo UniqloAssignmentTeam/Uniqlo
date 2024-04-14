@@ -114,14 +114,14 @@
             <div class="dropdown-wrapper">
              
      <div class="dropdown-container" onclick="toggleDropdown('dropdownList', 'dropdownDisplay')">
-         <div class="dropdown-display" id="dropdownDisplay">Wear</div>
+         <div class="dropdown-display" id="dropdownDisplay">Category</div>
          <div class="dropdown-list" id="dropdownList">
              <div onclick="selectOption('Tops', 'dropdownDisplay')">Tops</div>
-             <div onclick="selectOption('Bottom', 'dropdownDisplay')">Bottom</div>
+             <div onclick="selectOption('Bottom', 'dropdownDisplay')">Bottoms</div>
          </div>
      </div>
                <div class="dropdown-container" onclick="toggleDropdown('dropdownList2', 'dropdownDisplay2')">
-                  <div class="dropdown-display" id="dropdownDisplay2">Category</div>
+                  <div class="dropdown-display" id="dropdownDisplay2">Gender</div>
                   <div class="dropdown-list" id="dropdownList2">
                      <div onclick="selectOption('Men', 'dropdownDisplay2')">Men</div>
                      <div onclick="selectOption('Women', 'dropdownDisplay2')">Women</div>
@@ -146,17 +146,15 @@
                Product Name
             </div>
             <div class="col wear">
-               Wear
+               Category
             </div>
             <div class="col price">
-               Price (RM)
+               Price 
             </div>
             <div class="col gender">
                Gender
             </div>
-            <div class="col category">
-               Category
-            </div>
+          
             <div class="col eclipse-container">
                <asp:Button ID="Button1" runat="server" Text="Button" Visible="False" />
             </div>
@@ -179,9 +177,7 @@
             <div class="col gender">
                Gender
             </div>
-            <div class="col category">
-               Tops
-            </div>
+            
             <div class="col eclipse-container" onclick="toggleDropdown('dropdownList3', 'dropdownDisplay3')">
                <div class="eclipse-display" id="dropdownDisplay3" style="border:none;"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></div>
                <div class="eclipse-list" id="dropdownList3">
@@ -202,18 +198,17 @@
             <div class="col name">
                Product Name
             </div>
+              <div class="col price">
+    99.00
+ </div>
             <div class="col wear">
                Low In Stock
             </div>
-            <div class="col price">
-               99.00
-            </div>
+           
             <div class="col gender">
                Gender
             </div>
-            <div class="col category">
-               Category
-            </div>
+          
             <div class="col eclipse-container">
                <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
             </div>
@@ -227,18 +222,17 @@
             <div class="col name">
                Product Name
             </div>
+             <div class="col price">
+   130.00
+</div>
             <div class="col wear">
                In Stock
             </div>
-            <div class="col price">
-               130.00
-            </div>
+            
             <div class="col gender">
                Gender
             </div>
-            <div class="col category">
-               Category
-            </div>
+          
             <div class="col eclipse-container">
                <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
             </div>
@@ -252,18 +246,17 @@
             <div class="col name">
                Product Name
             </div>
+             <div class="col price">
+   12.00
+</div>
             <div class="col wear">
                In Stock
             </div>
-            <div class="col price">
-               12.00
-            </div>
+            
             <div class="col gender">
                Gender
             </div>
-            <div class="col category">
-               Category
-            </div>
+           
             <div class="col eclipse-container">
                <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
             </div>
@@ -277,18 +270,17 @@
             <div class="col name">
                Product Name
             </div>
+             <div class="col price">
+   112.00
+</div>
             <div class="col wear">
                Low In Stock
             </div>
-            <div class="col price">
-               112.00
-            </div>
+            
             <div class="col gender">
                Gender
             </div>
-            <div class="col category">
-               Category
-            </div>
+            
             <div class="col eclipse-container">
                <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
             </div>
@@ -313,12 +305,12 @@
             <div class="confirmation-modal-content">
                 <div class="confirmationContainer">
                     <span onclick="document.getElementById('id01').style.display='none'" class="confirmationClose" title="Close Modal">×</span>
-                    <h1>Delete Account</h1>
-                    <p>Are you sure you want to delete your account?</p>
+                    <h1>Remove Product</h1>
+                    <p>Are you sure you want to remove this product?</p>
 
                     <div class="confirmationClearFix">
                         <button type="button" onclick="document.getElementById('id01').style.display='none'" class="confirmationCancelbtn">Cancel</button>
-                        <button type="button" onclick="document.getElementById('id01').style.display='none'" class="confirmationDeletebtn">Delete</button>
+                        <button type="button" onclick="document.getElementById('id01').style.display='none'" class="confirmationDeletebtn">Remove</button>
                     </div>
                 </div>
             </div>

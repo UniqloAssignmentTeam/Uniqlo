@@ -262,9 +262,6 @@
     word-break: break-all
 }
 
-.prodImageHeader {
-    display: none;
-}
 
 .productid, .price {
     flex: 0 0 10%; /* Set a base width */
@@ -284,12 +281,12 @@
 /* Price Column */
 
 .gender {
-    flex-basis: 10%;
+    flex-basis: 15%;
 }
 /* Category Column */
 .category {
     min-width: 0;
-    flex-basis: 10%;
+    flex-basis: 15%;
     word-wrap: break-word;
 }
 

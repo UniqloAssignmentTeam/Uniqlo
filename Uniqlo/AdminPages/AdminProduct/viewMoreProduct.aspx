@@ -40,22 +40,7 @@ color: black;
             <h2 class="product-title">UNIQLO VIEW PRODUCT</h2>
         </div>
         <div class="modal-content">
-            <div class="upload-image-section">
-                <div class="image-gallery">
-                    <div class="image-box">
-                         <img src="../../../Images/Categories/Woman/Tops/AIRismCottonShortSleeveT-Shirt1.jpg" alt = "uniqlo image"/>
-                    </div>
-                    <div class="image-box">
-                       <img src="../../../Images/Categories/Woman/Tops/AIRismCottonShortSleeveT-Shirt2.jpg" alt = "uniqlo image"/>
-                    </div>
-                    <div class="image-box">
-                       <img src="../../../Images/Categories/Woman/Tops/AIRismCottonShortSleeveT-Shirt3.jpg" alt = "uniqlo image"/>
-                    </div>
-                    <div class="image-box">
-                        <img src="../../../Images/Categories/Woman/Tops/AIRismCottonShortSleeveT-Shirt4.jpg" alt = "uniqlo image"/>
-                    </div>
-                </div>
-            </div>
+           
 
             <div class="product-content">
                 <div class="form-group">
@@ -100,7 +85,12 @@ color: black;
                      <input type="number" class="form-field" placeholder="122" disabled>
                  </div>
              </td>
-             <td></td>
+             <td>                       <div class="image-gallery">
+    <div class="image-box">
+        <img src="../../../Images/womenTopBanner.png" />
+    </div>
+    
+</div></td>
          </tr>
          <tr>
              <td>

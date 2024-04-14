@@ -48,7 +48,7 @@
     position: absolute;
     top: 10px;
     right: 10px;
-    z-index: 2;
+    z-index: 1;
 }
 
 .wishlist-heart-group {
@@ -235,15 +235,19 @@
 
 .action-message {
     position: absolute;
-    top: -5px; /* Closer to the button, adjust this value as needed */
-    left: 0;
+    top: 0; /* Adjust as needed */
+    left: 50%;
+    transform: translateX(-50%); /* Center the message */
     width: 100%;
     text-align: center;
     display: none; /* Start hidden */
-    color: #4CAF50; /* Initial color, changes based on action */
+    color: #f44336; /* Red color for removal message */
     font-weight: bold;
     font-size: 0.9em; /* Adjust font size if necessary */
+    padding: 10px; /* Add some padding around the text */
+    box-sizing: border-box;
 }
+
 
 
 /*MODAL BOX*/
@@ -407,39 +411,6 @@
     padding-left: 10px;
 }
 
-.product-detail h2 {
-    text-transform: capitalize;
-    color: #12263a;
-    margin-top: -7px;
-}
-
-.product-detail p {
-    font-size: 0.9rem;
-    padding: 0.3rem;
-    opacity: 0.8;
-}
-
-.product-detail ul {
-    margin: 1rem 0;
-    font-size: 0.9rem;
-}
-
-    .product-detail ul li {
-        margin: 0;
-        list-style: none;
-        background: url(https://fadzrinmadu.github.io/hosted-assets/product-detail-page-design-with-image-slider-html-css-and-javascript/checked.png) left center no-repeat;
-        background-size: 18px;
-        padding-left: 1.7rem;
-        margin: 0.4rem 0;
-        font-weight: 600;
-        opacity: 0.9;
-    }
-
-        .product-detail ul li span {
-            font-weight: 400;
-        }
-
-
 .purchase-info input {
     border: 1.5px solid #ddd;
     border-radius: 25px;
@@ -529,7 +500,7 @@
 
     .cart-button .fa-shopping-cart {
         position: absolute;
-        z-index: 2;
+        z-index: 1;
         top: 50%;
         left: -10%;
         font-size: 2em;
@@ -539,7 +510,7 @@
 
     .cart-button .fa-shirt {
         position: absolute;
-        z-index: 3;
+        z-index: 1;
         top: -20%;
         left: 52%;
         font-size: 1.2em;
@@ -549,7 +520,7 @@
 
     .cart-button span {
         position: absolute;
-        z-index: 3;
+        z-index: 1;
         left: 50%;
         top: 50%;
         font-size: 1.2em;
@@ -817,14 +788,17 @@
     }
 
 .reviewModal {
+    width: 100%;
+    height: 100%;
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
-    z-index: 1003; /* Sit on top */
+    z-index: 2; /* Sit on top */
     left: 0;
     top: 0;
+    overflow: auto;
     width: 100%; /* Full width */
     height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
     background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
     padding-top: 90px;
 }
@@ -835,13 +809,14 @@
     top: 50%; /* Center vertically */
     left: 50%; /* Center horizontally */
     transform: translate(-50%, -50%); /* Adjust position to truly center the modal */
-    padding: 20px;
-    padding-top: 590px;
-    border: 1px solid #888;
+    padding: 80px 20px 20px 20px;
+    border: 2px solid #888;
     border-radius: 5px;
-    width: 80%; /* Could be more or less, depending on screen size */
+    width: 100%; /* Could be more or less, depending on screen size */
     max-width: 1200px; /* Max width for large screens, adjust as needed */
-    z-index: 1004; /* Ensure modal content is above the modal background */
+    z-index: 2; /* Ensure modal content is above the modal background */
+    margin: 5% auto; /* 5% from the top and centered */
+    margin-top: 510px;
 }
 
 
@@ -922,7 +897,7 @@
     position: absolute;
     top: 100%;
     left: 0;
-    z-index: 100;
+    z-index: 2;
     width: 100%;
     border: 1px solid #ccc;
     border-radius: 5px;

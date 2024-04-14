@@ -33,7 +33,7 @@ function drawChart() {
 	]);
 
 	var options = {
-		title: 'Orders Completed',
+		title: 'Number of payment',
 		curveType: 'function',
 		legend: { position: 'bottom' }
 	};
@@ -43,12 +43,12 @@ function drawChart() {
 		legend: { position: 'bottom' }
 	};
 	var options3 = {
-		title: 'Out of Stock',
+		title: 'Low in Stock',
 		curveType: 'function',
 		legend: { position: 'bottom' }
 	};
 	var options4 = {
-		title: 'Active Users',
+		title: 'Number of User',
 		curveType: 'function',
 		legend: { position: 'bottom' }
 	};

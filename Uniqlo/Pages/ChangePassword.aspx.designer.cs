@@ -11,7 +11,7 @@ namespace Uniqlo.Pages
 {
 
 
-    public partial class OrderHistory
+    public partial class ChangePassword
     {
     }
 }

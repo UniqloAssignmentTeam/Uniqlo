@@ -13,22 +13,7 @@
             <h2 class="product-title">UNIQLO UPDATE PRODUCT</h2>
         </div>
         <div class="modal-content">
-            <div class="upload-image-section">
-                <div class="image-gallery">
-                    <div class="image-box">
-                         <img src="../../../Images/Categories/Woman/Tops/AIRismCottonShortSleeveT-Shirt1.jpg" alt = "uniqlo image"/>
-                    </div>
-                    <div class="image-box">
-                       <img src="../../../Images/Categories/Woman/Tops/AIRismCottonShortSleeveT-Shirt2.jpg" alt = "uniqlo image"/>
-                    </div>
-                    <div class="image-box">
-                       <img src="../../../Images/Categories/Woman/Tops/AIRismCottonShortSleeveT-Shirt3.jpg" alt = "uniqlo image"/>
-                    </div>
-                    <div class="image-box">
-                        <img src="../../../Images/Categories/Woman/Tops/AIRismCottonShortSleeveT-Shirt4.jpg" alt = "uniqlo image"/>
-                    </div>
-                </div>
-            </div>
+           
 
             <div class="product-content">
                 <div class="form-group">
@@ -51,23 +36,22 @@
                 </div>
 
                  <div class="form-group">
-     <label for="productName">Wear</label>
+     <label for="productName">Category</label>
      <div class="dropdown-container" onclick="toggleDropdown('dropdownList', 'dropdownDisplay')">
          <div class="dropdown-display" id="dropdownDisplay">Tops</div>
          <div class="dropdown-list" id="dropdownList">
              <div onclick="selectOption('Tops', 'dropdownDisplay')">Tops</div>
-             <div onclick="selectOption('Bottom', 'dropdownDisplay')">Bottom</div>
+             <div onclick="selectOption('Bottom', 'dropdownDisplay')">Bottoms</div>
          </div>
      </div>
                 </div>
                  <div class="form-group">
-     <label for="productName">Category</label>
+     <label for="productName">Gender</label>
      <div class="dropdown-container" onclick="toggleDropdown('dropdownList2', 'dropdownDisplay2')">
          <div class="dropdown-display" id="dropdownDisplay2">Men</div>
          <div class="dropdown-list" id="dropdownList2">
              <div onclick="selectOption('Men', 'dropdownDisplay2')">Men</div>
              <div onclick="selectOption('Women', 'dropdownDisplay2')">Women</div>
-             <div onclick="selectOption('Kids', 'dropdownDisplay2')">Kids</div>
          </div>
      </div>
  </div>
@@ -78,22 +62,42 @@
                 </div>
             </div>
 
+
+
+
+
+
              <table class="sizeQtyTable">
      <thead>
          <tr>
              <th><h2>Blue</h2></th>
              <th>   <button class="addColor-button" onclick="deleteColorTable(this)">Delete</button></th>
+         
          </tr>
      </thead>
      <tbody>
          <tr>
              <td>
                  <div class="form-group">
-                     <label for="productName">XL</label>
+                     <label for="productName">S</label>
                      <input type="number" class="form-field" placeholder="122">
                  </div>
+                                             
              </td>
-             <td></td>
+                   <td>   
+                       <div class="image-gallery">
+    <div class="image-box">
+        <img src="../../../Images/womenTopBanner.png" />
+    </div>
+    
+</div></td>        
+       
+
+
+     
+
+
+                           
          </tr>
          <tr>
              <td>
@@ -159,7 +163,12 @@
                     <input type="number" class="form-field" placeholder="Quantity">
                 </div>
             </td>
-            <td></td>
+            <td>            <div class="image-gallery">
+    <div class="image-box">
+       <div class="add-image">+</div>
+    </div>
+    
+</div></td>
         </tr>
         <tr>
             <td>
@@ -221,7 +230,7 @@
 
 
                 </script>
-        <script src="../Javascript/productAdminDDL.js"></script>
+            <script src="../../Javascript/productAdminDDL.js"></script>
             </footer>
 
 

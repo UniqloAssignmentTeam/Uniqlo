@@ -5,31 +5,15 @@
             <link href="../../css/Admin/addProduct.css" rel="stylesheet" />
         </header>
         <style>
-            .image-box{
-             margin-left:25px;
-            }
+          
         </style>
            <div class="container">
         <div class="productItemCard">
             <h2 class="product-title">UNIQLO ADD PRODUCT</h2>
         </div>
         <div class="modal-content">
-            <div class="upload-image-section">
-                <div class="image-gallery">
-                    <div class="image-box">
-                        <div class="image-box add-image">+</div>
-                    </div>
-                    <div class="image-box">
-                        <div class="image-box add-image">+</div>
-                    </div>
-                    <div class="image-box">
-                        <div class="image-box add-image">+</div>
-                    </div>
-                    <div class="image-box">
-                        <div class="image-box add-image">+</div>
-                    </div>
-                </div>
-            </div>
+            
+            
 
             <div class="product-content">
                 <div class="form-group">
@@ -48,23 +32,22 @@
                 </div>
                 
                 <div class="form-group">
-                    <label for="productName">Wear</label>
+                    <label for="productName">Category</label>
                     <div class="dropdown-container" onclick="toggleDropdown('dropdownList', 'dropdownDisplay')">
                         <div class="dropdown-display" id="dropdownDisplay">Tops</div>
                         <div class="dropdown-list" id="dropdownList">
                             <div onclick="selectOption('Tops', 'dropdownDisplay')">Tops</div>
-                            <div onclick="selectOption('Bottom', 'dropdownDisplay')">Bottom</div>
+                            <div onclick="selectOption('Bottom', 'dropdownDisplay')">Bottoms</div>
                         </div>
                     </div>
                    </div>
                 <div class="form-group">
-                    <label for="productName">Category</label>
+                    <label for="productName">Gender</label>
                     <div class="dropdown-container" onclick="toggleDropdown('dropdownList2', 'dropdownDisplay2')">
                         <div class="dropdown-display" id="dropdownDisplay2">Men</div>
                         <div class="dropdown-list" id="dropdownList2">
                             <div onclick="selectOption('Men', 'dropdownDisplay2')">Men</div>
                             <div onclick="selectOption('Women', 'dropdownDisplay2')">Women</div>
-                            <div onclick="selectOption('Kids', 'dropdownDisplay2')">Kids</div>
                         </div>
                     </div>
                 </div>
@@ -88,7 +71,7 @@
             </div>
         </div>
     </div>
-    
+     
             
 
         <footer>
@@ -109,16 +92,25 @@
                 <td>
                     <div class="form-group">
                         <label for="productName">XL</label>
-                        <input type="number" class="form-field" placeholder="Quantity">
+                        <input type="number" class="form-field" placeholder="">
+                         
+</div>
                     </div>
                 </td>
-                <td></td>
+            <td>                      
+            <div class="image-gallery">
+    <div class="image-box">
+       <div class="add-image">+</div>
+    </div>
+    
+</div></td>    
+                
             </tr>
             <tr>
                 <td>
                     <div class="form-group">
                         <label for="productName">M</label>
-                        <input type="number" class="form-field" placeholder="Quantity">
+                        <input type="number" class="form-field" placeholder="">
                     </div>
                 </td>
                 <td></td>
@@ -127,7 +119,7 @@
                 <td>
                     <div class="form-group">
                         <label for="productName">L</label>
-                        <input type="number" class="form-field" placeholder="Quantity">
+                        <input type="number" class="form-field" placeholder="">
                     </div>
                 </td>
                 <td></td>
@@ -136,7 +128,7 @@
                 <td>
                     <div class="form-group">
                         <label for="productName">XL</label>
-                        <input type="number" class="form-field" placeholder="Quantity">
+                        <input type="number" class="form-field" placeholder="">
                     </div>
                 </td>
                 <td></td>

@@ -14,24 +14,38 @@
 
 
         <!--DROP DOWN LIST-->
-        <div class="dropdown-bigcontainer">
+        <div class="dropdown-bigcontainer" style="margin-bottom: 10px;">
             <div class="productListHeader">Sort By</div>
             <div style="display: flex;">
-                <div class="dropdown-container" onclick="toggleDropdown('dropdownList1', 'dropdownDisplay1')" style="margin-right: 15px;">
-                    <div class="dropdown-display" id="dropdownDisplay1">All</div>
-                    <div class="dropdown-list" id="dropdownList1">
-                        <div onclick="selectOption('Price: Low to High', 'dropdownDisplay1')">Price: Low to High</div>
-                        <div onclick="selectOption('Price: High to Low', 'dropdownDisplay1')">Price: High to Low</div>
-                        <div onclick="selectOption('Top Rated', 'dropdownDisplay1')">Top Rated</div>
+              
+                <div class="dropdown-container" onclick="toggleDropdown('dropdownList3', 'dropdownDisplay3')" style="margin-right: 15px;">
+                    <div class="dropdown-display" id="dropdownDisplay3">Gender</div>
+                    <div class="dropdown-list" id="dropdownList3">
+                        <div onclick="selectOption('Women', 'dropdownDisplay3')">Women</div>
+                        <div onclick="selectOption('Men', 'dropdownDisplay3')">Men</div>
                     </div>
                 </div>
-                <div class="dropdown-container" onclick="toggleDropdown('dropdownList2', 'dropdownDisplay2')">
+
+                <div class="dropdown-container" onclick="toggleDropdown('dropdownList2', 'dropdownDisplay2')" >
                     <div class="dropdown-display" id="dropdownDisplay2">Category</div>
                     <div class="dropdown-list" id="dropdownList2">
-                        <div onclick="selectOption('Women', 'dropdownDisplay2')">Women</div>
-                        <div onclick="selectOption('Men', 'dropdownDisplay2')">Men</div>
+                        <div onclick="selectOption('Tops', 'dropdownDisplay2')">Tops</div>
+                        <div onclick="selectOption('Bottoms', 'dropdownDisplay2')">Bottoms</div>
                     </div>
                 </div>
+
+                
+                <div style=" display: flex;width: 100% ;justify-content: flex-end;">
+                    <div class="dropdown-container" onclick="toggleDropdown('dropdownList1', 'dropdownDisplay1')">
+                        <div class="dropdown-display" id="dropdownDisplay1">Sort By</div>
+                        <div class="dropdown-list" id="dropdownList1">
+                            <div onclick="selectOption('Tops', 'dropdownDisplay1')">Most Popular</div>
+                            <div onclick="selectOption('Bottoms', 'dropdownDisplay1')">High to Low</div>
+                            <div onclick="selectOption('Bottoms', 'dropdownDisplay1')">Low to High</div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
         <!--LIMITED OFFER START-->
@@ -620,14 +634,14 @@
                 <hr />
 
                 <div class="reviewSectionDropDownLists">
-                    <div class="dropdown-container" onclick="toggleDropdown('dropdownList1', 'dropdownDisplay1')">
-                        <div class="dropdown-display" id="dropdownDisplay1">
+                    <div class="dropdown-container" onclick="toggleDropdown('dropdownList4', 'dropdownDisplay4')">
+                        <div class="dropdown-display" id="dropdownDisplay4">
                             Star 
                             <i class="fas fa-star star reviewStar"></i> 
                             (All)
                         </div>
-                        <div class="dropdown-list" id="dropdownList1">
-                            <div onclick="selectOption('5 Star (8)', 'dropdownDisplay1')">                        
+                        <div class="dropdown-list" id="dropdownList4">
+                            <div onclick="selectOption('5 Star (8)', 'dropdownDisplay4')">                        
                                 <i class="fas fa-star star"></i>
                                 <i class="fas fa-star star"></i>
                                 <i class = "fas fa-star star"></i>
@@ -635,25 +649,25 @@
                                 <i class = "fas fa-star star"></i>
                                 (8)
                             </div>
-                            <div onclick="selectOption('4 Star (5)', 'dropdownDisplay1')">
+                            <div onclick="selectOption('4 Star (5)', 'dropdownDisplay4')">
                                 <i class="fas fa-star star"></i>
                                 <i class="fas fa-star star"></i>
                                 <i class = "fas fa-star star"></i>
                                 <i class = "fas fa-star star"></i>
                                 (5)
                             </div>
-                            <div onclick="selectOption('3 Star (4)', 'dropdownDisplay1')">
+                            <div onclick="selectOption('3 Star (4)', 'dropdownDisplay4')">
                                 <i class="fas fa-star star"></i>
                                 <i class="fas fa-star star"></i>
                                 <i class = "fas fa-star star"></i>
                                 (4)
                             </div>
-                            <div onclick="selectOption('2 Star (3)', 'dropdownDisplay1')">
+                            <div onclick="selectOption('2 Star (3)', 'dropdownDisplay4')">
                                 <i class="fas fa-star star"></i>
                                 <i class = "fas fa-star star"></i>
                                 (3)
                             </div>
-                            <div onclick="selectOption('1 Star (1)', 'dropdownDisplay1')">
+                            <div onclick="selectOption('1 Star (1)', 'dropdownDisplay4')">
                                 <i class = "fas fa-star star"></i>
                                 (1)
                             </div>
@@ -661,13 +675,13 @@
                     </div>
 
                     
-                    <div class="dropdown-container" onclick="toggleDropdown('dropdownList2', 'dropdownDisplay2')">
-                        <div class="dropdown-display" id="dropdownDisplay2">Variation (All)</div>
-                        <div class="dropdown-list" id="dropdownList2">
-                            <div onclick="selectOption('Variation (S)', 'dropdownDisplay2')">S</div>
-                            <div onclick="selectOption('Variation (M)', 'dropdownDisplay2')">M</div>
-                            <div onclick="selectOption('Variation (L)', 'dropdownDisplay2')">L</div>
-                            <div onclick="selectOption('Variation (XL)', 'dropdownDisplay2')">XL</div>
+                    <div class="dropdown-container" onclick="toggleDropdown('dropdownList5', 'dropdownDisplay5')">
+                        <div class="dropdown-display" id="dropdownDisplay5">Variation (All)</div>
+                        <div class="dropdown-list" id="dropdownList5">
+                            <div onclick="selectOption('Variation (S)', 'dropdownDisplay5')">S</div>
+                            <div onclick="selectOption('Variation (M)', 'dropdownDisplay5')">M</div>
+                            <div onclick="selectOption('Variation (L)', 'dropdownDisplay5')">L</div>
+                            <div onclick="selectOption('Variation (XL)', 'dropdownDisplay5')">XL</div>
                         </div>
                     </div>                    
                     

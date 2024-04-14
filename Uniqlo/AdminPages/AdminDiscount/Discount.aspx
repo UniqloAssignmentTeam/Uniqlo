@@ -9,7 +9,7 @@
         .dropdown-container {
             margin-left: -150px;
         }
-        .wear{
+        .category{
             flex-basis:10%;
         }
         .price{
@@ -141,8 +141,8 @@
             <!--Header-->
             <div class="row">
                 <div class="col productid">Discount ID</div>
-                <div class="col name">Product ID</div>
-                <div class="col wear">Amount</div>
+                <div class="col name">Product Name</div>
+                <div class="col category">Amount</div>
                 <div class="col price">Status</div>
                 <div class="col gender">Start Date</div>
                 <div class="col category">End Date</div>
@@ -235,12 +235,12 @@
             <div class="confirmation-modal-content">
                 <div class="confirmationContainer">
                     <span onclick="document.getElementById('id01').style.display='none'" class="confirmationClose" title="Close Modal">×</span>
-                    <h1>Delete Account</h1>
-                    <p>Are you sure you want to delete your account?</p>
+                    <h1>Remove Discount</h1>
+                    <p>Are you sure you want to remove this discount?</p>
 
                     <div class="confirmationClearFix">
                         <button type="button" onclick="document.getElementById('id01').style.display='none'" class="confirmationCancelbtn">Cancel</button>
-                        <button type="button" onclick="document.getElementById('id01').style.display='none'" class="confirmationDeletebtn">Delete</button>
+                        <button type="button" onclick="document.getElementById('id01').style.display='none'" class="confirmationDeletebtn">Remove</button>
                     </div>
                 </div>
             </div>
@@ -253,6 +253,7 @@
     <footer>
         <script src="../../Javascript/productBtnEclipse.js"></script>
         <script src="../../Javascript/productAdminDDL.js"></script>
+        <script src="../../Javascript/Pagination.js"></script>
     </footer>
 
 </asp:Content>

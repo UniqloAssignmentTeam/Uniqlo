@@ -23,5 +23,10 @@ namespace Uniqlo.Pages
         {
             Response.Redirect("Profile.aspx");
         }
+
+        protected void btnChgPass_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("ChangePassword.aspx");
+        }
     }
 }
