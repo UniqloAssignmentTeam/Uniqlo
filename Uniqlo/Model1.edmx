@@ -467,6 +467,7 @@
           <Property Name="Delivery_ID" Type="Int32" />
           <Property Name="Order_ID" Type="Int32" Nullable="false" />
           <Property Name="Shipping_Amount" Type="Double" />
+          <Property Name="Payment_Method" Type="String" Nullable="false" />
           <Property Name="Payment_Status" Type="String" Nullable="false" />
           <Property Name="Payment_DateTime" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Delivery" Relationship="Self.FK__Payment__Deliver__59FA5E80" FromRole="Payment" ToRole="Delivery" />
