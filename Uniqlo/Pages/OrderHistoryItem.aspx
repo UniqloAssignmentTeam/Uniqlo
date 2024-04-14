@@ -294,7 +294,7 @@
             <a href="Profile.aspx" class="backLinkClass"><i class="fa fa-arrow-left" aria-hidden="true"></i></a>
         </div>
         
-        <h1>ORDER HISTORY ITEM</h1>
+        <h1>ORDER ID : 1001</h1>
        
          <div class="cart-page-container">
              <div class="cart-items-container" style="width: 70%;">
@@ -351,7 +351,7 @@
 
              <!-- Cart Summary -->
              <div class="cart-summary" style="width: 30%;">
-                 <h3>ORDER ID : 1001</h3>
+                 <h3>Order Summary</h3>
                  <p><b>Date: </b>14/3/2024 </p>
                  <p><b>Payment method: </b>Cash </p>
                  <p><b>Payment status: </b>Paid</p>
