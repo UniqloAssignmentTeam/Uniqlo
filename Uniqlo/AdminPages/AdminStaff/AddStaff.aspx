@@ -40,6 +40,7 @@
         <div class="dropdown-list" id="dropdownList2">
             <div onclick="selectOption('Admin', 'dropdownDisplay2')">Admin</div>
             <div onclick="selectOption('Manager', 'dropdownDisplay2')">Manager</div>
+            <div onclick="selectOption('Staff', 'dropdownDisplay2')">Staff</div>
         </div>
     </div>
 </div>

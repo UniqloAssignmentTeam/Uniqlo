@@ -104,7 +104,7 @@
     </header>
 
    <div class="productBody">
-      <h2>UNIQLO PRODUCT</h2>
+      <h2>UNIQLO PRODUCT MANAGEMENT</h2>
       <div class="crudProduct">
          <div class="wrap-items-search-buttons">
             <div class="search">
@@ -125,7 +125,7 @@
                   <div class="dropdown-list" id="dropdownList2">
                      <div onclick="selectOption('Men', 'dropdownDisplay2')">Men</div>
                      <div onclick="selectOption('Women', 'dropdownDisplay2')">Women</div>
-                     <div onclick="selectOption('Kids', 'dropdownDisplay2')">Kids</div>
+                    
                   </div>
                </div>
             </div>

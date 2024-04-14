@@ -22,7 +22,7 @@
     </style>
 
     <div class="productBody">
-        <h2>UNIQLO ORDER HISTORY</h2>
+        <h2>UNIQLO ORDER MANAGEMENT</h2>
 
         <div class="crudProduct">
             <div class="wrap-items-search-buttons">
@@ -30,6 +30,15 @@
                     <span class="material-symbols-outlined">search</span>
                     <input class="search-input" type="search" placeholder="Search" />
                 </div>
+                 <div class="dropdown-wrapper" style="margin-left: -130px;">
+     <div class="dropdown-container" onclick="toggleDropdown('dropdownList', 'dropdownDisplay')">
+         <div class="dropdown-display" id="dropdownDisplay">Status</div>
+         <div class="dropdown-list" id="dropdownList">
+             <div onclick="selectOption('Paid', 'dropdownDisplay')">Paid</div>
+             <div onclick="selectOption('Unpaid', 'dropdownDisplay')">Unpaid</div>
+         </div>
+     </div>
+ </div>
                 <div class="btnExcel-Add">
                     <button class="excel-export" style="color: #6F6F6F; font-weight:bold;">Export</button>
                 </div>
@@ -41,8 +50,8 @@
             <div class="row">
                 <div class="col productid">Order ID</div>
                 <div class="col name">Customer Name</div>
-                <div class="col price">Total Amount</div>
-                <div class="col gender">Total Item</div>
+                <div class="col price">Total Item</div>
+                <div class="col gender">Total Amount</div>
                 <div class="col category">Date</div>
                 <div class="col wear">Status</div>
                 <div class="col eclipse-container">
@@ -52,61 +61,62 @@
 
             <!-- Product 1 -->
             <div class="row">
-                <div class="col productid">1</div>
-                <div class="col name">John Doe</div>
-                <div class="col price">RM 104.89</div>
-                <div class="col gender">3</div>
-                <div class="col category">2024-04-07</div>
+                <div class="col productid">1001</div>
+                <div class="col name">Janice Lee</div>
+                <div class="col price">2</div>
+                <div class="col gender">RM 109.90</div>
+                <div class="col category">14/3/2024</div>
                 <div class="col wear">Paid</div>
                 <div class="col eclipse-container" onclick="toggleDropdown('dropdownList3', 'dropdownDisplay3')">
                     <div class="eclipse-display" id="dropdownDisplay3" style="border:none;"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></div>
                     <div class="eclipse-list" id="dropdownList3">
                         <a href="OrderItem.aspx" style="text-decoration: none; color: #6F6F6F;"><div>View More</div></a>
+                        <div>Delete</div>
                     </div>
                 </div>
             </div>
 
             <!-- Product 2 -->
             <div class="row">
-                <div class="col productid">2</div>
-                <div class="col name">Jane Smith</div>
-                <div class="col price">RM 154.89</div>
-                <div class="col gender">2</div>
-                <div class="col category">2024-04-12</div>
+                <div class="col productid">1002</div>
+                <div class="col name">Jeffer Ooi</div>
+                <div class="col price">1</div>
+                <div class="col gender">RM 100.00</div>
+                <div class="col category">14/3/2024</div>
                 <div class="col wear">Paid</div>
                 <div class="col eclipse-container"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></div>
             </div>
 
             <!-- Product 3 -->
             <div class="row">
-                <div class="col productid">3</div>
-                <div class="col name">Alex Johnson</div>
-                <div class="col price">RM 174.89</div>
-                <div class="col gender">4</div>
-                <div class="col category">2024-04-17</div>
+                <div class="col productid">1003</div>
+                <div class="col name">Oh Beng Yee</div>
+                <div class="col price">2</div>
+                <div class="col gender">RM 12.00</div>
+                <div class="col category">14/3/2024</div>
                 <div class="col wear">Paid</div>
                 <div class="col eclipse-container"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></div>
             </div>
 
             <!-- Product 4 -->
             <div class="row">
-                <div class="col productid">4</div>
-                <div class="col name">Emily Davis</div>
-                <div class="col price">RM 94.89</div>
-                <div class="col gender">5</div>
-                <div class="col category">2024-04-22</div>
+                <div class="col productid">1004</div>
+                <div class="col name">Tan Chee Han</div>
+                <div class="col price">2</div>
+                <div class="col gender">RM 45.00</div>
+                <div class="col category">12/3/2024</div>
                 <div class="col wear">Unpaid</div>
                 <div class="col eclipse-container"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></div>
             </div>
 
             <!-- Product 5 -->
             <div class="row">
-                <div class="col productid">5</div>
-                <div class="col name">Michael Brown</div>
-                <div class="col price">RM 129.89</div>
-                <div class="col gender">1</div>
-                <div class="col category">2024-04-27</div>
-                <div class="col wear">Paid</div>
+                <div class="col productid">1005</div>
+                <div class="col name">Yip Yong</div>
+                <div class="col price">4</div>
+                <div class="col gender">RM 50.00</div>
+                <div class="col category">12/3/2024</div>
+                <div class="col wear">Unpaid</div>
                 <div class="col eclipse-container"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></div>
             </div>
         </div>

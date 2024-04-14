@@ -113,7 +113,7 @@
     </style>
 
     <div class="productBody">
-        <h2>UNIQLO DISCOUNT</h2>
+        <h2>UNIQLO DISCOUNT MANAGEMENT</h2>
         <div class="crudProduct">
             <div class="wrap-items-search-buttons">
                 <div class="search">
@@ -184,8 +184,8 @@
             <div class="row">
                 <div class="col productid">3</div>
                 <div class="col name">Hello Kitty 50th Anniversary AIRism Easy Short</div>
-                <div class="col wear">In Stock</div>
-                <div class="col price">130.00</div>
+                <div class="col wear">30.00</div>
+                <div class="col price">Active</div>
                 <div class="col gender">2024-04-01</div>
                 <div class="col category">2024-04-30</div>
                 <div class="col eclipse-container">
