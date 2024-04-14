@@ -7,6 +7,9 @@
         <div class="contact-container">
             <h2>Contact Us</h2>
             <p>Feel free to reach out to us with any questions, feedback, or concerns you may have. Our team is here to help!</p>
+            <p>*You may contact us through the email and contact number as below*</p>
+            <p>Email: uniqlomy@gmail.com</p>
+            <p>Contact No: 04-2657622</p>
         
             <!-- Chatbot Section -->
             <div class="chatbot-container">

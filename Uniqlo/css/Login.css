@@ -23,6 +23,13 @@
     width:auto;
     height:auto;
 }
+.form login {
+    width: 100%;
+    height: 70%; /* Occupy the full height of the parent container (body) */
+    display: flex;
+    justify-content: center; /* Centers the login-container */
+    align-items: center; /* Vertically centers the login-container */
+}
 .container {
     height: 100vh;
     width: 100%;
@@ -182,7 +189,7 @@ a.facebook {
         background-color: #fff;
     }
 
-.facebook-icon,
+.facebook-icon,.fa-google,
 img.google-img {
     position: absolute;
     top: 50%;
@@ -198,6 +205,15 @@ img.google-img {
 
 a.google {
     border: 1px solid #CACACA;
+    height: 28px;
+    width: 28px;
+    color: #0171d3;
+    font-size: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
 }
 
     a.google span {
