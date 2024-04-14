@@ -116,52 +116,46 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-4">
-                        <br /><br />
-                        <div class="card border-secondary mb-5">
-                            <div class="card-header bg-secondary border-0">
-                                <h4 class="font-weight-semi-bold m-0">Summary</h4>
+                                                    <div class="col-lg-4">
+                    <br /><br />
+                    <div class="card border-secondary mb-5">
+                        <div class="card-header bg-secondary border-0">
+                            <h4 class="font-weight-semi-bold m-0">Summary</h4>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="font-weight-medium mb-3">Products</h5>
+
+                            
+
+                            <div class="d-flex justify-content-between">
+                                <p>AIRism Cotton Short Sleeve T-Shirt, White, M x 1</p>
+                                <p>RM 30.00</p>
                             </div>
-                            <div class="card-body">
-                                <h5 class="font-weight-medium mb-3">Products</h5>
 
-                                <!--loop here-->
+                            <div class="d-flex justify-content-between">
+    <p>Sweat Cargo Pants, Pink, M x 1</p>
+    <p>RM 79.90</p>
+</div>
+                          
 
-                                <div class="d-flex justify-content-between">
-                                    <p>RM get cart data </p>
-                                    <p>RM get cart item price</p>
-                                </div>
-
-                                
-
-                                <hr class="mt-0">
-                                <div class="d-flex justify-content-between mb-3 pt-1">
-                                    <h6 class="font-weight-medium">Total Price</h6>
-                                    <h6 class="font-weight-medium">  RM get cart total price</h6>
-                                </div>
-                                <div class="d-flex justify-content-between">
-                                    <h6 class="font-weight-medium">Shipping Charges</h6>
-                                    <h6 class="font-weight-medium">  RM get shipping amount</h6>
-                                </div>
-                                <div class="d-flex justify-content-between">
-                                    <h6 class="font-weight-medium">SST Tax (6%)</h6>
-                                    <h6 class="font-weight-medium">  RM get sst amount</h6>
-                                </div>
-
-                                
-                                <div class="d-flex justify-content-between">
-                                    <h6 class="font-weight-medium">Discount (10%)</h6>
-                                    <h6 class="font-weight-medium">- RM get discount amount if got</h6>
-                                </div>
-                                
+                            <hr class="mt-0">
+                            <div class="d-flex justify-content-between mb-3 pt-1">
+                                <h6 class="font-weight-medium">Total Price</h6>
+                                <h6 class="font-weight-medium">  RM 109.90</h6>
                             </div>
-                            <div class="card-footer border-secondary bg-transparent">
-                                <div class="d-flex justify-content-between mt-2">
-                                    <h5 class="font-weight-bold">Total</h5>
-                                    <h5 class="font-weight-bold">RM get total payment</h5>
-                                </div>
+                            <div class="d-flex justify-content-between">
+                                <h6 class="font-weight-medium">Delivery Charges</h6>
+                                <h6 class="font-weight-medium">  RM 15</h6>
+                            </div>
+                                                        
+                        </div>
+                        <div class="card-footer border-secondary bg-transparent">
+                            <div class="d-flex justify-content-between mt-2">
+                                <h5 class="font-weight-bold">Total</h5>
+                                <h5 class="font-weight-bold">RM 124.90</h5>
                             </div>
                         </div>
+                    </div>
 
                         <!--
                         <div class="card-footer border-secondary bg-transparent">

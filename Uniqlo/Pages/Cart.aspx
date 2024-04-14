@@ -21,10 +21,11 @@
                             <h3><b>AIRism Cotton Short Sleeve T-Shirt</b></h3>
                         </div>
                         <div class="item-description"> 
-                            <p>Smooth "AIRism" fabric with the look of cotton. Refined fabric and design.</p><br />
+                            <p>Smooth "AIRism" fabric with the look of cotton. Refined fabric and design.</p>
                         </div>
                         <div class="item-details">
                             <p><b>Size:</b> M</p> 
+                            <p><b>Colour:</b> White</p> 
                             <p><b>Stock Left:</b> 57</p>
                         </div>
                         <div class="item-price">
@@ -52,6 +53,7 @@
                         </div>
                         <div class="item-details">
                             <p><b>Size:</b> M</p> 
+                            <p><b>Colour:</b> Pink</p> 
                             <p><b>Stock Left:</b> 27</p>
                         </div>
                         <div class="item-price">
