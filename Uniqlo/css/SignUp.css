@@ -8,12 +8,11 @@ main{
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #f0f0f0; /* Light background color */
+    background-color: #eee; /* Light background color */
     margin:auto;
     max-width:1100px;
     position:relative;
 }
-
 /* Importing Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
 
@@ -23,6 +22,7 @@ main{
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
     height:auto;
+   
 }
 
 /* Sign-up form styles */
@@ -69,15 +69,16 @@ header {
     top: 50%;
     right: 10px;
     transform: translateY(-50%);
-    color: #666; /* Gray color */
+    color:#eee;
+    ; /* Gray color */
     cursor: pointer;
 }
 
 .field button {
     width: 100%;
     padding: 12px;
-    color: #fff;
-    background-color: #007bff; /* Blue button color */
+    color: black;
+    background-color: #f0f0f0; /* Blue button color */
     border: none;
     border-radius: 4px; /* Rounded corners */
     font-weight: 500;
@@ -85,9 +86,7 @@ header {
     transition: background-color 0.3s ease;
 }
 
-    .field button:hover {
-        background-color: #0056b3; /* Darker blue on hover */
-    }
+
 
 .form-link {
     text-align: center;
@@ -169,4 +168,14 @@ a.google {
         font-size: 14px; /* Smaller font size */
 
     }
+}
+.eye-icon {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    font-size: 18px;
+    color: #8b8b8b;
+    cursor: pointer;
+    padding: 5px;
 }

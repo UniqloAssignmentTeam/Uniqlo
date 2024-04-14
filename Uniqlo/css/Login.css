@@ -1,4 +1,12 @@
-﻿
+﻿.field.button-field #Button1 {
+    background-color: red;
+    color: white; /* Optional: Change text color to white for better contrast */
+    padding: 10px 20px; /* Optional: Add padding for better spacing */
+    border: none; /* Optional: Remove border */
+    border-radius: 5px; /* Optional: Add rounded corners */
+    cursor: pointer; /* Optional: Change cursor to pointer when hovering over the button */
+    transition: background-color 0.3s ease; /* Optional: Add transition effect */
+}
 
 /* mainBody styles */
 /* mainBody styles */
@@ -207,19 +215,19 @@ a.google {
     border: 1px solid #CACACA;
     height: 28px;
     width: 28px;
-    color: #0171d3;
+    color: white;
     font-size: 20px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #fff;
+    background-color: #db4437;
 }
 
     a.google span {
         font-weight: 500;
-        opacity: 0.6;
-        color: #232836;
+        
+        color: white;
     }
 
 @media screen and (max-width: 400px) {

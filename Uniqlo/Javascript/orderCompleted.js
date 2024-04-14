@@ -43,7 +43,7 @@ function drawChart() {
 		legend: { position: 'bottom' }
 	};
 	var options3 = {
-		title: 'Total Wishlist Item',
+		title: 'Total Order Paid',
 		curveType: 'function',
 		legend: { position: 'bottom' }
 	};
