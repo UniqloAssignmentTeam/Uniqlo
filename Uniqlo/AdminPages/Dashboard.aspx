@@ -57,7 +57,7 @@
         <div class="space"></div>
 
         <div class="header">
-            <h2>Total Orders In 2024</h2>
+            <h2>Total Sales In 2024</h2>
             <p>Payment received across all channels</p>
         </div>
 

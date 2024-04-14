@@ -113,7 +113,7 @@
     </style>
 
     <div class="productBody">
-        <h2>UNIQLO DISCOUNT</h2>
+        <h2>UNIQLO DISCOUNT MANAGEMENT</h2>
         <div class="crudProduct">
             <div class="wrap-items-search-buttons">
                 <div class="search">
