@@ -36,7 +36,7 @@
     <div class="space"></div>
 
     <div class="header">
-        <h2>Total Sales</h2>
+        <h2>Total Item Sold</h2>
       
        
 

@@ -9,6 +9,9 @@ main{
     justify-content: center;
     align-items: center;
     background-color: #f0f0f0; /* Light background color */
+    margin:auto;
+    max-width:1100px;
+    position:relative;
 }
 
 /* Importing Google Fonts */
@@ -24,13 +27,17 @@ main{
 
 /* Sign-up form styles */
 .form.signup {
-    width: 100%;
-    max-width: 450px; /* Adjust the width */
+    width: 450px;
     height: auto; /* Adjust height as needed */
     background-color: #fff; /* White background */
     padding: 20px;
     border-radius: 8px; /* Rounded corners */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    margin: auto;
+    max-width: 1100px;
+    position: relative;
+    margin-top:100px;
+    margin-bottom:100px;
 }
 
 header {
@@ -160,5 +167,6 @@ a.google {
     .field button,
     .field input {
         font-size: 14px; /* Smaller font size */
+
     }
 }

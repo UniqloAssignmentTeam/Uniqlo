@@ -29,13 +29,13 @@
             <!-- Create Password Field -->
             <div class="field input-field">
                 <input type="password" placeholder="Create password" class="password" required>
-                <i class='bx bx-hide eye-icon'></i>
+                
             </div>
 
             <!-- Confirm Password Field -->
             <div class="field input-field">
                 <input type="password" placeholder="Confirm password" class="password" required>
-                <i class='bx bx-hide eye-icon'></i>
+        
             </div>
 
                <!-- Phone Number Field -->
@@ -44,12 +44,12 @@
   
              </div>
             <br />
-            <div class="Gender:">
+           <!-- <div class="Gender:">
             <asp:Label ID="lblGender" runat="server" Text="Gender"></asp:Label>
             <asp:RadioButtonList ID="rblGender" runat="server" RepeatDirection="Horizontal">
                 <asp:ListItem>Male</asp:ListItem> <asp:ListItem>Female</asp:ListItem>
             </asp:RadioButtonList>
-            </div>
+            </div>-->
          
 
             <!-- Sign Up Button -->

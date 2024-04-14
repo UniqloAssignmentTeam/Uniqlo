@@ -32,7 +32,7 @@
                     </form>
                     <div class="form-link">
                  <span>Don't have an account?</span>
-                 <a href="SignUp.aspx" class="link signup-link">Sign Up</a>
+                        <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="SignUp.aspx">Sign Up</asp:HyperLink>
                 </div>
                 </div>
                 <div class="line"></div>
@@ -57,6 +57,10 @@
         </section>
         <!-- JavaScript -->
     <script src="../Javascript/Login.js"></script>
+
+
+
+    </span>
 
 
 
