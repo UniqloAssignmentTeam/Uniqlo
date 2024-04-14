@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin.Master" AutoEventWireup="true" CodeBehind="Delivery.aspx.cs" Inherits="Uniqlo.AdminPages.Delivery" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="main" runat="server">
-    <style>
+   <style>
         .dropdown-wrapper{
             margin-right:310px
         }
@@ -48,7 +48,7 @@
                <div class="dropdown-container" onclick="toggleDropdown('dropdownList', 'dropdownDisplay')">
                   <div class="dropdown-display" id="dropdownDisplay">Status</div>
                   <div class="dropdown-list" id="dropdownList">
-                     <div onclick="selectOption('Packaging', 'dropdownDisplay')">Packaging</div>
+                     <div onclick="selectOption('Pending', 'dropdownDisplay')">Pending</div>
                      <div onclick="selectOption('In Transit', 'dropdownDisplay')">In Transit</div>
                      <div onclick="selectOption('Delivered', 'dropdownDisplay')">Delivered</div>
                   </div>
@@ -103,10 +103,9 @@
             <div class="col eclipse-container" onclick="toggleDropdown('dropdownList3', 'dropdownDisplay3')">
                <div class="eclipse-display" id="dropdownDisplay3" style="border:none;"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></div>
                <div class="eclipse-list" id="dropdownList3">
-                  <div>View Order</div>
-                  <div>Update Delivery</div>
-                  <div>Delete Delivery</div>
-                  <div>Received</div>
+                  <a href="AdminOrder/OrderItem.aspx" style="text-decoration:none; color:grey"> <div>View Order</div></a>
+                  <a href="UpdateDelivery.aspx" style="text-decoration:none; color:grey">  <div>Update</div> </a>
+                  <div>Delete</div>
                </div>
             </div>
          </div>
@@ -213,4 +212,5 @@
       <script src="../Javascript/productBtnEclipse.js"></script>
       <script src="../Javascript/productAdminDDL.js"></script>
    </footer>
+
 </asp:Content>

@@ -92,6 +92,7 @@
     <Content Include="AdminPages\AdminStaff\UpdateStaff.aspx" />
     <Content Include="AdminPages\AdminProduct\viewMoreProduct.aspx" />
     <Content Include="AdminPages\Report.aspx" />
+    <Content Include="AdminPages\UpdateDelivery.aspx" />
     <Content Include="App_Data\Uniqlo.mdf" />
     <Content Include="App_Data\Uniqlo_log.ldf">
       <DependentUpon>Uniqlo.mdf</DependentUpon>
@@ -351,6 +352,13 @@
     </Compile>
     <Compile Include="AdminPages\Report.aspx.designer.cs">
       <DependentUpon>Report.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AdminPages\UpdateDelivery.aspx.cs">
+      <DependentUpon>UpdateDelivery.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminPages\UpdateDelivery.aspx.designer.cs">
+      <DependentUpon>UpdateDelivery.aspx</DependentUpon>
     </Compile>
     <Compile Include="Model1.Context.cs">
       <AutoGen>True</AutoGen>
