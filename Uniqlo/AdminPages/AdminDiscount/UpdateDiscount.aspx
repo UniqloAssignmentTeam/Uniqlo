@@ -22,7 +22,7 @@
      <input type="text" name="productName" value="1" disabled>
  </div>
               <div class="form-group">
-                  <label for="productName">Product ID</label>
+                  <label for="productName">Product Name</label>
                   <input type="text" name="productName" value="AIRism Cotton Jersey Short Sleeve Skipper Polo Shirt">
               </div>
                               <div class="form-group">
