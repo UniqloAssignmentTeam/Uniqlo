@@ -164,12 +164,12 @@
 
             <!--Product 1-->
             <div class="row">
-                <div class="col productid">1001</div>
-                <div class="col name">Janice Lee Jia Minn</div>
-                <div class="col category">janiceljm-pm21@gmail.com</div>
-                <div class="col wear">Female</div>
+                <div class="col productid">1</div>
+                <div class="col name">Yip Yong</div>
+                <div class="col category">YipY@example.com</div>
+                <div class="col wear">Male</div>
                 <div class="col price">Manager</div>
-                <div class="col gender">019111111</div>
+                <div class="col gender">01655123456</div>
                 <div class="col eclipse-container" onclick="toggleDropdown('dropdownList3', 'dropdownDisplay3')">
                     <div class="eclipse-display" id="dropdownDisplay3" style="border:none;"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></div>
                     <div class="eclipse-list" id="dropdownList3">
@@ -187,45 +187,45 @@
 
             <!--Product 2-->
             <div class="row">
-                <div class="col productid">1002</div>
-                <div class="col name">Jeffer Ooi Zhe Feng</div>
+                <div class="col productid">2</div>
+                <div class="col name">Janice Lee</div>
                 <div class="col category">jefferozf-pm21@gmail.com</div>
-                <div class="col wear">Male</div>
+                <div class="col wear">Female</div>
                 <div class="col price">Admin</div>
-                <div class="col gender">0191111111</div>
+                <div class="col gender">0165555555</div>
                 <div class="col eclipse-container"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></div>
             </div>
 
             <!--Product 3-->
             <div class="row">
-                <div class="col productid">1003</div>
-                <div class="col name">Oh Beng Yee</div>
-                <div class="col category">ohby-pv21@gmail.com</div>
+                <div class="col productid">3</div>
+                <div class="col name">Jeffer Ooi</div>
+                <div class="col category">Jeffer@example.com</div>
                 <div class="col wear">Male</div>
                 <div class="col price">Admin</div>
-                <div class="col gender">0191111111</div>
+                <div class="col gender">0169876543</div>
                 <div class="col eclipse-container"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></div>
             </div>
 
             <!--Product 4-->
             <div class="row">
-                <div class="col productid">1004</div>
-                <div class="col name">Tan Chee Han</div>
-                <div class="col category">tanch-pm21@gmail.com</div>
+                <div class="col productid">4</div>
+                <div class="col name">Beng Yee</div>
+                <div class="col category">BengYee@example.com</div>
                 <div class="col wear">Male</div>
                 <div class="col price">Admin</div>
-                <div class="col gender">0191111111</div>
+                <div class="col gender">0169876543</div>
                 <div class="col eclipse-container"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></div>
             </div>
 
             <!--Product 5-->
             <div class="row">
-                <div class="col productid">1005</div>
-                <div class="col name">Yip Yong</div>
-                <div class="col category">yipy-pm21@gmail.com</div>
+                <div class="col productid">5</div>
+                <div class="col name">Chee Han</div>
+                <div class="col category">CheeHan@example.com</div>
                 <div class="col wear">Male</div>
                 <div class="col price">Admin</div>
-                <div class="col gender">019111111</div>
+                <div class="col gender">0165555555</div>
                 <div class="col eclipse-container"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></div>
             </div>
         </div>

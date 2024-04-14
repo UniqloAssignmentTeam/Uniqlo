@@ -19,17 +19,20 @@
             <div class="product-content">
                 <div class="form-group">
      <label for="productName">Staff ID</label>
-     <input type="text" name="productName" value="1001" disabled/>
+     <input type="text" name="productName" value="1" disabled/>
  </div>
                 <div class="form-group">
                     <label for="productName">Staff Name</label>
-                    <input type="text" name="productName" value="Janice Lee Jia Minn" />
+                    <input type="text" name="productName" value="Yip Yong" />
                 </div>
-
+                                <div class="form-group">
+    <label for="productName">E-mail</label>
+    <input class="form-field" type="text" value="YipY@example.com">
+</div>
                               <div class="form-group">
     <label for="productName">Gender</label>
     <div class="dropdown-container" onclick="toggleDropdown('dropdownList', 'dropdownDisplay')">
-        <div class="dropdown-display" id="dropdownDisplay">Female</div>
+        <div class="dropdown-display" id="dropdownDisplay">Male</div>
         <div class="dropdown-list" id="dropdownList">
             <div onclick="selectOption('Male', 'dropdownDisplay')">Male</div>
             <div onclick="selectOption('Female', 'dropdownDisplay')">Female</div>
@@ -51,12 +54,9 @@
 
                 <div class="form-group">
                     <label for="productName">Contact Number</label>
-                    <input class="form-field" type="text" value="019111111">
+                    <input class="form-field" type="text" value="01655123456">
                 </div>
-                  <div class="form-group">
-      <label for="productName">E-mail</label>
-      <input class="form-field" type="text" value="janiceljm-pm21@gmail.com">
-  </div>
+                  
 
                 
               
