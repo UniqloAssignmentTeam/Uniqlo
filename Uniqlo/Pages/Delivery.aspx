@@ -47,7 +47,7 @@
                             </div>
                             <div class="col-md-6 form-group">
                                 <label>Contact No</label>
-                                <input class="form-control" type="text"  value="014 816-9029" readonly="readonly">
+                                <input class="form-control" type="text"  value="0148169029" readonly="readonly">
                             </div>
                             <div class="col-md-6 form-group">
                                 <label>Country</label>
@@ -94,37 +94,31 @@
                             
 
                             <div class="d-flex justify-content-between">
-                                <p>add order items</p>
-                                <p>RM Get total price</p>
+                                <p>AIRism Cotton Short Sleeve T-Shirt, White, M x 1</p>
+                                <p>RM 30.00</p>
                             </div>
 
+                            <div class="d-flex justify-content-between">
+    <p>Sweat Cargo Pants, Pink, M x 1</p>
+    <p>RM 79.90</p>
+</div>
                           
 
                             <hr class="mt-0">
                             <div class="d-flex justify-content-between mb-3 pt-1">
                                 <h6 class="font-weight-medium">Total Price</h6>
-                                <h6 class="font-weight-medium">  RM Cart total Price</h6>
+                                <h6 class="font-weight-medium">  RM 109.90</h6>
                             </div>
                             <div class="d-flex justify-content-between">
-                                <h6 class="font-weight-medium">Shipping Charges</h6>
-                                <h6 class="font-weight-medium">  RM Shipping fee</h6>
+                                <h6 class="font-weight-medium">Delivery Charges</h6>
+                                <h6 class="font-weight-medium">  RM 15</h6>
                             </div>
-                            <div class="d-flex justify-content-between">
-                                <h6 class="font-weight-medium">SST Tax (6%)</h6>
-                                <h6 class="font-weight-medium">  RM SSt amount</h6>
-                            </div>
-
-                            
-                            <div class="d-flex justify-content-between">
-                                <h6 class="font-weight-medium">Discount (10%)</h6>
-                                <h6 class="font-weight-medium">- RM Discount amount</h6>
-                            </div>
-                            
+                                                        
                         </div>
                         <div class="card-footer border-secondary bg-transparent">
                             <div class="d-flex justify-content-between mt-2">
                                 <h5 class="font-weight-bold">Total</h5>
-                                <h5 class="font-weight-bold">RM Grand total</h5>
+                                <h5 class="font-weight-bold">RM 124.90</h5>
                             </div>
                         </div>
                     </div>
