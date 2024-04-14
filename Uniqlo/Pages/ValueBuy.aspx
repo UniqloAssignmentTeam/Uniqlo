@@ -39,9 +39,9 @@
                     <div class="dropdown-container" onclick="toggleDropdown('dropdownList1', 'dropdownDisplay1')">
                         <div class="dropdown-display" id="dropdownDisplay1">Sort By</div>
                         <div class="dropdown-list" id="dropdownList1">
-                            <div onclick="selectOption('Tops', 'dropdownDisplay1')">Most Popular</div>
-                            <div onclick="selectOption('Bottoms', 'dropdownDisplay1')">High to Low</div>
-                            <div onclick="selectOption('Bottoms', 'dropdownDisplay1')">Low to High</div>
+                            <div onclick="selectOption('Most Popular', 'dropdownDisplay1')">Most Popular</div>
+                            <div onclick="selectOption('High to Low', 'dropdownDisplay1')">High to Low</div>
+                            <div onclick="selectOption('Low to High', 'dropdownDisplay1')">Low to High</div>
                         </div>
                     </div>
                 </div>
