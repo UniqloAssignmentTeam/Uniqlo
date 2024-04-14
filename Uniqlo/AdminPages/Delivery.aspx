@@ -13,7 +13,7 @@
     
 }
        .status {
-    flex-basis: 10%;
+    flex-basis: 15%;
 }
 
 
@@ -25,9 +25,9 @@
 
 
 .category {
-    min-width: 0;
-    flex-basis: 10%;
-    word-wrap: break-word;
+    
+    flex-basis: 20%;
+   
 }
 
 
@@ -48,9 +48,9 @@
                <div class="dropdown-container" onclick="toggleDropdown('dropdownList', 'dropdownDisplay')">
                   <div class="dropdown-display" id="dropdownDisplay">Status</div>
                   <div class="dropdown-list" id="dropdownList">
-                     <div onclick="selectOption('In Stock', 'dropdownDisplay')">In Stock</div>
-                     <div onclick="selectOption('Low In Stock', 'dropdownDisplay')">Low In Stock</div>
-                     <div onclick="selectOption('No Stock', 'dropdownDisplay')">No Stock</div>
+                     <div onclick="selectOption('Pending', 'dropdownDisplay')">In Stock</div>
+                     <div onclick="selectOption('In Transit', 'dropdownDisplay')">Low In Stock</div>
+                     <div onclick="selectOption('Delivered', 'dropdownDisplay')">No Stock</div>
                   </div>
                </div>
             </div>
@@ -79,7 +79,7 @@
                Order ID
             </div>
             <div class="col category">
-               Payment ID
+               Address
             </div>
             <div class="col eclipse-container">
                <asp:Button ID="Button1" runat="server" Text="Button" Visible="False" />
@@ -88,21 +88,21 @@
          <!--Product 1-->
          <div class="row">
             <div class="col productid">
-    1001
+    1
  </div>
  
  <div class="col name">
-    Delivery Note 
+    Leave at front door if no one is home. 
  </div>
           
  <div class="col price">
-    Status
+    Pending
  </div>
  <div class="col gender">
-    1001
+    2
  </div>
  <div class="col category">
-    1001
+    456 Elm St, Kuala Lumpur
  </div>
             <div class="col eclipse-container" onclick="toggleDropdown('dropdownList3', 'dropdownDisplay3')">
                <div class="eclipse-display" id="dropdownDisplay3" style="border:none;"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></div>
@@ -116,21 +116,21 @@
          <!--Product 2-->
          <div class="row">
             <div class="col productid">
-    1002
+    2
  </div>
  
  <div class="col name">
-    Delivery Note 
+    Call upon arrival for delivery. 
  </div>
           
  <div class="col price">
-    Status
+    In Transit
  </div>
  <div class="col gender">
-    1002
+    1
  </div>
  <div class="col category">
-    1002
+    123 Main St, Selangor
  </div>
             <div class="col eclipse-container">
                <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
@@ -139,21 +139,21 @@
          <!--Product 3-->
          <div class="row">
            <div class="col productid">
-    1003
+    3
  </div>
  
  <div class="col name">
-    Delivery Note 
+    Deliver to back entrance. 
  </div>
           
  <div class="col price">
-    Status
+    Delivered
  </div>
  <div class="col gender">
-    1003
+    6
  </div>
  <div class="col category">
-    1003
+    789 Oak St, Penang
  </div>
             <div class="col eclipse-container">
                <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
@@ -162,21 +162,21 @@
          <!--Product 4-->
          <div class="row">
            <div class="col productid">
-    1004
+   4
  </div>
  
  <div class="col name">
-    Delivery Note 
+    Handle with care. 
  </div>
           
  <div class="col price">
-    Status
+    Pending
  </div>
  <div class="col gender">
-    1004
+   8
  </div>
  <div class="col category">
-    1004
+    321 Pine St, Johor
  </div>
             <div class="col eclipse-container">
                <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
@@ -185,21 +185,21 @@
          <!--Product 5-->
          <div class="row">
              <div class="col productid">
-    1005
+    5
  </div>
  
  <div class="col name">
-    Delivery Note 
+    Fragile, please do not drop. 
  </div>
           
  <div class="col price">
-    Status
+    In Transit
  </div>
  <div class="col gender">
-    1005
+    5
  </div>
  <div class="col category">
-    1005
+    654 Maple St, Perak
  </div>
             <div class="col eclipse-container">
                <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
