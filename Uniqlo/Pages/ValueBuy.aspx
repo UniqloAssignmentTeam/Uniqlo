@@ -19,10 +19,11 @@
             <div style="display: flex;">
               
                 <div class="dropdown-container" onclick="toggleDropdown('dropdownList5', 'dropdownDisplay5')">
-                    <div class="dropdown-display" id="dropdownDisplay5">Category</div>
+                    <div class="dropdown-display" id="dropdownDisplay5">Sort By</div>
                     <div class="dropdown-list" id="dropdownList5">
-                        <div onclick="selectOption('Tops', 'dropdownDisplay2')">Tops</div>
-                        <div onclick="selectOption('Bottoms', 'dropdownDisplay2')">Bottoms</div>
+                        <div onclick="selectOption('Tops', 'dropdownDisplay2')">Most Popular</div>
+                        <div onclick="selectOption('Bottoms', 'dropdownDisplay2')">High to Low</div>
+                        <div onclick="selectOption('Bottoms', 'dropdownDisplay2')">Low to High</div>
                     </div>
                 </div>
                 <div class="dropdown-container" onclick="toggleDropdown('dropdownList2', 'dropdownDisplay2')">

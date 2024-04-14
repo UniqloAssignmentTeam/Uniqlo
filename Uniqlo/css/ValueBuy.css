@@ -230,10 +230,15 @@
 .dropdown-container {
     position: relative;
     width: 200px; /* Fixed width for consistency */
-    display: flex; /* Use flex to align the arrow inside .dropdown-display */
+    display: inline-block;
     align-items: center; /* Center align the contents */
     justify-content: space-between; /* Spread out the contents */
+    padding-left: 15px;
 }
+
+    .dropdown-container:not(:last-of-type) {
+        margin-right: 20px; /* This adds 20px space between each dropdown */
+    }
 
 .dropdown-display {
     width: 200px;
@@ -287,9 +292,6 @@
             background-color: #f0f0f0;
         }
 
-.dropdown-container:nth-child(2) { /* Assuming 'Category' is the second dropdown */
-    margin-right: 14px; /* Adjust this value as needed for desired spacing */
-}
 
 
 .dropdown-display::after {
