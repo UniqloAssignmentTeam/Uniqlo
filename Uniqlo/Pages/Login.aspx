@@ -4,7 +4,6 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title> Responsive Login and Signup Form </title>
         <!-- CSS -->
      <link href="../css/Login.css" rel="stylesheet" />
                 
@@ -122,7 +121,7 @@
         </a>
     </div>
     </div>
-</div>
+
 
         </section>
         <!-- JavaScript -->

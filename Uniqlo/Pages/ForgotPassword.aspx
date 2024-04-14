@@ -8,7 +8,7 @@
     flex-direction: column; /* Arrange content in a column */
     justify-content: center; /* Center content vertically */
     align-items: center; /* Center content horizontally */
-    height: 60vh; /* Occupy the full height of the viewport */
+    height: 80vh; /* Occupy the full height of the viewport */
     padding: 100px; /* Add padding for spacing */
 }
 
