@@ -33,17 +33,17 @@ function drawChart() {
 	]);
 
 	var options = {
-		title: 'Number of payment',
+		title: 'Sales Report',
 		curveType: 'function',
 		legend: { position: 'bottom' }
 	};
 	var options2 = {
-		title: 'Orders Received',
+		title: 'Top 5 Product',
 		curveType: 'function',
 		legend: { position: 'bottom' }
 	};
 	var options3 = {
-		title: 'Low in Stock',
+		title: 'Total Wishlist Item',
 		curveType: 'function',
 		legend: { position: 'bottom' }
 	};
