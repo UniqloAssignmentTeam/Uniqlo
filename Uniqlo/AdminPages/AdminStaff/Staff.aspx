@@ -132,6 +132,7 @@
                     <div class="dropdown-container" onclick="toggleDropdown('dropdownList2', 'dropdownDisplay2')">
                         <div class="dropdown-display" id="dropdownDisplay2">Role</div>
                         <div class="dropdown-list" id="dropdownList2">
+                            <div onclick="selectOption('Staff', 'dropdownDisplay2')">Staff</div>
                             <div onclick="selectOption('Admin', 'dropdownDisplay2')">Admin</div>
                             <div onclick="selectOption('Manager', 'dropdownDisplay2')">Manager</div>
                         </div>
@@ -270,7 +271,7 @@
             <script src="../../Javascript/productBtnEclipse.js"></script>
             <script src="../../Javascript/productAdminDDL.js"></script>
       
-      
+        <script src="../../Javascript/Pagination.js"></script>
 
     </footer>
 

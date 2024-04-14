@@ -9,7 +9,7 @@
         .dropdown-container {
             margin-left: -150px;
         }
-        .wear{
+        .category{
             flex-basis:10%;
         }
         .price{
@@ -141,8 +141,8 @@
             <!--Header-->
             <div class="row">
                 <div class="col productid">Discount ID</div>
-                <div class="col name">Product ID</div>
-                <div class="col wear">Amount</div>
+                <div class="col name">Product Name</div>
+                <div class="col category">Amount</div>
                 <div class="col price">Status</div>
                 <div class="col gender">Start Date</div>
                 <div class="col category">End Date</div>
@@ -253,6 +253,7 @@
     <footer>
         <script src="../../Javascript/productBtnEclipse.js"></script>
         <script src="../../Javascript/productAdminDDL.js"></script>
+        <script src="../../Javascript/Pagination.js"></script>
     </footer>
 
 </asp:Content>
