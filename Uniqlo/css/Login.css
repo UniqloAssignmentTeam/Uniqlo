@@ -25,13 +25,13 @@
 }
 .form login {
     width: 100%;
-    height: 70%; /* Occupy the full height of the parent container (body) */
+    height: 50%; /* Occupy the full height of the parent container (body) */
     display: flex;
     justify-content: center; /* Centers the login-container */
     align-items: center; /* Vertically centers the login-container */
 }
 .container {
-    height: 100vh;
+    height: 110vh;
     width: 100%;
     display: flex;
     align-items: center;

@@ -65,7 +65,7 @@
                 <!-- Full Name -->
                 <div class="form-group">
                     <label for="fullName">Full Name:</label>
-                    <input type="text" id="fullName" name="fullName" value="Kenneth Valdez">
+                    <input type="text" id="fullName" name="fullName" value="Tan Choo Jun">
                 </div>
 
                 <!-- Email -->

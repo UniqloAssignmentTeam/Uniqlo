@@ -41,8 +41,8 @@
             <div class="row">
                 <div class="col productid">Order ID</div>
                 <div class="col name">Customer Name</div>
-                <div class="col price">Total Amount</div>
-                <div class="col gender">Total Item</div>
+                <div class="col price">Total Item</div>
+                <div class="col gender">Total Amount</div>
                 <div class="col category">Date</div>
                 <div class="col wear">Status</div>
                 <div class="col eclipse-container">
@@ -52,11 +52,11 @@
 
             <!-- Product 1 -->
             <div class="row">
-                <div class="col productid">1</div>
-                <div class="col name">John Doe</div>
-                <div class="col price">RM 104.89</div>
-                <div class="col gender">3</div>
-                <div class="col category">2024-04-07</div>
+                <div class="col productid">1001</div>
+                <div class="col name">Janice Lee</div>
+                <div class="col price">111</div>
+                <div class="col gender">RM 109.90</div>
+                <div class="col category">14/3/2024</div>
                 <div class="col wear">Paid</div>
                 <div class="col eclipse-container" onclick="toggleDropdown('dropdownList3', 'dropdownDisplay3')">
                     <div class="eclipse-display" id="dropdownDisplay3" style="border:none;"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></div>
@@ -68,45 +68,45 @@
 
             <!-- Product 2 -->
             <div class="row">
-                <div class="col productid">2</div>
-                <div class="col name">Jane Smith</div>
-                <div class="col price">RM 154.89</div>
-                <div class="col gender">2</div>
-                <div class="col category">2024-04-12</div>
+                <div class="col productid">1002</div>
+                <div class="col name">Jeffer Ooi</div>
+                <div class="col price">112</div>
+                <div class="col gender">RM 100.00</div>
+                <div class="col category">14/3/2024</div>
                 <div class="col wear">Paid</div>
                 <div class="col eclipse-container"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></div>
             </div>
 
             <!-- Product 3 -->
             <div class="row">
-                <div class="col productid">3</div>
-                <div class="col name">Alex Johnson</div>
-                <div class="col price">RM 174.89</div>
-                <div class="col gender">4</div>
-                <div class="col category">2024-04-17</div>
+                <div class="col productid">1003</div>
+                <div class="col name">Oh Beng Yee</div>
+                <div class="col price">113</div>
+                <div class="col gender">RM 12.00</div>
+                <div class="col category">14/3/2024</div>
                 <div class="col wear">Paid</div>
                 <div class="col eclipse-container"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></div>
             </div>
 
             <!-- Product 4 -->
             <div class="row">
-                <div class="col productid">4</div>
-                <div class="col name">Emily Davis</div>
-                <div class="col price">RM 94.89</div>
-                <div class="col gender">5</div>
-                <div class="col category">2024-04-22</div>
+                <div class="col productid">1004</div>
+                <div class="col name">Tan Chee Han</div>
+                <div class="col price">114</div>
+                <div class="col gender">RM 45.00</div>
+                <div class="col category">12/3/2024</div>
                 <div class="col wear">Unpaid</div>
                 <div class="col eclipse-container"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></div>
             </div>
 
             <!-- Product 5 -->
             <div class="row">
-                <div class="col productid">5</div>
-                <div class="col name">Michael Brown</div>
-                <div class="col price">RM 129.89</div>
-                <div class="col gender">1</div>
-                <div class="col category">2024-04-27</div>
-                <div class="col wear">Paid</div>
+                <div class="col productid">1005</div>
+                <div class="col name">Yip Yong</div>
+                <div class="col price">115</div>
+                <div class="col gender">RM 50.00</div>
+                <div class="col category">12/3/2024</div>
+                <div class="col wear">Unpaid</div>
                 <div class="col eclipse-container"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></div>
             </div>
         </div>

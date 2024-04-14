@@ -1,14 +1,13 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Uniqlo.Master" AutoEventWireup="true" CodeBehind="ChangePassword.aspx.cs" Inherits="Uniqlo.Pages.ChangePassword" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="main" runat="server">
 
-        <style>
- 
- .container {
-    display: flex; /* Use flexbox layout */
+          <style>
+        .container {
+    
     flex-direction: column; /* Arrange content in a column */
     justify-content: center; /* Center content vertically */
     align-items: center; /* Center content horizontally */
-    height: 100vh; /* Occupy the full height of the viewport */
+    height: 80vh; /* Occupy the full height of the viewport */
     padding: 100px; /* Add padding for spacing */
 }
 
@@ -19,18 +18,13 @@
         btn btn-lg btn-primary btn-block{
             background-color:red;
         }
-        text-center{
-            justify-content: center;
-        }
-        cardPassword{
-            background-color:black;
-        }
     </style>
 
 
 
-<div class="cardPassword">
-<div class="form-gap">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+<div class="form-gap"></div>
 <div class="container">
 	<div class="row">
 		<div class="col-md-4 col-md-offset-4">
@@ -38,7 +32,7 @@
               <div class="panel-body">
                 <div class="text-center">
                   <h3><i class="fa fa-lock fa-4x"></i></h3>
-                  <h2 class="text-center" aria-orientation="horizontal">Change Password</h2>
+                  <h2 class="text-center">Forgot Password?</h2>
                   <p>You can reset your password here.</p>
                   <div class="panel-body">
     
@@ -64,9 +58,7 @@
             </div>
           </div>
 	</div>
-    </div>
 </div>
-    </div>
     <script>
         function myFunction() {
             alert("Please check your Email Inbox");

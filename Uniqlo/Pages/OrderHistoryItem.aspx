@@ -30,7 +30,7 @@
             
             /*Button in table*/
             .orderReceivedSection{
-                float: right;
+                margin: auto;
                 margin-top: 20px;
                 width: 300px;
                 height: 50px;
@@ -154,93 +154,73 @@
         
         <h1>ORDER HISTORY ITEM</h1>
        
-        <div class="cart-items-container">
-            <!-- Cart Item 1 -->
-            <div class="cart-item" id="cart1" data-product-id="1">
-                <div class="cart-item-image-container">
-                    <img src="../../../Images/Categories/Woman/Tops/AIRismCottonShortSleeveT-Shirt1.jpg" alt="AIRism Cotton Short Sleeve T-Shirt" width="100" height="300"/>
-                </div>
-                <div class="item-details">
-                    <div class="item-name">
-                        <h3><b>AIRism Cotton Short Sleeve T-Shirt</b></h3>
-                    </div>
-                    <div class="item-description">
-                        <p>Smooth "AIRism" fabric with the look of cotton. Refined fabric and design.</p>
-                    </div>
-                    <div class="item-information">
-                        <div class="item-size">
-                            <p><b>Size:</b> M</p> 
-                        </div>
-                        <div class="item-color">
-                            <p><b>Color:</b> Blue</p> 
-                        </div>
-                    </div>
-                    <div class="item-price">
-                        <p>Price: RM 30.00</p>
-                    </div>
-                    <div class="qty">
-                        <p>Quantity: </p>
-                        <p class="qty-qty"> 1</p>  
-                        <p class="item-subtotal"><b>Subtotal: RM 30.00</b></p>
-                    </div>
-                    <div style="height: 100px;">
-                        <div class="orderReceivedSection" id="reviewModal">
-                            <a href="#" class="orderReceivedButton">Review</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+         <div class="cart-page-container">
+             <div class="cart-items-container" style="width: 70%;">
+                 <!-- Cart Item 1 -->
+                 <div class="cart-item" data-product-id="1">
+                     <div class="cart-item-image-container">
+                         <img src="../../../Images/Categories/Woman/Tops/AIRismCottonShortSleeveT-Shirt1.jpg" alt="AIRism Cotton Short Sleeve T-Shirt"/>
+                     </div>
+                     <div class="item-details">
+                         <div class="item-name">
+                             <h3><b>AIRism Cotton Short Sleeve T-Shirt</b></h3>
+                         </div>
+                         <div class="item-description"> 
+                             <p>Smooth "AIRism" fabric with the look of cotton. Refined fabric and design.</p><br />
+                         </div>
+                         <div class="item-details">
+                             <p><b>Size:</b> M</p>
+                             <p><b>Color:</b> Red</p>
+                         </div>
+                             <p><b>Price:</b> RM30.00</p>
+                             <p><b>Quantity:</b> 1</p>
+                         <p class="item-subtotal"><b>Subtotal: RM 30.00</b></p>
+                         <div class="orderReceivedSection" id="reviewModal">
+                             <a href="#" class="orderReceivedButton">Review</a>
+                         </div>
+                     </div>
+                 </div>
 
-            <!-- Cart Item 2 -->
-            <div class="cart-item" id="cart2" data-product-id="2">
-                <div class="cart-item-image-container">
-                    <img src="../../../Images/Categories/Woman/Bottoms/SweatCargoPants1.jpg" alt="Sweat Cargo Pants"/>
-                </div>
-                <div class="item-details">
-                    <div class="item-name">
-                        <h3><b>Sweat Cargo Pants</b></h3>
-                    </div>
-                    <div class="item-description">
-                        <p>Smooth "AIRism" fabric with the look of cotton. Refined fabric and design.</p>
-                    </div>
-                    <div class="item-information">
-                        <div class="item-size">
-                            <p><b>Size:</b> M</p> 
-                        </div>
-                        <div class="item-color">
-                            <p><b>Color:</b> Blue</p> 
-                        </div>
-                    </div>
-                    <div class="item-price">
-                        <p>Price: RM 79.90</p>
-                    </div>
-                    <div class="qty">
-                        <p>Quantity: </p>
-                        <p class="qty-qty">1</p>
-                        <p class="item-subtotal"><b>Subtotal: RM 79.90</b></p>
-                    </div>
-                    <div style="height: 100px;">
-                        <div class="orderReceivedSection">
-                            <a href="#" class="orderReceivedButton">Review</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                 <!-- Cart Item 2 -->
+                 <div class="cart-item" id="cart2" data-product-id="2">
+                     <div class="cart-item-image-container">
+                         <img src="../../../Images/Categories/Woman/Bottoms/SweatCargoPants1.jpg" alt="Sweat Cargo Pants"/>
+                     </div>
+                     <div class="item-details">
+                         <div class="item-name">
+                             <h3><b>Sweat Cargo Pants</b></h3>
+                         </div>
+                         <div class="item-description">
+                             <p>Smooth "AIRism" fabric with the look of cotton. Refined fabric and design.</p>
+                         </div>
+                         <div class="item-details">
+                             <p><b>Size:</b> M</p>
+                             <p><b>Color:</b> Red</p>
+                         </div>
+                         <p><b>Price:</b> RM30.00</p>
+                         <p><b>Quantity:</b> 1</p>
+                         <p class="item-subtotal"><b>Subtotal: RM 30.00</b></p>
+                         <div class="orderReceivedSection">
+                             <a href="#" class="orderReceivedButton">Review</a>
+                         </div>
+                     </div>
+                 </div>
+             </div>
 
-            <!-- Cart Summary -->
-            <div class="cart-summary">
-                <h3>Order Summary</h3>
-                <p><b>Total Items: </b><span id="totalItemsLabel" class="total-items"></span></p>
-                <p><b>Total Price: RM </b><span id="totalPriceLabel" class="total-price"></span></p>
-                <div class="viewMoreSection">
-                    <a href="#" class="viewMoreButton">Order Received</a>
-                </div>
-            </div>
+             <!-- Cart Summary -->
+             <div class="cart-summary" style="width: 30%;">
+                 <h3>Order Summary</h3>
+                 <p><b>Date: </b>14/3/2024 </p>
+                 <p><b>Payment method: </b>Cash </p>
+                 <p><b>Payment status: </b>Paid</p>
+                 <!-- <p><b>Total Price: </b> <span id="totalItemsLabel" class="total-items"></span> </p> -->
+                 <p><b>Total Price: </b>RM109.90 </p>
+                 <p><b>Total Items: </b>2</p>
+                 <p><b>Shipping Charges : </b>RM20</p>
+                 <p><b>Total: </b>RM129.90</p>
+             </div>
 
-
-
-
-
+             
              <!-- The Modal -->
             <div id="myModal" class="modal">
                 <div class="modal-content">
@@ -268,7 +248,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+         </div>
 
         <script>
             // Calculate and display total items and total price

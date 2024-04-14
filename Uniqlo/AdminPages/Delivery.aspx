@@ -37,7 +37,7 @@
    <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
    <div class="productBody">
-      <h2>UNIQLO DELIVERY</h2>
+      <h2>UNIQLO DELIVERY MANAGEMENT</h2>
       <div class="crudProduct">
          <div class="wrap-items-search-buttons">
             <div class="search">
@@ -48,9 +48,9 @@
                <div class="dropdown-container" onclick="toggleDropdown('dropdownList', 'dropdownDisplay')">
                   <div class="dropdown-display" id="dropdownDisplay">Status</div>
                   <div class="dropdown-list" id="dropdownList">
-                     <div onclick="selectOption('Pending', 'dropdownDisplay')">In Stock</div>
-                     <div onclick="selectOption('In Transit', 'dropdownDisplay')">Low In Stock</div>
-                     <div onclick="selectOption('Delivered', 'dropdownDisplay')">No Stock</div>
+                     <div onclick="selectOption('Packaging', 'dropdownDisplay')">Packaging</div>
+                     <div onclick="selectOption('In Transit', 'dropdownDisplay')">In Transit</div>
+                     <div onclick="selectOption('Delivered', 'dropdownDisplay')">Delivered</div>
                   </div>
                </div>
             </div>
@@ -107,8 +107,9 @@
             <div class="col eclipse-container" onclick="toggleDropdown('dropdownList3', 'dropdownDisplay3')">
                <div class="eclipse-display" id="dropdownDisplay3" style="border:none;"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></div>
                <div class="eclipse-list" id="dropdownList3">
-                  <div>Shipping</div>
-                  <div>Shipped</div>
+                  <div>View Order</div>
+                  <div>Update Delivery</div>
+                  <div>Delete Delivery</div>
                   <div>Received</div>
                </div>
             </div>
