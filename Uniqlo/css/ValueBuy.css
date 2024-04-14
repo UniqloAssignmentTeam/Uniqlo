@@ -207,19 +207,7 @@
     color: #ffc107;
 }
 
-
 /*DROPDOWN LIST*/
-.dropdown-bigcontainer {
-    width: 100%;
-    margin-bottom: 20px;
-}
-
-    .dropdown-bigcontainer .productListHeader {
-        font-weight: bold;
-        margin-bottom: 10px;
-        margin-top: 70px;
-    }
-
 .dropdown-wrapper {
     display: flex; /* Use flexbox to align the children */
     justify-content: center; /* Center the children horizontally */
@@ -227,18 +215,14 @@
     gap: 10px; /* This sets the space between the dropdowns */
 }
 
+
 .dropdown-container {
     position: relative;
     width: 200px; /* Fixed width for consistency */
-    display: inline-block;
+    display: flex; /* Use flex to align the arrow inside .dropdown-display */
     align-items: center; /* Center align the contents */
     justify-content: space-between; /* Spread out the contents */
-    padding-left: 15px;
 }
-
-    .dropdown-container:not(:last-of-type) {
-        margin-right: 20px; /* This adds 20px space between each dropdown */
-    }
 
 .dropdown-display {
     width: 200px;
@@ -258,7 +242,7 @@
     position: absolute;
     top: 100%;
     left: 0;
-    z-index: 2;
+    z-index: 100;
     width: 100%;
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -268,30 +252,28 @@
     visibility: hidden; /* Start hidden */
     transform: translateY(-20px); /* Start slightly above */
     transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s; /* Animate opacity, transform, and visibility */
-    align-items: center;
+    align-items:center;
     text-align: center; /* Centers the text inside the dropdown */
 }
-
-    .dropdown-list.open {
+.dropdown-list.open {
         opacity: 1; /* Fade in to fully opaque */
         visibility: visible; /* Make visible */
         transform: translateY(0px); /* Move to original position */
-    }
+ }
 
 
-    .dropdown-list.open {
+.dropdown-list.open {
         display: block; /* Show dropdown */
-    }
+}
 
-    .dropdown-list div {
+.dropdown-list div {
         padding: 10px;
         cursor: pointer;
-    }
+}
 
-        .dropdown-list div:hover {
-            background-color: #f0f0f0;
-        }
-
+.dropdown-list div:hover {
+    background-color: #f0f0f0;
+ }
 
 
 .dropdown-display::after {
