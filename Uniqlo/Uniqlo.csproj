@@ -214,7 +214,6 @@
     <Content Include="Pages\Invoice.aspx" />
     <Content Include="Pages\Login.aspx" />
     <Content Include="Pages\Logout.aspx" />
-    <Content Include="Pages\OrderHistory.aspx" />
     <Content Include="Pages\OrderHistoryItem.aspx" />
     <Content Include="Pages\Payment.aspx" />
     <Content Include="Pages\Profile.aspx" />
@@ -505,13 +504,6 @@
     </Compile>
     <Compile Include="Pages\Logout.aspx.designer.cs">
       <DependentUpon>Logout.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\OrderHistory.aspx.cs">
-      <DependentUpon>OrderHistory.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Pages\OrderHistory.aspx.designer.cs">
-      <DependentUpon>OrderHistory.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\OrderHistoryItem.aspx.cs">
       <DependentUpon>OrderHistoryItem.aspx</DependentUpon>

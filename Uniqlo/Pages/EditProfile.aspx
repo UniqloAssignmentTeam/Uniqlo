@@ -56,7 +56,7 @@
 </head>
 
 <body>
-    <div class="container">
+    <div class="container" style="margin: auto; max-width: 1100px; position: relative;">
         <div class="main-body">
             <h2>Edit Profile</h2>
             <form action="save_profile_changes_url" method="post">

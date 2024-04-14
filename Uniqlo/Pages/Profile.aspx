@@ -4,7 +4,7 @@
         <link href="../css/Profile.css" rel="stylesheet" />
       
     </header>
-    <div class="container">
+    <div class="container" style="margin: auto; max-width: 1100px; position: relative;">
         <div class="main-body">
             <div class="profile-header">
                 <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="User Avatar" class="avatar">
@@ -56,7 +56,7 @@
         </div>
     </div>
 
-    <div class="container">
+    <div class="container" style="margin: auto; max-width: 1100px; position: relative;">
     <div class="main-body">
         <!-- Existing profile information goes here -->
         
@@ -138,9 +138,17 @@
         <div class="col eclipse-container"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></div>
     </div>
 </div>
-                <div class="viewMoreSection">
-    <   1..10  >
-</div>
+        <div class="pagination">
+            <a href="#" class="page-link" onclick="changePage('prev')">&laquo;</a>
+            <a href="#" class="page-link active" onclick="changePage(1)">1</a>
+            <a href="#" class="page-link" onclick="changePage(2)">2</a>
+            <a href="#" class="page-link" onclick="changePage(3)">3</a>
+            <a href="#" class="page-link" onclick="changePage(4)">4</a>
+            <a href="#" class="page-link" onclick="changePage(5)">5</a>
+
+
+            <a href="#" class="page-link" onclick="changePage('next')">&raquo;</a>
+        </div>
 
     </div>
         
