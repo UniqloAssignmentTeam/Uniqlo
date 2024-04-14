@@ -17,12 +17,13 @@
         <div class="dropdown-bigcontainer">
             <div class="productListHeader">Sort By</div>
             <div style="display: flex;">
-                <div class="dropdown-container" onclick="toggleDropdown('dropdownList1', 'dropdownDisplay1')" style="margin-right: 15px;">
-                    <div class="dropdown-display" id="dropdownDisplay1">All</div>
-                    <div class="dropdown-list" id="dropdownList1">
-                        <div onclick="selectOption('Price: Low to High', 'dropdownDisplay1')">Price: Low to High</div>
-                        <div onclick="selectOption('Price: High to Low', 'dropdownDisplay1')">Price: High to Low</div>
-                        <div onclick="selectOption('Top Rated', 'dropdownDisplay1')">Top Rated</div>
+              
+                <div class="dropdown-container" onclick="toggleDropdown('dropdownList5', 'dropdownDisplay5')">
+                    <div class="dropdown-display" id="dropdownDisplay5">Sort By</div>
+                    <div class="dropdown-list" id="dropdownList5">
+                        <div onclick="selectOption('Tops', 'dropdownDisplay2')">Most Popular</div>
+                        <div onclick="selectOption('Bottoms', 'dropdownDisplay2')">High to Low</div>
+                        <div onclick="selectOption('Bottoms', 'dropdownDisplay2')">Low to High</div>
                     </div>
                 </div>
                 <div class="dropdown-container" onclick="toggleDropdown('dropdownList2', 'dropdownDisplay2')">
@@ -30,6 +31,13 @@
                     <div class="dropdown-list" id="dropdownList2">
                         <div onclick="selectOption('Women', 'dropdownDisplay2')">Women</div>
                         <div onclick="selectOption('Men', 'dropdownDisplay2')">Men</div>
+                    </div>
+                </div>
+                <div class="dropdown-container" onclick="toggleDropdown('dropdownList3', 'dropdownDisplay3')" style="margin-right: 15px;">
+                    <div class="dropdown-display" id="dropdownDisplay3">Gender</div>
+                    <div class="dropdown-list" id="dropdownList3">
+                        <div onclick="selectOption('M', 'dropdownDisplay3')">M</div>
+                        <div onclick="selectOption('F', 'dropdownDisplay3')">F</div>
                     </div>
                 </div>
             </div>

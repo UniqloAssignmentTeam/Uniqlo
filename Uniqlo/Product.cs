@@ -17,23 +17,21 @@ namespace Uniqlo
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Product()
         {
-            this.Images = new HashSet<Image>();
+            this.Discounts = new HashSet<Discount>();
             this.OrderLists = new HashSet<OrderList>();
             this.Quantities = new HashSet<Quantity>();
             this.WishlistItems = new HashSet<WishlistItem>();
         }
     
         public int Product_ID { get; set; }
-        public Nullable<int> Discount_ID { get; set; }
         public Nullable<int> Category_ID { get; set; }
         public string Product_Name { get; set; }
         public string Description { get; set; }
         public Nullable<double> Price { get; set; }
     
         public virtual Category Category { get; set; }
-        public virtual Discount Discount { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Image> Images { get; set; }
+        public virtual ICollection<Discount> Discounts { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<OrderList> OrderLists { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

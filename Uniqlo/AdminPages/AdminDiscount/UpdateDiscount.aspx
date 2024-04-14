@@ -25,6 +25,10 @@
                   <label for="productName">Product ID</label>
                   <input type="text" name="productName" value="1001">
               </div>
+                              <div class="form-group">
+    <label for="productName">Amount - Discount</label>
+    <input type="text" name="productName" value="100.00">
+</div>
 
                             <div class="form-group">
   <label for="productName">Status</label>

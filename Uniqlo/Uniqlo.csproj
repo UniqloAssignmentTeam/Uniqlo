@@ -120,7 +120,6 @@
     <Content Include="css\SignUp.css" />
     <Content Include="css\style.css" />
     <Content Include="css\style1.css" />
-    <Content Include="css\test.css" />
     <Content Include="css\ValueBuy.css" />
     <Content Include="css\WishList.css" />
     <Content Include="Images\3R.jpg" />
@@ -588,9 +587,6 @@
     </Compile>
     <Compile Include="Uniqlo.Master.designer.cs">
       <DependentUpon>Uniqlo.Master</DependentUpon>
-    </Compile>
-    <Compile Include="Wishlist.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="WishlistItem.cs">
       <DependentUpon>Model1.tt</DependentUpon>
