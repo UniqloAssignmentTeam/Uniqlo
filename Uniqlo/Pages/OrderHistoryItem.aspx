@@ -351,7 +351,7 @@
 
              <!-- Cart Summary -->
              <div class="cart-summary" style="width: 30%;">
-                 <h3>Order Summary</h3>
+                 <h3>ORDER ID : 1001</h3>
                  <p><b>Date: </b>14/3/2024 </p>
                  <p><b>Payment method: </b>Cash </p>
                  <p><b>Payment status: </b>Paid</p>
