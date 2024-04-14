@@ -34,72 +34,78 @@
                 <div class="col-lg-8">
                     <div class="mb-4">
                         <br /><br />
-                        <h4 class="font-weight-semi-bold mb-4">Shipping Information</h4>
+                        <h4 class="font-weight-semi-bold mb-4">Delivery Information</h4>
                         <div class="row">
                             <div class="col-md-6 form-group">
                                 <label>Name</label>
-                                <input class="form-control" type="text" name="name" value="Cust Name"  readonly="readonly">
+                                <input class="form-control" type="text" name="name" value="Tan Choo Jun"  readonly="readonly">
                             </div>
                             <div class="col-md-6 form-group">
                                 <label>E-mail</label>
-                                <input class="form-control" type="text" name="email" value="email" readonly="readonly">
+                                <input class="form-control" type="text" name="email" value="cjtan@gmail.com" readonly="readonly">
                             </div>
                             <div class="col-md-6 form-group">
                                 <label>Mobile No</label>
-                                <input class="form-control" type="text" name="contact_no" value="contact" readonly="readonly">
+                                <input class="form-control" type="text" name="contact_no" value="0148169029" readonly="readonly">
                             </div>
                             <div class="col-md-6 form-group">
                                 <label>Country</label>
-                                <input class="form-control" type="text" value="country" readonly="readonly" >
+                                <input class="form-control" type="text" value="Malaysia" readonly="readonly" >
                             </div>
                             <div class="col-md-6 form-group">
                                 <label>Address Line</label>
-                                <input class="form-control" type="text" value="address" readonly="readonly">
+                                <input class="form-control" type="text" value="1, Jalan Lembah Permai" readonly="readonly">
                             </div>
                             <div class="col-md-6 form-group">
                                 <label>Post Code</label>
-                                <input class="form-control" type="text" value="postcode" readonly="readonly">
+                                <input class="form-control" type="text" value="11900" readonly="readonly">
                             </div>
                             <div class="col-md-6 form-group">
                                 <label>State</label>
-                                <input class="form-control" type="text" value="state" readonly="readonly">
+                                <input class="form-control" type="text" value="Penang" readonly="readonly">
                             </div>
                             <div class="col-md-6 form-group">
                                 <label>City</label>
-                                <input class="form-control" type="text" value="city" readonly="readonly">
+                                <input class="form-control" type="text" value="Tanjung Bungah" readonly="readonly">
                             </div>
+                                                        <div class="col-md-12 form-group">
+    <label>
+        <br />
+        Delivery Instruction </label>
+    <input class="form-control" name="city" type="text" value="" readonly="readonly">
+</div>
                         </div>
                     </div>
                     <br /><br />
                     <h4 class="font-weight-semi-bold mb-4">Payment Method</h4>
                     <div class="form-group">
                         <label>Paid By : </label>
-                        <input class="form-control" type="text" readonly="readonly" value="get payment way">
+                        <input class="form-control" type="text" readonly="readonly" value="Credit Card">
                     </div>
                     
                         <!--if  not cash-->
                     <div class="form-row">
                     <div class="form-group col-md-6">
                         <label>Card Holder Name : </label>
-                        <input class="form-control" type="text" readonly="readonly" value="getHolder_name()">
+                        <input class="form-control" type="text" readonly="readonly" value="Tan Choo Jun">
                     </div>
                     <div class="form-group col-md-6">
                         <label>Card Type : </label>
-                        <input class="form-control" type="text" readonly="readonly" value="getCard_type()">
+                        <input class="form-control" type="text" readonly="readonly" value="Master Card">
                     </div>
                     </div>
                     <div class="form-group">
                         <label>Card Number : </label>
-                        <input class="form-control" type="text" readonly="readonly" value="getCard_number()">
+                        <input class="form-control" type="text" readonly="readonly" value="9784560321459872">
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label>Expiry Date : </label>
-                            <input class="form-control" type="text" readonly="readonly" value="getExpiry_date()">
+                            <input class="form-control" type="text" readonly="readonly" value="04/28">
                         </div>
                         <div class="form-group col-md-6">
                             <label>CVV : </label>
-                            <input class="form-control" type="text" readonly="readonly" value="getCVV()">
+                            <input class="form-control" type="text" readonly="readonly" value="888">
                         </div>
                     </div>
                         
@@ -115,37 +121,32 @@
 
                             <!--% for (int i = 0; i < cartItems.size(); i++) {%-->
 
-                            <div class="d-flex justify-content-between">
-                                <p>getName(),getSize(),getColor())%> x getQuantity </p>
-                                <p>RM getItem_price()</p>
+                                                        <div class="d-flex justify-content-between">
+                                <p>AIRism Cotton Short Sleeve T-Shirt, White, M x 1</p>
+                                <p>RM 30.00</p>
                             </div>
 
-                            
+                            <div class="d-flex justify-content-between">
+    <p>Sweat Cargo Pants, Pink, M x 1</p>
+    <p>RM 79.90</p>
+</div>
+                          
 
                             <hr class="mt-0">
                             <div class="d-flex justify-content-between mb-3 pt-1">
                                 <h6 class="font-weight-medium">Total Price</h6>
-                                <h6 class="font-weight-medium">  RM cart.getTotal_price()</h6>
+                                <h6 class="font-weight-medium">  RM 109.90</h6>
                             </div>
                             <div class="d-flex justify-content-between">
-                                <h6 class="font-weight-medium">Shipping Charges</h6>
-                                <h6 class="font-weight-medium">  RM getShipping_amount()</h6>
+                                <h6 class="font-weight-medium">Delivery Charges</h6>
+                                <h6 class="font-weight-medium">  RM 15</h6>
                             </div>
-                            <div class="d-flex justify-content-between">
-                                <h6 class="font-weight-medium">SST Tax (6%)</h6>
-                                <h6 class="font-weight-medium">  RM getSST_amount()</h6>
-                            </div>
-
-                            <div class="d-flex justify-content-between">
-                                <h6 class="font-weight-medium">Discount (10%)</h6>
-                                <h6 class="font-weight-medium">- RM getDiscount_amount()</h6>
-                            </div>
-
+                                                        
                         </div>
                         <div class="card-footer border-secondary bg-transparent">
                             <div class="d-flex justify-content-between mt-2">
                                 <h5 class="font-weight-bold">Total</h5>
-                                <h5 class="font-weight-bold">RM getTotal_payment())</h5>
+                                <h5 class="font-weight-bold">RM 124.90</h5>
                             </div>
                         </div>
                     </div>
