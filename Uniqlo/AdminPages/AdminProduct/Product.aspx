@@ -162,20 +162,20 @@
          <!--Product 1-->
          <div class="row">
             <div class="col productid">
-               1001
+               1
             </div>
             
             <div class="col name">
-               Product Name   Product
+              AIRism Cotton Jersey Short Sleeve Skipper Polo Shirt
             </div>
             <div class="col wear">
-              Tops
+              Top
             </div>
             <div class="col price">
-               100.00
+               99.90
             </div>
             <div class="col gender">
-               Gender
+               Men
             </div>
             
             <div class="col eclipse-container" onclick="toggleDropdown('dropdownList3', 'dropdownDisplay3')">
@@ -192,21 +192,22 @@
          <!--Product 2-->
          <div class="row">
             <div class="col productid">
-               1002
+               2
             </div>
            
             <div class="col name">
-               Product Name
+               Miracle Air Pants (Cotton Like)
             </div>
+             <div class="col wear">
+   Bottom
+</div>
               <div class="col price">
     99.00
  </div>
-            <div class="col wear">
-               Low In Stock
-            </div>
+            
            
             <div class="col gender">
-               Gender
+               Men
             </div>
           
             <div class="col eclipse-container">
@@ -216,21 +217,22 @@
          <!--Product 3-->
          <div class="row">
             <div class="col productid">
-               1003
+               3
             </div>
           
             <div class="col name">
-               Product Name
+               Hello Kitty 50th Anniversary AIRism Easy Short
             </div>
-             <div class="col price">
-   130.00
+             <div class="col wear">
+   Bottom
 </div>
-            <div class="col wear">
-               In Stock
-            </div>
+             <div class="col price">
+   59.90
+</div>
+            
             
             <div class="col gender">
-               Gender
+               Women
             </div>
           
             <div class="col eclipse-container">
@@ -240,21 +242,22 @@
          <!--Product 4-->
          <div class="row">
             <div class="col productid">
-               1004
+               4
             </div>
            
             <div class="col name">
-               Product Name
+               AIRism UV Protection High Neck Long Sleeve T-Shirt
             </div>
-             <div class="col price">
-   12.00
+             <div class="col wear">
+   Top
 </div>
-            <div class="col wear">
-               In Stock
-            </div>
+             <div class="col price">
+   59.90
+</div>
+            
             
             <div class="col gender">
-               Gender
+               Women
             </div>
            
             <div class="col eclipse-container">
@@ -264,21 +267,22 @@
          <!--Product 5-->
          <div class="row">
             <div class="col productid">
-               1005
+               5
             </div>
            
             <div class="col name">
-               Product Name
+               Waffle Crew Neck Long Sleeve T-Shirt
             </div>
+             <div class="col wear">
+   Top
+</div>
              <div class="col price">
    112.00
 </div>
-            <div class="col wear">
-               Low In Stock
-            </div>
+            
             
             <div class="col gender">
-               Gender
+               Men
             </div>
             
             <div class="col eclipse-container">

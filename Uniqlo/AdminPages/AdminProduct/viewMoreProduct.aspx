@@ -45,26 +45,30 @@ color: black;
             <div class="product-content">
                 <div class="form-group">
     <label for="productName">Product ID</label>
-    <input type="text" name="productName" value="1001" disabled>
+    <input type="text" name="productName" value="1" disabled>
 </div>
                 <div class="form-group">
                     <label for="productName">Product Name</label>
-                    <input type="text" name="productName" value="AIRism Cotton Short Sleeve T-Shirt" disabled>
+                    <input type="text" name="productName" value="AIRism Cotton Jersey Short Sleeve Skipper Polo Shirt" disabled>
                 </div>
 
                 <div class="form-group">
                     <label for="productName">Description</label>
-                    <textarea class="form-field" rows="4" cols="50" disabled>Smooth AIRism fabric with the look of cotton. Refined fabric and design.</textarea>
+                    <textarea class="form-field" rows="4" cols="50" disabled>'Smooth ''AIRism'' fabric with the look of cotton. Combines the light feel of a T-shirt and the elegance of a polo'</textarea>
                 </div>
-
+            
                 <div class="form-group">
                     <label for="productName">Price</label>
-                    <input class="form-field" type="text" value="RM 30.00" disabled>
+                    <input class="form-field" type="text" value="RM 99.90" disabled>
                 </div>
-
+                                <div class="form-group">
+         
+    <label for="productName">Category</label>
+<input class="form-field" type="text" value="Top" disabled>
+</div>
                 <div class="form-group">
          
-                    <label for="productName">Category</label>
+                    <label for="productName">Gender</label>
                 <input class="form-field" type="text" value="Men" disabled>
                 </div>
 

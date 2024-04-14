@@ -10,11 +10,7 @@
                 <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="User Avatar" class="avatar">
                 <h4 class="username">Tan Choo Jun</h4>
             </div>
-            <div class="profile-info">
-                <div class="info-item">
-                    <span class="info-label">Full Name:</span>
-                    <span class="info-value">Kenneth Valdez</span>
-                </div>
+
                 <div class="info-item">
                     <span class="info-label">Email:</span>
                     <span class="info-value">cjtan@gmail.com</span>
@@ -24,7 +20,7 @@
                     <span class="info-value">Male</span>
                 </div>
                 <div class="info-item">
-                    <span class="info-label">Phone No:</span>
+                    <span class="info-label">Contact No:</span>
                     <span class="info-value">014 816-9029</span>
                 </div>
                 <div class="info-item">

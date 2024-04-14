@@ -4,7 +4,6 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title> Responsive Login and Signup Form </title>
         <!-- CSS -->
      <link href="../css/Login.css" rel="stylesheet" />
                 
@@ -43,11 +42,12 @@
                         <span>Login with Facebook</span>
                     </a>
                 </div>
-                <div class="media-options">
-                    <a href="#" class="field google">
-                        <img src="#" alt="" class="google-img">
-                        <span>Login with Google</span>
-                    </a>
+               <div class="media-options">
+        <a href="google.com" class="field google">
+            <i class="fa-brands fa-google"></i>  
+            <span>Login with Google</span>
+        </a>
+    </div>
                 </div>
             </div>
 
@@ -116,11 +116,12 @@
     </div>
     <div class="media-options">
         <a href="google.com" class="field google">
-            <img src="#" alt="" class="google-img">
+             <i class="fa-brands fa-google"></i>  
             <span>Login with Google</span>
         </a>
     </div>
-</div>
+    </div>
+
 
         </section>
         <!-- JavaScript -->
