@@ -30,6 +30,15 @@
                     <span class="material-symbols-outlined">search</span>
                     <input class="search-input" type="search" placeholder="Search" />
                 </div>
+                 <div class="dropdown-wrapper">
+     <div class="dropdown-container" onclick="toggleDropdown('dropdownList', 'dropdownDisplay')">
+         <div class="dropdown-display" id="dropdownDisplay">Status</div>
+         <div class="dropdown-list" id="dropdownList">
+             <div onclick="selectOption('Paid', 'dropdownDisplay')">Paid</div>
+             <div onclick="selectOption('Unpaid', 'dropdownDisplay')">Unpaid</div>
+         </div>
+     </div>
+ </div>
                 <div class="btnExcel-Add">
                     <button class="excel-export" style="color: #6F6F6F; font-weight:bold;">Export</button>
                 </div>
@@ -54,7 +63,7 @@
             <div class="row">
                 <div class="col productid">1001</div>
                 <div class="col name">Janice Lee</div>
-                <div class="col price">111</div>
+                <div class="col price">2</div>
                 <div class="col gender">RM 109.90</div>
                 <div class="col category">14/3/2024</div>
                 <div class="col wear">Paid</div>
@@ -70,7 +79,7 @@
             <div class="row">
                 <div class="col productid">1002</div>
                 <div class="col name">Jeffer Ooi</div>
-                <div class="col price">112</div>
+                <div class="col price">1</div>
                 <div class="col gender">RM 100.00</div>
                 <div class="col category">14/3/2024</div>
                 <div class="col wear">Paid</div>
@@ -81,7 +90,7 @@
             <div class="row">
                 <div class="col productid">1003</div>
                 <div class="col name">Oh Beng Yee</div>
-                <div class="col price">113</div>
+                <div class="col price">2</div>
                 <div class="col gender">RM 12.00</div>
                 <div class="col category">14/3/2024</div>
                 <div class="col wear">Paid</div>
@@ -92,7 +101,7 @@
             <div class="row">
                 <div class="col productid">1004</div>
                 <div class="col name">Tan Chee Han</div>
-                <div class="col price">114</div>
+                <div class="col price">2</div>
                 <div class="col gender">RM 45.00</div>
                 <div class="col category">12/3/2024</div>
                 <div class="col wear">Unpaid</div>
@@ -103,7 +112,7 @@
             <div class="row">
                 <div class="col productid">1005</div>
                 <div class="col name">Yip Yong</div>
-                <div class="col price">115</div>
+                <div class="col price">4</div>
                 <div class="col gender">RM 50.00</div>
                 <div class="col category">12/3/2024</div>
                 <div class="col wear">Unpaid</div>

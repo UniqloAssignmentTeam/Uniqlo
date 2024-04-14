@@ -69,7 +69,7 @@
             </div>
             
             <div class="col name">
-               Delivery Note 
+               Delivery Address 
             </div>
           
             <div class="col price">
@@ -78,9 +78,7 @@
             <div class="col gender">
                Order ID
             </div>
-            <div class="col category">
-               Address
-            </div>
+           
             <div class="col eclipse-container">
                <asp:Button ID="Button1" runat="server" Text="Button" Visible="False" />
             </div>
@@ -92,7 +90,7 @@
  </div>
  
  <div class="col name">
-    Leave at front door if no one is home. 
+   123 Main St, Petaling Jaya, 47301, Selangor, Malaysia 
  </div>
           
  <div class="col price">
@@ -101,9 +99,7 @@
  <div class="col gender">
     2
  </div>
- <div class="col category">
-    456 Elm St, Kuala Lumpur
- </div>
+ 
             <div class="col eclipse-container" onclick="toggleDropdown('dropdownList3', 'dropdownDisplay3')">
                <div class="eclipse-display" id="dropdownDisplay3" style="border:none;"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></div>
                <div class="eclipse-list" id="dropdownList3">
@@ -121,7 +117,7 @@
  </div>
  
  <div class="col name">
-    Call upon arrival for delivery. 
+    123 Main St, Kuala Lumpur, 57000,Selangor Malaysia
  </div>
           
  <div class="col price">
@@ -130,9 +126,7 @@
  <div class="col gender">
     1
  </div>
- <div class="col category">
-    123 Main St, Selangor
- </div>
+
             <div class="col eclipse-container">
                <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
             </div>
@@ -144,8 +138,8 @@
  </div>
  
  <div class="col name">
-    Deliver to back entrance. 
- </div>
+   789 Oak St, Georgetown, 10200, Penang, Malaysia
+</div>
           
  <div class="col price">
     Delivered
@@ -153,9 +147,7 @@
  <div class="col gender">
     6
  </div>
- <div class="col category">
-    789 Oak St, Penang
- </div>
+ 
             <div class="col eclipse-container">
                <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
             </div>
@@ -166,9 +158,9 @@
    4
  </div>
  
- <div class="col name">
-    Handle with care. 
- </div>
+<div class="col name">
+   321 Pine St, Johor, 80000, Johor Bahru, Malaysia
+</div>
           
  <div class="col price">
     Pending
@@ -176,9 +168,7 @@
  <div class="col gender">
    8
  </div>
- <div class="col category">
-    321 Pine St, Johor
- </div>
+ 
             <div class="col eclipse-container">
                <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
             </div>
@@ -190,8 +180,8 @@
  </div>
  
  <div class="col name">
-    Fragile, please do not drop. 
- </div>
+   654 Maple St, Ipoh, 30000,Perak, Malaysia
+</div>
           
  <div class="col price">
     In Transit
@@ -199,9 +189,7 @@
  <div class="col gender">
     5
  </div>
- <div class="col category">
-    654 Maple St, Perak
- </div>
+ 
             <div class="col eclipse-container">
                <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
             </div>
