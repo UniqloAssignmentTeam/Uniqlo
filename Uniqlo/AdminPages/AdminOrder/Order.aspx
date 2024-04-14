@@ -22,7 +22,7 @@
     </style>
 
     <div class="productBody">
-        <h2>UNIQLO ORDER HISTORY</h2>
+        <h2>UNIQLO ORDER MANAGEMENT</h2>
 
         <div class="crudProduct">
             <div class="wrap-items-search-buttons">
@@ -71,6 +71,7 @@
                     <div class="eclipse-display" id="dropdownDisplay3" style="border:none;"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></div>
                     <div class="eclipse-list" id="dropdownList3">
                         <a href="OrderItem.aspx" style="text-decoration: none; color: #6F6F6F;"><div>View More</div></a>
+                        <div>Delete</div>
                     </div>
                 </div>
             </div>
