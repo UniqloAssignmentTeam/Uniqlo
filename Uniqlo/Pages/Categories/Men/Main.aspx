@@ -280,7 +280,7 @@
                      </a>
                   </div>
 
-                  <!--
+
                   <div class = "social-links">
                     <p>Share At: </p>
                     <a href = "#">
@@ -299,7 +299,7 @@
                       <i class = "fab fa-pinterest"></i>
                     </a>
                   </div>
-                -->
+    
                 </div>
               </div>
             </div>
