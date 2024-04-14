@@ -65,15 +65,14 @@
     <!-- Header -->
     <div class="row">
         <div class="col productid">Order ID</div>
-       
-      
         <div class="col gender">Total Amount</div>
         <div class="col category">Total Item</div>
         <div class="col wear">Date</div>
-        <div class="col status">Status</div>
+        <div class="col price">Status</div>
+
         <div class="col eclipse-container">
         
-        <div class="col status"></div>
+        <div class=""></div>
             <asp:Button ID="Button1" runat="server" Text="Button" Visible="False" />
         </div>
     </div>
@@ -84,7 +83,7 @@
         <div class="col gender">RM 109.90</div>
         <div class="col category">1</div>
         <div class="col wear">14/3/2024</div>
-        <div class="col status">Delivered</div>
+        <div class="col price">Delivered</div>
         <div class="col eclipse-container" onclick="toggleDropdown('dropdownList3', 'dropdownDisplay3')">
             <div class="eclipse-display" id="dropdownDisplay3" style="border:none;"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></div>
             <div class="eclipse-list" id="dropdownList3">
@@ -99,7 +98,7 @@
         <div class="col gender">RM 100.00</div>
         <div class="col category">4</div>
         <div class="col wear">14/3/2024</div>
-        <div class="col status">Out for delivery</div>
+        <div class="col price">Out for delivery</div>
         <div class="col eclipse-container"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></div>
     </div>
 
@@ -109,7 +108,7 @@
         <div class="col gender">RM 12.00</div>
         <div class="col category">8</div>
         <div class="col wear">14/3/2024</div>
-        <div class="col status">Delivered
+        <div class="col price">Delivered
     </div>
         <div class="col eclipse-container"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></div>
     </div>
@@ -122,7 +121,7 @@
         <div class="col gender">RM 45.00</div>
         <div class="col category">12</div>
         <div class="col wear">12/3/2024</div>
-        <div class="col status">Delivered</div>
+        <div class="col price">Delivered</div>
         <div class="col eclipse-container"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></div>
     </div>
 
@@ -134,7 +133,7 @@
         <div class="col gender">RM 50.00</div>
         <div class="col category">1</div>
         <div class="col wear">12/3/2024</div>
-        <div class="col status">Delivered</div>
+        <div class="col price">Delivered</div>
         <div class="col eclipse-container"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></div>
     </div>
 </div>

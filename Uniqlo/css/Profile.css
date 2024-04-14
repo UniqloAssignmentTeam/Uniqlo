@@ -87,6 +87,7 @@
     /* Order History CSS*/
 
 
+
 .table {
     max-width: 1100px;
     margin: 0 auto;
@@ -123,8 +124,7 @@
     flex-shrink: 0; /* Do not allow columns to shrink */
     height: 50px; /* Adjust height automatically */
     justify-content: center;
-    word-break: break-all;
-    width: 100%;
+    word-break: break-all
 }
 
 .prodImageHeader {
@@ -132,28 +132,10 @@
 }
 
 .productid, .price {
-    flex: 0 0 10%; /* Set a base width */
+    flex: 0 0 15%; /* Set a base width */
 }
 
-.productid{
-    width: 10%;
-}
-.gender {
-    width: 40%;
-}
-.category {
-    width: 10%;
-}
-.wear {
-    width: 15%;
-}
-.status {
-    width: 15%;
-}
 
-.eclipse-container {
-    width: 10%;
-}
 
 /* Name Column */
 .name {
@@ -167,7 +149,7 @@
 /* Price Column */
 
 .gender {
-    flex-basis: 10%;
+    flex-basis: 15%;
 }
 /* Category Column */
 .category {
@@ -178,11 +160,15 @@
 
 
 
+
 .eclipse-container {
     display: flex;
     position: relative;
     flex-basis: 8%;
 }
+
+
+
 
 .eclipse-display {
     cursor: pointer;

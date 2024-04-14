@@ -2,7 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="main" runat="server">
 
 
-<head>
+<header>
     <meta charset="UTF-8">
     <title>Edit Profile</title>
     <link rel="stylesheet" href="path_to_your_styles.css">
@@ -53,7 +53,7 @@
             background-color: #357ae8;
         }
     </style>
-</head>
+</header>
 
 <body>
     <div class="container" style="margin: auto; max-width: 1100px; position: relative;">
