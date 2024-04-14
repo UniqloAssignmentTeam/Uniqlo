@@ -55,7 +55,7 @@
                         </div>
                             <p><b>Price:</b> RM30.00</p>
                             <p><b>Quantity:</b> 1</p>
-                        <p class="item-subtotal"><b>Subtotal: RM 30.00</b></p>
+                        <p class="item-subtotal"><b>Item Price: RM 30.00</b></p>
                     </div>
                 </div>
 
@@ -77,7 +77,7 @@
                         </div>
                         <p><b>Price:</b> RM30.00</p>
                         <p><b>Quantity:</b> 1</p>
-                        <p class="item-subtotal"><b>Subtotal: RM 30.00</b></p>
+                        <p class="item-subtotal"><b>Item Price: RM 30.00</b></p>
                     </div>
                 </div>
             </div>
