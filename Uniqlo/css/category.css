@@ -453,6 +453,41 @@
 }
 
 
+.wishlist-heart-group input[type="checkbox"]:checked + label svg {
+    animation: wishlist-heart-wiggle 400ms 50ms forwards ease-in-out;
+}
+
+    .wishlist-heart-group input[type="checkbox"]:checked + label svg #heart-path {
+        animation: wishlist-heart-fill 300ms forwards; /* Ensure this animation exists and is correct */
+    }
+
+@keyframes wishlist-heart-fill {
+    0% {
+        fill: transparent;
+        stroke: #737373;
+    }
+
+    100% {
+        fill: rgba(248, 51, 42, 1);
+        stroke: rgba(248, 51, 42, 1);
+    }
+}
+
+@keyframes wishlist-heart-wiggle {
+    0%, 100% {
+        transform: rotate(0);
+    }
+
+    25% {
+        transform: rotate(-10deg);
+    }
+
+    75% {
+        transform: rotate(10deg);
+    }
+}
+
+
 
 /*MODAL BOX*/
 /* The Modal (background) */
