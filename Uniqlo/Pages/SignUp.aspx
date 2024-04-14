@@ -29,6 +29,7 @@
             <!-- Create Password Field -->
             <div class="field input-field">
                 <input type="password" placeholder="Create password" class="password" required>
+
                 
             </div>
 
@@ -54,7 +55,7 @@
 
             <!-- Sign Up Button -->
             <div class="field button-field">
-                <button type="submit" onclick="alert('Registration Successfully')">Sign Up</button>
+                <button type="submit" onclick="alert('Registration Successfully! Please check your email')">Sign Up</button>
             </div>
         </form>
 
@@ -71,13 +72,13 @@
     <div class="media-options">
         <a href="facebook.com" class="field facebook">
             <i class='bx bxl-facebook facebook-icon'></i>
-            <span>Login with Facebook</span>
+            <span>Sign Up with Facebook</span>
         </a>
     </div>
     <div class="media-options">
         <a href="google.com" class="field google">
              <i class="fa-brands fa-google"></i>  
-            <span>Login with Google</span>
+            <span>Sign Up with Google</span>
         </a>
     </div>
     </div>

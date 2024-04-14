@@ -77,7 +77,7 @@
                 <!-- Phone Number -->
                 <div class="form-group">
                     <label for="phone">Phone No.:</label>
-                    <input type="tel" id="phone" name="phone" value="014 816-9029">
+                    <input type="tel" id="phone" name="phone" value="0148169029">
                 </div>
 
                 <!-- Address -->

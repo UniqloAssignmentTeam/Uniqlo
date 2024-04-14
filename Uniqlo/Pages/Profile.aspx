@@ -21,7 +21,7 @@
                 </div>
                 <div class="info-item">
                     <span class="info-label">Contact No:</span>
-                    <span class="info-value">014 816-9029</span>
+                    <span class="info-value">0148169029</span>
                 </div>
                 <div class="info-item">
                     <span class="info-label">Address:</span>
