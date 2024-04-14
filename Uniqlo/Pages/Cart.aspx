@@ -124,7 +124,7 @@
                 </div>
                 <!-- card right -->
                 <div class = "product-content">
-                  <h2 class = "product-title product-name" id="modalProductName"></h2>
+                  <h2 class = "product-title product-name" id="modalProductName">AIRism Cotton Short Sleeve T-Shirt</h2>
                   <div class = "product-rating">
                     <i class = "fas fa-star"></i>
                     <i class = "fas fa-star"></i>
