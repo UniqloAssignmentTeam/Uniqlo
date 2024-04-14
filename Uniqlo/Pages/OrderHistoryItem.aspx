@@ -294,7 +294,7 @@
             <a href="Profile.aspx" class="backLinkClass"><i class="fa fa-arrow-left" aria-hidden="true"></i></a>
         </div>
         
-        <h1>ORDER HISTORY ITEM</h1>
+        <h1>ORDER ID : 1001</h1>
        
          <div class="cart-page-container">
              <div class="cart-items-container" style="width: 70%;">
