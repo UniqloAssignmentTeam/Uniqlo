@@ -77,8 +77,8 @@ header {
 .field button {
     width: 100%;
     padding: 12px;
-    color: #fff;
-    background-color: red; /* Blue button color */
+    color: black;
+    background-color: #f0f0f0; /* Blue button color */
     border: none;
     border-radius: 4px; /* Rounded corners */
     font-weight: 500;
@@ -86,9 +86,7 @@ header {
     transition: background-color 0.3s ease;
 }
 
-    .field button:hover {
-        background-color: darkred; /* Darker blue on hover */
-    }
+
 
 .form-link {
     text-align: center;
