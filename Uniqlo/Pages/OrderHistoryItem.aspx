@@ -316,7 +316,7 @@
                          </div>
                              <p><b>Price:</b> RM30.00</p>
                              <p><b>Quantity:</b> 1</p>
-                         <p class="item-subtotal"><b>Subtotal: RM 30.00</b></p>
+                         <p class="item-subtotal"><b>Item Price: RM 30.00</b></p>
                          <div class="orderReceivedSection" id="reviewModal">
                              <a href="#" class="orderReceivedButton">Review</a>
                          </div>
@@ -341,7 +341,7 @@
                          </div>
                          <p><b>Price:</b> RM30.00</p>
                          <p><b>Quantity:</b> 1</p>
-                         <p class="item-subtotal"><b>Subtotal: RM 30.00</b></p>
+                         <p class="item-subtotal"><b>Item Price: RM 30.00</b></p>
                          <div class="orderReceivedSection" id="secBtn">
                              <a href="#" class="orderReceivedButton" style="padding: 0px 100px 0px 0px;">View</a>
                          </div>
@@ -355,6 +355,7 @@
                  <p><b>Date: </b>14/3/2024 </p>
                  <p><b>Payment method: </b>Cash </p>
                  <p><b>Payment status: </b>Paid</p>
+                 <p><b>Delivery status: </b>Delivered</p>
                  <!-- <p><b>Total Price: </b> <span id="totalItemsLabel" class="total-items"></span> </p> -->
                  <p><b>Total Price: </b>RM109.90 </p>
                  <p><b>Total Items: </b>2</p>

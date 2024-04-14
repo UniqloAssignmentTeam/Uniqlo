@@ -34,7 +34,7 @@
                         </div>
                         <p>Quantity: </p>
                         <input type="number" class="qty" min="0" value="1">
-                        <p class="item-subtotal"><b>Subtotal: RM 30.00</b></p>
+                        <p class="item-subtotal"><b>Item Price: RM 30.00</b></p>
                     </div>
                 </div>
 
@@ -62,7 +62,7 @@
                         </div>
                         <p>Quantity: </p>
                         <input type="number" class="qty" min="0" value="1">
-                        <p class="item-subtotal"><b>Subtotal: RM 79.90</b></p>
+                        <p class="item-subtotal"><b>Item Price: RM 79.90</b></p>
                     </div>
                 </div>
             </div>
