@@ -91,6 +91,7 @@
     <Content Include="AdminPages\AdminProduct\UpdateProduct.aspx" />
     <Content Include="AdminPages\AdminStaff\UpdateStaff.aspx" />
     <Content Include="AdminPages\AdminProduct\viewMoreProduct.aspx" />
+    <Content Include="AdminPages\Logout.aspx" />
     <Content Include="AdminPages\Report.aspx" />
     <Content Include="AdminPages\UpdateDelivery.aspx" />
     <Content Include="App_Data\Uniqlo.mdf" />
@@ -345,6 +346,13 @@
     </Compile>
     <Compile Include="AdminPages\AdminProduct\viewMoreProduct.aspx.designer.cs">
       <DependentUpon>viewMoreProduct.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AdminPages\Logout.aspx.cs">
+      <DependentUpon>Logout.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminPages\Logout.aspx.designer.cs">
+      <DependentUpon>Logout.aspx</DependentUpon>
     </Compile>
     <Compile Include="AdminPages\Report.aspx.cs">
       <DependentUpon>Report.aspx</DependentUpon>
