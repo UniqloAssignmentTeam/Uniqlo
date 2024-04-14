@@ -923,5 +923,6 @@
         <script src="../../../Javascript/colorRadioList.js"></script>
         
         <script src="../../../Javascript/wishList.js"></script>
+        
     </footer>
 </asp:Content>

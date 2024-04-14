@@ -22,17 +22,11 @@
                     <label for="productName">Product ID</label>
                     <input type="text" name="productName" value="">
                 </div>
-
-                              <div class="form-group">
-    <label for="productName">Status</label>
-    <div class="dropdown-container" onclick="toggleDropdown('dropdownList', 'dropdownDisplay')">
-        <div class="dropdown-display" id="dropdownDisplay">Valid</div>
-        <div class="dropdown-list" id="dropdownList">
-            <div onclick="selectOption('Valid', 'dropdownDisplay')">Valid</div>
-            <div onclick="selectOption('Invalid', 'dropdownDisplay')">Invalid</div>
-        </div>
-    </div>
-               </div>
+                 <div class="form-group">
+     <label for="productName">Amount - Discount</label>
+     <input type="text" name="productName" value="">
+ </div>
+                           
               
 
                 <div class="form-group">

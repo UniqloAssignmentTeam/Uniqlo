@@ -149,7 +149,7 @@
                Category
             </div>
             <div class="col price">
-               Price (RM)
+               Price 
             </div>
             <div class="col gender">
                Gender

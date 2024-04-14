@@ -42,7 +42,7 @@
                 <div class="col productid">Order ID</div>
                 <div class="col name">Customer Name</div>
                 <div class="col price">Order Number</div>
-                <div class="col gender">Total Amount</div>
+                <div class="col gender">Sub Amount</div>
                 <div class="col category">Total Item</div>
                 <div class="col wear">Date</div>
                 <div class="col eclipse-container">
