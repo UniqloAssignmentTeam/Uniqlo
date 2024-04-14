@@ -21,9 +21,13 @@
      <label for="productName">Discount ID</label>
      <input type="text" name="productName" value="1" disabled>
  </div>
+                           <div class="form-group">
+    <label for="productName">Product ID</label>
+    <input type="text" name="productName" value="1" disabled>
+</div>
               <div class="form-group">
                   <label for="productName">Product Name</label>
-                  <input type="text" name="productName" value="AIRism Cotton Jersey Short Sleeve Skipper Polo Shirt">
+                  <input type="text" name="productName" value="AIRism Cotton Jersey Short Sleeve Skipper Polo Shirt" disabled>
               </div>
                               <div class="form-group">
     <label for="productName">Amount - Discount</label>
