@@ -768,6 +768,7 @@
     </div>
     <footer>
         <script src="../Javascript/valueBuy.js"></script>
+        <script src="../Javascript/wishlist.js"></script>
         <script src="../Javascript/productItem.js" ></script>
         <script src="../Javascript/modalProduct.js"></script>
         <script src="../../../Javascript/productItem.js"></script>
