@@ -18,32 +18,33 @@
             <div class="product-content">
                 <div class="form-group">
     <label for="productName">Product ID</label>
-    <input type="text" name="productName" value="1001" disabled>
+    <input type="text" name="productName" value="1" disabled>
 </div>
                 <div class="form-group">
                     <label for="productName">Product Name</label>
-                    <input type="text" name="productName" value="AIRism Cotton Short Sleeve T-Shirt">
+                    <input type="text" name="productName" value="AIRism Cotton Jersey Short Sleeve Skipper Polo Shirt">
                 </div>
 
                 <div class="form-group">
                     <label for="productName">Description</label>
-                    <textarea class="form-field" rows="4" cols="50">Smooth AIRism fabric with the look of cotton. Refined fabric and design.</textarea>
+                    <textarea class="form-field" rows="4" cols="50">'Smooth ''AIRism'' fabric with the look of cotton. Combines the light feel of a T-shirt and the elegance of a polo'</textarea>
                 </div>
-
-                <div class="form-group">
-                    <label for="productName">Price</label>
-                    <input class="form-field" type="text" value="RM 30.00">
-                </div>
-
                  <div class="form-group">
-     <label for="productName">Category</label>
-     <div class="dropdown-container" onclick="toggleDropdown('dropdownList', 'dropdownDisplay')">
-         <div class="dropdown-display" id="dropdownDisplay">Tops</div>
-         <div class="dropdown-list" id="dropdownList">
-             <div onclick="selectOption('Tops', 'dropdownDisplay')">Tops</div>
-             <div onclick="selectOption('Bottom', 'dropdownDisplay')">Bottoms</div>
-         </div>
-     </div>
+     <label for="productName">Price</label>
+     <input class="form-field" type="text" value="RM 99.90">
+ </div>
+                            <div class="form-group">
+<label for="productName">Category</label>
+<div class="dropdown-container" onclick="toggleDropdown('dropdownList', 'dropdownDisplay')">
+    <div class="dropdown-display" id="dropdownDisplay">Top</div>
+    <div class="dropdown-list" id="dropdownList">
+        <div onclick="selectOption('Top', 'dropdownDisplay')">Top</div>
+        <div onclick="selectOption('Bottom', 'dropdownDisplay')">Bottom</div>
+    </div>
+</div>
+               
+
+                 
                 </div>
                  <div class="form-group">
      <label for="productName">Gender</label>

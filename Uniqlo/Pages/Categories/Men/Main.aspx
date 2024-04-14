@@ -230,12 +230,12 @@
                     <h2>about this item: </h2>
                     <p id="modalProductDescription" class="product-description"></p>
                     <ul>
-                      <li>Available: <span>In Stock</span></li>
-                      <li>Category: <span>Tops</span></li>
+                      <li>Stock: <span>100</span></li>
+                      <li>Category: <span>Top</span></li>
                       <li>Shipping Area: <span>Malaysia</span></li>
                       <li>Shipping Fee: <span>Free of charge for order with total value above RM150. Additional RM20 shipping fees for order below RM150.</span></li>
                     </ul>
-                  </div>
+                  </div>    
 
                     <div class="productColorSection">
                         <div class="purchase-color">
@@ -280,7 +280,7 @@
                      </a>
                   </div>
 
-                  <!--
+
                   <div class = "social-links">
                     <p>Share At: </p>
                     <a href = "#">
@@ -299,7 +299,7 @@
                       <i class = "fab fa-pinterest"></i>
                     </a>
                   </div>
-                -->
+    
                 </div>
               </div>
             </div>

@@ -113,7 +113,7 @@
     </style>
 
     <div class="productBody">
-        <h2>UNIQLO DISCOUNT</h2>
+        <h2>UNIQLO DISCOUNT MANAGEMENT</h2>
         <div class="crudProduct">
             <div class="wrap-items-search-buttons">
                 <div class="search">
@@ -152,12 +152,12 @@
             </div>
             <!--Product 1-->
             <div class="row">
-                <div class="col productid">1001</div>
-                <div class="col name">Product Name</div>
-                <div class="col wear">100.00</div>
-                <div class="col price">Valid</div>
-                <div class="col gender">11/2/2024</div>
-                <div class="col category">15/2/2024</div>
+                <div class="col productid">1</div>
+                <div class="col name">AIRism Cotton Jersey Short Sleeve Skipper Polo Shirt</div>
+                <div class="col wear">10.00</div>
+                <div class="col price">Active</div>
+                <div class="col gender">2024-04-01</div>
+                <div class="col category">2024-04-30</div>
                 <div class="col eclipse-container" onclick="toggleDropdown('dropdownList3', 'dropdownDisplay3')">
                     <div class="eclipse-display" id="dropdownDisplay3" style="border:none;"><i class="fa fa-ellipsis-v" aria-hidden="true" style="color:#6F6F6F;"></i></div>
                     <div class="eclipse-list" id="dropdownList3">
@@ -170,48 +170,48 @@
             </div>
             <!--Product 2-->
             <div class="row">
-                <div class="col productid">1002</div>
-                <div class="col name">Product Name</div>
-                <div class="col wear">Low In Stock</div>
-                <div class="col price">99.00</div>
-                <div class="col gender">Gender</div>
-                <div class="col category">Category</div>
+                <div class="col productid">2</div>
+                <div class="col name">Miracle Air Pants (Cotton Like)</div>
+                <div class="col wear">15.00</div>
+                <div class="col price">Active</div>
+                <div class="col gender">2024-04-01</div>
+                <div class="col category">2024-04-30</div>
                 <div class="col eclipse-container">
                     <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
                 </div>
             </div>
             <!--Product 3-->
             <div class="row">
-                <div class="col productid">1003</div>
-                <div class="col name">Product Name</div>
-                <div class="col wear">In Stock</div>
-                <div class="col price">130.00</div>
-                <div class="col gender">Gender</div>
-                <div class="col category">Category</div>
+                <div class="col productid">3</div>
+                <div class="col name">Hello Kitty 50th Anniversary AIRism Easy Short</div>
+                <div class="col wear">30.00</div>
+                <div class="col price">Active</div>
+                <div class="col gender">2024-04-01</div>
+                <div class="col category">2024-04-30</div>
                 <div class="col eclipse-container">
                     <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
                 </div>
             </div>
             <!--Product 4-->
             <div class="row">
-                <div class="col productid">1004</div>
-                <div class="col name">Product Name</div>
-                <div class="col  wear">In Stock</div>
-                <div class="col price">12.00</div>
-                <div class="col gender">Gender</div>
-                <div class="col category">jefferozf@gmail.com</div>
+                <div class="col productid">4</div>
+                <div class="col name">AIRism UV Protection High Neck Long Sleeve T-Shirt</div>
+                <div class="col  wear">15.00</div>
+                <div class="col price">Inactive</div>
+                <div class="col gender">2024-05-01</div>
+                <div class="col category">2024-05-30</div>
                 <div class="col eclipse-container">
                     <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
                 </div>
             </div>
             <!--Product 5-->
             <div class="row">
-                <div class="col productid">1005</div>
-                <div class="col name">Product Name</div>
-                <div class="col wear">Low In Stock</div>
-                <div class="col price">112.00</div>
-                <div class="col gender">Gender</div>
-                <div class="col category">asdasd</div>
+                <div class="col productid">5</div>
+                <div class="col name">Waffle Crew Neck Long Sleeve T-Shirt</div>
+                <div class="col wear">10.00</div>
+                <div class="col price">Active</div>
+                <div class="col gender">2024-04-01</div>
+                <div class="col category">2024-04-30</div>
                 <div class="col eclipse-container">
                     <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
                 </div>

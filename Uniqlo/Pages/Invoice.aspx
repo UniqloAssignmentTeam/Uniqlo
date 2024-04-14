@@ -95,13 +95,13 @@
                             <div class="card-body">
                                 <div class="invoice-details" >
                                     <div>
-                                        <p><strong>Payment ID:</strong> Payment_id()</p>
-                                        <p><strong>Date & Time:</strong> getDateTime()</p>
+                                        <p><strong>Payment ID:</strong> 1</p>
+                                        <p><strong>Date & Time:</strong> 2024-04-14 10:30:00</p>
                                         <br />
-                                        <p><strong>Customer Name:</strong>getName()</p>
-                                        <p><strong>Address:</strong>getAddress()</p>
-                                        <p><strong>Email:</strong> getEmail()</p>
-                                        <p><strong>Mobile No:</strong>getContact_no()</p>
+                                        <p><strong>Customer Name:</strong>Tan Choo Jun</p>
+                                        <p><strong>Address:</strong>1, Jalan Lembah Permai, 11900 Tanjung Bungah, Penang, Malaysia</p>
+                                        <p><strong>Email:</strong>cjtan@gmail.com</p>
+                                        <p><strong>Mobile No:</strong>0148169029</p>
                                     </div>
                                 </div>
 
@@ -115,31 +115,32 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <!--% for (int i = 0; i < cartItems.size(); i++) {%-->
+                                        
                                         <tr>
-                                            <td>getName(), getSize(), getColor())%></td>
-                                            <td>getQuantity()</td>
-                                            <td>RM getPrice()</td>
-                                            <td>RM getItem_price()</td>
+                                            <td>AIRism Cotton Short Sleeve T-Shirt, White, M</td>
+                                            <td>1</td>
+                                            <td>RM 30.00</td>
+                                            <td>RM 30.00</td>
                                         </tr>
-                                        <!--%}%-->
+                                        <tr>
+    <td>Sweat Cargo Pants, Pink, M</td>
+    <td>1</td>
+    <td>RM 79.90</td>
+    <td>RM 79.90</td>
+</tr>
                                     </tbody>
                                 </table>
 
                                 <div class="invoice-container">
                                     <div class="invoice-details pr-5 pt-3" style="display: block;">
-                                        <p><strong>Total Price:</strong> RM getTotal_price())</p>
-                                        <p><strong>Shipping Charges:</strong> RM getShipping_amount()</p>
-                                        <p><strong>SST Tax (6%):</strong>RM getSST_amount())</p>
-      
-                                        <p><strong>Discount (10%):</strong> - RM getDiscount_amount</p>
-    
-                                        <p><strong>Total:</strong>RM getTotal_payment())</p>
+                                        <p><strong>Total Price:</strong> RM 109.90</p>
+                                        <p><strong>Delivery Charges:</strong> RM 15</p>
+                                        <p><strong>Total:</strong>RM 124.90</p>
                                     </div>
                                 </div>
 
                                 <div class="invoice-footer"style="text-align: center;">
-                                    <p>The invoice has been send to user@gmail.com</p>
+                                    <p>PDF copy of invoice has been send to cjtan@gmail.com</p>
                                     <p>Thank you for your purchase. To check on the status of your order, please visit <a href="profile.jsp">Here</a>.</p>
                                 </div>
                             </div>

@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin.Master" AutoEventWireup="true" CodeBehind="Delivery.aspx.cs" Inherits="Uniqlo.AdminPages.Delivery" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="main" runat="server">
-    <style>
+   <style>
         .dropdown-wrapper{
             margin-right:310px
         }
@@ -13,7 +13,7 @@
     
 }
        .status {
-    flex-basis: 10%;
+    flex-basis: 15%;
 }
 
 
@@ -25,9 +25,9 @@
 
 
 .category {
-    min-width: 0;
-    flex-basis: 10%;
-    word-wrap: break-word;
+    
+    flex-basis: 20%;
+   
 }
 
 
@@ -37,7 +37,7 @@
    <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
    <div class="productBody">
-      <h2>UNIQLO DELIVERY</h2>
+      <h2>UNIQLO DELIVERY MANAGEMENT</h2>
       <div class="crudProduct">
          <div class="wrap-items-search-buttons">
             <div class="search">
@@ -48,9 +48,9 @@
                <div class="dropdown-container" onclick="toggleDropdown('dropdownList', 'dropdownDisplay')">
                   <div class="dropdown-display" id="dropdownDisplay">Status</div>
                   <div class="dropdown-list" id="dropdownList">
-                     <div onclick="selectOption('In Stock', 'dropdownDisplay')">In Stock</div>
-                     <div onclick="selectOption('Low In Stock', 'dropdownDisplay')">Low In Stock</div>
-                     <div onclick="selectOption('No Stock', 'dropdownDisplay')">No Stock</div>
+                     <div onclick="selectOption('Pending', 'dropdownDisplay')">Pending</div>
+                     <div onclick="selectOption('In Transit', 'dropdownDisplay')">In Transit</div>
+                     <div onclick="selectOption('Delivered', 'dropdownDisplay')">Delivered</div>
                   </div>
                </div>
             </div>
@@ -69,7 +69,7 @@
             </div>
             
             <div class="col name">
-               Delivery Note 
+               Delivery Address 
             </div>
           
             <div class="col price">
@@ -78,9 +78,7 @@
             <div class="col gender">
                Order ID
             </div>
-            <div class="col category">
-               Payment ID
-            </div>
+           
             <div class="col eclipse-container">
                <asp:Button ID="Button1" runat="server" Text="Button" Visible="False" />
             </div>
@@ -88,50 +86,46 @@
          <!--Product 1-->
          <div class="row">
             <div class="col productid">
-    1001
+    1
  </div>
  
  <div class="col name">
-    Delivery Note 
+   123 Main St, Petaling Jaya, 47301, Selangor, Malaysia 
  </div>
           
  <div class="col price">
-    Status
+    Pending
  </div>
  <div class="col gender">
-    1001
+    2
  </div>
- <div class="col category">
-    1001
- </div>
+ 
             <div class="col eclipse-container" onclick="toggleDropdown('dropdownList3', 'dropdownDisplay3')">
                <div class="eclipse-display" id="dropdownDisplay3" style="border:none;"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></div>
                <div class="eclipse-list" id="dropdownList3">
-                  <div>Shipping</div>
-                  <div>Shipped</div>
-                  <div>Received</div>
+                  <a href="AdminOrder/OrderItem.aspx" style="text-decoration:none; color:grey"> <div>View Order</div></a>
+                  <a href="UpdateDelivery.aspx" style="text-decoration:none; color:grey">  <div>Update</div> </a>
+                  <div>Delete</div>
                </div>
             </div>
          </div>
          <!--Product 2-->
          <div class="row">
             <div class="col productid">
-    1002
+    2
  </div>
  
  <div class="col name">
-    Delivery Note 
+    123 Main St, Kuala Lumpur, 57000,Selangor Malaysia
  </div>
           
  <div class="col price">
-    Status
+    In Transit
  </div>
  <div class="col gender">
-    1002
+    1
  </div>
- <div class="col category">
-    1002
- </div>
+
             <div class="col eclipse-container">
                <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
             </div>
@@ -139,22 +133,20 @@
          <!--Product 3-->
          <div class="row">
            <div class="col productid">
-    1003
+    3
  </div>
  
  <div class="col name">
-    Delivery Note 
- </div>
+   789 Oak St, Georgetown, 10200, Penang, Malaysia
+</div>
           
  <div class="col price">
-    Status
+    Delivered
  </div>
  <div class="col gender">
-    1003
+    6
  </div>
- <div class="col category">
-    1003
- </div>
+ 
             <div class="col eclipse-container">
                <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
             </div>
@@ -162,22 +154,20 @@
          <!--Product 4-->
          <div class="row">
            <div class="col productid">
-    1004
+   4
  </div>
  
- <div class="col name">
-    Delivery Note 
- </div>
+<div class="col name">
+   321 Pine St, Johor, 80000, Johor Bahru, Malaysia
+</div>
           
  <div class="col price">
-    Status
+    Pending
  </div>
  <div class="col gender">
-    1004
+   8
  </div>
- <div class="col category">
-    1004
- </div>
+ 
             <div class="col eclipse-container">
                <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
             </div>
@@ -185,22 +175,20 @@
          <!--Product 5-->
          <div class="row">
              <div class="col productid">
-    1005
+    5
  </div>
  
  <div class="col name">
-    Delivery Note 
- </div>
+   654 Maple St, Ipoh, 30000,Perak, Malaysia
+</div>
           
  <div class="col price">
-    Status
+    In Transit
  </div>
  <div class="col gender">
-    1005
+    5
  </div>
- <div class="col category">
-    1005
- </div>
+ 
             <div class="col eclipse-container">
                <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
             </div>
@@ -224,4 +212,5 @@
       <script src="../Javascript/productBtnEclipse.js"></script>
       <script src="../Javascript/productAdminDDL.js"></script>
    </footer>
+
 </asp:Content>

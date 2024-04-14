@@ -19,15 +19,15 @@
 
               <div class="form-group">
      <label for="productName">Discount ID</label>
-     <input type="text" name="productName" value="1001" disabled>
+     <input type="text" name="productName" value="1" disabled>
  </div>
               <div class="form-group">
-                  <label for="productName">Product ID</label>
-                  <input type="text" name="productName" value="1001">
+                  <label for="productName">Product Name</label>
+                  <input type="text" name="productName" value="AIRism Cotton Jersey Short Sleeve Skipper Polo Shirt">
               </div>
                               <div class="form-group">
     <label for="productName">Amount - Discount</label>
-    <input type="text" name="productName" value="100.00">
+    <input type="text" name="productName" value="10.00">
 </div>
 
                             <div class="form-group">
@@ -44,11 +44,11 @@
 
               <div class="form-group">
                   <label for="productName">Start Date</label>
-                  <input class="form-field" type="date" value="2024-02-11">
+                  <input class="form-field" type="date" value="2024-04-01">
               </div>
                 <div class="form-group">
     <label for="productName">End Date</label>
-    <input class="form-field" type="date" value="2024-02-14">
+    <input class="form-field" type="date" value="2024-04-30">
 </div>
 
               

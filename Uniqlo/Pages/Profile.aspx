@@ -44,12 +44,22 @@
                     <span class="info-value">Malaysia</span>
                 </div>
                 <br />
-                <div class="edit-profile">
+                <div class="edit-profile"  id="orderHistoryBigContainer">
                     <asp:Button ID="btnEditProfile" runat="server" Text="Edit Profile" CssClass="edit-button" OnClick="btnEditProfile_Click" />
                     <asp:Button ID="btnChgPass" runat="server" Text="Change Password" CssClass="edit-button" OnClick="btnChgPass_Click" />
                 </div>
             </div>
         </div>
+
+    <div class="dropdown-wrapper" style="justify-content: flex-start;margin: auto; max-width: 1100px; position: relative; margin-top: 50px;">
+             
+     <div class="dropdown-container" onclick="toggleDropdown('dropdownList', 'dropdownDisplay')">
+         <div class="dropdown-display" id="dropdownDisplay">Sort By Date</div>
+         <div class="dropdown-list" id="dropdownList">
+             <div onclick="selectOption('Ascending', 'dropdownDisplay')">Ascending</div>
+             <div onclick="selectOption('Descending', 'dropdownDisplay')">Descending</div>
+         </div>
+     </div>
     </div>
 
     <div class="container" style="margin: auto; max-width: 1100px; position: relative;">
@@ -61,8 +71,8 @@
     <!-- Header -->
     <div class="row">
         <div class="col productid">Order ID</div>
-        <div class="col gender">Total Amount</div>
         <div class="col category">Total Item</div>
+        <div class="col gender">Total Amount</div>
         <div class="col wear">Date</div>
         <div class="col price">Status</div>
 
@@ -76,8 +86,8 @@
     <!-- Product 1 -->
     <div class="row">
         <div class="col productid">1001</div>
-        <div class="col gender">RM 109.90</div>
         <div class="col category">1</div>
+        <div class="col gender">RM 109.90</div>
         <div class="col wear">14/3/2024</div>
         <div class="col price">Delivered</div>
         <div class="col eclipse-container" onclick="toggleDropdown('dropdownList3', 'dropdownDisplay3')">
@@ -91,8 +101,8 @@
     <!-- Product 2 -->
     <div class="row">
         <div class="col productid">1002</div>
-        <div class="col gender">RM 100.00</div>
         <div class="col category">4</div>
+        <div class="col gender">RM 100.00</div>
         <div class="col wear">14/3/2024</div>
         <div class="col price">Out for delivery</div>
         <div class="col eclipse-container"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></div>
@@ -101,8 +111,8 @@
     <!-- Product 3 -->
     <div class="row">
         <div class="col productid">1003</div>
-        <div class="col gender">RM 12.00</div>
         <div class="col category">8</div>
+        <div class="col gender">RM 12.00</div>
         <div class="col wear">14/3/2024</div>
         <div class="col price">Delivered
     </div>
@@ -112,10 +122,8 @@
     <!-- Product 4 -->
     <div class="row">
         <div class="col productid">1004</div>
-        
-     
-        <div class="col gender">RM 45.00</div>
         <div class="col category">12</div>
+        <div class="col gender">RM 45.00</div>
         <div class="col wear">12/3/2024</div>
         <div class="col price">Delivered</div>
         <div class="col eclipse-container"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></div>
@@ -124,10 +132,8 @@
     <!-- Product 5 -->
     <div class="row">
         <div class="col productid">1005</div>
-        
-      
-        <div class="col gender">RM 50.00</div>
         <div class="col category">1</div>
+        <div class="col gender">RM 50.00</div>
         <div class="col wear">12/3/2024</div>
         <div class="col price">Delivered</div>
         <div class="col eclipse-container"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></div>
@@ -151,6 +157,7 @@
     <footer> 
         
         <script src="../Javascript/productBtnEclipse.js"></script>
+        <script src="../Javascript/productAdminDDL.js"></script>
 
     </footer>
    
