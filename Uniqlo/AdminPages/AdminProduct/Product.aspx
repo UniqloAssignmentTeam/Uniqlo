@@ -117,7 +117,7 @@
          <div class="dropdown-display" id="dropdownDisplay">Category</div>
          <div class="dropdown-list" id="dropdownList">
              <div onclick="selectOption('Tops', 'dropdownDisplay')">Tops</div>
-             <div onclick="selectOption('Bottom', 'dropdownDisplay')">Bottom</div>
+             <div onclick="selectOption('Bottom', 'dropdownDisplay')">Bottoms</div>
          </div>
      </div>
                <div class="dropdown-container" onclick="toggleDropdown('dropdownList2', 'dropdownDisplay2')">
