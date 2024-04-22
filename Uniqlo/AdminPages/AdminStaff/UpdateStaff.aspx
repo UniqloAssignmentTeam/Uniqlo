@@ -17,18 +17,27 @@
             
 
             <div class="product-content">
+
                 <div class="form-group">
      <label for="productName">Staff ID</label>
-     <input type="text" name="productName" value="1" disabled/>
+    <asp:TextBox ID="staffID" runat="server" ReadOnly="true"></asp:TextBox>
  </div>
+                
                 <div class="form-group">
-                    <label for="productName">Staff Name</label>
-                    <input type="text" name="productName" value="Yip Yong" />
+                    <label for="staffName">Staff Name</label>
+                     <asp:TextBox ID="staffName" runat="server"></asp:TextBox>
                 </div>
+                
+
+
+
+
                                 <div class="form-group">
-    <label for="productName">E-mail</label>
-    <input class="form-field" type="text" value="YipY@example.com">
+    <label for="email">E-mail</label>
+  <asp:TextBox ID="email" runat="server"></asp:TextBox>
 </div>
+
+
                               <div class="form-group">
     <label for="productName">Gender</label>
     <div class="dropdown-container" onclick="toggleDropdown('dropdownList', 'dropdownDisplay')">
@@ -53,8 +62,8 @@
 </div>
 
                 <div class="form-group">
-                    <label for="productName">Contact Number</label>
-                    <input class="form-field" type="text" value="01655123456">
+                    <label for="contactNumber">Contact Number</label>
+                    <asp:TextBox ID="contactNumber" runat="server"></asp:TextBox>
                 </div>
                   
 
@@ -62,15 +71,11 @@
               
             </div>
 
-          
-            <div class="button-container">
-                <div class="cancel-div">
-                    <a href="Staff.aspx" class="cancel-button">Cancel</a>
-                </div>
-                <div class="continue-div">
-                    <a href="Staff.aspx" class="continue-button">Update</a>
-                </div>
-            </div>
+                            <div class="button-container">
+  
+         <asp:Button ID="cancelBtn" runat="server" Text="CANCEL" CssClass="cancel-button"/>
+         <asp:Button ID="addBtn" runat="server" Text="ADD" CssClass="continue-button"/>
+</div>
         </div>
     </div>
     

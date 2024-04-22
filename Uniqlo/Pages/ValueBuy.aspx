@@ -26,6 +26,8 @@
                     </div>
                 </div>
 
+
+
                 <div class="dropdown-container" onclick="toggleDropdown('dropdownList2', 'dropdownDisplay2')" >
                     <div class="dropdown-display" id="dropdownDisplay2">Category</div>
                     <div class="dropdown-list" id="dropdownList2">
