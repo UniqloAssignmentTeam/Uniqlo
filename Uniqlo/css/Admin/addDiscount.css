@@ -246,8 +246,10 @@ body .form-group {
     transition: all 0.5s ease;
     text-decoration: none;
     color: black;
-    width: 30%;
+    width: 31%;
 }
+
+
 
 
 .continue-button {
@@ -260,7 +262,7 @@ body .form-group {
     transition: all 0.5s ease;
     text-decoration: none;
     color: black;
-    width: 30%;
+    width: 31%;
 }
 
 .addColor-button {

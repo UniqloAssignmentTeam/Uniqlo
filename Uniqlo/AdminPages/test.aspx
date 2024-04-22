@@ -16,7 +16,7 @@
 
     <div class="dropdown-wrapper">
         <div class="dropdown-container">
-    <asp:DropDownList ID="DropDownList1" runat="server" CssClass="dropdown-display">
+    <asp:DropDownList ID="DropDownList1" runat="server" CssClass="dropdown-display li">
         <asp:ListItem>srg</asp:ListItem>
         <asp:ListItem>men</asp:ListItem>
      </asp:DropDownList>

@@ -76,6 +76,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="AdminPages\AdminDiscount\addDiscount.aspx" />
+    <Content Include="AdminPages\AdminDiscount\Discount1.aspx" />
     <Content Include="AdminPages\AdminProduct\AddProduct.aspx" />
     <Content Include="AdminPages\adminProfile.aspx" />
     <Content Include="AdminPages\AdminStaff\AddStaff.aspx" />
@@ -107,6 +108,8 @@
     <Content Include="css\Admin\adminDiscount.css" />
     <Content Include="css\Admin\adminOrder.css" />
     <Content Include="css\Admin\adminStaff.css" />
+    <Content Include="css\Admin\Discount1.css" />
+    <Content Include="css\Admin\neww.css" />
     <Content Include="css\Cart.css" />
     <Content Include="css\category.css" />
     <Content Include="css\ContactUs.css" />
@@ -243,6 +246,13 @@
     </Compile>
     <Compile Include="AdminPages\AdminDiscount\addDiscount.aspx.designer.cs">
       <DependentUpon>addDiscount.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AdminPages\AdminDiscount\Discount1.aspx.cs">
+      <DependentUpon>Discount1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminPages\AdminDiscount\Discount1.aspx.designer.cs">
+      <DependentUpon>Discount1.aspx</DependentUpon>
     </Compile>
     <Compile Include="AdminPages\AdminProduct\AddProduct.aspx.cs">
       <DependentUpon>AddProduct.aspx</DependentUpon>
