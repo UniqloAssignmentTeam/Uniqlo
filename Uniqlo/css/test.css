@@ -1,83 +1,31 @@
-﻿
-.dropdown-wrapper {
-    display: flex; /* Use flexbox to align the children */
-    justify-content: center; /* Center the children horizontally */
-    align-items: center; /* Center the children vertically */
-    gap: 10px; /* This sets the space between the dropdowns */
-}
-
-.dropdown-container {
-    position: relative;
-    width: 150px; /* Fixed width for consistency */
-    display: flex; /* Use flex to align the arrow inside .dropdown-display */
-    align-items: center; /* Center align the contents */
-    justify-content: space-between; /* Spread out the contents */
-}
-
-.dropdown-display {
+﻿.dropdown-display {
     width: 150px;
     height: 40px;
     border: 1px solid #ccc;
     border-radius: 5px;
     background-color: white;
     cursor: pointer;
-    position: relative;
     text-align: center; /* Center the text */
-    display: flex; /* Use flexbox here to help with centering text and arrow */
-    align-items: center; /* Align the text and arrow vertically */
-    justify-content: center; /* Centers the text inside the dropdown */
-    font-weight: bold;
+    line-height: 40px; /* Align the text vertically */
+    appearance: none; /* Remove default system styling */
+    -webkit-appearance: none; /* Also for WebKit browsers */
+    position: relative; /* Necessary for positioning the arrow */
 }
 
-.dropdown-display li{
-    position: absolute;
-    top: 100%;
-    left: 0;
-    z-index: 100;
-    width: 100%;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: white;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    opacity: 0; /* Start fully transparent */
-    visibility: hidden; /* Start hidden */
-    transform: translateY(-20px); /* Start slightly above */
-    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s; /* Animate opacity, transform, and visibility */
-    align-items: center;
-    text-align: center; /* Centers the text inside the dropdown */
-}
-
-
-    .dropdown-list.open {
-        opacity: 1; /* Fade in to fully opaque */
-        visibility: visible; /* Make visible */
-        transform: translateY(0px); /* Move to original position */
+    /* Custom arrow */
+    .dropdown-display::after {
+        content: '▼'; /* Simple arrow symbol */
+        position: absolute;
+        right: 10px;
+        top: 0;
+        height: 100%;
+        font-size: 12px;
+        color: black;
+        pointer-events: none; /* Makes it non-interactive */
     }
-
-
-    .dropdown-list.open {
-        display: block; /* Show dropdown */
+@media only screen and (max-width: 600px) {
+    .dropdown-display {
+        width: 100%;
+        margin-left: 0; /* Adapt margin for smaller screens */
     }
-
-    .dropdown-list div {
-        padding: 10px;
-        cursor: pointer;
-    }
-
-        .dropdown-list div:hover {
-            background-color: #f0f0f0;
-        }
-
-
-.dropdown-display::after {
-    content: '';
-    position: absolute;
-    right: 15px;
-    top: 50%;
-    transform: translateY(-50%) rotate(180deg); /* Arrow points up initially */
-    border: solid transparent;
-    border-width: 0 6px 6px 6px; /* Create a sharper arrow */
-    border-bottom-color: black; /* The tip of the arrow is black */
-    display: inline-block;
-    transition: transform 0.3s ease;
 }

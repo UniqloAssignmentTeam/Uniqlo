@@ -118,8 +118,10 @@
             <div class="wrap-items-search-buttons">
                 <div class="search">
                     <span class="material-symbols-outlined">search</span>
-                    <input class="search-input" type="search" placeholder="Search" />
+                    <asp:TextBox ID="searchBox" runat="server" CssClass="search-input" Text="Search"></asp:TextBox>
                 </div>
+                
+
                 <div class="dropdown-wrapper">
                     <div class="dropdown-container" onclick="toggleDropdown('dropdownList', 'dropdownDisplay')">
                         <div class="dropdown-display" id="dropdownDisplay">Status</div>
@@ -129,14 +131,16 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="btnExcel-Add">
-                    <button class="excel-export" style="color: #6F6F6F; font-size: 1rem; font-weight:bold;">Export</button>
-                    <a href="addDiscount.aspx" style="text-decoration: none; color: #6F6F6F; font-weight:bold;">
-                        <div class="product-add">➕ Add Discount</div>
-                    </a>
+                    <asp:Button ID="excelExport" runat="server" Text="Export" CssClass="excel-export" />
+                    <asp:Button ID="Button3" runat="server" Text="➕ Add Discount" CssClass="product-add" />
                 </div>
+                
             </div>
         </div>
+
+
         <div class="table">
             <!--Header-->
             <div class="row">
@@ -168,55 +172,15 @@
                     </div>
                 </div>
             </div>
-            <!--Product 2-->
-            <div class="row">
-                <div class="col productid">2</div>
-                <div class="col name">Miracle Air Pants (Cotton Like)</div>
-                <div class="col wear">15.00</div>
-                <div class="col price">Active</div>
-                <div class="col gender">2024-04-01</div>
-                <div class="col category">2024-04-30</div>
-                <div class="col eclipse-container">
-                    <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
-                </div>
-            </div>
-            <!--Product 3-->
-            <div class="row">
-                <div class="col productid">3</div>
-                <div class="col name">Hello Kitty 50th Anniversary AIRism Easy Short</div>
-                <div class="col wear">30.00</div>
-                <div class="col price">Active</div>
-                <div class="col gender">2024-04-01</div>
-                <div class="col category">2024-04-30</div>
-                <div class="col eclipse-container">
-                    <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
-                </div>
-            </div>
-            <!--Product 4-->
-            <div class="row">
-                <div class="col productid">4</div>
-                <div class="col name">AIRism UV Protection High Neck Long Sleeve T-Shirt</div>
-                <div class="col  wear">15.00</div>
-                <div class="col price">Inactive</div>
-                <div class="col gender">2024-05-01</div>
-                <div class="col category">2024-05-30</div>
-                <div class="col eclipse-container">
-                    <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
-                </div>
-            </div>
-            <!--Product 5-->
-            <div class="row">
-                <div class="col productid">5</div>
-                <div class="col name">Waffle Crew Neck Long Sleeve T-Shirt</div>
-                <div class="col wear">10.00</div>
-                <div class="col price">Active</div>
-                <div class="col gender">2024-04-01</div>
-                <div class="col category">2024-04-30</div>
-                <div class="col eclipse-container">
-                    <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
-                </div>
-            </div>
         </div>
+
+
+
+
+
+
+
+
 
                     <div class="pagination">
     <a href="#" class="page-link" onclick="changePage('prev')">&laquo;</a>
@@ -239,14 +203,15 @@
                     <p>Are you sure you want to remove this discount?</p>
 
                     <div class="confirmationClearFix">
-                        <button type="button" onclick="document.getElementById('id01').style.display='none'" class="confirmationCancelbtn">Cancel</button>
-                        <button type="button" onclick="document.getElementById('id01').style.display='none'" class="confirmationDeletebtn">Remove</button>
+                        <asp:Button ID="cancelBtn" runat="server" Text="Cancel" CssClass="confirmationCancelbtn"/>
+                         <asp:Button ID="deleteBtn" runat="server" Text="Delete" CssClass="confirmationDeletebtn"/>
+                       
                     </div>
                 </div>
             </div>
         </div>
 
-     
+        
 
     </div>
 

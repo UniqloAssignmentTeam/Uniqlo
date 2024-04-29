@@ -3,24 +3,22 @@
 
     <link href="../css/test.css" rel="stylesheet" />
 
+      <div class="dropdown-container" onclick="toggleDropdown('dropdownList', 'dropdownDisplay')">
+   <div class="dropdown-display" id="dropdownDisplay">Year</div>
+   <div class="dropdown-list" id="dropdownList">
+      <div onclick="selectOption('2024', 'dropdownDisplay')">2024</div>
+      <div onclick="selectOption('2023', 'dropdownDisplay')">2023</div>
+      <div onclick="selectOption('2022', 'dropdownDisplay')">2022</div>
+   </div>
+</div>
 
-     <div class="dropdown-wrapper">
-     <div class="dropdown-container" onclick="toggleDropdown('dropdownList', 'dropdownDisplay')">
-         <div class="dropdown-display" id="dropdownDisplay">Status</div>
-         <div class="dropdown-list" id="dropdownList">
-             <div onclick="selectOption('Valid', 'dropdownDisplay')">Valid</div>
-             <div onclick="selectOption('Invalid', 'dropdownDisplay')">Invalid</div>
-         </div>
-     </div>
- </div>
 
-    <div class="dropdown-wrapper">
-        <div class="dropdown-container">
-    <asp:DropDownList ID="DropDownList1" runat="server" CssClass="dropdown-display li">
-        <asp:ListItem>srg</asp:ListItem>
-        <asp:ListItem>men</asp:ListItem>
-     </asp:DropDownList>
-            </div>
-        </div>
+    <asp:DropDownList ID="DropDownList1" runat="server" CssClass="dropdown-display">
+    <asp:ListItem>Men</asp:ListItem>
+    <asp:ListItem>Women</asp:ListItem>
+</asp:DropDownList>
+
+
+    <script src="../Javascript/productAdminDDL.js"></script>
 
 </asp:Content>
