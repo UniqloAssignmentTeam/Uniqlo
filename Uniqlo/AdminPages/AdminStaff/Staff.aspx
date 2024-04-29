@@ -140,10 +140,9 @@
                 </div>
 
                 <div class="btnExcel-Add">
-                    <button class="excel-export" style="color: #6F6F6F; font-weight:bold;">Export</button>
-                    <a href="AddStaff.aspx" style="color: #6F6F6F; text-decoration: none; font-weight:bold;">
-                        <div class="product-add">➕ Add Staff</div>
-                    </a>
+                    <asp:Button ID="excelBtn" runat="server" Text="Export" CssClass="excel-export"/>
+                
+                     <asp:Button ID="addStaffBtn" runat="server" Text="➕ Add Staff" CssClass="product-add"/>
                 </div>
             </div>
         </div>
