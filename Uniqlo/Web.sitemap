@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
-  <siteMapNode url="Pages/Home.aspx" title="Home">
+  <siteMapNode url="/Pages/Home.aspx" title="Home">
 	  <siteMapNode title="Category">
 		  <siteMapNode url="Pages/Categories/Women/Main.aspx" title="Women">
 			  <siteMapNode url="Pages/Categories/Women/Tops.aspx" title="Tops"/>
@@ -11,7 +11,9 @@
 			  <siteMapNode url="Pages/Categories/Men/Bottoms.aspx" title="Bottoms"/>
 		  </siteMapNode>
 	  </siteMapNode>
-    <siteMapNode url="Pages/WishList.aspx" title="Wish List"/>
-    <siteMapNode url="Pages/ValueBuy.aspx" title="Value Buy"/>
+	  
+	 
+	<siteMapNode url="Pages/WishList.aspx" title="Wish List" roles="*"/>
+    <siteMapNode url="Pages/ValueBuy.aspx" title="Value Buy"/>  
   </siteMapNode>
 </siteMap>
