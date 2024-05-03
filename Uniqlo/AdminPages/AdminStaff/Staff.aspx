@@ -111,7 +111,7 @@
     </style>
 
     <div class="productBody">
-        <h2>UNIQLO STAFF</h2>
+        <h2>UNIQLO STAFF MANAGEMENT</h2>
 
         <div class="crudProduct">
             <div class="wrap-items-search-buttons">
