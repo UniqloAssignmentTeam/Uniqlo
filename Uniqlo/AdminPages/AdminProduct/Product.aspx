@@ -125,7 +125,7 @@
                   <div class="dropdown-list" id="dropdownList2">
                      <div onclick="selectOption('Men', 'dropdownDisplay2')">Men</div>
                      <div onclick="selectOption('Women', 'dropdownDisplay2')">Women</div>
-                     <div onclick="selectOption('Kids', 'dropdownDisplay2')">Kids</div>
+                    
                   </div>
                </div>
             </div>

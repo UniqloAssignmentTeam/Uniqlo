@@ -21,7 +21,7 @@
                 </div>
                 <div class="info-item">
                     <span class="info-label">Contact No:</span>
-                    <span class="info-value">014 816-9029</span>
+                    <span class="info-value">0148169029</span>
                 </div>
                 <div class="info-item">
                     <span class="info-label">Address:</span>
@@ -50,6 +50,16 @@
                 </div>
             </div>
         </div>
+
+    <div class="dropdown-wrapper" style="justify-content: flex-start;margin: auto; max-width: 1100px; position: relative; margin-top: 50px;">
+             
+     <div class="dropdown-container" onclick="toggleDropdown('dropdownList', 'dropdownDisplay')">
+         <div class="dropdown-display" id="dropdownDisplay">Sort By Date</div>
+         <div class="dropdown-list" id="dropdownList">
+             <div onclick="selectOption('Ascending', 'dropdownDisplay')">Ascending</div>
+             <div onclick="selectOption('Descending', 'dropdownDisplay')">Descending</div>
+         </div>
+     </div>
     </div>
 
     <div class="container" style="margin: auto; max-width: 1100px; position: relative;">
@@ -147,6 +157,7 @@
     <footer> 
         
         <script src="../Javascript/productBtnEclipse.js"></script>
+        <script src="../Javascript/productAdminDDL.js"></script>
 
     </footer>
    

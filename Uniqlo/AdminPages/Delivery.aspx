@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin.Master" AutoEventWireup="true" CodeBehind="Delivery.aspx.cs" Inherits="Uniqlo.AdminPages.Delivery" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="main" runat="server">
-    <style>
+   <style>
         .dropdown-wrapper{
             margin-right:310px
         }
@@ -212,4 +212,5 @@
       <script src="../Javascript/productBtnEclipse.js"></script>
       <script src="../Javascript/productAdminDDL.js"></script>
    </footer>
+
 </asp:Content>

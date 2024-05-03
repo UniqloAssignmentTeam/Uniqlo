@@ -11,7 +11,11 @@ namespace Uniqlo.AdminPages
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+                
+        }
+        protected void addStaffBtn_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("AddStaff.aspx");
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin.Master" AutoEventWireup="true" CodeBehind="UpdateDelivery.aspx.cs" Inherits="Uniqlo.AdminPages.UpdateDelivery" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="main" runat="server">
-                            <header>
+      <header>
                             <link href="../../css/Admin/addProduct.css" rel="stylesheet" />
       </header>
      
@@ -76,4 +76,5 @@
     <script src="../../Javascript/productAdminDDL.js"></script>
     <script src="../../Javascript/Pagination.js"></script>
 </footer>
+
 </asp:Content>

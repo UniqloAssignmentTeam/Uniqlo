@@ -33,7 +33,7 @@
         <div class="backButtonClass">
             <a href="/AdminPages/AdminOrder/Order.aspx" class="backLinkClass"><i class="fa fa-arrow-left" aria-hidden="true"></i></a>
         </div>
-        <h1>ORDER HISTORY ITEM</h1>
+        <h1>ORDER ID : 1001</h1>
        
         <div class="cart-page-container">
             <div class="cart-items-container" style="width: 70%;">
@@ -55,7 +55,7 @@
                         </div>
                             <p><b>Price:</b> RM30.00</p>
                             <p><b>Quantity:</b> 1</p>
-                        <p class="item-subtotal"><b>Subtotal: RM 30.00</b></p>
+                        <p class="item-subtotal"><b>Item Price: RM 30.00</b></p>
                     </div>
                 </div>
 
@@ -77,7 +77,7 @@
                         </div>
                         <p><b>Price:</b> RM30.00</p>
                         <p><b>Quantity:</b> 1</p>
-                        <p class="item-subtotal"><b>Subtotal: RM 30.00</b></p>
+                        <p class="item-subtotal"><b>Item Price: RM 30.00</b></p>
                     </div>
                 </div>
             </div>

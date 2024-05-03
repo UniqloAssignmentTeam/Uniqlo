@@ -91,7 +91,7 @@
             <tr>
                 <td>
                     <div class="form-group">
-                        <label for="productName">XL</label>
+                        <label for="productName">S</label>
                         <input type="number" class="form-field" placeholder="">
                          
 </div>

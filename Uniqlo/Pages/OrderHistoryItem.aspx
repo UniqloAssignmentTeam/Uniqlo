@@ -80,7 +80,7 @@
             }
 
             /* The Close Button */
-            .close {
+            .close, .secClose, .thirdClose {
               color: #aaaaaa;
               float: right;
               font-size: 28px;
@@ -89,6 +89,19 @@
 
             .close:hover,
             .close:focus {
+              color: #000;
+              text-decoration: none;
+              cursor: pointer;
+            }            
+            
+            .secClose:hover,
+            .secClose:focus {
+              color: #000;
+              text-decoration: none;
+              cursor: pointer;
+            }            
+            .thirdClose:hover,
+            .thirdClose:focus {
               color: #000;
               text-decoration: none;
               cursor: pointer;
@@ -144,6 +157,135 @@
             .commentRatingSectionContainer:hover > .commentRatingSectionButton{
                 color: white;
             }
+
+            .star {
+                color: #ffc107;
+            }
+
+            /*SECOND MODAL BUTTON*/
+            
+            .secModalBtnBorder1,
+            .secModalBtnBorder2{
+                transition: all 0.5s ease;
+                cursor: pointer;
+
+            }       
+            
+            .secModalBtn1,
+            .secModalBtn2{
+                text-decoration: none;
+                color: black;
+                padding: 20px 150px 0px 125px;
+            }
+            
+            .secModalBtnBorder1:hover,
+            .secModalBtnBorder2:hover{
+                background-color: black;
+            }  
+            
+            .secModalBtnBorder1:hover > .secModalBtn1{
+                color: white;
+            }            
+            
+            .secModalBtnBorder2:hover > .secModalBtn2{
+                color: white;
+            }
+
+            /*CONFIRMATION MODAL*/
+            .confirmationClearFix{
+                width: 100%;
+                margin-top: 90px;
+            }
+
+            /* Add a color to the cancel button */
+            .confirmationCancelbtn, .confirmationDeletebtn {
+                border: 2px solid black;
+                padding: 20px 150px 20px 150px;
+                background: none;
+                outline: none;
+                font-weight: bold;
+                cursor: pointer;
+                transition: all 0.5s ease;
+                width: 100%;
+                text-decoration: none;
+                color: black;
+                width: calc((100% / 2) - 20px);
+    
+            }
+
+            .confirmationDeletebtn:hover, 
+            .confirmationCancelbtn:hover {
+                background-color: black;
+                color: white;
+            }             
+   
+
+            /* Add padding and center-align text to the container */
+            .confirmationContainer {
+              padding: 16px;
+              text-align: center;
+            }
+
+            /* The Modal (background) */
+            .confirmationModal {
+              display: none; /* Hidden by default */
+              position: fixed; /* Stay in place */
+              z-index: 2; /* Sit on top */
+              left: 0;
+              top: 0;
+              width: 100%; /* Full width */
+              height: 100%; /* Full height */
+              background-color: rgb(0,0,0); /* Fallback color */
+              background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+              padding-top: 50px;
+              margin-top: 55px;
+            }
+
+            /* Modal Content/Box */
+            .confirmation-modal-content {
+              background-color: #fefefe;
+              margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+              border: 1px solid #888;
+              width: 50%; /* Could be more or less, depending on screen size */
+              height: 440px;
+            }
+
+
+            .confirmation-modal-content h1{
+                margin-top: 60px;
+            }
+
+            .confirmation-modal-content p{
+                margin-top: 30px;
+            }
+ 
+            /* The Modal Close Button (x) */
+            .confirmationClose {
+              float: right;
+              font-size: 40px;
+              font-weight: bold;
+              color: #f1f1f1;
+            }
+
+            .confirmationClose:hover,
+            .confirmationClose:focus {
+              color: black;
+              cursor: pointer;
+            }
+
+            /* Clear floats */
+            .confirmationClearFix::after {
+              content: "";
+              clear: both;
+              display: table;
+            }
+
+            /* Change styles for cancel button and delete button on extra small screens */
+            @media screen and (max-width: 300px) {
+              .confirmationCancelbtn, .confirmationDeletebtn {
+                 width: 100%;
+              }
+            }
         </style>
     </header>
     <div class="productBody">
@@ -152,7 +294,7 @@
             <a href="Profile.aspx" class="backLinkClass"><i class="fa fa-arrow-left" aria-hidden="true"></i></a>
         </div>
         
-        <h1>ORDER HISTORY ITEM</h1>
+        <h1>ORDER ID : 1001</h1>
        
          <div class="cart-page-container">
              <div class="cart-items-container" style="width: 70%;">
@@ -174,7 +316,7 @@
                          </div>
                              <p><b>Price:</b> RM30.00</p>
                              <p><b>Quantity:</b> 1</p>
-                         <p class="item-subtotal"><b>Subtotal: RM 30.00</b></p>
+                         <p class="item-subtotal"><b>Item Price: RM 30.00</b></p>
                          <div class="orderReceivedSection" id="reviewModal">
                              <a href="#" class="orderReceivedButton">Review</a>
                          </div>
@@ -199,9 +341,9 @@
                          </div>
                          <p><b>Price:</b> RM30.00</p>
                          <p><b>Quantity:</b> 1</p>
-                         <p class="item-subtotal"><b>Subtotal: RM 30.00</b></p>
-                         <div class="orderReceivedSection">
-                             <a href="#" class="orderReceivedButton">Review</a>
+                         <p class="item-subtotal"><b>Item Price: RM 30.00</b></p>
+                         <div class="orderReceivedSection" id="secBtn">
+                             <a href="#" class="orderReceivedButton" style="padding: 0px 100px 0px 0px;">View</a>
                          </div>
                      </div>
                  </div>
@@ -213,6 +355,7 @@
                  <p><b>Date: </b>14/3/2024 </p>
                  <p><b>Payment method: </b>Cash </p>
                  <p><b>Payment status: </b>Paid</p>
+                 <p><b>Delivery status: </b>Delivered</p>
                  <!-- <p><b>Total Price: </b> <span id="totalItemsLabel" class="total-items"></span> </p> -->
                  <p><b>Total Price: </b>RM109.90 </p>
                  <p><b>Total Items: </b>2</p>
@@ -248,6 +391,86 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Second Modal -->
+            <div id="secModal" class="modal">
+                <div class="modal-content">
+                    <span class="secClose">&times;</span>
+                    <div class="modal-rating-content">
+                        <div style="display: flex;">
+                            <p>Rating</p>
+                            <div class="commentRatingSectionStars">
+                                <i class = "fas fa-star star"></i>
+                                <i class = "fas fa-star star"></i>
+                                <i class = "fas fa-star star"></i>
+                                <i class = "fas fa-star star"></i>
+                                <i class = "fas fa-star star"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <p>Comment</p>
+                            <div class="commentRatingSectionComment">
+                                <textarea id="TextArea2" cols="20" rows="2" disabled>Lorem ipsum dolor sit, Lorem ipsum dolor sit amet consectetur, adipisicing elit. Id labore iusto, doloremque eveniet eos nostrum cupiditate. Laboriosam voluptates, eligendi minus totam, fuga, quidem officiis tempore quod placeat voluptate sunt soluta ratione deserunt sequi quia laborum quasi ullam repellendus molestias aliquid illo illum iure. Fugit cupiditate, alias rem nobis iste minima dolor ea porro fugiat, ipsum eum unde error aliquid consequatur. amet consectetur adipisicing elit. Praesentium eligendi maxime possimus temporibus! Labore accusamus facilis sequi dolorem ullam odio.</textarea>
+                            </div>
+                        </div>
+                        <div style="display: flex; margin-top: 20px; width: 600px;" class="secModalBtnBorder">
+                            <div style="width: 50%; border: 2px solid black; margin: 2px; height: 50px;" class="secModalBtnBorder1" id="thirdBtn">
+                                <a href="#" class="secModalBtn1">Edit</a>
+                            </div>
+                            <div style="width: 50%; border: 2px solid black; height: 50px; margin-top: 2px;" class="secModalBtnBorder2">
+                                <a href="#" class="secModalBtn2"  onclick="document.getElementById('id01').style.display='block'">Delete</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- THIRD Modal -->
+            <div id="thirdModal" class="modal">
+                <div class="modal-content">
+                    <span class="thirdClose">&times;</span>
+                    <div class="modal-rating-content">
+                        <div style="display: flex;">
+                            <p>Rating</p>
+                            <div class="commentRatingSectionStars">
+                                <i class="fa-regular fa-star"></i>
+                                <i class="fa-regular fa-star"></i>
+                                <i class="fa-regular fa-star"></i>
+                                <i class="fa-regular fa-star"></i>
+                                <i class="fa-regular fa-star"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <p>Comment</p>
+                            <div class="commentRatingSectionComment">
+                                <textarea id="TextArea3" cols="20" rows="2"></textarea>
+                            </div>
+                        </div>
+                        <div class="commentRatingSectionContainer">
+                            <a href="#" class="commentRatingSectionButton">Submit</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+             <!--DELETE CONFIRMATION-->
+            <div id="id01" class="confirmationModal">
+                <div class="confirmation-modal-content">
+                    <div class="confirmationContainer">
+                        <span onclick="document.getElementById('id01').style.display='none'" class="confirmationClose" title="Close Modal">×</span>
+                        <h1>Remove Review</h1>
+                        <p>Are you sure you want to remove your review?</p>
+
+                        <div class="confirmationClearFix">
+                            <button type="button" onclick="document.getElementById('id01').style.display='none'" class="confirmationCancelbtn">Cancel</button>
+                            <button type="button" onclick="document.getElementById('id01').style.display='none'" class="confirmationDeletebtn">Remove</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+           <!--DELETE CONFIRMATION END-->
+
+
          </div>
 
         <script>
@@ -271,27 +494,50 @@
             //REVIEW MODAL
             // Get the modal
             var modal = document.getElementById("myModal");
+            var secModal = document.getElementById("secModal");
+            var thirdModal = document.getElementById("thirdModal");
 
             // Get the button that opens the modal
             var btn = document.getElementById("reviewModal");
+            var secBtn = document.getElementById("secBtn");
+            var thirdBtn = document.getElementById("thirdBtn");
 
             // Get the <span> element that closes the modal
             var span = document.getElementsByClassName("close")[0];
+            var secClose = document.getElementsByClassName("secClose")[0];
+            var thirdClose = document.getElementsByClassName("thirdClose")[0];
 
             // When the user clicks the button, open the modal 
             btn.onclick = function() {
               modal.style.display = "block";
             }
 
+            secBtn.onclick = function () {
+                secModal.style.display = "block";
+            }
+            thirdBtn.onclick = function () {
+                thirdModal.style.display = "block";
+            }
+
             // When the user clicks on <span> (x), close the modal
             span.onclick = function() {
               modal.style.display = "none";
+            }
+            secClose.onclick = function () {
+                secModal.style.display = "none";
+            }
+            thirdClose.onclick = function () {
+                thirdModal.style.display = "none";
             }
 
             // When the user clicks anywhere outside of the modal, close it
             window.onclick = function(event) {
               if (event.target == modal) {
-                modal.style.display = "none";
+                  modal.style.display = "none";
+              } else if (event.target == secModal) {
+                  secModal.style.display = "none";
+              } else if (event.target == thirdModal) {
+                  secModal.style.display = "none";
               }
             }
         </script>

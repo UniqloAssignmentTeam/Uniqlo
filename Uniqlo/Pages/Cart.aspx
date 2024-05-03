@@ -34,7 +34,7 @@
                         </div>
                         <p>Quantity: </p>
                         <input type="number" class="qty" min="0" value="1">
-                        <p class="item-subtotal"><b>Subtotal: RM 30.00</b></p>
+                        <p class="item-subtotal"><b>Item Price: RM 30.00</b></p>
                     </div>
                 </div>
 
@@ -62,7 +62,7 @@
                         </div>
                         <p>Quantity: </p>
                         <input type="number" class="qty" min="0" value="1">
-                        <p class="item-subtotal"><b>Subtotal: RM 79.90</b></p>
+                        <p class="item-subtotal"><b>Item Price: RM 79.90</b></p>
                     </div>
                 </div>
             </div>
@@ -145,8 +145,8 @@
                     <h2>about this item: </h2>
                     <p id="modalProductDescription" class="product-description"></p>
                     <ul>
-                      <li>Available: <span>In Stock</span></li>
-                      <li>Category: <span>Tops</span></li>
+                       <li>Stock: <span>100</span></li>
+                      <li>Category: <span>Top</span></li>
                       <li>Shipping Area: <span>Malaysia</span></li>
                       <li>Shipping Fee: <span>Free of charge for order with total value above RM150. Additional RM20 shipping fees for order below RM150.</span></li>
                     </ul>
@@ -195,7 +195,7 @@
                      </a>
                   </div>
 
-                <!--
+
                   <div class = "social-links">
                     <p>Share At: </p>
                     <a href = "#">
@@ -214,7 +214,7 @@
                       <i class = "fab fa-pinterest"></i>
                     </a>
                   </div>
-                -->
+
                 </div>
               </div>
             </div>
