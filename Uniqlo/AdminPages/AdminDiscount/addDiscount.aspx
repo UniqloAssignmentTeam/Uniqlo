@@ -14,46 +14,43 @@
             <h2 class="product-title">UNIQLO ADD DISCOUNT</h2>
         </div>
         <div class="modal-content">
-            
+           
 
             <div class="product-content">
-               
                 <div class="form-group">
                     <label for="productName">Product ID</label>
-                    <input type="text" name="productName" value="">
+                     <asp:TextBox ID="productName" runat="server"></asp:TextBox>
                 </div>
+
+               
                  <div class="form-group">
-     <label for="productName">Amount - Discount</label>
-     <input type="text" name="productName" value="">
+     <label for="productDiscount">Amount - Discount</label>
+         <asp:TextBox ID="productDiscount" runat="server"></asp:TextBox>
  </div>
-                           
-              
+                        
+
+
 
                 <div class="form-group">
                     <label for="productName">Start Date</label>
-                    <input class="form-field" type="date" value="">
+                      <asp:TextBox ID="startDate" runat="server"  type="date"></asp:TextBox>
                 </div>
-                  <div class="form-group">
-      <label for="productName">End Date</label>
-      <input class="form-field" type="date" value="">
-  </div>
 
-                
-              
+      <div class="form-group">
+      <label for="productName">End Date</label>
+       <asp:TextBox ID="endDate" runat="server"  type="date"></asp:TextBox>
+  </div> 
             </div>
 
           
             <div class="button-container">
-                <div class="cancel-div">
-                    <a href="Discount.aspx" class="cancel-button">CANCEL</a>
-                </div>
-                <div class="continue-div">
-                    <a href="Discount.aspx" class="continue-button">ADD</a>
-                </div>
+              
+                     <asp:Button ID="cancelBtn" runat="server" Text="CANCEL" CssClass="cancel-button"/>
+                     <asp:Button ID="addBtn" runat="server" Text="ADD" CssClass="continue-button"/>
             </div>
         </div>
     </div>
-    
+   
 
 
         <footer>

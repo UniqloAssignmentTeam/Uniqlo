@@ -18,21 +18,31 @@
           <div class="product-content">
 
               <div class="form-group">
-     <label for="productName">Discount ID</label>
-     <input type="text" name="productName" value="1" disabled>
+     <label for="discountID">Discount ID</label>
+        <asp:TextBox ID="discountID" runat="server" ReadOnly="True"></asp:TextBox>
  </div>
+          
+
+
                            <div class="form-group">
-    <label for="productName">Product ID</label>
-    <input type="text" name="productName" value="1" disabled>
+    <label for="productID">Product ID</label>
+    <asp:TextBox ID="productID" runat="server"></asp:TextBox>
 </div>
+
+
+
               <div class="form-group">
                   <label for="productName">Product Name</label>
-                  <input type="text" name="productName" value="AIRism Cotton Jersey Short Sleeve Skipper Polo Shirt" disabled>
+                  <asp:TextBox ID="productName" runat="server" ReadOnly="true"></asp:TextBox>
+                
               </div>
-                              <div class="form-group">
-    <label for="productName">Amount - Discount</label>
-    <input type="text" name="productName" value="10.00">
+          
+
+    <div class="form-group">
+    <label for="discountAmount">Amount - Discount</label>
+      <asp:TextBox ID="discountAmount" runat="server"></asp:TextBox>
 </div>
+
 
                             <div class="form-group">
   <label for="productName">Status</label>
@@ -46,13 +56,15 @@
              </div>
             
 
+
               <div class="form-group">
                   <label for="productName">Start Date</label>
-                  <input class="form-field" type="date" value="2024-04-01">
+                    <asp:TextBox ID="startDate" runat="server" type="date"></asp:TextBox>
+             
               </div>
                 <div class="form-group">
     <label for="productName">End Date</label>
-    <input class="form-field" type="date" value="2024-04-30">
+    <asp:TextBox ID="endDate" runat="server" type="date"></asp:TextBox>
 </div>
 
               
@@ -61,13 +73,10 @@
 
         
           <div class="button-container">
-              <div class="cancel-div">
-                  <a href="Discount.aspx" class="cancel-button">CANCEL</a>
-              </div>
-              <div class="continue-div">
-                  <a href="Discount.aspx" class="continue-button">UPDATE</a>
-              </div>
-          </div>
+    
+           <asp:Button ID="cancelBtn" runat="server" Text="CANCEL" CssClass="cancel-button"/>
+           <asp:Button ID="addBtn" runat="server" Text="ADD" CssClass="continue-button"/>
+  </div>
       </div>
   </div>
   

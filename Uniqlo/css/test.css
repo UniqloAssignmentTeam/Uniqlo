@@ -1,0 +1,31 @@
+﻿.dropdown-display {
+    width: 150px;
+    height: 40px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: white;
+    cursor: pointer;
+    text-align: center; /* Center the text */
+    line-height: 40px; /* Align the text vertically */
+    appearance: none; /* Remove default system styling */
+    -webkit-appearance: none; /* Also for WebKit browsers */
+    position: relative; /* Necessary for positioning the arrow */
+}
+
+    /* Custom arrow */
+    .dropdown-display::after {
+        content: '▼'; /* Simple arrow symbol */
+        position: absolute;
+        right: 10px;
+        top: 0;
+        height: 100%;
+        font-size: 12px;
+        color: black;
+        pointer-events: none; /* Makes it non-interactive */
+    }
+@media only screen and (max-width: 600px) {
+    .dropdown-display {
+        width: 100%;
+        margin-left: 0; /* Adapt margin for smaller screens */
+    }
+}

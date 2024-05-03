@@ -95,7 +95,7 @@
     gap: 10px; /* This sets the space between the dropdowns */
 }
 
-.dropdown-container {
+.dropdown-display select {
     position: relative;
     width: 150px; /* Fixed width for consistency */
     display: flex; /* Use flex to align the arrow inside .dropdown-display */
@@ -117,7 +117,23 @@
     justify-content: center; /* Centers the text inside the dropdown */
     font-weight: bold;
 }
-
+.dropdown-display option{
+   position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 100;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    opacity: 0; /* Start fully transparent */
+    visibility: hidden; /* Start hidden */
+    transform: translateY(-20px); /* Start slightly above */
+    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s; /* Animate opacity, transform, and visibility */
+    align-items: center;
+    text-align: center; /* Centers the text inside the dropdown */
+}
 .dropdown-list {
     position: absolute;
     top: 100%;
@@ -194,6 +210,7 @@
     color: #6F6F6F;
     font-size: 1rem;
     font-weight: bold;
+
 }
 
 .product-add {
@@ -212,7 +229,7 @@
     transition: background-color 250ms ease-out 100ms;
     padding: 10px;
     color: #6F6F6F;
-    text-decoration: none;
+    font-size: 1rem;
     font-weight: bold;
 }
 

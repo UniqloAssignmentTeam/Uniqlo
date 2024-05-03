@@ -211,6 +211,9 @@
     margin-left: 10px;
     transition: background-color 250ms ease-out 100ms;
     padding: 10px;
+    color: #6F6F6F; 
+    text-decoration: none; 
+    font-weight:bold;
 }
 
     .product-add:hover, .product-add:focus, .excel-export:hover, .excel-export:focus {
