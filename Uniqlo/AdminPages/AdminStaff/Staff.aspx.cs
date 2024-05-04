@@ -15,7 +15,7 @@ namespace Uniqlo.AdminPages
     public partial class Staff : System.Web.UI.Page
     {
         string cs = Global.CS;
-        UniqloEntities2 db = new UniqloEntities2();
+   
         protected void Page_Load(object sender, EventArgs e)
         {
             if (IsPostBack) return;
