@@ -48,24 +48,25 @@
                 <div class="table">
                     
  <!--
-<!--Header-->   --> 
+<!--Header-->  
 
                    
                  <asp:Repeater ID="staffRepeater" runat="server" ViewStateMode="Disabled">
 
                      <HeaderTemplate>
-                          <table class="table">
-     <tr>
-         <div class="row">
+                          <table style="width:100%" class="table">
+     <tr class="row">
+        
 
-             <div class="col staffid"><td>Staff ID</td></div>
-             
+        <td class="col staffid">Staff ID</td>
          <td class="col name">Staff Name</td>
          <td class="col role">Staff Role</td>
          <td class="col gender">Gender</td>
          <td class="col email">E-mail</td>
          <td class="col contactNo">Contact No</td>
-         </div>
+       <td class="col eclipse-display">
+    <asp:Button ID="Button1" runat="server" Text="Button" Visible="False" />
+ </div>
      </tr>
      
                      </HeaderTemplate>

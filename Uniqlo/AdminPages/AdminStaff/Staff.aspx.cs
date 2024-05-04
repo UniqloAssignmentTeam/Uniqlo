@@ -8,7 +8,8 @@ using System.Data.SqlClient;
 using System.EnterpriseServices;
 using System.Xml.Linq;
 using System.Data;
-
+using System.Data.Entity;
+using Uniqlo;
 
 namespace Uniqlo.AdminPages
 {
@@ -18,40 +19,22 @@ namespace Uniqlo.AdminPages
        
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (IsPostBack) return;
-
-            LoadingDataToRepeater();
-
-
+            if (!IsPostBack)
+            {
+                BindRepeater();
+            }
 
         }
 
-        private void LoadingDataToRepeater()
+        private void BindRepeater()
         {
-          
-
-      
-            SqlConnection con = new SqlConnection(cs);
-
-            
-            try
+            using (var db = new UniqloEntities())
             {
-                con.Open();
-      
-                string sql = "SELECT Staff_ID, Name, Gender, Contact_No, Email, Password, Role from Staff";
-           
-                SqlCommand cmd = new SqlCommand(sql, con);
-                SqlDataReader reader= cmd.ExecuteReader();
-
-                staffRepeater.DataSource = reader;
+                IQueryable<Staff> query = db.Staff;
+                // Optionally, apply filters, sorting, etc.
+                staffRepeater.DataSource = query.ToList();
                 staffRepeater.DataBind();
-
-                con.Close();
-            }catch (Exception ex)
-            {
-                Response.Write(ex.Message);
             }
-          
         }
         protected void addStaffBtn_Click(object sender, EventArgs e)
         {
