@@ -12,6 +12,7 @@
                 <h4 class="username">Tan Choo Jun</h4>
             </div>
             <div class="profile-info">
+                <!---->
                 <div class="info-item">
                     <span class="info-label">Full Name:</span>
                     <span class="info-value">Kenneth Valdez</span>
