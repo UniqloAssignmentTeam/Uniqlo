@@ -17,5 +17,10 @@ namespace Uniqlo.AdminPages
         {
             Response.Redirect("AddStaff.aspx");
         }
+
+        protected void Repeater1_ItemCommand(object source, RepeaterCommandEventArgs e)
+        {
+
+        }
     }
 }
