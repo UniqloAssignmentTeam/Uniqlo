@@ -11,7 +11,7 @@ namespace Uniqlo.Pages
 {
     public partial class Login : System.Web.UI.Page
     {
-        UniqloEntities1 db = new UniqloEntities1();
+        //UniqloEntities1 db = new UniqloEntities1();
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -24,6 +24,7 @@ namespace Uniqlo.Pages
 
         protected void Button1_Click(object sender, EventArgs e)
         {
+            /*
             if (Page.IsValid)
             {
                 string username = txtUsername.Text;
@@ -51,8 +52,9 @@ namespace Uniqlo.Pages
                     cvNotMatched.IsValid = false;       //display error msg
 
                 }
-
             }
+            */
+
         }
     }
 }

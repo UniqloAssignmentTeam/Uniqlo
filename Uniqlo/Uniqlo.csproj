@@ -130,7 +130,6 @@
     <Content Include="css\test.css" />
     <Content Include="css\ValueBuy.css" />
     <Content Include="css\WishList.css" />
-    <Content Include="Global.asax" />
     <Content Include="Images\3R.jpg" />
     <Content Include="Images\3RBanner.jpg" />
     <Content Include="Images\accessories.jpg" />
@@ -366,6 +365,21 @@
     </Compile>
     <Compile Include="AdminPages\Report.aspx.designer.cs">
       <DependentUpon>Report.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Category.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Customer.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Delivery.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Discount.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Image.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Model1.Context.cs">
       <AutoGen>True</AutoGen>

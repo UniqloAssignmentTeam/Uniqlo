@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="a71c97d9736541adbd4ae7538354a23a" Name="Diagram1" ZoomLevel="74">
+      <Diagram DiagramId="a560d17e861e4c6788429cb5cc9157b4" Name="Diagram1">
         <EntityTypeShape EntityType="UniqloModel.Category" Width="1.5" PointX="0.75" PointY="7.75" IsExpanded="true" />
         <EntityTypeShape EntityType="UniqloModel.Customer" Width="1.5" PointX="6" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="UniqloModel.Delivery" Width="1.5" PointX="6" PointY="20.5" IsExpanded="true" />
@@ -19,19 +19,19 @@
         <EntityTypeShape EntityType="UniqloModel.Shipping_Address" Width="1.5" PointX="3.75" PointY="20.375" IsExpanded="true" />
         <EntityTypeShape EntityType="UniqloModel.Staff" Width="1.5" PointX="0.75" PointY="2.25" IsExpanded="true" />
         <EntityTypeShape EntityType="UniqloModel.WishlistItem" Width="1.5" PointX="8.25" PointY="4.625" IsExpanded="true" />
-        <AssociationConnector Association="UniqloModel.FK__Product__Categor__3E52440B" ManuallyRouted="false" />
-        <AssociationConnector Association="UniqloModel.FK__Orders__Customer__4D94879B" ManuallyRouted="false" />
-        <AssociationConnector Association="UniqloModel.FK__WishlistI__Custo__4AB81AF0" ManuallyRouted="false" />
-        <AssociationConnector Association="UniqloModel.FK__Delivery__Addres__571DF1D5" ManuallyRouted="false" />
-        <AssociationConnector Association="UniqloModel.FK__Payment__Deliver__59FA5E80" ManuallyRouted="false" />
-        <AssociationConnector Association="UniqloModel.FK__Discount__Produc__412EB0B6" ManuallyRouted="false" />
-        <AssociationConnector Association="UniqloModel.FK__Image__Quantity___46E78A0C" ManuallyRouted="false" />
-        <AssociationConnector Association="UniqloModel.FK__OrderList__Order__5165187F" ManuallyRouted="false" />
-        <AssociationConnector Association="UniqloModel.FK__OrderList__Produ__5070F446" ManuallyRouted="false" />
-        <AssociationConnector Association="UniqloModel.FK__Review__OrderLis__5441852A" ManuallyRouted="false" />
-        <AssociationConnector Association="UniqloModel.FK__Payment__Order_I__5AEE82B9" ManuallyRouted="false" />
-        <AssociationConnector Association="UniqloModel.FK__Quantity__Produc__440B1D61" ManuallyRouted="false" />
-        <AssociationConnector Association="UniqloModel.FK__WishlistI__Produ__49C3F6B7" ManuallyRouted="false" />
+        <AssociationConnector Association="UniqloModel.FK__Product__Categor__56E8E7AB" ManuallyRouted="false" />
+        <AssociationConnector Association="UniqloModel.FK__Orders__Customer__662B2B3B" ManuallyRouted="false" />
+        <AssociationConnector Association="UniqloModel.FK__WishlistI__Custo__634EBE90" ManuallyRouted="false" />
+        <AssociationConnector Association="UniqloModel.FK__Delivery__Addres__6FB49575" ManuallyRouted="false" />
+        <AssociationConnector Association="UniqloModel.FK__Payment__Deliver__72910220" ManuallyRouted="false" />
+        <AssociationConnector Association="UniqloModel.FK__Discount__Produc__59C55456" ManuallyRouted="false" />
+        <AssociationConnector Association="UniqloModel.FK__Image__Quantity___5F7E2DAC" ManuallyRouted="false" />
+        <AssociationConnector Association="UniqloModel.FK__OrderList__Order__69FBBC1F" ManuallyRouted="false" />
+        <AssociationConnector Association="UniqloModel.FK__OrderList__Produ__690797E6" ManuallyRouted="false" />
+        <AssociationConnector Association="UniqloModel.FK__Review__OrderLis__6CD828CA" ManuallyRouted="false" />
+        <AssociationConnector Association="UniqloModel.FK__Payment__Order_I__73852659" ManuallyRouted="false" />
+        <AssociationConnector Association="UniqloModel.FK__Quantity__Produc__5CA1C101" ManuallyRouted="false" />
+        <AssociationConnector Association="UniqloModel.FK__WishlistI__Produ__625A9A57" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
