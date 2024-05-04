@@ -196,6 +196,16 @@
     <Content Include="Javascript\slider.js" />
     <Content Include="Javascript\valueBuy.js" />
     <Content Include="Javascript\wishList.js" />
+    <Content Include="Model.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model.edmx</DependentUpon>
+      <LastGenOutput>Model.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Model.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model.edmx</DependentUpon>
+      <LastGenOutput>Model.cs</LastGenOutput>
+    </Content>
     <Content Include="Pages\AboutUs.aspx" />
     <Content Include="Pages\Cart.aspx" />
     <Content Include="Pages\ChangePassword.aspx" />
@@ -368,11 +378,23 @@
       <DependentUpon>test.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="Category.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Customer.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Delivery.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Discount.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Image.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="AdminPages\UpdateDelivery.aspx.cs">
       <DependentUpon>UpdateDelivery.aspx</DependentUpon>
@@ -380,6 +402,27 @@
     </Compile>
     <Compile Include="AdminPages\UpdateDelivery.aspx.designer.cs">
       <DependentUpon>UpdateDelivery.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Model.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Order.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OrderList.cs">
+      <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Pages\AboutUs.aspx.cs">
       <DependentUpon>AboutUs.aspx</DependentUpon>
@@ -556,7 +599,25 @@
     <Compile Include="Pages\WishList.aspx.designer.cs">
       <DependentUpon>WishList.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Payment.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Product.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Quantity.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Review.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Shipping_Address.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Staff.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Uniqlo.Master.cs">
       <DependentUpon>Uniqlo.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -564,10 +625,20 @@
     <Compile Include="Uniqlo.Master.designer.cs">
       <DependentUpon>Uniqlo.Master</DependentUpon>
     </Compile>
+    <Compile Include="WishlistItem.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Admin.Master" />
     <Content Include="admin.sitemap" />
+    <EntityDeploy Include="Model.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Model.edmx.diagram">
+      <DependentUpon>Model.edmx</DependentUpon>
+    </Content>
     <None Include="packages.config" />
     <Content Include="Uniqlo.Master" />
     <None Include="Web.Debug.config">
