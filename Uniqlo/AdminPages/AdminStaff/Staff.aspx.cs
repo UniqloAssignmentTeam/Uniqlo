@@ -19,31 +19,23 @@ namespace Uniqlo.AdminPages
        
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
-            {
-                BindRepeater();
-            }
+           
 
         }
-
-        private void BindRepeater()
-        {
-            using (var db = new UniqloEntities())
-            {
-                IQueryable<Staff> query = db.Staff;
-                // Optionally, apply filters, sorting, etc.
-                staffRepeater.DataSource = query.ToList();
-                staffRepeater.DataBind();
-            }
-        }
+       
+      
         protected void addStaffBtn_Click(object sender, EventArgs e)
         {
             Response.Redirect("AddStaff.aspx");
         }
 
-        protected void staffRepeater_ItemCommand(object source, RepeaterCommandEventArgs e)
+        protected void Update_Click(object sender, EventArgs e)
         {
-
+            var button = sender as Button;
+            var item = button.NamingContainer as RepeaterItem;
+            var staffIdLabel = item.FindControl("staffID") as Label;
+            Session["StaffID"] = staffIdLabel.Text;  // Store staff ID in session
+            Response.Redirect("UpdateStaff.aspx");
         }
     }
 }
