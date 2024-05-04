@@ -39,15 +39,15 @@
 
                             <div class="col-md-6 form-group">
                                 <label>Name</label>
-                                <input class="form-control" type="text" value="Tan Choo Jun"  readonly="readonly">
+                                <asp:TextBox class="form-control" ID="name" value="Tan Choo Jun" ReadOnly="true" runat="server"></asp:TextBox>
                             </div>
                             <div class="col-md-6 form-group">
                                 <label>E-mail</label>
-                                <input class="form-control" type="text" value="cjtan@gmail.com" readonly="readonly">
+                                <asp:TextBox class="form-control" ID="gmail" value="cjtan@gmail.com" ReadOnly="true" runat="server"></asp:TextBox>
                             </div>
                             <div class="col-md-6 form-group">
                                 <label>Contact No</label>
-                                <input class="form-control" type="text"  value="0148169029" readonly="readonly">
+                                <asp:TextBox class="form-control" ID="contact" value="0148169029" ReadOnly="true" runat="server"></asp:TextBox>
                             </div>
                             <div class="col-md-6 form-group">
                                 <label>Country</label>

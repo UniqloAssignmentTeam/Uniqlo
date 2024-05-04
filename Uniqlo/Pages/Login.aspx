@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Uniqlo.Master" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="Uniqlo.Pages.Login" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="main" runat="server">
-    <header>
+ <head>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,11 +10,12 @@
         <!-- Boxicons CSS -->
         <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
                         
-    </header>
+ </head>
         <section class="container forms">
             <div class="form login">
                 <div class="form-content">
                     <header>Login</header>
+                    <form action="#">
                         <div class="field input-field">
                             <input type="email" placeholder="Email" class="input">
                         </div>
@@ -24,15 +25,15 @@
                         </div>
                         <div class="form-link">
                             <a href="ForgotPassword.aspx" class="forgot-pass">Forgot password?</a>
- 
                         </div>
                         <div class="field button-field">
-                            <asp:Button ID="Button1" runat="server" Text="Login" OnClick="Button1_Click" />
+                            <asp:Button ID="Button1" runat="server" Text="Login" PostBackUrl="Home.aspx" />
                         </div>
+                    </form>
                     <div class="form-link">
-                    <span>Don't have an account?</span>
+                 <span>Don't have an account?</span>
                         <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="SignUp.aspx">Sign Up</asp:HyperLink>
-                    </div>
+                </div>
                 </div>
                 <div class="line"></div>
                 <div class="media-options">
@@ -42,19 +43,24 @@
                     </a>
                 </div>
                <div class="media-options">
-                    <a href="google.com" class="field google">
-                        <i class="fa-brands fa-google"></i>  
-                        <span>Login with Google</span>
-                    </a>
+        <a href="google.com" class="field google">
+            <i class="fa-brands fa-google"></i>  
+            <span>Login with Google</span>
+        </a>
+    </div>
                 </div>
-           </div>
+      
+
+
+
+
         </section>
         <!-- JavaScript -->
     <script src="../Javascript/Login.js"></script>
 
 
 
-    
+    </span>
 
 
 

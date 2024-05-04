@@ -1,7 +1,10 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin.Master" AutoEventWireup="true" CodeBehind="Discount.aspx.cs" Inherits="Uniqlo.AdminPages.Discount" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin.Master" AutoEventWireup="true" CodeBehind="Discount1.aspx.cs" Inherits="Uniqlo.AdminPages.AdminDiscount.Discount1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="main" runat="server">
 
-    <link href="../../css/Admin/adminDiscount.css" rel="stylesheet" />
+
+
+    <link href="../../css/Admin/Discount1.css" rel="stylesheet" />
+    <link href="../../css/Admin/neww.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 
@@ -118,81 +121,56 @@
             <div class="wrap-items-search-buttons">
                 <div class="search">
                     <span class="material-symbols-outlined">search</span>
-                    <asp:TextBox ID="searchBox" runat="server" CssClass="search-input" Text="Search"></asp:TextBox>
+                    <input class="search-input" type="search" placeholder="Search" />
                 </div>
-                
+
 
                 <div class="dropdown-wrapper">
                     <div class="dropdown-container" onclick="toggleDropdown('dropdownList', 'dropdownDisplay')">
-                        <div class="dropdown-display" id="dropdownDisplay">Status</div>
+                        <div class="dropdown-display" id="dropdownDisplay1">Status</div>
                         <div class="dropdown-list" id="dropdownList">
                             <div onclick="selectOption('Valid', 'dropdownDisplay')">Valid</div>
                             <div onclick="selectOption('Invalid', 'dropdownDisplay')">Invalid</div>
                         </div>
                     </div>
+                    
                 </div>
+
+               
+       
+              <asp:DropDownList runat="server" ID="ddlStatus" CssClass="dropdown-display">
+    <asp:ListItem Text="Status"></asp:ListItem>
+    <asp:ListItem Text="Valid" Value="Valid"></asp:ListItem>
+    <asp:ListItem Text="Invalid" Value="Invalid"></asp:ListItem>
+</asp:DropDownList>
+
+                <asp:DropDownList ID="DropDownList1" runat="server" CssClass="dropdown-display">
+                    <asp:ListItem>Valid</asp:ListItem>
+                    <asp:ListItem>Invalid</asp:ListItem>
+                </asp:DropDownList>
+
+
+
+
+
 
                 <div class="btnExcel-Add">
-                    <asp:Button ID="excelExport" runat="server" Text="Export" CssClass="excel-export" />
-                    <asp:Button ID="Button3" runat="server" Text="➕ Add Discount" CssClass="product-add" />
-                </div>
-                
-            </div>
-        </div>
-
-
-        <div class="table">
-            <!--Header-->
-            <div class="row">
-                <div class="col productid">Discount ID</div>
-                <div class="col name">Product Name</div>
-                <div class="col category">Amount</div>
-                <div class="col price">Status</div>
-                <div class="col gender">Start Date</div>
-                <div class="col category">End Date</div>
-                <div class="col eclipse-container">
-                    <asp:Button ID="Button1" runat="server" Text="Button" Visible="False" />
-                </div>
-            </div>
-            <!--Product 1-->
-            <div class="row">
-                <div class="col productid">1</div>
-                <div class="col name">AIRism Cotton Jersey Short Sleeve Skipper Polo Shirt</div>
-                <div class="col wear">10.00</div>
-                <div class="col price">Active</div>
-                <div class="col gender">2024-04-01</div>
-                <div class="col category">2024-04-30</div>
-                <div class="col eclipse-container" onclick="toggleDropdown('dropdownList3', 'dropdownDisplay3')">
-                    <div class="eclipse-display" id="dropdownDisplay3" style="border:none;"><i class="fa fa-ellipsis-v" aria-hidden="true" style="color:#6F6F6F;"></i></div>
-                    <div class="eclipse-list" id="dropdownList3">
-                        <a href="UpdateDiscount.aspx" style="text-decoration:none; color:#6F6F6F;">
-                            <div>Update</div>
-                        </a>
-                        <div onclick="document.getElementById('id01').style.display='block'">Delete</div>
-                    </div>
+                    <asp:Button ID="exportBtn" runat="server" Text="Export" CssClass="excel-export"/>
+                    <asp:Button ID="Button2" runat="server" Text="➕ Add Discount" CssClass="product-add" OnClick="BtnDiscountAdd"/>
+                    
                 </div>
             </div>
         </div>
+       
+      
+                  
+        <asp:Repeater ID="Repeater1" runat="server" OnItemCommand="Repeater1_ItemCommand"></asp:Repeater>
 
 
 
 
 
 
-
-
-
-                    <div class="pagination">
-    <a href="#" class="page-link" onclick="changePage('prev')">&laquo;</a>
-    <a href="#" class="page-link active" onclick="changePage(1)">1</a>
-    <a href="#" class="page-link" onclick="changePage(2)">2</a>
-    <a href="#" class="page-link" onclick="changePage(3)">3</a>
-    <a href="#" class="page-link" onclick="changePage(4)">4</a>
-    <a href="#" class="page-link" onclick="changePage(5)">5</a>
-
-   
-    <a href="#" class="page-link" onclick="changePage('next')">&raquo;</a>
-</div>
 
          <!--DELETE CONFIRMATION-->
         <div id="id01" class="confirmationModal">
@@ -203,15 +181,14 @@
                     <p>Are you sure you want to remove this discount?</p>
 
                     <div class="confirmationClearFix">
-                        <asp:Button ID="cancelBtn" runat="server" Text="Cancel" CssClass="confirmationCancelbtn"/>
-                         <asp:Button ID="deleteBtn" runat="server" Text="Delete" CssClass="confirmationDeletebtn"/>
-                       
+                        <button type="button" onclick="document.getElementById('id01').style.display='none'" class="confirmationCancelbtn">Cancel</button>
+                        <button type="button" onclick="document.getElementById('id01').style.display='none'" class="confirmationDeletebtn">Remove</button>
                     </div>
                 </div>
             </div>
         </div>
 
-        
+     
 
     </div>
 
@@ -220,5 +197,11 @@
         <script src="../../Javascript/productAdminDDL.js"></script>
         <script src="../../Javascript/Pagination.js"></script>
     </footer>
+
+
+
+
+
+
 
 </asp:Content>

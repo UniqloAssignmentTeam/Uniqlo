@@ -9,7 +9,7 @@ namespace Uniqlo
 {
     public class Global : System.Web.HttpApplication
     {
-
+        public const string CS = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Uniqlo.mdf;Integrated Security=True";
         protected void Application_Start(object sender, EventArgs e)
         {
 
