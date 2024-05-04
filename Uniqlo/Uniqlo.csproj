@@ -130,6 +130,7 @@
     <Content Include="css\test.css" />
     <Content Include="css\ValueBuy.css" />
     <Content Include="css\WishList.css" />
+    <Content Include="Global.asax" />
     <Content Include="Images\3R.jpg" />
     <Content Include="Images\3RBanner.jpg" />
     <Content Include="Images\accessories.jpg" />
@@ -377,6 +378,9 @@
     </Compile>
     <Compile Include="Discount.cs">
       <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Image.cs">
       <DependentUpon>Model1.tt</DependentUpon>
