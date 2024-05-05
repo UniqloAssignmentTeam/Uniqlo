@@ -80,6 +80,7 @@
     <Content Include="AdminPages\AdminProduct\AddProduct.aspx" />
     <Content Include="AdminPages\adminProfile.aspx" />
     <Content Include="AdminPages\AdminStaff\AddStaff.aspx" />
+    <Content Include="AdminPages\AdminStaff\StaffHome.aspx" />
     <Content Include="AdminPages\Dashboard.aspx" />
     <Content Include="AdminPages\Delivery.aspx" />
     <Content Include="AdminPages\AdminDiscount\Discount.aspx" />
@@ -87,7 +88,6 @@
     <Content Include="AdminPages\AdminOrder\Order.aspx" />
     <Content Include="AdminPages\AdminOrder\OrderItem.aspx" />
     <Content Include="AdminPages\AdminProduct\Product.aspx" />
-    <Content Include="AdminPages\AdminStaff\Staff.aspx" />
     <Content Include="AdminPages\AdminDiscount\UpdateDiscount.aspx" />
     <Content Include="AdminPages\AdminProduct\UpdateProduct.aspx" />
     <Content Include="AdminPages\AdminStaff\UpdateStaff.aspx" />
@@ -277,6 +277,13 @@
     <Compile Include="AdminPages\AdminStaff\AddStaff.aspx.designer.cs">
       <DependentUpon>AddStaff.aspx</DependentUpon>
     </Compile>
+    <Compile Include="AdminPages\AdminStaff\StaffHome.aspx.cs">
+      <DependentUpon>StaffHome.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminPages\AdminStaff\StaffHome.aspx.designer.cs">
+      <DependentUpon>StaffHome.aspx</DependentUpon>
+    </Compile>
     <Compile Include="AdminPages\Dashboard.aspx.cs">
       <DependentUpon>Dashboard.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -325,13 +332,6 @@
     </Compile>
     <Compile Include="AdminPages\AdminProduct\Product.aspx.designer.cs">
       <DependentUpon>Product.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="AdminPages\AdminStaff\Staff.aspx.cs">
-      <DependentUpon>Staff.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="AdminPages\AdminStaff\Staff.aspx.designer.cs">
-      <DependentUpon>Staff.aspx</DependentUpon>
     </Compile>
     <Compile Include="AdminPages\AdminDiscount\UpdateDiscount.aspx.cs">
       <DependentUpon>UpdateDiscount.aspx</DependentUpon>

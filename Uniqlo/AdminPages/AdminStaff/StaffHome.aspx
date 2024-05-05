@@ -1,7 +1,9 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin.Master" AutoEventWireup="true" CodeBehind="Staff.aspx.cs" Inherits="Uniqlo.AdminPages.Staff" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin.Master" AutoEventWireup="true" CodeBehind="StaffHome.aspx.cs" Inherits="Uniqlo.AdminPages.AdminStaff.StaffHome" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="main" runat="server">
 
-    <link href="../../css/Admin/adminStaff.css" rel="stylesheet" />
+
+
+     <link href="../../css/Admin/adminStaff.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 

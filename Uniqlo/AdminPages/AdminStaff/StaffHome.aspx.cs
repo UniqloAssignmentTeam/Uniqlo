@@ -4,26 +4,18 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Data.SqlClient;
-using System.EnterpriseServices;
-using System.Xml.Linq;
-using System.Data;
-using System.Data.Entity;
-using Uniqlo;
 
-namespace Uniqlo.AdminPages
+namespace Uniqlo.AdminPages.AdminStaff
 {
-    public partial class Staff : System.Web.UI.Page
+    public partial class StaffHome : System.Web.UI.Page
     {
         string cs = Global.CS;
-       
+
         protected void Page_Load(object sender, EventArgs e)
         {
-           
+
 
         }
-       
-      
         protected void addStaffBtn_Click(object sender, EventArgs e)
         {
             Response.Redirect("AddStaff.aspx");

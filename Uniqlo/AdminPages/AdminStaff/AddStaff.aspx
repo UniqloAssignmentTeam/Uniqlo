@@ -29,23 +29,23 @@
                               <div class="form-group">
     <label for="productName">Gender</label>
     <div class="dropdown-container" onclick="toggleDropdown('dropdownList', 'dropdownDisplay')">
-        <div class="dropdown-display" id="dropdownDisplay">Male</div>
-        <div class="dropdown-list" id="dropdownList">
-            <div onclick="selectOption('Male', 'dropdownDisplay')">Male</div>
-            <div onclick="selectOption('Female', 'dropdownDisplay')">Female</div>
-        </div>
+        <asp:DropDownList ID="staffGender" runat="server" CssClass="dropdown-display">
+             <asp:ListItem>Male</asp:ListItem>
+             <asp:ListItem>Female</asp:ListItem>
+                                </asp:DropDownList>
     </div>
                </div>
                 <div class="form-group">
 
     <label for="productName">Role</label>
     <div class="dropdown-container" onclick="toggleDropdown('dropdownList2', 'dropdownDisplay2')">
-        <div class="dropdown-display" id="dropdownDisplay2">Admin</div>
-        <div class="dropdown-list" id="dropdownList2">
-            <div onclick="selectOption('Admin', 'dropdownDisplay2')">Admin</div>
-            <div onclick="selectOption('Manager', 'dropdownDisplay2')">Manager</div>
-            <div onclick="selectOption('Staff', 'dropdownDisplay2')">Staff</div>
-        </div>
+        
+
+            <asp:DropDownList ID="staffRole" runat="server" CssClass="dropdown-display">
+    <asp:ListItem>Staff</asp:ListItem>
+    <asp:ListItem>Manager</asp:ListItem>
+    <asp:ListItem>Admin</asp:ListItem>
+</asp:DropDownList>
     </div>
 </div>
 
@@ -61,7 +61,10 @@
      <asp:TextBox ID="email" runat="server"></asp:TextBox>
   </div>
                  
-                
+                                <div class="form-group">
+    <label for="password">Password</label>
+   <asp:TextBox ID="password" runat="server"></asp:TextBox>
+</div>
               
             </div>
 
@@ -69,7 +72,7 @@
                   <div class="button-container">
   
          <asp:Button ID="cancelBtn" runat="server" Text="CANCEL" CssClass="cancel-button"/>
-         <asp:Button ID="addBtn" runat="server" Text="ADD" CssClass="continue-button"/>
+         <asp:Button ID="addBtn" runat="server" Text="ADD" CssClass="continue-button" OnClick="addBtn_Click"/>
 </div>
         </div>
     </div>
