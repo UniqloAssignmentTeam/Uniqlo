@@ -50,6 +50,9 @@
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
@@ -78,6 +81,7 @@
     <Content Include="AdminPages\AdminDiscount\addDiscount.aspx" />
     <Content Include="AdminPages\AdminDiscount\DiscountHome.aspx" />
     <Content Include="AdminPages\AdminProduct\AddProduct.aspx" />
+    <Content Include="AdminPages\AdminProduct\ColorTableControl.ascx" />
     <Content Include="AdminPages\adminProfile.aspx" />
     <Content Include="AdminPages\AdminStaff\AddStaff.aspx" />
     <Content Include="AdminPages\AdminStaff\StaffHome.aspx" />
@@ -261,6 +265,13 @@
     </Compile>
     <Compile Include="AdminPages\AdminProduct\AddProduct.aspx.designer.cs">
       <DependentUpon>AddProduct.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AdminPages\AdminProduct\ColorTableControl.ascx.cs">
+      <DependentUpon>ColorTableControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminPages\AdminProduct\ColorTableControl.ascx.designer.cs">
+      <DependentUpon>ColorTableControl.ascx</DependentUpon>
     </Compile>
     <Compile Include="AdminPages\adminProfile.aspx.cs">
       <DependentUpon>adminProfile.aspx</DependentUpon>
