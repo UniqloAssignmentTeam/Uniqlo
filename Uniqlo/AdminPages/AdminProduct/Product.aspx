@@ -328,12 +328,6 @@
        <script src="../../Javascript/Pagination.js"></script>
       <script src="../../Javascript/productBtnEclipse.js"></script>
       <script src="../../Javascript/productAdminDDL.js"></script>
-        <script>
-            document.getElementById('addColorButton').addEventListener('click', function () {
-                var productQtySizeSection = document.querySelector('.productQtySizeSection');
-                // Show the section when the button is clicked
-                productQtySizeSection.style.display = 'block';
-            });
-        </script>
+
    </footer>
 </asp:Content>

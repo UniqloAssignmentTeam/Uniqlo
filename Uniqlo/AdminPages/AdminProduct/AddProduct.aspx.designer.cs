@@ -24,13 +24,13 @@ namespace Uniqlo.AdminPages
         protected global::System.Web.UI.WebControls.Label lblProductName;
 
         /// <summary>
-        /// productName control.
+        /// txtProductName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox productName;
+        protected global::System.Web.UI.WebControls.TextBox txtProductName;
 
         /// <summary>
         /// lblDescription control.
@@ -42,13 +42,13 @@ namespace Uniqlo.AdminPages
         protected global::System.Web.UI.WebControls.Label lblDescription;
 
         /// <summary>
-        /// description control.
+        /// txtDescription control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox description;
+        protected global::System.Web.UI.WebControls.TextBox txtDescription;
 
         /// <summary>
         /// lblPrice control.
@@ -60,13 +60,13 @@ namespace Uniqlo.AdminPages
         protected global::System.Web.UI.WebControls.Label lblPrice;
 
         /// <summary>
-        /// price control.
+        /// txtPrice control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox price;
+        protected global::System.Web.UI.WebControls.TextBox txtPrice;
 
         /// <summary>
         /// lblCategory control.
@@ -87,13 +87,13 @@ namespace Uniqlo.AdminPages
         protected global::System.Web.UI.WebControls.Panel Panel1;
 
         /// <summary>
-        /// DropDownList1 control.
+        /// ddlCategory control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownList1;
+        protected global::System.Web.UI.WebControls.DropDownList ddlCategory;
 
         /// <summary>
         /// lblGender control.
@@ -114,13 +114,13 @@ namespace Uniqlo.AdminPages
         protected global::System.Web.UI.WebControls.Panel Panel2;
 
         /// <summary>
-        /// DropDownList2 control.
+        /// ddlGender control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownList2;
+        protected global::System.Web.UI.WebControls.DropDownList ddlGender;
 
         /// <summary>
         /// lblColor control.
@@ -159,6 +159,15 @@ namespace Uniqlo.AdminPages
         protected global::System.Web.UI.WebControls.Panel colorTablesContainer;
 
         /// <summary>
+        /// HiddenFieldData control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField HiddenFieldData;
+
+        /// <summary>
         /// cancelButton control.
         /// </summary>
         /// <remarks>
@@ -175,86 +184,5 @@ namespace Uniqlo.AdminPages
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button addButton;
-
-        /// <summary>
-        /// btnDeleteTable control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnDeleteTable;
-
-        /// <summary>
-        /// sizeS control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label sizeS;
-
-        /// <summary>
-        /// txtS control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtS;
-
-        /// <summary>
-        /// sizeM control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label sizeM;
-
-        /// <summary>
-        /// txtM control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtM;
-
-        /// <summary>
-        /// sizeL control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label sizeL;
-
-        /// <summary>
-        /// txtL control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtL;
-
-        /// <summary>
-        /// sizeXL control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label sizeXL;
-
-        /// <summary>
-        /// txtXL control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtXL;
     }
 }
