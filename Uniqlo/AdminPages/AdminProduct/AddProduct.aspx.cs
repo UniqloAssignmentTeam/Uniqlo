@@ -11,13 +11,14 @@ using Newtonsoft.Json;
 using System.Data.SqlClient;
 using System.Web.Services.Description;
 using System.Diagnostics;
+using Uniqlo.AdminPages.AdminStaff;
 
 
 namespace Uniqlo.AdminPages
 {
     public partial class AddProduct : System.Web.UI.Page
     {
-        UniqloEntities1 db = new UniqloEntities1();
+        string cs = Global.CS;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (IsPostBack)
@@ -45,6 +46,41 @@ namespace Uniqlo.AdminPages
 
                 string jsonData = HiddenFieldData.Value;
                 List<ColorSize> colorSizes = JsonConvert.DeserializeObject<List<ColorSize>>(jsonData);
+
+                using (var db = new Product())
+                {
+                    // Calculate new prod_ID
+                    int newProdId = db.Product.Any() ? db.Staffs.Max(s => s.Staff_ID) + 1 : 1;
+                    string gender;
+                    if (staffGender.SelectedValue == "Male")
+                    {
+                        gender = "M";
+                    }
+                    else
+                    {
+                        gender = "F";
+                    }
+
+                    // Explicitly using Uniqlo namespace for Staff
+                    Staff newStaff = new Staff
+                    {
+
+
+                        Staff_ID = newStaffId,
+                        Name = staffName.Text, // Make sure control IDs match
+                        Email = email.Text,
+                        Gender = gender,
+                        Contact_No = contactNumber.Text,
+                        Password = password.Text,
+                        Role = staffRole.SelectedValue
+
+                    };
+
+                    db.Staffs.Add(newStaff);
+                    db.SaveChanges();
+
+                    Response.Redirect("StaffHome.aspx");
+                }
 
 
                 string connectionString = "Your Connection String Here";
