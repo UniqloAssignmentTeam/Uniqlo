@@ -44,7 +44,7 @@ namespace Uniqlo.AdminPages
 
             if (dr.Read())
             {
-                staffID.Text = dr.GetDataTypeName[]
+                staffID.Text = (string)dr["Staff_ID"];
             }
             
 
