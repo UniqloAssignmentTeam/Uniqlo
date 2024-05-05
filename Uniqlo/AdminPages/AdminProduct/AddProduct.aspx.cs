@@ -17,7 +17,7 @@ namespace Uniqlo.AdminPages
 {
     public partial class AddProduct : System.Web.UI.Page
     {
-        UniqloEntities1 db = new UniqloEntities1();
+        UniqloEntities db = new UniqloEntities();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (IsPostBack)
