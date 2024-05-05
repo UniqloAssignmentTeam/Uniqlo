@@ -84,6 +84,7 @@
     <Content Include="AdminPages\AdminProduct\ColorTableControl.ascx" />
     <Content Include="AdminPages\adminProfile.aspx" />
     <Content Include="AdminPages\AdminStaff\AddStaff.aspx" />
+    <Content Include="AdminPages\AdminStaff\StaffAdd.aspx" />
     <Content Include="AdminPages\AdminStaff\StaffHome.aspx" />
     <Content Include="AdminPages\Dashboard.aspx" />
     <Content Include="AdminPages\Delivery.aspx" />
@@ -100,7 +101,6 @@
     <Content Include="AdminPages\test.aspx" />
     <Content Include="AdminPages\UpdateDelivery.aspx" />
     <Content Include="App_Data\Uniqlo.mdf" />
-    <Content Include="App_Data\Uniqlo.StaffDbContext_log.ldf" />
     <Content Include="App_Data\Uniqlo_log.ldf">
       <DependentUpon>Uniqlo.mdf</DependentUpon>
     </Content>
@@ -286,6 +286,13 @@
     </Compile>
     <Compile Include="AdminPages\AdminStaff\AddStaff.aspx.designer.cs">
       <DependentUpon>AddStaff.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AdminPages\AdminStaff\StaffAdd.aspx.cs">
+      <DependentUpon>StaffAdd.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminPages\AdminStaff\StaffAdd.aspx.designer.cs">
+      <DependentUpon>StaffAdd.aspx</DependentUpon>
     </Compile>
     <Compile Include="AdminPages\AdminStaff\StaffHome.aspx.cs">
       <DependentUpon>StaffHome.aspx</DependentUpon>

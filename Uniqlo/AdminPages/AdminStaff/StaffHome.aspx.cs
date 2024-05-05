@@ -35,10 +35,10 @@ namespace Uniqlo.AdminPages.AdminStaff
             int staffId = int.Parse(hiddenStaffId.Value);  // Retrieve the Staff ID from hidden field
             using (var db = new StaffDbContext())
             {
-                var staff = db.Staffs.Find(staffId);
+                var staff = db.Staff.Find(staffId);
                 if (staff != null)
                 {
-                    db.Staffs.Remove(staff);
+                    db.Staff.Remove(staff);
                     db.SaveChanges();
                     Response.Redirect(Request.RawUrl);  // Refresh the page to reflect the changes
                 }

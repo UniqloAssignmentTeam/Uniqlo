@@ -9,17 +9,14 @@ using System.Web.UI.WebControls;
 using System.Xml.Linq;
 
 using Uniqlo;
-
-namespace Uniqlo.AdminPages
+namespace Uniqlo.AdminPages.AdminStaff
 {
-    public partial class AddStaff : System.Web.UI.Page
+    public partial class StaffAdd : System.Web.UI.Page
     {
-        string cs = Global.CS;
         protected void Page_Load(object sender, EventArgs e)
         {
-        
-        }
 
+        }
         protected void addBtn_Click(object sender, EventArgs e)
         {
             if (Page.IsValid)
@@ -50,7 +47,7 @@ namespace Uniqlo.AdminPages
                         Contact_No = contactNumber.Text,
                         Password = password.Text,
                         Role = staffRole.SelectedValue
-                      
+
                     };
 
                     db.Staff.Add(newStaff);

@@ -58,9 +58,9 @@ namespace Uniqlo.AdminPages
                         // Insert the main product
                         string productQuery = "INSERT INTO Products (ProductName, ProductDescription, Price, Category, Gender) VALUES (@Name, @Description, @Price, @Category, @Gender); SELECT SCOPE_IDENTITY();";
                         SqlCommand productCmd = new SqlCommand(productQuery, conn, transaction);
-                        productCmd.Parameters.AddWithValue("@Name", name);
-                        productCmd.Parameters.AddWithValue("@Description", description);
-                        productCmd.Parameters.AddWithValue("@Price", price);
+                        productCmd.Parameters.AddWithValue("@Name", productName);
+                        productCmd.Parameters.AddWithValue("@Description", productDescription);
+                        productCmd.Parameters.AddWithValue("@Price", productPrice);
                         productCmd.Parameters.AddWithValue("@Category", category);
                         productCmd.Parameters.AddWithValue("@Gender", gender);
                         int productId = Convert.ToInt32(productCmd.ExecuteScalar());

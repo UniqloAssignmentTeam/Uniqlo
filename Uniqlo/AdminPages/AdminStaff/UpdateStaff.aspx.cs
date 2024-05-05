@@ -26,7 +26,7 @@ namespace Uniqlo.AdminPages
         {
             using (var db = new StaffDbContext())
             {
-                var staff = db.Staffs.FirstOrDefault(s => s.Staff_ID == staffId);
+                var staff = db.Staff.FirstOrDefault(s => s.Staff_ID == staffId);
                 if (staff != null)
                 {
                     staffID.Text = staff.Staff_ID.ToString();
@@ -45,7 +45,7 @@ namespace Uniqlo.AdminPages
                 using (var db = new StaffDbContext())
                 {
                     int staffId = int.Parse(staffID.Text);
-                    var staff = db.Staffs.FirstOrDefault(s => s.Staff_ID == staffId);
+                    var staff = db.Staff.FirstOrDefault(s => s.Staff_ID == staffId);
                     if (staff != null)
                     {
                         staff.Name = staffName.Text;
