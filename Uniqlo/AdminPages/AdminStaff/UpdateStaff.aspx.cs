@@ -8,14 +8,12 @@ using System.Web.UI.WebControls;
 
 namespace Uniqlo.AdminPages
 {
-    public partial class UpdateStaff : System.Web.UI.Page
+    public partial class UpdateStaff : Page
     {
-        string cs = Global.CS;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                // Get Staff_ID from query string
                 string staffId = Request.QueryString["StaffID"];
                 if (!string.IsNullOrEmpty(staffId))
                 {
@@ -26,34 +24,40 @@ namespace Uniqlo.AdminPages
 
         private void LoadStaffDetails(int staffId)
         {
-
-            string sql = "SELECT * from Staff Where Staff_ID=@staffid";
-            
-            
-            //step 1.3: sql connection
-            SqlConnection con = new SqlConnection(cs);
-
-
-            //step 2:sql command
-            SqlCommand cmd = new SqlCommand(sql, con);
-            cmd.Parameters.AddWithValue("@staffid", staffId);
-
-            con.Open();
-
-            SqlDataReader dr = cmd.ExecuteReader();
-
-            if (dr.Read())
+            using (var db = new StaffDbContext())
             {
-                staffID.Text = (string)dr["Staff_ID"];
+                var staff = db.Staffs.FirstOrDefault(s => s.Staff_ID == staffId);
+                if (staff != null)
+                {
+                    staffID.Text = staff.Staff_ID.ToString();
+                    staffName.Text = staff.Name;
+                    email.Text = staff.Email;
+                    contactNumber.Text = staff.Contact_No;
+                    // Populate other fields like Gender and Role if they are included in your model
+                }
             }
-            
-
-            dr.Close();
-            con.Close();
-
-
-
         }
 
+        protected void updateBtn_Click(object sender, EventArgs e)
+        {
+            if (Page.IsValid)
+            {
+                using (var db = new StaffDbContext())
+                {
+                    int staffId = int.Parse(staffID.Text);
+                    var staff = db.Staffs.FirstOrDefault(s => s.Staff_ID == staffId);
+                    if (staff != null)
+                    {
+                        staff.Name = staffName.Text;
+                        staff.Email = email.Text;
+                        staff.Contact_No = contactNumber.Text;
+                        // Update other fields like Gender and Role if they are editable
+
+                        db.SaveChanges();
+                        Response.Redirect("Staff.aspx");
+                    }
+                }
+            }
+        }
     }
 }

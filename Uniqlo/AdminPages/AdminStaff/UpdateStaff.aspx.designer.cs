@@ -42,6 +42,24 @@ namespace Uniqlo.AdminPages
         protected global::System.Web.UI.WebControls.TextBox email;
 
         /// <summary>
+        /// staffGender control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList staffGender;
+
+        /// <summary>
+        /// staffRole control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList staffRole;
+
+        /// <summary>
         /// contactNumber control.
         /// </summary>
         /// <remarks>
@@ -60,12 +78,12 @@ namespace Uniqlo.AdminPages
         protected global::System.Web.UI.WebControls.Button cancelBtn;
 
         /// <summary>
-        /// addBtn control.
+        /// updateBtn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button addBtn;
+        protected global::System.Web.UI.WebControls.Button updateBtn;
     }
 }
