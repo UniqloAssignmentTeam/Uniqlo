@@ -13,10 +13,10 @@ namespace Uniqlo
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class UniqloEntities1 : DbContext
+    public partial class UniqloEntities : DbContext
     {
-        public UniqloEntities1()
-            : base("name=UniqloEntities1")
+        public UniqloEntities()
+            : base("name=UniqloEntities")
         {
         }
     

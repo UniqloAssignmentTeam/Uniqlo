@@ -13,7 +13,7 @@ namespace Uniqlo.AdminPages.AdminStaff
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
+           
 
         }
         protected void addStaffBtn_Click(object sender, EventArgs e)
@@ -28,6 +28,21 @@ namespace Uniqlo.AdminPages.AdminStaff
             var staffIdLabel = item.FindControl("staffID") as Label;
             Session["StaffID"] = staffIdLabel.Text;  // Store staff ID in session
             Response.Redirect("UpdateStaff.aspx");
+        }
+
+        protected void btnRemoveStaff_Click(object sender, EventArgs e)
+        {
+            int staffId = int.Parse(hiddenStaffId.Value);  // Retrieve the Staff ID from hidden field
+            using (var db = new StaffDbContext())
+            {
+                var staff = db.Staffs.Find(staffId);
+                if (staff != null)
+                {
+                    db.Staffs.Remove(staff);
+                    db.SaveChanges();
+                    Response.Redirect(Request.RawUrl);  // Refresh the page to reflect the changes
+                }
+            }
         }
     }
 }

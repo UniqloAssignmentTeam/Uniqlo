@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="UniqloModel1.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="UniqloModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Category">
           <Key>
             <PropertyRef Name="Category_ID" />
@@ -306,7 +306,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="UniqloModel1StoreContainer">
+        <EntityContainer Name="UniqloModelStoreContainer">
           <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Delivery" EntityType="Self.Delivery" Schema="dbo" store:Type="Tables" />
@@ -378,7 +378,7 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="UniqloModel1" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="UniqloModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Category">
           <Key>
             <PropertyRef Name="Category_ID" />
@@ -706,7 +706,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="UniqloEntities1" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="UniqloEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Categories" EntityType="Self.Category" />
           <EntitySet Name="Customers" EntityType="Self.Customer" />
           <EntitySet Name="Deliveries" EntityType="Self.Delivery" />
@@ -779,9 +779,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="UniqloModel1StoreContainer" CdmEntityContainer="UniqloEntities1">
+        <EntityContainerMapping StorageEntityContainer="UniqloModelStoreContainer" CdmEntityContainer="UniqloEntities">
           <EntitySetMapping Name="Categories">
-            <EntityTypeMapping TypeName="UniqloModel1.Category">
+            <EntityTypeMapping TypeName="UniqloModel.Category">
               <MappingFragment StoreEntitySet="Category">
                 <ScalarProperty Name="Category_ID" ColumnName="Category_ID" />
                 <ScalarProperty Name="Category1" ColumnName="Category" />
@@ -790,7 +790,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Customers">
-            <EntityTypeMapping TypeName="UniqloModel1.Customer">
+            <EntityTypeMapping TypeName="UniqloModel.Customer">
               <MappingFragment StoreEntitySet="Customer">
                 <ScalarProperty Name="Customer_ID" ColumnName="Customer_ID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -808,7 +808,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Deliveries">
-            <EntityTypeMapping TypeName="UniqloModel1.Delivery">
+            <EntityTypeMapping TypeName="UniqloModel.Delivery">
               <MappingFragment StoreEntitySet="Delivery">
                 <ScalarProperty Name="Delivery_ID" ColumnName="Delivery_ID" />
                 <ScalarProperty Name="Address_ID" ColumnName="Address_ID" />
@@ -818,7 +818,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Discounts">
-            <EntityTypeMapping TypeName="UniqloModel1.Discount">
+            <EntityTypeMapping TypeName="UniqloModel.Discount">
               <MappingFragment StoreEntitySet="Discount">
                 <ScalarProperty Name="Discount_ID" ColumnName="Discount_ID" />
                 <ScalarProperty Name="Discount_Amount" ColumnName="Discount_Amount" />
@@ -830,7 +830,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Images">
-            <EntityTypeMapping TypeName="UniqloModel1.Image">
+            <EntityTypeMapping TypeName="UniqloModel.Image">
               <MappingFragment StoreEntitySet="Image">
                 <ScalarProperty Name="Image_ID" ColumnName="Image_ID" />
                 <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
@@ -839,7 +839,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="OrderLists">
-            <EntityTypeMapping TypeName="UniqloModel1.OrderList">
+            <EntityTypeMapping TypeName="UniqloModel.OrderList">
               <MappingFragment StoreEntitySet="OrderList">
                 <ScalarProperty Name="OrderList_ID" ColumnName="OrderList_ID" />
                 <ScalarProperty Name="Product_ID" ColumnName="Product_ID" />
@@ -850,7 +850,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Orders">
-            <EntityTypeMapping TypeName="UniqloModel1.Order">
+            <EntityTypeMapping TypeName="UniqloModel.Order">
               <MappingFragment StoreEntitySet="Orders">
                 <ScalarProperty Name="Order_ID" ColumnName="Order_ID" />
                 <ScalarProperty Name="Customer_ID" ColumnName="Customer_ID" />
@@ -859,7 +859,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Payments">
-            <EntityTypeMapping TypeName="UniqloModel1.Payment">
+            <EntityTypeMapping TypeName="UniqloModel.Payment">
               <MappingFragment StoreEntitySet="Payment">
                 <ScalarProperty Name="Payment_ID" ColumnName="Payment_ID" />
                 <ScalarProperty Name="Delivery_ID" ColumnName="Delivery_ID" />
@@ -873,7 +873,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Products">
-            <EntityTypeMapping TypeName="UniqloModel1.Product">
+            <EntityTypeMapping TypeName="UniqloModel.Product">
               <MappingFragment StoreEntitySet="Product">
                 <ScalarProperty Name="Product_ID" ColumnName="Product_ID" />
                 <ScalarProperty Name="Category_ID" ColumnName="Category_ID" />
@@ -884,7 +884,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Quantities">
-            <EntityTypeMapping TypeName="UniqloModel1.Quantity">
+            <EntityTypeMapping TypeName="UniqloModel.Quantity">
               <MappingFragment StoreEntitySet="Quantity">
                 <ScalarProperty Name="Quantity_ID" ColumnName="Quantity_ID" />
                 <ScalarProperty Name="Product_ID" ColumnName="Product_ID" />
@@ -895,7 +895,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Reviews">
-            <EntityTypeMapping TypeName="UniqloModel1.Review">
+            <EntityTypeMapping TypeName="UniqloModel.Review">
               <MappingFragment StoreEntitySet="Review">
                 <ScalarProperty Name="Review_ID" ColumnName="Review_ID" />
                 <ScalarProperty Name="OrderList_ID" ColumnName="OrderList_ID" />
@@ -906,7 +906,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Shipping_Address">
-            <EntityTypeMapping TypeName="UniqloModel1.Shipping_Address">
+            <EntityTypeMapping TypeName="UniqloModel.Shipping_Address">
               <MappingFragment StoreEntitySet="Shipping_Address">
                 <ScalarProperty Name="Address_ID" ColumnName="Address_ID" />
                 <ScalarProperty Name="Address" ColumnName="Address" />
@@ -918,7 +918,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Staffs">
-            <EntityTypeMapping TypeName="UniqloModel1.Staff">
+            <EntityTypeMapping TypeName="UniqloModel.Staff">
               <MappingFragment StoreEntitySet="Staff">
                 <ScalarProperty Name="Staff_ID" ColumnName="Staff_ID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -931,7 +931,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="WishlistItems">
-            <EntityTypeMapping TypeName="UniqloModel1.WishlistItem">
+            <EntityTypeMapping TypeName="UniqloModel.WishlistItem">
               <MappingFragment StoreEntitySet="WishlistItem">
                 <ScalarProperty Name="WishlistItem_ID" ColumnName="WishlistItem_ID" />
                 <ScalarProperty Name="Product_ID" ColumnName="Product_ID" />
