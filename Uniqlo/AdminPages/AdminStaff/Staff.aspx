@@ -48,24 +48,25 @@
                 <div class="table">
                     
  <!--
-<!--Header-->   --> 
+<!--Header-->  
 
                    
-                 <asp:Repeater ID="staffRepeater" runat="server" ViewStateMode="Disabled">
+                 <asp:Repeater ID="staffRepeater" runat="server" ViewStateMode="Disabled" DataSourceID="testt">
 
                      <HeaderTemplate>
-                          <table class="table">
-     <tr>
-         <div class="row">
+                          <table style="width:100%" class="table">
+     <tr class="row">
+        
 
-             <div class="col staffid"><td>Staff ID</td></div>
-             
+        <td class="col staffid">Staff ID</td>
          <td class="col name">Staff Name</td>
          <td class="col role">Staff Role</td>
          <td class="col gender">Gender</td>
          <td class="col email">E-mail</td>
          <td class="col contactNo">Contact No</td>
-         </div>
+       <td class="col eclipse-display">
+    <asp:Button ID="Button1" runat="server" Text="Button" Visible="False" />
+ </div>
      </tr>
      
                      </HeaderTemplate>
@@ -81,7 +82,17 @@
 <td class="col email"><asp:Label ID="email" runat="server" Text='<%# Eval("Email") %>'></asp:Label></td>
 <td class="col contactNo"><asp:Label ID="contactNo" runat="server" Text='<%# Eval("Contact_No") %>'></asp:Label></td>
 
-                             
+
+<td class="col eclipse-container" onclick="toggleDropdown('dropdownList<%# Eval("Staff_ID") %>', 'dropdownDisplay<%# Eval("Staff_ID") %>')">   
+      <div class="eclipse-display" id="dropdownDisplay<%# Eval("Staff_ID") %>" style="border:none;"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></div>
+      <div class="eclipse-list" id="dropdownList<%# Eval("Staff_ID") %>">
+
+         <div> <asp:HyperLink ID="updateStaff" runat="server" NavigateUrl='<%# "UpdateStaff.aspx?StaffID=" + Eval("Staff_ID") %>' Text="Update"></asp:HyperLink></div>
+         <div onclick="document.getElementById('id01').style.display='block'">Delete</div>
+      </div>
+
+</td>
+                            
                          </tr>
 
 
@@ -96,7 +107,7 @@
 
 
 
-
+                    
 
 
 
@@ -106,7 +117,7 @@
                    
                 
 
-
+ <asp:SqlDataSource ID="testt" runat ="server" ConnectionString="<%$ ConnectionStrings:UniqloConnectionString  %>"   SelectCommand="Select * From [Staff]"></asp:SqlDataSource>
 
 
                 

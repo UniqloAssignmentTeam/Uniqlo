@@ -44,7 +44,10 @@ window.onclick = function (event) {
     }
 }
 
-
+function toggleDropdown(dropdownId) {
+    var dropdown = document.getElementById(dropdownId);
+    dropdown.style.display = (dropdown.style.display === 'none' ? 'block' : 'none');
+}
 // Function to display the modal
 function showModal(modalId) {
     var modal = document.getElementById(modalId);
