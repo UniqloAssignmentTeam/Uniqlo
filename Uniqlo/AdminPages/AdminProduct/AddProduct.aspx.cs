@@ -12,6 +12,9 @@ using System.Data.SqlClient;
 using System.Web.Services.Description;
 using System.Diagnostics;
 using Uniqlo.AdminPages.AdminStaff;
+using static Uniqlo.Product;
+using System.Runtime.Remoting.Contexts;
+using System.IO;
 
 
 namespace Uniqlo.AdminPages
@@ -30,10 +33,13 @@ namespace Uniqlo.AdminPages
         public class ColorSize
         {
             public string Color { get; set; }
-            public string Size { get; set; }
+            public string SizeS { get; set; }
+            public string SizeM { get; set; }
+            public string SizeL { get; set; }
+            public string SizeXL { get; set; }
             public string Image { get; set; }
         }
-        
+
         protected void addButton_Click(object sender, EventArgs e)
         {
             if (Page.IsValid)
@@ -44,86 +50,83 @@ namespace Uniqlo.AdminPages
                 string category = ddlCategory.SelectedValue;
                 string gender = ddlGender.SelectedValue;
 
-                string jsonData = HiddenFieldData.Value;
-                List<ColorSize> colorSizes = JsonConvert.DeserializeObject<List<ColorSize>>(jsonData);
-
-                using (var db = new Product())
+                // Check if a file is uploaded
+                if (Request.Files.Count > 0 && Request.Files[0].ContentLength > 0)
                 {
-                    // Calculate new prod_ID
-                    int newProdId = db.Product.Any() ? db.Staffs.Max(s => s.Staff_ID) + 1 : 1;
-                    string gender;
-                    if (staffGender.SelectedValue == "Male")
-                    {
-                        gender = "M";
-                    }
-                    else
-                    {
-                        gender = "F";
-                    }
-
-                    // Explicitly using Uniqlo namespace for Staff
-                    Staff newStaff = new Staff
-                    {
-
-
-                        Staff_ID = newStaffId,
-                        Name = staffName.Text, // Make sure control IDs match
-                        Email = email.Text,
-                        Gender = gender,
-                        Contact_No = contactNumber.Text,
-                        Password = password.Text,
-                        Role = staffRole.SelectedValue
-
-                    };
-
-                    db.Staffs.Add(newStaff);
-                    db.SaveChanges();
-
-                    Response.Redirect("StaffHome.aspx");
-                }
-
-
-                string connectionString = "Your Connection String Here";
-                using (SqlConnection conn = new SqlConnection(connectionString))
-                {
-                    conn.Open();
-                    SqlTransaction transaction = conn.BeginTransaction();
+                    HttpPostedFile uploadedFile = Request.Files[0]; // Get the uploaded file
 
                     try
                     {
-                        // Insert the main product
-                        string productQuery = "INSERT INTO Products (ProductName, ProductDescription, Price, Category, Gender) VALUES (@Name, @Description, @Price, @Category, @Gender); SELECT SCOPE_IDENTITY();";
-                        SqlCommand productCmd = new SqlCommand(productQuery, conn, transaction);
-                        productCmd.Parameters.AddWithValue("@Name", name);
-                        productCmd.Parameters.AddWithValue("@Description", description);
-                        productCmd.Parameters.AddWithValue("@Price", price);
-                        productCmd.Parameters.AddWithValue("@Category", category);
-                        productCmd.Parameters.AddWithValue("@Gender", gender);
-                        int productId = Convert.ToInt32(productCmd.ExecuteScalar());
+                        string jsonData = HiddenFieldData.Value;
+                        List<ColorSize> colorSizes = JsonConvert.DeserializeObject<List<ColorSize>>(jsonData);
 
-                        // Insert each color and size
-                        foreach (var item in colorSizes)
+                        using (var db = new ProductDbContext())
                         {
-                            string detailQuery = "INSERT INTO ProductDetails (ProductId, Color, Size, Image) VALUES (@ProductId, @Color, @Size, @Image)";
-                            SqlCommand detailCmd = new SqlCommand(detailQuery, conn, transaction);
-                            detailCmd.Parameters.AddWithValue("@ProductId", productId);
-                            detailCmd.Parameters.AddWithValue("@Color", item.Color);
-                            detailCmd.Parameters.AddWithValue("@Size", item.Size);
-                            detailCmd.Parameters.AddWithValue("@Image", item.Image);
-                            detailCmd.ExecuteNonQuery();
-                        }
+                            int newProductID = db.product.Any() ? db.product.Max(p => p.Product_ID) + 1 : 1;
+                            int newImageID = db.image.Any() ? db.image.Max(i => i.Image_ID) + 1 : 1;
+                            var categoryID = db.category.Where(c => c.Category1 == category && c.Gender == gender).Select(c => c.Category_ID).FirstOrDefault();
+                            int newQuantityIDCounter = db.quantity.Any() ? db.quantity.Max(q => q.Quantity_ID) + 1 : 1;
+                            string serverPath = Server.MapPath("/Images/Products/"); // Physical path on server
 
-                        transaction.Commit();
+                            Product newProduct = new Product
+                            {
+                                Product_ID = newProductID,
+                                Category_ID = categoryID,
+                                Product_Name = productName,
+                                Description = productDescription,
+                                Price = productPrice
+                            };
+                            db.product.Add(newProduct);
+
+                            string imageFileName = Path.GetFileName(uploadedFile.FileName); // Get file name
+                            string fullPath = serverPath + imageFileName; // Full path to save file
+                            uploadedFile.SaveAs(fullPath); // Save file to server
+
+                            foreach (var colorSize in colorSizes)
+                            {
+                                foreach (var sizeProperty in typeof(ColorSize).GetProperties().Where(p => p.Name.StartsWith("Size")))
+                                {
+                                    string sizeValue = sizeProperty.GetValue(colorSize) as string;
+                                    if (!string.IsNullOrEmpty(sizeValue))
+                                    {
+                                        string size = sizeProperty.Name.Substring(4); // Extract size from property name
+                                        Quantity newQuantity = new Quantity
+                                        {
+                                            Quantity_ID = newQuantityIDCounter++,
+                                            Product_ID = newProduct.Product_ID,
+                                            Color = colorSize.Color,
+                                            Size = size,
+                                            Quantity1 = Int32.Parse(sizeValue)
+                                        };
+                                        db.quantity.Add(newQuantity);
+
+                                        Image newImage = new Image
+                                        {
+                                            Image_ID = newImageID++,
+                                            ImagePath = "/Images/Products/" + imageFileName, // Relative path for database
+                                            Quantity_ID = newQuantity.Quantity_ID
+                                        };
+                                        db.image.Add(newImage);
+                                    }
+                                }
+                            }
+                            db.SaveChanges();
+                        }
                     }
                     catch (Exception ex)
                     {
-                        transaction.Rollback();
-                        Console.WriteLine("Error: " + ex.Message);
-                        throw; // Optionally rethrow the exception
+                        // Handle exceptions
+                        Response.Write("Error: " + ex.Message);
                     }
                 }
-
+                else
+                {
+                    // Notify user if no file is selected
+                    Response.Write("Please select a file to upload.");
+                }
             }
         }
+
+
     }
 }

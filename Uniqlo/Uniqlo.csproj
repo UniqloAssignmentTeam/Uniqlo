@@ -82,6 +82,7 @@
     <Content Include="AdminPages\AdminDiscount\DiscountHome.aspx" />
     <Content Include="AdminPages\AdminProduct\AddProduct.aspx" />
     <Content Include="AdminPages\AdminProduct\ColorTableControl.ascx" />
+    <Content Include="AdminPages\AdminProduct\ProductHome.aspx" />
     <Content Include="AdminPages\adminProfile.aspx" />
     <Content Include="AdminPages\AdminStaff\AddStaff.aspx" />
     <Content Include="AdminPages\AdminStaff\StaffHome.aspx" />
@@ -90,7 +91,6 @@
     <Content Include="AdminPages\Login.aspx" />
     <Content Include="AdminPages\AdminOrder\Order.aspx" />
     <Content Include="AdminPages\AdminOrder\OrderItem.aspx" />
-    <Content Include="AdminPages\AdminProduct\Product.aspx" />
     <Content Include="AdminPages\AdminDiscount\UpdateDiscount.aspx" />
     <Content Include="AdminPages\AdminProduct\UpdateProduct.aspx" />
     <Content Include="AdminPages\AdminStaff\UpdateStaff.aspx" />
@@ -273,6 +273,13 @@
     <Compile Include="AdminPages\AdminProduct\ColorTableControl.ascx.designer.cs">
       <DependentUpon>ColorTableControl.ascx</DependentUpon>
     </Compile>
+    <Compile Include="AdminPages\AdminProduct\ProductHome.aspx.cs">
+      <DependentUpon>ProductHome.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminPages\AdminProduct\ProductHome.aspx.designer.cs">
+      <DependentUpon>ProductHome.aspx</DependentUpon>
+    </Compile>
     <Compile Include="AdminPages\adminProfile.aspx.cs">
       <DependentUpon>adminProfile.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -328,13 +335,6 @@
     </Compile>
     <Compile Include="AdminPages\AdminOrder\OrderItem.aspx.designer.cs">
       <DependentUpon>OrderItem.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="AdminPages\AdminProduct\Product.aspx.cs">
-      <DependentUpon>Product.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="AdminPages\AdminProduct\Product.aspx.designer.cs">
-      <DependentUpon>Product.aspx</DependentUpon>
     </Compile>
     <Compile Include="AdminPages\AdminDiscount\UpdateDiscount.aspx.cs">
       <DependentUpon>UpdateDiscount.aspx</DependentUpon>
@@ -655,6 +655,11 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Images\Categories\Men\Bottoms\" />
+    <Folder Include="Images\Categories\Men\Tops\" />
+    <Folder Include="Images\Products\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

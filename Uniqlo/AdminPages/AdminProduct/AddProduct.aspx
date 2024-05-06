@@ -35,9 +35,9 @@
                     <asp:Label ID="lblCategory" runat="server" Text="Category"></asp:Label>
 
                     <asp:Panel ID="Panel1" runat="server" CssClass="dropdown-container">
-                        <asp:DropDownList ID="ddlCategory" runat="server" CssClass="dropdown-display" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged">
-                            <asp:ListItem Text="Tops" Value="Tops"></asp:ListItem>
-                            <asp:ListItem Text="Bottoms" Value="Bottoms"></asp:ListItem>
+                        <asp:DropDownList ID="ddlCategory" runat="server" CssClass="dropdown-display" >
+                            <asp:ListItem Text="Tops" Value="Top"></asp:ListItem>
+                            <asp:ListItem Text="Bottoms" Value="Bottom"></asp:ListItem>
                         </asp:DropDownList>
                     </asp:Panel>
 
@@ -46,9 +46,9 @@
                     <asp:Label ID="lblGender" runat="server" Text="Gender"></asp:Label>
 
                     <asp:Panel ID="Panel2" runat="server" CssClass="dropdown-container">
-                        <asp:DropDownList ID="ddlGender" runat="server" CssClass="dropdown-display" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged">
-                            <asp:ListItem Text="Men" Value="Men"></asp:ListItem>
-                            <asp:ListItem Text="Women" Value="Women"></asp:ListItem>
+                        <asp:DropDownList ID="ddlGender" runat="server" CssClass="dropdown-display" >
+                            <asp:ListItem Text="Men" Value="M"></asp:ListItem>
+                            <asp:ListItem Text="Women" Value="F"></asp:ListItem>
                         </asp:DropDownList>
                     </asp:Panel>
                 </div>
@@ -70,7 +70,7 @@
                     <asp:Button ID="cancelButton" runat="server" Text="Cancel" CssClass="cancel-button" PostBackUrl="~/AdminPages/AdminProduct/Product.aspx" />
                 </div>
                 <div class="continue-div">
-                    <asp:Button ID="addButton" runat="server" Text="Add" CssClass="continue-button" PostBackUrl="~/AdminPages/AdminProduct/Product.aspx" OnClick="addButton_Click"/>
+                    <asp:Button ID="addButton" runat="server" Text="Add" CssClass="continue-button" OnClick="addButton_Click"/>
                 </div>
             </div>
         </div>
@@ -101,6 +101,24 @@
                                     <div class="form-group">
                                         <label for="sizeS${colorId}">S</label>
                                         <input type="number" id="sizeS${colorId}" class="form-field" placeholder=""/>
+                                    </div>
+                                </td>                                
+                                <td>
+                                    <div class="form-group">
+                                        <label for="sizeM${colorId}">M</label>
+                                        <input type="number" id="sizeM${colorId}" class="form-field" placeholder=""/>
+                                    </div>
+                                </td>                                
+                                <td>
+                                    <div class="form-group">
+                                        <label for="sizeL${colorId}">L</label>
+                                        <input type="number" id="sizeL${colorId}" class="form-field" placeholder=""/>
+                                    </div>
+                                </td>                                
+                                <td>
+                                    <div class="form-group">
+                                        <label for="sizeXL${colorId}">XL</label>
+                                        <input type="number" id="sizeXL${colorId}" class="form-field" placeholder=""/>
                                     </div>
                                 </td>
                                 <td>
@@ -154,7 +172,10 @@
                 var data = [];
                 document.querySelectorAll('.color-table-wrapper').forEach(function (table, index) {
                     var colorName = table.querySelector('input[type="hidden"]').value;
-                    var sizeS = table.querySelector('input[type="number"]').value;  // Assuming only one size for simplicity
+                    var sizeS = table.querySelector('input[id^="sizeS"]').value;
+                    var sizeM = table.querySelector('input[id^="sizeM"]').value;  
+                    var sizeL = table.querySelector('input[id^="sizeL"]').value; 
+                    var sizeXL = table.querySelector('input[id^="sizeXL"]').value;  
                     var fileInput = table.querySelector('input[type="file"]');
                     var fileName = '';  // Default to empty string if no file is selected
 
@@ -164,7 +185,7 @@
                     }
 
                     //console.log("Color Name:", colorName, "Size S:", sizeS, "Image:", fileName);  // Check what's being retrieved
-                    data.push({ color: colorName, size: sizeS, image: fileName });
+                    data.push({ Color: colorName, SizeS: sizeS, SizeM: sizeM, SizeL: sizeL, SizeXL: sizeXL, Image: fileName, });
                 });
 
                 var jsonStr = JSON.stringify(data);
