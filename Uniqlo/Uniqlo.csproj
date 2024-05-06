@@ -83,7 +83,6 @@
     <Content Include="AdminPages\AdminProduct\AddProduct.aspx" />
     <Content Include="AdminPages\AdminProduct\ColorTableControl.ascx" />
     <Content Include="AdminPages\adminProfile.aspx" />
-    <Content Include="AdminPages\AdminStaff\AddStaff.aspx" />
     <Content Include="AdminPages\AdminStaff\StaffAdd.aspx" />
     <Content Include="AdminPages\AdminStaff\StaffHome.aspx" />
     <Content Include="AdminPages\Dashboard.aspx" />
@@ -279,13 +278,6 @@
     </Compile>
     <Compile Include="AdminPages\adminProfile.aspx.designer.cs">
       <DependentUpon>adminProfile.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="AdminPages\AdminStaff\AddStaff.aspx.cs">
-      <DependentUpon>AddStaff.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="AdminPages\AdminStaff\AddStaff.aspx.designer.cs">
-      <DependentUpon>AddStaff.aspx</DependentUpon>
     </Compile>
     <Compile Include="AdminPages\AdminStaff\StaffAdd.aspx.cs">
       <DependentUpon>StaffAdd.aspx</DependentUpon>

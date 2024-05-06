@@ -16,8 +16,7 @@ namespace Uniqlo.Pages
         {
             if (!Page.IsPostBack)
             {
-                bool found = false;
-
+                bool found = true;
                 string sql = "SELECT * FROM Customer WHERE Customer_Id =@Customer_Id";
 
                 SqlConnection con = new SqlConnection(cs);

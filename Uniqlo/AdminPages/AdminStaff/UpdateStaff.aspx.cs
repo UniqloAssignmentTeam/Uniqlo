@@ -5,6 +5,8 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Xml.Linq;
+using Uniqlo.AdminPages.AdminStaff;
 
 namespace Uniqlo.AdminPages
 {
@@ -33,7 +35,9 @@ namespace Uniqlo.AdminPages
                     staffName.Text = staff.Name;
                     email.Text = staff.Email;
                     contactNumber.Text = staff.Contact_No;
-                    // Populate other fields like Gender and Role if they are included in your model
+                    staffGender.SelectedValue=staff.Gender;
+                    staffRole.SelectedValue = staff.Role;
+                    
                 }
             }
         }
@@ -51,6 +55,8 @@ namespace Uniqlo.AdminPages
                         staff.Name = staffName.Text;
                         staff.Email = email.Text;
                         staff.Contact_No = contactNumber.Text;
+                        staff.Gender = staffGender.SelectedValue;
+                        staff.Role= staffRole.SelectedValue;
                         // Update other fields like Gender and Role if they are editable
 
                         db.SaveChanges();

@@ -25,15 +25,8 @@ namespace Uniqlo.AdminPages.AdminStaff
                 {
                     // Calculate new Staff_ID
                     int newStaffId = db.Staff.Any() ? db.Staff.Max(s => s.Staff_ID) + 1 : 1;
-                    string gender;
-                    if (staffGender.SelectedValue == "Male")
-                    {
-                        gender = "M";
-                    }
-                    else
-                    {
-                        gender = "F";
-                    }
+                    
+                   
 
                     // Explicitly using Uniqlo namespace for Staff
                     Staff newStaff = new Staff
@@ -43,7 +36,7 @@ namespace Uniqlo.AdminPages.AdminStaff
                         Staff_ID = newStaffId,
                         Name = staffName.Text, // Make sure control IDs match
                         Email = email.Text,
-                        Gender = gender,
+                        Gender = staffGender.SelectedValue,
                         Contact_No = contactNumber.Text,
                         Password = password.Text,
                         Role = staffRole.SelectedValue

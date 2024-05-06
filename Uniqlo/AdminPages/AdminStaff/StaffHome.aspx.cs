@@ -9,11 +9,14 @@ namespace Uniqlo.AdminPages.AdminStaff
 {
     public partial class StaffHome : System.Web.UI.Page
     {
-        string cs = Global.CS;
+       
 
         protected void Page_Load(object sender, EventArgs e)
         {
-           
+            if (!IsPostBack)
+            {
+                BindRepeater();
+            }
 
         }
         protected void addStaffBtn_Click(object sender, EventArgs e)
@@ -44,5 +47,17 @@ namespace Uniqlo.AdminPages.AdminStaff
                 }
             }
         }
+
+        private void BindRepeater()
+        {
+            using (var db = new StaffDbContext())
+            {
+                var staffList = db.Staff.ToList();
+                staffRepeater.DataSource = staffList;
+                staffRepeater.DataBind();
+            }
+        }
+
+
     }
 }

@@ -53,7 +53,7 @@
 <!--Header-->  
 
                    
-                 <asp:Repeater ID="staffRepeater" runat="server" ViewStateMode="Disabled" DataSourceID="testt">
+                 <asp:Repeater ID="staffRepeater" runat="server" ViewStateMode="Disabled" >
 
                      <HeaderTemplate>
                           <table style="width:100%" class="table">
