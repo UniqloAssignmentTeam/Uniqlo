@@ -29,8 +29,8 @@
     <label for="productName">Gender</label>
     <div class="dropdown-container" onclick="toggleDropdown('dropdownList', 'dropdownDisplay')">
         <asp:DropDownList ID="staffGender" runat="server" CssClass="dropdown-display">
-             <asp:ListItem>Male</asp:ListItem>
-             <asp:ListItem>Female</asp:ListItem>
+             <asp:ListItem Value="M">Male</asp:ListItem>
+             <asp:ListItem Value="F">Female</asp:ListItem>
                                 </asp:DropDownList>
     </div>
                </div>
