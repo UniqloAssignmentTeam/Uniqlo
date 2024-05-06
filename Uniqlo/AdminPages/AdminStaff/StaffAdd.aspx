@@ -1,7 +1,6 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin.Master" AutoEventWireup="true" CodeBehind="AddStaff.aspx.cs" Inherits="Uniqlo.AdminPages.AddStaff" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin.Master" AutoEventWireup="true" CodeBehind="StaffAdd.aspx.cs" Inherits="Uniqlo.AdminPages.AdminStaff.StaffAdd" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="main" runat="server">
-
-            <header>
+                <header>
                 <link href="../../css/Admin/addStaff.css" rel="stylesheet" />
         </header>
        
@@ -30,8 +29,8 @@
     <label for="productName">Gender</label>
     <div class="dropdown-container" onclick="toggleDropdown('dropdownList', 'dropdownDisplay')">
         <asp:DropDownList ID="staffGender" runat="server" CssClass="dropdown-display">
-             <asp:ListItem>Male</asp:ListItem>
-             <asp:ListItem>Female</asp:ListItem>
+             <asp:ListItem Value="M">Male</asp:ListItem>
+             <asp:ListItem Value="F">Female</asp:ListItem>
                                 </asp:DropDownList>
     </div>
                </div>
@@ -82,6 +81,5 @@
         <footer>
         <script src="../../Javascript/productAdminDDL.js"></script>
             </footer>
-
 
 </asp:Content>
