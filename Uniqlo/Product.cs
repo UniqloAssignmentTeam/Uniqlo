@@ -47,10 +47,10 @@ namespace Uniqlo
             public ProductDbContext() : base("name=UniqloEntities") // Ensure this matches your connection string in Web.config
             {
             }
-            public DbSet<Category> Category { get; set; }
-            public DbSet<Product> Product { get; set; }
-            public DbSet<Quantity> Quantity { get; set; }
-            public DbSet<Image> Image { get; set; }
+            public DbSet<Category> category { get; set; }
+            public DbSet<Product> product { get; set; }
+            public DbSet<Quantity> quantity { get; set; }
+            public DbSet<Image> image { get; set; }
 
             
         }
