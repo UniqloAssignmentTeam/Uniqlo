@@ -16,46 +16,46 @@
     <div class="form-content">
         <header>Sign Up</header>
         <form action="#">
+
             <!-- Full Name Field -->
             <div class="field input-field">
-                <input type="text" placeholder="Full Name" class="input" required>
+                <asp:Label ID="lblName" runat="server" Text="Name"></asp:Label>
+                <asp:TextBox ID="txtName" type="text" placeholder="Full Name" class="input"  runat="server" required OnTextChanged="txtName_TextChanged" ValidateRequestMode="Enabled"></asp:TextBox>
             </div>
 
             <!-- Email Field -->
             <div class="field input-field">
-                <input type="email" placeholder="Email" class="input" required>
+                <asp:Label ID="lblEmail" runat="server" Text="Email"></asp:Label>
+                <asp:TextBox ID="txtEmail" runat="server" type="email" placeholder="Email" class="input" required></asp:TextBox>
             </div>
 
             <!-- Create Password Field -->
             <div class="field input-field">
-                <input type="password" placeholder="Create password" class="password" required>
-
-                
-            </div>
-
-            <!-- Confirm Password Field -->
-            <div class="field input-field">
-                <input type="password" placeholder="Confirm password" class="password" required>
-        
+                <asp:Label ID="lblPassword" runat="server" Text="Password"></asp:Label>
+                <asp:TextBox ID="txtPassword" runat="server" placeholder="Create password" class="password"></asp:TextBox>
             </div>
 
                <!-- Phone Number Field -->
              <div class="field input-field">
-                <input type="text" placeholder="Phone Number" class="input" required>
-  
+                 <asp:Label ID="lblPhone" runat="server" Text="Phone"></asp:Label>
+                 <asp:TextBox ID="txtPhone" runat="server" type="text" placeholder="Phone Number" class="input" OnTextChanged="txtPhone_TextChanged"></asp:TextBox>
              </div>
+
+            <!-- Gender -->
+            <div class="field input-field">
+                <asp:Label ID="lblGender" runat="server" Text="Gender"></asp:Label>
+                <asp:DropDownList ID="ddlGender" runat="server" placeholder="Gender" CssClass="field input-field" Height="35px" OnSelectedIndexChanged="ddlGender_SelectedIndexChanged" Width="410px">
+                    <asp:ListItem Value="M">Male</asp:ListItem>
+                    <asp:ListItem Value="F">Female</asp:ListItem>
+                </asp:DropDownList>
+            </div>
+
             <br />
-           <!-- <div class="Gender:">
-            <asp:Label ID="lblGender" runat="server" Text="Gender"></asp:Label>
-            <asp:RadioButtonList ID="rblGender" runat="server" RepeatDirection="Horizontal">
-                <asp:ListItem>Male</asp:ListItem> <asp:ListItem>Female</asp:ListItem>
-            </asp:RadioButtonList>
-            </div>-->
          
 
             <!-- Sign Up Button -->
             <div class="field button-field">
-                <button type="submit" onclick="alert('Registration Successfully! Please check your email')">Sign Up</button>
+            <asp:Button ID="btnSignUp" runat="server" Text="Sign Up" type="submit" OnClick="btnSignUp_Click"/>
             </div>
         </form>
 

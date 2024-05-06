@@ -97,7 +97,6 @@
     <Content Include="AdminPages\test.aspx" />
     <Content Include="AdminPages\UpdateDelivery.aspx" />
     <Content Include="App_Data\Uniqlo.mdf" />
-    <Content Include="App_Data\Uniqlo.StaffDbContext_log.ldf" />
     <Content Include="App_Data\Uniqlo_log.ldf">
       <DependentUpon>Uniqlo.mdf</DependentUpon>
     </Content>
