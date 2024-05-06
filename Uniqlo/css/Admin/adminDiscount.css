@@ -269,7 +269,7 @@
     display: none;
 }
 
-.productid, .price {
+.discountId, .wear {
     flex: 0 0 10%; /* Set a base width */
 }
 
@@ -280,17 +280,17 @@
     flex-grow: 1; /* Allow this column to grow and take up remaining space */
 }
 
-.wear {
+.price {
     flex-basis: 10%;
 }
 
 /* Price Column */
 
-.gender {
+.startDate {
     flex-basis: 10%;
 }
 /* Category Column */
-.category {
+.endDate {
     min-width: 0;
     flex-basis: 10%;
     word-wrap: break-word;
