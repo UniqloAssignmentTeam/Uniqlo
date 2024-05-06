@@ -16,13 +16,17 @@ namespace Uniqlo.Pages
         {
             if (!Page.IsPostBack)
             {
+
+                //dummy cart
                 List<CartItem> cart = new List<CartItem>
                 {
-                new CartItem { ProductId = 1, ProductName = "T-Shirt", Price = 19.99m, Quantity = 2 },
-                new CartItem { ProductId = 2, ProductName = "Jeans", Price = 39.99m, Quantity = 1 },
-                new CartItem { ProductId = 3, ProductName = "Jacket", Price = 99.99m, Quantity = 1 },
-                new CartItem { ProductId = 4, ProductName = "Sneakers", Price = 59.99m, Quantity = 1 }
+                
                 };
+
+
+                
+                
+                
 
 
                 bool found = false;

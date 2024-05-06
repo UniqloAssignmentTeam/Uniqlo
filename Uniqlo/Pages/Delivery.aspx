@@ -98,15 +98,14 @@
 
 
 
-                                <div class="d-flex justify-content-between">
-                                    <p>AIRism Cotton Short Sleeve T-Shirt, White, M x 1</p>
-                                    <p>RM 30.00</p>
-                                </div>
-
-                                <div class="d-flex justify-content-between">
-                                    <p>Sweat Cargo Pants, Pink, M x 1</p>
-                                    <p>RM 79.90</p>
-                                </div>
+                                <asp:Repeater ID="CartRepeater" runat="server">
+                                    <ItemTemplate>
+                                        <div class="d-flex justify-content-between">
+                                            <p><%# Eval("ProductName") %>, <%# Eval("Size") %>, <%# Eval("Color") %> x <%# Eval("Quantity") %></p>
+                                            <p>RM <%# Eval("Price", "{0:F2}") %></p>
+                                        </div>
+                                    </ItemTemplate>
+                                </asp:Repeater>
 
 
                                 <hr class="mt-0">
@@ -114,6 +113,7 @@
                                     <h6 class="font-weight-medium">Total Price</h6>
                                     <h6 class="font-weight-medium">RM 109.90</h6>
                                 </div>
+
                                 <div class="d-flex justify-content-between">
                                     <h6 class="font-weight-medium">Delivery Charges</h6>
                                     <h6 class="font-weight-medium">RM 15</h6>
