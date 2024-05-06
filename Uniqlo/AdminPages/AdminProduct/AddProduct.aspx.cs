@@ -83,6 +83,7 @@ namespace Uniqlo.AdminPages
                             uploadedFile.SaveAs(fullPath); // Save file to server
 
                             /*
+                             * HI
                             foreach (var colorSize in colorSizes)
                             {
                                 foreach (var sizeProperty in typeof(ColorSize).GetProperties().Where(p => p.Name.StartsWith("Size")))
