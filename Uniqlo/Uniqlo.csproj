@@ -389,6 +389,7 @@
       <DependentUpon>test.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="CartItem.cs" />
     <Compile Include="Category.cs">
       <DependentUpon>Uniqlo.tt</DependentUpon>
     </Compile>
