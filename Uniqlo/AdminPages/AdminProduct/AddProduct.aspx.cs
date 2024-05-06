@@ -60,17 +60,14 @@ namespace Uniqlo.AdminPages
                         string jsonData = HiddenFieldData.Value;
                         List<ColorSize> colorSizes = JsonConvert.DeserializeObject<List<ColorSize>>(jsonData);
 
+                        /*
                         using (var db = new ProductDbContext())
                         {
-                            int newProductID = db.product.Any() ? db.product.Max(p => p.Product_ID) + 1 : 1;
-                            int newImageID = db.image.Any() ? db.image.Max(i => i.Image_ID) + 1 : 1;
                             var categoryID = db.category.Where(c => c.Name == category && c.Gender == gender).Select(c => c.Category_ID).FirstOrDefault();
-                            int newQuantityIDCounter = db.quantity.Any() ? db.quantity.Max(q => q.Quantity_ID) + 1 : 1;
                             string serverPath = Server.MapPath("/Images/Products/"); // Physical path on server
 
                             Product newProduct = new Product
                             {
-                                Product_ID = newProductID,
                                 Category_ID = categoryID,
                                 Product_Name = productName,
                                 Description = productDescription,
@@ -78,12 +75,12 @@ namespace Uniqlo.AdminPages
                             };
                             db.product.Add(newProduct);
 
-                            string imageFileName = Path.GetFileName(uploadedFile.FileName); // Get file name
-                            string fullPath = serverPath + imageFileName; // Full path to save file
-                            uploadedFile.SaveAs(fullPath); // Save file to server
+                            string imageFileName = Path.GetFileName(uploadedFile.FileName); 
+                            string fullPath = serverPath + imageFileName; 
+                            uploadedFile.SaveAs(fullPath);
 
-                            /*
-                             * HI
+                            
+                           
                             foreach (var colorSize in colorSizes)
                             {
                                 foreach (var sizeProperty in typeof(ColorSize).GetProperties().Where(p => p.Name.StartsWith("Size")))
@@ -91,7 +88,7 @@ namespace Uniqlo.AdminPages
                                     string sizeValue = sizeProperty.GetValue(colorSize) as string;
                                     if (!string.IsNullOrEmpty(sizeValue))
                                     {
-                                        string size = sizeProperty.Name.Substring(4); // Extract size from property name
+                                        string size = sizeProperty.Name.Substring(4);
                                         Quantity newQuantity = new Quantity
                                         {
                                             Quantity_ID = newQuantityIDCounter++,
@@ -113,9 +110,10 @@ namespace Uniqlo.AdminPages
                                 }
                             
                             }
-                            */
+                            
                             db.SaveChanges();
                         }
+                        */
                     }
                     catch (Exception ex)
                     {
