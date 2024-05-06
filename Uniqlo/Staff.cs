@@ -11,8 +11,8 @@ namespace Uniqlo
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
     using System.Data.Entity;
+    using System.ComponentModel.DataAnnotations;
 
     public partial class Staff
     {
@@ -34,3 +34,4 @@ namespace Uniqlo
         public DbSet<Staff> Staff { get; set; } // Make sure 'Staff' is properly defined as a class
     }
 }
+

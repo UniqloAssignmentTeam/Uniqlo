@@ -64,7 +64,7 @@ namespace Uniqlo.AdminPages
                         {
                             int newProductID = db.product.Any() ? db.product.Max(p => p.Product_ID) + 1 : 1;
                             int newImageID = db.image.Any() ? db.image.Max(i => i.Image_ID) + 1 : 1;
-                            var categoryID = db.category.Where(c => c.Category1 == category && c.Gender == gender).Select(c => c.Category_ID).FirstOrDefault();
+                            var categoryID = db.category.Where(c => c.Name == category && c.Gender == gender).Select(c => c.Category_ID).FirstOrDefault();
                             int newQuantityIDCounter = db.quantity.Any() ? db.quantity.Max(q => q.Quantity_ID) + 1 : 1;
                             string serverPath = Server.MapPath("/Images/Products/"); // Physical path on server
 
@@ -82,6 +82,7 @@ namespace Uniqlo.AdminPages
                             string fullPath = serverPath + imageFileName; // Full path to save file
                             uploadedFile.SaveAs(fullPath); // Save file to server
 
+                            /*
                             foreach (var colorSize in colorSizes)
                             {
                                 foreach (var sizeProperty in typeof(ColorSize).GetProperties().Where(p => p.Name.StartsWith("Size")))
@@ -109,7 +110,9 @@ namespace Uniqlo.AdminPages
                                         db.image.Add(newImage);
                                     }
                                 }
+                            
                             }
+                            */
                             db.SaveChanges();
                         }
                     }
