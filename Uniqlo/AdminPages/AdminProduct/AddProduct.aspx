@@ -36,7 +36,7 @@
 
                     <asp:Panel ID="Panel1" runat="server" CssClass="dropdown-container">
                         <asp:DropDownList ID="ddlCategory" runat="server" CssClass="dropdown-display" >
-                            <asp:ListItem Text="Tops" Value="Top"></asp:ListItem>
+                            <asp:ListItem Text="Tops" Value="Top" Selected="True"></asp:ListItem>
                             <asp:ListItem Text="Bottoms" Value="Bottom"></asp:ListItem>
                         </asp:DropDownList>
                     </asp:Panel>
@@ -47,8 +47,8 @@
 
                     <asp:Panel ID="Panel2" runat="server" CssClass="dropdown-container">
                         <asp:DropDownList ID="ddlGender" runat="server" CssClass="dropdown-display" >
-                            <asp:ListItem Text="Men" Value="M"></asp:ListItem>
-                            <asp:ListItem Text="Women" Value="F"></asp:ListItem>
+                            <asp:ListItem Text="Men" Value="M" Selected="True"></asp:ListItem>
+                            <asp:ListItem Text="Women" Value="W"></asp:ListItem>
                         </asp:DropDownList>
                     </asp:Panel>
                 </div>
@@ -91,8 +91,8 @@
                         <thead>
                             <tr>
                                 <th><h2>${color}</h2> <input type="hidden" id="colorName${colorId}" value="${color}" /></th>
-                                <th><button type="button" class="addColor-button" onclick="deleteColorTable(this)">Delete</button></th>
                                 <th><button type="button" class="addColor-button" onclick="updateHiddenField(this)">Save</button></th>
+                                <th><button type="button" class="addColor-button" onclick="deleteColorTable(this)">Delete</button></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -170,28 +170,50 @@
             //update the hidden field with a list of color, quantity and size
             function updateHiddenField(button) {
                 var data = [];
-                document.querySelectorAll('.color-table-wrapper').forEach(function (table, index) {
+                var colorTables = document.querySelectorAll('.color-table-wrapper');
+                var totalFilesToRead = colorTables.length;
+                var readFilesCount = 0;  // Counter to keep track of the number of processed files
+
+                colorTables.forEach(function (table, index) {
                     var colorName = table.querySelector('input[type="hidden"]').value;
                     var sizeS = table.querySelector('input[id^="sizeS"]').value;
-                    var sizeM = table.querySelector('input[id^="sizeM"]').value;  
-                    var sizeL = table.querySelector('input[id^="sizeL"]').value; 
-                    var sizeXL = table.querySelector('input[id^="sizeXL"]').value;  
+                    var sizeM = table.querySelector('input[id^="sizeM"]').value;
+                    var sizeL = table.querySelector('input[id^="sizeL"]').value;
+                    var sizeXL = table.querySelector('input[id^="sizeXL"]').value;
                     var fileInput = table.querySelector('input[type="file"]');
-                    var fileName = '';  // Default to empty string if no file is selected
 
-                    // Check if a file is selected and extract the filename
-                    if (fileInput.files.length > 0) {
-                        fileName = fileInput.files[0].name;  // This gets just the name of the file, not the path
+                    // Function to handle the file reading and data aggregation
+                    function handleFileRead(base64String) {
+                        data.push({
+                            Color: colorName,
+                            SizeS: sizeS,
+                            SizeM: sizeM,
+                            SizeL: sizeL,
+                            SizeXL: sizeXL,
+                            Image: base64String
+                        });
+                        readFilesCount++;  // Increment the counter after each file read
+
+                        // Check if all files have been processed
+                        if (readFilesCount === totalFilesToRead) {
+                            var jsonStr = JSON.stringify(data);
+                            document.getElementById('<%= HiddenFieldData.ClientID %>').value = jsonStr;
+                            console.log("Updated Hidden Field Data:", jsonStr);
+                        }
                     }
 
-                    //console.log("Color Name:", colorName, "Size S:", sizeS, "Image:", fileName);  // Check what's being retrieved
-                    data.push({ Color: colorName, SizeS: sizeS, SizeM: sizeM, SizeL: sizeL, SizeXL: sizeXL, Image: fileName, });
+                    if (fileInput.files.length > 0) {
+                        var reader = new FileReader();
+                        reader.onload = function (e) {
+                            handleFileRead(e.target.result);
+                        };
+                        reader.readAsDataURL(fileInput.files[0]);
+                    } else {
+                        handleFileRead(''); // Handle case where no file is selected
+                    }
                 });
-
-                var jsonStr = JSON.stringify(data);
-                document.getElementById('<%= HiddenFieldData.ClientID %>').value = jsonStr;
-                console.log("Updated Hidden Field Data:", jsonStr);
             }
+
 
 
 

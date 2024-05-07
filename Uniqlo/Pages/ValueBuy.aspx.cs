@@ -4,6 +4,10 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Uniqlo;
+using static Uniqlo.Product;
+using System.Data.Entity;
+using System.Security.Cryptography.X509Certificates;
 
 namespace Uniqlo.Pages
 {
@@ -11,7 +15,39 @@ namespace Uniqlo.Pages
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (!IsPostBack)
+            {
+                BindDataList();
+            }
         }
+
+        private void BindDataList()
+        {
+            using (var context = new ProductDbContext())
+            {
+                // Using DateTime.Now outside the LINQ query to avoid multiple calls which might give slight differences during execution.
+                var today = DateTime.Now;
+
+                // Fetching products with active discounts
+                var productsWithActiveDiscounts = (from p in context.Product
+                                                   join d in context.Discount on p.Product_ID equals d.Product_ID
+                                                   where d.Status == "Active" && d.Start_Date <= today && d.End_Date >= today
+                                                   join q in context.Quantity on p.Product_ID equals q.Product_ID
+                                                   join img in context.Image on q.Image_ID equals img.Image_ID
+                                                   select new
+                                                   {
+                                                       Product_Name = p.Product_Name, // Changed to ProductName to match common naming conventions
+                                                       Description = p.Description,
+                                                       Price = p.Price,
+                                                       Discount_Amount = d.Discount_Amount,
+                                                       Image_ID=img.Image_ID
+                                                   }).Distinct().ToList();
+
+                // Setting the DataList data source
+                DataList1.DataSource = productsWithActiveDiscounts;
+                DataList1.DataBind();
+            }
+        }
+
     }
 }

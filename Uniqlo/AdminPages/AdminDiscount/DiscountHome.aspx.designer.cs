@@ -33,22 +33,22 @@ namespace Uniqlo.AdminPages.AdminDiscount
         protected global::System.Web.UI.WebControls.Button excelExport;
 
         /// <summary>
-        /// Button3 control.
+        /// addDiscountBtn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button3;
+        protected global::System.Web.UI.WebControls.Button addDiscountBtn;
 
         /// <summary>
-        /// staffRepeater control.
+        /// discountRepeater control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater staffRepeater;
+        protected global::System.Web.UI.WebControls.Repeater discountRepeater;
 
         /// <summary>
         /// cancelBtn control.
@@ -60,12 +60,21 @@ namespace Uniqlo.AdminPages.AdminDiscount
         protected global::System.Web.UI.WebControls.Button cancelBtn;
 
         /// <summary>
-        /// deleteBtn control.
+        /// btnRemoveDiscount control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button deleteBtn;
+        protected global::System.Web.UI.WebControls.Button btnRemoveDiscount;
+
+        /// <summary>
+        /// hiddenDiscountId control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hiddenDiscountId;
     }
 }

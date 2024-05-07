@@ -11,7 +11,7 @@ namespace Uniqlo
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.Data.Entity;
     public partial class Image
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,9 +21,18 @@ namespace Uniqlo
         }
     
         public int Image_ID { get; set; }
-        public string ImagePath { get; set; }
+        public byte[] ImagePath { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Quantity> Quantities { get; set; }
+
+        public class ImageDbContext : DbContext
+        {
+            public ImageDbContext() : base("name=UniqloEntities") // Ensure this matches your connection string in Web.config
+            {
+            }
+
+            public DbSet<Image> Image { get; set; } // Make sure 'Staff' is properly defined as a class
+        }
     }
 }

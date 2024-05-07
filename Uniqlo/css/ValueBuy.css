@@ -25,7 +25,7 @@
 .limitedOfferCard {
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     transition: 0.3s;
-    width: calc(25% - 20px);
+    width: 250px;
     margin: 10px;
     cursor: pointer;
     display: flex;
@@ -989,4 +989,15 @@
 
 .new-price span {
     padding-left: 10px;
+}
+
+
+.newPrice {
+    text-decoration: line-through;
+    margin-right: 10px;
+    color: red;
+}
+
+.discountedPrice {
+   color:blue;
 }
