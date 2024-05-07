@@ -26,10 +26,10 @@ namespace Uniqlo.AdminPages.AdminDiscount
             var button = sender as Button;
             var item = button.NamingContainer as RepeaterItem;
             var discountIdLabel = item.FindControl("discountId") as Label;
-            Session["discountID"] = discountIdLabel.Text;  
+            Session["discountId"] = discountIdLabel.Text;  
             Response.Redirect("UpdateDiscount.aspx");
         }
-
+        
         protected void btnRemoveDiscount_Click(object sender, EventArgs e)
         {
             int discountId = int.Parse(hiddenDiscountId.Value); 
@@ -40,7 +40,7 @@ namespace Uniqlo.AdminPages.AdminDiscount
                 {
                     db.Discount.Remove(discount);
                     db.SaveChanges();
-                    Response.Redirect(Request.RawUrl);
+                    Response.Redirect("DiscountHome.aspx");
                 }
             }
         }
