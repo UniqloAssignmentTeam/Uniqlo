@@ -43,7 +43,7 @@
                 <div class="btnExcel-Add">
                     <asp:Button ID="excelBtn" runat="server" Text="Export" CssClass="excel-export"/>
                 
-                     <asp:Button ID="addStaffBtn" runat="server" Text="➕ Add Staff" CssClass="product-add" OnClientClick="addStaff" OnClick="addStaffBtn_Click" />
+                     <asp:Button ID="addStaffBtn" runat="server" Text="➕ Add Staff" CssClass="product-add" OnClick="addStaffBtn_Click" />
                 </div>
             </div>
         </div>
@@ -53,69 +53,75 @@
 <!--Header-->  
 
                    
-                 <asp:Repeater ID="staffRepeater" runat="server" ViewStateMode="Disabled" >
+                    <asp:Repeater ID="staffRepeater" runat="server" ViewStateMode="Disabled">
 
-                     <HeaderTemplate>
-                          <table style="width:100%" class="table">
-     <tr class="row">
-        
-
-        <td class="col staffid">Staff ID</td>
-         <td class="col name">Staff Name</td>
-         <td class="col role">Staff Role</td>
-         <td class="col gender">Gender</td>
-         <td class="col email">E-mail</td>
-         <td class="col contactNo">Contact No</td>
-       <td class="col eclipse-display">
-    <asp:Button ID="Button1" runat="server" Text="Button" Visible="False" />
- </div>
-     </tr>
-     
-                     </HeaderTemplate>
-
-                     <ItemTemplate>
-
-                         <tr class="row">
-                            
- <td class="col staffid"><asp:Label ID="staffID" runat="server" Text='<%# Eval("Staff_ID") %>'></asp:Label></td>
-<td class="col name"><asp:Label ID="staffName" runat="server" Text='<%# Eval("Name") %>'></asp:Label></td>
-<td class="col role"><asp:Label ID="role" runat="server" Text='<%# Eval("Role") %>'></asp:Label></td>
-<td class="col gender"><asp:Label ID="gender" runat="server" Text='<%# Eval("Gender") %>'></asp:Label></td>
-<td class="col email"><asp:Label ID="email" runat="server" Text='<%# Eval("Email") %>'></asp:Label></td>
-<td class="col contactNo"><asp:Label ID="contactNo" runat="server" Text='<%# Eval("Contact_No") %>'></asp:Label></td>
+                        <HeaderTemplate>
+                            <table style="width: 100%" class="table">
+                                <tr class="row">
 
 
-<td class="col eclipse-container" onclick="toggleDropdown('dropdownList<%# Eval("Staff_ID") %>', 'dropdownDisplay<%# Eval("Staff_ID") %>')">   
-      <div class="eclipse-display" id="dropdownDisplay<%# Eval("Staff_ID") %>" style="border:none;"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></div>
-      <div class="eclipse-list" id="dropdownList<%# Eval("Staff_ID") %>">
+                                    <td class="col staffid">Staff ID</td>
+                                    <td class="col name">Staff Name</td>
+                                    <td class="col role">Staff Role</td>
+                                    <td class="col gender">Gender</td>
+                                    <td class="col email">E-mail</td>
+                                    <td class="col contactNo">Contact No</td>
+                                    <td class="col eclipse-display">
+                                        <asp:Button ID="Button1" runat="server" Text="Button" Visible="False" />
+                                    </div>
+                                </tr>
+                        </HeaderTemplate>
 
-         <div> <asp:HyperLink ID="updateStaff" runat="server" NavigateUrl='<%# "UpdateStaff.aspx?StaffID=" + Eval("Staff_ID") %>' Text="Update"></asp:HyperLink></div>
-       <div onclick="showDeleteModal(<%# Eval("Staff_ID") %>);">Delete</div>
+                        <ItemTemplate>
 
-      </div>
+                            <tr class="row">
 
-</td>
-                            
-                         </tr>
+                                <td class="col staffid">
+                                    <asp:Label ID="staffID" runat="server" Text='<%# Eval("Staff_ID") %>'></asp:Label></td>
+                                <td class="col name">
+                                    <asp:Label ID="staffName" runat="server" Text='<%# Eval("Name") %>'></asp:Label></td>
+                                <td class="col role">
+                                    <asp:Label ID="role" runat="server" Text='<%# Eval("Role") %>'></asp:Label></td>
+                                <td class="col gender">
+                                    <asp:Label ID="gender" runat="server" Text='<%# Eval("Gender") %>'></asp:Label></td>
+                                <td class="col email">
+                                    <asp:Label ID="email" runat="server" Text='<%# Eval("Email") %>'></asp:Label></td>
+                                <td class="col contactNo">
+                                    <asp:Label ID="contactNo" runat="server" Text='<%# Eval("Contact_No") %>'></asp:Label></td>
+
+
+                                <td class="col eclipse-container" onclick="toggleDropdown('dropdownList<%# Eval("Staff_ID") %>', 'dropdownDisplay<%# Eval("Staff_ID") %>')">
+                                    <div class="eclipse-display" id="dropdownDisplay<%# Eval("Staff_ID") %>" style="border: none;"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></div>
+                                    <div class="eclipse-list" id="dropdownList<%# Eval("Staff_ID") %>">
+
+                                        <div>
+                                            <asp:HyperLink ID="updateStaff" runat="server" NavigateUrl='<%# "UpdateStaff.aspx?StaffID=" + Eval("Staff_ID") %>' Text="Update"></asp:HyperLink></div>
+                                        <div onclick="showDeleteModal(<%# Eval("Staff_ID") %>);">Delete</div>
+
+                                    </div>
+
+                                </td>
+
+                            </tr>
 
 
 
 
 
-                     </ItemTemplate>  
+                        </ItemTemplate>
 
-                    <FooterTemplate>
+                        <FooterTemplate>
                             </table>
-                    </FooterTemplate>
-
-
-
-                    
+                        </FooterTemplate>
 
 
 
 
-                 </asp:Repeater>
+
+
+
+
+                    </asp:Repeater>
                
                    
                 

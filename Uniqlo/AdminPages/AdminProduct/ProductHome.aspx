@@ -128,202 +128,121 @@
                   </div>
                </div>
             </div>
-            <div class="btnExcel-Add">
-               <button class="excel-export" >Export</button>
-               <div  class="product-add"><a href="AddProduct.aspx" style="color: #6F6F6F; text-decoration: none; font-size: 1rem; font-weight: bold;">➕ Add Product</a></div>
-            </div>
+             <div class="btnExcel-Add">
+                 <asp:Button ID="excelBtn" runat="server" Text="Export" CssClass="excel-export" />
+                 <asp:Button ID="addProdBtn" runat="server" Text="➕ Add Product" CssClass="product-add" style="color: #6F6F6F; text-decoration: none; font-size: 1rem; font-weight: bold;" OnClick="addProdBtn_Click" />
+             </div>
          </div>
       </div>
-      <div class="table">
-         <!--Header-->
-         <div class="row">
-            <div class="col productid">
-               Product ID
-            </div>
-           
-            <div class="col name">
-               Product Name
-            </div>
-            <div class="col wear">
-               Category
-            </div>
-            <div class="col price">
-               Price 
-            </div>
-            <div class="col gender">
-               Gender
-            </div>
-          
-            <div class="col eclipse-container">
-               <asp:Button ID="Button1" runat="server" Text="Button" Visible="False" />
-            </div>
-         </div>
-         <!--Product 1-->
-         <div class="row">
-            <div class="col productid">
-               1
-            </div>
-            
-            <div class="col name">
-              AIRism Cotton Jersey Short Sleeve Skipper Polo Shirt
-            </div>
-            <div class="col wear">
-              Top
-            </div>
-            <div class="col price">
-               99.90
-            </div>
-            <div class="col gender">
-               Men
-            </div>
-            
-            <div class="col eclipse-container" onclick="toggleDropdown('dropdownList3', 'dropdownDisplay3')">
-               <div class="eclipse-display" id="dropdownDisplay3" style="border:none;"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></div>
-               <div class="eclipse-list" id="dropdownList3">
-                  <div><a href="viewMoreProduct.aspx" style="color: #6F6F6F; text-decoration: none;">View More</a></div>
-                  <div><a href="UpdateProduct.aspx" style="color: #6F6F6F; text-decoration: none;">Update</a></div>
-                  <div onclick="document.getElementById('id01').style.display='block'">Delete</div>
-               </div>
-            </div>
-         </div>
-          
 
-         <!--Product 2-->
-         <div class="row">
-            <div class="col productid">
-               2
-            </div>
-           
-            <div class="col name">
-               Miracle Air Pants (Cotton Like)
-            </div>
-             <div class="col wear">
-   Bottom
-</div>
-              <div class="col price">
-    99.00
- </div>
-            
-           
-            <div class="col gender">
-               Men
-            </div>
-          
-            <div class="col eclipse-container">
-               <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
-            </div>
-         </div>
-         <!--Product 3-->
-         <div class="row">
-            <div class="col productid">
-               3
-            </div>
-          
-            <div class="col name">
-               Hello Kitty 50th Anniversary AIRism Easy Short
-            </div>
-             <div class="col wear">
-   Bottom
-</div>
-             <div class="col price">
-   59.90
-</div>
-            
-            
-            <div class="col gender">
-               Women
-            </div>
-          
-            <div class="col eclipse-container">
-               <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
-            </div>
-         </div>
-         <!--Product 4-->
-         <div class="row">
-            <div class="col productid">
-               4
-            </div>
-           
-            <div class="col name">
-               AIRism UV Protection High Neck Long Sleeve T-Shirt
-            </div>
-             <div class="col wear">
-   Top
-</div>
-             <div class="col price">
-   59.90
-</div>
-            
-            
-            <div class="col gender">
-               Women
-            </div>
-           
-            <div class="col eclipse-container">
-               <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
-            </div>
-         </div>
-         <!--Product 5-->
-         <div class="row">
-            <div class="col productid">
-               5
-            </div>
-           
-            <div class="col name">
-               Waffle Crew Neck Long Sleeve T-Shirt
-            </div>
-             <div class="col wear">
-   Top
-</div>
-             <div class="col price">
-   112.00
-</div>
-            
-            
-            <div class="col gender">
-               Men
-            </div>
-            
-            <div class="col eclipse-container">
-               <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
-            </div>
-         </div>
-      </div>
-      
-              <div class="pagination">
-    <a href="#" class="page-link" onclick="changePage('prev')">&laquo;</a>
-    <a href="#" class="page-link active" onclick="changePage(1)">1</a>
-    <a href="#" class="page-link" onclick="changePage(2)">2</a>
-    <a href="#" class="page-link" onclick="changePage(3)">3</a>
-    <a href="#" class="page-link" onclick="changePage(4)">4</a>
-    <a href="#" class="page-link" onclick="changePage(5)">5</a>
+       <div class="table">
+           <asp:Repeater ID="prodRepeater" runat="server" ViewStateMode="Disabled">
 
-   
-    <a href="#" class="page-link" onclick="changePage('next')">&raquo;</a>
-</div>
+               <HeaderTemplate>
+                   <table style="width: 100%" class="table">
+                       <tr class="row">
+                           <td class="col productid">Product ID</td>
+                           <td class="col name">Product Name</td>
+                           <td class="col wear">Category</td>
+                           <td class="col price">Price</td>
+                           <td class="col gender">Gender</td>
+                           <td class="col eclipse-display">
+                               <asp:Button ID="Button2" runat="server" Text="Button" Visible="False" />
+                           </div>
+                       </tr>
+               </HeaderTemplate>
+
+               <ItemTemplate>
+
+                   <tr class="row">
+
+                       <td class="col productid">
+                           <asp:Label ID="prodID" runat="server" Text='<%# Eval("Product_ID") %>'></asp:Label>
+                       </td>
+                       <td class="col name">
+                           <asp:Label ID="prodName" runat="server" Text='<%# Eval("Product_Name") %>'></asp:Label>
+                       </td>
+                       <td class="col wear">
+                           <asp:Label ID="categoryName" runat="server" Text='<%# Eval("Category.Name") %>'></asp:Label>
+                       </td>
+                       <td class="col price">
+                           <asp:Label ID="price" runat="server" Text='<%# Eval("Price", "{0:C}") %>'></asp:Label>
+                       </td>
+                       <td class="col gender">
+                           <asp:Label ID="gender" runat="server" Text='<%# Eval("Category.Gender").ToString() == "M" ? "Men " : (Eval("Category.Gender").ToString() == "W" ? "Woman" : "Not Specified") %>'></asp:Label>
+                       </td>
+
+
+                       <td class="col eclipse-container" onclick="toggleDropdown('dropdownList<%# Eval("Product_ID") %>', 'dropdownDisplay<%# Eval("Product_ID") %>')">
+                           <div class="eclipse-display" id="dropdownDisplay<%# Eval("Product_ID") %>" style="border: none;"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></div>
+                           <div class="eclipse-list" id="dropdownList<%# Eval("Product_ID") %>">
+
+                               <div>
+                                   <asp:HyperLink ID="viewProduct" runat="server" NavigateUrl='<%# "viewMoreProduct.aspx?ProdID=" + Eval("Product_ID") %>' Text="View More" style="text-decoration:none; color: #6F6F6F"></asp:HyperLink>
+                               </div>
+                               <div>
+                                   <asp:HyperLink ID="updateProduct" runat="server" NavigateUrl='<%# "UpdateProduct.aspx?ProdID=" + Eval("Product_ID") %>' Text="Update" style="text-decoration:none; color: #6F6F6F"></asp:HyperLink>
+                               </div>
+                               <div onclick="showDeleteModal(<%# Eval("Product_ID") %>);">Delete</div>
+
+                           </div>
+
+                       </td>
+
+                   </tr>
+
+               </ItemTemplate>
+
+               <FooterTemplate>
+                   </table>
+               </FooterTemplate>
+           </asp:Repeater>
+       </div>
+
+           <div class="pagination">
+               <a href="#" class="page-link" onclick="changePage('prev')">&laquo;</a>
+               <a href="#" class="page-link active" onclick="changePage(1)">1</a>
+               <a href="#" class="page-link" onclick="changePage(2)">2</a>
+               <a href="#" class="page-link" onclick="changePage(3)">3</a>
+               <a href="#" class="page-link" onclick="changePage(4)">4</a>
+               <a href="#" class="page-link" onclick="changePage(5)">5</a>
+
+
+               <a href="#" class="page-link" onclick="changePage('next')">&raquo;</a>
+           </div>
+
+
+           <!--DELETE CONFIRMATION-->
+        <asp:HiddenField ID="hiddenProductId" runat="server" Value="" />
 
 
         <!--DELETE CONFIRMATION-->
-        <div id="id01" class="confirmationModal">
-            <div class="confirmation-modal-content">
-                <div class="confirmationContainer">
-                    <span onclick="document.getElementById('id01').style.display='none'" class="confirmationClose" title="Close Modal">×</span>
-                    <h1>Remove Product</h1>
-                    <p>Are you sure you want to remove this product?</p>
+       <div id="id01" class="confirmationModal">
+           <div class="confirmation-modal-content">
+               <div class="confirmationContainer">
+                   <span onclick="document.getElementById('id01').style.display='none'" class="confirmationClose" title="Close Modal">×</span>
+                   <h1>Remove Product</h1>
+                   <p>Are you sure you want to remove the product?</p>
 
-                    <div class="confirmationClearFix">
-                        <button type="button" onclick="document.getElementById('id01').style.display='none'" class="confirmationCancelbtn">Cancel</button>
-                        <button type="button" onclick="document.getElementById('id01').style.display='none'" class="confirmationDeletebtn">Remove</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-       <!--DELETE CONFIRMATION END-->
-  
-   </div>
+                   <div class="confirmationClearFix">
+                       <button type="button" onclick="document.getElementById('id01').style.display='none'" class="confirmationCancelbtn">Cancel</button>
+                       <asp:Button ID="btnRemoveProduct" runat="server" Text="Remove" OnClick="btnRemoveProduct_Click" CssClass="confirmationDeletebtn" />
+                   </div>
+               </div>
+           </div>
+       </div>
+           <!--DELETE CONFIRMATION END-->
+
+       </div>
  
    
    <footer>
+       <script type="text/javascript">
+           function showDeleteModal(staffId) {
+               document.getElementById('<%= hiddenProductId.ClientID %>').value = staffId;  // Set the staff ID to hidden field
+               document.getElementById('id01').style.display = 'block';  // Show the modal
+           }
+       </script>
        <script src="../../Javascript/Pagination.js"></script>
       <script src="../../Javascript/productBtnEclipse.js"></script>
       <script src="../../Javascript/productAdminDDL.js"></script>
