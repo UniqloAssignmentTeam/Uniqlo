@@ -41,76 +41,51 @@
                                 <div class="card-body">
 
                                     <div class="form-group">
-                                        <div class="custom-control custom-radio">
-                                            <input type="radio" class="custom-control-input" name="payment_method" id="cash" value="cash" required>
-                                            <label class="custom-control-label" for="cash">Cash</label>
-                                        </div>
-                                    </div>
+    <asp:RadioButton ID="rbCash" runat="server" GroupName="PaymentMethod" Text="Cash" AutoPostBack="true" OnCheckedChanged="PaymentMethod_Changed" />
+</div>
+<div class="form-group">
+    <asp:RadioButton ID="rbCreditCard" runat="server" GroupName="PaymentMethod" Text="Credit Card" AutoPostBack="true" OnCheckedChanged="PaymentMethod_Changed" />
+</div>
+<div class="form-group">
+    <asp:RadioButton ID="rbDebitCard" runat="server" GroupName="PaymentMethod" Text="Debit Card" AutoPostBack="true" OnCheckedChanged="PaymentMethod_Changed" />
+</div>
+                                    <asp:Panel ID="cardInfo" runat="server" Visible="false">
+                                    
                                     <div class="form-group">
-                                        <div class="custom-control custom-radio">
-                                            <input type="radio" class="custom-control-input" name="payment_method" id="creditCard" value="creditCard" required>
-                                            <label class="custom-control-label" for="creditCard">Credit Card</label>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="custom-control custom-radio">
-                                            <input type="radio" class="custom-control-input" name="payment_method" id="debitCard" value="debitCard" required>
-                                            <label class="custom-control-label" for="debitCard">Debit Card</label>
-                                        </div>
-                                    </div>
-
-                                    <div id="card-info" style="display: none">
+    <label for="card-holder-name">Card Holder Name</label>
+    <asp:TextBox ID="txtCardHolderName" CssClass="form-control" runat="server" />
+    <asp:RequiredFieldValidator ID="rfvCardHolderName" ControlToValidate="txtCardHolderName" ErrorMessage="Card holder name is required." Display="Dynamic" ForeColor="Red" runat="server" />
+</div>
                                         <div class="form-group">
-                                            <label for="card-holder-name">Card Holder Name</label>
-                                            <input class="form-control" type="text" id="card-holder-name" name="holder_name" placeholder="John Tan">
-                                        </div>
+    <label for="card-type">Card Type</label>
+    <asp:DropDownList ID="ddlCardType" CssClass="form-control" runat="server">
+        <asp:ListItem Text="Visa" Value="visa" />
+        <asp:ListItem Text="MasterCard" Value="mastercard" />
+    </asp:DropDownList>
+    <asp:RequiredFieldValidator ID="rfvCardType" ControlToValidate="ddlCardType" ErrorMessage="Please select a card type." InitialValue="" Display="Dynamic" ForeColor="Red" runat="server" />
+</div>
                                         <div class="form-group">
-                                            <label for="card-type">Card Type</label>
-                                            <select class="form-control" id="card-type" name="card_type">
-                                                <option value="visa">Visa</option>
-                                                <option value="mastercard">MasterCard</option>
-                                            </select>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="card-number">Card Number</label>
-                                            <input type="text" class="form-control" id="card-number" name="card_number" placeholder="1234 5678 1234 5678" maxlength="19">
-                                        </div>
+    <label for="card-number">Card Number</label>
+    <asp:TextBox ID="txtCardNumber" CssClass="form-control" MaxLength="19" runat="server" />
+    <asp:RequiredFieldValidator ID="rfvCardNumber" ControlToValidate="txtCardNumber" ErrorMessage="Card number is required." Display="Dynamic" ForeColor="Red" runat="server" />
+    <asp:RegularExpressionValidator ID="revCardNumber" ControlToValidate="txtCardNumber" ValidationExpression="^\d{16}$" ErrorMessage="Card number must be 16 digits." Display="Dynamic" ForeColor="Red" runat="server" />
+</div>
                                         <div class="form-row">
                                             <div class="form-group col-md-6">
-                                                <label for="card-expiry">Expiry Date</label>
-                                                <input type="text" class="form-control" id="card-expiry" name="expiry_date" placeholder="MM/YY" maxlength="5">
-                                            </div>
+    <label for="card-expiry">Expiry Date</label>
+    <asp:TextBox ID="txtCardExpiry" CssClass="form-control" MaxLength="5" runat="server" />
+    <asp:RequiredFieldValidator ID="rfvCardExpiry" ControlToValidate="txtCardExpiry" ErrorMessage="Expiry date is required." Display="Dynamic" ForeColor="Red" runat="server" />
+    <asp:RegularExpressionValidator ID="revCardExpiry" ControlToValidate="txtCardExpiry" ValidationExpression="^(0[1-9]|1[0-2])\/?([0-9]{2})$" ErrorMessage="Invalid expiry date format. Use MM/YY." Display="Dynamic" ForeColor="Red" runat="server" />
+</div>
                                             <div class="form-group col-md-6">
-                                                <label for="card-cvv">CVV*</label>
-                                                <input type="text" class="form-control" id="card-cvv" name="CVV" maxlength="3" pattern="[0-9]{3}" oninput="this.value=this.value.replace(/[^0-9]/g,'');">
-                                            </div>
+    <label for="card-cvv">CVV*</label>
+    <asp:TextBox ID="txtCardCvv" CssClass="form-control" MaxLength="3" runat="server" />
+    <asp:RequiredFieldValidator ID="rfvCardCvv" ControlToValidate="txtCardCvv" ErrorMessage="CVV is required." Display="Dynamic" ForeColor="Red" runat="server" />
+    <asp:RegularExpressionValidator ID="revCardCvv" ControlToValidate="txtCardCvv" ValidationExpression="^\d{3}$" ErrorMessage="CVV must be 3 digits." Display="Dynamic" ForeColor="Red" runat="server" />
+</div>
                                         </div>
-                                    </div>
-
-                                    <script>
-                                        const cashRadio = document.getElementById("cash");
-                                        const creditCardRadio = document.getElementById("creditCard");
-                                        const debitCardRadio = document.getElementById("debitCard");
-                                        const cardInfo = document.getElementById("card-info");
-
-                                        cashRadio.addEventListener("change", function () {
-                                            if (cashRadio.checked) {
-                                                cardInfo.style.display = "none";
-                                            }
-                                        });
-
-                                        creditCardRadio.addEventListener("change", function () {
-                                            if (creditCardRadio.checked) {
-                                                cardInfo.style.display = "block";
-                                            }
-                                        });
-
-                                        debitCardRadio.addEventListener("change", function () {
-                                            if (debitCardRadio.checked) {
-                                                cardInfo.style.display = "block";
-                                            }
-                                        });
-                                    </script>
+                                    
+                                        </asp:Panel>
 
                                 </div>
                             </div>
@@ -125,12 +100,7 @@
                         <div class="card-body">
                             <h5 class="font-weight-medium mb-3">Products</h5>
 
-                            
-
-                            <div class="d-flex justify-content-between">
-                                <p>AIRism Cotton Short Sleeve T-Shirt, White, M x 1</p>
-                                <p>RM 30.00</p>
-                            </div>
+                          
 
                             <asp:Repeater ID="CartRepeater" runat="server">
                                 <ItemTemplate>
@@ -172,8 +142,8 @@
                         -->
                         <!--VIEWMORE BUTTON-->
                         <div class="viewMoreSection">
-                            <a href="ConfirmPayment.aspx" class="viewMoreButton">Place Order</a>
-                        </div>
+    <asp:LinkButton ID="lnkPlaceOrder" runat="server" CssClass="viewMoreButton" OnClick="lnkPlaceOrder_Click">Place Order</asp:LinkButton>
+</div>
 
 
                         <div class="popup-container" id="popup">

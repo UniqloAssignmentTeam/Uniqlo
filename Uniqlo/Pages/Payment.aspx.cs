@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Dynamic;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Web.UI.WebControls.WebParts;
 
 namespace Uniqlo.Pages
 {
@@ -11,23 +13,54 @@ namespace Uniqlo.Pages
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(!IsPostBack)
-            { //dummy cart
-                List<CartItem> cart = new List<CartItem>
+            if (!Page.IsPostBack)
+            {
+
+                // Retrieve and bind cart data if it's supposed to be displayed
+                if (Session["Cart"] != null)
                 {
-                    new CartItem { Quantity_Id = 1, Name = "T-shirt", Price = 15.99m, Color = "Red", Size = "M", Item_Price = 15.99m, Quantity = 2 },
-                    new CartItem { Quantity_Id = 2, Name = "Jeans", Price = 40.50m, Color = "Blue", Size = "32", Item_Price = 40.50m, Quantity = 1 },
-                    new CartItem { Quantity_Id = 3, Name = "Sneakers", Price = 60.00m, Color = "White", Size = "9", Item_Price = 60.00m, Quantity = 1 },
-                    new CartItem { Quantity_Id = 4, Name = "Jacket", Price = 99.95m, Color = "Black", Size = "L", Item_Price = 99.95m, Quantity = 1 },
-                    new CartItem { Quantity_Id = 5, Name = "Cap", Price = 12.99m, Color = "Green", Size = "One size", Item_Price = 12.99m, Quantity = 3 }
-                };
+                    List<CartItem> cart = (List<CartItem>)Session["Cart"];
+                    CartRepeater.DataSource = cart;
+                    CartRepeater.DataBind();
 
-                CartRepeater.DataSource = cart;
-                CartRepeater.DataBind();
+                    // Calculate total prices as done previously
+                    decimal totalPrice = cart.Sum(item => item.Item_Price);
+                    lblTotalPrice.Text = "RM " + totalPrice.ToString("N2");
 
-                lblTotalPrice.Text = "RM 100";
-                lblDeliveryCharges.Text = "RM 100";
-                lblGrandTotal.Text = "RM 100";
+                    decimal deliveryCharge = totalPrice > 150 ? 15m : 0m;
+                    lblDeliveryCharges.Text = "RM " + deliveryCharge.ToString("N2");
+
+                    decimal grandTotal = totalPrice + deliveryCharge;
+                    lblGrandTotal.Text = "RM " + grandTotal.ToString("N2");
+
+                }
+            }
+        }
+
+        protected void lnkPlaceOrder_Click(object sender, EventArgs e)
+        {
+            // Perform any necessary operations like validation, saving data, etc.
+
+            // Then redirect to the confirmation page
+            if(Page.IsValid)
+                Response.Redirect("ConfirmPayment.aspx");
+        }
+
+        protected void PaymentMethod_Changed(object sender, EventArgs e)
+        {
+            // Cast sender to RadioButton
+            var selectedPaymentMethod = (RadioButton)sender;
+
+            // Check which radio button was selected
+            if (selectedPaymentMethod == rbCreditCard || selectedPaymentMethod == rbDebitCard)
+            {
+                // Show card details inputs if Credit Card or Debit Card is selected
+                cardInfo.Visible = true;
+            }
+            else if (selectedPaymentMethod == rbCash)
+            {
+                // Hide card details inputs if Cash is selected
+                cardInfo.Visible = false;
             }
         }
     }
