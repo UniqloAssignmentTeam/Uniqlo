@@ -77,7 +77,7 @@ namespace Uniqlo.AdminPages
                                 {
                                     ImagePath = imageBytes
                                 };
-                                db.image.Add(newImage);
+                                db.Image.Add(newImage);
                                 db.SaveChanges();
 
                                 // Linking the image with product details
@@ -95,7 +95,7 @@ namespace Uniqlo.AdminPages
                                             Size = size,
                                             Qty = Int32.Parse(sizeValue)
                                         };
-                                        db.quantity.Add(newQuantity);
+                                        db.Quantity.Add(newQuantity);
                                     }
                                 }
                             }

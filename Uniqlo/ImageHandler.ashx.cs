@@ -6,19 +6,8 @@ using static Uniqlo.Product;
 
 namespace Uniqlo
 {
-    /// <summary>
-    /// Summary description for ImageHandler
-    /// </summary>
     public class ImageHandler : IHttpHandler
     {
-        public byte[] GetImageData(int imageId)
-        {
-            using (var context = new ProductDbContext())  // Use your DbContext
-            {
-                var image = context.Image.FirstOrDefault(i => i.Image_ID == imageId);
-                return image?.ImagePath;
-            }
-        }
         public void ProcessRequest(HttpContext context)
         {
             int imageId = Convert.ToInt32(context.Request.QueryString["id"]);
@@ -26,7 +15,7 @@ namespace Uniqlo
 
             if (imageData != null)
             {
-                context.Response.ContentType = "image/png"; // Set the appropriate content type
+                context.Response.ContentType = "image/jpeg"; // Assuming JPEG format; adjust as necessary
                 context.Response.BinaryWrite(imageData);
             }
             else
@@ -35,9 +24,20 @@ namespace Uniqlo
             }
         }
 
+        public byte[] GetImageData(int imageId)
+        {
+            using (var db = new ProductDbContext())
+            {
+                var image = db.Image.FirstOrDefault(i => i.Image_ID == imageId);
+                return image?.ImagePath;
+            }
+        }
+
         public bool IsReusable
         {
-            get { return false; }
+            get { return true; }
         }
     }
+
+   
 }

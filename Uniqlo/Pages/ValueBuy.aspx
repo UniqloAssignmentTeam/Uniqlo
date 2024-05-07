@@ -65,12 +65,12 @@
             <asp:DataList ID="DataList1" runat="server" RepeatDirection="Horizontal" CellPadding="4" ForeColor="#333333" Width="100%">
     <ItemTemplate>
         <div style="border:1px solid #CCCCCC; padding:5px; margin:5px;">
-            <img src="ImageHandler.ashx?id=1" alt="Description of image" />
+            <img src='ImageHandler.ashx?id=<%# Eval("ImageID") %>' alt='<%# Eval("ProductName") %>' />
             <strong>Product:</strong> <asp:Label ID="lblProductName" runat="server" Text='<%# Eval("ProductName") %>'></asp:Label><br />
             <strong>Description:</strong> <asp:Label ID="lblDescription" runat="server" Text='<%# Eval("Description") %>'></asp:Label><br />
             <strong>Price:</strong> <asp:Label ID="lblPrice" runat="server" Text='<%# Eval("Price") %>'></asp:Label><br />
             <strong>Discount:</strong> <asp:Label ID="lblDiscountAmount" runat="server" Text='<%# Bind("DiscountAmount") %>'></asp:Label><br />
-            <strong>Rating:</strong> <asp:Label ID="lblRating" runat="server" Text='<%# Eval("Rating") %>'></asp:Label><br />
+          
         </div>
     </ItemTemplate>
 </asp:DataList>

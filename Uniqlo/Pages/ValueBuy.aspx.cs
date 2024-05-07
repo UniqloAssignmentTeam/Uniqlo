@@ -6,6 +6,8 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Uniqlo;
 using static Uniqlo.Product;
+using System.Data.Entity;
+using System.Security.Cryptography.X509Certificates;
 
 namespace Uniqlo.Pages
 {
@@ -15,42 +17,40 @@ namespace Uniqlo.Pages
         {
             if (!IsPostBack)
             {
-                using (var context = new ProductDbContext())
-                {
-                    var productInfo = from p in context.Product
-                                      join d in context.Discount on p.Product_ID equals d.Product_ID into pd
-                                      from d in pd.DefaultIfEmpty() // Handling products with no discount
-                                      select new
-                                      {
-                                          ProductId = p.Product_ID,
-                                          ProductName = p.Product_Name,
-                                          Description = p.Description,
-                                          Price = p.Price,
-                                          DiscountAmount = d != null ? (double?)d.Discount_Amount : null
-                                      };
+                BindDataList();
 
-                    var productWithRatings = from p in productInfo
-                                             join r in context.Review on p.ProductId equals r.OrderList_ID into pr // Assuming a direct relationship for demonstration
-                                             from r in pr.DefaultIfEmpty()
-                                             select new
-                                             {
-                                                 p.ProductId,
-                                                 p.ProductName,
-                                                 p.Description,
-                                                 p.Price,
-                                                 p.DiscountAmount,
-                                                 Rating = r != null ? (int?)r.Rating : null
-                                             };
-
-                    DataList1.DataSource = productWithRatings.ToList();
-                    DataList1.DataBind();
-                }
             }
 
+           
+
+
+
         }
+        private void BindDataList()
+        {
+            using (var context = new ProductDbContext())
+            {
+                var today = DateTime.Now;
 
-       
+                var productsWithDiscounts = (from p in context.Product
+                                             join d in context.Discount on p.Product_ID equals d.Product_ID
+                                             where d.Status == "Active" && d.Start_Date <= DateTime.Now && d.End_Date >= DateTime.Now
+                                             join q in context.Quantity on p.Product_ID equals q.Product_ID
+                                             join img in context.Image on q.Image_ID equals img.Image_ID
+                                             select new
+                                             {
+                                                 ProductName = p.Product_Name,
+                                                 Description = p.Description,
+                                                 Price = p.Price,
+                                                 DiscountAmount = d.Discount_Amount,
+                                                 ImagePath = img.ImagePath,
+                                                 ImageID = img.Image_ID
+                                             }).Distinct().ToList();
 
-
+                var results = productsWithDiscounts.ToList();
+                DataList1.DataSource = results;
+                DataList1.DataBind();
+            }
+        }
     }
 }
