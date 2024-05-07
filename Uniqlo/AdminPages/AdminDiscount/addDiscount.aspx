@@ -18,14 +18,14 @@
 
             <div class="product-content">
                 <div class="form-group">
-                    <label for="productName">Product ID</label>
-                     <asp:TextBox ID="productName" runat="server"></asp:TextBox>
+                    <label for="productID">Product ID</label>
+                     <asp:TextBox ID="productID" runat="server"></asp:TextBox>
                 </div>
 
                
                  <div class="form-group">
-     <label for="productDiscount">Amount - Discount</label>
-         <asp:TextBox ID="productDiscount" runat="server"></asp:TextBox>
+     <label for="discountAmount">Amount - Discount</label>
+         <asp:TextBox ID="discountAmount" runat="server"></asp:TextBox>
  </div>
                         
 
@@ -46,7 +46,7 @@
             <div class="button-container">
               
                      <asp:Button ID="cancelBtn" runat="server" Text="CANCEL" CssClass="cancel-button"/>
-                     <asp:Button ID="addBtn" runat="server" Text="ADD" CssClass="continue-button"/>
+                     <asp:Button ID="addBtn" runat="server" Text="ADD" CssClass="continue-button" Onclick="addBtn_Click"/>
             </div>
         </div>
     </div>

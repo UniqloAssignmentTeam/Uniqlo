@@ -47,11 +47,10 @@
                             <div class="form-group">
   <label for="productName">Status</label>
   <div class="dropdown-container" onclick="toggleDropdown('dropdownList', 'dropdownDisplay')">
-      <div class="dropdown-display" id="dropdownDisplay">Valid</div>
-      <div class="dropdown-list" id="dropdownList">
-          <div onclick="selectOption('Valid', 'dropdownDisplay')">Valid</div>
-          <div onclick="selectOption('Invalid', 'dropdownDisplay')">Invalid</div>
-      </div>
+      <asp:DropDownList ID="DropDownList1" runat="server">
+          <asp:ListItem>Active</asp:ListItem>
+          <asp:ListItem>Inactive</asp:ListItem>
+      </asp:DropDownList>
   </div>
              </div>
             
