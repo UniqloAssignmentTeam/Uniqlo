@@ -115,6 +115,7 @@ namespace Uniqlo.AdminPages
                     db.SaveChanges();
                 }
                 ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", "alert('Product and details added successfully!');", true);
+                Response.Redirect("ProductHome.aspx");
             }
         }
 
