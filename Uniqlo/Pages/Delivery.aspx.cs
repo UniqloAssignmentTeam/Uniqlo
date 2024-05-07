@@ -25,6 +25,7 @@ namespace Uniqlo.Pages
                     new CartItem { Quantity_Id = 4, Name = "Jacket", Price = 99.95m, Color = "Black", Size = "L", Quantity = 1 },
                     new CartItem { Quantity_Id = 5, Name = "Cap", Price = 12.99m, Color = "Green", Size = "One size", Quantity = 3 }
                 };
+                
                 Session["Cart"] = cart;
 
                 CartRepeater.DataSource = cart;
@@ -41,11 +42,15 @@ namespace Uniqlo.Pages
 
                 bool found = false;
 
+                //dummy sesssion
+                Session["Customer_Id"] = "1";
+
+
                 string sql = "SELECT * FROM Customer WHERE Customer_Id =@Customer_Id";
 
                 SqlConnection con = new SqlConnection(cs);
                 SqlCommand cmd = new SqlCommand(sql, con);
-                cmd.Parameters.AddWithValue("@Customer_Id", "1");
+                cmd.Parameters.AddWithValue("@Customer_Id", Session["Customer_Id"]);
                 con.Open();
 
                 SqlDataReader dr = cmd.ExecuteReader();
@@ -66,6 +71,16 @@ namespace Uniqlo.Pages
         {
             if (Page.IsValid)
             {
+                Address shippingAddress = new Address
+                {
+                    Country = txtCountry.Text,
+                    AddressLine = txtAddress.Text,
+                    Postcode = txtPostcode.Text,
+                    State = txtState.Text,
+                    City = txtCity.Text
+                };
+                Session["ShippingAddress"] = shippingAddress;
+                Session["DeliveryNote"] = txtDelivery_Note.Text;
                 Response.Redirect("Payment.aspx");
             }
         }
