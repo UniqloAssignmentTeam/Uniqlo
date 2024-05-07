@@ -89,9 +89,8 @@ namespace Uniqlo.Pages
         protected void lnkConfirmOrder_Click(object sender, EventArgs e)
         {
             //confirm order, so create orderlist, order, payment, and delivery insert into database
-
-            /**
-             * using (SqlConnection con = new SqlConnection(cs))
+           
+            using (SqlConnection con = new SqlConnection(cs))
             {
                 con.Open();
 
@@ -147,7 +146,7 @@ namespace Uniqlo.Pages
                     string paymentMethod = Session["PaymentMethod"] as string;
                     string paymentStatus = paymentMethod == "Cash" ? "Unpaid" : "Paid";
                     decimal totalPayment = subtotal + (decimal)shippingFee;
-                    cmd.CommandText = "INSERT INTO Payment (Delivery_Id, Order_Id, Total_Payment, Shipping_Amount, Payment_Method, Payment_Status, Payment_DateTime) VALUES (@DeliveryId, @OrderId, @TotalPayment, @ShippingFee, @PaymentMethod, @PaymentStatus, @PaymentDateTime);";
+                    cmd.CommandText = "INSERT INTO Payment (Delivery_Id, Order_Id, Total_Payment, Shipping_Amount, Payment_Method, Payment_Status, Payment_DateTime) VALUES (@DeliveryId, @OrderId, @TotalPayment, @ShippingFee, @PaymentMethod, @PaymentStatus, @PaymentDateTime);SELECT SCOPE_IDENTITY();";
                     cmd.Parameters.AddWithValue("@DeliveryId", deliveryId);
                     cmd.Parameters.AddWithValue("@OrderId", orderId);
                     cmd.Parameters.AddWithValue("@TotalPayment", totalPayment);
@@ -155,7 +154,8 @@ namespace Uniqlo.Pages
                     cmd.Parameters.AddWithValue("@PaymentMethod", paymentMethod);
                     cmd.Parameters.AddWithValue("@PaymentStatus", paymentStatus);
                     cmd.Parameters.AddWithValue("@PaymentDateTime", DateTime.Now);
-                    cmd.ExecuteNonQuery();
+                    int paymentId = Convert.ToInt32(cmd.ExecuteScalar());
+                    Session["PaymentId"] = paymentId;
 
                     // Commit the transaction.
                     sqlTran.Commit();
@@ -178,11 +178,9 @@ namespace Uniqlo.Pages
                         lblErrorMessage.Text += " Error during rollback: " + exRollback.Message;
                     }
                 }
-            }**/
-            Response.Redirect("Invoice.aspx");
-        }
+            }
 
-        
+        }
 
     }
 }

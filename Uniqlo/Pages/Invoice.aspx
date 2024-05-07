@@ -101,7 +101,7 @@
                                         <asp:Label ID="lblPaymentId" runat="server"></asp:Label>
                                     </p>
                                     <p>
-                                        <strong>Date & Time:</strong>
+                                        <strong>Payment Date & Time:</strong>
                                         <asp:Label ID="lblDateTime" runat="server"></asp:Label>
                                     </p>
                                     <br />
@@ -138,7 +138,7 @@
                                     <asp:Repeater ID="rptCartItems" runat="server">
                                         <ItemTemplate>
                                             <tr>
-                                                <td><%# Eval("ProductName") %>, <%# Eval("Color") %>, <%# Eval("Size") %></td>
+                                                <td><%# Eval("Name") %>, <%# Eval("Color") %>, <%# Eval("Size") %></td>
                                                 <td><%# Eval("Quantity") %></td>
                                                 <td>RM <%# Eval("Price", "{0:F2}") %></td>
                                                 <td>RM <%# Eval("Item_Price", "{0:F2}") %></td>
@@ -160,7 +160,7 @@
                             </div>
 
                             <div class="invoice-footer" style="text-align: center;">
-                                <p>PDF copy of invoice has been send to cjtan@gmail.com</p>
+                                <p>PDF copy of invoice has been send to <asp:Label ID="lblEmail2" runat="server"></asp:Label></p>
                                 <p>Thank you for your purchase. To check on the status of your order, please visit <a href="profile.jsp">Here</a>.</p>
                             </div>
                         </div>
