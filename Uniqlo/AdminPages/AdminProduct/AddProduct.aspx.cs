@@ -24,10 +24,7 @@ namespace Uniqlo.AdminPages
         //string cs = Global.CS;
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (IsPostBack)
-            {
-
-            }
+           
         }
 
         public class ColorSize
@@ -55,7 +52,7 @@ namespace Uniqlo.AdminPages
 
                 using (var db = new ProductDbContext())
                 {
-                    var categoryID = db.category.Where(c => c.Name == category && c.Gender.ToString() == gender).Select(c => c.Category_ID).FirstOrDefault();
+                    var categoryID = db.Category.Where(c => c.Name == category && c.Gender.ToString() == gender).Select(c => c.Category_ID).FirstOrDefault();
 
                     Product newProduct = new Product
                     {
@@ -64,7 +61,7 @@ namespace Uniqlo.AdminPages
                         Price = productPrice,
                         Category_ID = categoryID
                     };
-                    db.product.Add(newProduct);
+                    db.Product.Add(newProduct);
                     db.SaveChanges();
 
                     foreach (var colorSize in colorSizes)
@@ -80,7 +77,7 @@ namespace Uniqlo.AdminPages
                                 {
                                     ImagePath = imageBytes
                                 };
-                                db.image.Add(newImage);
+                                db.Image.Add(newImage);
                                 db.SaveChanges();
 
                                 // Linking the image with product details
@@ -98,7 +95,7 @@ namespace Uniqlo.AdminPages
                                             Size = size,
                                             Qty = Int32.Parse(sizeValue)
                                         };
-                                        db.quantity.Add(newQuantity);
+                                        db.Quantity.Add(newQuantity);
                                     }
                                 }
                             }

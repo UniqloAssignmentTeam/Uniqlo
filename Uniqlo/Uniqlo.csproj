@@ -402,6 +402,9 @@
     <Compile Include="Image.cs">
       <DependentUpon>UniqloAdo.tt</DependentUpon>
     </Compile>
+    <Compile Include="ImageHandler.ashx.cs">
+      <DependentUpon>ImageHandler.ashx</DependentUpon>
+    </Compile>
     <Compile Include="Order.cs">
       <DependentUpon>UniqloAdo.tt</DependentUpon>
     </Compile>
@@ -631,6 +634,7 @@
   <ItemGroup>
     <Content Include="Admin.Master" />
     <Content Include="admin.sitemap" />
+    <Content Include="ImageHandler.ashx" />
     <None Include="packages.config" />
     <Content Include="Uniqlo.Master" />
     <EntityDeploy Include="UniqloAdo.edmx">
