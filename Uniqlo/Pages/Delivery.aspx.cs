@@ -14,7 +14,6 @@ namespace Uniqlo.Pages
         string cs = Global.CS;
         protected void Page_Load(object sender, EventArgs e)
         {
-
             if (!Page.IsPostBack)
             {
 
@@ -30,6 +29,19 @@ namespace Uniqlo.Pages
 
                 CartRepeater.DataSource = cart;
                 CartRepeater.DataBind();
+
+                decimal totalPrice = cart.Sum(item => item.Item_Price * item.Quantity);
+                lblTotalPrice.Text = "RM " + totalPrice.ToString("N2");
+
+                decimal deliveryCharge = 0m;
+                if (totalPrice > 150)
+                {
+                    deliveryCharge = 15m;
+                }
+                lblDeliveryCharges.Text = "RM " + deliveryCharge.ToString("N2");
+
+                decimal grandTotal = totalPrice + deliveryCharge;
+                lblGrandTotal.Text = "RM " + grandTotal.ToString("N2");
 
                 bool found = false;
 
