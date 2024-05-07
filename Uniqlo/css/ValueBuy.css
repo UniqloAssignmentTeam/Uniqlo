@@ -990,3 +990,14 @@
 .new-price span {
     padding-left: 10px;
 }
+
+
+.newPrice {
+    text-decoration: line-through;
+    margin-right: 10px;
+    color: red;
+}
+
+.discountedPrice {
+   color:blue;
+}
