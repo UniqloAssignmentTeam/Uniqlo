@@ -54,25 +54,28 @@
                                 </div>
                                 <div class="col-md-6 form-group">
                                     <label>Country</label>
-                                    <asp:TextBox ID="txtCountry" runat="server" class="form-control" value="Malaysia" required="true"></asp:TextBox>
+                                    <asp:TextBox ID="txtCountry" runat="server" CssClass="form-control" required="true"></asp:TextBox>
+                                    <asp:RequiredFieldValidator ControlToValidate="txtCountry" ErrorMessage="Country is required" Display="Dynamic" ForeColor="Red" runat="server" />
                                 </div>
                                 <div class="col-md-6 form-group">
                                     <label>Address Line</label>
-                                    <asp:TextBox ID="txtAddress" placeholder="123 Street" runat="server" required="true" class="form-control"></asp:TextBox>
-                                   
+                                    <asp:TextBox ID="txtAddress" runat="server" CssClass="form-control" placeholder="123 Street" required="true"></asp:TextBox>
+                                    <asp:RequiredFieldValidator ControlToValidate="txtAddress" ErrorMessage="Address is required" Display="Dynamic" ForeColor="Red" runat="server" />
                                 </div>
                                 <div class="col-md-6 form-group">
                                     <label>Post Code</label>
-                                    <asp:TextBox ID="txtPostcode" placeholder="11500" class="form-control" MaxLength="5" required="true" runat="server"></asp:TextBox>
-                                    
+                                    <asp:TextBox ID="txtPostcode" runat="server" CssClass="form-control" MaxLength="5" placeholder="11500"></asp:TextBox>
+                                    <asp:RegularExpressionValidator ID="revPostcode" runat="server" ControlToValidate="txtPostcode" ValidationExpression="^\d{5}$" ErrorMessage="Post code must be 5 digits" ForeColor="Red" />
                                 </div>
                                 <div class="col-md-6 form-group">
                                     <label>State</label>
-                                    <asp:TextBox ID="txtState" placeholder="Penang" required="true" class="form-control" runat="server"></asp:TextBox>
+                                    <asp:TextBox ID="txtState" runat="server" CssClass="form-control" required="true" placeholder="Penang"></asp:TextBox>
+                                    <asp:RequiredFieldValidator ControlToValidate="txtState" ErrorMessage="State is required" Display="Dynamic" ForeColor="Red" runat="server" />
                                 </div>
                                 <div class="col-md-6 form-group">
                                     <label>City</label>
-                                    <asp:TextBox ID="txtCity" placeholder="George Town"  required="true" class="form-control" runat="server"></asp:TextBox>
+                                    <asp:TextBox ID="txtCity" runat="server" CssClass="form-control" required="true" placeholder="George Town"></asp:TextBox>
+                                    <asp:RequiredFieldValidator ControlToValidate="txtCity" ErrorMessage="City is required" Display="Dynamic" ForeColor="Red" runat="server" />
                                 </div>
 
 
@@ -101,36 +104,39 @@
                                     <ItemTemplate>
                                         <div class="d-flex justify-content-between">
                                             <p><%# Eval("Name") %>, <%# Eval("Size") %>, <%# Eval("Color") %> x <%# Eval("Quantity") %></p>
-                                            <p>RM <%# Eval("Price", "{0:F2}") %></p>
+                                            <p>RM <%# Eval("Item_Price", "{0:F2}") %></p>
                                         </div>
                                     </ItemTemplate>
                                 </asp:Repeater>
 
-                              
+
 
                                 <hr class="mt-0">
                                 <div class="d-flex justify-content-between mb-3 pt-1">
                                     <h6 class="font-weight-medium">Total Price</h6>
-                                    <h6 class="font-weight-medium"><asp:Label ID="lblTotalPrice" runat="server"></asp:Label></h6>
+                                    <h6 class="font-weight-medium">
+                                        <asp:Label ID="lblTotalPrice" runat="server"></asp:Label></h6>
                                 </div>
 
                                 <div class="d-flex justify-content-between">
                                     <h6 class="font-weight-medium">Delivery Charges</h6>
-                                    <h6 class="font-weight-medium"><asp:Label ID="lblDeliveryCharges" runat="server"></asp:Label></h6>
+                                    <h6 class="font-weight-medium">
+                                        <asp:Label ID="lblDeliveryCharges" runat="server"></asp:Label></h6>
                                 </div>
 
                             </div>
                             <div class="card-footer border-secondary bg-transparent">
                                 <div class="d-flex justify-content-between mt-2">
                                     <h5 class="font-weight-bold">Total</h5>
-                                    <h5 class="font-weight-bold"><asp:Label ID="lblGrandTotal" runat="server"></asp:Label></h5>
+                                    <h5 class="font-weight-bold">
+                                        <asp:Label ID="lblGrandTotal" runat="server"></asp:Label></h5>
                                 </div>
                             </div>
                         </div>
 
                         <!--VIEWMORE BUTTON-->
                         <div class="viewMoreSection">
-                            <a href="Payment.aspx" class="viewMoreButton">Next</a>
+                            <asp:Button ID="btnProceedToPayment" runat="server" CssClass="viewMoreButton" Text="Next" OnClick="btnProceedToPayment_Click" />
                         </div>
 
                     </div>
