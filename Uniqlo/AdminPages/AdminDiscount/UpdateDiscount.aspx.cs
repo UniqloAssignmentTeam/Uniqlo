@@ -29,18 +29,19 @@ namespace Uniqlo.AdminPages
                 var discount = db.Discount.FirstOrDefault(s => s.Discount_ID == discountID);
                 if (discount != null)
                 {
-                    /*
+                    
                     discountID.Text = discount.ToString();
                     productID.Text = discount.Name;
-                    productName.Text = staff.Email;
-                    discountAmount.Text = staff.Contact_No;
-                    staffGender.SelectedValue = staff.Gender;
-                    staffRole.SelectedValue = staff.Role;*/
+                    productName.Text = discount.Product_ID;
+                    discountAmount.Text = discount.Discount_Amount;
+                    status.SelectedValue = discount.Status;
+                    startDate.Text = discount.Start_Date;
+                    endDate.Text = discount.End_Date;
 
                 }
             }
         }
-        /*
+        
         protected void updateBtn_Click(object sender, EventArgs e)
         {
             if (Page.IsValid)
@@ -65,7 +66,7 @@ namespace Uniqlo.AdminPages
             }
         }
 
-        */
+        
 
     }
 }

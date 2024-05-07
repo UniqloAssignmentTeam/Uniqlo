@@ -47,7 +47,7 @@
                             <div class="form-group">
   <label for="productName">Status</label>
   <div class="dropdown-container" onclick="toggleDropdown('dropdownList', 'dropdownDisplay')">
-      <asp:DropDownList ID="DropDownList1" runat="server">
+      <asp:DropDownList ID="status" runat="server">
           <asp:ListItem>Active</asp:ListItem>
           <asp:ListItem>Inactive</asp:ListItem>
       </asp:DropDownList>
