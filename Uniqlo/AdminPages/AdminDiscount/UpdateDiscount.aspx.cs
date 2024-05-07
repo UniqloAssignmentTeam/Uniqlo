@@ -17,11 +17,11 @@ namespace Uniqlo.AdminPages
                 string discountID = Request.QueryString["discountID"];
                 if (!string.IsNullOrEmpty(discountID))
                 {
-                    LoadDiscountDetails(int.Parse(discountID));
+                   // LoadDiscountDetails(int.Parse(discountID));
                 }
             }
         }
-
+        /*
         private void LoadDiscountDetails(int discountID)
         {
             using (var db = new DiscountDbContext())
@@ -65,7 +65,7 @@ namespace Uniqlo.AdminPages
                 }
             }
         }
-
+        */
         
 
     }
