@@ -31,10 +31,10 @@ namespace Uniqlo.AdminPages.AdminProduct
             int prodId = int.Parse(hiddenProductId.Value);  // Retrieve the Staff ID from hidden field
             using (var db = new ProductDbContext())
             {
-                var product = db.product.Find(prodId);
+                var product = db.Product.Find(prodId);
                 if (product != null)
                 {
-                    db.product.Remove(product);
+                    db.Product.Remove(product);
                     db.SaveChanges();
                     Response.Redirect(Request.RawUrl);  // Refresh the page to reflect the changes
                 }
@@ -45,7 +45,7 @@ namespace Uniqlo.AdminPages.AdminProduct
         {
             using (var db = new ProductDbContext())
             {
-                var productList = db.product.Include(p => p.Category).ToList();
+                var productList = db.Product.Include(p => p.Category).ToList();
 
                 prodRepeater.DataSource = productList;
                 prodRepeater.DataBind();

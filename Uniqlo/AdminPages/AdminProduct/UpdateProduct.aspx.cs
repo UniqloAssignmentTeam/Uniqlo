@@ -27,7 +27,7 @@ namespace Uniqlo.AdminPages
         {
             using (var db = new ProductDbContext())
             {
-                var product = db.product.FirstOrDefault(p => p.Product_ID == prodID);
+                var product = db.Product.FirstOrDefault(p => p.Product_ID == prodID);
                 if (product != null)
                 {
                     /*
