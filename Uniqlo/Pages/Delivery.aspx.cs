@@ -33,15 +33,16 @@ namespace Uniqlo.Pages
 
                 decimal totalPrice = cart.Sum(item => item.Item_Price);
                 lblTotalPrice.Text = "RM " + totalPrice.ToString("N2");
+                Session["TotalPrice"] = totalPrice;
 
-                decimal deliveryCharge = totalPrice > 150 ? 15m : 0m;
+                decimal deliveryCharge = totalPrice > 150 ? 0m : 15m;
                 lblDeliveryCharges.Text = "RM " + deliveryCharge.ToString("N2");
+                Session["ShippingFee"] = deliveryCharge;
 
                 decimal grandTotal = totalPrice + deliveryCharge;
                 lblGrandTotal.Text = "RM " + grandTotal.ToString("N2");
-
-                bool found = false;
-
+                Session["GrandTotal"]= grandTotal;  
+              
                 //dummy sesssion
                 Session["Customer_Id"] = "1";
 
@@ -57,7 +58,7 @@ namespace Uniqlo.Pages
 
                 if (dr.Read())
                 {
-                    found = true;
+                    
                     txtName.Text = (string)dr["Name"];
                     txtEmail.Text = (string)dr["Email"];
                     txtContact.Text = (string)dr["Contact_No"];

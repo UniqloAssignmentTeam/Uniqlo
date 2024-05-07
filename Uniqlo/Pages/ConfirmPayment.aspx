@@ -127,7 +127,7 @@
                             <ItemTemplate>
                                 <div class="d-flex justify-content-between">
                                     <p><%# Eval("Name") %>, <%# Eval("Size") %>, <%# Eval("Color") %> x <%# Eval("Quantity") %></p>
-                                    <p>RM <%# Eval("Price", "{0:F2}") %></p>
+                                    <p>RM <%# Eval("Item_Price", "{0:F2}") %></p>
                                 </div>
                             </ItemTemplate>
                         </asp:Repeater>

@@ -25,14 +25,14 @@ namespace Uniqlo.Pages
                     CartRepeater.DataSource = cart;
                     CartRepeater.DataBind();
 
-                    // Calculate total prices as done previously
-                    decimal totalPrice = cart.Sum(item => item.Item_Price);
+                    // retrieve price data
+                    decimal totalPrice = (decimal)Session["TotalPrice"];
                     lblTotalPrice.Text = "RM " + totalPrice.ToString("N2");
 
-                    decimal deliveryCharge = totalPrice > 150 ? 15m : 0m;
+                    decimal deliveryCharge = (decimal)Session["ShippingFee"];
                     lblDeliveryCharges.Text = "RM " + deliveryCharge.ToString("N2");
 
-                    decimal grandTotal = totalPrice + deliveryCharge;
+                    decimal grandTotal = (decimal)Session["GrandTotal"];
                     lblGrandTotal.Text = "RM " + grandTotal.ToString("N2");
 
                 }
