@@ -41,6 +41,7 @@
 
                                 <div class="col-md-6 form-group">
                                     <label>Name</label>
+
                                     <asp:TextBox class="form-control" ID="txtName" value="Tan Choo Jun" ReadOnly="true" runat="server"></asp:TextBox>
                                 </div>
                                 <div class="col-md-6 form-group">
@@ -110,19 +111,19 @@
                                 <hr class="mt-0">
                                 <div class="d-flex justify-content-between mb-3 pt-1">
                                     <h6 class="font-weight-medium">Total Price</h6>
-                                    <h6 class="font-weight-medium">RM 109.90</h6>
+                                    <h6 class="font-weight-medium"><asp:Label ID="lblTotalPrice" runat="server"></asp:Label></h6>
                                 </div>
 
                                 <div class="d-flex justify-content-between">
                                     <h6 class="font-weight-medium">Delivery Charges</h6>
-                                    <h6 class="font-weight-medium">RM 15</h6>
+                                    <h6 class="font-weight-medium"><asp:Label ID="lblDeliveryCharges" runat="server"></asp:Label></h6>
                                 </div>
 
                             </div>
                             <div class="card-footer border-secondary bg-transparent">
                                 <div class="d-flex justify-content-between mt-2">
                                     <h5 class="font-weight-bold">Total</h5>
-                                    <h5 class="font-weight-bold">RM 124.90</h5>
+                                    <h5 class="font-weight-bold"><asp:Label ID="lblGrandTotal" runat="server"></asp:Label></h5>
                                 </div>
                             </div>
                         </div>
