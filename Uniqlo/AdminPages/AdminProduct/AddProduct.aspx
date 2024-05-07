@@ -36,7 +36,7 @@
 
                     <asp:Panel ID="Panel1" runat="server" CssClass="dropdown-container">
                         <asp:DropDownList ID="ddlCategory" runat="server" CssClass="dropdown-display" >
-                            <asp:ListItem Text="Tops" Value="Top"></asp:ListItem>
+                            <asp:ListItem Text="Tops" Value="Top" Selected="True"></asp:ListItem>
                             <asp:ListItem Text="Bottoms" Value="Bottom"></asp:ListItem>
                         </asp:DropDownList>
                     </asp:Panel>
@@ -47,7 +47,7 @@
 
                     <asp:Panel ID="Panel2" runat="server" CssClass="dropdown-container">
                         <asp:DropDownList ID="ddlGender" runat="server" CssClass="dropdown-display" >
-                            <asp:ListItem Text="Men" Value="M"></asp:ListItem>
+                            <asp:ListItem Text="Men" Value="M" Selected="True"></asp:ListItem>
                             <asp:ListItem Text="Women" Value="W"></asp:ListItem>
                         </asp:DropDownList>
                     </asp:Panel>
@@ -91,8 +91,8 @@
                         <thead>
                             <tr>
                                 <th><h2>${color}</h2> <input type="hidden" id="colorName${colorId}" value="${color}" /></th>
-                                <th><button type="button" class="addColor-button" onclick="deleteColorTable(this)">Delete</button></th>
                                 <th><button type="button" class="addColor-button" onclick="updateHiddenField(this)">Save</button></th>
+                                <th><button type="button" class="addColor-button" onclick="deleteColorTable(this)">Delete</button></th>
                             </tr>
                         </thead>
                         <tbody>

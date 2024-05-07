@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Uniqlo.AdminPages.AdminStaff;
 using static Uniqlo.Product;
+using System.Data.Entity;
 
 namespace Uniqlo.AdminPages
 {
@@ -15,32 +16,31 @@ namespace Uniqlo.AdminPages
         {
             if (!IsPostBack)
             {
-                string prodID = Request.QueryString["ProdID"];
-                if (!string.IsNullOrEmpty(prodID))
+                if (!IsPostBack)
                 {
-                    LoadProdDetails(int.Parse(prodID));
+                    BindFormView();
                 }
             }
+
         }
 
-        private void LoadProdDetails(int prodID)
+        private void BindFormView()
         {
             using (var db = new ProductDbContext())
             {
-                var product = db.product.FirstOrDefault(p => p.Product_ID == prodID);
-                if (product != null)
-                {
-                    /*
-                    staffID.Text = staff.Staff_ID.ToString();
-                    staffName.Text = staff.Name;
-                    email.Text = staff.Email;
-                    contactNumber.Text = staff.Contact_No;
-                    staffGender.SelectedValue = staff.Gender;
-                    staffRole.SelectedValue = staff.Role;
-                    */
+                var productList = db.Product.Include(p => p.Category).ToList();
 
-                }
+                formView.DataSource = productList;
+                formView.DataBind();
             }
+        }
+
+
+
+
+        protected void updateButton_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
