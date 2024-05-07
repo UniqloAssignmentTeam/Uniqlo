@@ -11,9 +11,7 @@ namespace Uniqlo
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-    using System.Data.Entity;
-
+    
     public partial class Product
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -40,18 +38,5 @@ namespace Uniqlo
         public virtual ICollection<Quantity> Quantities { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<WishlistItem> WishlistItems { get; set; }
-
-        public class ProductDbContext : DbContext
-        {
-            public ProductDbContext() : base("name=UniqloEntities") // Ensure this matches your connection string in Web.config
-            {
-            }
-            public DbSet<Category> category { get; set; }
-            public DbSet<Product> product { get; set; }
-            public DbSet<Quantity> quantity { get; set; }
-            public DbSet<Image> image { get; set; }
-
-
-        }
     }
 }

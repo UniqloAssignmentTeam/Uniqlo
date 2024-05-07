@@ -96,17 +96,16 @@
                             <div class="card-body">
                                 <h5 class="font-weight-medium mb-3">Products</h5>
 
-
-
                                 <asp:Repeater ID="CartRepeater" runat="server">
                                     <ItemTemplate>
                                         <div class="d-flex justify-content-between">
-                                            <p><%# Eval("ProductName") %>, <%# Eval("Size") %>, <%# Eval("Color") %> x <%# Eval("Quantity") %></p>
+                                            <p><%# Eval("Name") %>, <%# Eval("Size") %>, <%# Eval("Color") %> x <%# Eval("Quantity") %></p>
                                             <p>RM <%# Eval("Price", "{0:F2}") %></p>
                                         </div>
                                     </ItemTemplate>
                                 </asp:Repeater>
 
+                              
 
                                 <hr class="mt-0">
                                 <div class="d-flex justify-content-between mb-3 pt-1">

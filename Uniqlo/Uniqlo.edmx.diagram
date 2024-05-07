@@ -10,11 +10,11 @@
         <EntityTypeShape EntityType="UniqloModel.Delivery" Width="1.5" PointX="6" PointY="17.125" IsExpanded="true" />
         <EntityTypeShape EntityType="UniqloModel.Discount" Width="1.5" PointX="5.25" PointY="6.125" IsExpanded="true" />
         <EntityTypeShape EntityType="UniqloModel.Image" Width="1.5" PointX="3" PointY="2.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="UniqloModel.OrderList" Width="1.5" PointX="8.25" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="UniqloModel.OrderList" Width="1.5" PointX="7.125" PointY="3.375" IsExpanded="true" />
         <EntityTypeShape EntityType="UniqloModel.Order" Width="1.5" PointX="6" PointY="13.125" IsExpanded="true" />
         <EntityTypeShape EntityType="UniqloModel.Payment" Width="1.5" PointX="8.25" PointY="12.75" IsExpanded="true" />
         <EntityTypeShape EntityType="UniqloModel.Product" Width="1.5" PointX="3" PointY="5.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="UniqloModel.Quantity" Width="1.5" PointX="5.25" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="UniqloModel.Quantity" Width="1.5" PointX="5.25" PointY="3.375" IsExpanded="true" />
         <EntityTypeShape EntityType="UniqloModel.Review" Width="1.5" PointX="10.5" PointY="6.125" IsExpanded="true" />
         <EntityTypeShape EntityType="UniqloModel.Shipping_Address" Width="1.5" PointX="3.75" PointY="17.125" IsExpanded="true" />
         <EntityTypeShape EntityType="UniqloModel.Staff" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
