@@ -11,12 +11,9 @@ namespace Uniqlo
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-    using System.Data.Entity;
-
+    
     public partial class Staff
     {
-        [Key]
         public int Staff_ID { get; set; }
         public string Name { get; set; }
         public string Gender { get; set; }
@@ -25,13 +22,4 @@ namespace Uniqlo
         public string Password { get; set; }
         public string Role { get; set; }
     }
-    public class StaffDbContext : DbContext
-    {
-        public StaffDbContext() : base("name=UniqloEntities") // Ensure this matches your connection string in Web.config
-        {
-        }
-
-        public DbSet<Staff> Staff { get; set; } // Make sure 'Staff' is properly defined as a class
-    }
-
 }

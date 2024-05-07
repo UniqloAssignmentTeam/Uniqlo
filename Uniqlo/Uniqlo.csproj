@@ -659,7 +659,6 @@
   <ItemGroup>
     <Folder Include="Images\Categories\Men\Bottoms\" />
     <Folder Include="Images\Categories\Men\Tops\" />
-    <Folder Include="Images\Products\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

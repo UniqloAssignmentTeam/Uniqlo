@@ -48,7 +48,7 @@
                     <asp:Panel ID="Panel2" runat="server" CssClass="dropdown-container">
                         <asp:DropDownList ID="ddlGender" runat="server" CssClass="dropdown-display" >
                             <asp:ListItem Text="Men" Value="M"></asp:ListItem>
-                            <asp:ListItem Text="Women" Value="F"></asp:ListItem>
+                            <asp:ListItem Text="Women" Value="W"></asp:ListItem>
                         </asp:DropDownList>
                     </asp:Panel>
                 </div>

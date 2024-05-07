@@ -24,7 +24,6 @@
                 text-decoration: none;
                 color: black;
                 width: calc((100% / 2) - 20px);
-    
             }
 
             .confirmationDeletebtn:hover, 

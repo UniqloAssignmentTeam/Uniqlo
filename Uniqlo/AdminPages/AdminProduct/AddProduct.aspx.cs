@@ -50,84 +50,71 @@ namespace Uniqlo.AdminPages
                 string category = ddlCategory.SelectedValue;
                 string gender = ddlGender.SelectedValue;
 
-                // Check if a file is uploaded
-                if (Request.Files.Count > 0 && Request.Files[0].ContentLength > 0)
+                string jsonData = HiddenFieldData.Value;
+                List<ColorSize> colorSizes = JsonConvert.DeserializeObject<List<ColorSize>>(jsonData);
+
+                using (var db = new ProductDbContext())
                 {
-                    HttpPostedFile uploadedFile = Request.Files[0]; // Get the uploaded file
+                    var categoryID = db.category.Where(c => c.Name == category && c.Gender.ToString() == gender).Select(c => c.Category_ID).FirstOrDefault();
 
-                    try
+                    Product newProduct = new Product
                     {
-                        string jsonData = HiddenFieldData.Value;
-                        List<ColorSize> colorSizes = JsonConvert.DeserializeObject<List<ColorSize>>(jsonData);
+                        Product_Name = productName,
+                        Description = productDescription,
+                        Price = productPrice,
+                        Category_ID = categoryID
+                    };
+                    db.product.Add(newProduct);
+                    db.SaveChanges();
 
-                        /*
-                        using (var db = new ProductDbContext())
+                    foreach (var colorSize in colorSizes)
+                    {
+                        if (!String.IsNullOrWhiteSpace(colorSize.Image))
                         {
-                            var categoryID = db.category.Where(c => c.Name == category && c.Gender == gender).Select(c => c.Category_ID).FirstOrDefault();
-                            string serverPath = Server.MapPath("/Images/Products/"); // Physical path on server
+                            string imagePath = colorSize.Image;
+                            string serverPath = Server.MapPath("~/Images/Products/");
+                            string fileName = Path.GetFileName(imagePath);
+                            string fullPath = serverPath + fileName;
 
-                            Product newProduct = new Product
+
+                            Image newImage = new Image
                             {
-                                Category_ID = categoryID,
-                                Product_Name = productName,
-                                Description = productDescription,
-                                Price = productPrice
+                                ImagePath = "/Images/Products/" + fileName
                             };
-                            db.product.Add(newProduct);
-
-                            string imageFileName = Path.GetFileName(uploadedFile.FileName); 
-                            string fullPath = serverPath + imageFileName; 
-                            uploadedFile.SaveAs(fullPath);
-
-                            
-                           
-                            foreach (var colorSize in colorSizes)
-                            {
-                                foreach (var sizeProperty in typeof(ColorSize).GetProperties().Where(p => p.Name.StartsWith("Size")))
-                                {
-                                    string sizeValue = sizeProperty.GetValue(colorSize) as string;
-                                    if (!string.IsNullOrEmpty(sizeValue))
-                                    {
-                                        string size = sizeProperty.Name.Substring(4);
-                                        Quantity newQuantity = new Quantity
-                                        {
-                                            Quantity_ID = newQuantityIDCounter++,
-                                            Product_ID = newProduct.Product_ID,
-                                            Color = colorSize.Color,
-                                            Size = size,
-                                            Quantity1 = Int32.Parse(sizeValue)
-                                        };
-                                        db.quantity.Add(newQuantity);
-
-                                        Image newImage = new Image
-                                        {
-                                            Image_ID = newImageID++,
-                                            ImagePath = "/Images/Products/" + imageFileName, // Relative path for database
-                                            Quantity_ID = newQuantity.Quantity_ID
-                                        };
-                                        db.image.Add(newImage);
-                                    }
-                                }
-                            
-                            }
-                            
+                            db.image.Add(newImage);
                             db.SaveChanges();
+
+                            foreach (var sizeProperty in typeof(ColorSize).GetProperties().Where(p => p.Name.StartsWith("Size")))
+                            {
+                                string sizeValue = sizeProperty.GetValue(colorSize) as string;
+
+                                if (!string.IsNullOrEmpty(sizeValue))
+                                {
+                                    string size = sizeProperty.Name.Substring(4);
+                                    Quantity newQuantity = new Quantity
+                                    {
+                                        Product_ID = newProduct.Product_ID,
+                                        Image_ID = newImage.Image_ID,
+                                        Color = colorSize.Color,
+                                        Size = size,
+                                        Quantity1 = Int32.Parse(sizeValue)
+                                    };
+                                    db.quantity.Add(newQuantity);
+                                }
+                            }
                         }
-                        */
+                        else
+                        {
+                            // Handle cases where no image is specified if necessary
+                        }
                     }
-                    catch (Exception ex)
-                    {
-                        // Handle exceptions
-                        Response.Write("Error: " + ex.Message);
-                    }
+                    db.SaveChanges();
                 }
-                else
-                {
-                    // Notify user if no file is selected
-                    Response.Write("Please select a file to upload.");
-                }
+
+                ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", "alert('Product and details added successfully!');", true);
             }
         }
+
 
 
     }
