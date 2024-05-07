@@ -18,39 +18,36 @@ namespace Uniqlo.Pages
             if (!IsPostBack)
             {
                 BindDataList();
-
             }
-
-           
-
-
-
         }
+
         private void BindDataList()
         {
             using (var context = new ProductDbContext())
             {
+                // Using DateTime.Now outside the LINQ query to avoid multiple calls which might give slight differences during execution.
                 var today = DateTime.Now;
 
-                var productsWithDiscounts = (from p in context.Product
-                                             join d in context.Discount on p.Product_ID equals d.Product_ID
-                                             where d.Status == "Active" && d.Start_Date <= DateTime.Now && d.End_Date >= DateTime.Now
-                                             join q in context.Quantity on p.Product_ID equals q.Product_ID
-                                             join img in context.Image on q.Image_ID equals img.Image_ID
-                                             select new
-                                             {
-                                                 ProductName = p.Product_Name,
-                                                 Description = p.Description,
-                                                 Price = p.Price,
-                                                 DiscountAmount = d.Discount_Amount,
-                                                 ImagePath = img.ImagePath,
-                                                 ImageID = img.Image_ID
-                                             }).Distinct().ToList();
+                // Fetching products with active discounts
+                var productsWithActiveDiscounts = (from p in context.Product
+                                                   join d in context.Discount on p.Product_ID equals d.Product_ID
+                                                   where d.Status == "Active" && d.Start_Date <= today && d.End_Date >= today
+                                                   join q in context.Quantity on p.Product_ID equals q.Product_ID
+                                                   join img in context.Image on q.Image_ID equals img.Image_ID
+                                                   select new
+                                                   {
+                                                       Product_Name = p.Product_Name, // Changed to ProductName to match common naming conventions
+                                                       Description = p.Description,
+                                                       Price = p.Price,
+                                                       Discount_Amount = d.Discount_Amount,
+                                                       Image_ID=img.Image_ID
+                                                   }).Distinct().ToList();
 
-                var results = productsWithDiscounts.ToList();
-                DataList1.DataSource = results;
+                // Setting the DataList data source
+                DataList1.DataSource = productsWithActiveDiscounts;
                 DataList1.DataBind();
             }
         }
+
     }
 }

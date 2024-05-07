@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using static Uniqlo.Image;
 using static Uniqlo.Product;
 
 namespace Uniqlo
@@ -10,32 +11,38 @@ namespace Uniqlo
     {
         public void ProcessRequest(HttpContext context)
         {
-            int imageId = Convert.ToInt32(context.Request.QueryString["id"]);
-            byte[] imageData = GetImageData(imageId);
+            try
+            {
+                int imageId = int.Parse(context.Request.QueryString["id"]);
+                byte[] imageData = GetImageData(imageId);
 
-            if (imageData != null)
-            {
-                context.Response.ContentType = "image/jpeg"; // Assuming JPEG format; adjust as necessary
-                context.Response.BinaryWrite(imageData);
+                if (imageData != null && imageData.Length > 0)
+                {
+                    context.Response.ContentType = "image/jpeg"; // Adjust content type based on the actual image format
+                    context.Response.BinaryWrite(imageData);
+                }
+                else
+                {
+                    context.Response.StatusCode = 404; // Not found
+                }
             }
-            else
+            catch
             {
-                context.Response.StatusCode = 404;
+                context.Response.StatusCode = 500; // Internal Server Error
             }
         }
-
-        public byte[] GetImageData(int imageId)
+        private byte[] GetImageData(int imageId)
         {
-            using (var db = new ProductDbContext())
+            using (var context = new ImageDbContext())
             {
-                var image = db.Image.FirstOrDefault(i => i.Image_ID == imageId);
+                var image = context.Image.FirstOrDefault(i => i.Image_ID == imageId);
                 return image?.ImagePath;
             }
         }
 
         public bool IsReusable
         {
-            get { return true; }
+            get { return false; }
         }
     }
 
