@@ -9,17 +9,14 @@ using System.Web.UI.WebControls;
 using System.Xml.Linq;
 
 using Uniqlo;
-
-namespace Uniqlo.AdminPages
+namespace Uniqlo.AdminPages.AdminStaff
 {
-    public partial class AddStaff : System.Web.UI.Page
+    public partial class StaffAdd : System.Web.UI.Page
     {
-        string cs = Global.CS;
         protected void Page_Load(object sender, EventArgs e)
         {
-        
-        }
 
+        }
         protected void addBtn_Click(object sender, EventArgs e)
         {
             if (Page.IsValid)
@@ -27,17 +24,10 @@ namespace Uniqlo.AdminPages
                 using (var db = new StaffDbContext())
                 {
                     // Calculate new Staff_ID
-                    int newStaffId = db.Staffs.Any() ? db.Staffs.Max(s => s.Staff_ID) + 1 : 1;
-                    string gender;
-                    if (staffGender.SelectedValue == "Male")
-                    {
-                        gender = "M";
-                    }
-                    else
-                    {
-                        gender = "F";
-                    }
+                    int newStaffId = db.Staff.Any() ? db.Staff.Max(s => s.Staff_ID) + 1 : 1;
                     
+                   
+
                     // Explicitly using Uniqlo namespace for Staff
                     Staff newStaff = new Staff
                     {
@@ -46,14 +36,14 @@ namespace Uniqlo.AdminPages
                         Staff_ID = newStaffId,
                         Name = staffName.Text, // Make sure control IDs match
                         Email = email.Text,
-                        Gender = gender,
+                        Gender = staffGender.SelectedValue,
                         Contact_No = contactNumber.Text,
                         Password = password.Text,
                         Role = staffRole.SelectedValue
-                      
+
                     };
 
-                    db.Staffs.Add(newStaff);
+                    db.Staff.Add(newStaff);
                     db.SaveChanges();
 
                     Response.Redirect("StaffHome.aspx");

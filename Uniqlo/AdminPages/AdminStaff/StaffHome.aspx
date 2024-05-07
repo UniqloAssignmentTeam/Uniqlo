@@ -53,7 +53,7 @@
 <!--Header-->  
 
                    
-                 <asp:Repeater ID="staffRepeater" runat="server" ViewStateMode="Disabled" DataSourceID="testt">
+                 <asp:Repeater ID="staffRepeater" runat="server" ViewStateMode="Disabled" >
 
                      <HeaderTemplate>
                           <table style="width:100%" class="table">
@@ -90,7 +90,8 @@
       <div class="eclipse-list" id="dropdownList<%# Eval("Staff_ID") %>">
 
          <div> <asp:HyperLink ID="updateStaff" runat="server" NavigateUrl='<%# "UpdateStaff.aspx?StaffID=" + Eval("Staff_ID") %>' Text="Update"></asp:HyperLink></div>
-         <div onclick="document.getElementById('id01').style.display='block'">Delete</div>
+       <div onclick="showDeleteModal(<%# Eval("Staff_ID") %>);">Delete</div>
+
       </div>
 
 </td>
@@ -148,7 +149,7 @@
 
 
 
-
+        <asp:HiddenField ID="hiddenStaffId" runat="server" Value="" />
 
 
                 <!--DELETE CONFIRMATION-->
@@ -161,7 +162,7 @@
     
               <div class="confirmationClearFix">
                 <button type="button" onclick="document.getElementById('id01').style.display='none'" class="confirmationCancelbtn">Cancel</button>
-                <button type="button" onclick="document.getElementById('id01').style.display='none'" class="confirmationDeletebtn">Remove</button>
+               <asp:Button ID="btnRemoveStaff" runat="server" Text="Remove" OnClick="btnRemoveStaff_Click" CssClass="confirmationDeletebtn" />
               </div>
             </div>
           </div>
@@ -176,6 +177,13 @@
   
     
     <footer>
+        <script type="text/javascript">
+            function showDeleteModal(staffId) {
+                document.getElementById('<%= hiddenStaffId.ClientID %>').value = staffId;  // Set the staff ID to hidden field
+                document.getElementById('id01').style.display = 'block';  // Show the modal
+            }
+        </script>
+
 
             <script src="../../Javascript/productBtnEclipse.js"></script>
             <script src="../../Javascript/productAdminDDL.js"></script>

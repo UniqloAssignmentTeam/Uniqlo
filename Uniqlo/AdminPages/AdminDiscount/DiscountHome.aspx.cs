@@ -5,9 +5,9 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace Uniqlo.AdminPages
+namespace Uniqlo.AdminPages.AdminDiscount
 {
-    public partial class Discount : System.Web.UI.Page
+    public partial class DiscountHome : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {

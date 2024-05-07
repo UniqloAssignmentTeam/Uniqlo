@@ -7,83 +7,65 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Uniqlo.AdminPages
+namespace Uniqlo.AdminPages.AdminProduct
 {
 
 
-    public partial class AddStaff
+    public partial class ColorTableControl
     {
 
         /// <summary>
-        /// staffName control.
+        /// lblColorName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox staffName;
+        protected global::System.Web.UI.WebControls.Label lblColorName;
 
         /// <summary>
-        /// staffGender control.
+        /// btnDelete control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList staffGender;
+        protected global::System.Web.UI.WebControls.Button btnDelete;
 
         /// <summary>
-        /// staffRole control.
+        /// txtSizeS control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList staffRole;
+        protected global::System.Web.UI.WebControls.TextBox txtSizeS;
 
         /// <summary>
-        /// contactNumber control.
+        /// txtSizeM control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox contactNumber;
+        protected global::System.Web.UI.WebControls.TextBox txtSizeM;
 
         /// <summary>
-        /// email control.
+        /// txtSizeL control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox email;
+        protected global::System.Web.UI.WebControls.TextBox txtSizeL;
 
         /// <summary>
-        /// password control.
+        /// txtSizeXL control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox password;
-
-        /// <summary>
-        /// cancelBtn control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button cancelBtn;
-
-        /// <summary>
-        /// addBtn control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button addBtn;
+        protected global::System.Web.UI.WebControls.TextBox txtSizeXL;
     }
 }

@@ -50,6 +50,9 @@
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
@@ -76,14 +79,14 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="AdminPages\AdminDiscount\addDiscount.aspx" />
-    <Content Include="AdminPages\AdminDiscount\Discount1.aspx" />
+    <Content Include="AdminPages\AdminDiscount\DiscountHome.aspx" />
     <Content Include="AdminPages\AdminProduct\AddProduct.aspx" />
+    <Content Include="AdminPages\AdminProduct\ColorTableControl.ascx" />
     <Content Include="AdminPages\adminProfile.aspx" />
-    <Content Include="AdminPages\AdminStaff\AddStaff.aspx" />
+    <Content Include="AdminPages\AdminStaff\StaffAdd.aspx" />
     <Content Include="AdminPages\AdminStaff\StaffHome.aspx" />
     <Content Include="AdminPages\Dashboard.aspx" />
     <Content Include="AdminPages\Delivery.aspx" />
-    <Content Include="AdminPages\AdminDiscount\Discount.aspx" />
     <Content Include="AdminPages\Login.aspx" />
     <Content Include="AdminPages\AdminOrder\Order.aspx" />
     <Content Include="AdminPages\AdminOrder\OrderItem.aspx" />
@@ -221,15 +224,15 @@
     <Content Include="Pages\TrackDelivery.aspx" />
     <Content Include="Pages\ValueBuy.aspx" />
     <Content Include="Pages\WishList.aspx" />
-    <Content Include="StaffModel.Context.tt">
+    <Content Include="Uniqlo.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>StaffModel.edmx</DependentUpon>
-      <LastGenOutput>StaffModel.Context.cs</LastGenOutput>
+      <DependentUpon>Uniqlo.edmx</DependentUpon>
+      <LastGenOutput>Uniqlo.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="StaffModel.tt">
+    <Content Include="Uniqlo.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>StaffModel.edmx</DependentUpon>
-      <LastGenOutput>StaffModel.cs</LastGenOutput>
+      <DependentUpon>Uniqlo.edmx</DependentUpon>
+      <LastGenOutput>Uniqlo.cs</LastGenOutput>
     </Content>
     <Content Include="Web.config" />
   </ItemGroup>
@@ -248,12 +251,12 @@
     <Compile Include="AdminPages\AdminDiscount\addDiscount.aspx.designer.cs">
       <DependentUpon>addDiscount.aspx</DependentUpon>
     </Compile>
-    <Compile Include="AdminPages\AdminDiscount\Discount1.aspx.cs">
-      <DependentUpon>Discount1.aspx</DependentUpon>
+    <Compile Include="AdminPages\AdminDiscount\DiscountHome.aspx.cs">
+      <DependentUpon>DiscountHome.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="AdminPages\AdminDiscount\Discount1.aspx.designer.cs">
-      <DependentUpon>Discount1.aspx</DependentUpon>
+    <Compile Include="AdminPages\AdminDiscount\DiscountHome.aspx.designer.cs">
+      <DependentUpon>DiscountHome.aspx</DependentUpon>
     </Compile>
     <Compile Include="AdminPages\AdminProduct\AddProduct.aspx.cs">
       <DependentUpon>AddProduct.aspx</DependentUpon>
@@ -262,6 +265,13 @@
     <Compile Include="AdminPages\AdminProduct\AddProduct.aspx.designer.cs">
       <DependentUpon>AddProduct.aspx</DependentUpon>
     </Compile>
+    <Compile Include="AdminPages\AdminProduct\ColorTableControl.ascx.cs">
+      <DependentUpon>ColorTableControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminPages\AdminProduct\ColorTableControl.ascx.designer.cs">
+      <DependentUpon>ColorTableControl.ascx</DependentUpon>
+    </Compile>
     <Compile Include="AdminPages\adminProfile.aspx.cs">
       <DependentUpon>adminProfile.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -269,12 +279,12 @@
     <Compile Include="AdminPages\adminProfile.aspx.designer.cs">
       <DependentUpon>adminProfile.aspx</DependentUpon>
     </Compile>
-    <Compile Include="AdminPages\AdminStaff\AddStaff.aspx.cs">
-      <DependentUpon>AddStaff.aspx</DependentUpon>
+    <Compile Include="AdminPages\AdminStaff\StaffAdd.aspx.cs">
+      <DependentUpon>StaffAdd.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="AdminPages\AdminStaff\AddStaff.aspx.designer.cs">
-      <DependentUpon>AddStaff.aspx</DependentUpon>
+    <Compile Include="AdminPages\AdminStaff\StaffAdd.aspx.designer.cs">
+      <DependentUpon>StaffAdd.aspx</DependentUpon>
     </Compile>
     <Compile Include="AdminPages\AdminStaff\StaffHome.aspx.cs">
       <DependentUpon>StaffHome.aspx</DependentUpon>
@@ -296,13 +306,6 @@
     </Compile>
     <Compile Include="AdminPages\Delivery.aspx.designer.cs">
       <DependentUpon>Delivery.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="AdminPages\AdminDiscount\Discount.aspx.cs">
-      <DependentUpon>Discount.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="AdminPages\AdminDiscount\Discount.aspx.designer.cs">
-      <DependentUpon>Discount.aspx</DependentUpon>
     </Compile>
     <Compile Include="AdminPages\Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
@@ -378,23 +381,21 @@
       <DependentUpon>test.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="CartItem.cs" />
     <Compile Include="Category.cs">
-      <DependentUpon>StaffModel.tt</DependentUpon>
+      <DependentUpon>Uniqlo.tt</DependentUpon>
     </Compile>
     <Compile Include="Customer.cs">
-      <DependentUpon>StaffModel.tt</DependentUpon>
+      <DependentUpon>Uniqlo.tt</DependentUpon>
     </Compile>
     <Compile Include="Delivery.cs">
-      <DependentUpon>StaffModel.tt</DependentUpon>
+      <DependentUpon>Uniqlo.tt</DependentUpon>
     </Compile>
     <Compile Include="Discount.cs">
-      <DependentUpon>StaffModel.tt</DependentUpon>
+      <DependentUpon>Uniqlo.tt</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
-    </Compile>
-    <Compile Include="Image.cs">
-      <DependentUpon>StaffModel.tt</DependentUpon>
     </Compile>
     <Compile Include="AdminPages\UpdateDelivery.aspx.cs">
       <DependentUpon>UpdateDelivery.aspx</DependentUpon>
@@ -403,11 +404,14 @@
     <Compile Include="AdminPages\UpdateDelivery.aspx.designer.cs">
       <DependentUpon>UpdateDelivery.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Image.cs">
+      <DependentUpon>Uniqlo.tt</DependentUpon>
+    </Compile>
     <Compile Include="Order.cs">
-      <DependentUpon>StaffModel.tt</DependentUpon>
+      <DependentUpon>Uniqlo.tt</DependentUpon>
     </Compile>
     <Compile Include="OrderList.cs">
-      <DependentUpon>StaffModel.tt</DependentUpon>
+      <DependentUpon>Uniqlo.tt</DependentUpon>
     </Compile>
     <Compile Include="Pages\AboutUs.aspx.cs">
       <DependentUpon>AboutUs.aspx</DependentUpon>
@@ -585,38 +589,38 @@
       <DependentUpon>WishList.aspx</DependentUpon>
     </Compile>
     <Compile Include="Payment.cs">
-      <DependentUpon>StaffModel.tt</DependentUpon>
+      <DependentUpon>Uniqlo.tt</DependentUpon>
     </Compile>
     <Compile Include="Product.cs">
-      <DependentUpon>StaffModel.tt</DependentUpon>
+      <DependentUpon>Uniqlo.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Quantity.cs">
-      <DependentUpon>StaffModel.tt</DependentUpon>
+      <DependentUpon>Uniqlo.tt</DependentUpon>
     </Compile>
     <Compile Include="Review.cs">
-      <DependentUpon>StaffModel.tt</DependentUpon>
+      <DependentUpon>Uniqlo.tt</DependentUpon>
     </Compile>
     <Compile Include="Shipping_Address.cs">
-      <DependentUpon>StaffModel.tt</DependentUpon>
+      <DependentUpon>Uniqlo.tt</DependentUpon>
     </Compile>
     <Compile Include="Staff.cs">
-      <DependentUpon>StaffModel.tt</DependentUpon>
+      <DependentUpon>Uniqlo.tt</DependentUpon>
     </Compile>
-    <Compile Include="StaffModel.Context.cs">
+    <Compile Include="Uniqlo.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>StaffModel.Context.tt</DependentUpon>
+      <DependentUpon>Uniqlo.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="StaffModel.cs">
+    <Compile Include="Uniqlo.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>StaffModel.tt</DependentUpon>
+      <DependentUpon>Uniqlo.tt</DependentUpon>
     </Compile>
-    <Compile Include="StaffModel.Designer.cs">
+    <Compile Include="Uniqlo.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>StaffModel.edmx</DependentUpon>
+      <DependentUpon>Uniqlo.edmx</DependentUpon>
     </Compile>
     <Compile Include="Uniqlo.Master.cs">
       <DependentUpon>Uniqlo.Master</DependentUpon>
@@ -626,7 +630,7 @@
       <DependentUpon>Uniqlo.Master</DependentUpon>
     </Compile>
     <Compile Include="WishlistItem.cs">
-      <DependentUpon>StaffModel.tt</DependentUpon>
+      <DependentUpon>Uniqlo.tt</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -634,12 +638,12 @@
     <Content Include="admin.sitemap" />
     <None Include="packages.config" />
     <Content Include="Uniqlo.Master" />
-    <EntityDeploy Include="StaffModel.edmx">
+    <EntityDeploy Include="Uniqlo.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>StaffModel.Designer.cs</LastGenOutput>
+      <LastGenOutput>Uniqlo.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="StaffModel.edmx.diagram">
-      <DependentUpon>StaffModel.edmx</DependentUpon>
+    <Content Include="Uniqlo.edmx.diagram">
+      <DependentUpon>Uniqlo.edmx</DependentUpon>
     </Content>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
