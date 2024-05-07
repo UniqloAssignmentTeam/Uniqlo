@@ -156,6 +156,7 @@
                 </div>
                 
                     <div class="viewMoreSection">
+                        <asp:Label ID="lblErrorMessage" runat="server" ForeColor="Red" Visible="False"></asp:Label>
                         <asp:LinkButton ID="lnkConfirmOrder" runat="server" CssClass="viewMoreButton" OnClick="lnkConfirmOrder_Click" Text="Confirm Order" />
                     </div>
                 

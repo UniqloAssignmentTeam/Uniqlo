@@ -89,8 +89,9 @@ namespace Uniqlo.Pages
         protected void lnkConfirmOrder_Click(object sender, EventArgs e)
         {
             //confirm order, so create orderlist, order, payment, and delivery insert into database
-           
-            using (SqlConnection con = new SqlConnection(cs))
+
+            /**
+             * using (SqlConnection con = new SqlConnection(cs))
             {
                 con.Open();
 
@@ -104,8 +105,8 @@ namespace Uniqlo.Pages
                     cmd.Transaction = sqlTran;
 
                     // Insert Address
-                    Address shippingAddress = Session["ShippingAddress"] as Address;
-                    cmd.CommandText = "INSERT INTO Address (Address, State, City, Postcode, Country) VALUES (@Address, @State, @City, @Postcode, @Country); SELECT SCOPE_IDENTITY();";
+                    Address shippingAddress = (Address)Session["ShippingAddress"];
+                    cmd.CommandText = "INSERT INTO Shipping_Address (Address, State, City, Postcode, Country) VALUES (@Address, @State, @City, @Postcode, @Country); SELECT SCOPE_IDENTITY();";
                     cmd.Parameters.AddWithValue("@Address", shippingAddress.AddressLine);
                     cmd.Parameters.AddWithValue("@State", shippingAddress.State);
                     cmd.Parameters.AddWithValue("@City", shippingAddress.City);
@@ -115,8 +116,8 @@ namespace Uniqlo.Pages
 
                     // Insert Order
                     int customerId = Convert.ToInt32(Session["Customer_Id"]);
-                    List<CartItem> cartItems = Session["CartList"] as List<CartItem>;
-                    decimal subtotal = cartItems.Sum(item => item.Item_Price * item.Quantity);
+                    List<CartItem> cartItems = Session["Cart"] as List<CartItem>;
+                    decimal subtotal = (decimal)Session["TotalPrice"];
                     cmd.CommandText = "INSERT INTO Orders (Customer_Id, Subtotal) VALUES (@CustomerId, @Subtotal); SELECT SCOPE_IDENTITY();";
                     cmd.Parameters.AddWithValue("@CustomerId", customerId);
                     cmd.Parameters.AddWithValue("@Subtotal", subtotal);
@@ -125,7 +126,7 @@ namespace Uniqlo.Pages
                     // Insert OrderList
                     foreach (var item in cartItems)
                     {
-                        cmd.CommandText = "INSERT INTO OrderList (Order_Id, Quantity, Quantity_Id, Item_Price) VALUES (@OrderId, @Quantity, @QuantityId, @ItemPrice);";
+                        cmd.CommandText = "INSERT INTO OrderList (Order_Id, Qty, Quantity_Id, Item_Price) VALUES (@OrderId, @Quantity, @QuantityId, @ItemPrice);";
                         cmd.Parameters.AddWithValue("@OrderId", orderId);
                         cmd.Parameters.AddWithValue("@Quantity", item.Quantity);
                         cmd.Parameters.AddWithValue("@QuantityId", item.Quantity_Id);
@@ -158,11 +159,13 @@ namespace Uniqlo.Pages
 
                     // Commit the transaction.
                     sqlTran.Commit();
+                    Response.Redirect("Invoice.aspx");
                 }
                 catch (Exception ex)
                 {
-                    // Handle the exception if the transaction fails to commit.
-                    Console.WriteLine(ex.Message);
+                    // Display error message on the page
+                    lblErrorMessage.Visible = true;
+                    lblErrorMessage.Text = "Error processing order: " + ex.Message;
 
                     try
                     {
@@ -171,15 +174,15 @@ namespace Uniqlo.Pages
                     }
                     catch (Exception exRollback)
                     {
-                        // Throws an InvalidOperationException if the connection 
-                        // is closed or the transaction has already been rolled 
-                        // back on the server.
-                        Console.WriteLine(exRollback.Message);
+                        // Update error message with rollback info
+                        lblErrorMessage.Text += " Error during rollback: " + exRollback.Message;
                     }
                 }
-            }
-
+            }**/
+            Response.Redirect("Invoice.aspx");
         }
+
+        
 
     }
 }
