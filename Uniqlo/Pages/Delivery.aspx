@@ -54,7 +54,7 @@
                                 </div>
                                 <div class="col-md-6 form-group">
                                     <label>Country</label>
-                                    <asp:TextBox ID="txtCountry" runat="server" CssClass="form-control" required="true"></asp:TextBox>
+                                    <asp:TextBox ID="txtCountry" runat="server" CssClass="form-control" ></asp:TextBox>
                                     <asp:RequiredFieldValidator ControlToValidate="txtCountry" ErrorMessage="Country is required" Display="Dynamic" ForeColor="Red" runat="server" />
                                 </div>
                                 <div class="col-md-6 form-group">
