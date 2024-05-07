@@ -19,7 +19,7 @@
 
               <div class="form-group">
      <label for="discountID">Discount ID</label>
-        <asp:TextBox ID="discountID" runat="server" ReadOnly="True"></asp:TextBox>
+        <asp:TextBox ID="discountIDText" runat="server" Enabled="False"></asp:TextBox>
  </div>
           
 
@@ -47,7 +47,7 @@
                             <div class="form-group">
   <label for="productName">Status</label>
   <div class="dropdown-container" onclick="toggleDropdown('dropdownList', 'dropdownDisplay')">
-      <asp:DropDownList ID="status" runat="server">
+      <asp:DropDownList ID="status" runat="server" CssClass="dropdown-display">
           <asp:ListItem>Active</asp:ListItem>
           <asp:ListItem>Inactive</asp:ListItem>
       </asp:DropDownList>

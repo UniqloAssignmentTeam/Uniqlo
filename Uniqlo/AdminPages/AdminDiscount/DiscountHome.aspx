@@ -66,7 +66,7 @@
 
                          <tr class="row">
                             
- <td class="col discountId"><asp:Label ID="discountId" runat="server" Text='<%# Eval("Discount_ID") %>'></asp:Label></td>
+ <td class="col discountId"><asp:Label ID="discountIdLabel" runat="server" Text='<%# Eval("Discount_ID") %>'></asp:Label></td>
 <td class="col name"><asp:Label ID="productName" runat="server" Text='<%# Eval("Product.Product_Name") %>'></asp:Label></td>
 <td class="col price"><asp:Label ID="price" runat="server" Text='<%# Eval("Discount_Amount") %>'></asp:Label></td>
 <td class="col wear"><asp:Label ID="wear" runat="server" Text='<%# Eval("Status") %>'></asp:Label></td>
@@ -78,7 +78,7 @@
       <div class="eclipse-display" id="dropdownDisplay<%# Eval("Discount_ID") %>" style="border:none;"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></div>
       <div class="eclipse-list" id="dropdownList<%# Eval("Discount_ID") %>">
 
-         <div> <asp:HyperLink ID="updateStaff" runat="server" NavigateUrl='<%# "UpdateDiscount.aspx?StaffID=" + Eval("Discount_ID") %>' Text="Update"></asp:HyperLink></div>
+         <div> <asp:HyperLink ID="updateDiscount" runat="server" NavigateUrl='<%# "UpdateDiscount.aspx?DiscountID=" + Eval("Discount_ID") %>' Text="Update"></asp:HyperLink></div>
        <div onclick="showDeleteModal(<%# Eval("Discount_ID") %>);">Delete</div>
 
       </div>
@@ -156,7 +156,7 @@
 
             <div class="confirmationClearFix">
                 <asp:Button ID="cancelBtn" runat="server" Text="Cancel" CssClass="confirmationCancelbtn"/>
-                 <asp:Button ID="deleteBtn" runat="server" Text="Delete" CssClass="confirmationDeletebtn"/>
+                 <asp:Button ID="btnRemoveDiscount" runat="server" Text="Delete" CssClass="confirmationDeletebtn" OnClick="btnRemoveDiscount_Click"/>
                
             </div>
         </div>
@@ -167,6 +167,14 @@
        <asp:HiddenField ID="hiddenDiscountId" runat="server" Value="" />
 
     <footer>
+        <script type="text/javascript">
+            function showDeleteModal(discountId) {
+                document.getElementById('<%= hiddenDiscountId.ClientID %>').value = discountId;
+                document.getElementById('id01').style.display = 'block';
+            }
+
+        </script>
+
         <script src="../../Javascript/productBtnEclipse.js"></script>
         <script src="../../Javascript/productAdminDDL.js"></script>
         <script src="../../Javascript/Pagination.js"></script>
