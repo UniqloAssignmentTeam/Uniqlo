@@ -23,8 +23,7 @@ namespace Uniqlo.AdminPages.AdminStaff
             {
                 using (var db = new StaffDbContext())
                 {
-                    // Calculate new Staff_ID
-                    int newStaffId = db.Staff.Any() ? db.Staff.Max(s => s.Staff_ID) + 1 : 1;
+                    
                     
                    
 
@@ -33,7 +32,7 @@ namespace Uniqlo.AdminPages.AdminStaff
                     {
 
 
-                        Staff_ID = newStaffId,
+                       
                         Name = staffName.Text, // Make sure control IDs match
                         Email = email.Text,
                         Gender = staffGender.SelectedValue,

@@ -21,7 +21,7 @@ namespace Uniqlo.AdminPages
 {
     public partial class AddProduct : System.Web.UI.Page
     {
-        string cs = Global.CS;
+        //string cs = Global.CS;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (IsPostBack)

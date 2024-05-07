@@ -63,7 +63,7 @@
                     <a href="Dashboard.aspx">Dashboard</a>
                     <a href="StaffHome.aspx">Staff</a>
                     <a href="Product.aspx">Product</a>
-                    <a href="ValueBuy.aspx">Discount</a>
+                    <a href="DiscountHome.aspx">Discount</a>
                     <a href="Order.aspx">Order</a>
                     <a href="Delivery.aspx">Delivery</a>
                     <a href="Report.aspx">Report</a>

@@ -16,18 +16,28 @@ namespace Uniqlo.Pages
         {
             if (!Page.IsPostBack)
             {
-
                 //dummy cart
                 List<CartItem> cart = new List<CartItem>
                 {
-                
+                    new CartItem { Quantity_Id = 1, Name = "T-shirt", Price = 15.99m, Color = "Red", Size = "M", Quantity = 2 },
+                    new CartItem { Quantity_Id = 2, Name = "Jeans", Price = 40.50m, Color = "Blue", Size = "32", Quantity = 1 },
+                    new CartItem { Quantity_Id = 3, Name = "Sneakers", Price = 60.00m, Color = "White", Size = "9", Quantity = 1 },
+                    new CartItem { Quantity_Id = 4, Name = "Jacket", Price = 99.95m, Color = "Black", Size = "L", Quantity = 1 },
+                    new CartItem { Quantity_Id = 5, Name = "Cap", Price = 12.99m, Color = "Green", Size = "One size", Quantity = 3 }
                 };
+                Session["Cart"] = cart;
 
+                CartRepeater.DataSource = cart;
+                CartRepeater.DataBind();
 
-                
-                
-                
+                decimal totalPrice = cart.Sum(item => item.Item_Price);
+                lblTotalPrice.Text = "RM " + totalPrice.ToString("N2");
 
+                decimal deliveryCharge = totalPrice > 150 ? 15m : 0m;
+                lblDeliveryCharges.Text = "RM " + deliveryCharge.ToString("N2");
+
+                decimal grandTotal = totalPrice + deliveryCharge;
+                lblGrandTotal.Text = "RM " + grandTotal.ToString("N2");
 
                 bool found = false;
 
@@ -51,5 +61,14 @@ namespace Uniqlo.Pages
 
             }
         }
+
+        protected void btnProceedToPayment_Click(object sender, EventArgs e)
+        {
+            if (Page.IsValid)
+            {
+                Response.Redirect("Payment.aspx");
+            }
+        }
+
     }
 }
