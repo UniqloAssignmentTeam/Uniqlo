@@ -79,7 +79,7 @@ namespace Uniqlo.AdminPages
 
                             Image newImage = new Image
                             {
-                                ImagePath = "/Images/Products/" + fileName
+                                //ImagePath = "/Images/Products/" + fileName
                             };
                             db.image.Add(newImage);
                             db.SaveChanges();
@@ -97,7 +97,7 @@ namespace Uniqlo.AdminPages
                                         Image_ID = newImage.Image_ID,
                                         Color = colorSize.Color,
                                         Size = size,
-                                        Quantity1 = Int32.Parse(sizeValue)
+                                        //Quantity1 = Int32.Parse(sizeValue)
                                     };
                                     db.quantity.Add(newQuantity);
                                 }
