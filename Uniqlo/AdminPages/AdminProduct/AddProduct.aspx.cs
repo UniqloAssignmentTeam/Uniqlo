@@ -68,49 +68,54 @@ namespace Uniqlo.AdminPages
                     {
                         if (!String.IsNullOrWhiteSpace(colorSize.Image))
                         {
-                            string imagePath = colorSize.Image;
-                            string serverPath = Server.MapPath("~/Images/Products/");
-                            string fileName = Path.GetFileName(imagePath);
-                            string fullPath = serverPath + fileName;
-
-
-                            Image newImage = new Image
+                            // Handling the base64 image string
+                            string base64Image = colorSize.Image.Split(',')[1]; // Ensuring only the base64 part is taken
+                            try
                             {
-                                //ImagePath = "/Images/Products/" + fileName
-                            };
-                            db.Image.Add(newImage);
-                            db.SaveChanges();
-
-                            foreach (var sizeProperty in typeof(ColorSize).GetProperties().Where(p => p.Name.StartsWith("Size")))
-                            {
-                                string sizeValue = sizeProperty.GetValue(colorSize) as string;
-
-                                if (!string.IsNullOrEmpty(sizeValue))
+                                byte[] imageBytes = Convert.FromBase64String(base64Image);
+                                Image newImage = new Image
                                 {
-                                    string size = sizeProperty.Name.Substring(4);
-                                    Quantity newQuantity = new Quantity
+                                    ImagePath = imageBytes
+                                };
+                                db.image.Add(newImage);
+                                db.SaveChanges();
+
+                                // Linking the image with product details
+                                foreach (var sizeProperty in typeof(ColorSize).GetProperties().Where(p => p.Name.StartsWith("Size")))
+                                {
+                                    string sizeValue = sizeProperty.GetValue(colorSize) as string;
+                                    if (!string.IsNullOrEmpty(sizeValue))
                                     {
-                                        Product_ID = newProduct.Product_ID,
-                                        Image_ID = newImage.Image_ID,
-                                        Color = colorSize.Color,
-                                        Size = size,
-                                        //Quantity1 = Int32.Parse(sizeValue)
-                                    };
-                                    db.Quantity.Add(newQuantity);
+                                        string size = sizeProperty.Name.Substring(4);
+                                        Quantity newQuantity = new Quantity
+                                        {
+                                            Product_ID = newProduct.Product_ID,
+                                            Image_ID = newImage.Image_ID,
+                                            Color = colorSize.Color,
+                                            Size = size,
+                                            Qty = Int32.Parse(sizeValue)
+                                        };
+                                        db.quantity.Add(newQuantity);
+                                    }
                                 }
                             }
-                        }
-                        else
-                        {
-                            // Handle cases where no image is specified if necessary
+                            catch (FormatException fe)
+                            {
+                                Console.WriteLine("Failed to convert Base64 string to byte array. Error: " + fe.Message);
+                            }
+                            catch (Exception ex)
+                            {
+                                Console.WriteLine("Error saving image data: " + ex.Message);
+                            }
                         }
                     }
                     db.SaveChanges();
                 }
-
                 ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", "alert('Product and details added successfully!');", true);
             }
         }
+
+
 
 
 
