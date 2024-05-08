@@ -70,8 +70,8 @@
 <td class="col name"><asp:Label ID="productName" runat="server" Text='<%# Eval("Product.Product_Name") %>'></asp:Label></td>
 <td class="col price"><asp:Label ID="price" runat="server" Text='<%# Eval("Discount_Amount") %>'></asp:Label></td>
 <td class="col wear"><asp:Label ID="wear" runat="server" Text='<%# Eval("Status") %>'></asp:Label></td>
-<td class="col startDate"><asp:Label ID="startDate" runat="server" Text='<%# Eval("Start_Date") %>'></asp:Label></td>
-<td class="col endDate"><asp:Label ID="endDate" runat="server" Text='<%# Eval("End_Date") %>'></asp:Label></td>
+<td class="col startDate"><asp:Label ID="startDate" runat="server" Text='<%# Eval("Start_Date", "{0:dd/MM/yyyy}") %>'></asp:Label></td>
+<td class="col endDate"><asp:Label ID="endDate" runat="server" Text='<%# Eval("End_Date", "{0:dd/MM/yyyy}") %>'></asp:Label></td>
 
 
 <td class="col eclipse-container" onclick="toggleDropdown('dropdownList<%# Eval("Discount_ID") %>', 'dropdownDisplay<%# Eval("Discount_ID") %>')">   

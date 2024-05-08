@@ -111,7 +111,7 @@
     <Content Include="css\Admin\adminOrder.css" />
     <Content Include="css\Admin\adminStaff.css" />
     <Content Include="css\Admin\Discount1.css" />
-    <Content Include="css\Admin\neww.css" />
+    <Content Include="css\Admin\ErrorMessage.css" />
     <Content Include="css\Cart.css" />
     <Content Include="css\category.css" />
     <Content Include="css\ContactUs.css" />
