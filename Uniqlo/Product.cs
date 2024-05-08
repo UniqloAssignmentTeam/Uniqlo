@@ -53,7 +53,8 @@ namespace Uniqlo
             public DbSet<Image> Image { get; set; }
             public DbSet<Review> Review { get; set; }
             public DbSet<Discount> Discount { get; set; }
-
+            public DbSet<OrderList> OrderList { get; set; }
+          
         }
     }
 }

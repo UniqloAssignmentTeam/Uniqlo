@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Uniqlo.Master" AutoEventWireup="true" CodeBehind="ValueBuy.aspx.cs" Inherits="Uniqlo.Pages.ValueBuy" %>
 <asp:Content ID="Content2" ContentPlaceHolderID="main" runat="server">
     <header>
+
         <link href="../css/ValueBuy.css" rel="stylesheet" />
     </header>
     <div class="productBody">
@@ -104,14 +105,11 @@
                  <p style="text-decoration: line-through; margin-right: 10px;">RM <%# Eval("Price", "{0:C}") %></p>
                  <p style="color: red;">RM <%# Eval("Discount_Amount", "{0:C}") %></p>
              </div>
-             <div class="product-rating">
-                 <i class="fas fa-star star"></i>
-                 <i class="fas fa-star star"></i>
-                 <i class="fas fa-star star"></i>
-                 <i class="fas fa-star star"></i>
-                 <i class="fas fa-star-half-alt star"></i>
-                 <span>4.7 (21)</span>
-             </div>
+            <div class="product-rating">
+    <%# GenerateStars(Convert.ToDouble(Eval("AverageRating")) ) %>
+    <span><%# Eval("AverageRating") %><%# Eval("ReviewCount") %></span>
+</div>
+
          </div>
      </div>
             </div>
