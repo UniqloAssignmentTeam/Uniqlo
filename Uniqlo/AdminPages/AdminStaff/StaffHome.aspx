@@ -145,6 +145,17 @@
 
         </div>
 
+
+             </ContentTemplate>
+<Triggers>
+    <asp:AsyncPostBackTrigger ControlID="roleSortDDL" EventName="SelectedIndexChanged" />
+    <asp:AsyncPostBackTrigger ControlID="genderSortDDL" EventName="SelectedIndexChanged" />
+</Triggers>
+
+
+    </asp:UpdatePanel>
+
+
                       <div class="pagination">
     <a href="#" class="page-link" onclick="changePage('prev')">&laquo;</a>
     <a href="#" class="page-link active" onclick="changePage(1)">1</a>
@@ -188,14 +199,7 @@
 
 
 
-         </ContentTemplate>
-    <Triggers>
-        <asp:AsyncPostBackTrigger ControlID="roleSortDDL" EventName="SelectedIndexChanged" />
-        <asp:AsyncPostBackTrigger ControlID="genderSortDDL" EventName="SelectedIndexChanged" />
-    </Triggers>
-
-
-        </asp:UpdatePanel>
+         
 
  
   

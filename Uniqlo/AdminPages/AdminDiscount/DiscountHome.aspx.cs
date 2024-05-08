@@ -65,6 +65,21 @@ namespace Uniqlo.AdminPages.AdminDiscount
             ExportDiscountsToExcel();
         }
 
+        protected void statusSortDDL_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            using (var db = new DiscountDbContext())
+            {
+
+
+                string selectedStatus = statusSortDDL.SelectedValue;
+                var discountList = db.Discount.Include("Product")
+                    .Where(d => d.Status == selectedStatus || string.IsNullOrEmpty(selectedStatus)).ToList();
+                discountRepeater.DataSource = discountList;
+                discountRepeater.DataBind();
+            }
+        }
+
+
 
 
         public void ExportDiscountsToExcel()
