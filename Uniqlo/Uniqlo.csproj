@@ -247,6 +247,7 @@
     <Content Include="Pages\Logout.aspx" />
     <Content Include="Pages\OrderHistoryItem.aspx" />
     <Content Include="Pages\Payment.aspx" />
+    <Content Include="Pages\ProductDetails.aspx" />
     <Content Include="Pages\Profile.aspx" />
     <Content Include="Pages\SignUp.aspx" />
     <Content Include="Pages\TrackDelivery.aspx" />
@@ -581,6 +582,13 @@
     </Compile>
     <Compile Include="Pages\Payment.aspx.designer.cs">
       <DependentUpon>Payment.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ProductDetails.aspx.cs">
+      <DependentUpon>ProductDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\ProductDetails.aspx.designer.cs">
+      <DependentUpon>ProductDetails.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Profile.aspx.cs">
       <DependentUpon>Profile.aspx</DependentUpon>
