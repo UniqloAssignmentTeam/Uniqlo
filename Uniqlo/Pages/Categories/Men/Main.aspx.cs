@@ -13,5 +13,15 @@ namespace Uniqlo.Pages.Categories.Men
         {
 
         }
+
+        protected void lnkTops_Click(object sender, EventArgs e)
+        {
+            Session["SelectedCategory"] = "MenTop";
+        }
+
+        protected void lnkBottoms_Click(object sender, EventArgs e)
+        {
+            Session["SelectedCategory"] = "MenBottom";
+        }
     }
 }

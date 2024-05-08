@@ -4,8 +4,9 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using static Uniqlo.Product;
 using System.Data.Entity;
+using static Uniqlo.Image;
+using static Uniqlo.Product;
 
 namespace Uniqlo.AdminPages
 {
@@ -100,6 +101,24 @@ namespace Uniqlo.AdminPages
         protected void updateButton_Click(object sender, EventArgs e)
         {
 
+        }        
+        
+        protected void btnDelete_Click(object sender, CommandEventArgs e)
+        {
+            int imageId = Convert.ToInt32(e.CommandArgument);
+
+
+            using (var dbContext = new ImageDbContext())  
+            {
+                var quantitiesToDelete = dbContext.Quantities.Where(q => q.Image_ID == imageId).ToList();
+
+                foreach (var quantity in quantitiesToDelete)
+                {
+                    dbContext.Quantities.Remove(quantity);
+                }
+
+                dbContext.SaveChanges();
+            }
         }
     }
 }

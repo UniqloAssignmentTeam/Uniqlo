@@ -12,6 +12,7 @@ namespace Uniqlo
     using System;
     using System.Collections.Generic;
     using System.Data.Entity;
+    using System.ComponentModel.DataAnnotations;
     public partial class Image
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -33,6 +34,8 @@ namespace Uniqlo
             }
 
             public DbSet<Image> Image { get; set; } // Make sure 'Staff' is properly defined as a class
+            public DbSet<Quantity> Quantities { get; set; }
+
         }
     }
 }

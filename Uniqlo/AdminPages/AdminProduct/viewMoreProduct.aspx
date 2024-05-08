@@ -120,21 +120,28 @@
 
                         <asp:DataList ID="dataList" runat="server" OnItemDataBound="dataList_ItemDataBound" CssClass="sizeQtyTable">
                             <ItemTemplate>
-                                <h2><%# Eval("Color") %></h2>
-                                <img src='<%# "ImageHandler.ashx?id=" + Eval("FirstImageId") %>' alt="Product Image" />
+                                <tr>
+                                    <td>
+                                        <h2><%# Eval("Color") %></h2>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div>
+                                            <img src='/ImageHandler.ashx?id=<%# Eval("FirstImageId") %>' alt="Product Name" style="width: 500%; padding-left: 10px;"/>
+                                        </div>
+                                    </td>
+                                </tr>
                                 <asp:Repeater ID="RepeaterSizes" runat="server">
                                     <ItemTemplate>
                                         <tr>
-                                            <td><%# Eval("Size") %></td>
-                                            <td><%# Eval("Qty") %></td>
+                                            <td style="width:20%; text-align:center;"><div><%# Eval("Size") %></div></td>
+                                            <td style="width: 80%; padding-top:10px;"><asp:TextBox ID="txtQty" runat="server" Text='<%# Eval("Qty") %>' Enabled="false"></asp:TextBox></td>
                                         </tr>
                                     </ItemTemplate>
                                 </asp:Repeater>
                             </ItemTemplate>
                         </asp:DataList>
-
-                        <asp:Panel ID="colorTablesContainer" runat="server"></asp:Panel>
-                        <asp:HiddenField ID="HiddenFieldData" runat="server" />
                     </table>
                 </ItemTemplate>
             </asp:FormView>

@@ -32,7 +32,7 @@ namespace Uniqlo.Pages
                 lblTotalPrice.Text = "RM " + totalPrice.ToString("N2");
                 Session["TotalPrice"] = totalPrice;
 
-                decimal deliveryCharge = totalPrice > 150 ? 0m : 15m;
+                decimal deliveryCharge = totalPrice > 150 ? 0m : 20m;
                 lblDeliveryCharges.Text = "RM " + deliveryCharge.ToString("N2");
                 Session["ShippingFee"] = deliveryCharge;
 
