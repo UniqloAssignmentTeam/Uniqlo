@@ -29,6 +29,41 @@
 
         <!--LIMITED OFFER CARD-->
         <h1 class="genderHeader">Limited Offers</h1>
+
+        <asp:Repeater ID="rptDiscountedProducts" runat="server">
+    <ItemTemplate>
+        <div class="limitedOfferCardContainer">
+            <div class="limitedOfferCard">
+                <div class="product-image-container">
+                    <img src='<%# Eval("ImageUrl") %>' alt="Product Image" style="width: 100%" />
+                    <!-- Wishlist and other elements can be added here as needed -->
+                </div>
+                <div class="limitedOfferContainer">
+                    <div class="product-name">
+                        <h3><b><%# Eval("ProductName") %></b></h3>
+                    </div>
+                    <div class="product-description">
+                        <p><%# Eval("Description") %></p>
+                    </div>
+                    <div class="product-price">
+                        <p style="text-decoration: line-through; margin-right: 10px;">RM <%# Eval("OriginalPrice") %></p>
+                        <p style="color: red;">RM <%# Eval("DiscountedPrice") %></p>
+                    </div>
+                    <div class="product-rating">
+                        <!-- Static rating for example; dynamically generate if data is available -->
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                        <span>4.7 (21)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ItemTemplate>
+</asp:Repeater>
+
         <div class="limitedOfferCardContainer">
             <div class="limitedOfferCard" id="product1" data-product-id="1">
                 <div class="product-image-container">
