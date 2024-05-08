@@ -16,7 +16,7 @@
 
         <div class="modal-content">
 
-            <asp:FormView ID="formView" runat="server" ViewStateMode="Disabled">
+            <asp:FormView ID="formView" runat="server" OnDataBound="formView_DataBound">
                 <ItemTemplate>
                     <table>
                         <tr class="product-content">
@@ -66,8 +66,8 @@
                         </tr>
                         <tr>
                             <td class="form-group">
-                                <asp:Panel ID="Panel1" runat="server" CssClass="dropdown-container" SelectedValue='<%# Eval("Category.Name") %>'>
-                                    <asp:DropDownList ID="ddlCategory" runat="server" CssClass="dropdown-display">
+                                <asp:Panel ID="Panel1" runat="server" CssClass="dropdown-container">
+                                    <asp:DropDownList ID="ddlCategory" runat="server" CssClass="dropdown-display" SelectedValue='<%# Eval("Category.Name") %>'>
                                         <asp:ListItem Text="Tops" Value="Top"></asp:ListItem>
                                         <asp:ListItem Text="Bottoms" Value="Bottom"></asp:ListItem>
                                     </asp:DropDownList>
@@ -81,8 +81,8 @@
                         </tr>
                         <tr>
                             <td class="form-group">
-                                <asp:Panel ID="Panel2" runat="server" CssClass="dropdown-container" SelectedValue='<%# Eval("Category.Gender") %>'>
-                                    <asp:DropDownList ID="ddlGender" runat="server" CssClass="dropdown-display">
+                                <asp:Panel ID="Panel2" runat="server" CssClass="dropdown-container">
+                                    <asp:DropDownList ID="ddlGender" runat="server" CssClass="dropdown-display" SelectedValue='<%# Eval("Category.Gender") %>'>
                                         <asp:ListItem Text="Men" Value="M"></asp:ListItem>
                                         <asp:ListItem Text="Women" Value="W"></asp:ListItem>
                                     </asp:DropDownList>
@@ -106,7 +106,24 @@
                         </tr>
 
 
- 
+
+
+
+                        <asp:DataList ID="dataList" runat="server" OnItemDataBound="dataList_ItemDataBound">
+                            <ItemTemplate>
+                                <h2><%# Eval("Color") %></h2>
+                                <img src='<%# "ImageHandler.ashx?id=" + Eval("FirstImageId") %>' alt="Product Image" />
+                                <asp:Repeater ID="RepeaterSizes" runat="server">
+                                    <ItemTemplate>
+                                        <tr>
+                                            <td><%# Eval("Size") %></td>
+                                            <td><%# Eval("Qty") %></td>
+                                        </tr>
+                                    </ItemTemplate>
+                                </asp:Repeater>
+                            </ItemTemplate>
+                        </asp:DataList>
+
                         <asp:Panel ID="colorTablesContainer" runat="server"></asp:Panel>
                         <asp:HiddenField ID="HiddenFieldData" runat="server" />
                     </table>
