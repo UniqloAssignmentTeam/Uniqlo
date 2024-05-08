@@ -24,21 +24,21 @@ namespace Uniqlo.AdminPages
         protected global::System.Web.UI.WebControls.FormView formView;
 
         /// <summary>
-        /// cancelButton control.
+        /// colorTablesContainer control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button cancelButton;
+        protected global::System.Web.UI.WebControls.Panel colorTablesContainer;
 
         /// <summary>
-        /// addButton control.
+        /// HiddenFieldData control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button addButton;
+        protected global::System.Web.UI.WebControls.HiddenField HiddenFieldData;
     }
 }

@@ -24,22 +24,40 @@ namespace Uniqlo.AdminPages.AdminProduct
         protected void addProdBtn_Click(object sender, EventArgs e)
         {
             Response.Redirect("AddProduct.aspx");
-        }        
-        
+        }
+
         protected void btnRemoveProduct_Click(object sender, EventArgs e)
         {
-            int prodId = int.Parse(hiddenProductId.Value);  // Retrieve the Staff ID from hidden field
+            int prodId = int.Parse(hiddenProductId.Value); 
+
             using (var db = new ProductDbContext())
             {
                 var product = db.Product.Find(prodId);
                 if (product != null)
                 {
+                    var discounts = db.Discount.Where(d => d.Product_ID == prodId).ToList();
+                    db.Discount.RemoveRange(discounts);
+
+                    var quantities = db.Quantity.Where(q => q.Product_ID == prodId).ToList();
+                    foreach (var quantity in quantities)
+                    {
+                        var image = db.Image.Find(quantity.Image_ID);
+                        if (image != null)
+                        {
+                            db.Image.Remove(image); 
+                        }
+                        db.Quantity.Remove(quantity); 
+                    }
+
                     db.Product.Remove(product);
                     db.SaveChanges();
-                    Response.Redirect(Request.RawUrl);  // Refresh the page to reflect the changes
+
+                    Response.Redirect(Request.RawUrl); 
                 }
             }
         }
+
+
 
         private void BindRepeater()
         {

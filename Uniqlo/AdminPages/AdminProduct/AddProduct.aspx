@@ -3,6 +3,14 @@
     
         <header>
             <link href="../../css/Admin/addProduct.css" rel="stylesheet" />
+            <style>
+                .cancel-button{
+                    padding:20px 100px 20px 60px;
+                }
+                .continue-button{
+                    padding:20px 90px 20px 70px;
+                }
+            </style>
         </header>
         <style>
           
@@ -67,7 +75,7 @@
 
             <div class="button-container">
                 <div class="cancel-div">
-                    <asp:Button ID="cancelButton" runat="server" Text="Cancel" CssClass="cancel-button" PostBackUrl="~/AdminPages/AdminProduct/Product.aspx" />
+                    <asp:Button ID="cancelButton" runat="server" Text="Cancel" CssClass="cancel-button" PostBackUrl="~/AdminPages/AdminProduct/ProductHome.aspx"/>
                 </div>
                 <div class="continue-div">
                     <asp:Button ID="addButton" runat="server" Text="Add" CssClass="continue-button" OnClick="addButton_Click"/>

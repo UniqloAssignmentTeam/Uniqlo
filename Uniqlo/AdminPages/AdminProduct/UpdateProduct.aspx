@@ -4,6 +4,15 @@
 
     <header>
         <link href="../../css/Admin/addProduct.css" rel="stylesheet" />
+        <style>
+            .cancel-button {
+                padding: 20px 100px 20px 60px;
+            }
+
+            .continue-button {
+                padding: 20px 100px 20px 60px;
+            }
+        </style>
     </header>
 
 
@@ -27,6 +36,7 @@
                         <tr>
                             <td class="form-group">
                                 <asp:TextBox ID="txtProdID" runat="server" Enabled="false" Text='<%# Eval("Product_ID") %>'></asp:TextBox>
+                                <input type="hidden" id="hiddenProdID" value='<%# Eval("Product_ID") %>' />
                             </td>
                         </tr>
                         <tr>
@@ -101,50 +111,59 @@
 
 
 
-                        <asp:DataList ID="dataList" runat="server" OnItemDataBound="dataList_ItemDataBound" CssClass="sizeQtyTable">
-                            <ItemTemplate>
-                                <tr>
-                                    <td style="width: 40%">
-                                        <h2><%# Eval("Color") %></h2>
-                                    </td>
-                                    <td>
-                                        <asp:Button ID="btnSave" runat="server" Text="Save" class="addColor-button" OnClientClick="return updateHiddenField(this);" />
-                                        <asp:LinkButton ID="btnDelete" runat="server" Text="Delete" CssClass="addColor-button" CommandArgument='<%# Eval("FirstImageId") %>' OnCommand="btnDelete_Click" />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div>
-                                            <img src='/ImageHandler.ashx?id=<%# Eval("FirstImageId") %>' alt="Product Name" style="width: 240%; padding-left: 10px;"/>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <asp:Repeater ID="RepeaterSizes" runat="server">
-                                    <ItemTemplate>
+                            <asp:DataList ID="dataList" runat="server" OnItemDataBound="dataList_ItemDataBound">
+                                <ItemTemplate>
+                                    <table class="sizeQtyTable color-table-wrapper2" data-image-id='<%# Eval("FirstImageId") %>'>
                                         <tr>
-                                            <td style="width:20%; text-align:center;"><div><%# Eval("Size") %></div></td>
-                                            <td style="width: 80%; padding-top:10px;"><asp:TextBox ID="txtQty" runat="server" Text='<%# Eval("Qty") %>'></asp:TextBox></td>
+                                            <td style="width: 40%;">
+                                                
+                                                <h2><%# Eval("Color") %></h2>
+                                            </td>
+                                            <td style="width: 60%;">
+                                                <div style="display:flex; justify-content:right;">
+                                                    <asp:LinkButton ID="btnDelete" runat="server" Text="Delete" CssClass="addColor-buttons" CommandArgument='<%# Eval("FirstImageId") %>' OnCommand="btnDelete_Click" />
+                                                </div>
+                                            </td>
                                         </tr>
-                                    </ItemTemplate>
-                                </asp:Repeater>
+                                        <tr>
+                                            <td colspan="3">
+                                                <div style="display:flex; justify-content: center;">
+                                                    <img src='/ImageHandler.ashx?id=<%# Eval("FirstImageId") %>' alt="Product Name" style="width: 90%; padding-left: 10px;"/>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <asp:Repeater ID="RepeaterSizes" runat="server">
+                                            <ItemTemplate>
+                                                <tr>
+                                                    <td style="width:20%; text-align:center;">
+                                                        <div class="size-label"><b><%# Eval("Size") %></b></div>
+                                                    </td>
+                                                    <td style="width: 80%; padding-top:10px;" colspan="2">
+                                                        <asp:TextBox ID="txtQty" CssClass="qty-input" runat="server" Text='<%# Eval("Qty") %>' data-item-index='<%# Eval("Qty") %>' style="width: 200px;" Enabled="false"></asp:TextBox>
+                                                    </td>
+                                                </tr>
+                                            </ItemTemplate>
+                                        </asp:Repeater>
+                                    </table>
                             </ItemTemplate>
                         </asp:DataList>
-
-                        <asp:Panel ID="colorTablesContainer" runat="server" ClientIDMode="Static"></asp:Panel>
-                        <asp:HiddenField ID="HiddenFieldData" runat="server" ClientIDMode="Static"/>
+                        <div class="button-container">
+                            <div class="cancel-div">
+                                <asp:Button ID="cancelButton" runat="server" Text="Cancel" CssClass="cancel-button" PostBackUrl="~/AdminPages/AdminProduct/ProductHome.aspx" />
+                            </div>
+                            <div class="continue-div">
+                                <asp:Button ID="addButton" runat="server" Text="Update" CssClass="continue-button" OnClick="updateButton_Click" />
+                            </div>
+                        </div>
                     </table>
                 </ItemTemplate>
             </asp:FormView>
+
+            <asp:Panel ID="colorTablesContainer" runat="server" ClientIDMode="Static" CssClass="colorTablesContainer"></asp:Panel>
+            <asp:HiddenField ID="HiddenFieldData" runat="server" ClientIDMode="Static"/>
         </div>
 
-        <div class="button-container">
-            <div class="cancel-div">
-                <asp:Button ID="cancelButton" runat="server" Text="Cancel" CssClass="cancel-button" PostBackUrl="~/AdminPages/AdminProduct/Product.aspx" />
-            </div>
-            <div class="continue-div">
-                <asp:Button ID="addButton" runat="server" Text="Update" CssClass="continue-button" OnClick="updateButton_Click" />
-            </div>
-        </div>
+
     </div>
     
 
@@ -157,26 +176,30 @@
                 function createColorTable(color) {
                     colorId++;  // Increment to get a unique ID for each color table
                     var tableHtml = `
-                    <div class="color-table-wrapper" id="colorTable${colorId}">
-                        <table class="sizeQtyTable">
+                    <div class="color-table-wrapper" id="colorTable${colorId}" >
+                        <table class="sizeQtyTable" style="margin-left:230px;">
                             <thead>
                                 <tr>
-                                    <td style="width: 40%"><h2>${color}</h2> <input type="hidden" id="colorName${colorId}" value="${color}" /></td>
-                                    <td style="width: 60%">
+                                    <td style="width: 40%;"><h2>${color}</h2> <input type="hidden" id="colorName${colorId}" value="${color}" /></td>
+                                    <td style="width: 30%">
                                         <button type="button" class="addColor-button" onclick="updateHiddenField(this)">Save</button>
+                                    </td>
+                                    <td style="width: 30%">
                                         <button type="button" class="addColor-button" onclick="deleteColorTable(this)">Delete</button>
-                                    </th>
+                                    </td>
                                 </tr>
                             </thead>
                             <tbody>
 
                                 <tr>
-                                    <td>
-                                        <div class="image-gallery">
-                                            <div class="image-box">
-                                                <div class="add-image">
-                                                    <label for="fileInput${colorId}">Upload Image</label>
-                                                    <input type="file" id="fileInput${colorId}" name="fileInput${colorId}" class="form-field"/>
+                                    <td colspan="3">
+                                        <div style="display:flex; justify-content: center;">
+                                            <div class="image-gallery">
+                                                <div class="image-box">
+                                                    <div class="add-image">
+                                                        <label for="fileInput${colorId}">Upload Image</label>
+                                                        <input type="file" id="fileInput${colorId}" name="fileInput${colorId}" class="form-field"/>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -187,32 +210,32 @@
                                     <td style="width:20%; text-align:center;">
                                        <label for="sizeS${colorId}">S</label>
                                     </td>
-                                    <td style="width: 80%; padding-top:10px;">
-                                        <input type="number" id="sizeS${colorId}" class="form-field" placeholder=""/>
+                                    <td style="width: 80%; padding-top:10px;" colspan="2">
+                                        <input type="number" id="sizeS${colorId}" style="width: 200px;" class="form-field" placeholder=""/>
                                     </td>  
                                 </tr>
                                 <tr>
                                     <td style="width:20%; text-align:center;">
                                        <label for="sizeM${colorId}">M</label>
                                     </td>
-                                    <td style="width: 80%; padding-top:10px;">
-                                        <input type="number" id="sizeM${colorId}" class="form-field" placeholder=""/>
+                                    <td style="width: 80%; padding-top:10px;" colspan="2">
+                                        <input type="number" id="sizeM${colorId}" style="width: 200px;" class="form-field" placeholder=""/>
                                     </td>
                                 </tr>                                
                                 <tr>
                                     <td style="width:20%; text-align:center;">
                                        <label for="sizeL${colorId}">L</label>
                                     </td>
-                                    <td style="width: 80%; padding-top:10px;">
-                                        <input type="number" id="sizeL${colorId}" class="form-field" placeholder=""/>
+                                    <td style="width: 80%; padding-top:10px;" colspan="2">
+                                        <input type="number" id="sizeL${colorId}" style="width: 200px;" class="form-field" placeholder=""/>
                                     </td>
                                 </tr>                                
                                 <tr>
                                     <td style="width:20%; text-align:center;">
                                        <label for="sizeXL${colorId}">XL</label>
                                     </td>
-                                    <td style="width: 80%; padding-top:10px;">
-                                        <input type="number" id="sizeXL${colorId}" class="form-field" placeholder=""/>
+                                    <td style="width: 80%; padding-top:10px;" colspan="2">
+                                        <input type="number" id="sizeXL${colorId}" style="width: 200px;" class="form-field" placeholder=""/>
                                     </td>
                                 </tr>
                             </tbody>
@@ -281,10 +304,8 @@
                             // Check if all files have been processed
                             if (readFilesCount === totalFilesToRead) {
                                 var jsonStr = JSON.stringify(data);
-                                document.addEventListener('DOMContentLoaded', function () {
-                                    document.getElementById('HiddenFieldData').value = jsonStr;
-                                });
-                                    console.log("Updated Hidden Field Data:", jsonStr);
+                                document.getElementById('<%= HiddenFieldData.ClientID %>').value = jsonStr;
+                                console.log("Updated Hidden Field Data:", jsonStr);
                             }
                         }
 
@@ -298,7 +319,9 @@
                             handleFileRead(''); // Handle case where no file is selected
                         }
                     });
-                 }
+                }
+
+
 
 
 

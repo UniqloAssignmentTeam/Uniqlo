@@ -35,6 +35,7 @@ namespace Uniqlo
 
             public DbSet<Image> Image { get; set; } // Make sure 'Staff' is properly defined as a class
             public DbSet<Quantity> Quantities { get; set; }
+            public DbSet<Product> Products { get; set; }
 
         }
     }

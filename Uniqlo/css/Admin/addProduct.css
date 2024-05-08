@@ -294,6 +294,19 @@ body .form-group {
     color: black;
     height: 49px;
 }
+
+.addColor-buttons {
+    border: 2px solid lightgrey;
+    padding: 14px 30px 14px 30px;
+    background: none;
+    outline: none;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.5s ease;
+    text-decoration: none;
+    color: black;
+    height: 49px;
+}
     .continue-button:hover, .cancel-button:hover, .addColor-button:hover {
         background-color: black;
         color: white;

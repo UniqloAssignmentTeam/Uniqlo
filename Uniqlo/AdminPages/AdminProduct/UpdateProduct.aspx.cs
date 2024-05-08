@@ -7,6 +7,11 @@ using System.Web.UI.WebControls;
 using System.Data.Entity;
 using static Uniqlo.Image;
 using static Uniqlo.Product;
+using Newtonsoft.Json;
+using static Uniqlo.AdminPages.UpdateProduct;
+using static Uniqlo.AdminPages.AddProduct;
+using Uniqlo.AdminPages.AdminStaff;
+using System.Collections;
 
 namespace Uniqlo.AdminPages
 {
@@ -95,13 +100,7 @@ namespace Uniqlo.AdminPages
                     // Log error or handle case where dataList is not found
                 }
             }
-        }
-
-
-        protected void updateButton_Click(object sender, EventArgs e)
-        {
-
-        }        
+        }    
         
         protected void btnDelete_Click(object sender, CommandEventArgs e)
         {
@@ -120,5 +119,110 @@ namespace Uniqlo.AdminPages
                 dbContext.SaveChanges();
             }
         }
+
+        /*ADD PRODUCT*/
+
+        public class ColorSize
+        {
+            public string Color { get; set; }
+            public string SizeS { get; set; }
+            public string SizeM { get; set; }
+            public string SizeL { get; set; }
+            public string SizeXL { get; set; }
+            public string Image { get; set; }
+        }
+
+        protected void updateButton_Click(object sender, EventArgs e)
+        {
+            if (Page.IsValid)
+            {
+                TextBox txtProductName = formView.FindControl("txtProdName") as TextBox;
+                TextBox txtProductDescription = formView.FindControl("txtDescription") as TextBox;
+                TextBox txtProductPrice = formView.FindControl("txtPrice") as TextBox;
+                DropDownList ddlCategory = formView.FindControl("ddlCategory") as DropDownList;
+                DropDownList ddlGender = formView.FindControl("ddlGender") as DropDownList;
+
+                string productName = txtProductName.Text;
+                string productDescription = txtProductDescription.Text;
+                double productPrice = Double.Parse(txtProductPrice.Text);
+                string category = ddlCategory.Text;
+                string gender = ddlGender.Text;
+
+
+                string jsonData = HiddenFieldData.Value;
+                List<ColorSize> colorSizes = JsonConvert.DeserializeObject<List<ColorSize>>(jsonData);
+
+
+                using (var dbContext = new ProductDbContext())
+                {
+                    int productIDQuery = int.Parse(Request.QueryString["ProdID"]);
+                    var productID = dbContext.Product.FirstOrDefault(p => p.Product_ID == productIDQuery);
+                    var categoryID = dbContext.Category.Where(c => c.Name == category && c.Gender.ToString() == gender).Select(c => c.Category_ID).FirstOrDefault();
+
+
+                    if (productID != null)
+                    {
+                        productID.Product_Name = productName;
+                        productID.Description = productDescription;
+                        productID.Price = productPrice;
+                        productID.Category_ID = categoryID;
+
+                        dbContext.SaveChanges();
+
+
+                        foreach (var colorSize in colorSizes)
+                        {
+                            if (!String.IsNullOrWhiteSpace(colorSize.Image))
+                            {
+                                // Handling the base64 image string
+                                string base64Image = colorSize.Image.Split(',')[1]; // Ensuring only the base64 part is taken
+                                try
+                                {
+                                    byte[] imageBytes = Convert.FromBase64String(base64Image);
+                                    Image newImage = new Image
+                                    {
+                                        ImagePath = imageBytes
+                                    };
+                                    dbContext.Image.Add(newImage);
+                                    dbContext.SaveChanges();
+
+                                    // Linking the image with product details
+                                    foreach (var sizeProperty in typeof(ColorSize).GetProperties().Where(p => p.Name.StartsWith("Size")))
+                                    {
+                                        string sizeValue = sizeProperty.GetValue(colorSize) as string;
+                                        if (!string.IsNullOrEmpty(sizeValue))
+                                        {
+                                            string size = sizeProperty.Name.Substring(4);
+                                            Quantity newQuantity = new Quantity
+                                            {
+                                                Product_ID = productIDQuery,
+                                                Image_ID = newImage.Image_ID,
+                                                Color = colorSize.Color,
+                                                Size = size,
+                                                Qty = Int32.Parse(sizeValue)
+                                            };
+                                            dbContext.Quantity.Add(newQuantity);
+                                        }
+                                    }
+                                }
+                                catch (FormatException fe)
+                                {
+                                    Console.WriteLine("Failed to convert Base64 string to byte array. Error: " + fe.Message);
+                                }
+                                catch (Exception ex)
+                                {
+                                    Console.WriteLine("Error saving image data: " + ex.Message);
+                                }
+                            }
+                        }
+                        dbContext.SaveChanges();
+                    }
+                }
+                ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", "alert('Product and details update successfully!');", true);
+                Response.Redirect("~/AdminPages/AdminProduct/ProductHome.aspx");
+            }
+        }
+
+
     }
 }
