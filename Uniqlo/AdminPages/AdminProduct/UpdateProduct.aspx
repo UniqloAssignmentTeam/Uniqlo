@@ -18,8 +18,8 @@
 
             <asp:FormView ID="formView" runat="server" OnDataBound="formView_DataBound">
                 <ItemTemplate>
-                    <table>
-                        <tr class="product-content">
+                    <table  class="product-content">
+                        <tr>
                             <td class="form-group">
                                 <asp:Label ID="lblProdID" runat="server" Text="Product ID"></asp:Label>
                             </td>
@@ -92,16 +92,8 @@
                         <tr>
                             <td class="form-group">
                                 <asp:Label ID="lblColor" runat="server" Text="Color"></asp:Label>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="form-group">
-                                <asp:TextBox ID="newColorInput" runat="server"></asp:TextBox>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="form-group">
-                                <asp:Button ID="addColorButton" runat="server" Text="Add color" CssClass="addColor-button" />
+                                <asp:TextBox ID="newColorInput" runat="server" ClientIDMode="Static"></asp:TextBox>
+                                <asp:Button ID="addColorButton" runat="server" Text="Add Color" CssClass="addColor-button" ClientIDMode="Static" />
                             </td>
                         </tr>
 
@@ -109,23 +101,37 @@
 
 
 
-                        <asp:DataList ID="dataList" runat="server" OnItemDataBound="dataList_ItemDataBound">
+                        <asp:DataList ID="dataList" runat="server" OnItemDataBound="dataList_ItemDataBound" CssClass="sizeQtyTable">
                             <ItemTemplate>
-                                <h2><%# Eval("Color") %></h2>
-                                <img src='<%# "ImageHandler.ashx?id=" + Eval("FirstImageId") %>' alt="Product Image" />
+                                <tr>
+                                    <td style="width: 40%">
+                                        <h2><%# Eval("Color") %></h2>
+                                    </td>
+                                    <td>
+                                        <asp:Button ID="btnSave" runat="server" Text="Save" class="addColor-button" OnClientClick="return updateHiddenField(this);" />
+                                        <asp:LinkButton ID="btnDelete" runat="server" Text="Delete" CssClass="addColor-button" CommandArgument='<%# Eval("FirstImageId") %>' OnCommand="btnDelete_Click" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div>
+                                            <img src='/ImageHandler.ashx?id=<%# Eval("FirstImageId") %>' alt="Product Name" style="width: 240%; padding-left: 10px;"/>
+                                        </div>
+                                    </td>
+                                </tr>
                                 <asp:Repeater ID="RepeaterSizes" runat="server">
                                     <ItemTemplate>
                                         <tr>
-                                            <td><%# Eval("Size") %></td>
-                                            <td><%# Eval("Qty") %></td>
+                                            <td style="width:20%; text-align:center;"><div><%# Eval("Size") %></div></td>
+                                            <td style="width: 80%; padding-top:10px;"><asp:TextBox ID="txtQty" runat="server" Text='<%# Eval("Qty") %>'></asp:TextBox></td>
                                         </tr>
                                     </ItemTemplate>
                                 </asp:Repeater>
                             </ItemTemplate>
                         </asp:DataList>
 
-                        <asp:Panel ID="colorTablesContainer" runat="server"></asp:Panel>
-                        <asp:HiddenField ID="HiddenFieldData" runat="server" />
+                        <asp:Panel ID="colorTablesContainer" runat="server" ClientIDMode="Static"></asp:Panel>
+                        <asp:HiddenField ID="HiddenFieldData" runat="server" ClientIDMode="Static"/>
                     </table>
                 </ItemTemplate>
             </asp:FormView>
@@ -146,84 +152,153 @@
         <footer>
             <script>
                 // Function to create a new table for a color
+                var colorId = 0;
+
                 function createColorTable(color) {
+                    colorId++;  // Increment to get a unique ID for each color table
                     var tableHtml = `
+                    <div class="color-table-wrapper" id="colorTable${colorId}">
                         <table class="sizeQtyTable">
                             <thead>
                                 <tr>
-                                    <th><h2>${color}</h2></th>
-                                    <th><button class="addColor-button" onclick="deleteColorTable(this)">Delete</button></th>
+                                    <td style="width: 40%"><h2>${color}</h2> <input type="hidden" id="colorName${colorId}" value="${color}" /></td>
+                                    <td style="width: 60%">
+                                        <button type="button" class="addColor-button" onclick="updateHiddenField(this)">Save</button>
+                                        <button type="button" class="addColor-button" onclick="deleteColorTable(this)">Delete</button>
+                                    </th>
                                 </tr>
                             </thead>
                             <tbody>
+
                                 <tr>
                                     <td>
-                                        <div class="form-group">
-                                            <label for="productName">XL</label>
-                                            <input type="number" class="form-field" placeholder="Quantity">
+                                        <div class="image-gallery">
+                                            <div class="image-box">
+                                                <div class="add-image">
+                                                    <label for="fileInput${colorId}">Upload Image</label>
+                                                    <input type="file" id="fileInput${colorId}" name="fileInput${colorId}" class="form-field"/>
+                                                </div>
+                                            </div>
                                         </div>
                                     </td>
-                                    <td>            <div class="image-gallery">
-                            <div class="image-box">
-                               <div class="add-image">+</div>
-                            </div>
-    
-                        </div></td>
+                                </tr>
+
+                                <tr>
+                                    <td style="width:20%; text-align:center;">
+                                       <label for="sizeS${colorId}">S</label>
+                                    </td>
+                                    <td style="width: 80%; padding-top:10px;">
+                                        <input type="number" id="sizeS${colorId}" class="form-field" placeholder=""/>
+                                    </td>  
                                 </tr>
                                 <tr>
-                                    <td>
-                                        <div class="form-group">
-                                            <label for="productName">M</label>
-                                            <input type="number" class="form-field" placeholder="Quantity">
-                                        </div>
+                                    <td style="width:20%; text-align:center;">
+                                       <label for="sizeM${colorId}">M</label>
                                     </td>
-                                    <td></td>
-                                </tr>
+                                    <td style="width: 80%; padding-top:10px;">
+                                        <input type="number" id="sizeM${colorId}" class="form-field" placeholder=""/>
+                                    </td>
+                                </tr>                                
                                 <tr>
-                                    <td>
-                                        <div class="form-group">
-                                            <label for="productName">L</label>
-                                            <input type="number" class="form-field" placeholder="Quantity">
-                                        </div>
+                                    <td style="width:20%; text-align:center;">
+                                       <label for="sizeL${colorId}">L</label>
                                     </td>
-                                    <td></td>
-                                </tr>
+                                    <td style="width: 80%; padding-top:10px;">
+                                        <input type="number" id="sizeL${colorId}" class="form-field" placeholder=""/>
+                                    </td>
+                                </tr>                                
                                 <tr>
-                                    <td>
-                                        <div class="form-group">
-                                            <label for="productName">XL</label>
-                                            <input type="number" class="form-field" placeholder="Quantity">
-                                        </div>
+                                    <td style="width:20%; text-align:center;">
+                                       <label for="sizeXL${colorId}">XL</label>
                                     </td>
-                                    <td></td>
+                                    <td style="width: 80%; padding-top:10px;">
+                                        <input type="number" id="sizeXL${colorId}" class="form-field" placeholder=""/>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
-                        `;
+                    </div>`;
                     return tableHtml;
                 }
 
                 // Function to delete a color table
                 function deleteColorTable(button) {
                     var colorTableWrapper = button.closest('.color-table-wrapper');
-                    colorTableWrapper.remove();
+                    if (colorTableWrapper) {
+                        colorTableWrapper.remove();
+                        updateHiddenField();
+                    }
                 }
 
-                // Event listener for the "Add color" button
-                document.getElementById('addColorButton').addEventListener('click', function (event) {
-                    event.preventDefault();
-                    var newColorInput = document.getElementById('newColorInput');
-                    var color = newColorInput.value.trim();
-                    if (color !== '') {
-                        var colorTablesContainer = document.getElementById('colorTablesContainer');
-                        var newColorTable = document.createElement('div');
-                        newColorTable.innerHTML = createColorTable(color);
-                        colorTablesContainer.appendChild(newColorTable);
-                        newColorInput.value = '';
-                    } else {
-                        alert('Please enter a color.');
-                    }
+
+                //function to add new row for the table
+                document.addEventListener('DOMContentLoaded', function () {
+                    document.getElementById('addColorButton').addEventListener('click', function (event) {
+                        event.preventDefault();
+                        var newColorInput = document.getElementById('newColorInput');
+                        var color = newColorInput.value.trim();
+                        if (color !== '') {
+                            var colorTablesContainer = document.getElementById('colorTablesContainer');
+                            var newColorTable = document.createElement('div');
+                            newColorTable.innerHTML = createColorTable(color);
+                            colorTablesContainer.appendChild(newColorTable);
+                            newColorInput.value = '';
+                        } else {
+                            alert('Please enter a color.');
+                        }
+                    });
                 });
+
+
+
+                //update the hidden field with a list of color, quantity and size
+                function updateHiddenField(button) {
+                    var data = [];
+                    var colorTables = document.querySelectorAll('.color-table-wrapper');
+                    var totalFilesToRead = colorTables.length;
+                    var readFilesCount = 0;  // Counter to keep track of the number of processed files
+
+                    colorTables.forEach(function (table, index) {
+                        var colorName = table.querySelector('input[type="hidden"]').value;
+                        var sizeS = table.querySelector('input[id^="sizeS"]').value;
+                        var sizeM = table.querySelector('input[id^="sizeM"]').value;
+                        var sizeL = table.querySelector('input[id^="sizeL"]').value;
+                        var sizeXL = table.querySelector('input[id^="sizeXL"]').value;
+                        var fileInput = table.querySelector('input[type="file"]');
+
+                        // Function to handle the file reading and data aggregation
+                        function handleFileRead(base64String) {
+                            data.push({
+                                Color: colorName,
+                                SizeS: sizeS,
+                                SizeM: sizeM,
+                                SizeL: sizeL,
+                                SizeXL: sizeXL,
+                                Image: base64String
+                            });
+                            readFilesCount++;  // Increment the counter after each file read
+
+                            // Check if all files have been processed
+                            if (readFilesCount === totalFilesToRead) {
+                                var jsonStr = JSON.stringify(data);
+                                document.addEventListener('DOMContentLoaded', function () {
+                                    document.getElementById('HiddenFieldData').value = jsonStr;
+                                });
+                                    console.log("Updated Hidden Field Data:", jsonStr);
+                            }
+                        }
+
+                        if (fileInput.files.length > 0) {
+                            var reader = new FileReader();
+                            reader.onload = function (e) {
+                                handleFileRead(e.target.result);
+                            };
+                            reader.readAsDataURL(fileInput.files[0]);
+                        } else {
+                            handleFileRead(''); // Handle case where no file is selected
+                        }
+                    });
+                 }
 
 
 
