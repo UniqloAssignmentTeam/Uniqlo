@@ -20,12 +20,18 @@
                 <div class="form-group">
                     <label for="productID">Product ID</label>
                      <asp:TextBox ID="productID" runat="server"></asp:TextBox>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="endDate"
+ErrorMessage="Product ID is required" ForeColor="Red" Display="Dynamic"></asp:RequiredFieldValidator>
                 </div>
 
                
                  <div class="form-group">
      <label for="discountAmount">Amount - Discount</label>
          <asp:TextBox ID="discountAmount" runat="server"></asp:TextBox>
+                      <asp:RegularExpressionValidator ID="RegexValidatorDiscountAmount" runat="server" ControlToValidate="discountAmount"
+     ValidationExpression="^\d+(\.\d{1,2})?$" ErrorMessage="Invalid discount amount" ForeColor="Red" Display="Dynamic"></asp:RegularExpressionValidator>
+<asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="discountAmount"
+ErrorMessage="Discount amount is required" ForeColor="Red" Display="Dynamic"></asp:RequiredFieldValidator>
  </div>
                         
 
@@ -34,11 +40,15 @@
                 <div class="form-group">
                     <label for="productName">Start Date</label>
                       <asp:TextBox ID="startDate" runat="server"  type="date"></asp:TextBox>
+  <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="startDate"
+ErrorMessage="Start date is required" ForeColor="Red" Display="Dynamic"></asp:RequiredFieldValidator>
                 </div>
 
       <div class="form-group">
       <label for="productName">End Date</label>
        <asp:TextBox ID="endDate" runat="server"  type="date"></asp:TextBox>
+<asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="endDate"
+ErrorMessage="End date is required" ForeColor="Red" Display="Dynamic"></asp:RequiredFieldValidator>
   </div> 
             </div>
 

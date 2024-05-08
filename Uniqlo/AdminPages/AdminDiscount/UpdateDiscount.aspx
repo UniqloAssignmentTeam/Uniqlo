@@ -41,6 +41,12 @@
     <div class="form-group">
     <label for="discountAmount">Amount - Discount</label>
       <asp:TextBox ID="discountAmount" runat="server"></asp:TextBox>
+        <asp:RequiredFieldValidator ID="RequiredValidatorDiscountAmount" runat="server" ControlToValidate="discountAmount"
+        ErrorMessage="Discount amount is required" ForeColor="Red" Display="Dynamic"></asp:RequiredFieldValidator>
+    <asp:RegularExpressionValidator ID="RegexValidatorDiscountAmount" runat="server" ControlToValidate="discountAmount"
+        ValidationExpression="^\d+(\.\d{1,2})?$" ErrorMessage="Invalid discount amount" ForeColor="Red" Display="Dynamic"></asp:RegularExpressionValidator>
+      
+
 </div>
 
 
@@ -59,11 +65,14 @@
               <div class="form-group">
                   <label for="productName">Start Date</label>
                     <asp:TextBox ID="startDate" runat="server" type="date"></asp:TextBox>
-             
+              <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="startDate"
+ ErrorMessage="Start date is required" ForeColor="Red" Display="Dynamic"></asp:RequiredFieldValidator>
               </div>
                 <div class="form-group">
     <label for="productName">End Date</label>
     <asp:TextBox ID="endDate" runat="server" type="date"></asp:TextBox>
+     <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="endDate"
+ErrorMessage="End date is required" ForeColor="Red" Display="Dynamic"></asp:RequiredFieldValidator>
 </div>
 
               
@@ -73,8 +82,9 @@
         
           <div class="button-container">
     
-           <asp:Button ID="cancelBtn" runat="server" Text="CANCEL" CssClass="cancel-button"/>
-           <asp:Button ID="addBtn" runat="server" Text="ADD" CssClass="continue-button"/>
+         
+<asp:Button ID="cancelBtn" runat="server" Text="CANCEL" CssClass="cancel-button" CausesValidation="false" />
+ <asp:Button ID="addBtn" runat="server" Text="ADD" CssClass="continue-button" CausesValidation="true" />
   </div>
       </div>
   </div>

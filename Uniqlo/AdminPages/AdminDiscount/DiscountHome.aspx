@@ -27,7 +27,7 @@
                 </div>
 
                 <div class="btnExcel-Add">
-                    <asp:Button ID="excelExport" runat="server" Text="Export" CssClass="excel-export" />
+                    <asp:Button ID="excelExport" runat="server" Text="Export" CssClass="excel-export" OnClick="btnExport_Click"/>
                     <asp:Button ID="addDiscountBtn" runat="server" Text="➕ Add Discount" CssClass="product-add" Onclick="addDiscountBtn_Click"/>
                 </div>
                 
