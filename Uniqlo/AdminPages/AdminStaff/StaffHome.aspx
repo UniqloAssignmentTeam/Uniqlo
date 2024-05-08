@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin.Master" AutoEventWireup="true" CodeBehind="StaffHome.aspx.cs" Inherits="Uniqlo.AdminPages.AdminStaff.StaffHome" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="main" runat="server">
-
+     <asp:ScriptManager ID="ScriptManagerStaff" runat="server" />
 
 
      <link href="../../css/Admin/adminStaff.css" rel="stylesheet" />
@@ -8,37 +8,46 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <link href="../../css/Admin/ErrorMessage.css" rel="stylesheet" />
   
+    <asp:UpdatePanel ID="UpdatePanelStaff" runat="server">
+    <ContentTemplate>
+
+
+
     <div class="productBody">
         <h2>UNIQLO STAFF MANAGEMENT</h2>
 
         <div class="crudProduct">
+
+
             <div class="wrap-items-search-buttons">
+
+                
                 <div class="search">
                     <span class="material-symbols-outlined">search</span>
                     <input class="search-input" type="search" placeholder="Search" />
                 </div>
 
                 <div class="dropdown-wrapper">
-                    <div class="dropdown-container" onclick="toggleDropdown('dropdownList', 'dropdownDisplay')">
-                        <div class="dropdown-display" id="dropdownDisplay">Gender</div>
-                        <div class="dropdown-list" id="dropdownList">
-                            <div onclick="selectOption('Male', 'dropdownDisplay')">Male</div>
-                            <div onclick="selectOption('Female', 'dropdownDisplay')">Female</div>
-                        </div>
-                    </div>
-
-                    <div class="dropdown-container" onclick="toggleDropdown('dropdownList2', 'dropdownDisplay2')">
-                        <div class="dropdown-display" id="dropdownDisplay2">Role</div>
-                        <div class="dropdown-list" id="dropdownList2">
-                            <div onclick="selectOption('Staff', 'dropdownDisplay2')">Staff</div>
-                            <div onclick="selectOption('Admin', 'dropdownDisplay2')">Admin</div>
-                            <div onclick="selectOption('Manager', 'dropdownDisplay2')">Manager</div>
-                        </div>
-                    </div>
+                    
+                         <asp:DropDownList ID="genderSortDDL" runat="server"  AutoPostBack="true" OnSelectedIndexChanged="genderSortDDL_SelectedIndexChanged" CssClass="dropdown-display">
+                         <asp:ListItem>--Select Gender--</asp:ListItem>
+                         <asp:ListItem Value="M">Male</asp:ListItem>
+                          <asp:ListItem Value="F">Female</asp:ListItem>
+                        </asp:DropDownList>
+                   
+                   
+    <asp:DropDownList ID="roleSortDDL" runat="server" AutoPostBack="true" 
+            OnSelectedIndexChanged="roleSortDDL_SelectedIndexChanged" CssClass="dropdown-display">
+            <asp:ListItem Text="--Select Role--" Value=""></asp:ListItem>
+            <asp:ListItem Value="Staff">Staff</asp:ListItem>
+            <asp:ListItem Value="Admin">Admin</asp:ListItem>
+            <asp:ListItem Value="Manager">Manager</asp:ListItem>
+        </asp:DropDownList>
+                    
                 </div>
 
                 <div class="btnExcel-Add">
-                    <asp:Button ID="excelBtn" runat="server" Text="Export" CssClass="excel-export"/>
+                    <asp:Button ID="excelBtn" runat="server" Text="Export" CssClass="excel-export" OnClick="excelBtn_Click"/>
                 
                      <asp:Button ID="addStaffBtn" runat="server" Text="➕ Add Staff" CssClass="product-add" OnClick="addStaffBtn_Click" />
                 </div>
@@ -46,7 +55,7 @@
         </div>
                 <div class="table">
                     
- <!--
+ 
 <!--Header-->  
 
                    
@@ -136,6 +145,17 @@
 
         </div>
 
+
+             </ContentTemplate>
+<Triggers>
+    <asp:AsyncPostBackTrigger ControlID="roleSortDDL" EventName="SelectedIndexChanged" />
+    <asp:AsyncPostBackTrigger ControlID="genderSortDDL" EventName="SelectedIndexChanged" />
+</Triggers>
+
+
+    </asp:UpdatePanel>
+
+
                       <div class="pagination">
     <a href="#" class="page-link" onclick="changePage('prev')">&laquo;</a>
     <a href="#" class="page-link active" onclick="changePage(1)">1</a>
@@ -175,6 +195,11 @@
 
 
 
+
+
+
+
+         
 
  
   

@@ -15,6 +15,42 @@ namespace Uniqlo.AdminPages.AdminStaff
     {
 
         /// <summary>
+        /// ScriptManagerStaff control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.ScriptManager ScriptManagerStaff;
+
+        /// <summary>
+        /// UpdatePanelStaff control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatePanelStaff;
+
+        /// <summary>
+        /// genderSortDDL control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList genderSortDDL;
+
+        /// <summary>
+        /// roleSortDDL control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList roleSortDDL;
+
+        /// <summary>
         /// excelBtn control.
         /// </summary>
         /// <remarks>

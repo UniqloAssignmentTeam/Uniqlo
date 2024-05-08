@@ -45,7 +45,9 @@
         ErrorMessage="Discount amount is required" ForeColor="Red" Display="Dynamic"></asp:RequiredFieldValidator>
     <asp:RegularExpressionValidator ID="RegexValidatorDiscountAmount" runat="server" ControlToValidate="discountAmount"
         ValidationExpression="^\d+(\.\d{1,2})?$" ErrorMessage="Invalid discount amount" ForeColor="Red" Display="Dynamic"></asp:RegularExpressionValidator>
-      
+        <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server"
+    ControlToValidate="discountAmount"
+    ValidationExpression="^\d+(\.\d{1,2})?$" ErrorMessage="Please enter a number. Optionally, you can use up to two decimal places." ForeColor="Red" Display="Dynamic"></asp:RegularExpressionValidator>
 
 </div>
 

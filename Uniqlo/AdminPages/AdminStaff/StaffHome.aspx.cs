@@ -63,13 +63,37 @@ namespace Uniqlo.AdminPages.AdminStaff
             }
         }
 
-        public void ExportDiscountsToExcel()
+        protected void roleSortDDL_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string connectionString = cs;
+            using (var db = new StaffDbContext())
+            {
+                string selectedRole = roleSortDDL.SelectedValue;
+                var staffList = db.Staff.Where(s => s.Role == selectedRole || string.IsNullOrEmpty(selectedRole)).ToList();
+                staffRepeater.DataSource = staffList;
+                staffRepeater.DataBind();
+            }
+        }
+        protected void genderSortDDL_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            using (var db = new StaffDbContext())
+            {
+                string selectedGender = genderSortDDL.SelectedValue;
+                var staffList = db.Staff.Where(s => s.Gender == selectedGender || string.IsNullOrEmpty(selectedGender)).ToList();
+                staffRepeater.DataSource = staffList;
+                staffRepeater.DataBind();
+            }
+        }
+
+        protected void excelBtn_Click(object sender, EventArgs e)
+        {
+            ExportStaffsToExcel();
+        }
+        public void ExportStaffsToExcel()
+        {
+            string connectionString = cs; // Ensure your connection string is defined above or fetched securely
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                string query = @"SELECT d.Discount_ID, d.Discount_Amount, d.Status, d.Start_Date, d.End_Date, d.Product_ID, 
-        p.Product_Name FROM Discount d JOIN Product p ON d.Product_ID = p.Product_ID";
+                string query = "SELECT Staff_ID, Name, Gender, Contact_No, Email, Password, Role FROM Staff";
 
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
@@ -80,7 +104,7 @@ namespace Uniqlo.AdminPages.AdminStaff
 
                         using (ExcelPackage pck = new ExcelPackage())
                         {
-                            ExcelWorksheet ws = pck.Workbook.Worksheets.Add("Discounts");
+                            ExcelWorksheet ws = pck.Workbook.Worksheets.Add("Staff");
                             ws.Cells["A1"].LoadFromDataTable(dt, true, OfficeOpenXml.Table.TableStyles.Light1);
 
                             // Format the header
@@ -92,19 +116,16 @@ namespace Uniqlo.AdminPages.AdminStaff
                                 range.Style.Font.Color.SetColor(System.Drawing.Color.White);
                             }
 
-                            // Format the date columns
-                            int startDateColIndex = dt.Columns["Start_Date"].Ordinal + 1; // Adding 1 because EPPlus is 1-based index
-                            int endDateColIndex = dt.Columns["End_Date"].Ordinal + 1;
-                            ws.Column(startDateColIndex).Style.Numberformat.Format = "dd/MM/yyyy";
-                            ws.Column(endDateColIndex).Style.Numberformat.Format = "dd/MM/yyyy";
+                            // Additional formatting can be applied here based on your specific needs
+                            // For example, formatting phone numbers or emails if necessary
 
                             // Save the Excel package
                             var memoryStream = new MemoryStream();
                             pck.SaveAs(memoryStream);
 
                             // Stream the file to the client
-                            HttpContext.Current.Response.ContentType = "application/vnd.openxmlforts-officedocument.spreadsheetml.sheet";
-                            HttpContext.Current.Response.AddHeader("content-disposition", "attachment;  filename=Discounts.xlsx");
+                            HttpContext.Current.Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+                            HttpContext.Current.Response.AddHeader("content-disposition", "attachment; filename=Staff.xlsx");
                             HttpContext.Current.Response.BinaryWrite(memoryStream.ToArray());
                             HttpContext.Current.Response.End();
                         }
@@ -112,5 +133,7 @@ namespace Uniqlo.AdminPages.AdminStaff
                 }
             }
         }
+
+      
     }
 }
