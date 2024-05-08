@@ -8,6 +8,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Data.Entity;
 
 namespace Uniqlo.AdminPages.AdminStaff
 {
@@ -68,7 +69,11 @@ namespace Uniqlo.AdminPages.AdminStaff
             using (var db = new StaffDbContext())
             {
                 string selectedRole = roleSortDDL.SelectedValue;
-                var staffList = db.Staff.Where(s => s.Role == selectedRole || string.IsNullOrEmpty(selectedRole)).ToList();
+                // Fetch all if the "--All--" option (empty value) is selected
+                var staffList = string.IsNullOrEmpty(selectedRole)?
+                                db.Staff.ToList() :
+                                db.Staff.Where(s => s.Role == selectedRole).ToList();
+
                 staffRepeater.DataSource = staffList;
                 staffRepeater.DataBind();
             }
@@ -78,7 +83,11 @@ namespace Uniqlo.AdminPages.AdminStaff
             using (var db = new StaffDbContext())
             {
                 string selectedGender = genderSortDDL.SelectedValue;
-                var staffList = db.Staff.Where(s => s.Gender == selectedGender || string.IsNullOrEmpty(selectedGender)).ToList();
+                // Fetch all if the "--All--" option (empty value) is selected
+                var staffList = string.IsNullOrEmpty(selectedGender) ?
+                                db.Staff.ToList() :
+                                db.Staff.Where(s => s.Gender == selectedGender).ToList();
+
                 staffRepeater.DataSource = staffList;
                 staffRepeater.DataBind();
             }

@@ -29,35 +29,35 @@ namespace Uniqlo.AdminPages
                 var discount = db.Discount.FirstOrDefault(s => s.Discount_ID == discountID);
                 if (discount != null)
                 {
-
-                    discountIDText.Text = discount.Discount_ID.ToString();
+                    // Ensure that you reference the TextBox correctly
+                    this.discountID.Text = discount.Discount_ID.ToString();
                     productID.Text = discount.Product_ID.ToString();
                     productName.Text = discount.Product.Product_Name;
                     discountAmount.Text = discount.Discount_Amount.ToString();
                     status.SelectedValue = discount.Status;
                     startDate.Text = discount.Start_Date.ToString("yyyy-MM-dd");
                     endDate.Text = discount.End_Date.ToString("yyyy-MM-dd");
-
                 }
             }
         }
 
-        /*
+        
         protected void updateBtn_Click(object sender, EventArgs e)
         {
             if (Page.IsValid)
             {
-                using (var db = new StaffDbContext())
+                using (var db = new DiscountDbContext())
                 {
-                    int staffId = int.Parse(staffID.Text);
-                    var staff = db.Staff.FirstOrDefault(s => s.Staff_ID == staffId);
-                    if (staff != null)
+                    int discountId = int.Parse(discountID.Text);
+                    var discount = db.Discount.FirstOrDefault(d => d.Discount_ID == discountId);
+                    if (discount != null)
                     {
-                        staff.Name = staffName.Text;
-                        staff.Email = email.Text;
-                        staff.Contact_No = contactNumber.Text;
-                        staff.Gender = staffGender.SelectedValue;
-                        staff.Role = staffRole.SelectedValue;
+                        discount.Product_ID = int.Parse(productID.Text);
+                        discount.Discount_Amount = float.Parse(discountAmount.Text);
+                        discount.Status = status.Text;
+                        discount.Start_Date = DateTime.Parse(startDate.Text);
+                        discount.End_Date = DateTime.Parse(endDate.Text);
+
                         // Update other fields like Gender and Role if they are editable
 
                         db.SaveChanges();
@@ -67,7 +67,7 @@ namespace Uniqlo.AdminPages
             }
         }
         
-        */
+        
 
     }
 }

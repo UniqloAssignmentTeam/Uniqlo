@@ -8,6 +8,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Data.Entity;
 
 namespace Uniqlo.AdminPages.AdminDiscount
 {
@@ -69,69 +70,74 @@ namespace Uniqlo.AdminPages.AdminDiscount
         {
             using (var db = new DiscountDbContext())
             {
-
-
                 string selectedStatus = statusSortDDL.SelectedValue;
-                var discountList = string.IsNullOrEmpty(selectedStatus) ?
-                    new List<Discount>() :  // or db.Discount.ToList() if you want all discounts when none is selected
-                    db.Discount.Include("Product").Where(d => d.Status == selectedStatus).ToList();
+
+                // Determine if the selected value is empty or the placeholder item.
+                // Adjust this check if your "--Select Status--" has a specific value.
+                bool showAll = string.IsNullOrEmpty(selectedStatus);
+
+                var discountQuery = db.Discount.AsQueryable(); // Start with a queryable to conditionally build query.
+
+                if (!showAll)
+                {
+                    // Apply filter only if a specific status is selected.
+                    discountQuery = discountQuery.Include("Product").Where(d => d.Status == selectedStatus);
+                }
+                else
+                {
+                    // Optionally include related products even when showing all, if needed.
+                    discountQuery = discountQuery.Include("Product");
+                }
+
+                // Execute the query and bind the results to the repeater.
+                var discountList = discountQuery.ToList();
                 discountRepeater.DataSource = discountList;
                 discountRepeater.DataBind();
             }
         }
 
+      
 
 
-
-        public void ExportDiscountsToExcel()
-    {
-        string connectionString = cs;
-        using (SqlConnection conn = new SqlConnection(connectionString))
+public void ExportDiscountsToExcel()
         {
-                string query = @"SELECT d.Discount_ID, d.Discount_Amount, d.Status, d.Start_Date, d.End_Date, d.Product_ID, 
-        p.Product_Name FROM Discount d JOIN Product p ON d.Product_ID = p.Product_ID";
-
-                using (SqlCommand cmd = new SqlCommand(query, conn))
+            try
             {
-                using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                string connectionString = cs;
+                using (SqlConnection conn = new SqlConnection(connectionString))
                 {
-                    DataTable dt = new DataTable();
-                    da.Fill(dt);
-
-                        using (ExcelPackage pck = new ExcelPackage())
+                    string query = @"SELECT d.Discount_ID, d.Discount_Amount, d.Status, d.Start_Date, d.End_Date, d.Product_ID, 
+            p.Product_Name FROM Discount d JOIN Product p ON d.Product_ID = p.Product_ID";
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        using (SqlDataAdapter da = new SqlDataAdapter(cmd))
                         {
-                            ExcelWorksheet ws = pck.Workbook.Worksheets.Add("Discounts");
-                            ws.Cells["A1"].LoadFromDataTable(dt, true, OfficeOpenXml.Table.TableStyles.Light1);
-
-                            // Format the header
-                            using (var range = ws.Cells[1, 1, 1, dt.Columns.Count])
+                            DataTable dt = new DataTable();
+                            da.Fill(dt);
+                            using (ExcelPackage pck = new ExcelPackage())
                             {
-                                range.Style.Font.Bold = true;
-                                range.Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.Solid;
-                                range.Style.Fill.BackgroundColor.SetColor(System.Drawing.Color.FromArgb(79, 129, 189));
-                                range.Style.Font.Color.SetColor(System.Drawing.Color.White);
+                                ExcelWorksheet ws = pck.Workbook.Worksheets.Add("Discounts");
+                                ws.Cells["A1"].LoadFromDataTable(dt, true, OfficeOpenXml.Table.TableStyles.Light1);
+                                // Formatting logic here
+                                var memoryStream = new MemoryStream();
+                                pck.SaveAs(memoryStream);
+
+                                HttpContext.Current.Response.ContentType = "application/vnd.openxmlforts-officedocument.spreadsheetml.sheet";
+                                HttpContext.Current.Response.AddHeader("content-disposition", "attachment;  filename=Discounts.xlsx");
+                                HttpContext.Current.Response.BinaryWrite(memoryStream.ToArray());
+                                HttpContext.Current.Response.End();
                             }
-
-                            // Format the date columns
-                            int startDateColIndex = dt.Columns["Start_Date"].Ordinal + 1; // Adding 1 because EPPlus is 1-based index
-                            int endDateColIndex = dt.Columns["End_Date"].Ordinal + 1;
-                            ws.Column(startDateColIndex).Style.Numberformat.Format = "dd/MM/yyyy";
-                            ws.Column(endDateColIndex).Style.Numberformat.Format = "dd/MM/yyyy";
-
-                            // Save the Excel package
-                            var memoryStream = new MemoryStream();
-                            pck.SaveAs(memoryStream);
-
-                            // Stream the file to the client
-                            HttpContext.Current.Response.ContentType = "application/vnd.openxmlforts-officedocument.spreadsheetml.sheet";
-                            HttpContext.Current.Response.AddHeader("content-disposition", "attachment;  filename=Discounts.xlsx");
-                            HttpContext.Current.Response.BinaryWrite(memoryStream.ToArray());
-                            HttpContext.Current.Response.End();
                         }
                     }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Log or handle the exception here
+                Console.WriteLine("Error: " + ex.Message);
             }
         }
-    }
 
-}
+
+    }
 }

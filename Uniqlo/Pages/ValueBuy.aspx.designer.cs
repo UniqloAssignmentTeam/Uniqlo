@@ -15,6 +15,51 @@ namespace Uniqlo.Pages
     {
 
         /// <summary>
+        /// ScriptManagerStaff control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.ScriptManager ScriptManagerStaff;
+
+        /// <summary>
+        /// UpdatePanelStaff control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatePanelStaff;
+
+        /// <summary>
+        /// genderSortDDL control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList genderSortDDL;
+
+        /// <summary>
+        /// categorySortDDL control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList categorySortDDL;
+
+        /// <summary>
+        /// sortByDDL control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList sortByDDL;
+
+        /// <summary>
         /// DataList1 control.
         /// </summary>
         /// <remarks>

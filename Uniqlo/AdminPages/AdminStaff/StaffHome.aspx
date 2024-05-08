@@ -1,13 +1,13 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin.Master" AutoEventWireup="true" CodeBehind="StaffHome.aspx.cs" Inherits="Uniqlo.AdminPages.AdminStaff.StaffHome" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="main" runat="server">
-     <asp:ScriptManager ID="ScriptManagerStaff" runat="server" />
+     
 
 
      <link href="../../css/Admin/adminStaff.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <link href="../../css/Admin/ErrorMessage.css" rel="stylesheet" />
-  
+  <asp:ScriptManager ID="ScriptManagerStaff" runat="server" />
     <asp:UpdatePanel ID="UpdatePanelStaff" runat="server">
     <ContentTemplate>
 
@@ -30,7 +30,7 @@
                 <div class="dropdown-wrapper">
                     
                          <asp:DropDownList ID="genderSortDDL" runat="server"  AutoPostBack="true" OnSelectedIndexChanged="genderSortDDL_SelectedIndexChanged" CssClass="dropdown-display">
-                         <asp:ListItem>--Select Gender--</asp:ListItem>
+                         <asp:ListItem Value="">Gender</asp:ListItem>
                          <asp:ListItem Value="M">Male</asp:ListItem>
                           <asp:ListItem Value="F">Female</asp:ListItem>
                         </asp:DropDownList>
@@ -38,7 +38,7 @@
                    
     <asp:DropDownList ID="roleSortDDL" runat="server" AutoPostBack="true" 
             OnSelectedIndexChanged="roleSortDDL_SelectedIndexChanged" CssClass="dropdown-display">
-            <asp:ListItem Text="--Select Role--" Value=""></asp:ListItem>
+            <asp:ListItem Value="">Role</asp:ListItem>
             <asp:ListItem Value="Staff">Staff</asp:ListItem>
             <asp:ListItem Value="Admin">Admin</asp:ListItem>
             <asp:ListItem Value="Manager">Manager</asp:ListItem>
@@ -150,6 +150,7 @@
 <Triggers>
     <asp:AsyncPostBackTrigger ControlID="roleSortDDL" EventName="SelectedIndexChanged" />
     <asp:AsyncPostBackTrigger ControlID="genderSortDDL" EventName="SelectedIndexChanged" />
+      <asp:PostBackTrigger ControlID="excelBtn" />
 </Triggers>
 
 
@@ -190,7 +191,7 @@
             </div>
           </div>
         </div>
-    </div>
+ 
 
 
 

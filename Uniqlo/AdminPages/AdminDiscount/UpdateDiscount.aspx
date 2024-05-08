@@ -19,16 +19,12 @@
 
               <div class="form-group">
      <label for="discountID">Discount ID</label>
-        <asp:TextBox ID="discountIDText" runat="server" Enabled="False"></asp:TextBox>
+        <asp:TextBox ID="discountID" runat="server" Enabled="False"></asp:TextBox>
  </div>
           
 
 
-                           <div class="form-group">
-    <label for="productID">Product ID</label>
-    <asp:TextBox ID="productID" runat="server" Enabled="False"></asp:TextBox>
-</div>
-
+                           
 
 
               <div class="form-group">
@@ -36,7 +32,11 @@
                   <asp:TextBox ID="productName" runat="server" Enabled="False"></asp:TextBox>
                 
               </div>
-          
+                                     <div class="form-group">
+    <label for="productID">Product ID</label>
+    <asp:TextBox ID="productID" runat="server" ></asp:TextBox>
+</div>
+
 
     <div class="form-group">
     <label for="discountAmount">Amount - Discount</label>

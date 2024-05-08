@@ -1,11 +1,11 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin.Master" AutoEventWireup="true" CodeBehind="DiscountHome.aspx.cs" Inherits="Uniqlo.AdminPages.AdminDiscount.DiscountHome" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="main" runat="server">
-     <asp:ScriptManager ID="ScriptManagerDiscount" runat="server" />
+   
     
     <link href="../../css/Admin/adminDiscount.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-   
+     <asp:ScriptManager ID="ScriptManagerDiscount" runat="server" />
     <asp:UpdatePanel ID="UpdatePanelDiscount" runat="server">
 <ContentTemplate>
 
@@ -22,9 +22,9 @@
 
                 <div class="dropdown-wrapper">
  <asp:DropDownList ID="statusSortDDL" runat="server"  AutoPostBack="true" OnSelectedIndexChanged="statusSortDDL_SelectedIndexChanged" CssClass="dropdown-display">
- <asp:ListItem>--Select Status--</asp:ListItem>
- <asp:ListItem Value="Valid">Valid</asp:ListItem>
-  <asp:ListItem Value="Invalid">Invalid</asp:ListItem>
+ <asp:ListItem Value="">Status</asp:ListItem>
+ <asp:ListItem Value="Active">Active</asp:ListItem>
+  <asp:ListItem Value="Inactive">Inactive</asp:ListItem>
 </asp:DropDownList>
                 </div>
 
@@ -108,38 +108,13 @@
 
                  </asp:Repeater>
 
-     
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                  
-        
-        
-
+   
     </div>
     
          </ContentTemplate>
     <Triggers>
         <asp:AsyncPostBackTrigger ControlID="statusSortDDL" EventName="SelectedIndexChanged" />
-        
+        <asp:PostBackTrigger ControlID="excelExport" />
     </Triggers>
 
 

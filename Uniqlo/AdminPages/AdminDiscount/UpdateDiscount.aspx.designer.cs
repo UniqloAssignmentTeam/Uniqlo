@@ -15,22 +15,13 @@ namespace Uniqlo.AdminPages
     {
 
         /// <summary>
-        /// discountIDText control.
+        /// discountID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox discountIDText;
-
-        /// <summary>
-        /// productID control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox productID;
+        protected global::System.Web.UI.WebControls.TextBox discountID;
 
         /// <summary>
         /// productName control.
@@ -40,6 +31,15 @@ namespace Uniqlo.AdminPages
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox productName;
+
+        /// <summary>
+        /// productID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox productID;
 
         /// <summary>
         /// discountAmount control.
