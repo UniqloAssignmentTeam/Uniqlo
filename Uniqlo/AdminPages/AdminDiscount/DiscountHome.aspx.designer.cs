@@ -15,22 +15,22 @@ namespace Uniqlo.AdminPages.AdminDiscount
     {
 
         /// <summary>
-        /// ScriptManager1 control.
+        /// ScriptManagerDiscount control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.ScriptManager ScriptManager1;
+        protected global::System.Web.UI.ScriptManager ScriptManagerDiscount;
 
         /// <summary>
-        /// UpdatePanel1 control.
+        /// UpdatePanelDiscount control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatePanel1;
+        protected global::System.Web.UI.UpdatePanel UpdatePanelDiscount;
 
         /// <summary>
         /// searchBox control.

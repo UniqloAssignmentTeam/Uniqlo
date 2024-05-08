@@ -72,8 +72,9 @@ namespace Uniqlo.AdminPages.AdminDiscount
 
 
                 string selectedStatus = statusSortDDL.SelectedValue;
-                var discountList = db.Discount.Include("Product")
-                    .Where(d => d.Status == selectedStatus || string.IsNullOrEmpty(selectedStatus)).ToList();
+                var discountList = string.IsNullOrEmpty(selectedStatus) ?
+                    new List<Discount>() :  // or db.Discount.ToList() if you want all discounts when none is selected
+                    db.Discount.Include("Product").Where(d => d.Status == selectedStatus).ToList();
                 discountRepeater.DataSource = discountList;
                 discountRepeater.DataBind();
             }

@@ -1,12 +1,12 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin.Master" AutoEventWireup="true" CodeBehind="DiscountHome.aspx.cs" Inherits="Uniqlo.AdminPages.AdminDiscount.DiscountHome" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="main" runat="server">
-     <asp:ScriptManager ID="ScriptManager1" runat="server" />
+     <asp:ScriptManager ID="ScriptManagerDiscount" runat="server" />
     
     <link href="../../css/Admin/adminDiscount.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
    
-    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+    <asp:UpdatePanel ID="UpdatePanelDiscount" runat="server">
 <ContentTemplate>
 
 
@@ -143,7 +143,7 @@
     </Triggers>
 
 
-        </asp:UpdatePanel>
+       </asp:UpdatePanel>
 
                         <div class="pagination">
     <a href="#" class="page-link" onclick="changePage('prev')">&laquo;</a>
