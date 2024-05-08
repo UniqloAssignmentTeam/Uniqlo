@@ -27,7 +27,7 @@
                 </div>
 
                 <div class="btnExcel-Add">
-                    <asp:Button ID="excelExport" runat="server" Text="Export" CssClass="excel-export" />
+                    <asp:Button ID="excelExport" runat="server" Text="Export" CssClass="excel-export" OnClick="btnExport_Click"/>
                     <asp:Button ID="addDiscountBtn" runat="server" Text="➕ Add Discount" CssClass="product-add" Onclick="addDiscountBtn_Click"/>
                 </div>
                 
@@ -41,7 +41,7 @@
         
 
 
-                             <asp:Repeater ID="discountRepeater" runat="server" ViewStateMode="Disabled" >
+           <asp:Repeater ID="discountRepeater" runat="server" ViewStateMode="Disabled" >
 
                      <HeaderTemplate>
                           <table style="width:100%" class="table">
@@ -68,10 +68,10 @@
                             
  <td class="col discountId"><asp:Label ID="discountIdLabel" runat="server" Text='<%# Eval("Discount_ID") %>'></asp:Label></td>
 <td class="col name"><asp:Label ID="productName" runat="server" Text='<%# Eval("Product.Product_Name") %>'></asp:Label></td>
-<td class="col price"><asp:Label ID="price" runat="server" Text='<%# Eval("Discount_Amount") %>'></asp:Label></td>
+<td class="col price"><asp:Label ID="price" runat="server" Text='<%# Eval("Discount_Amount","{0:C}") %>'></asp:Label></td>
 <td class="col wear"><asp:Label ID="wear" runat="server" Text='<%# Eval("Status") %>'></asp:Label></td>
-<td class="col startDate"><asp:Label ID="startDate" runat="server" Text='<%# Eval("Start_Date") %>'></asp:Label></td>
-<td class="col endDate"><asp:Label ID="endDate" runat="server" Text='<%# Eval("End_Date") %>'></asp:Label></td>
+<td class="col startDate"><asp:Label ID="startDate" runat="server" Text='<%# Eval("Start_Date", "{0:dd/MM/yyyy}") %>'></asp:Label></td>
+<td class="col endDate"><asp:Label ID="endDate" runat="server" Text='<%# Eval("End_Date", "{0:dd/MM/yyyy}") %>'></asp:Label></td>
 
 
 <td class="col eclipse-container" onclick="toggleDropdown('dropdownList<%# Eval("Discount_ID") %>', 'dropdownDisplay<%# Eval("Discount_ID") %>')">   

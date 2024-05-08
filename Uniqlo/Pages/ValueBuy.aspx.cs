@@ -40,13 +40,50 @@ namespace Uniqlo.Pages
                                                        Description = p.Description,
                                                        Price = p.Price,
                                                        Discount_Amount = d.Discount_Amount,
-                                                       Image_ID=img.Image_ID
+                                                       Image_ID=img.Image_ID,
+                                                       AverageRating = (from q in p.Quantities
+                                                                        from ol in q.OrderLists
+                                                                        from r in ol.Reviews
+                                                                        select (int?)r.Rating).Average() ?? 0,
+                                                       ReviewCount = (from q in p.Quantities
+                                                                      from ol in q.OrderLists
+                                                                      from r in ol.Reviews
+                                                                      select r).Count()
+
+
                                                    }).Distinct().ToList();
 
                 // Setting the DataList data source
                 DataList1.DataSource = productsWithActiveDiscounts;
                 DataList1.DataBind();
             }
+        }
+        public string GenerateStars(double rating)
+        {
+            var fullStars = (int)rating; // Number of full stars
+            var halfStar = rating % 1 != 0; // Check if there is a half star
+            var noStars = 5 - fullStars - (halfStar ? 1 : 0); // Remaining empty stars
+            var html = string.Empty;
+
+            // Add full stars
+            for (int i = 0; i < fullStars; i++)
+            {
+                html += "<i class='fas fa-star star'></i>";
+            }
+
+            // Add half star
+            if (halfStar)
+            {
+                html += "<i class='fas fa-star-half-alt star'></i>";
+            }
+
+            // Add empty stars
+            for (int i = 0; i < noStars; i++)
+            {
+                html += "<i class='far fa-star star'></i>";
+            }
+
+            return html;
         }
 
     }

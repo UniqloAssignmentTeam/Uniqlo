@@ -132,6 +132,13 @@ namespace Uniqlo.Pages
                         cmd.Parameters.AddWithValue("@ItemPrice", item.Item_Price);
                         cmd.ExecuteNonQuery();
                         cmd.Parameters.Clear();
+
+                        // Update the Quantity table to reflect the decrease in stock
+                        cmd.CommandText = "UPDATE Quantity SET Qty = Qty - @OrderQuantity WHERE Quantity_Id = @QuantityId;";
+                        cmd.Parameters.AddWithValue("@OrderQuantity", item.Quantity);
+                        cmd.Parameters.AddWithValue("@QuantityId", item.Quantity_Id);
+                        cmd.ExecuteNonQuery();
+                        cmd.Parameters.Clear();
                     }
 
                     // Insert Delivery

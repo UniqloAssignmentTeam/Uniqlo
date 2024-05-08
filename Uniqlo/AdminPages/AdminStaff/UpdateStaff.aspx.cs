@@ -37,7 +37,7 @@ namespace Uniqlo.AdminPages
                     contactNumber.Text = staff.Contact_No;
                     staffGender.SelectedValue=staff.Gender;
                     staffRole.SelectedValue = staff.Role;
-                    
+                    password.Text=staff.Password;
                 }
             }
         }
