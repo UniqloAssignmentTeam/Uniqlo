@@ -6,8 +6,8 @@
         <link href="../css/ValueBuy.css" rel="stylesheet" />
     </header>
 
-    <asp:ScriptManager ID="ScriptManagerStaff" runat="server" />
-  <asp:UpdatePanel ID="UpdatePanelStaff" runat="server">
+    <asp:ScriptManager ID="ValueManagerStaff" runat="server" />
+  <asp:UpdatePanel ID="ValuePanelStaff" runat="server">
   <ContentTemplate>
 
 
