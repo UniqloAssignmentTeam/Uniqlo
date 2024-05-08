@@ -82,7 +82,7 @@
 
 
 
-        <asp:DataList ID="DataList1" runat="server" RepeatColumns="4" RepeatDirection="Horizontal" CellPadding="4" Width="100%">
+        <asp:DataList ID="dlValueBuy" runat="server" RepeatColumns="4" RepeatDirection="Horizontal" CellPadding="4" Width="100%">
             <ItemTemplate>
 
 
@@ -124,22 +124,6 @@
                     </div>
                    
                 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             </ItemTemplate>
         </asp:DataList>
 

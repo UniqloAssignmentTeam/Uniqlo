@@ -54,8 +54,8 @@ namespace Uniqlo.Pages
                                                    }).Distinct().ToList();
 
                 // Setting the DataList data source
-                DataList1.DataSource = productsWithActiveDiscounts;
-                DataList1.DataBind();
+                dlValueBuy.DataSource = productsWithActiveDiscounts;
+                dlValueBuy.DataBind();
             }
         }
         public string GenerateStars(double rating)
