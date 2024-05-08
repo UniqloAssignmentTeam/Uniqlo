@@ -46,15 +46,15 @@
                                 </div>
                                 <div class="col-md-6 form-group">
                                     <label>E-mail</label>
-                                    <asp:TextBox class="form-control" ID="txtEmail" value="cjtan@gmail.com" ReadOnly="true" runat="server"></asp:TextBox>
+                                    <asp:TextBox class="form-control" ID="txtEmail" ReadOnly="true" runat="server"></asp:TextBox>
                                 </div>
                                 <div class="col-md-6 form-group">
                                     <label>Contact No</label>
-                                    <asp:TextBox class="form-control" ID="txtContact" value="0148169029" ReadOnly="true" runat="server"></asp:TextBox>
+                                    <asp:TextBox class="form-control" ID="txtContact" ReadOnly="true" runat="server"></asp:TextBox>
                                 </div>
                                 <div class="col-md-6 form-group">
                                     <label>Country</label>
-                                    <asp:TextBox ID="txtCountry" runat="server" CssClass="form-control" required="true"></asp:TextBox>
+                                    <asp:TextBox ID="txtCountry" runat="server" CssClass="form-control" placeholder="Malaysia"></asp:TextBox>
                                     <asp:RequiredFieldValidator ControlToValidate="txtCountry" ErrorMessage="Country is required" Display="Dynamic" ForeColor="Red" runat="server" />
                                 </div>
                                 <div class="col-md-6 form-group">
@@ -65,7 +65,9 @@
                                 <div class="col-md-6 form-group">
                                     <label>Post Code</label>
                                     <asp:TextBox ID="txtPostcode" runat="server" CssClass="form-control" MaxLength="5" placeholder="11500"></asp:TextBox>
-                                    <asp:RegularExpressionValidator ID="revPostcode" runat="server" ControlToValidate="txtPostcode" ValidationExpression="^\d{5}$" ErrorMessage="Post code must be 5 digits" ForeColor="Red" />
+                                    <asp:RegularExpressionValidator ID="revPostcode" runat="server" ControlToValidate="txtPostcode" ValidationExpression="^\d{5}$" ErrorMessage="Post code must be 5 digits" ForeColor="Red" Display="Dynamic" />
+    <asp:RequiredFieldValidator ID="rfvPostcode" runat="server" ControlToValidate="txtPostcode" ErrorMessage="Post code is required" ForeColor="Red" Display="Dynamic" />
+
                                 </div>
                                 <div class="col-md-6 form-group">
                                     <label>State</label>

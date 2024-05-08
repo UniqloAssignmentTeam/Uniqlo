@@ -4,7 +4,7 @@
                 <link href="../../css/Admin/addStaff.css" rel="stylesheet" />
         </header>
        
- 
+    
  
  
            <div class="container">
@@ -19,7 +19,14 @@
                 <div class="form-group">
                     <label for="staffName">Staff Name</label>
                      <asp:TextBox ID="staffName" runat="server"></asp:TextBox>
-                </div>
+                   
+                   <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Please Enter a Name" ControlToValidate="staffName"></asp:RequiredFieldValidator>
+                  <asp:RegularExpressionValidator ID="RegexValidatorName" runat="server" 
+    ControlToValidate="staffName" 
+    ErrorMessage="Name must contain only letters." 
+    ValidationExpression="^[A-Za-z ]+$">
+</asp:RegularExpressionValidator>
+                    </div>
               
 
 
@@ -51,6 +58,11 @@
                 <div class="form-group">
                     <label for="contactNumber">Contact Number</label>
                    <asp:TextBox ID="contactNumber" runat="server"></asp:TextBox>
+                    <asp:RegularExpressionValidator ID="RegexValidatorPhone" runat="server" 
+    ControlToValidate="contactNumber" 
+    ErrorMessage="Please enter a valid phone number." 
+    ValidationExpression="^\+?([0-9]{1,3})?([0-9]{10})$">
+</asp:RegularExpressionValidator>
                 </div>
                
 
@@ -58,11 +70,24 @@
                   <div class="form-group">
       <label for="email">E-mail</label>
      <asp:TextBox ID="email" runat="server"></asp:TextBox>
+    <asp:RegularExpressionValidator ID="RegexValidatorEmail" runat="server" ControlToValidate="email" ErrorMessage="Please enter a valid email address." 
+    ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*">
+</asp:RegularExpressionValidator>
   </div>
                  
                                 <div class="form-group">
     <label for="password">Password</label>
    <asp:TextBox ID="password" runat="server"></asp:TextBox>
+   <asp:RequiredFieldValidator ID="RequiredFieldValidatorPassword" runat="server" 
+    ControlToValidate="password" 
+    ErrorMessage="Password is required.">
+</asp:RequiredFieldValidator>
+
+<asp:RegularExpressionValidator ID="RegexValidatorPassword" runat="server" 
+    ControlToValidate="password" 
+    ErrorMessage="Password must be at least 8 characters long including numbers, uppercase and lowercase letters." 
+    ValidationExpression="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$">
+</asp:RegularExpressionValidator>
 </div>
               
             </div>

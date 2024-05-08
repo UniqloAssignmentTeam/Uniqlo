@@ -49,5 +49,16 @@ namespace Uniqlo.AdminPages.AdminStaff
                 }
             }
         }
+
+        protected void CustomValidator1_ServerValidate(object source, ServerValidateEventArgs args)
+        {
+            string name = args.Value;
+
+           
+
+
+
+
+        }
     }
 }

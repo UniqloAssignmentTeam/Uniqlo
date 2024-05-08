@@ -236,6 +236,7 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Address.cs" />
     <Compile Include="Admin.Master.cs">
       <DependentUpon>Admin.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -373,6 +374,7 @@
       <DependentUpon>test.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="Card.cs" />
     <Compile Include="CartItem.cs" />
     <Compile Include="Category.cs">
       <DependentUpon>UniqloAdo.tt</DependentUpon>
