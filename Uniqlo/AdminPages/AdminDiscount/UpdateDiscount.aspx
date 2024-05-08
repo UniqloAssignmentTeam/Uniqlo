@@ -19,16 +19,12 @@
 
               <div class="form-group">
      <label for="discountID">Discount ID</label>
-        <asp:TextBox ID="discountIDText" runat="server" Enabled="False"></asp:TextBox>
+        <asp:TextBox ID="discountID" runat="server" Enabled="False"></asp:TextBox>
  </div>
           
 
 
-                           <div class="form-group">
-    <label for="productID">Product ID</label>
-    <asp:TextBox ID="productID" runat="server" Enabled="False"></asp:TextBox>
-</div>
-
+                           
 
 
               <div class="form-group">
@@ -36,7 +32,11 @@
                   <asp:TextBox ID="productName" runat="server" Enabled="False"></asp:TextBox>
                 
               </div>
-          
+                                     <div class="form-group">
+    <label for="productID">Product ID</label>
+    <asp:TextBox ID="productID" runat="server" ></asp:TextBox>
+</div>
+
 
     <div class="form-group">
     <label for="discountAmount">Amount - Discount</label>
@@ -45,7 +45,9 @@
         ErrorMessage="Discount amount is required" ForeColor="Red" Display="Dynamic"></asp:RequiredFieldValidator>
     <asp:RegularExpressionValidator ID="RegexValidatorDiscountAmount" runat="server" ControlToValidate="discountAmount"
         ValidationExpression="^\d+(\.\d{1,2})?$" ErrorMessage="Invalid discount amount" ForeColor="Red" Display="Dynamic"></asp:RegularExpressionValidator>
-      
+        <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server"
+    ControlToValidate="discountAmount"
+    ValidationExpression="^\d+(\.\d{1,2})?$" ErrorMessage="Please enter a number. Optionally, you can use up to two decimal places." ForeColor="Red" Display="Dynamic"></asp:RegularExpressionValidator>
 
 </div>
 

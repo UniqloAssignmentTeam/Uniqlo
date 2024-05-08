@@ -1,10 +1,14 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin.Master" AutoEventWireup="true" CodeBehind="DiscountHome.aspx.cs" Inherits="Uniqlo.AdminPages.AdminDiscount.DiscountHome" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="main" runat="server">
-
+   
     
     <link href="../../css/Admin/adminDiscount.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+     <asp:ScriptManager ID="ScriptManagerDiscount" runat="server" />
+    <asp:UpdatePanel ID="UpdatePanelDiscount" runat="server">
+<ContentTemplate>
+
 
     <div class="productBody">
         <h2>UNIQLO DISCOUNT MANAGEMENT</h2>
@@ -17,13 +21,11 @@
                 
 
                 <div class="dropdown-wrapper">
-                    <div class="dropdown-container" onclick="toggleDropdown('dropdownList', 'dropdownDisplay')">
-                        <div class="dropdown-display" id="dropdownDisplay">Status</div>
-                        <div class="dropdown-list" id="dropdownList">
-                            <div onclick="selectOption('Valid', 'dropdownDisplay')">Valid</div>
-                            <div onclick="selectOption('Invalid', 'dropdownDisplay')">Invalid</div>
-                        </div>
-                    </div>
+ <asp:DropDownList ID="statusSortDDL" runat="server"  AutoPostBack="true" OnSelectedIndexChanged="statusSortDDL_SelectedIndexChanged" CssClass="dropdown-display">
+ <asp:ListItem Value="">Status</asp:ListItem>
+ <asp:ListItem Value="Active">Active</asp:ListItem>
+  <asp:ListItem Value="Inactive">Inactive</asp:ListItem>
+</asp:DropDownList>
                 </div>
 
                 <div class="btnExcel-Add">
@@ -106,33 +108,18 @@
 
                  </asp:Repeater>
 
-     
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                  
-        
-        
-
+   
     </div>
+    
+         </ContentTemplate>
+    <Triggers>
+        <asp:AsyncPostBackTrigger ControlID="statusSortDDL" EventName="SelectedIndexChanged" />
+        <asp:PostBackTrigger ControlID="excelExport" />
+    </Triggers>
+
+
+       </asp:UpdatePanel>
+
                         <div class="pagination">
     <a href="#" class="page-link" onclick="changePage('prev')">&laquo;</a>
     <a href="#" class="page-link active" onclick="changePage(1)">1</a>

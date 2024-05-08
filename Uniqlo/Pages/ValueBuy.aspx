@@ -5,6 +5,13 @@
 
         <link href="../css/ValueBuy.css" rel="stylesheet" />
     </header>
+
+    <asp:ScriptManager ID="ValueManagerStaff" runat="server" />
+  <asp:UpdatePanel ID="ValuePanelStaff" runat="server">
+  <ContentTemplate>
+
+
+
     <div class="productBody">
         <!--LIMITED OFFER CARD-->
         <h1 class="header">Value Buy</h1>
@@ -20,33 +27,35 @@
             <div class="productListHeader">Sort By</div>
             <div style="display: flex;">
 
-                <div class="dropdown-container" onclick="toggleDropdown('dropdownList3', 'dropdownDisplay3')" style="margin-right: 15px;">
-                    <div class="dropdown-display" id="dropdownDisplay3">Gender</div>
-                    <div class="dropdown-list" id="dropdownList3">
-                        <div onclick="selectOption('Women', 'dropdownDisplay3')">Women</div>
-                        <div onclick="selectOption('Men', 'dropdownDisplay3')">Men</div>
-                    </div>
+                <div class="dropdown-container" style="margin-right: 15px;">
+                      <asp:DropDownList ID="genderSortDDL" runat="server"  CssClass="dropdown-display">
+                          <asp:ListItem>Gender</asp:ListItem>
+                          <asp:ListItem Value="M">Men</asp:ListItem>
+                          <asp:ListItem Value="F">Women</asp:ListItem>
+                      </asp:DropDownList>
+                </div>
+             
+
+
+                <div class="dropdown-container">
+                    <asp:DropDownList ID="categorySortDDL" runat="server" CssClass="dropdown-display">
+                        <asp:ListItem>Category</asp:ListItem>
+                        <asp:ListItem>Tops</asp:ListItem>
+                        <asp:ListItem>Bottom</asp:ListItem>
+                    </asp:DropDownList>
                 </div>
 
-
-
-                <div class="dropdown-container" onclick="toggleDropdown('dropdownList2', 'dropdownDisplay2')">
-                    <div class="dropdown-display" id="dropdownDisplay2">Category</div>
-                    <div class="dropdown-list" id="dropdownList2">
-                        <div onclick="selectOption('Tops', 'dropdownDisplay2')">Tops</div>
-                        <div onclick="selectOption('Bottoms', 'dropdownDisplay2')">Bottoms</div>
-                    </div>
-                </div>
+                  
 
 
                 <div style="display: flex; width: 100%; justify-content: flex-end;">
-                    <div class="dropdown-container" onclick="toggleDropdown('dropdownList1', 'dropdownDisplay1')">
-                        <div class="dropdown-display" id="dropdownDisplay1">Sort By</div>
-                        <div class="dropdown-list" id="dropdownList1">
-                            <div onclick="selectOption('Most Popular', 'dropdownDisplay1')">Most Popular</div>
-                            <div onclick="selectOption('High to Low', 'dropdownDisplay1')">High to Low</div>
-                            <div onclick="selectOption('Low to High', 'dropdownDisplay1')">Low to High</div>
-                        </div>
+                    <div class="dropdown-container">
+                        <asp:DropDownList ID="sortByDDL" runat="server" CssClass="dropdown-display">
+                            <asp:ListItem>Sort By</asp:ListItem>
+                            <asp:ListItem>Most Popular</asp:ListItem>
+                            <asp:ListItem>High to Low</asp:ListItem>
+                             <asp:ListItem>Low to High</asp:ListItem>
+                        </asp:DropDownList>
                     </div>
                 </div>
 
@@ -73,7 +82,7 @@
 
 
 
-        <asp:DataList ID="DataList1" runat="server" RepeatColumns="4" RepeatDirection="Horizontal" CellPadding="4" Width="100%">
+        <asp:DataList ID="dlValueBuy" runat="server" RepeatColumns="4" RepeatDirection="Horizontal" CellPadding="4" Width="100%">
             <ItemTemplate>
 
 
@@ -108,34 +117,28 @@
                             </div>
                             <div class="product-rating">
                                 <%# GenerateStars(Convert.ToDouble(Eval("AverageRating")) ) %>
-                                <span><%# Eval("AverageRating") %><%# Eval("ReviewCount") %></span>
+                                <span><%# Eval("ReviewCount") %></span>
                             </div>
 
                         </div>
                     </div>
+                   
                 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             </ItemTemplate>
         </asp:DataList>
 
 
 
+                     </ContentTemplate>
+<Triggers>
+    <asp:AsyncPostBackTrigger ControlID="categorySortDDL" EventName="SelectedIndexChanged" />
+    <asp:AsyncPostBackTrigger ControlID="genderSortDDL" EventName="SelectedIndexChanged" />
+    <asp:AsyncPostBackTrigger ControlID="sortByDDL" EventName="SelectedIndexChanged" />
+    
+</Triggers>
 
+
+    </asp:UpdatePanel>
 
 
 
@@ -579,7 +582,7 @@
                 </h4>
             </div>
         </div>
-    </div>
+   
     <footer>
         <script src="../Javascript/valueBuy.js"></script>
         <script src="../Javascript/wishlist.js"></script>
