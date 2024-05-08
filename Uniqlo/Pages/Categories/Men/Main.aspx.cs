@@ -18,33 +18,75 @@ namespace Uniqlo.Pages.Categories.Men
         {
             if (!IsPostBack)
             {
-                BindDiscountedProducts();
+                BindDataList();
             }
         }
 
-        private void BindDiscountedProducts()
+        private void BindDataList()
         {
-            
-            using (SqlConnection con = new SqlConnection(cs))
+            using (var context = new ProductDbContext())
             {
-                con.Open();
-                string query = @"
-            SELECT p.ProductName, p.Description, p.Price AS OriginalPrice, 
-                   (p.Price - d.DiscountAmount) AS DiscountedPrice, p.ImageUrl
-            FROM Product p
-            INNER JOIN Category c ON p.CategoryId = c.CategoryId
-            INNER JOIN Discount d ON p.ProductId = d.ProductId
-            WHERE c.Gender = 'M' AND c.Name = 'Bottom' AND d.Status = 'Active'";
+                var today = DateTime.Now; // Today's date for active discount checks
+                string targetCategoryName = "Bottom"; // Category you want to filter by
+                string targetCategoryGender = "M";
 
-                using (SqlCommand cmd = new SqlCommand(query, con))
-                {
-                    using (SqlDataReader reader = cmd.ExecuteReader())
-                    {
-                        rptDiscountedProducts.DataSource = reader;
-                        rptDiscountedProducts.DataBind();
-                    }
-                }
+
+                var productsWithActiveDiscounts = (from p in context.Product
+                                                   join d in context.Discount on p.Product_ID equals d.Product_ID
+                                                   where d.Status == "Active" && d.Start_Date <= today && d.End_Date >= today
+                                                   join q in context.Quantity on p.Product_ID equals q.Product_ID
+                                                   join img in context.Image on q.Image_ID equals img.Image_ID
+                                                   join c in context.Category on p.Category_ID equals c.Category_ID
+                                                   where c.Name == targetCategoryName && c.Gender == targetCategoryGender // Filtering by category name and gender
+                                                   select new
+                                                   {
+                                                       ProductName = p.Product_Name,
+                                                       Description = p.Description,
+                                                       Price = p.Price,
+                                                       DiscountAmount = d.Discount_Amount,
+                                                       ImagePath = img.ImagePath,
+                                                       AverageRating = (from q in p.Quantities
+                                                                        from ol in q.OrderLists
+                                                                        from r in ol.Reviews
+                                                                        select (int?)r.Rating).Average() ?? 0,
+                                                       ReviewCount = (from q in p.Quantities
+                                                                      from ol in q.OrderLists
+                                                                      from r in ol.Reviews
+                                                                      select r).Count()
+                                                   }).Distinct().ToList();
+
+                // Set the DataList data source
+                dlValueBuy.DataSource = productsWithActiveDiscounts;
+                dlValueBuy.DataBind();
             }
+        }
+
+        public string GenerateStars(double rating)
+        {
+            var fullStars = (int)rating; // Number of full stars
+            var halfStar = rating % 1 != 0; // Check if there is a half star
+            var noStars = 5 - fullStars - (halfStar ? 1 : 0); // Remaining empty stars
+            var html = string.Empty;
+
+            // Add full stars
+            for (int i = 0; i < fullStars; i++)
+            {
+                html += "<i class='fas fa-star star'></i>";
+            }
+
+            // Add half star
+            if (halfStar)
+            {
+                html += "<i class='fas fa-star-half-alt star'></i>";
+            }
+
+            // Add empty stars
+            for (int i = 0; i < noStars; i++)
+            {
+                html += "<i class='far fa-star star'></i>";
+            }
+
+            return html;
         }
         protected void lnkTops_Click(object sender, EventArgs e)
         {

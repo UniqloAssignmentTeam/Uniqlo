@@ -108,7 +108,7 @@
                             </div>
                             <div class="product-rating">
                                 <%# GenerateStars(Convert.ToDouble(Eval("AverageRating")) ) %>
-                                <span><%# Eval("AverageRating") %><%# Eval("ReviewCount") %></span>
+                                <span><%# Eval("ReviewCount") %></span>
                             </div>
 
                         </div>
