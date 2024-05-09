@@ -30,6 +30,7 @@ namespace Uniqlo.Pages
 
                 // Fetching products with active discounts
                 var productsWithActiveDiscounts = (from p in context.Product
+                                                   where !p.IsDeleted
                                                    join d in context.Discount on p.Product_ID equals d.Product_ID
                                                    where d.Status == "Active" && d.Start_Date <= today && d.End_Date >= today
                                                    join q in context.Quantity on p.Product_ID equals q.Product_ID

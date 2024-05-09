@@ -94,55 +94,71 @@
             function createColorTable(color) {
                 colorId++;  // Increment to get a unique ID for each color table
                 var tableHtml = `
-                <div class="color-table-wrapper" id="colorTable${colorId}">
-                    <table class="sizeQtyTable">
-                        <thead>
-                            <tr>
-                                <th><h2>${color}</h2> <input type="hidden" id="colorName${colorId}" value="${color}" /></th>
-                                <th><button type="button" class="addColor-button" onclick="updateHiddenField(this)">Save</button></th>
-                                <th><button type="button" class="addColor-button" onclick="deleteColorTable(this)">Delete</button></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>
-                                    <div class="form-group">
-                                        <label for="sizeS${colorId}">S</label>
-                                        <input type="number" id="sizeS${colorId}" class="form-field" placeholder=""/>
-                                    </div>
-                                </td>                                
-                                <td>
-                                    <div class="form-group">
-                                        <label for="sizeM${colorId}">M</label>
-                                        <input type="number" id="sizeM${colorId}" class="form-field" placeholder=""/>
-                                    </div>
-                                </td>                                
-                                <td>
-                                    <div class="form-group">
-                                        <label for="sizeL${colorId}">L</label>
-                                        <input type="number" id="sizeL${colorId}" class="form-field" placeholder=""/>
-                                    </div>
-                                </td>                                
-                                <td>
-                                    <div class="form-group">
-                                        <label for="sizeXL${colorId}">XL</label>
-                                        <input type="number" id="sizeXL${colorId}" class="form-field" placeholder=""/>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="image-gallery">
-                                        <div class="image-box">
-                                            <div class="add-image">
-                                                <label for="fileInput${colorId}">Upload Image</label>
-                                                <input type="file" id="fileInput${colorId}" name="fileInput${colorId}" class="form-field"/>
+                    <div class="color-table-wrapper" id="colorTable${colorId}" >
+                        <table class="sizeQtyTable" style="margin-left:230px;">
+                            <thead>
+                                <tr>
+                                    <td style="width: 40%;"><h2>${color}</h2> <input type="hidden" id="colorName${colorId}" value="${color}" /></td>
+                                    <td style="width: 30%">
+                                        <button type="button" class="addColor-button" onclick="updateHiddenField(this)">Save</button>
+                                    </td>
+                                    <td style="width: 30%">
+                                        <button type="button" class="addColor-button" onclick="deleteColorTable(this)">Delete</button>
+                                    </td>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                <tr>
+                                    <td colspan="3">
+                                        <div style="display:flex; justify-content: center;">
+                                            <div class="image-gallery">
+                                                <div class="image-box">
+                                                    <div class="add-image">
+                                                        <label for="fileInput${colorId}">Upload Image</label>
+                                                        <input type="file" id="fileInput${colorId}" name="fileInput${colorId}" class="form-field"/>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>`;
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td style="width:20%; text-align:center;">
+                                       <label for="sizeS${colorId}">S</label>
+                                    </td>
+                                    <td style="width: 80%; padding-top:10px;" colspan="2">
+                                        <input type="number" id="sizeS${colorId}" style="width: 200px;" class="form-field" placeholder=""/>
+                                    </td>  
+                                </tr>
+                                <tr>
+                                    <td style="width:20%; text-align:center;">
+                                       <label for="sizeM${colorId}">M</label>
+                                    </td>
+                                    <td style="width: 80%; padding-top:10px;" colspan="2">
+                                        <input type="number" id="sizeM${colorId}" style="width: 200px;" class="form-field" placeholder=""/>
+                                    </td>
+                                </tr>                                
+                                <tr>
+                                    <td style="width:20%; text-align:center;">
+                                       <label for="sizeL${colorId}">L</label>
+                                    </td>
+                                    <td style="width: 80%; padding-top:10px;" colspan="2">
+                                        <input type="number" id="sizeL${colorId}" style="width: 200px;" class="form-field" placeholder=""/>
+                                    </td>
+                                </tr>                                
+                                <tr>
+                                    <td style="width:20%; text-align:center;">
+                                       <label for="sizeXL${colorId}">XL</label>
+                                    </td>
+                                    <td style="width: 80%; padding-top:10px;" colspan="2">
+                                        <input type="number" id="sizeXL${colorId}" style="width: 200px;" class="form-field" placeholder=""/>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>`;
                 return tableHtml;
             }
 

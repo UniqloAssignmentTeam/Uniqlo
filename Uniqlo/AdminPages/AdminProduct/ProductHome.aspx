@@ -173,21 +173,15 @@
                        </td>
 
 
-                       <td class="col eclipse-container" onclick="toggleDropdown('dropdownList<%# Eval("Product_ID") %>', 'dropdownDisplay<%# Eval("Product_ID") %>')">
-                           <div class="eclipse-display" id="dropdownDisplay<%# Eval("Product_ID") %>" style="border: none;"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></div>
-                           <div class="eclipse-list" id="dropdownList<%# Eval("Product_ID") %>">
-
-                               <div>
-                                   <asp:HyperLink ID="viewProduct" runat="server" NavigateUrl='<%# "viewMoreProduct.aspx?ProdID=" + Eval("Product_ID") %>' Text="View More" style="text-decoration:none; color: #6F6F6F"></asp:HyperLink>
-                               </div>
-                               <div>
-                                   <asp:HyperLink ID="updateProduct" runat="server" NavigateUrl='<%# "UpdateProduct.aspx?ProdID=" + Eval("Product_ID") %>' Text="Update" style="text-decoration:none; color: #6F6F6F"></asp:HyperLink>
-                               </div>
+                           <td class="col eclipse-container" onclick="toggleDropdown('dropdownList<%# Eval("Product_ID") %>', 'dropdownDisplay<%# Eval("Product_ID") %>')">   
+                              <div class="eclipse-display" id="dropdownDisplay<%# Eval("Product_ID") %>" style="border:none;"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></div>
+                              <div class="eclipse-list" id="dropdownList<%# Eval("Product_ID") %>">
+                                  <div><asp:HyperLink ID="HyperLink2" runat="server" NavigateUrl='<%# "viewMoreProduct.aspx?ProdID=" + Eval("Product_ID") %>' Text="View More" style="text-decoration:none; color: #6F6F6F"></asp:HyperLink></div>
+                                 <div><asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl='<%# "UpdateProduct.aspx?ProdID=" + Eval("Product_ID") %>' Text="Update" style="text-decoration:none; color: #6F6F6F"></asp:HyperLink></div>
                                <div onclick="showDeleteModal(<%# Eval("Product_ID") %>);">Delete</div>
 
-                           </div>
-
-                       </td>
+                              </div>
+                        </td>
 
                    </tr>
 

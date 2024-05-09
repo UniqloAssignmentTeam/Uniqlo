@@ -12,6 +12,7 @@ using static Uniqlo.AdminPages.UpdateProduct;
 using static Uniqlo.AdminPages.AddProduct;
 using Uniqlo.AdminPages.AdminStaff;
 using System.Collections;
+using static Uniqlo.Quantity;
 
 namespace Uniqlo.AdminPages
 {
@@ -117,6 +118,7 @@ namespace Uniqlo.AdminPages
                 }
 
                 dbContext.SaveChanges();
+                Response.Redirect(Request.RawUrl);
             }
         }
 
@@ -219,7 +221,7 @@ namespace Uniqlo.AdminPages
                     }
                 }
                 ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", "alert('Product and details update successfully!');", true);
-                Response.Redirect("~/AdminPages/AdminProduct/ProductHome.aspx");
+                Response.Redirect(Request.RawUrl);
             }
         }
 

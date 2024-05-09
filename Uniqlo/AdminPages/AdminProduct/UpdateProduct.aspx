@@ -121,7 +121,7 @@
                                             </td>
                                             <td style="width: 60%;">
                                                 <div style="display:flex; justify-content:right;">
-                                                    <asp:LinkButton ID="btnDelete" runat="server" Text="Delete" CssClass="addColor-buttons" CommandArgument='<%# Eval("FirstImageId") %>' OnCommand="btnDelete_Click" />
+                                                    <asp:LinkButton ID="btnDelete" runat="server" Text="Delete" class="addColor-button" CommandArgument='<%# Eval("FirstImageId") %>' OnCommand="btnDelete_Click" />
                                                 </div>
                                             </td>
                                         </tr>

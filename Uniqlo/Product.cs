@@ -48,6 +48,8 @@ namespace Uniqlo
             public DbSet<Discount> Discount { get; set; }
             public DbSet<OrderList> OrderList { get; set; }
 
+            public DbSet<WishlistItem> WishlistItems { get; set; }
+
         }
     }
 }
