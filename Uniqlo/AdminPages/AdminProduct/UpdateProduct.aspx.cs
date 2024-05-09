@@ -181,7 +181,7 @@ namespace Uniqlo.AdminPages
                                     byte[] imageBytes = Convert.FromBase64String(base64Image);
                                     Image newImage = new Image
                                     {
-                                        ImagePath = imageBytes
+                                        ProductImage = imageBytes
                                     };
                                     dbContext.Image.Add(newImage);
                                     dbContext.SaveChanges();
