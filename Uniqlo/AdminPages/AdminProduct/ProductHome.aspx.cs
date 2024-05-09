@@ -28,34 +28,30 @@ namespace Uniqlo.AdminPages.AdminProduct
 
         protected void btnRemoveProduct_Click(object sender, EventArgs e)
         {
-            int prodId = int.Parse(hiddenProductId.Value); 
+            int prodId = int.Parse(hiddenProductId.Value);
 
             using (var db = new ProductDbContext())
             {
                 var product = db.Product.Find(prodId);
                 if (product != null)
                 {
-                    var discounts = db.Discount.Where(d => d.Product_ID == prodId).ToList();
-                    db.Discount.RemoveRange(discounts);
+                    product.IsDeleted = Convert.ToBoolean(1);
+                    
 
-                    var quantities = db.Quantity.Where(q => q.Product_ID == prodId).ToList();
-                    foreach (var quantity in quantities)
+                    var discounts = db.Discount.Where(d => d.Product_ID == prodId).ToList();
+                    foreach (var discount in discounts)
                     {
-                        var image = db.Image.Find(quantity.Image_ID);
-                        if (image != null)
-                        {
-                            db.Image.Remove(image); 
-                        }
-                        db.Quantity.Remove(quantity); 
+                        discount.Status = "Inactive";
                     }
 
-                    db.Product.Remove(product);
                     db.SaveChanges();
 
-                    Response.Redirect(Request.RawUrl); 
+                    // Redirect to refresh the page and reflect changes
+                    Response.Redirect(Request.RawUrl);
                 }
             }
         }
+
 
 
 

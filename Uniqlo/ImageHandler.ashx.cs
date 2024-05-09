@@ -36,7 +36,7 @@ namespace Uniqlo
             using (var context = new ImageDbContext())
             {
                 var image = context.Image.FirstOrDefault(i => i.Image_ID == imageId);
-                return image?.ImagePath;
+                return image?.ProductImage;
             }
         }
 
