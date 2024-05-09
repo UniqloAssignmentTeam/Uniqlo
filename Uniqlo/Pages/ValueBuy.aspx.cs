@@ -59,6 +59,35 @@ namespace Uniqlo.Pages
                 dlValueBuy.DataBind();
             }
         }
+     
+        protected void genderSortDDL_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            using (var context = new ProductDbContext())
+            {
+                string selectedGender = genderSortDDL.SelectedValue;
+                var today = DateTime.Now;
+
+                var productsQuery = from p in context.Product
+                                    join d in context.Discount on p.Product_ID equals d.Product_ID
+                                    where d.Status == "Active" && d.Start_Date <= today && d.End_Date >= today
+                                    join q in context.Quantity on p.Product_ID equals q.Product_ID
+                                    join img in context.Image on q.Image_ID equals img.Image_ID
+                                    where p.Category.Gender == selectedGender || string.IsNullOrEmpty(selectedGender)
+                                    select new
+                                    {
+                                        Product_Name = p.Product_Name,
+                                        Description = p.Description,
+                                        Price = p.Price,
+                                        Discount_Amount = d.Discount_Amount,
+                                        Image_ID = img.Image_ID,
+                                        // Include additional fields as needed
+                                    };
+
+                dlValueBuy.DataSource = productsQuery.Distinct().ToList();
+                dlValueBuy.DataBind();
+            }
+        }
+
         public string GenerateStars(double rating)
         {
             var fullStars = (int)rating; // Number of full stars

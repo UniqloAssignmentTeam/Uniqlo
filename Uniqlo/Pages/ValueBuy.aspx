@@ -31,7 +31,7 @@
                     <div style="display: flex;">
 
                         <div class="dropdown-container" style="margin-right: 15px;">
-                            <asp:DropDownList ID="genderSortDDL" runat="server" CssClass="dropdown-display">
+                            <asp:DropDownList ID="genderSortDDL" runat="server" AutoPostBack="true" OnSelectedIndexChanged="genderSortDDL_SelectedIndexChanged" CssClass="dropdown-display">
                                 <asp:ListItem>Gender</asp:ListItem>
                                 <asp:ListItem Value="M">Men</asp:ListItem>
                                 <asp:ListItem Value="F">Women</asp:ListItem>
