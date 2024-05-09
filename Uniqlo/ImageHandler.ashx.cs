@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using static Uniqlo.Image;
 using static Uniqlo.Product;
+using static Uniqlo.Quantity;
 
 namespace Uniqlo
 {
@@ -36,7 +37,7 @@ namespace Uniqlo
             using (var context = new ImageDbContext())
             {
                 var image = context.Image.FirstOrDefault(i => i.Image_ID == imageId);
-                return image?.ImagePath;
+                return image?.ProductImage;
             }
         }
 

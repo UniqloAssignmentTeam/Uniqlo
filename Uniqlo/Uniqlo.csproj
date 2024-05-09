@@ -236,12 +236,10 @@
     <Content Include="Pages\EditProfile.aspx" />
     <Content Include="Pages\ForgotPassword.aspx" />
     <Content Include="Pages\Home.aspx" />
-    <Content Include="Pages\Categories\Men\Bottoms.aspx" />
     <Content Include="Pages\Categories\Men\Main.aspx" />
-    <Content Include="Pages\Categories\Men\Tops.aspx" />
-    <Content Include="Pages\Categories\Women\Bottoms.aspx" />
+    <Content Include="Pages\Categories\Men\Products.aspx" />
     <Content Include="Pages\Categories\Women\Main.aspx" />
-    <Content Include="Pages\Categories\Women\Tops.aspx" />
+    <Content Include="Pages\Categories\Women\Products.aspx" />
     <Content Include="Pages\Invoice.aspx" />
     <Content Include="Pages\Login.aspx" />
     <Content Include="Pages\Logout.aspx" />
@@ -412,9 +410,6 @@
     <Compile Include="Customer.cs">
       <DependentUpon>UniqloAdo.tt</DependentUpon>
     </Compile>
-    <Compile Include="C__MigrationHistory.cs">
-      <DependentUpon>UniqloAdo.tt</DependentUpon>
-    </Compile>
     <Compile Include="Delivery.cs">
       <DependentUpon>UniqloAdo.tt</DependentUpon>
     </Compile>
@@ -506,13 +501,6 @@
     <Compile Include="Pages\Home.aspx.designer.cs">
       <DependentUpon>Home.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Categories\Men\Bottoms.aspx.cs">
-      <DependentUpon>Bottoms.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Pages\Categories\Men\Bottoms.aspx.designer.cs">
-      <DependentUpon>Bottoms.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Pages\Categories\Men\Main.aspx.cs">
       <DependentUpon>Main.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -520,19 +508,12 @@
     <Compile Include="Pages\Categories\Men\Main.aspx.designer.cs">
       <DependentUpon>Main.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Categories\Men\Tops.aspx.cs">
-      <DependentUpon>Tops.aspx</DependentUpon>
+    <Compile Include="Pages\Categories\Men\Products.aspx.cs">
+      <DependentUpon>Products.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Pages\Categories\Men\Tops.aspx.designer.cs">
-      <DependentUpon>Tops.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\Categories\Women\Bottoms.aspx.cs">
-      <DependentUpon>Bottoms.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Pages\Categories\Women\Bottoms.aspx.designer.cs">
-      <DependentUpon>Bottoms.aspx</DependentUpon>
+    <Compile Include="Pages\Categories\Men\Products.aspx.designer.cs">
+      <DependentUpon>Products.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Categories\Women\Main.aspx.cs">
       <DependentUpon>Main.aspx</DependentUpon>
@@ -541,12 +522,12 @@
     <Compile Include="Pages\Categories\Women\Main.aspx.designer.cs">
       <DependentUpon>Main.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Categories\Women\Tops.aspx.cs">
-      <DependentUpon>Tops.aspx</DependentUpon>
+    <Compile Include="Pages\Categories\Women\Products.aspx.cs">
+      <DependentUpon>Products.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Pages\Categories\Women\Tops.aspx.designer.cs">
-      <DependentUpon>Tops.aspx</DependentUpon>
+    <Compile Include="Pages\Categories\Women\Products.aspx.designer.cs">
+      <DependentUpon>Products.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Invoice.aspx.cs">
       <DependentUpon>Invoice.aspx</DependentUpon>

@@ -15,16 +15,16 @@ namespace Uniqlo
     using System.Data.Entity;
     public partial class Discount
     {
-        [Key]
         public int Discount_ID { get; set; }
         public double Discount_Amount { get; set; }
         public string Status { get; set; }
         public System.DateTime Start_Date { get; set; }
         public System.DateTime End_Date { get; set; }
         public int Product_ID { get; set; }
-
+    
         public virtual Product Product { get; set; }
     }
+
     public class DiscountDbContext : DbContext
     {
         public DiscountDbContext() : base("name=UniqloEntities") // Ensure this matches your connection string in Web.config

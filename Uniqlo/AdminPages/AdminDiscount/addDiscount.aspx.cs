@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Uniqlo.AdminPages.AdminDiscount;
+using static Uniqlo.Discount;
 
 namespace Uniqlo.AdminPages
 {

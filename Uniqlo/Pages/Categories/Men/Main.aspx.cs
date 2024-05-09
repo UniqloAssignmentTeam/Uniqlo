@@ -44,7 +44,7 @@ namespace Uniqlo.Pages.Categories.Men
                                                        Description = p.Description,
                                                        Price = p.Price,
                                                        DiscountAmount = d.Discount_Amount,
-                                                       ImagePath = img.ImagePath,
+                                                       ImagePath = img.ProductImage,
                                                        AverageRating = (from q in p.Quantities
                                                                         from ol in q.OrderLists
                                                                         from r in ol.Reviews
