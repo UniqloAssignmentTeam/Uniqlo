@@ -13,6 +13,7 @@ DROP TABLE Staff;
 DROP TABLE Customer;
 DROP TABLE Category;
 
+
 CREATE TABLE Category(
 	Category_ID INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
 	Name VARCHAR(30) NOT NULL,
@@ -32,7 +33,7 @@ CREATE TABLE Customer(
 	Country VARCHAR(30), 
 	Email VARCHAR(50) NOT NULL,
 	Password VARCHAR(50) NOT NULL,
-	ProfileImage_Path VARCHAR(50)
+	ProfileImage VARBINARY(MAX)
 );
 
 CREATE TABLE Staff(
@@ -48,27 +49,27 @@ CREATE TABLE Staff(
 
 CREATE TABLE Shipping_Address(
 	Address_ID INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
-	Address VARCHAR(70),
-	State VARCHAR(50),
-	City VARCHAR(50),
-	Postcode INT,
-	Country VARCHAR(50)
+	Address VARCHAR(70)  NOT NULL,
+	State VARCHAR(50) NOT NULL,
+	City VARCHAR(50) NOT NULL,
+	Postcode INT NOT NULL,
+	Country VARCHAR(50) NOT NULL
 );
 
 CREATE TABLE Product(
 	Product_ID INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
-	Category_ID INT,
-	Product_Name VARCHAR(150),
-	Description VARCHAR(300),
-	Price FLOAT,
+	Category_ID INT NOT NULL,
+	Product_Name VARCHAR(150) NOT NULL,
+	Description VARCHAR(300) NOT NULL,
+	Price FLOAT NOT NULL,
+	IsDeleted BIT NOT NULL,
 	FOREIGN KEY (Category_ID) REFERENCES Category(Category_ID)
-
 );
 
 CREATE TABLE Discount(
 	Discount_ID INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
 	Discount_Amount FLOAT NOT NULL,
-	Status VARCHAR(20),
+	Status VARCHAR(20) NOT NULL,
 	Start_Date date NOT NULL,
 	End_Date date NOT NULL,
 	Product_ID INT NOT NULL,
@@ -77,16 +78,16 @@ CREATE TABLE Discount(
 
 CREATE TABLE Image(
 	Image_ID INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
-	ImagePath VARCHAR(100),
+	ProductImage VARBINARY(MAX) NOT NULL
 );
 
 CREATE TABLE Quantity(
 	Quantity_ID INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
 	Product_ID INT NOT NULL,
 	Image_ID INT NOT NULL,
-	Color VARCHAR(30),
-	Qty INT,
-	Size VARCHAR(8),
+	Color VARCHAR(30) NOT NULL,
+	Qty INT NOT NULL,
+	Size VARCHAR(8) NOT NULL,
 	FOREIGN KEY (Product_ID) REFERENCES Product(Product_ID),
 	FOREIGN KEY (Image_ID) REFERENCES Image(Image_ID)
 );
@@ -96,9 +97,9 @@ CREATE TABLE Quantity(
 
 CREATE TABLE WishlistItem(
 	WishlistItem_ID INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
-	Product_ID INT NOT NULL,
+	Quantity_ID INT NOT NULL,
 	Customer_ID INT NOT NULL,
-	FOREIGN KEY (Product_ID) REFERENCES Product(Product_ID),
+	FOREIGN KEY (Quantity_ID) REFERENCES Quantity(Quantity_ID),
 	FOREIGN KEY (Customer_ID) REFERENCES Customer(Customer_ID)
 
 	);
@@ -106,7 +107,7 @@ CREATE TABLE WishlistItem(
 CREATE TABLE Orders(
 	Order_ID INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
 	Customer_ID INT NOT NULL,
-	Subtotal FLOAT,
+	Subtotal FLOAT NOT NULL,
 	FOREIGN KEY (Customer_ID) REFERENCES Customer(Customer_ID)
 	);
 
@@ -114,8 +115,8 @@ CREATE TABLE OrderList(
 	OrderList_ID INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
 	Quantity_ID INT NOT NULL,
 	Order_ID INT NOT NULL,
-	Quantity INT,
-	Item_Price FLOAT,
+	Qty INT NOT NULL,
+	Item_Price FLOAT NOT NULL,
 	FOREIGN KEY (Quantity_ID) REFERENCES Quantity(Quantity_ID),
 	FOREIGN KEY (Order_ID) REFERENCES Orders(Order_ID)
 	);
@@ -123,9 +124,9 @@ CREATE TABLE OrderList(
 CREATE TABLE Review(
 	Review_ID INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
 	OrderList_ID INT NOT NULL,
-	Rating INT,
-	Review varchar(200),
-	Date_Submitted DATE,
+	Rating INT NOT NULL,
+	Review varchar(200) NOT NULL,
+	Date_Submitted DATE NOT NULL,
 	FOREIGN KEY (OrderList_ID) REFERENCES OrderList(OrderList_ID)
 	);
 
@@ -133,19 +134,19 @@ CREATE TABLE Delivery(
 	Delivery_ID INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
 	Address_ID INT NOT NULL,
 	Delivery_Note VARCHAR(300),
-	Delivery_Status VARCHAR(50),
+	Delivery_Status VARCHAR(50) NOT NULL,
 	FOREIGN KEY (Address_ID) REFERENCES Shipping_Address(Address_ID)
 	);
 
 CREATE TABLE Payment(
 	Payment_ID INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
-	Delivery_ID INT, 
+	Delivery_ID INT NOT NULL, 
 	Order_ID INT NOT NULL,
-	Total_Payment Float,
-	Shipping_Amount FLOAT,
-	Payment_Method VARCHAR(20),
-	Payment_Status VARCHAR(10),
-	Payment_DateTime DATETIME,
+	Total_Payment Float NOT NULL,
+	Shipping_Amount FLOAT NOT NULL,
+	Payment_Method VARCHAR(20) NOT NULL,
+	Payment_Status VARCHAR(10) NOT NULL,
+	Payment_DateTime DATETIME NOT NULL,
 	FOREIGN KEY (Delivery_ID) REFERENCES Delivery(Delivery_ID),
 	FOREIGN KEY (Order_ID) REFERENCES Orders(Order_ID)
 	);
