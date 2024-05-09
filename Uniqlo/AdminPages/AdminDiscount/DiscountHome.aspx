@@ -144,36 +144,95 @@
 
         <div class="table">
             <!--Header-->
-            <div class="row">
-                <div class="col productid">Discount ID</div>
-                <div class="col name">Product Name</div>
-                <div class="col category">Amount</div>
-                <div class="col price">Status</div>
-                <div class="col gender">Start Date</div>
-                <div class="col category">End Date</div>
-                <div class="col eclipse-container">
-                    <asp:Button ID="Button1" runat="server" Text="Button" Visible="False" />
-                </div>
-            </div>
+          
             <!--Product 1-->
             <div class="row">
-                <div class="col productid">1</div>
-                <div class="col name">AIRism Cotton Jersey Short Sleeve Skipper Polo Shirt</div>
-                <div class="col wear">10.00</div>
-                <div class="col price">Active</div>
-                <div class="col gender">2024-04-01</div>
-                <div class="col category">2024-04-30</div>
-                <div class="col eclipse-container" onclick="toggleDropdown('dropdownList3', 'dropdownDisplay3')">
-                    <div class="eclipse-display" id="dropdownDisplay3" style="border:none;"><i class="fa fa-ellipsis-v" aria-hidden="true" style="color:#6F6F6F;"></i></div>
-                    <div class="eclipse-list" id="dropdownList3">
-                        <a href="UpdateDiscount.aspx" style="text-decoration:none; color:#6F6F6F;">
-                            <div>Update</div>
-                        </a>
-                        <div onclick="document.getElementById('id01').style.display='block'">Delete</div>
-                    </div>
-                </div>
+                
             </div>
         </div>
+
+
+        
+
+
+                             <asp:Repeater ID="staffRepeater" runat="server" ViewStateMode="Disabled" >
+
+                     <HeaderTemplate>
+                          <table style="width:100%" class="table">
+     <tr class="row">
+        
+
+        <td class="col discountId">Discount ID</td>
+         <td class="col name">Product Name</td>
+         <td class="col price">Amount</td>
+         <td class="col wear">Status</td>
+         <td class="col startDate">Start Date</td>
+         <td class="col endDate">End Date</td>
+       <td class="col eclipse-display">
+    <asp:Button ID="Button2" runat="server" Text="Button" Visible="False" />
+ </div>
+
+     </tr>
+     
+                     </HeaderTemplate>
+
+                     <ItemTemplate>
+
+                         <tr class="row">
+                            
+ <td class="col discountId"><asp:Label ID="discountId" runat="server" Text='<%# Eval("Discount_ID") %>'></asp:Label></td>
+<td class="col name"><asp:Label ID="productName" runat="server" Text='<%# Eval("Name") %>'></asp:Label></td>
+<td class="col price"><asp:Label ID="price" runat="server" Text='<%# Eval("Role") %>'></asp:Label></td>
+<td class="col wear"><asp:Label ID="wear" runat="server" Text='<%# Eval("Gender") %>'></asp:Label></td>
+<td class="col startDate"><asp:Label ID="startDate" runat="server" Text='<%# Eval("Email") %>'></asp:Label></td>
+<td class="col endDate"><asp:Label ID="endDate" runat="server" Text='<%# Eval("Contact_No") %>'></asp:Label></td>
+
+
+<td class="col eclipse-container" onclick="toggleDropdown('dropdownList<%# Eval("Staff_ID") %>', 'dropdownDisplay<%# Eval("Staff_ID") %>')">   
+      <div class="eclipse-display" id="dropdownDisplay<%# Eval("Staff_ID") %>" style="border:none;"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></div>
+      <div class="eclipse-list" id="dropdownList<%# Eval("Staff_ID") %>">
+
+         <div> <asp:HyperLink ID="updateStaff" runat="server" NavigateUrl='<%# "UpdateStaff.aspx?StaffID=" + Eval("Staff_ID") %>' Text="Update"></asp:HyperLink></div>
+       <div onclick="showDeleteModal(<%# Eval("Staff_ID") %>);">Delete</div>
+
+      </div>
+
+</td>
+                            
+                         </tr>
+
+
+
+
+
+                     </ItemTemplate>  
+
+                    <FooterTemplate>
+                            </table>
+                    </FooterTemplate>
+
+
+
+                    
+
+
+
+
+                 </asp:Repeater>
+
+     
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

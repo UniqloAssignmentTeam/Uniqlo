@@ -85,7 +85,7 @@ CREATE TABLE Quantity(
 	Product_ID INT NOT NULL,
 	Image_ID INT NOT NULL,
 	Color VARCHAR(30),
-	Quantity INT,
+	Qty INT,
 	Size VARCHAR(8),
 	FOREIGN KEY (Product_ID) REFERENCES Product(Product_ID),
 	FOREIGN KEY (Image_ID) REFERENCES Image(Image_ID)
@@ -112,11 +112,11 @@ CREATE TABLE Orders(
 
 CREATE TABLE OrderList(
 	OrderList_ID INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
-	Product_ID INT NOT NULL,
+	Quantity_ID INT NOT NULL,
 	Order_ID INT NOT NULL,
 	Quantity INT,
 	Item_Price FLOAT,
-	FOREIGN KEY (Product_ID) REFERENCES Product(Product_ID),
+	FOREIGN KEY (Quantity_ID) REFERENCES Quantity(Quantity_ID),
 	FOREIGN KEY (Order_ID) REFERENCES Orders(Order_ID)
 	);
 
@@ -139,7 +139,7 @@ CREATE TABLE Delivery(
 
 CREATE TABLE Payment(
 	Payment_ID INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
-	Delivery_ID INT,
+	Delivery_ID INT, 
 	Order_ID INT NOT NULL,
 	Total_Payment Float,
 	Shipping_Amount FLOAT,

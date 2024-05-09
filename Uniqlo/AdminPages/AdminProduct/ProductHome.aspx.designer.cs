@@ -7,11 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Uniqlo.AdminPages
+namespace Uniqlo.AdminPages.AdminProduct
 {
 
 
-    public partial class Product
+    public partial class ProductHome
     {
 
         /// <summary>

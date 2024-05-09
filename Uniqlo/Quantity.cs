@@ -14,20 +14,14 @@ namespace Uniqlo
     
     public partial class Quantity
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Quantity()
-        {
-            this.Images = new HashSet<Image>();
-        }
-    
         public int Quantity_ID { get; set; }
         public int Product_ID { get; set; }
+        public int Image_ID { get; set; }
         public string Color { get; set; }
         public Nullable<int> Quantity1 { get; set; }
         public string Size { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Image> Images { get; set; }
+        public virtual Image Image { get; set; }
         public virtual Product Product { get; set; }
     }
 }
