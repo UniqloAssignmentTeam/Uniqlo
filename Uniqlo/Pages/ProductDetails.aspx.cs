@@ -13,7 +13,7 @@ namespace Uniqlo.Pages
         {
             //dummy session
             Product selectedProduct = new Product();
-            Session[Product] = ;
+            //Session[Product] = ;
 
         }
     }
