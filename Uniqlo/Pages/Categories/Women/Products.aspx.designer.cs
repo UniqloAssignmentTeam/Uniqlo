@@ -11,8 +11,17 @@ namespace Uniqlo.Pages.Categories.Women
 {
 
 
-    public partial class Bottoms
+    public partial class Tops
     {
+
+        /// <summary>
+        /// dataList control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DataList dataList;
 
         /// <summary>
         /// RadioButtonList2 control.

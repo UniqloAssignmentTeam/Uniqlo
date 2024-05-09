@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using static Uniqlo.Image;
 using static Uniqlo.Product;
+using static Uniqlo.Quantity;
 
 namespace Uniqlo
 {
