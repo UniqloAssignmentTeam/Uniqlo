@@ -11,6 +11,9 @@ namespace Uniqlo.Pages
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            //dummy session
+            Product selectedProduct = new Product();
+            Session[Product] = ;
 
         }
     }
