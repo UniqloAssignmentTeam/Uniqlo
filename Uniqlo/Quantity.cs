@@ -11,7 +11,9 @@ namespace Uniqlo
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.Data.Entity;
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Quantity
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -25,7 +27,7 @@ namespace Uniqlo
         public int Product_ID { get; set; }
         public int Image_ID { get; set; }
         public string Color { get; set; }
-        public Nullable<int> Qty { get; set; }
+        public int Qty { get; set; }
         public string Size { get; set; }
     
         public virtual Image Image { get; set; }
@@ -34,5 +36,17 @@ namespace Uniqlo
         public virtual Product Product { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<WishlistItem> WishlistItems { get; set; }
+
+        public class ImageDbContext : DbContext
+        {
+            public ImageDbContext() : base("name=UniqloEntities") // Ensure this matches your connection string in Web.config
+            {
+            }
+
+            public DbSet<Image> Image { get; set; } // Make sure 'Staff' is properly defined as a class
+            public DbSet<Quantity> Quantities { get; set; }
+            public DbSet<Product> Products { get; set; }
+
+        }
     }
 }

@@ -23,11 +23,11 @@ namespace Uniqlo
         }
     
         public int Product_ID { get; set; }
-        public Nullable<int> Category_ID { get; set; }
+        public int Category_ID { get; set; }
         public string Product_Name { get; set; }
         public string Description { get; set; }
-        public Nullable<double> Price { get; set; }
-        public Nullable<bool> IsDeleted { get; set; }
+        public double Price { get; set; }
+        public bool IsDeleted { get; set; }
     
         public virtual Category Category { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

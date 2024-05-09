@@ -59,11 +59,13 @@ namespace Uniqlo.AdminPages.AdminProduct
         {
             using (var db = new ProductDbContext())
             {
+                var productList = db.Product.Include(p => p.Category).Where(p => !p.IsDeleted).ToList();
                 var productList = db.Product.Include(p => p.Category).ToList();
 
                 prodRepeater.DataSource = productList;
                 prodRepeater.DataBind();
             }
         }
+
     }
 }

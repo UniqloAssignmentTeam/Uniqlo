@@ -15,13 +15,13 @@ namespace Uniqlo
     public partial class Payment
     {
         public int Payment_ID { get; set; }
-        public Nullable<int> Delivery_ID { get; set; }
+        public int Delivery_ID { get; set; }
         public int Order_ID { get; set; }
-        public Nullable<double> Total_Payment { get; set; }
-        public Nullable<double> Shipping_Amount { get; set; }
+        public double Total_Payment { get; set; }
+        public double Shipping_Amount { get; set; }
         public string Payment_Method { get; set; }
         public string Payment_Status { get; set; }
-        public Nullable<System.DateTime> Payment_DateTime { get; set; }
+        public System.DateTime Payment_DateTime { get; set; }
     
         public virtual Delivery Delivery { get; set; }
         public virtual Order Order { get; set; }

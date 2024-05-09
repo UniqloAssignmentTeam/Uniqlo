@@ -238,9 +238,9 @@
    
    <footer>
        <script type="text/javascript">
-           function showDeleteModal(staffId) {
-               document.getElementById('<%= hiddenProductId.ClientID %>').value = staffId;  // Set the staff ID to hidden field
-               document.getElementById('id01').style.display = 'block';  // Show the modal
+           function showDeleteModal(prodID) {
+               document.getElementById('<%= hiddenProductId.ClientID %>').value = prodID;  
+               document.getElementById('id01').style.display = 'block';  
            }
        </script>
        <script src="../../Javascript/Pagination.js"></script>

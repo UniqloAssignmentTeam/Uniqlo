@@ -23,13 +23,12 @@ namespace Uniqlo
         public string Password { get; set; }
         public string Role { get; set; }
     }
-
     public class StaffDbContext : DbContext
     {
-        public StaffDbContext() : base("name=UniqloEntities") // Ensure this matches your connection string in Web.config
+        public StaffDbContext() : base("name=UniqloEntities") 
         {
         }
 
-        public DbSet<Staff> Staff { get; set; } // Make sure 'Staff' is properly defined as a class
+        public DbSet<Staff> Staff { get; set; }
     }
 }

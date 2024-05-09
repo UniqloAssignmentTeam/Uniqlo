@@ -23,8 +23,8 @@ namespace Uniqlo
         public int OrderList_ID { get; set; }
         public int Quantity_ID { get; set; }
         public int Order_ID { get; set; }
-        public Nullable<int> Qty { get; set; }
-        public Nullable<double> Item_Price { get; set; }
+        public int Qty { get; set; }
+        public double Item_Price { get; set; }
     
         public virtual Order Order { get; set; }
         public virtual Quantity Quantity { get; set; }
