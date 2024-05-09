@@ -147,20 +147,22 @@
                                     </table>
                             </ItemTemplate>
                         </asp:DataList>
-                        <div class="button-container">
-                            <div class="cancel-div">
-                                <asp:Button ID="cancelButton" runat="server" Text="Cancel" CssClass="cancel-button" PostBackUrl="~/AdminPages/AdminProduct/ProductHome.aspx" />
-                            </div>
-                            <div class="continue-div">
-                                <asp:Button ID="addButton" runat="server" Text="Update" CssClass="continue-button" OnClick="updateButton_Click" />
-                            </div>
-                        </div>
                     </table>
                 </ItemTemplate>
             </asp:FormView>
+            
 
             <asp:Panel ID="colorTablesContainer" runat="server" ClientIDMode="Static" CssClass="colorTablesContainer"></asp:Panel>
             <asp:HiddenField ID="HiddenFieldData" runat="server" ClientIDMode="Static"/>
+
+            <div class="button-container">
+                <div class="cancel-div">
+                    <asp:Button ID="cancelButton" runat="server" Text="Cancel" CssClass="cancel-button" PostBackUrl="~/AdminPages/AdminProduct/ProductHome.aspx" />
+                </div>
+                <div class="continue-div">
+                    <asp:Button ID="addButton" runat="server" Text="Update" CssClass="continue-button" OnClick="updateButton_Click" />
+                </div>
+            </div>
         </div>
 
 

@@ -5,16 +5,6 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
       <Schema Namespace="UniqloModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="__MigrationHistory">
-          <Key>
-            <PropertyRef Name="MigrationId" />
-            <PropertyRef Name="ContextKey" />
-          </Key>
-          <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
-          <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
-          <Property Name="Model" Type="varbinary(max)" Nullable="false" />
-          <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
-        </EntityType>
         <EntityType Name="Category">
           <Key>
             <PropertyRef Name="Category_ID" />
@@ -38,7 +28,7 @@
           <Property Name="Country" Type="varchar" MaxLength="30" />
           <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="ProfileImage_Path" Type="varchar" MaxLength="50" />
+          <Property Name="ProfileImage" Type="varbinary(max)" />
         </EntityType>
         <EntityType Name="Delivery">
           <Key>
@@ -65,7 +55,7 @@
             <PropertyRef Name="Image_ID" />
           </Key>
           <Property Name="Image_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="ImagePath" Type="varbinary(max)" />
+          <Property Name="ProductImage" Type="varbinary(max)" />
         </EntityType>
         <EntityType Name="OrderList">
           <Key>
@@ -107,6 +97,7 @@
           <Property Name="Product_Name" Type="varchar" MaxLength="150" />
           <Property Name="Description" Type="varchar" MaxLength="300" />
           <Property Name="Price" Type="float" />
+          <Property Name="IsDeleted" Type="bit" />
         </EntityType>
         <EntityType Name="Quantity">
           <Key>
@@ -157,10 +148,10 @@
             <PropertyRef Name="WishlistItem_ID" />
           </Key>
           <Property Name="WishlistItem_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Product_ID" Type="int" Nullable="false" />
+          <Property Name="Quantity_ID" Type="int" Nullable="false" />
           <Property Name="Customer_ID" Type="int" Nullable="false" />
         </EntityType>
-        <Association Name="FK__Delivery__Addres__39788055">
+        <Association Name="FK__Delivery__Addres__33F4B129">
           <End Role="Shipping_Address" Type="Self.Shipping_Address" Multiplicity="1" />
           <End Role="Delivery" Type="Self.Delivery" Multiplicity="*" />
           <ReferentialConstraint>
@@ -172,7 +163,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Discount__Produc__23893F36">
+        <Association Name="FK__Discount__Produc__1E05700A">
           <End Role="Product" Type="Self.Product" Multiplicity="1" />
           <End Role="Discount" Type="Self.Discount" Multiplicity="*" />
           <ReferentialConstraint>
@@ -184,7 +175,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__OrderList__Order__33BFA6FF">
+        <Association Name="FK__OrderList__Order__2E3BD7D3">
           <End Role="Orders" Type="Self.Orders" Multiplicity="1" />
           <End Role="OrderList" Type="Self.OrderList" Multiplicity="*" />
           <ReferentialConstraint>
@@ -196,7 +187,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__OrderList__Quant__32CB82C6">
+        <Association Name="FK__OrderList__Quant__2D47B39A">
           <End Role="Quantity" Type="Self.Quantity" Multiplicity="1" />
           <End Role="OrderList" Type="Self.OrderList" Multiplicity="*" />
           <ReferentialConstraint>
@@ -208,7 +199,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Orders__Customer__2FEF161B">
+        <Association Name="FK__Orders__Customer__2A6B46EF">
           <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
           <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
           <ReferentialConstraint>
@@ -220,7 +211,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Payment__Deliver__3C54ED00">
+        <Association Name="FK__Payment__Deliver__36D11DD4">
           <End Role="Delivery" Type="Self.Delivery" Multiplicity="0..1" />
           <End Role="Payment" Type="Self.Payment" Multiplicity="*" />
           <ReferentialConstraint>
@@ -232,7 +223,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Payment__Order_I__3D491139">
+        <Association Name="FK__Payment__Order_I__37C5420D">
           <End Role="Orders" Type="Self.Orders" Multiplicity="1" />
           <End Role="Payment" Type="Self.Payment" Multiplicity="*" />
           <ReferentialConstraint>
@@ -244,7 +235,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Product__Categor__20ACD28B">
+        <Association Name="FK__Product__Categor__1B29035F">
           <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
           <End Role="Product" Type="Self.Product" Multiplicity="*" />
           <ReferentialConstraint>
@@ -256,7 +247,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Quantity__Image___2942188C">
+        <Association Name="FK__Quantity__Image___23BE4960">
           <End Role="Image" Type="Self.Image" Multiplicity="1" />
           <End Role="Quantity" Type="Self.Quantity" Multiplicity="*" />
           <ReferentialConstraint>
@@ -268,7 +259,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Quantity__Produc__284DF453">
+        <Association Name="FK__Quantity__Produc__22CA2527">
           <End Role="Product" Type="Self.Product" Multiplicity="1" />
           <End Role="Quantity" Type="Self.Quantity" Multiplicity="*" />
           <ReferentialConstraint>
@@ -280,7 +271,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Review__OrderLis__369C13AA">
+        <Association Name="FK__Review__OrderLis__3118447E">
           <End Role="OrderList" Type="Self.OrderList" Multiplicity="1" />
           <End Role="Review" Type="Self.Review" Multiplicity="*" />
           <ReferentialConstraint>
@@ -292,7 +283,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__WishlistI__Custo__2D12A970">
+        <Association Name="FK__WishlistI__Custo__278EDA44">
           <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
           <End Role="WishlistItem" Type="Self.WishlistItem" Multiplicity="*" />
           <ReferentialConstraint>
@@ -304,20 +295,19 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__WishlistI__Produ__2C1E8537">
-          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+        <Association Name="FK__WishlistI__Quant__269AB60B">
+          <End Role="Quantity" Type="Self.Quantity" Multiplicity="1" />
           <End Role="WishlistItem" Type="Self.WishlistItem" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Product">
-              <PropertyRef Name="Product_ID" />
+            <Principal Role="Quantity">
+              <PropertyRef Name="Quantity_ID" />
             </Principal>
             <Dependent Role="WishlistItem">
-              <PropertyRef Name="Product_ID" />
+              <PropertyRef Name="Quantity_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="UniqloModelStoreContainer">
-          <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Delivery" EntityType="Self.Delivery" Schema="dbo" store:Type="Tables" />
@@ -332,56 +322,56 @@
           <EntitySet Name="Shipping_Address" EntityType="Self.Shipping_Address" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Staff" EntityType="Self.Staff" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="WishlistItem" EntityType="Self.WishlistItem" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__Delivery__Addres__39788055" Association="Self.FK__Delivery__Addres__39788055">
+          <AssociationSet Name="FK__Delivery__Addres__33F4B129" Association="Self.FK__Delivery__Addres__33F4B129">
             <End Role="Shipping_Address" EntitySet="Shipping_Address" />
             <End Role="Delivery" EntitySet="Delivery" />
           </AssociationSet>
-          <AssociationSet Name="FK__Discount__Produc__23893F36" Association="Self.FK__Discount__Produc__23893F36">
+          <AssociationSet Name="FK__Discount__Produc__1E05700A" Association="Self.FK__Discount__Produc__1E05700A">
             <End Role="Product" EntitySet="Product" />
             <End Role="Discount" EntitySet="Discount" />
           </AssociationSet>
-          <AssociationSet Name="FK__OrderList__Order__33BFA6FF" Association="Self.FK__OrderList__Order__33BFA6FF">
+          <AssociationSet Name="FK__OrderList__Order__2E3BD7D3" Association="Self.FK__OrderList__Order__2E3BD7D3">
             <End Role="Orders" EntitySet="Orders" />
             <End Role="OrderList" EntitySet="OrderList" />
           </AssociationSet>
-          <AssociationSet Name="FK__OrderList__Quant__32CB82C6" Association="Self.FK__OrderList__Quant__32CB82C6">
+          <AssociationSet Name="FK__OrderList__Quant__2D47B39A" Association="Self.FK__OrderList__Quant__2D47B39A">
             <End Role="Quantity" EntitySet="Quantity" />
             <End Role="OrderList" EntitySet="OrderList" />
           </AssociationSet>
-          <AssociationSet Name="FK__Orders__Customer__2FEF161B" Association="Self.FK__Orders__Customer__2FEF161B">
+          <AssociationSet Name="FK__Orders__Customer__2A6B46EF" Association="Self.FK__Orders__Customer__2A6B46EF">
             <End Role="Customer" EntitySet="Customer" />
             <End Role="Orders" EntitySet="Orders" />
           </AssociationSet>
-          <AssociationSet Name="FK__Payment__Deliver__3C54ED00" Association="Self.FK__Payment__Deliver__3C54ED00">
+          <AssociationSet Name="FK__Payment__Deliver__36D11DD4" Association="Self.FK__Payment__Deliver__36D11DD4">
             <End Role="Delivery" EntitySet="Delivery" />
             <End Role="Payment" EntitySet="Payment" />
           </AssociationSet>
-          <AssociationSet Name="FK__Payment__Order_I__3D491139" Association="Self.FK__Payment__Order_I__3D491139">
+          <AssociationSet Name="FK__Payment__Order_I__37C5420D" Association="Self.FK__Payment__Order_I__37C5420D">
             <End Role="Orders" EntitySet="Orders" />
             <End Role="Payment" EntitySet="Payment" />
           </AssociationSet>
-          <AssociationSet Name="FK__Product__Categor__20ACD28B" Association="Self.FK__Product__Categor__20ACD28B">
+          <AssociationSet Name="FK__Product__Categor__1B29035F" Association="Self.FK__Product__Categor__1B29035F">
             <End Role="Category" EntitySet="Category" />
             <End Role="Product" EntitySet="Product" />
           </AssociationSet>
-          <AssociationSet Name="FK__Quantity__Image___2942188C" Association="Self.FK__Quantity__Image___2942188C">
+          <AssociationSet Name="FK__Quantity__Image___23BE4960" Association="Self.FK__Quantity__Image___23BE4960">
             <End Role="Image" EntitySet="Image" />
             <End Role="Quantity" EntitySet="Quantity" />
           </AssociationSet>
-          <AssociationSet Name="FK__Quantity__Produc__284DF453" Association="Self.FK__Quantity__Produc__284DF453">
+          <AssociationSet Name="FK__Quantity__Produc__22CA2527" Association="Self.FK__Quantity__Produc__22CA2527">
             <End Role="Product" EntitySet="Product" />
             <End Role="Quantity" EntitySet="Quantity" />
           </AssociationSet>
-          <AssociationSet Name="FK__Review__OrderLis__369C13AA" Association="Self.FK__Review__OrderLis__369C13AA">
+          <AssociationSet Name="FK__Review__OrderLis__3118447E" Association="Self.FK__Review__OrderLis__3118447E">
             <End Role="OrderList" EntitySet="OrderList" />
             <End Role="Review" EntitySet="Review" />
           </AssociationSet>
-          <AssociationSet Name="FK__WishlistI__Custo__2D12A970" Association="Self.FK__WishlistI__Custo__2D12A970">
+          <AssociationSet Name="FK__WishlistI__Custo__278EDA44" Association="Self.FK__WishlistI__Custo__278EDA44">
             <End Role="Customer" EntitySet="Customer" />
             <End Role="WishlistItem" EntitySet="WishlistItem" />
           </AssociationSet>
-          <AssociationSet Name="FK__WishlistI__Produ__2C1E8537" Association="Self.FK__WishlistI__Produ__2C1E8537">
-            <End Role="Product" EntitySet="Product" />
+          <AssociationSet Name="FK__WishlistI__Quant__269AB60B" Association="Self.FK__WishlistI__Quant__269AB60B">
+            <End Role="Quantity" EntitySet="Quantity" />
             <End Role="WishlistItem" EntitySet="WishlistItem" />
           </AssociationSet>
         </EntityContainer>
@@ -390,16 +380,6 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="UniqloModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="C__MigrationHistory">
-          <Key>
-            <PropertyRef Name="MigrationId" />
-            <PropertyRef Name="ContextKey" />
-          </Key>
-          <Property Name="MigrationId" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="ContextKey" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Model" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
-          <Property Name="ProductVersion" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
-        </EntityType>
         <EntityType Name="Category">
           <Key>
             <PropertyRef Name="Category_ID" />
@@ -407,7 +387,7 @@
           <Property Name="Category_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Gender" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Products" Relationship="Self.FK__Product__Categor__20ACD28B" FromRole="Category" ToRole="Product" />
+          <NavigationProperty Name="Products" Relationship="Self.FK__Product__Categor__1B29035F" FromRole="Category" ToRole="Product" />
         </EntityType>
         <EntityType Name="Customer">
           <Key>
@@ -424,9 +404,9 @@
           <Property Name="Country" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="ProfileImage_Path" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Orders" Relationship="Self.FK__Orders__Customer__2FEF161B" FromRole="Customer" ToRole="Orders" />
-          <NavigationProperty Name="WishlistItems" Relationship="Self.FK__WishlistI__Custo__2D12A970" FromRole="Customer" ToRole="WishlistItem" />
+          <Property Name="ProfileImage" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="Orders" Relationship="Self.FK__Orders__Customer__2A6B46EF" FromRole="Customer" ToRole="Orders" />
+          <NavigationProperty Name="WishlistItems" Relationship="Self.FK__WishlistI__Custo__278EDA44" FromRole="Customer" ToRole="WishlistItem" />
         </EntityType>
         <EntityType Name="Delivery">
           <Key>
@@ -436,8 +416,8 @@
           <Property Name="Address_ID" Type="Int32" Nullable="false" />
           <Property Name="Delivery_Note" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
           <Property Name="Delivery_Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Shipping_Address" Relationship="Self.FK__Delivery__Addres__39788055" FromRole="Delivery" ToRole="Shipping_Address" />
-          <NavigationProperty Name="Payments" Relationship="Self.FK__Payment__Deliver__3C54ED00" FromRole="Delivery" ToRole="Payment" />
+          <NavigationProperty Name="Shipping_Address" Relationship="Self.FK__Delivery__Addres__33F4B129" FromRole="Delivery" ToRole="Shipping_Address" />
+          <NavigationProperty Name="Payments" Relationship="Self.FK__Payment__Deliver__36D11DD4" FromRole="Delivery" ToRole="Payment" />
         </EntityType>
         <EntityType Name="Discount">
           <Key>
@@ -449,15 +429,15 @@
           <Property Name="Start_Date" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="End_Date" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="Product_ID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Product" Relationship="Self.FK__Discount__Produc__23893F36" FromRole="Discount" ToRole="Product" />
+          <NavigationProperty Name="Product" Relationship="Self.FK__Discount__Produc__1E05700A" FromRole="Discount" ToRole="Product" />
         </EntityType>
         <EntityType Name="Image">
           <Key>
             <PropertyRef Name="Image_ID" />
           </Key>
           <Property Name="Image_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ImagePath" Type="Binary" MaxLength="Max" FixedLength="false" />
-          <NavigationProperty Name="Quantities" Relationship="Self.FK__Quantity__Image___2942188C" FromRole="Image" ToRole="Quantity" />
+          <Property Name="ProductImage" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="Quantities" Relationship="Self.FK__Quantity__Image___23BE4960" FromRole="Image" ToRole="Quantity" />
         </EntityType>
         <EntityType Name="OrderList">
           <Key>
@@ -468,9 +448,9 @@
           <Property Name="Order_ID" Type="Int32" Nullable="false" />
           <Property Name="Qty" Type="Int32" />
           <Property Name="Item_Price" Type="Double" />
-          <NavigationProperty Name="Order" Relationship="Self.FK__OrderList__Order__33BFA6FF" FromRole="OrderList" ToRole="Orders" />
-          <NavigationProperty Name="Quantity" Relationship="Self.FK__OrderList__Quant__32CB82C6" FromRole="OrderList" ToRole="Quantity" />
-          <NavigationProperty Name="Reviews" Relationship="Self.FK__Review__OrderLis__369C13AA" FromRole="OrderList" ToRole="Review" />
+          <NavigationProperty Name="Order" Relationship="Self.FK__OrderList__Order__2E3BD7D3" FromRole="OrderList" ToRole="Orders" />
+          <NavigationProperty Name="Quantity" Relationship="Self.FK__OrderList__Quant__2D47B39A" FromRole="OrderList" ToRole="Quantity" />
+          <NavigationProperty Name="Reviews" Relationship="Self.FK__Review__OrderLis__3118447E" FromRole="OrderList" ToRole="Review" />
         </EntityType>
         <EntityType Name="Order">
           <Key>
@@ -479,9 +459,9 @@
           <Property Name="Order_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Customer_ID" Type="Int32" Nullable="false" />
           <Property Name="Subtotal" Type="Double" />
-          <NavigationProperty Name="Customer" Relationship="Self.FK__Orders__Customer__2FEF161B" FromRole="Orders" ToRole="Customer" />
-          <NavigationProperty Name="OrderLists" Relationship="Self.FK__OrderList__Order__33BFA6FF" FromRole="Orders" ToRole="OrderList" />
-          <NavigationProperty Name="Payments" Relationship="Self.FK__Payment__Order_I__3D491139" FromRole="Orders" ToRole="Payment" />
+          <NavigationProperty Name="Customer" Relationship="Self.FK__Orders__Customer__2A6B46EF" FromRole="Orders" ToRole="Customer" />
+          <NavigationProperty Name="OrderLists" Relationship="Self.FK__OrderList__Order__2E3BD7D3" FromRole="Orders" ToRole="OrderList" />
+          <NavigationProperty Name="Payments" Relationship="Self.FK__Payment__Order_I__37C5420D" FromRole="Orders" ToRole="Payment" />
         </EntityType>
         <EntityType Name="Payment">
           <Key>
@@ -495,8 +475,8 @@
           <Property Name="Payment_Method" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="Payment_Status" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="Payment_DateTime" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="Delivery" Relationship="Self.FK__Payment__Deliver__3C54ED00" FromRole="Payment" ToRole="Delivery" />
-          <NavigationProperty Name="Order" Relationship="Self.FK__Payment__Order_I__3D491139" FromRole="Payment" ToRole="Orders" />
+          <NavigationProperty Name="Delivery" Relationship="Self.FK__Payment__Deliver__36D11DD4" FromRole="Payment" ToRole="Delivery" />
+          <NavigationProperty Name="Order" Relationship="Self.FK__Payment__Order_I__37C5420D" FromRole="Payment" ToRole="Orders" />
         </EntityType>
         <EntityType Name="Product">
           <Key>
@@ -507,10 +487,10 @@
           <Property Name="Product_Name" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
           <Property Name="Description" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
           <Property Name="Price" Type="Double" />
-          <NavigationProperty Name="Category" Relationship="Self.FK__Product__Categor__20ACD28B" FromRole="Product" ToRole="Category" />
-          <NavigationProperty Name="Discounts" Relationship="Self.FK__Discount__Produc__23893F36" FromRole="Product" ToRole="Discount" />
-          <NavigationProperty Name="Quantities" Relationship="Self.FK__Quantity__Produc__284DF453" FromRole="Product" ToRole="Quantity" />
-          <NavigationProperty Name="WishlistItems" Relationship="Self.FK__WishlistI__Produ__2C1E8537" FromRole="Product" ToRole="WishlistItem" />
+          <Property Name="IsDeleted" Type="Boolean" />
+          <NavigationProperty Name="Category" Relationship="Self.FK__Product__Categor__1B29035F" FromRole="Product" ToRole="Category" />
+          <NavigationProperty Name="Discounts" Relationship="Self.FK__Discount__Produc__1E05700A" FromRole="Product" ToRole="Discount" />
+          <NavigationProperty Name="Quantities" Relationship="Self.FK__Quantity__Produc__22CA2527" FromRole="Product" ToRole="Quantity" />
         </EntityType>
         <EntityType Name="Quantity">
           <Key>
@@ -522,9 +502,10 @@
           <Property Name="Color" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="Qty" Type="Int32" />
           <Property Name="Size" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Image" Relationship="Self.FK__Quantity__Image___2942188C" FromRole="Quantity" ToRole="Image" />
-          <NavigationProperty Name="OrderLists" Relationship="Self.FK__OrderList__Quant__32CB82C6" FromRole="Quantity" ToRole="OrderList" />
-          <NavigationProperty Name="Product" Relationship="Self.FK__Quantity__Produc__284DF453" FromRole="Quantity" ToRole="Product" />
+          <NavigationProperty Name="Image" Relationship="Self.FK__Quantity__Image___23BE4960" FromRole="Quantity" ToRole="Image" />
+          <NavigationProperty Name="OrderLists" Relationship="Self.FK__OrderList__Quant__2D47B39A" FromRole="Quantity" ToRole="OrderList" />
+          <NavigationProperty Name="Product" Relationship="Self.FK__Quantity__Produc__22CA2527" FromRole="Quantity" ToRole="Product" />
+          <NavigationProperty Name="WishlistItems" Relationship="Self.FK__WishlistI__Quant__269AB60B" FromRole="Quantity" ToRole="WishlistItem" />
         </EntityType>
         <EntityType Name="Review">
           <Key>
@@ -535,7 +516,7 @@
           <Property Name="Rating" Type="Int32" />
           <Property Name="Review1" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="Date_Submitted" Type="DateTime" Precision="0" />
-          <NavigationProperty Name="OrderList" Relationship="Self.FK__Review__OrderLis__369C13AA" FromRole="Review" ToRole="OrderList" />
+          <NavigationProperty Name="OrderList" Relationship="Self.FK__Review__OrderLis__3118447E" FromRole="Review" ToRole="OrderList" />
         </EntityType>
         <EntityType Name="Shipping_Address">
           <Key>
@@ -547,7 +528,7 @@
           <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Postcode" Type="Int32" />
           <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Deliveries" Relationship="Self.FK__Delivery__Addres__39788055" FromRole="Shipping_Address" ToRole="Delivery" />
+          <NavigationProperty Name="Deliveries" Relationship="Self.FK__Delivery__Addres__33F4B129" FromRole="Shipping_Address" ToRole="Delivery" />
         </EntityType>
         <EntityType Name="Staff">
           <Key>
@@ -566,12 +547,12 @@
             <PropertyRef Name="WishlistItem_ID" />
           </Key>
           <Property Name="WishlistItem_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Product_ID" Type="Int32" Nullable="false" />
+          <Property Name="Quantity_ID" Type="Int32" Nullable="false" />
           <Property Name="Customer_ID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Customer" Relationship="Self.FK__WishlistI__Custo__2D12A970" FromRole="WishlistItem" ToRole="Customer" />
-          <NavigationProperty Name="Product" Relationship="Self.FK__WishlistI__Produ__2C1E8537" FromRole="WishlistItem" ToRole="Product" />
+          <NavigationProperty Name="Customer" Relationship="Self.FK__WishlistI__Custo__278EDA44" FromRole="WishlistItem" ToRole="Customer" />
+          <NavigationProperty Name="Quantity" Relationship="Self.FK__WishlistI__Quant__269AB60B" FromRole="WishlistItem" ToRole="Quantity" />
         </EntityType>
-        <Association Name="FK__Product__Categor__20ACD28B">
+        <Association Name="FK__Product__Categor__1B29035F">
           <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
           <End Role="Product" Type="Self.Product" Multiplicity="*" />
           <ReferentialConstraint>
@@ -583,7 +564,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Orders__Customer__2FEF161B">
+        <Association Name="FK__Orders__Customer__2A6B46EF">
           <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
           <End Role="Orders" Type="Self.Order" Multiplicity="*" />
           <ReferentialConstraint>
@@ -595,7 +576,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__WishlistI__Custo__2D12A970">
+        <Association Name="FK__WishlistI__Custo__278EDA44">
           <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
           <End Role="WishlistItem" Type="Self.WishlistItem" Multiplicity="*" />
           <ReferentialConstraint>
@@ -607,7 +588,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Delivery__Addres__39788055">
+        <Association Name="FK__Delivery__Addres__33F4B129">
           <End Role="Shipping_Address" Type="Self.Shipping_Address" Multiplicity="1" />
           <End Role="Delivery" Type="Self.Delivery" Multiplicity="*" />
           <ReferentialConstraint>
@@ -619,7 +600,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Payment__Deliver__3C54ED00">
+        <Association Name="FK__Payment__Deliver__36D11DD4">
           <End Role="Delivery" Type="Self.Delivery" Multiplicity="0..1" />
           <End Role="Payment" Type="Self.Payment" Multiplicity="*" />
           <ReferentialConstraint>
@@ -631,7 +612,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Discount__Produc__23893F36">
+        <Association Name="FK__Discount__Produc__1E05700A">
           <End Role="Product" Type="Self.Product" Multiplicity="1" />
           <End Role="Discount" Type="Self.Discount" Multiplicity="*" />
           <ReferentialConstraint>
@@ -643,7 +624,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Quantity__Image___2942188C">
+        <Association Name="FK__Quantity__Image___23BE4960">
           <End Role="Image" Type="Self.Image" Multiplicity="1" />
           <End Role="Quantity" Type="Self.Quantity" Multiplicity="*" />
           <ReferentialConstraint>
@@ -655,7 +636,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__OrderList__Order__33BFA6FF">
+        <Association Name="FK__OrderList__Order__2E3BD7D3">
           <End Role="Orders" Type="Self.Order" Multiplicity="1" />
           <End Role="OrderList" Type="Self.OrderList" Multiplicity="*" />
           <ReferentialConstraint>
@@ -667,7 +648,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__OrderList__Quant__32CB82C6">
+        <Association Name="FK__OrderList__Quant__2D47B39A">
           <End Role="Quantity" Type="Self.Quantity" Multiplicity="1" />
           <End Role="OrderList" Type="Self.OrderList" Multiplicity="*" />
           <ReferentialConstraint>
@@ -679,7 +660,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Review__OrderLis__369C13AA">
+        <Association Name="FK__Review__OrderLis__3118447E">
           <End Role="OrderList" Type="Self.OrderList" Multiplicity="1" />
           <End Role="Review" Type="Self.Review" Multiplicity="*" />
           <ReferentialConstraint>
@@ -691,7 +672,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Payment__Order_I__3D491139">
+        <Association Name="FK__Payment__Order_I__37C5420D">
           <End Role="Orders" Type="Self.Order" Multiplicity="1" />
           <End Role="Payment" Type="Self.Payment" Multiplicity="*" />
           <ReferentialConstraint>
@@ -703,7 +684,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Quantity__Produc__284DF453">
+        <Association Name="FK__Quantity__Produc__22CA2527">
           <End Role="Product" Type="Self.Product" Multiplicity="1" />
           <End Role="Quantity" Type="Self.Quantity" Multiplicity="*" />
           <ReferentialConstraint>
@@ -715,20 +696,19 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__WishlistI__Produ__2C1E8537">
-          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+        <Association Name="FK__WishlistI__Quant__269AB60B">
+          <End Role="Quantity" Type="Self.Quantity" Multiplicity="1" />
           <End Role="WishlistItem" Type="Self.WishlistItem" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Product">
-              <PropertyRef Name="Product_ID" />
+            <Principal Role="Quantity">
+              <PropertyRef Name="Quantity_ID" />
             </Principal>
             <Dependent Role="WishlistItem">
-              <PropertyRef Name="Product_ID" />
+              <PropertyRef Name="Quantity_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="UniqloEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
           <EntitySet Name="Categories" EntityType="Self.Category" />
           <EntitySet Name="Customers" EntityType="Self.Customer" />
           <EntitySet Name="Deliveries" EntityType="Self.Delivery" />
@@ -743,56 +723,56 @@
           <EntitySet Name="Shipping_Address" EntityType="Self.Shipping_Address" />
           <EntitySet Name="Staffs" EntityType="Self.Staff" />
           <EntitySet Name="WishlistItems" EntityType="Self.WishlistItem" />
-          <AssociationSet Name="FK__Product__Categor__20ACD28B" Association="Self.FK__Product__Categor__20ACD28B">
+          <AssociationSet Name="FK__Product__Categor__1B29035F" Association="Self.FK__Product__Categor__1B29035F">
             <End Role="Category" EntitySet="Categories" />
             <End Role="Product" EntitySet="Products" />
           </AssociationSet>
-          <AssociationSet Name="FK__Orders__Customer__2FEF161B" Association="Self.FK__Orders__Customer__2FEF161B">
+          <AssociationSet Name="FK__Orders__Customer__2A6B46EF" Association="Self.FK__Orders__Customer__2A6B46EF">
             <End Role="Customer" EntitySet="Customers" />
             <End Role="Orders" EntitySet="Orders" />
           </AssociationSet>
-          <AssociationSet Name="FK__WishlistI__Custo__2D12A970" Association="Self.FK__WishlistI__Custo__2D12A970">
+          <AssociationSet Name="FK__WishlistI__Custo__278EDA44" Association="Self.FK__WishlistI__Custo__278EDA44">
             <End Role="Customer" EntitySet="Customers" />
             <End Role="WishlistItem" EntitySet="WishlistItems" />
           </AssociationSet>
-          <AssociationSet Name="FK__Delivery__Addres__39788055" Association="Self.FK__Delivery__Addres__39788055">
+          <AssociationSet Name="FK__Delivery__Addres__33F4B129" Association="Self.FK__Delivery__Addres__33F4B129">
             <End Role="Shipping_Address" EntitySet="Shipping_Address" />
             <End Role="Delivery" EntitySet="Deliveries" />
           </AssociationSet>
-          <AssociationSet Name="FK__Payment__Deliver__3C54ED00" Association="Self.FK__Payment__Deliver__3C54ED00">
+          <AssociationSet Name="FK__Payment__Deliver__36D11DD4" Association="Self.FK__Payment__Deliver__36D11DD4">
             <End Role="Delivery" EntitySet="Deliveries" />
             <End Role="Payment" EntitySet="Payments" />
           </AssociationSet>
-          <AssociationSet Name="FK__Discount__Produc__23893F36" Association="Self.FK__Discount__Produc__23893F36">
+          <AssociationSet Name="FK__Discount__Produc__1E05700A" Association="Self.FK__Discount__Produc__1E05700A">
             <End Role="Product" EntitySet="Products" />
             <End Role="Discount" EntitySet="Discounts" />
           </AssociationSet>
-          <AssociationSet Name="FK__Quantity__Image___2942188C" Association="Self.FK__Quantity__Image___2942188C">
+          <AssociationSet Name="FK__Quantity__Image___23BE4960" Association="Self.FK__Quantity__Image___23BE4960">
             <End Role="Image" EntitySet="Images" />
             <End Role="Quantity" EntitySet="Quantities" />
           </AssociationSet>
-          <AssociationSet Name="FK__OrderList__Order__33BFA6FF" Association="Self.FK__OrderList__Order__33BFA6FF">
+          <AssociationSet Name="FK__OrderList__Order__2E3BD7D3" Association="Self.FK__OrderList__Order__2E3BD7D3">
             <End Role="Orders" EntitySet="Orders" />
             <End Role="OrderList" EntitySet="OrderLists" />
           </AssociationSet>
-          <AssociationSet Name="FK__OrderList__Quant__32CB82C6" Association="Self.FK__OrderList__Quant__32CB82C6">
+          <AssociationSet Name="FK__OrderList__Quant__2D47B39A" Association="Self.FK__OrderList__Quant__2D47B39A">
             <End Role="Quantity" EntitySet="Quantities" />
             <End Role="OrderList" EntitySet="OrderLists" />
           </AssociationSet>
-          <AssociationSet Name="FK__Review__OrderLis__369C13AA" Association="Self.FK__Review__OrderLis__369C13AA">
+          <AssociationSet Name="FK__Review__OrderLis__3118447E" Association="Self.FK__Review__OrderLis__3118447E">
             <End Role="OrderList" EntitySet="OrderLists" />
             <End Role="Review" EntitySet="Reviews" />
           </AssociationSet>
-          <AssociationSet Name="FK__Payment__Order_I__3D491139" Association="Self.FK__Payment__Order_I__3D491139">
+          <AssociationSet Name="FK__Payment__Order_I__37C5420D" Association="Self.FK__Payment__Order_I__37C5420D">
             <End Role="Orders" EntitySet="Orders" />
             <End Role="Payment" EntitySet="Payments" />
           </AssociationSet>
-          <AssociationSet Name="FK__Quantity__Produc__284DF453" Association="Self.FK__Quantity__Produc__284DF453">
+          <AssociationSet Name="FK__Quantity__Produc__22CA2527" Association="Self.FK__Quantity__Produc__22CA2527">
             <End Role="Product" EntitySet="Products" />
             <End Role="Quantity" EntitySet="Quantities" />
           </AssociationSet>
-          <AssociationSet Name="FK__WishlistI__Produ__2C1E8537" Association="Self.FK__WishlistI__Produ__2C1E8537">
-            <End Role="Product" EntitySet="Products" />
+          <AssociationSet Name="FK__WishlistI__Quant__269AB60B" Association="Self.FK__WishlistI__Quant__269AB60B">
+            <End Role="Quantity" EntitySet="Quantities" />
             <End Role="WishlistItem" EntitySet="WishlistItems" />
           </AssociationSet>
         </EntityContainer>
@@ -802,16 +782,6 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="UniqloModelStoreContainer" CdmEntityContainer="UniqloEntities">
-          <EntitySetMapping Name="C__MigrationHistory">
-            <EntityTypeMapping TypeName="UniqloModel.C__MigrationHistory">
-              <MappingFragment StoreEntitySet="__MigrationHistory">
-                <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
-                <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
-                <ScalarProperty Name="Model" ColumnName="Model" />
-                <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Categories">
             <EntityTypeMapping TypeName="UniqloModel.Category">
               <MappingFragment StoreEntitySet="Category">
@@ -835,7 +805,7 @@
                 <ScalarProperty Name="Country" ColumnName="Country" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="ProfileImage_Path" ColumnName="ProfileImage_Path" />
+                <ScalarProperty Name="ProfileImage" ColumnName="ProfileImage" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -865,7 +835,7 @@
             <EntityTypeMapping TypeName="UniqloModel.Image">
               <MappingFragment StoreEntitySet="Image">
                 <ScalarProperty Name="Image_ID" ColumnName="Image_ID" />
-                <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+                <ScalarProperty Name="ProductImage" ColumnName="ProductImage" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -911,6 +881,7 @@
                 <ScalarProperty Name="Product_Name" ColumnName="Product_Name" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -966,7 +937,7 @@
             <EntityTypeMapping TypeName="UniqloModel.WishlistItem">
               <MappingFragment StoreEntitySet="WishlistItem">
                 <ScalarProperty Name="WishlistItem_ID" ColumnName="WishlistItem_ID" />
-                <ScalarProperty Name="Product_ID" ColumnName="Product_ID" />
+                <ScalarProperty Name="Quantity_ID" ColumnName="Quantity_ID" />
                 <ScalarProperty Name="Customer_ID" ColumnName="Customer_ID" />
               </MappingFragment>
             </EntityTypeMapping>
