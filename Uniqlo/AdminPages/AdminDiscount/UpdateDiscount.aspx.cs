@@ -20,6 +20,7 @@ namespace Uniqlo.AdminPages
                 if (!string.IsNullOrEmpty(discountID))
                 {
                    LoadDiscountDetails(int.Parse(discountID));
+                    DropDownListProductName();
                 }
             }
         }
@@ -33,8 +34,6 @@ namespace Uniqlo.AdminPages
                 {
                     // Ensure that you reference the TextBox correctly
                     this.discountID.Text = discount.Discount_ID.ToString();
-                    productID.Text = discount.Product_ID.ToString();
-                    productName.Text = discount.Product.Product_Name;
                     discountAmount.Text = discount.Discount_Amount.ToString();
                     status.SelectedValue = discount.Status;
                     startDate.Text = discount.Start_Date.ToString("yyyy-MM-dd");
@@ -56,42 +55,126 @@ namespace Uniqlo.AdminPages
 
 
                     int discountId = int.Parse(discountID.Text);
-                    int productId = int.Parse(productID.Text);
+                    int productId = int.Parse(DdlProductName.Text);
                     var existingDiscount = db.Discount
-                                     .Where(d => d.Product_ID == productId && d.Discount_ID != discountId)
+                                     .Where(d => d.Product_ID == productId)
                                      .FirstOrDefault();
 
                     if (existingDiscount != null)
                     {
                         db.Discount.Remove(existingDiscount);
                         db.SaveChanges(); // Save changes if you want to immediately commit the delete
+
                     }
-
-                    var discount = db.Discount.FirstOrDefault(d => d.Discount_ID == discountId);
-
-
-
-                    if (discount != null)
+                    else
                     {
-                        discount.Product_ID = int.Parse(productID.Text);
-                        discount.Discount_Amount = float.Parse(discountAmount.Text);
-                        discount.Status = status.Text;
-                        discount.Start_Date = DateTime.Parse(startDate.Text);
-                        discount.End_Date = DateTime.Parse(endDate.Text);
+                        var discount = db.Discount.FirstOrDefault(d => d.Discount_ID == discountId);
+                        if (discount != null)
+                        {
+                            discount.Product_ID = int.Parse(DdlProductName.SelectedValue);
+                            discount.Discount_Amount = float.Parse(discountAmount.Text);
+                            discount.Status = status.Text;
+                            discount.Start_Date = DateTime.Parse(startDate.Text);
+                            discount.End_Date = DateTime.Parse(endDate.Text);
 
-                        // Update other fields like Gender and Role if they are editable
+                            // Update other fields like Gender and Role if they are editable
 
-                        db.SaveChanges();
-                        Response.Redirect("Staff.aspx");
+                            db.SaveChanges();
+                            Response.Redirect("DiscountHome.aspx");
+                        }
                     }
+
+                   
+
+
+
+                  
                 }
             }
         }
-        
+
+
+        private void addDiscount()
+        {
+            if (Page.IsValid)
+            {
+                DateTime startInput;
+                DateTime endInput;
+                DateTime today = DateTime.Now.Date;
+                bool startDateParsed = DateTime.TryParse(startDate.Text, out startInput);
+                bool endDateParsed = DateTime.TryParse(endDate.Text, out endInput);
+                DateTime startDateInput = startInput.Date;
+                DateTime endDateInput = endInput.Date;
+                if (!startDateParsed || !endDateParsed)
+                {
+
+                    return;
+                }
+                string status = (today >= startDateInput && today <= endDateInput) ? "Active" : "Inactive";
+
+
+
+                using (var db = new DiscountDbContext())
+                {
+                    int productId = Int32.Parse(DdlProductName.SelectedValue);
+
+                    Discount newDiscount = new Discount
+                    {
+
+                        Product_ID = productId,
+                        Discount_Amount = float.Parse(discountAmount.Text),
+                        Start_Date = startDateInput,
+                        End_Date = endDateInput,
+                        Status = status
+
+                    };
+
+                    db.Discount.Add(newDiscount);
+                    db.SaveChanges();
+
+                    Response.Redirect("DiscountHome.aspx");
+                }
+            }
+        }
+
+        private void DropDownListProductName()
+        {
+            using (var db = new ProductDbContext())
+            {
+                
+
+                var products = db.Product
+                                 .Where(p => !p.IsDeleted)
+                                 .Select(p => new { p.Product_ID, p.Product_Name })
+                                 .ToList();
+
+
+                DdlProductName.Items.Clear();
+
+
+                DdlProductName.Items.Add(new ListItem("--Select Product--", ""));
+
+
+                foreach (var product in products)
+                {
+                    ListItem item = new ListItem(product.Product_Name, product.Product_ID.ToString());
+                    DdlProductName.Items.Add(item);
+                }
+
+            }
+        }
+
+
         protected void cancelBtn_Click(object sender, EventArgs e)
         {
             Response.Redirect("DiscountHome.aspx");
         }
 
+        /*
+        protected void cancelBtn_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("DiscountHome.aspx");
+        }
+        */
     }
 }

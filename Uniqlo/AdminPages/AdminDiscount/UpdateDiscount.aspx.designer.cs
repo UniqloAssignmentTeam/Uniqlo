@@ -24,22 +24,13 @@ namespace Uniqlo.AdminPages
         protected global::System.Web.UI.WebControls.TextBox discountID;
 
         /// <summary>
-        /// productName control.
+        /// DdlProductName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox productName;
-
-        /// <summary>
-        /// productID control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox productID;
+        protected global::System.Web.UI.WebControls.DropDownList DdlProductName;
 
         /// <summary>
         /// discountAmount control.
