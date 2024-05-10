@@ -53,9 +53,71 @@ namespace Uniqlo.AdminPages
         }
         protected void btnRemoveDelivery_Click(object sender, EventArgs e)
         {
+            
+            int deliveryId = Convert.ToInt32(hiddenDeliveryId.Value); // Retrieve the Delivery ID
 
+            string connectionString = cs;
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                // Begin a transaction
+                conn.Open();
+                SqlTransaction transaction = conn.BeginTransaction();
+
+                try
+                {
+                    // Update Payment records to nullify Delivery_ID
+                    string updatePayments = "UPDATE Payment SET Delivery_ID = NULL WHERE Delivery_ID = @DeliveryID";
+                    using (SqlCommand cmdUpdatePayments = new SqlCommand(updatePayments, conn, transaction))
+                    {
+                        cmdUpdatePayments.Parameters.AddWithValue("@DeliveryID", deliveryId);
+                        cmdUpdatePayments.ExecuteNonQuery();
+                    }
+
+                    // Get the Address_ID for the delivery before deleting it
+                    string getAddressId = "SELECT Address_ID FROM Delivery WHERE Delivery_ID = @DeliveryID";
+                    int addressId;
+                    using (SqlCommand cmdGetAddressId = new SqlCommand(getAddressId, conn, transaction))
+                    {
+                        cmdGetAddressId.Parameters.AddWithValue("@DeliveryID", deliveryId);
+                        addressId = (int)cmdGetAddressId.ExecuteScalar();
+                    }
+
+                    // Delete the Address record
+                    string deleteAddress = "DELETE FROM Shipping_Address WHERE Address_ID = @AddressID";
+                    using (SqlCommand cmdDeleteAddress = new SqlCommand(deleteAddress, conn, transaction))
+                    {
+                        cmdDeleteAddress.Parameters.AddWithValue("@AddressID", addressId);
+                        cmdDeleteAddress.ExecuteNonQuery();
+                    }
+
+                    // Delete the Delivery record
+                    string deleteDelivery = "DELETE FROM Delivery WHERE Delivery_ID = @DeliveryID";
+                    using (SqlCommand cmdDeleteDelivery = new SqlCommand(deleteDelivery, conn, transaction))
+                    {
+                        cmdDeleteDelivery.Parameters.AddWithValue("@DeliveryID", deliveryId);
+                        cmdDeleteDelivery.ExecuteNonQuery();
+                    }
+
+                    // Commit transaction
+                    transaction.Commit();
+                    conn.Close();
+
+                    // Redirect or inform the user
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Delivery successfully removed.');", true);
+                    Response.Redirect("Delivery.aspx");
+                }
+                catch (Exception ex)
+                {
+                    // Roll back the transaction on error
+                    transaction.Rollback();
+                    conn.Close();
+
+                    // Handle any errors that occur during deletion
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "error", "alert('An error occurred: " + ex.Message + "');", true);
+                }
+            }
         }
-        
+
     }
 }
        
