@@ -99,23 +99,8 @@
         </asp:Repeater>
 
 
-        
-        <!--DELETE CONFIRMATION-->
-<div id="id01" class="confirmationModal">
-    <div class="confirmation-modal-content">
-        <div class="confirmationContainer">
-            <span onclick="document.getElementById('id01').style.display='none'" class="confirmationClose" title="Close Modal">×</span>
-            <h1>Remove Delivery</h1>
-            <p>Are you sure you want to remove the delivery information?</p>
-
-            <div class="confirmationClearFix">
-                <button type="button" onclick="document.getElementById('id01').style.display='none'" class="confirmationCancelbtn">Cancel</button>
-                <asp:Button ID="btnRemoveStaff" runat="server" Text="Remove" OnClick="btnRemoveDelivery_Click" CssClass="confirmationDeletebtn" />
-            </div>
-        </div>
-    </div>
-</div>
-
+       
+       
 
 
     </div>
@@ -130,8 +115,24 @@
 
         <a href="#" class="page-link" onclick="changePage('next')">&raquo;</a>
     </div>
+ <!--DELETE CONFIRMATION-->
+    <div id="id01" class="confirmationModal">
+    <div class="confirmation-modal-content">
+        <div class="confirmationContainer">
+            <span onclick="document.getElementById('id01').style.display='none'" class="confirmationClose" title="Close Modal">×</span>
+            <h1>Remove Delivery</h1>
+            <p>Are you sure you want to remove the delivery information?</p>
+
+            <div class="confirmationClearFix">
+                <button type="button" onclick="document.getElementById('id01').style.display='none'" class="confirmationCancelbtn">Cancel</button>
+                <asp:Button ID="btnRemoveStaff" runat="server" Text="Remove" OnClick="btnRemoveDelivery_Click" CssClass="confirmationDeletebtn" />
+            </div>
+        </div>
+    </div>
+</div>
 
  <asp:HiddenField ID="hiddenDeliveryId" runat="server" Value="" />
+ 
    <footer>
        <script>
 
