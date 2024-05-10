@@ -107,6 +107,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AdminPages\AdminDelivery\Delivery.aspx" />
     <Content Include="AdminPages\AdminDiscount\addDiscount.aspx" />
     <Content Include="AdminPages\AdminDiscount\DiscountHome.aspx" />
     <Content Include="AdminPages\AdminProduct\AddProduct.aspx" />
@@ -115,7 +116,6 @@
     <Content Include="AdminPages\AdminStaff\StaffAdd.aspx" />
     <Content Include="AdminPages\AdminStaff\StaffHome.aspx" />
     <Content Include="AdminPages\Dashboard.aspx" />
-    <Content Include="AdminPages\Delivery.aspx" />
     <Content Include="AdminPages\adminLogin.aspx" />
     <Content Include="AdminPages\AdminOrder\Order.aspx" />
     <Content Include="AdminPages\AdminOrder\OrderItem.aspx" />
@@ -272,6 +272,13 @@
     <Compile Include="Admin.Master.designer.cs">
       <DependentUpon>Admin.Master</DependentUpon>
     </Compile>
+    <Compile Include="AdminPages\AdminDelivery\Delivery.aspx.cs">
+      <DependentUpon>Delivery.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminPages\AdminDelivery\Delivery.aspx.designer.cs">
+      <DependentUpon>Delivery.aspx</DependentUpon>
+    </Compile>
     <Compile Include="AdminPages\AdminDiscount\addDiscount.aspx.cs">
       <DependentUpon>addDiscount.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -327,13 +334,6 @@
     </Compile>
     <Compile Include="AdminPages\Dashboard.aspx.designer.cs">
       <DependentUpon>Dashboard.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="AdminPages\AdminDelivery\Delivery.aspx.cs">
-      <DependentUpon>Delivery.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="AdminPages\AdminDelivery\Delivery.aspx.designer.cs">
-      <DependentUpon>Delivery.aspx</DependentUpon>
     </Compile>
     <Compile Include="AdminPages\adminLogin.aspx.cs">
       <DependentUpon>adminLogin.aspx</DependentUpon>
@@ -654,7 +654,7 @@
   <ItemGroup>
     <Content Include="Admin.Master" />
     <Content Include="admin.sitemap" />
-    <Content Include="AdminPages\Web.config" />
+    <Content Include="ImageHandler.ashx" />
     <None Include="packages.config" />
     <Content Include="Uniqlo.Master" />
     <EntityDeploy Include="UniqloAdo.edmx">

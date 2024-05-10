@@ -9,19 +9,19 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using static Uniqlo.Product;
 
-namespace Uniqlo.AdminPages
+namespace Uniqlo.AdminPages.AdminDelivery
 {
     public partial class Delivery : System.Web.UI.Page
     {
         string cs = Global.CS;
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(!IsPostBack) { 
+            if (!IsPostBack)
+            {
                 bindRepeater();
             }
-            
-        }
 
+        }
         private void bindRepeater()
         {
             string connString = cs;
@@ -53,7 +53,7 @@ namespace Uniqlo.AdminPages
         }
         protected void btnRemoveDelivery_Click(object sender, EventArgs e)
         {
-            
+
             int deliveryId = Convert.ToInt32(hiddenDeliveryId.Value); // Retrieve the Delivery ID
 
             string connectionString = cs;
@@ -120,4 +120,3 @@ namespace Uniqlo.AdminPages
 
     }
 }
-       

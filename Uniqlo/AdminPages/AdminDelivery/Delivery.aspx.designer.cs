@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Uniqlo.AdminPages
+namespace Uniqlo.AdminPages.AdminDelivery
 {
 
 
