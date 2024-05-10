@@ -153,35 +153,31 @@ namespace Uniqlo.AdminPages
         {
             using (var db = new ProductDbContext())
             {
-                
-
+                // Fetch all non-deleted products
                 var products = db.Product
                                  .Where(p => !p.IsDeleted)
                                  .Select(p => new { p.Product_ID, p.Product_Name })
                                  .ToList();
 
+                DdlProductName.Items.Clear(); // Clear existing items
 
-                DdlProductName.Items.Clear();
-
-
-                
-
+                // Populate DropDownList with products
                 foreach (var product in products)
                 {
                     ListItem item = new ListItem(product.Product_Name, product.Product_ID.ToString());
                     DdlProductName.Items.Add(item);
                 }
 
+                // Attempt to get the product ID from the discount ID
                 var productID = getReturnProductID(discountID);
-                if(!productID.HasValue)
+                if (productID.HasValue)
                 {
+                    // Set the selected value of the dropdown list
                     DdlProductName.SelectedValue = productID.Value.ToString();
                 }
-
-             
-
             }
         }
+
 
 
         protected void cancelBtn_Click(object sender, EventArgs e)
