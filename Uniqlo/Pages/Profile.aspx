@@ -73,75 +73,92 @@
         <!-- Order History Section -->
     <div class="table">
     <!-- Header -->
-    <div class="row">
-        <div class="col productid">Order ID</div>
-        <div class="col category">Total Item</div>
-        <div class="col gender">Total Amount</div>
-        <div class="col wear">Date</div>
-        <div class="col price">Status</div>
+  
 
-        <div class="col eclipse-container">
-        
-        <div class=""></div>
-            <asp:Button ID="Button1" runat="server" Text="Button" Visible="False" />
-        </div>
-    </div>
+
 
     <!-- Product 1 -->
     <div class="row">
-        <div class="col productid">1001</div>
-        <div class="col category">1</div>
-        <div class="col gender">RM 109.90</div>
-        <div class="col wear">14/3/2024</div>
-        <div class="col price">Delivered</div>
-        <div class="col eclipse-container" onclick="toggleDropdown('dropdownList3', 'dropdownDisplay3')">
-            <div class="eclipse-display" id="dropdownDisplay3" style="border:none;"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></div>
-            <div class="eclipse-list" id="dropdownList3">
-                <a href="OrderHistoryItem.aspx" style="text-decoration: none; color: #6F6F6F;"><div>View More</div></a>
-            </div>
-        </div>
-    </div>
 
-    <!-- Product 2 -->
-    <div class="row">
-        <div class="col productid">1002</div>
-        <div class="col category">4</div>
-        <div class="col gender">RM 100.00</div>
-        <div class="col wear">14/3/2024</div>
-        <div class="col price">Out for delivery</div>
-        <div class="col eclipse-container"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></div>
-    </div>
 
-    <!-- Product 3 -->
-    <div class="row">
-        <div class="col productid">1003</div>
-        <div class="col category">8</div>
-        <div class="col gender">RM 12.00</div>
-        <div class="col wear">14/3/2024</div>
-        <div class="col price">Delivered
-    </div>
-        <div class="col eclipse-container"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></div>
-    </div>
 
-    <!-- Product 4 -->
-    <div class="row">
-        <div class="col productid">1004</div>
-        <div class="col category">12</div>
-        <div class="col gender">RM 45.00</div>
-        <div class="col wear">12/3/2024</div>
-        <div class="col price">Delivered</div>
-        <div class="col eclipse-container"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></div>
-    </div>
 
-    <!-- Product 5 -->
-    <div class="row">
-        <div class="col productid">1005</div>
-        <div class="col category">1</div>
-        <div class="col gender">RM 50.00</div>
-        <div class="col wear">12/3/2024</div>
-        <div class="col price">Delivered</div>
-        <div class="col eclipse-container"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></div>
-    </div>
+
+
+
+
+        <asp:Repeater ID="orderRepeater" runat="server" ViewStateMode="Disabled">
+
+    <HeaderTemplate>
+        <table style="width: 100%" class="table">
+            <tr class="row">
+
+
+                <td class="col orderID">Order ID</td>
+                <td class="col totalItem">Total Item</td>
+                <td class="col totalAmount">Total Amount</td>
+                <td class="col datePurchased">Date</td>
+                <td class="col deliveryStatus">Status</td>
+                <td class="col eclipse-display">
+                    <asp:Button ID="Button1" runat="server" Text="Button" Visible="False" />
+                </div>
+            </tr>
+    </HeaderTemplate>
+
+    <ItemTemplate>
+
+        <tr class="row">
+
+            <td class="col orderID">
+                <asp:Label ID="orderID" runat="server" Text='<%# Eval("Order_ID") %>'></asp:Label></td>
+            <td class="col totalItem">
+                <asp:Label ID="totalItem" runat="server" Text='<%# Eval("Total_Item") %>'></asp:Label></td>
+            <td class="col totalAmount">
+                <asp:Label ID="totalAmount" runat="server" Text='<%# Eval("Total_Price") %>'></asp:Label></td>
+            <td class="col datePurchased">
+                <asp:Label ID="datePurchased" runat="server" Text='<%# Eval("Payment_DateTime", "{0:dd/MM/yyyy}") %>'></asp:Label></td>
+            <td class="col deliveryStatus">
+                <asp:Label ID="deliveryStatus" runat="server" Text='<%# Eval("Delivery_Status") %>'></asp:Label></td>
+            
+
+            
+            <td class="col eclipse-container" onclick="toggleDropdown('dropdownList<%# Eval("Order_ID") %>', 'dropdownDisplay<%# Eval("Order_ID") %>')">
+                <div class="eclipse-display" id="dropdownDisplay<%# Eval("Order_ID") %>" style="border: none;"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></div>
+                <div class="eclipse-list" id="dropdownList<%# Eval("Order_ID") %>">
+
+                    <div>
+                        <asp:HyperLink ID="viewOrderDetails" runat="server" NavigateUrl='<%# "OrderHistoryItem.aspx?Order_ID=" + Eval("Order_ID") %>' Text="View More"></asp:HyperLink></div>
+                   
+
+                </div>
+
+            </td>
+
+        </tr>
+
+
+
+
+
+    </ItemTemplate>
+
+    <FooterTemplate>
+        </table>
+    </FooterTemplate>
+
+
+
+
+
+
+
+
+</asp:Repeater>
+
+   
+
+       
+  
 </div>
         <div class="pagination">
             <a href="#" class="page-link" onclick="changePage('prev')">&laquo;</a>
@@ -159,7 +176,7 @@
         
 </div>
     <footer> 
-        
+         
         <script src="../Javascript/productBtnEclipse.js"></script>
         <script src="../Javascript/productAdminDDL.js"></script>
 

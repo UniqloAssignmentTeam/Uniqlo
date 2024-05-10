@@ -29,8 +29,8 @@
     border-radius: 16px;
     border: 1px solid lightgrey;
     margin: 20px;
-    margin-left:180px;
-    width: 60%; /* Adjust the width as necessary */
+    margin-left:230px;
+    width: 45%; /* Adjust the width as necessary */
     padding-left: 20px;
     padding-right: 20px;
     padding-bottom: 20px;
@@ -285,6 +285,19 @@ body .form-group {
 .addColor-button {
     border: 2px solid lightgrey;
     padding: 10px 30px 10px 30px;
+    background: none;
+    outline: none;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.5s ease;
+    text-decoration: none;
+    color: black;
+    height: 49px;
+}
+
+.addColor-buttons {
+    border: 2px solid lightgrey;
+    padding: 14px 30px 14px 30px;
     background: none;
     outline: none;
     font-weight: bold;

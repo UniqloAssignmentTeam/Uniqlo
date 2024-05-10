@@ -19,12 +19,10 @@ namespace Uniqlo.Pages
                 //dummy cart
                 List<CartItem> cart = new List<CartItem>
                 {
-                    new CartItem { Quantity_Id = 1, Name = "T-shirt", Price = 15.99m, Color = "Red", Size = "M", Quantity = 2 },
-                    new CartItem { Quantity_Id = 2, Name = "Jeans", Price = 40.50m, Color = "Blue", Size = "32", Quantity = 1 },
-                    new CartItem { Quantity_Id = 3, Name = "Sneakers", Price = 60.00m, Color = "White", Size = "9", Quantity = 1 },
-                    new CartItem { Quantity_Id = 4, Name = "Jacket", Price = 99.95m, Color = "Black", Size = "L", Quantity = 1 },
-                    new CartItem { Quantity_Id = 5, Name = "Cap", Price = 12.99m, Color = "Green", Size = "One size", Quantity = 3 }
+                    new CartItem { Quantity_Id = 1, Name = "AIRism Cotton Jersey Short Sleeve Skipper Polo Shirt", Price = 99.90m, Color = "Red", Size = "S", Quantity = 2 },
+                    new CartItem { Quantity_Id = 4, Name = "Miracle Air Pants (Cotton Like)", Price = 149.90m, Color = "White", Size = "S", Quantity = 1 },
                 };
+                
                 Session["Cart"] = cart;
 
                 CartRepeater.DataSource = cart;
@@ -32,27 +30,31 @@ namespace Uniqlo.Pages
 
                 decimal totalPrice = cart.Sum(item => item.Item_Price);
                 lblTotalPrice.Text = "RM " + totalPrice.ToString("N2");
+                Session["TotalPrice"] = totalPrice;
 
-                decimal deliveryCharge = totalPrice > 150 ? 15m : 0m;
+                decimal deliveryCharge = totalPrice > 150 ? 0m : 20m;
                 lblDeliveryCharges.Text = "RM " + deliveryCharge.ToString("N2");
+                Session["ShippingFee"] = deliveryCharge;
 
                 decimal grandTotal = totalPrice + deliveryCharge;
                 lblGrandTotal.Text = "RM " + grandTotal.ToString("N2");
-
-                bool found = false;
+                Session["GrandTotal"]= grandTotal;  
+              
+                //dummy sesssion
+                Session["Customer_Id"] = "1";
 
                 string sql = "SELECT * FROM Customer WHERE Customer_Id =@Customer_Id";
 
                 SqlConnection con = new SqlConnection(cs);
                 SqlCommand cmd = new SqlCommand(sql, con);
-                cmd.Parameters.AddWithValue("@Customer_Id", "1");
+                cmd.Parameters.AddWithValue("@Customer_Id", Session["Customer_Id"]);
                 con.Open();
 
                 SqlDataReader dr = cmd.ExecuteReader();
 
                 if (dr.Read())
                 {
-                    found = true;
+                    
                     txtName.Text = (string)dr["Name"];
                     txtEmail.Text = (string)dr["Email"];
                     txtContact.Text = (string)dr["Contact_No"];
@@ -66,6 +68,16 @@ namespace Uniqlo.Pages
         {
             if (Page.IsValid)
             {
+                Address shippingAddress = new Address
+                {
+                    Country = txtCountry.Text,
+                    AddressLine = txtAddress.Text,
+                    Postcode = txtPostcode.Text,
+                    State = txtState.Text,
+                    City = txtCity.Text
+                };
+                Session["ShippingAddress"] = shippingAddress;
+                Session["DeliveryNote"] = txtDelivery_Note.Text;
                 Response.Redirect("Payment.aspx");
             }
         }

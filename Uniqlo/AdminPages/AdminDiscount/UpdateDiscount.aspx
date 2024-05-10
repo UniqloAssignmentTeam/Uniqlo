@@ -19,39 +19,45 @@
 
               <div class="form-group">
      <label for="discountID">Discount ID</label>
-        <asp:TextBox ID="discountID" runat="server" ReadOnly="True"></asp:TextBox>
+        <asp:TextBox ID="discountID" runat="server" Enabled="False"></asp:TextBox>
  </div>
           
 
 
-                           <div class="form-group">
-    <label for="productID">Product ID</label>
-    <asp:TextBox ID="productID" runat="server"></asp:TextBox>
-</div>
+                           
 
 
+             <div class="form-group">
+     <label for="productName">Product Name</label>
+     
+     <asp:DropDownList ID="DdlProductName" runat="server" CssClass="scrollable-dropdown dropdown-display"></asp:DropDownList>
+    
+     
+ </div>
+                                   
 
-              <div class="form-group">
-                  <label for="productName">Product Name</label>
-                  <asp:TextBox ID="productName" runat="server" ReadOnly="true"></asp:TextBox>
-                
-              </div>
-          
 
     <div class="form-group">
     <label for="discountAmount">Amount - Discount</label>
       <asp:TextBox ID="discountAmount" runat="server"></asp:TextBox>
+        <asp:RequiredFieldValidator ID="RequiredValidatorDiscountAmount" runat="server" ControlToValidate="discountAmount"
+        ErrorMessage="Discount amount is required" ForeColor="Red" Display="Dynamic"></asp:RequiredFieldValidator>
+    <asp:RegularExpressionValidator ID="RegexValidatorDiscountAmount" runat="server" ControlToValidate="discountAmount"
+        ValidationExpression="^\d+(\.\d{1,2})?$" ErrorMessage="Invalid discount amount" ForeColor="Red" Display="Dynamic"></asp:RegularExpressionValidator>
+        <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server"
+    ControlToValidate="discountAmount"
+    ValidationExpression="^\d+(\.\d{1,2})?$" ErrorMessage="Please enter a number. Optionally, you can use up to two decimal places." ForeColor="Red" Display="Dynamic"></asp:RegularExpressionValidator>
+
 </div>
 
 
                             <div class="form-group">
   <label for="productName">Status</label>
   <div class="dropdown-container" onclick="toggleDropdown('dropdownList', 'dropdownDisplay')">
-      <div class="dropdown-display" id="dropdownDisplay">Valid</div>
-      <div class="dropdown-list" id="dropdownList">
-          <div onclick="selectOption('Valid', 'dropdownDisplay')">Valid</div>
-          <div onclick="selectOption('Invalid', 'dropdownDisplay')">Invalid</div>
-      </div>
+      <asp:DropDownList ID="status" runat="server" CssClass="dropdown-display">
+          <asp:ListItem>Active</asp:ListItem>
+          <asp:ListItem>Inactive</asp:ListItem>
+      </asp:DropDownList>
   </div>
              </div>
             
@@ -60,11 +66,14 @@
               <div class="form-group">
                   <label for="productName">Start Date</label>
                     <asp:TextBox ID="startDate" runat="server" type="date"></asp:TextBox>
-             
+              <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="startDate"
+ ErrorMessage="Start date is required" ForeColor="Red" Display="Dynamic"></asp:RequiredFieldValidator>
               </div>
                 <div class="form-group">
     <label for="productName">End Date</label>
     <asp:TextBox ID="endDate" runat="server" type="date"></asp:TextBox>
+     <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="endDate"
+ErrorMessage="End date is required" ForeColor="Red" Display="Dynamic"></asp:RequiredFieldValidator>
 </div>
 
               
@@ -74,8 +83,9 @@
         
           <div class="button-container">
     
-           <asp:Button ID="cancelBtn" runat="server" Text="CANCEL" CssClass="cancel-button"/>
-           <asp:Button ID="addBtn" runat="server" Text="ADD" CssClass="continue-button"/>
+         
+<asp:Button ID="cancelBtn" runat="server" Text="CANCEL" CssClass="cancel-button" CausesValidation="false" OnClick="cancelBtn_Click"/>
+ <asp:Button ID="addBtn" runat="server" Text="ADD" CssClass="continue-button" CausesValidation="true" OnClick="updateBtn_Click" />
   </div>
       </div>
   </div>

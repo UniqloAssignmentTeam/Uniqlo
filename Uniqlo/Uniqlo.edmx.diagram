@@ -7,18 +7,18 @@
       <Diagram DiagramId="7f059562080a4a0797240715886e16e8" Name="Diagram1">
         <EntityTypeShape EntityType="UniqloModel.Category" Width="1.5" PointX="0.75" PointY="6.375" IsExpanded="true" />
         <EntityTypeShape EntityType="UniqloModel.Customer" Width="1.5" PointX="3.75" PointY="12.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="UniqloModel.Delivery" Width="1.5" PointX="6" PointY="17.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="UniqloModel.Delivery" Width="1.5" PointX="9.75" PointY="13.75" IsExpanded="true" />
         <EntityTypeShape EntityType="UniqloModel.Discount" Width="1.5" PointX="5.25" PointY="6.125" IsExpanded="true" />
         <EntityTypeShape EntityType="UniqloModel.Image" Width="1.5" PointX="3" PointY="2.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="UniqloModel.OrderList" Width="1.5" PointX="7.125" PointY="3.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="UniqloModel.Order" Width="1.5" PointX="6" PointY="13.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="UniqloModel.Payment" Width="1.5" PointX="8.25" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="UniqloModel.OrderList" Width="1.5" PointX="6" PointY="10.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="UniqloModel.Order" Width="1.5" PointX="6" PointY="13.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="UniqloModel.Payment" Width="1.5" PointX="8" PointY="13.125" IsExpanded="true" />
         <EntityTypeShape EntityType="UniqloModel.Product" Width="1.5" PointX="3" PointY="5.75" IsExpanded="true" />
         <EntityTypeShape EntityType="UniqloModel.Quantity" Width="1.5" PointX="5.25" PointY="3.375" IsExpanded="true" />
         <EntityTypeShape EntityType="UniqloModel.Review" Width="1.5" PointX="10.5" PointY="6.125" IsExpanded="true" />
         <EntityTypeShape EntityType="UniqloModel.Shipping_Address" Width="1.5" PointX="3.75" PointY="17.125" IsExpanded="true" />
         <EntityTypeShape EntityType="UniqloModel.Staff" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="UniqloModel.WishlistItem" Width="1.5" PointX="5.25" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="UniqloModel.WishlistItem" Width="1.5" PointX="4.75" PointY="8.375" IsExpanded="true" />
         <AssociationConnector Association="UniqloModel.FK__Product__Categor__29AC2CE0" ManuallyRouted="false" />
         <AssociationConnector Association="UniqloModel.FK__Orders__Customer__38EE7070" ManuallyRouted="false" />
         <AssociationConnector Association="UniqloModel.FK__WishlistI__Custo__361203C5" ManuallyRouted="false" />

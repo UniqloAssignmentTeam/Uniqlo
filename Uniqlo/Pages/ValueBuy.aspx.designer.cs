@@ -15,22 +15,58 @@ namespace Uniqlo.Pages
     {
 
         /// <summary>
-        /// wishListProduct control.
+        /// ValueManagerStaff control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox wishListProduct;
+        protected global::System.Web.UI.ScriptManager ValueManagerStaff;
 
         /// <summary>
-        /// Repeater1 control.
+        /// ValuePanelStaff control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater Repeater1;
+        protected global::System.Web.UI.UpdatePanel ValuePanelStaff;
+
+        /// <summary>
+        /// genderSortDDL control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList genderSortDDL;
+
+        /// <summary>
+        /// categorySortDDL control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList categorySortDDL;
+
+        /// <summary>
+        /// sortByDDL control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList sortByDDL;
+
+        /// <summary>
+        /// dlValueBuy control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DataList dlValueBuy;
 
         /// <summary>
         /// RadioButtonList2 control.

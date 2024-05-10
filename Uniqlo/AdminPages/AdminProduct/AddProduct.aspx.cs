@@ -24,10 +24,7 @@ namespace Uniqlo.AdminPages
         //string cs = Global.CS;
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (IsPostBack)
-            {
-
-            }
+           
         }
 
         public class ColorSize
@@ -50,39 +47,40 @@ namespace Uniqlo.AdminPages
                 string category = ddlCategory.SelectedValue;
                 string gender = ddlGender.SelectedValue;
 
-                // Check if a file is uploaded
-                if (Request.Files.Count > 0 && Request.Files[0].ContentLength > 0)
+                string jsonData = HiddenFieldData.Value;
+                List<ColorSize> colorSizes = JsonConvert.DeserializeObject<List<ColorSize>>(jsonData);
+
+                using (var db = new ProductDbContext())
                 {
-                    HttpPostedFile uploadedFile = Request.Files[0]; // Get the uploaded file
+                    var categoryID = db.Category.Where(c => c.Name == category && c.Gender.ToString() == gender).Select(c => c.Category_ID).FirstOrDefault();
 
-                    try
+                    Product newProduct = new Product
                     {
-                        string jsonData = HiddenFieldData.Value;
-                        List<ColorSize> colorSizes = JsonConvert.DeserializeObject<List<ColorSize>>(jsonData);
+                        Product_Name = productName,
+                        Description = productDescription,
+                        Price = productPrice,
+                        Category_ID = categoryID
+                    };
+                    db.Product.Add(newProduct);
+                    db.SaveChanges();
 
-                        /*
-                        using (var db = new ProductDbContext())
+                    foreach (var colorSize in colorSizes)
+                    {
+                        if (!String.IsNullOrWhiteSpace(colorSize.Image))
                         {
-                            var categoryID = db.category.Where(c => c.Name == category && c.Gender == gender).Select(c => c.Category_ID).FirstOrDefault();
-                            string serverPath = Server.MapPath("/Images/Products/"); // Physical path on server
-
-                            Product newProduct = new Product
+                            // Handling the base64 image string
+                            string base64Image = colorSize.Image.Split(',')[1]; // Ensuring only the base64 part is taken
+                            try
                             {
-                                Category_ID = categoryID,
-                                Product_Name = productName,
-                                Description = productDescription,
-                                Price = productPrice
-                            };
-                            db.product.Add(newProduct);
+                                byte[] imageBytes = Convert.FromBase64String(base64Image);
+                                Image newImage = new Image
+                                {
+                                    ProductImage = imageBytes
+                                };
+                                db.Image.Add(newImage);
+                                db.SaveChanges();
 
-                            string imageFileName = Path.GetFileName(uploadedFile.FileName); 
-                            string fullPath = serverPath + imageFileName; 
-                            uploadedFile.SaveAs(fullPath);
-
-                            
-                           
-                            foreach (var colorSize in colorSizes)
-                            {
+                                // Linking the image with product details
                                 foreach (var sizeProperty in typeof(ColorSize).GetProperties().Where(p => p.Name.StartsWith("Size")))
                                 {
                                     string sizeValue = sizeProperty.GetValue(colorSize) as string;
@@ -91,43 +89,35 @@ namespace Uniqlo.AdminPages
                                         string size = sizeProperty.Name.Substring(4);
                                         Quantity newQuantity = new Quantity
                                         {
-                                            Quantity_ID = newQuantityIDCounter++,
                                             Product_ID = newProduct.Product_ID,
+                                            Image_ID = newImage.Image_ID,
                                             Color = colorSize.Color,
                                             Size = size,
-                                            Quantity1 = Int32.Parse(sizeValue)
+                                            Qty = Int32.Parse(sizeValue)
                                         };
-                                        db.quantity.Add(newQuantity);
-
-                                        Image newImage = new Image
-                                        {
-                                            Image_ID = newImageID++,
-                                            ImagePath = "/Images/Products/" + imageFileName, // Relative path for database
-                                            Quantity_ID = newQuantity.Quantity_ID
-                                        };
-                                        db.image.Add(newImage);
+                                        db.Quantity.Add(newQuantity);
                                     }
                                 }
-                            
                             }
-                            
-                            db.SaveChanges();
+                            catch (FormatException fe)
+                            {
+                                Console.WriteLine("Failed to convert Base64 string to byte array. Error: " + fe.Message);
+                            }
+                            catch (Exception ex)
+                            {
+                                Console.WriteLine("Error saving image data: " + ex.Message);
+                            }
                         }
-                        */
                     }
-                    catch (Exception ex)
-                    {
-                        // Handle exceptions
-                        Response.Write("Error: " + ex.Message);
-                    }
+                    db.SaveChanges();
                 }
-                else
-                {
-                    // Notify user if no file is selected
-                    Response.Write("Please select a file to upload.");
-                }
+                ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", "alert('Product and details added successfully!');", true);
+                Response.Redirect("~/AdminPages/AdminProduct/ProductHome.aspx");
             }
         }
+
+
+
 
 
     }

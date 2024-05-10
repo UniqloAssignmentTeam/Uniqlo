@@ -9,6 +9,7 @@ using System.Web.UI.WebControls;
 using System.Xml.Linq;
 
 using Uniqlo;
+using static Uniqlo.Staff;
 namespace Uniqlo.AdminPages.AdminStaff
 {
     public partial class StaffAdd : System.Web.UI.Page
@@ -23,8 +24,7 @@ namespace Uniqlo.AdminPages.AdminStaff
             {
                 using (var db = new StaffDbContext())
                 {
-                    // Calculate new Staff_ID
-                    int newStaffId = db.Staff.Any() ? db.Staff.Max(s => s.Staff_ID) + 1 : 1;
+                    
                     
                    
 
@@ -33,7 +33,7 @@ namespace Uniqlo.AdminPages.AdminStaff
                     {
 
 
-                        Staff_ID = newStaffId,
+                       
                         Name = staffName.Text, // Make sure control IDs match
                         Email = email.Text,
                         Gender = staffGender.SelectedValue,
@@ -49,6 +49,17 @@ namespace Uniqlo.AdminPages.AdminStaff
                     Response.Redirect("StaffHome.aspx");
                 }
             }
+        }
+
+        protected void CustomValidator1_ServerValidate(object source, ServerValidateEventArgs args)
+        {
+            string name = args.Value;
+
+           
+
+
+
+
         }
     }
 }

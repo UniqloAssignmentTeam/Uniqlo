@@ -49,9 +49,38 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="EPPlus, Version=7.1.2.0, Culture=neutral, PublicKeyToken=ea159fdaa78159a1, processorArchitecture=MSIL">
+      <HintPath>..\packages\EPPlus.7.1.2\lib\net462\EPPlus.dll</HintPath>
+    </Reference>
+    <Reference Include="EPPlus.Interfaces, Version=6.1.1.0, Culture=neutral, PublicKeyToken=a694d7f3b0907a61, processorArchitecture=MSIL">
+      <HintPath>..\packages\EPPlus.Interfaces.6.1.1\lib\net462\EPPlus.Interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="EPPlus.System.Drawing, Version=6.1.1.0, Culture=neutral, PublicKeyToken=2308d35469c9bac0, processorArchitecture=MSIL">
+      <HintPath>..\packages\EPPlus.System.Drawing.6.1.1\lib\net462\EPPlus.System.Drawing.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.IO.RecyclableMemoryStream, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IO.RecyclableMemoryStream.3.0.0\lib\netstandard2.0\Microsoft.IO.RecyclableMemoryStream.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.Annotations, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ComponentModel.Annotations.5.0.0\lib\net461\System.ComponentModel.Annotations.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Memory, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.5.5\lib\net461\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.5.3\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
     </Reference>
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
@@ -81,7 +110,6 @@
     <Content Include="AdminPages\AdminDiscount\addDiscount.aspx" />
     <Content Include="AdminPages\AdminDiscount\DiscountHome.aspx" />
     <Content Include="AdminPages\AdminProduct\AddProduct.aspx" />
-    <Content Include="AdminPages\AdminProduct\ColorTableControl.ascx" />
     <Content Include="AdminPages\AdminProduct\ProductHome.aspx" />
     <Content Include="AdminPages\adminProfile.aspx" />
     <Content Include="AdminPages\AdminStaff\StaffAdd.aspx" />
@@ -98,7 +126,7 @@
     <Content Include="AdminPages\Logout.aspx" />
     <Content Include="AdminPages\Report.aspx" />
     <Content Include="AdminPages\test.aspx" />
-    <Content Include="AdminPages\UpdateDelivery.aspx" />
+    <Content Include="AdminPages\AdminDelivery\UpdateDelivery.aspx" />
     <Content Include="App_Data\Uniqlo.mdf" />
     <Content Include="App_Data\Uniqlo_log.ldf">
       <DependentUpon>Uniqlo.mdf</DependentUpon>
@@ -112,7 +140,7 @@
     <Content Include="css\Admin\adminOrder.css" />
     <Content Include="css\Admin\adminStaff.css" />
     <Content Include="css\Admin\Discount1.css" />
-    <Content Include="css\Admin\neww.css" />
+    <Content Include="css\Admin\ErrorMessage.css" />
     <Content Include="css\Cart.css" />
     <Content Include="css\category.css" />
     <Content Include="css\ContactUs.css" />
@@ -208,35 +236,35 @@
     <Content Include="Pages\EditProfile.aspx" />
     <Content Include="Pages\ForgotPassword.aspx" />
     <Content Include="Pages\Home.aspx" />
-    <Content Include="Pages\Categories\Men\Bottoms.aspx" />
     <Content Include="Pages\Categories\Men\Main.aspx" />
-    <Content Include="Pages\Categories\Men\Tops.aspx" />
-    <Content Include="Pages\Categories\Women\Bottoms.aspx" />
+    <Content Include="Pages\Categories\Men\Products.aspx" />
     <Content Include="Pages\Categories\Women\Main.aspx" />
-    <Content Include="Pages\Categories\Women\Tops.aspx" />
+    <Content Include="Pages\Categories\Women\Products.aspx" />
     <Content Include="Pages\Invoice.aspx" />
     <Content Include="Pages\Login.aspx" />
     <Content Include="Pages\Logout.aspx" />
     <Content Include="Pages\OrderHistoryItem.aspx" />
     <Content Include="Pages\Payment.aspx" />
+    <Content Include="Pages\ProductDetails.aspx" />
     <Content Include="Pages\Profile.aspx" />
     <Content Include="Pages\SignUp.aspx" />
     <Content Include="Pages\TrackDelivery.aspx" />
     <Content Include="Pages\ValueBuy.aspx" />
     <Content Include="Pages\WishList.aspx" />
-    <Content Include="Uniqlo.Context.tt">
+    <Content Include="UniqloAdo.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Uniqlo.edmx</DependentUpon>
-      <LastGenOutput>Uniqlo.Context.cs</LastGenOutput>
+      <DependentUpon>UniqloAdo.edmx</DependentUpon>
+      <LastGenOutput>UniqloAdo.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Uniqlo.tt">
+    <Content Include="UniqloAdo.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Uniqlo.edmx</DependentUpon>
-      <LastGenOutput>Uniqlo.cs</LastGenOutput>
+      <DependentUpon>UniqloAdo.edmx</DependentUpon>
+      <LastGenOutput>UniqloAdo.cs</LastGenOutput>
     </Content>
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Address.cs" />
     <Compile Include="Admin.Master.cs">
       <DependentUpon>Admin.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -264,13 +292,6 @@
     </Compile>
     <Compile Include="AdminPages\AdminProduct\AddProduct.aspx.designer.cs">
       <DependentUpon>AddProduct.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="AdminPages\AdminProduct\ColorTableControl.ascx.cs">
-      <DependentUpon>ColorTableControl.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="AdminPages\AdminProduct\ColorTableControl.ascx.designer.cs">
-      <DependentUpon>ColorTableControl.ascx</DependentUpon>
     </Compile>
     <Compile Include="AdminPages\AdminProduct\ProductHome.aspx.cs">
       <DependentUpon>ProductHome.aspx</DependentUpon>
@@ -307,11 +328,11 @@
     <Compile Include="AdminPages\Dashboard.aspx.designer.cs">
       <DependentUpon>Dashboard.aspx</DependentUpon>
     </Compile>
-    <Compile Include="AdminPages\Delivery.aspx.cs">
+    <Compile Include="AdminPages\AdminDelivery\Delivery.aspx.cs">
       <DependentUpon>Delivery.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="AdminPages\Delivery.aspx.designer.cs">
+    <Compile Include="AdminPages\AdminDelivery\Delivery.aspx.designer.cs">
       <DependentUpon>Delivery.aspx</DependentUpon>
     </Compile>
     <Compile Include="AdminPages\adminLogin.aspx.cs">
@@ -381,37 +402,41 @@
       <DependentUpon>test.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="Card.cs" />
     <Compile Include="CartItem.cs" />
     <Compile Include="Category.cs">
-      <DependentUpon>Uniqlo.tt</DependentUpon>
+      <DependentUpon>UniqloAdo.tt</DependentUpon>
     </Compile>
     <Compile Include="Customer.cs">
-      <DependentUpon>Uniqlo.tt</DependentUpon>
+      <DependentUpon>UniqloAdo.tt</DependentUpon>
     </Compile>
     <Compile Include="Delivery.cs">
-      <DependentUpon>Uniqlo.tt</DependentUpon>
+      <DependentUpon>UniqloAdo.tt</DependentUpon>
     </Compile>
     <Compile Include="Discount.cs">
-      <DependentUpon>Uniqlo.tt</DependentUpon>
+      <DependentUpon>UniqloAdo.tt</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="AdminPages\UpdateDelivery.aspx.cs">
+    <Compile Include="AdminPages\AdminDelivery\UpdateDelivery.aspx.cs">
       <DependentUpon>UpdateDelivery.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="AdminPages\UpdateDelivery.aspx.designer.cs">
+    <Compile Include="AdminPages\AdminDelivery\UpdateDelivery.aspx.designer.cs">
       <DependentUpon>UpdateDelivery.aspx</DependentUpon>
     </Compile>
     <Compile Include="Image.cs">
-      <DependentUpon>Uniqlo.tt</DependentUpon>
+      <DependentUpon>UniqloAdo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ImageHandler.ashx.cs">
+      <DependentUpon>ImageHandler.ashx</DependentUpon>
     </Compile>
     <Compile Include="Order.cs">
-      <DependentUpon>Uniqlo.tt</DependentUpon>
+      <DependentUpon>UniqloAdo.tt</DependentUpon>
     </Compile>
     <Compile Include="OrderList.cs">
-      <DependentUpon>Uniqlo.tt</DependentUpon>
+      <DependentUpon>UniqloAdo.tt</DependentUpon>
     </Compile>
     <Compile Include="Pages\AboutUs.aspx.cs">
       <DependentUpon>AboutUs.aspx</DependentUpon>
@@ -476,13 +501,6 @@
     <Compile Include="Pages\Home.aspx.designer.cs">
       <DependentUpon>Home.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Categories\Men\Bottoms.aspx.cs">
-      <DependentUpon>Bottoms.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Pages\Categories\Men\Bottoms.aspx.designer.cs">
-      <DependentUpon>Bottoms.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Pages\Categories\Men\Main.aspx.cs">
       <DependentUpon>Main.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -490,19 +508,12 @@
     <Compile Include="Pages\Categories\Men\Main.aspx.designer.cs">
       <DependentUpon>Main.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Categories\Men\Tops.aspx.cs">
-      <DependentUpon>Tops.aspx</DependentUpon>
+    <Compile Include="Pages\Categories\Men\Products.aspx.cs">
+      <DependentUpon>Products.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Pages\Categories\Men\Tops.aspx.designer.cs">
-      <DependentUpon>Tops.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\Categories\Women\Bottoms.aspx.cs">
-      <DependentUpon>Bottoms.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Pages\Categories\Women\Bottoms.aspx.designer.cs">
-      <DependentUpon>Bottoms.aspx</DependentUpon>
+    <Compile Include="Pages\Categories\Men\Products.aspx.designer.cs">
+      <DependentUpon>Products.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Categories\Women\Main.aspx.cs">
       <DependentUpon>Main.aspx</DependentUpon>
@@ -511,12 +522,12 @@
     <Compile Include="Pages\Categories\Women\Main.aspx.designer.cs">
       <DependentUpon>Main.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Categories\Women\Tops.aspx.cs">
-      <DependentUpon>Tops.aspx</DependentUpon>
+    <Compile Include="Pages\Categories\Women\Products.aspx.cs">
+      <DependentUpon>Products.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Pages\Categories\Women\Tops.aspx.designer.cs">
-      <DependentUpon>Tops.aspx</DependentUpon>
+    <Compile Include="Pages\Categories\Women\Products.aspx.designer.cs">
+      <DependentUpon>Products.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Invoice.aspx.cs">
       <DependentUpon>Invoice.aspx</DependentUpon>
@@ -552,6 +563,13 @@
     </Compile>
     <Compile Include="Pages\Payment.aspx.designer.cs">
       <DependentUpon>Payment.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ProductDetails.aspx.cs">
+      <DependentUpon>ProductDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\ProductDetails.aspx.designer.cs">
+      <DependentUpon>ProductDetails.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Profile.aspx.cs">
       <DependentUpon>Profile.aspx</DependentUpon>
@@ -589,38 +607,23 @@
       <DependentUpon>WishList.aspx</DependentUpon>
     </Compile>
     <Compile Include="Payment.cs">
-      <DependentUpon>Uniqlo.tt</DependentUpon>
+      <DependentUpon>UniqloAdo.tt</DependentUpon>
     </Compile>
     <Compile Include="Product.cs">
-      <DependentUpon>Uniqlo.tt</DependentUpon>
+      <DependentUpon>UniqloAdo.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Quantity.cs">
-      <DependentUpon>Uniqlo.tt</DependentUpon>
+      <DependentUpon>UniqloAdo.tt</DependentUpon>
     </Compile>
     <Compile Include="Review.cs">
-      <DependentUpon>Uniqlo.tt</DependentUpon>
+      <DependentUpon>UniqloAdo.tt</DependentUpon>
     </Compile>
     <Compile Include="Shipping_Address.cs">
-      <DependentUpon>Uniqlo.tt</DependentUpon>
+      <DependentUpon>UniqloAdo.tt</DependentUpon>
     </Compile>
     <Compile Include="Staff.cs">
-      <DependentUpon>Uniqlo.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Uniqlo.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Uniqlo.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Uniqlo.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Uniqlo.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Uniqlo.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Uniqlo.edmx</DependentUpon>
+      <DependentUpon>UniqloAdo.tt</DependentUpon>
     </Compile>
     <Compile Include="Uniqlo.Master.cs">
       <DependentUpon>Uniqlo.Master</DependentUpon>
@@ -629,8 +632,23 @@
     <Compile Include="Uniqlo.Master.designer.cs">
       <DependentUpon>Uniqlo.Master</DependentUpon>
     </Compile>
+    <Compile Include="UniqloAdo.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>UniqloAdo.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UniqloAdo.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>UniqloAdo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UniqloAdo.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>UniqloAdo.edmx</DependentUpon>
+    </Compile>
     <Compile Include="WishlistItem.cs">
-      <DependentUpon>Uniqlo.tt</DependentUpon>
+      <DependentUpon>UniqloAdo.tt</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -639,12 +657,12 @@
     <Content Include="AdminPages\Web.config" />
     <None Include="packages.config" />
     <Content Include="Uniqlo.Master" />
-    <EntityDeploy Include="Uniqlo.edmx">
+    <EntityDeploy Include="UniqloAdo.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Uniqlo.Designer.cs</LastGenOutput>
+      <LastGenOutput>UniqloAdo.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Uniqlo.edmx.diagram">
-      <DependentUpon>Uniqlo.edmx</DependentUpon>
+    <Content Include="UniqloAdo.edmx.diagram">
+      <DependentUpon>UniqloAdo.edmx</DependentUpon>
     </Content>
     <Content Include="Pages\Web.config" />
     <None Include="Web.Debug.config">
@@ -661,7 +679,6 @@
   <ItemGroup>
     <Folder Include="Images\Categories\Men\Bottoms\" />
     <Folder Include="Images\Categories\Men\Tops\" />
-    <Folder Include="Images\Products\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

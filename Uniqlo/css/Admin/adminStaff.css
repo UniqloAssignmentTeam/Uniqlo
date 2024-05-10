@@ -270,19 +270,20 @@
     display: none;
 }
 
-.staffid, .role {
+.staffid{
     flex: 0 0 10%; /* Set a base width */
 }
 
-
-
+.role {
+    flex: 0 0 10%; /* Set a base width */
+}
 /* Name Column */
 .name {
     flex-grow: 1; /* Allow this column to grow and take up remaining space */
 }
 
 .email {
-    flex-basis: 10%;
+    flex-basis: 20%;
 }
 
 /* Price Column */

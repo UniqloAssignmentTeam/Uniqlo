@@ -7,6 +7,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Xml.Linq;
 using Uniqlo.AdminPages.AdminStaff;
+using static Uniqlo.Staff;
 
 namespace Uniqlo.AdminPages
 {
@@ -37,7 +38,7 @@ namespace Uniqlo.AdminPages
                     contactNumber.Text = staff.Contact_No;
                     staffGender.SelectedValue=staff.Gender;
                     staffRole.SelectedValue = staff.Role;
-                    
+                    password.Text=staff.Password;
                 }
             }
         }
