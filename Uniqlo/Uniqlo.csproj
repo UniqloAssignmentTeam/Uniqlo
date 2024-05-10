@@ -115,7 +115,7 @@
     <Content Include="AdminPages\AdminStaff\StaffAdd.aspx" />
     <Content Include="AdminPages\AdminStaff\StaffHome.aspx" />
     <Content Include="AdminPages\Dashboard.aspx" />
-    <Content Include="AdminPages\Delivery.aspx" />
+    <Content Include="AdminPages\AdminDelivery\Delivery.aspx" />
     <Content Include="AdminPages\Login.aspx" />
     <Content Include="AdminPages\AdminOrder\Order.aspx" />
     <Content Include="AdminPages\AdminOrder\OrderItem.aspx" />
@@ -126,7 +126,7 @@
     <Content Include="AdminPages\Logout.aspx" />
     <Content Include="AdminPages\Report.aspx" />
     <Content Include="AdminPages\test.aspx" />
-    <Content Include="AdminPages\UpdateDelivery.aspx" />
+    <Content Include="AdminPages\AdminDelivery\UpdateDelivery.aspx" />
     <Content Include="App_Data\Uniqlo.mdf" />
     <Content Include="App_Data\Uniqlo_log.ldf">
       <DependentUpon>Uniqlo.mdf</DependentUpon>
@@ -229,7 +229,6 @@
     <Content Include="Javascript\wishList.js" />
     <Content Include="Pages\AboutUs.aspx" />
     <Content Include="Pages\Cart.aspx" />
-    <Content Include="Pages\Categories\Women\Products.aspx" />
     <Content Include="Pages\ChangePassword.aspx" />
     <Content Include="Pages\ConfirmPayment.aspx" />
     <Content Include="Pages\ContactUs.aspx" />
@@ -240,6 +239,7 @@
     <Content Include="Pages\Categories\Men\Main.aspx" />
     <Content Include="Pages\Categories\Men\Products.aspx" />
     <Content Include="Pages\Categories\Women\Main.aspx" />
+    <Content Include="Pages\Categories\Women\Products.aspx" />
     <Content Include="Pages\Invoice.aspx" />
     <Content Include="Pages\Login.aspx" />
     <Content Include="Pages\Logout.aspx" />
@@ -251,6 +251,16 @@
     <Content Include="Pages\TrackDelivery.aspx" />
     <Content Include="Pages\ValueBuy.aspx" />
     <Content Include="Pages\WishList.aspx" />
+    <Content Include="UniqloAdo.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>UniqloAdo.edmx</DependentUpon>
+      <LastGenOutput>UniqloAdo.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="UniqloAdo.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>UniqloAdo.edmx</DependentUpon>
+      <LastGenOutput>UniqloAdo.cs</LastGenOutput>
+    </Content>
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -318,11 +328,11 @@
     <Compile Include="AdminPages\Dashboard.aspx.designer.cs">
       <DependentUpon>Dashboard.aspx</DependentUpon>
     </Compile>
-    <Compile Include="AdminPages\Delivery.aspx.cs">
+    <Compile Include="AdminPages\AdminDelivery\Delivery.aspx.cs">
       <DependentUpon>Delivery.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="AdminPages\Delivery.aspx.designer.cs">
+    <Compile Include="AdminPages\AdminDelivery\Delivery.aspx.designer.cs">
       <DependentUpon>Delivery.aspx</DependentUpon>
     </Compile>
     <Compile Include="AdminPages\Login.aspx.cs">
@@ -394,18 +404,42 @@
     </Compile>
     <Compile Include="Card.cs" />
     <Compile Include="CartItem.cs" />
+    <Compile Include="Category.cs">
+      <DependentUpon>UniqloAdo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Customer.cs">
+      <DependentUpon>UniqloAdo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="C__MigrationHistory.cs">
+      <DependentUpon>UniqloAdo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Delivery.cs">
+      <DependentUpon>UniqloAdo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Discount.cs">
+      <DependentUpon>UniqloAdo.tt</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="AdminPages\UpdateDelivery.aspx.cs">
+    <Compile Include="AdminPages\AdminDelivery\UpdateDelivery.aspx.cs">
       <DependentUpon>UpdateDelivery.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="AdminPages\UpdateDelivery.aspx.designer.cs">
+    <Compile Include="AdminPages\AdminDelivery\UpdateDelivery.aspx.designer.cs">
       <DependentUpon>UpdateDelivery.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Image.cs">
+      <DependentUpon>UniqloAdo.tt</DependentUpon>
     </Compile>
     <Compile Include="ImageHandler.ashx.cs">
       <DependentUpon>ImageHandler.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Order.cs">
+      <DependentUpon>UniqloAdo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OrderList.cs">
+      <DependentUpon>UniqloAdo.tt</DependentUpon>
     </Compile>
     <Compile Include="Pages\AboutUs.aspx.cs">
       <DependentUpon>AboutUs.aspx</DependentUpon>
@@ -420,13 +454,6 @@
     </Compile>
     <Compile Include="Pages\Cart.aspx.designer.cs">
       <DependentUpon>Cart.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\Categories\Women\Products.aspx.cs">
-      <DependentUpon>Products.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Pages\Categories\Women\Products.aspx.designer.cs">
-      <DependentUpon>Products.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\ChangePassword.aspx.cs">
       <DependentUpon>ChangePassword.aspx</DependentUpon>
@@ -497,6 +524,13 @@
     </Compile>
     <Compile Include="Pages\Categories\Women\Main.aspx.designer.cs">
       <DependentUpon>Main.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Categories\Women\Products.aspx.cs">
+      <DependentUpon>Products.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Categories\Women\Products.aspx.designer.cs">
+      <DependentUpon>Products.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Invoice.aspx.cs">
       <DependentUpon>Invoice.aspx</DependentUpon>
@@ -575,13 +609,49 @@
     <Compile Include="Pages\WishList.aspx.designer.cs">
       <DependentUpon>WishList.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Payment.cs">
+      <DependentUpon>UniqloAdo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Product.cs">
+      <DependentUpon>UniqloAdo.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Quantity.cs">
+      <DependentUpon>UniqloAdo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Review.cs">
+      <DependentUpon>UniqloAdo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Shipping_Address.cs">
+      <DependentUpon>UniqloAdo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Staff.cs">
+      <DependentUpon>UniqloAdo.tt</DependentUpon>
+    </Compile>
     <Compile Include="Uniqlo.Master.cs">
       <DependentUpon>Uniqlo.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Uniqlo.Master.designer.cs">
       <DependentUpon>Uniqlo.Master</DependentUpon>
+    </Compile>
+    <Compile Include="UniqloAdo.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>UniqloAdo.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UniqloAdo.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>UniqloAdo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UniqloAdo.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>UniqloAdo.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="WishlistItem.cs">
+      <DependentUpon>UniqloAdo.tt</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -590,6 +660,13 @@
     <Content Include="ImageHandler.ashx" />
     <None Include="packages.config" />
     <Content Include="Uniqlo.Master" />
+    <EntityDeploy Include="UniqloAdo.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>UniqloAdo.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="UniqloAdo.edmx.diagram">
+      <DependentUpon>UniqloAdo.edmx</DependentUpon>
+    </Content>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

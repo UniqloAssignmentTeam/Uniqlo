@@ -17,7 +17,7 @@
                 <div class="search">
                     <span class="material-symbols-outlined">search</span>
                     <asp:TextBox ID="searchBox" runat="server" CssClass="search-input" Text="Search"></asp:TextBox>
-                </div>
+                </div> 
                 
 
                 <div class="dropdown-wrapper">

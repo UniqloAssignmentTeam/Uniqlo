@@ -21,41 +21,61 @@ namespace Uniqlo.Pages
             }
         }
 
+  
+
         private void BindDataList()
+        {
+            using (var db = new ProductDbContext())
+            {
+                var today = DateTime.Today;
+
+                var productDetails = db.Product
+                    .Where(p => !p.IsDeleted)
+                    .SelectMany( // Use SelectMany to flatten the results from the join
+                        p => db.Discount
+                            .Where(d => d.Product_ID == p.Product_ID // Ensure it's the right product
+                                && d.Status == "Active" // Discount must be active
+                                && d.Start_Date <= today // Start date must be on or before today
+                                && d.End_Date >= today), // End date must be on or after today
+                        (product, discount) => new {
+                            Product_Name = product.Product_Name,
+                            Description = product.Description,
+                            Price = product.Price,
+                            Image_ID = product.Quantities.Select(q => q.Image_ID).FirstOrDefault(), // Assuming at least one quantity has an image
+                            AverageRating = product.Quantities.SelectMany(q => q.OrderLists).SelectMany(ol => ol.Reviews).Average(r => (int?)r.Rating) ?? 0,
+                            ReviewCount = product.Quantities.SelectMany(q => q.OrderLists).SelectMany(ol => ol.Reviews).Count(),
+                            Discount_Amount = product.Price- discount.Discount_Amount
+                        }
+                    )
+                    .ToList();
+
+                dlValueBuy.DataSource = productDetails;
+                dlValueBuy.DataBind();
+            }
+        }
+        protected void genderSortDDL_SelectedIndexChanged(object sender, EventArgs e)
         {
             using (var context = new ProductDbContext())
             {
-                // Using DateTime.Now outside the LINQ query to avoid multiple calls which might give slight differences during execution.
-                var today = DateTime.Now;
+                string selectedGender = genderSortDDL.SelectedValue;
+                var today = DateTime.Today; // Use Today instead of Now for date comparison without time
 
-                // Fetching products with active discounts
-                var productsWithActiveDiscounts = (from p in context.Product
-                                                   where !p.IsDeleted
-                                                   join d in context.Discount on p.Product_ID equals d.Product_ID
-                                                   where d.Status == "Active" && d.Start_Date <= today && d.End_Date >= today
-                                                   join q in context.Quantity on p.Product_ID equals q.Product_ID
-                                                   join img in context.Image on q.Image_ID equals img.Image_ID
-                                                   select new
-                                                   {
-                                                       Product_Name = p.Product_Name, // Changed to ProductName to match common naming conventions
-                                                       Description = p.Description,
-                                                       Price = p.Price,
-                                                       Discount_Amount = d.Discount_Amount,
-                                                       Image_ID=img.Image_ID,
-                                                       AverageRating = (from q in p.Quantities
-                                                                        from ol in q.OrderLists
-                                                                        from r in ol.Reviews
-                                                                        select (int?)r.Rating).Average() ?? 0,
-                                                       ReviewCount = (from q in p.Quantities
-                                                                      from ol in q.OrderLists
-                                                                      from r in ol.Reviews
-                                                                      select r).Count()
+                var productsQuery = context.Product
+                    .Where(p => !p.IsDeleted && p.Category.Gender == selectedGender)
+                    .Join(context.Discount,
+                          p => p.Product_ID,
+                          d => d.Product_ID,
+                          (p, d) => new { p, d })
+                    .Where(pd => pd.d.Status == "Active" && pd.d.Start_Date <= today && pd.d.End_Date >= today)
+                    .Select(pd => new {
+                        Product_Name = pd.p.Product_Name,
+                        Description = pd.p.Description,
+                        Price = pd.p.Price,
+                        Discount_Amount = pd.p.Price - pd.d.Discount_Amount,
+                        Image_ID = pd.p.Quantities.FirstOrDefault().Image.Image_ID, // Assuming each product has at least one image
+                    });
 
-
-                                                   }).Distinct().ToList();
-
-                // Setting the DataList data source
-                dlValueBuy.DataSource = productsWithActiveDiscounts;
+                dlValueBuy.DataSource = productsQuery.Distinct().ToList();
                 dlValueBuy.DataBind();
             }
         }
