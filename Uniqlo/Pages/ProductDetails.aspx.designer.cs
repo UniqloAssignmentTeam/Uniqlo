@@ -15,21 +15,21 @@ namespace Uniqlo.Pages
     {
 
         /// <summary>
-        /// RadioButtonList2 control.
+        /// formView control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList RadioButtonList2;
+        protected global::System.Web.UI.WebControls.FormView formView;
 
         /// <summary>
-        /// RadioButtonList1 control.
+        /// formView1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList RadioButtonList1;
+        protected global::System.Web.UI.WebControls.FormView formView1;
     }
 }

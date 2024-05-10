@@ -9,7 +9,7 @@ using static Uniqlo.Product;
 
 namespace Uniqlo.Pages.Categories.Women
 {
-    public partial class Tops : System.Web.UI.Page
+    public partial class Products : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -37,6 +37,7 @@ namespace Uniqlo.Pages.Categories.Women
                     .SelectMany(
                         pd => pd.Discounts,
                         (pd, discount) => new {
+                            ProductId = pd.Product.Product_ID,
                             ProductName = pd.Product.Product_Name,
                             Description = pd.Product.Description,
                             Price = pd.Product.Price,
@@ -51,8 +52,8 @@ namespace Uniqlo.Pages.Categories.Women
                 dataList.DataSource = productDetails;
                 dataList.DataBind();
             }
-        }        
-        
+        }
+
         private void BindDataList2()
         {
             using (var db = new ProductDbContext())
@@ -69,6 +70,7 @@ namespace Uniqlo.Pages.Categories.Women
                     .SelectMany(
                         pd => pd.Discounts,
                         (pd, discount) => new {
+                            ProductId = pd.Product.Product_ID,
                             ProductName = pd.Product.Product_Name,
                             Description = pd.Product.Description,
                             Price = pd.Product.Price,
@@ -83,8 +85,8 @@ namespace Uniqlo.Pages.Categories.Women
                     .Take(5) // Take only the top 5 products
                     .ToList();
 
-                dataList.DataSource = productDetails;
-                dataList.DataBind();
+                carouselDataList.DataSource = productDetails;
+                carouselDataList.DataBind();
             }
         }
 
