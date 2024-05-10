@@ -10,6 +10,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data.Entity;
 using static Uniqlo.Discount;
+using System.Text;
 
 namespace Uniqlo.AdminPages.AdminDiscount
 {
@@ -64,7 +65,7 @@ namespace Uniqlo.AdminPages.AdminDiscount
 
         protected void btnExport_Click(object sender, EventArgs e)
         {
-            ExportDiscountsToExcel();
+            ExportProductsToExcel();
         }
 
         protected void statusSortDDL_SelectedIndexChanged(object sender, EventArgs e)
@@ -97,45 +98,55 @@ namespace Uniqlo.AdminPages.AdminDiscount
             }
         }
 
-      
 
-
-public void ExportDiscountsToExcel()
+        private void ExportProductsToExcel()
         {
-            try
+            string connectionString = Global.CS; // Ensure this is correctly defined
+            using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                string connectionString = cs;
-                using (SqlConnection conn = new SqlConnection(connectionString))
-                {
-                    string query = @"SELECT d.Discount_ID, d.Discount_Amount, d.Status, d.Start_Date, d.End_Date, d.Product_ID, 
-            p.Product_Name FROM Discount d JOIN Product p ON d.Product_ID = p.Product_ID";
-                    using (SqlCommand cmd = new SqlCommand(query, conn))
-                    {
-                        using (SqlDataAdapter da = new SqlDataAdapter(cmd))
-                        {
-                            DataTable dt = new DataTable();
-                            da.Fill(dt);
-                            using (ExcelPackage pck = new ExcelPackage())
-                            {
-                                ExcelWorksheet ws = pck.Workbook.Worksheets.Add("Discounts");
-                                ws.Cells["A1"].LoadFromDataTable(dt, true, OfficeOpenXml.Table.TableStyles.Light1);
-                                // Formatting logic here
-                                var memoryStream = new MemoryStream();
-                                pck.SaveAs(memoryStream);
+                conn.Open();  // Ensure the connection is opened before executing the command
 
-                                HttpContext.Current.Response.ContentType = "application/vnd.openxmlforts-officedocument.spreadsheetml.sheet";
-                                HttpContext.Current.Response.AddHeader("content-disposition", "attachment;  filename=Discounts.xlsx");
-                                HttpContext.Current.Response.BinaryWrite(memoryStream.ToArray());
-                                HttpContext.Current.Response.End();
-                            }
+                // Start building the base query
+                StringBuilder query = new StringBuilder(@"SELECT d.Discount_ID, d.Discount_Amount, d.Status, d.Start_Date, d.End_Date, d.Product_ID, 
+            p.Product_Name FROM Discount d JOIN Product p ON d.Product_ID = p.Product_ID");
+
+                // Initialize a SqlCommand with an empty query string
+                using (SqlCommand cmd = new SqlCommand("", conn))
+                {
+                    // Retrieve the selected values from the dropdowns
+                    string selectedCategory = statusSortDDL.SelectedValue;
+                  
+
+                    // Check if there are any conditions to add based on dropdown selection
+                    if (!string.IsNullOrEmpty(selectedCategory) && selectedCategory != "Status")
+                    {
+                        query.Append(" WHERE d.Status = @Status");
+                        cmd.Parameters.AddWithValue("@Status", selectedCategory);
+                    }
+                   
+
+                    // Set the SqlCommand's CommandText to the built query
+                    cmd.CommandText = query.ToString();
+
+                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                    {
+                        DataTable dt = new DataTable();
+                        da.Fill(dt);
+                        using (ExcelPackage pck = new ExcelPackage())
+                        {
+                            ExcelWorksheet ws = pck.Workbook.Worksheets.Add("Discount");
+                            ws.Cells["A1"].LoadFromDataTable(dt, true, OfficeOpenXml.Table.TableStyles.Light1);
+                            var memoryStream = new MemoryStream();
+                            pck.SaveAs(memoryStream);
+                            memoryStream.Position = 0;
+
+                            HttpContext.Current.Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+                            HttpContext.Current.Response.AddHeader("content-disposition", "attachment; filename=Discount.xlsx");
+                            HttpContext.Current.Response.BinaryWrite(memoryStream.ToArray());
+                            HttpContext.Current.Response.End();
                         }
                     }
                 }
-            }
-            catch (Exception ex)
-            {
-                // Log or handle the exception here
-                Console.WriteLine("Error: " + ex.Message);
             }
         }
 

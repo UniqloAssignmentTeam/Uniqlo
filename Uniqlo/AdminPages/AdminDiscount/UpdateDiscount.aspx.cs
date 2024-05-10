@@ -42,92 +42,75 @@ namespace Uniqlo.AdminPages
             }
         }
 
-        
+
         protected void updateBtn_Click(object sender, EventArgs e)
         {
             if (Page.IsValid)
             {
-
-
                 using (var db = new DiscountDbContext())
                 {
-                    
-
-
                     int discountId = int.Parse(discountID.Text);
-                    int productId = int.Parse(DdlProductName.SelectedValue);
-                    var existingDiscount = db.Discount
-                                     .Where(d => d.Product_ID == productId)
-                                     .FirstOrDefault();
+                    Discount existingDiscount = db.Discount.Find(discountId);
 
-                    if (existingDiscount != null)
+                    if (existingDiscount == null)
                     {
-                        db.Discount.Remove(existingDiscount);
-                        db.SaveChanges(); // Save changes if you want to immediately commit the delete
+                        // Handle error: Discount not found
+                        return;
+                    }
 
-                        DateTime startInput;
-                        DateTime endInput;
-                        DateTime today = DateTime.Now.Date;
-                        bool startDateParsed = DateTime.TryParse(startDate.Text, out startInput);
-                        bool endDateParsed = DateTime.TryParse(endDate.Text, out endInput);
-                        DateTime startDateInput = startInput.Date;
-                        DateTime endDateInput = endInput.Date;
-                        if (!startDateParsed || !endDateParsed)
+                    // Parse and validate dates
+                    if (!DateTime.TryParse(startDate.Text, out DateTime startInput) ||
+                        !DateTime.TryParse(endDate.Text, out DateTime endInput))
+                    {
+                        // Handle error: Date parsing failed
+                        return;
+                    }
+
+                    // Check if the product ID has changed and if there's an existing discount for the new product
+                    int newProductId = int.Parse(DdlProductName.SelectedValue);
+                    if (existingDiscount.Product_ID != newProductId)
+                    {
+                        // Check for and remove any existing discount on the new product
+                        var conflictingDiscount = db.Discount.FirstOrDefault(d => d.Product_ID == newProductId);
+                        if (conflictingDiscount != null)
                         {
-
-                            return;
+                            db.Discount.Remove(conflictingDiscount);
                         }
 
-                        string status = (today >= startDateInput && today <= endDateInput) ? "Active" : "Inactive";
-                       
-                            Discount newDiscount = new Discount
-                            {
-
-                                Product_ID = productId,
-                                Discount_Amount = float.Parse(discountAmount.Text),
-                                Start_Date = startDateInput,
-                                End_Date = endDateInput,
-                                Status = status
-
-                            };
-
-                            db.Discount.Add(newDiscount);
-                            db.SaveChanges();
-
-                            Response.Redirect("DiscountHome.aspx");
-                        
-
-
+                        // Create a new discount record for the new product
+                        Discount newDiscount = new Discount
+                        {
+                            Product_ID = newProductId,
+                            Discount_Amount = float.Parse(discountAmount.Text),
+                            Start_Date = startInput,
+                            End_Date = endInput,
+                            Status = CalculateStatus(startInput, endInput)
+                        };
+                        db.Discount.Add(newDiscount);
                     }
                     else
                     {
-                        var discount = db.Discount.FirstOrDefault(d => d.Discount_ID == discountId);
-                        if (discount != null)
-                        {
-                            discount.Product_ID = int.Parse(DdlProductName.SelectedValue);
-                            discount.Discount_Amount = float.Parse(discountAmount.Text);
-                            discount.Status = status.Text;
-                            discount.Start_Date = DateTime.Parse(startDate.Text);
-                            discount.End_Date = DateTime.Parse(endDate.Text);
-
-                            // Update other fields like Gender and Role if they are editable
-
-                            db.SaveChanges();
-                            Response.Redirect("DiscountHome.aspx");
-                        }
+                        // Update existing discount
+                        existingDiscount.Discount_Amount = float.Parse(discountAmount.Text);
+                        existingDiscount.Start_Date = startInput;
+                        existingDiscount.End_Date = endInput;
+                        existingDiscount.Status = CalculateStatus(startInput, endInput);
                     }
 
-                   
-
-
-
-                  
+                    db.SaveChanges();
+                    Response.Redirect("DiscountHome.aspx");
                 }
             }
         }
 
+        private string CalculateStatus(DateTime start, DateTime end)
+        {
+            DateTime today = DateTime.Now.Date;
+            return (today >= start && today <= end) ? "Active" : "Inactive";
+        }
 
-      private int? getReturnProductID(int discountID)
+
+        private int? getReturnProductID(int discountID)
         {
             
             using (var db = new DiscountDbContext())
