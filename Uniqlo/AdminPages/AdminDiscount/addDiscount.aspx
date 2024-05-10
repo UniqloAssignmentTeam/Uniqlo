@@ -4,6 +4,12 @@
                 <header>
                    
                     <link href="../../css/Admin/addDiscount.css" rel="stylesheet" />
+                    <style>
+                        .scrollable-dropdown {
+                            max-height: 150px; 
+                            overflow-y: auto;  
+                        }
+                    </style>
         </header>
        
  
@@ -13,15 +19,17 @@
         <div class="productItemCard">
             <h2 class="product-title">UNIQLO ADD DISCOUNT</h2>
         </div>
+
         <div class="modal-content">
            
 
             <div class="product-content">
                 <div class="form-group">
-                    <label for="productID">Product ID</label>
-                     <asp:TextBox ID="productID" runat="server"></asp:TextBox>
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="endDate"
-ErrorMessage="Product ID is required" ForeColor="Red" Display="Dynamic"></asp:RequiredFieldValidator>
+                    <label for="productName">Product Name</label>
+                    
+                    <asp:DropDownList ID="DdlProductName" runat="server" CssClass="scrollable-dropdown dropdown-display"></asp:DropDownList>
+                   
+                    
                 </div>
 
                

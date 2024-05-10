@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Uniqlo.AdminPages;
 using Uniqlo.AdminPages.AdminStaff;
+using static Uniqlo.Review;
 
 namespace Uniqlo.Pages
 {

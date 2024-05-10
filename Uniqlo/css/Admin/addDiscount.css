@@ -94,14 +94,14 @@ body .form-group {
 
 .dropdown-container {
     position: relative;
-    width: 150px; /* Fixed width for consistency */
+    width: 300px; /* Fixed width for consistency */
     display: flex; /* Use flex to align the arrow inside .dropdown-display */
     align-items: center; /* Center align the contents */
     justify-content: space-between; /* Spread out the contents */
 }
 
 .dropdown-display {
-    width: 150px;
+    width: 360px;
     height: 40px;
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -281,3 +281,6 @@ body .form-group {
         background-color: black;
         color: white;
     }
+
+
+

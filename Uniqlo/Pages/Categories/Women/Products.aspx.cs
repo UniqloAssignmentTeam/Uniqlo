@@ -27,7 +27,7 @@ namespace Uniqlo.Pages.Categories.Women
             {
                 var today = DateTime.Today;
                 var productDetails = db.Product
-                    .Where(p => !p.IsDeleted)
+                    .Where(p => !p.IsDeleted && p.Category.Gender == "W")
                     .GroupJoin( // Simulate a left join using GroupJoin and DefaultIfEmpty
                         db.Discount,
                         product => product.Product_ID,
@@ -49,8 +49,11 @@ namespace Uniqlo.Pages.Categories.Women
                     )
                     .ToList();
 
+                
                 dataList.DataSource = productDetails;
                 dataList.DataBind();
+
+                dataList.RepeatColumns = productDetails.Count > 4 ? 4 : productDetails.Count;
             }
         }
 
@@ -60,7 +63,7 @@ namespace Uniqlo.Pages.Categories.Women
             {
                 var today = DateTime.Today;
                 var productDetails = db.Product
-                    .Where(p => !p.IsDeleted)
+                    .Where(p => !p.IsDeleted && p.Category.Gender == "W")
                     .GroupJoin(
                         db.Discount,
                         product => product.Product_ID,
@@ -87,6 +90,9 @@ namespace Uniqlo.Pages.Categories.Women
 
                 carouselDataList.DataSource = productDetails;
                 carouselDataList.DataBind();
+
+
+                carouselDataList.RepeatColumns = productDetails.Count > 4 ? 4 : productDetails.Count;
             }
         }
 

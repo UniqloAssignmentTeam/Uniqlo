@@ -49,6 +49,7 @@ namespace Uniqlo.Pages
                     )
                     .ToList();
 
+                dlValueBuy.RepeatColumns = productDetails.Count > 4 ? 4 : productDetails.Count;
                 dlValueBuy.DataSource = productDetails;
                 dlValueBuy.DataBind();
             }

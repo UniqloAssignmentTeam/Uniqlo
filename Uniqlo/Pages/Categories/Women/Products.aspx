@@ -17,7 +17,7 @@
                
         <div class="wrapper">
             <i id="left" class="fa-solid fa-angle-left"></i>
-            <asp:DataList ID="carouselDataList" runat="server" RepeatColumns="4" RepeatDirection="Horizontal" CellPadding="4" Width="100%">
+            <asp:DataList ID="carouselDataList" runat="server" RepeatDirection="Horizontal" Width="100%">
                 <HeaderTemplate>
                     <ul class="carousel">
                     </HeaderTemplate>
@@ -90,7 +90,7 @@
             <!--PRODUCT LIST DISPLAY HERE-->
             <div class="limitedOfferCardBigContainer">
                 <!--START OF COLUMN-->
-                <asp:DataList ID="dataList" runat="server" RepeatColumns="4" RepeatDirection="Horizontal" CellPadding="4" Width="100%">
+                <asp:DataList ID="dataList" runat="server" RepeatDirection="Horizontal" Width="100%">
                    <ItemTemplate>
                        <asp:HyperLink ID="productLink" runat="server" NavigateUrl='<%# "/Pages/ProductDetails.aspx?ProdID=" +  Eval("ProductId") %>' CssClass="hyperlink">
                            <div class="limitedOfferCardContainer">

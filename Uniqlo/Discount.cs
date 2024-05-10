@@ -33,6 +33,4 @@ namespace Uniqlo
         public DbSet<Product> Product { get; set; }
         public DbSet<Discount> Discount { get; set; }
     }
-
-
 }

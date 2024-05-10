@@ -115,7 +115,7 @@ namespace Uniqlo.Pages
                     dataList.DataBind();
 
                     int count = data.Count;
-                    dataList.RepeatColumns = count;
+                    dataList.RepeatColumns = count > 4 ? 4 : count;
                     BindColorRadioButtonList(Int32.Parse(Request.QueryString["ProdID"]));
                 }
                 else

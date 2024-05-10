@@ -13,7 +13,11 @@ namespace Uniqlo.AdminPages
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (!IsPostBack)
+            {
+                DropDownListProductName();
+            }
+                
         }
         protected void addBtn_Click(object sender, EventArgs e)
         {
@@ -33,14 +37,16 @@ namespace Uniqlo.AdminPages
                 }
                 string status = (today >= startDateInput && today <= endDateInput) ? "Active" : "Inactive";
 
+               
 
                 using (var db = new DiscountDbContext())
                 {
+                    int productId= Int32.Parse(DdlProductName.SelectedValue);
 
                     Discount newDiscount = new Discount
                     {
 
-                        Product_ID = Int32.Parse(productID.Text),
+                        Product_ID = productId,
                         Discount_Amount = float.Parse(discountAmount.Text),
                         Start_Date = startDateInput,
                         End_Date = endDateInput,
@@ -53,6 +59,33 @@ namespace Uniqlo.AdminPages
 
                     Response.Redirect("DiscountHome.aspx");
                 }
+            }
+        }
+
+        private void DropDownListProductName()
+        {
+            using (var db = new ProductDbContext())
+            {
+
+
+                var products = db.Product
+                                 .Where(p => !p.IsDeleted) 
+                                 .Select(p => new { p.Product_ID, p.Product_Name })
+                                 .ToList();
+
+               
+                DdlProductName.Items.Clear();
+
+                
+                DdlProductName.Items.Add(new ListItem("--Select Product--", ""));
+
+                
+                foreach (var product in products)
+                {
+                    ListItem item = new ListItem(product.Product_Name, product.Product_ID.ToString());
+                    DdlProductName.Items.Add(item);
+                }
+
             }
         }
     }
