@@ -11,7 +11,8 @@ namespace Uniqlo
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.Data.Entity;
+
     public partial class Delivery
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -28,5 +29,15 @@ namespace Uniqlo
         public virtual Shipping_Address Shipping_Address { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Payment> Payments { get; set; }
+
+    }
+
+    public class DeliveryDbContext : DbContext
+    {
+        public DeliveryDbContext() : base("name=UniqloEntities") 
+        {
+        }
+
+        public DbSet<Delivery> delivery { get; set; } 
     }
 }
