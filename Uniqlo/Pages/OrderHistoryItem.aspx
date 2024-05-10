@@ -2,10 +2,290 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="main" runat="server">
       <header>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-        <link href="../css/Admin/OrderItem.css" rel="stylesheet" />
+          <link href="../css/Admin/OrderItem.css" rel="stylesheet" />
         <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet" />
         <style>
-          
+            .backButtonClass{
+                margin: 20px 0px; 
+                border: 2px solid white; 
+                width: 50px; 
+                height: 50px; 
+                padding: 10px 10px 10px 15px; 
+                background-color: #f0f0f0; 
+                border-radius: 99%;
+            }
+
+            .backButtonClass:hover{
+              background-color: #d0d0d0; 
+            }
+
+            .backLinkClass{
+                color: #6F6F6F; 
+                text-decoration: none;
+            }
+
+            .backButtonClass:hover > .backLinkClass {
+              color: #8F8F8F; 
+            }            
+            
+            /*Button in table*/
+            .orderReceivedSection{
+                margin: auto;
+                margin-top: 20px;
+                width: 300px;
+                height: 50px;
+                padding: 10px 0px 0px 130px;
+                border: 2px solid black;
+                transition: all 0.5s ease;
+                font-weight: bold;
+                cursor: pointer;
+            }
+
+            .orderReceivedSection:hover{
+                background-color: black;
+            }
+
+            .orderReceivedSection:hover > .orderReceivedButton{
+                color: white;
+            }
+
+            .orderReceivedButton{
+                text-decoration: none;
+                color: black;
+            }
+
+            /*MODAL*/
+            /* The Modal (background) */
+            .modal {
+              display: none; /* Hidden by default */
+              position: fixed; /* Stay in place */
+              z-index: 1; /* Sit on top */
+              padding-top: 180px; /* Location of the box */
+              left: 0;
+              top: 0;
+              width: 100%; /* Full width */
+              height: 100%; /* Full height */
+              overflow: auto; /* Enable scroll if needed */
+              background-color: rgb(0,0,0); /* Fallback color */
+              background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+            }
+
+            /* Modal Content */
+            .modal-content {
+              background-color: #fefefe;
+              margin: auto;
+              padding: 20px;
+              border: 1px solid #888;
+              width: 50%;
+            }
+
+            /* The Close Button */
+            .close, .secClose, .thirdClose {
+              color: #aaaaaa;
+              float: right;
+              font-size: 28px;
+              font-weight: bold;
+            }
+
+            .close:hover,
+            .close:focus {
+              color: #000;
+              text-decoration: none;
+              cursor: pointer;
+            }            
+            
+            .secClose:hover,
+            .secClose:focus {
+              color: #000;
+              text-decoration: none;
+              cursor: pointer;
+            }            
+            .thirdClose:hover,
+            .thirdClose:focus {
+              color: #000;
+              text-decoration: none;
+              cursor: pointer;
+            }
+
+            .modal-rating-content{
+                margin-top: 60px;
+                font-size: 20px;
+                margin-bottom: 10px;
+                margin-left: 60px;
+            }
+
+            .commentRatingSectionStars{
+                margin-top: 16px;
+                margin-left: 100px;
+                font-size: 25px;
+            }
+
+            .commentRatingSectionComment{
+                margin-top: 30px;
+            }
+            .commentRatingSectionComment textarea{
+                margin-top: -10px;
+                width: 600px;
+                height: 110px;
+                font-size: 18px;
+                resize: none;
+            }
+
+            .commentRatingSectionContainer{
+                border: 2px solid black;
+                width: 91%;
+                margin-left: 0;
+                margin-top: 30px;
+                margin-bottom: 30px;
+                height: 50px;
+                transition: all 0.5s ease;
+                padding-top: 5px;
+            }
+
+            .commentRatingSectionButton{
+                text-decoration: none;
+                color: black;
+                padding: 50px 300px 50px 275px;
+                font-weight: bold;
+                font-size: 15px;
+            }
+
+            .commentRatingSectionContainer:hover{
+                background-color: black;
+            }
+
+            .commentRatingSectionContainer:hover > .commentRatingSectionButton{
+                color: white;
+            }
+
+            .star {
+                color: #ffc107;
+            }
+
+            /*SECOND MODAL BUTTON*/
+            
+            .secModalBtnBorder1,
+            .secModalBtnBorder2{
+                transition: all 0.5s ease;
+                cursor: pointer;
+
+            }       
+            
+            .secModalBtn1,
+            .secModalBtn2{
+                text-decoration: none;
+                color: black;
+                padding: 20px 150px 0px 125px;
+            }
+            
+            .secModalBtnBorder1:hover,
+            .secModalBtnBorder2:hover{
+                background-color: black;
+            }  
+            
+            .secModalBtnBorder1:hover > .secModalBtn1{
+                color: white;
+            }            
+            
+            .secModalBtnBorder2:hover > .secModalBtn2{
+                color: white;
+            }
+
+            /*CONFIRMATION MODAL*/
+            .confirmationClearFix{
+                width: 100%;
+                margin-top: 90px;
+            }
+
+            /* Add a color to the cancel button */
+            .confirmationCancelbtn, .confirmationDeletebtn {
+                border: 2px solid black;
+                padding: 20px 150px 20px 150px;
+                background: none;
+                outline: none;
+                font-weight: bold;
+                cursor: pointer;
+                transition: all 0.5s ease;
+                width: 100%;
+                text-decoration: none;
+                color: black;
+                width: calc((100% / 2) - 20px);
+    
+            }
+
+            .confirmationDeletebtn:hover, 
+            .confirmationCancelbtn:hover {
+                background-color: black;
+                color: white;
+            }             
+   
+
+            /* Add padding and center-align text to the container */
+            .confirmationContainer {
+              padding: 16px;
+              text-align: center;
+            }
+
+            /* The Modal (background) */
+            .confirmationModal {
+              display: none; /* Hidden by default */
+              position: fixed; /* Stay in place */
+              z-index: 2; /* Sit on top */
+              left: 0;
+              top: 0;
+              width: 100%; /* Full width */
+              height: 100%; /* Full height */
+              background-color: rgb(0,0,0); /* Fallback color */
+              background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+              padding-top: 50px;
+              margin-top: 55px;
+            }
+
+            /* Modal Content/Box */
+            .confirmation-modal-content {
+              background-color: #fefefe;
+              margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+              border: 1px solid #888;
+              width: 50%; /* Could be more or less, depending on screen size */
+              height: 440px;
+            }
+
+
+            .confirmation-modal-content h1{
+                margin-top: 60px;
+            }
+
+            .confirmation-modal-content p{
+                margin-top: 30px;
+            }
+ 
+            /* The Modal Close Button (x) */
+            .confirmationClose {
+              float: right;
+              font-size: 40px;
+              font-weight: bold;
+              color: #f1f1f1;
+            }
+
+            .confirmationClose:hover,
+            .confirmationClose:focus {
+              color: black;
+              cursor: pointer;
+            }
+
+            /* Clear floats */
+            .confirmationClearFix::after {
+              content: "";
+              clear: both;
+              display: table;
+            }
+
+            /* Change styles for cancel button and delete button on extra small screens */
+            @media screen and (max-width: 300px) {
+              .confirmationCancelbtn, .confirmationDeletebtn {
+                 width: 100%;
+              }
+            }
         </style>
     </header>
     <div class="productBody">
@@ -16,58 +296,56 @@
         
         <h1>ORDER ID : 1001</h1>
        
+
+
+
+
+
+
+
          <div class="cart-page-container">
              <div class="cart-items-container" style="width: 70%;">
+
+                 <asp:DataList ID="DataList1" runat="server">
+                     <ItemTemplate>
                  <!-- Cart Item 1 -->
                  <div class="cart-item" data-product-id="1">
                      <div class="cart-item-image-container">
-                         <img src="../../../Images/Categories/Woman/Tops/AIRismCottonShortSleeveT-Shirt1.jpg" alt="AIRism Cotton Short Sleeve T-Shirt"/>
+                         <img src='/ImageHandler.ashx?id=<%# Eval("Image_ID") %>' alt='<%# Eval("Product_Name") %>' style="width: 100%" />
                      </div>
+                    
+
                      <div class="item-details">
+
+
                          <div class="item-name">
-                             <h3><b>AIRism Cotton Short Sleeve T-Shirt</b></h3>
+
+
+                             <h3><b><%# Eval("Product_Name") %></b></h3>
+
+
                          </div>
                          <div class="item-description"> 
-                             <p>Smooth "AIRism" fabric with the look of cotton. Refined fabric and design.</p><br />
+                             <p><%# Eval("Product_Description") %></p><br />
                          </div>
                          <div class="item-details">
-                             <p><b>Size:</b> M</p>
-                             <p><b>Color:</b> Red</p>
+
+
+                             <p><b>Size:</b> <%# Eval("Size") %></p>
+                             <p><b>Color:</b>  <%# Eval("Color") %></p>
                          </div>
-                             <p><b>Price:</b> RM30.00</p>
-                             <p><b>Quantity:</b> 1</p>
-                         <p class="item-subtotal"><b>Item Price: RM 30.00</b></p>
+                             <p><b>Item Price:</b> RM<%# Eval("Item_Price") %></p>
+                             <p><b>Quantity:</b> <%# Eval("Qty") %></p>
+                         <p class="item-subtotal"><b>Sub Total: RM  <%# Eval("Subtotal", "{0:C}") %></b></p>
+
                          <div class="orderReceivedSection" id="reviewModal">
                              <a href="#" class="orderReceivedButton">Review</a>
                          </div>
                      </div>
                  </div>
-
-                 <!-- Cart Item 2 -->
-                 <div class="cart-item" id="cart2" data-product-id="2">
-                     <div class="cart-item-image-container">
-                         <img src="../../../Images/Categories/Woman/Bottoms/SweatCargoPants1.jpg" alt="Sweat Cargo Pants"/>
-                     </div>
-                     <div class="item-details">
-                         <div class="item-name">
-                             <h3><b>Sweat Cargo Pants</b></h3>
-                         </div>
-                         <div class="item-description">
-                             <p>Smooth "AIRism" fabric with the look of cotton. Refined fabric and design.</p>
-                         </div>
-                         <div class="item-details">
-                             <p><b>Size:</b> M</p>
-                             <p><b>Color:</b> Red</p>
-                         </div>
-                         <p><b>Price:</b> RM30.00</p>
-                         <p><b>Quantity:</b> 1</p>
-                         <p class="item-subtotal"><b>Item Price: RM 30.00</b></p>
-                         <div class="orderReceivedSection" id="secBtn">
-                             <a href="#" class="orderReceivedButton" style="padding: 0px 100px 0px 0px;">View</a>
-                         </div>
-                     </div>
-                 </div>
-             </div>
+                         </ItemTemplate>
+                     </asp:DataList>
+                
 
              <!-- Cart Summary -->
              <div class="cart-summary" style="width: 30%;">

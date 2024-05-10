@@ -25,7 +25,7 @@ namespace Uniqlo
     }
     public class StaffDbContext : DbContext
     {
-        public StaffDbContext() : base("name=UniqloEntities") 
+        public StaffDbContext() : base("name=UniqloEntities")
         {
         }
 

@@ -21,7 +21,7 @@ namespace Uniqlo
         public System.DateTime Start_Date { get; set; }
         public System.DateTime End_Date { get; set; }
         public int Product_ID { get; set; }
-    
+
         public virtual Product Product { get; set; }
     }
 

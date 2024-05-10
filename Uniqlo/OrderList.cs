@@ -11,7 +11,7 @@ namespace Uniqlo
 {
     using System;
     using System.Collections.Generic;
-    
+
     public partial class OrderList
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -19,13 +19,13 @@ namespace Uniqlo
         {
             this.Reviews = new HashSet<Review>();
         }
-    
+
         public int OrderList_ID { get; set; }
         public int Quantity_ID { get; set; }
         public int Order_ID { get; set; }
         public int Qty { get; set; }
         public double Item_Price { get; set; }
-    
+
         public virtual Order Order { get; set; }
         public virtual Quantity Quantity { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
