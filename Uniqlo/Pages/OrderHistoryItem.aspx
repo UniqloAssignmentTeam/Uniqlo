@@ -348,18 +348,50 @@
                 
 
              <!-- Cart Summary -->
+                      
+                                          <asp:Repeater ID="orderSummaryRepeater" runat="server" ViewStateMode="Disabled">
+
+    <HeaderTemplate>
+        <table style="width: 100%" class="table">  
+    </HeaderTemplate>
+
+    <ItemTemplate>
+
+      
+
+
              <div class="cart-summary" style="width: 30%;">
-                 <h3>Order Summary</h3>
-                 <p><b>Date: </b>14/3/2024 </p>
-                 <p><b>Payment method: </b>Cash </p>
-                 <p><b>Payment status: </b>Paid</p>
-                 <p><b>Delivery status: </b>Delivered</p>
-                 <!-- <p><b>Total Price: </b> <span id="totalItemsLabel" class="total-items"></span> </p> -->
-                 <p><b>Total Price: </b>RM109.90 </p>
-                 <p><b>Total Items: </b>2</p>
-                 <p><b>Shipping Charges : </b>RM20</p>
-                 <p><b>Total: </b>RM129.90</p>
-             </div>
+     <h3>Order Summary</h3>
+     <p><b>Date: </b>  <asp:Label ID="paymentDateLbl" runat="server" Text='<%# Eval("Payment_DateTime", "{0:dd/MM/yyyy}") %>'></asp:Label></td> </p>
+     <p><b>Payment method: </b><asp:Label ID="paymentMethodlbl" runat="server" Text='<%# Eval("Payment_Method", "{0:dd/MM/yyyy}") %>'></asp:Label> </p>
+     <p><b>Payment status: </b><asp:Label ID="paymentStatuslbl" runat="server" Text='<%# Eval("Payment_Status") %>'></asp:Label></p>
+     <p><b>Delivery status: </b> <asp:Label ID="deliveryStatuslbl" runat="server" Text='<%# Eval("Delivery_Status") %>'></asp:Label></p>
+   
+     <p><b>Total Price: </b> <asp:Label ID="subTotallbl" runat="server" Text='<%# Eval("Sub_Total") %>'></asp:Label> </p>
+     <p><b>Total Items: </b><asp:Label ID="totalItemlbl" runat="server" Text='<%# Eval("Total_Item") %>'></asp:Label></p>
+     <p><b>Shipping Charges : </b>RM<asp:Label ID="shipAmountlbl" runat="server" Text='<%# Eval("Shipping_Amount") %>'></asp:Label></p>
+     <p><b>Total: </b>RM<asp:Label ID="totalPaymentlbl" runat="server" Text='<%# Eval("Total_Payment") %>'></asp:Label></p>
+ </div>
+
+
+
+
+    </ItemTemplate>
+
+    <FooterTemplate>
+        </table>
+    </FooterTemplate>
+
+
+
+
+
+
+
+
+</asp:Repeater>
+
+            
 
              
              <!-- The Modal -->
