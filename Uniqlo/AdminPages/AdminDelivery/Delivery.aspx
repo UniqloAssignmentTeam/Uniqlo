@@ -235,13 +235,14 @@
 </div>
    
 
-     <asp:HiddenField ID="hiddenDeliveryId" Value="" runat="server" />
+     <asp:HiddenField ID="hiddenDeliveryId" runat="server" />
 
    <footer>
 
        <script type="text/javascript">
+
            function showDeleteModal(deliveryId) {
-               document.getElementById('<%= hiddenDeliveryId.ClientID %>').value = staffId; 
+               document.getElementById('<%= hiddenDeliveryId.ClientID %>').value = deliveryId;  
                document.getElementById('id01').style.display = 'block';  
            }
        </script>
