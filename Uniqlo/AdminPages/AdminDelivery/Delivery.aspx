@@ -218,6 +218,17 @@
 
         <a href="#" class="page-link" onclick="changePage('next')">&raquo;</a>
     </div>
+    <div class="pagination">
+        <a href="#" class="page-link" onclick="changePage('prev')">&laquo;</a>
+        <a href="#" class="page-link active" onclick="changePage(1)">1</a>
+        <a href="#" class="page-link" onclick="changePage(2)">2</a>
+        <a href="#" class="page-link" onclick="changePage(3)">3</a>
+        <a href="#" class="page-link" onclick="changePage(4)">4</a>
+        <a href="#" class="page-link" onclick="changePage(5)">5</a>
+
+
+        <a href="#" class="page-link" onclick="changePage('next')">&raquo;</a>
+    </div>
 
   <div id="id01" class="confirmationModal">
     <div class="confirmation-modal-content">
@@ -234,15 +245,15 @@
     </div>
 </div>
    
-    <asp:HiddenField ID="hiddenDeliveryId" runat="server" />
-     
+
+     <asp:HiddenField ID="hiddenDeliveryId" Value="" runat="server" />
 
    <footer>
 
        <script type="text/javascript">
            function showDeleteModal(deliveryId) {
-               document.getElementById('<%= hiddenDeliveryId.ClientID %>').value = staffId;
-               document.getElementById('id01').style.display = 'block';
+               document.getElementById('<%= hiddenDeliveryId.ClientID %>').value = staffId; 
+               document.getElementById('id01').style.display = 'block';  
            }
        </script>
 
