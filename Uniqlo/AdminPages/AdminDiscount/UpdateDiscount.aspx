@@ -27,15 +27,14 @@
                            
 
 
-              <div class="form-group">
-                  <label for="productName">Product Name</label>
-                  <asp:TextBox ID="productName" runat="server" Enabled="False"></asp:TextBox>
-                
-              </div>
-                                     <div class="form-group">
-    <label for="productID">Product ID</label>
-    <asp:TextBox ID="productID" runat="server" ></asp:TextBox>
-</div>
+             <div class="form-group">
+     <label for="productName">Product Name</label>
+     
+     <asp:DropDownList ID="DdlProductName" runat="server" CssClass="scrollable-dropdown dropdown-display"></asp:DropDownList>
+    
+     
+ </div>
+                                   
 
 
     <div class="form-group">
