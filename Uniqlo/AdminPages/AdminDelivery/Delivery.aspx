@@ -207,22 +207,6 @@
 
 
     </div>
-
-     <asp:HiddenField ID="hiddenDeliveryId" Value="" runat="server" />
-      <div id="id01" class="confirmationModal">
-    <div class="confirmation-modal-content">
-        <div class="confirmationContainer">
-            <span onclick="document.getElementById('id01').style.display='none'" class="confirmationClose" title="Close Modal">×</span>
-            <h1>Remove Delivery</h1>
-            <p>Are you sure you want to remove the delivery information? <%= hiddenDeliveryId.Value + "TESTING" %> </p>
-
-            <div class="confirmationClearFix">
-                <button type="button" onclick="document.getElementById('id01').style.display='none'" class="confirmationCancelbtn">Cancel</button>
-                <asp:Button ID="btnRemoveDelivery" runat="server" Text="Remove" OnClick="btnRemoveDelivery_Click" CssClass="confirmationDeletebtn" />
-            </div>
-        </div>
-    </div>
-</div>
     <div class="pagination">
         <a href="#" class="page-link" onclick="changePage('prev')">&laquo;</a>
         <a href="#" class="page-link active" onclick="changePage(1)">1</a>
@@ -235,16 +219,29 @@
         <a href="#" class="page-link" onclick="changePage('next')">&raquo;</a>
     </div>
 
-  
+  <div id="id01" class="confirmationModal">
+    <div class="confirmation-modal-content">
+        <div class="confirmationContainer">
+            <span onclick="document.getElementById('id01').style.display='none'" class="confirmationClose" title="Close Modal">×</span>
+            <h1>Remove Delivery</h1>
+            <p>Are you sure you want to remove the delivery information? <%=hiddenDeliveryId.Value + "TESTING" %> </p>
+
+            <div class="confirmationClearFix">
+                <button type="button" onclick="document.getElementById('id01').style.display='none'" class="confirmationCancelbtn">Cancel</button>
+                <asp:Button ID="btnRemoveDelivery" runat="server" Text="Remove" OnClick="btnRemoveDelivery_Click" CssClass="confirmationDeletebtn" />
+            </div>
+        </div>
+    </div>
+</div>
    
 
-    
+     <asp:HiddenField ID="hiddenDeliveryId" Value="" runat="server" />
 
    <footer>
 
        <script type="text/javascript">
            function showDeleteModal(deliveryId) {
-               document.getElementById('<%= hiddenDeliveryId.ClientID %>').value = deliveryId; 
+               document.getElementById('<%= hiddenDeliveryId.ClientID %>').value = staffId; 
                document.getElementById('id01').style.display = 'block';  
            }
        </script>
