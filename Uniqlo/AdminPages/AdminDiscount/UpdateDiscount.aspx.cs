@@ -16,11 +16,11 @@ namespace Uniqlo.AdminPages
         {
             if (!IsPostBack)
             {
-                string discountID = Request.QueryString["discountId"];
-                if (!string.IsNullOrEmpty(discountID))
+                int discountID = int.Parse(Request.QueryString["discountId"]);
+                if (discountID>0)
                 {
-                   LoadDiscountDetails(int.Parse(discountID));
-                    DropDownListProductName();
+                   LoadDiscountDetails(discountID);
+                    DropDownListProductName(discountID);
                 }
             }
         }
@@ -55,7 +55,7 @@ namespace Uniqlo.AdminPages
 
 
                     int discountId = int.Parse(discountID.Text);
-                    int productId = int.Parse(DdlProductName.Text);
+                    int productId = int.Parse(DdlProductName.SelectedValue);
                     var existingDiscount = db.Discount
                                      .Where(d => d.Product_ID == productId)
                                      .FirstOrDefault();
@@ -64,6 +64,39 @@ namespace Uniqlo.AdminPages
                     {
                         db.Discount.Remove(existingDiscount);
                         db.SaveChanges(); // Save changes if you want to immediately commit the delete
+
+                        DateTime startInput;
+                        DateTime endInput;
+                        DateTime today = DateTime.Now.Date;
+                        bool startDateParsed = DateTime.TryParse(startDate.Text, out startInput);
+                        bool endDateParsed = DateTime.TryParse(endDate.Text, out endInput);
+                        DateTime startDateInput = startInput.Date;
+                        DateTime endDateInput = endInput.Date;
+                        if (!startDateParsed || !endDateParsed)
+                        {
+
+                            return;
+                        }
+
+                        string status = (today >= startDateInput && today <= endDateInput) ? "Active" : "Inactive";
+                       
+                            Discount newDiscount = new Discount
+                            {
+
+                                Product_ID = productId,
+                                Discount_Amount = float.Parse(discountAmount.Text),
+                                Start_Date = startDateInput,
+                                End_Date = endDateInput,
+                                Status = status
+
+                            };
+
+                            db.Discount.Add(newDiscount);
+                            db.SaveChanges();
+
+                            Response.Redirect("DiscountHome.aspx");
+                        
+
 
                     }
                     else
@@ -94,50 +127,29 @@ namespace Uniqlo.AdminPages
         }
 
 
-        private void addDiscount()
+      private int? getReturnProductID(int discountID)
         {
-            if (Page.IsValid)
+            
+            using (var db = new DiscountDbContext())
             {
-                DateTime startInput;
-                DateTime endInput;
-                DateTime today = DateTime.Now.Date;
-                bool startDateParsed = DateTime.TryParse(startDate.Text, out startInput);
-                bool endDateParsed = DateTime.TryParse(endDate.Text, out endInput);
-                DateTime startDateInput = startInput.Date;
-                DateTime endDateInput = endInput.Date;
-                if (!startDateParsed || !endDateParsed)
+                var discount = db.Discount.FirstOrDefault(d => d.Discount_ID == discountID);
+
+
+                if (discount != null)
                 {
 
-                    return;
-                }
-                string status = (today >= startDateInput && today <= endDateInput) ? "Active" : "Inactive";
+                    return discount.Product_ID;
 
-
-
-                using (var db = new DiscountDbContext())
-                {
-                    int productId = Int32.Parse(DdlProductName.SelectedValue);
-
-                    Discount newDiscount = new Discount
-                    {
-
-                        Product_ID = productId,
-                        Discount_Amount = float.Parse(discountAmount.Text),
-                        Start_Date = startDateInput,
-                        End_Date = endDateInput,
-                        Status = status
-
-                    };
-
-                    db.Discount.Add(newDiscount);
-                    db.SaveChanges();
-
-                    Response.Redirect("DiscountHome.aspx");
                 }
             }
+
+            return null;
+
+
+              
         }
 
-        private void DropDownListProductName()
+        private void DropDownListProductName(int discountID)
         {
             using (var db = new ProductDbContext())
             {
@@ -152,14 +164,21 @@ namespace Uniqlo.AdminPages
                 DdlProductName.Items.Clear();
 
 
-                DdlProductName.Items.Add(new ListItem("--Select Product--", ""));
-
+                
 
                 foreach (var product in products)
                 {
                     ListItem item = new ListItem(product.Product_Name, product.Product_ID.ToString());
                     DdlProductName.Items.Add(item);
                 }
+
+                var productID = getReturnProductID(discountID);
+                if(!productID.HasValue)
+                {
+                    DdlProductName.SelectedValue = productID.Value.ToString();
+                }
+
+             
 
             }
         }
@@ -170,11 +189,6 @@ namespace Uniqlo.AdminPages
             Response.Redirect("DiscountHome.aspx");
         }
 
-        /*
-        protected void cancelBtn_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("DiscountHome.aspx");
-        }
-        */
+       
     }
 }
