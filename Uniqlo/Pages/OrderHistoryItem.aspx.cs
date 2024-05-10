@@ -73,29 +73,28 @@ namespace Uniqlo.Pages
             }
         }
 
-        /*
-        protected void submitRating_OnClick(object sender, EventArgs e)
+        protected void submitRating_Click(object sender, EventArgs e)
         {
+            int orderListId = int.Parse(HiddenOrderListID.Value);
+            int rating = int.Parse(HiddenRating.Value);
+            string comment = commentTextArea.Text; // Make sure `commentTextArea` is a server control or properly retrieved
 
-            if (Page.IsValid)
+            // Insert into database
+            using (var context = new ReviewDbContext())
             {
-                using (var db=new ReviewDbContext())
+                Review review = new Review
                 {
-
-
-
-
-
-
-
-
-
-                }
+                    OrderList_ID = orderListId,
+                    Rating = rating,
+                    Review1 = comment,
+                    Date_Submitted = DateTime.Now
+                };
+                context.Review.Add(review);
+                context.SaveChanges();
             }
 
-
+            // Optionally close the modal or redirect
         }
-        */
 
     }
 }

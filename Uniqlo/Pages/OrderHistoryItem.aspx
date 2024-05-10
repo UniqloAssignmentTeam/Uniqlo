@@ -339,7 +339,7 @@
                          <p class="item-subtotal"><b>Sub Total: RM  <%# Eval("Subtotal", "{0:C}") %></b></p>
 
                          <div class="orderReceivedSection" id="<%# Eval("reviewBtn") %>">
-                             <asp:HyperLink ID="HyperLink1" runat="server" CssClass="orderReceivedButton"><%# Eval("reviewBtn") %></asp:HyperLink>
+                    <asp:HyperLink ID="reviewBtn" runat="server" CssClass="orderReceivedButton" onclick='showModal(this.getAttribute('<%# Eval("reviewBtn") %>'));'><%# Eval("reviewBtn") %></asp:HyperLink>
                              
                              
                          </div>
@@ -415,9 +415,11 @@
                         <div>
                             <p>Comment</p>
                             <div class="commentRatingSectionComment">
-                                <textarea id="commentTextArea" cols="20" rows="2"></textarea>
+                                <asp:TextBox ID="commentTextArea" runat="server" Type="Area"></asp:TextBox>
+                              
                             </div>
                         </div>
+                        
                         <div class="commentRatingSectionContainer">
                             <asp:Button ID="submitRating" runat="server" Text="Submit" CssClass="commentRatingSectionButton" OnClick=""/>
                           
@@ -506,7 +508,7 @@
 
 
          </div>
-
+             <asp:HiddenField ID="HiddenOrderListID" runat="server" />
         <script>
        function setRating(rating) {
     var stars = document.querySelectorAll('.fa-star');
@@ -519,7 +521,11 @@
     // Set the value in a hidden field to post to server
     document.getElementById('<%= HiddenRating.ClientID %>').value = rating;
 }
-
+function showModal(orderListId) {
+    var modal = document.getElementById('myModal');
+    modal.style.display = "block";
+    document.getElementById('<%= HiddenOrderListID.ClientID %>').value = orderListId;
+}
             //REVIEW MODAL
             // Get the modal
             var modal = document.getElementById("<%# Eval("reviewBtn") %>");

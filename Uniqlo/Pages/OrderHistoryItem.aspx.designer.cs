@@ -51,6 +51,15 @@ namespace Uniqlo.Pages
         protected global::System.Web.UI.WebControls.HiddenField HiddenRating;
 
         /// <summary>
+        /// commentTextArea control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox commentTextArea;
+
+        /// <summary>
         /// submitRating control.
         /// </summary>
         /// <remarks>
@@ -58,5 +67,14 @@ namespace Uniqlo.Pages
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button submitRating;
+
+        /// <summary>
+        /// HiddenOrderListID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField HiddenOrderListID;
     }
 }
