@@ -69,19 +69,7 @@
         <!-- Order History Section -->
     <div class="table">
     <!-- Header -->
-    <div class="row">
-        <div class="col productid">Order ID</div>
-        <div class="col category">Total Item</div>
-        <div class="col gender">Total Amount</div>
-        <div class="col wear">Date</div>
-        <div class="col price">Status</div>
-
-        <div class="col eclipse-container">
-        
-        <div class=""></div>
-            <asp:Button ID="Button1" runat="server" Text="Button" Visible="False" />
-        </div>
-    </div>
+  
 
 
 
@@ -135,7 +123,7 @@
                 <div class="eclipse-list" id="dropdownList<%# Eval("Order_ID") %>">
 
                     <div>
-                        <asp:HyperLink ID="viewOrderDetails" runat="server" NavigateUrl='<%# "OrderHistoryItem.aspx?OrderID=" + Eval("Order_ID") %>' Text="View More"></asp:HyperLink></div>
+                        <asp:HyperLink ID="viewOrderDetails" runat="server" NavigateUrl='<%# "OrderHistoryItem.aspx?Order_ID=" + Eval("Order_ID") %>' Text="View More"></asp:HyperLink></div>
                    
 
                 </div>
