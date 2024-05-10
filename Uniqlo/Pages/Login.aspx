@@ -28,7 +28,7 @@
                             <a href="ForgotPassword.aspx" class="forgot-pass">Forgot password?</a>
                         </div>
                         <div class="field button-field">
-                            <asp:Button ID="btnLogin" runat="server" Text="Login" PostBackUrl="Home.aspx" />
+                            <asp:Button ID="btnLogin" runat="server" Text="Login" OnClick="btnLogin_Click"/>
                         </div>
                     </form>
                     <div class="form-link">

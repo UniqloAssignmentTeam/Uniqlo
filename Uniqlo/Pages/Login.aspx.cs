@@ -36,7 +36,7 @@ namespace Uniqlo.Pages
                 //check user
 
                 string checkUser = "SELECT Customer_ID,Name,Gender,Contact_No,Email,Password from Customer where email=@email and password=@password";
-
+               
                 SqlCommand checkCmd = new SqlCommand(checkUser, con);
                 checkCmd.Parameters.AddWithValue("email", email);
                 checkCmd.Parameters.AddWithValue("password", password);
@@ -60,6 +60,8 @@ namespace Uniqlo.Pages
 
             }
         }
+
+
     }
         
 }

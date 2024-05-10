@@ -88,7 +88,7 @@
     <Content Include="AdminPages\AdminStaff\StaffHome.aspx" />
     <Content Include="AdminPages\Dashboard.aspx" />
     <Content Include="AdminPages\Delivery.aspx" />
-    <Content Include="AdminPages\Login.aspx" />
+    <Content Include="AdminPages\adminLogin.aspx" />
     <Content Include="AdminPages\AdminOrder\Order.aspx" />
     <Content Include="AdminPages\AdminOrder\OrderItem.aspx" />
     <Content Include="AdminPages\AdminDiscount\UpdateDiscount.aspx" />
@@ -314,12 +314,12 @@
     <Compile Include="AdminPages\Delivery.aspx.designer.cs">
       <DependentUpon>Delivery.aspx</DependentUpon>
     </Compile>
-    <Compile Include="AdminPages\Login.aspx.cs">
-      <DependentUpon>Login.aspx</DependentUpon>
+    <Compile Include="AdminPages\adminLogin.aspx.cs">
+      <DependentUpon>adminLogin.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="AdminPages\Login.aspx.designer.cs">
-      <DependentUpon>Login.aspx</DependentUpon>
+    <Compile Include="AdminPages\adminLogin.aspx.designer.cs">
+      <DependentUpon>adminLogin.aspx</DependentUpon>
     </Compile>
     <Compile Include="AdminPages\AdminOrder\Order.aspx.cs">
       <DependentUpon>Order.aspx</DependentUpon>
@@ -636,6 +636,7 @@
   <ItemGroup>
     <Content Include="Admin.Master" />
     <Content Include="admin.sitemap" />
+    <Content Include="AdminPages\Web.config" />
     <None Include="packages.config" />
     <Content Include="Uniqlo.Master" />
     <EntityDeploy Include="Uniqlo.edmx">
@@ -645,6 +646,7 @@
     <Content Include="Uniqlo.edmx.diagram">
       <DependentUpon>Uniqlo.edmx</DependentUpon>
     </Content>
+    <Content Include="Pages\Web.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
