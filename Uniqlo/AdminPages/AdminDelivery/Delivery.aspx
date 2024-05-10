@@ -57,57 +57,42 @@
                 </div>
             </div>
         </div>
-        <div class="table">
-            <!--Header-->
-            <div class="row">
-                <div class="col productid">
-                    Delivery ID
-                </div>
-
-                <div class="col name">
-                    Delivery Address 
-                </div>
-
-                <div class="col price">
-                    Status
-                </div>
-                <div class="col gender">
-                    Order ID
-                </div>
-
-                <div class="col eclipse-container">
-                    <asp:Button ID="Button1" runat="server" Text="Button" Visible="False" />
-                </div>
-            </div>
-            <!--Repeater-->
-            <asp:Repeater ID="rptDeliveries" runat="server">
-                <ItemTemplate>
-                    <div class="row">
-                        <div class="col productid">
-                            <%# Eval("Delivery_ID") %>
-                        </div>
-                        <div class="col name">
-                            <%# Eval("DeliveryAddress") %>
-                        </div>
-                        <div class="col price">
-                            <%# Eval("Delivery_Status") %>
-                        </div>
-                        <div class="col gender">
-                            <%# Eval("Order_ID") %>
-                        </div>
-                        <div class="col eclipse-container" onclick="toggleDropdown('dropdownList<%# Eval("Delivery_ID") %>', 'dropdownDisplay<%# Eval("Delivery_ID") %>')">
-                            <div class="eclipse-display" id="dropdownDisplay<%# Eval("Delivery_ID") %>" style="border: none;"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></div>
-                            <div class="eclipse-list" id="dropdownList<%# Eval("Delivery_ID") %>">
-
-                                <div>
-                                    <asp:HyperLink ID="updateStaff" runat="server" NavigateUrl='<%# "UpdateDelivery.aspx?Delivery_ID=" + Eval("Delivery_ID") %>' Text="Update"></asp:HyperLink>
-                                </div>
-                                <div onclick="showDeleteModal(<%# Eval("Delivery_ID") %>);">Delete</div>
-                            </div>
-                        </div>
+        <asp:Repeater ID="rptDeliveries" runat="server">
+    <HeaderTemplate>
+        <table class="table" style="width: 100%" >
+            <tr class="row">
+                <th class="col productid">Delivery ID</th>
+                <th class="col name">Delivery Address</th>
+                <th class="col price">Status</th>
+                <th class="col gender">Order ID</th>
+                <th class="col eclipse-container">Options</th>
+            </tr>
+    </HeaderTemplate>
+    <ItemTemplate>
+        <tr class="row">
+            <td class="col productid"><%# Eval("Delivery_ID") %></td>
+            <td class="col name"><%# Eval("DeliveryAddress") %></td>
+            <td class="col price"><%# Eval("Delivery_Status") %></td>
+            <td class="col gender"><%# Eval("Order_ID") %></td>
+            <td class="col eclipse-container">
+                <div onclick="toggleDropdown('dropdownList<%# Eval("Delivery_ID") %>', 'dropdownDisplay<%# Eval("Delivery_ID") %>')">
+                    <div class="eclipse-display" id="dropdownDisplay<%# Eval("Delivery_ID") %>" style="border: none;">
+                        <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
                     </div>
-                </ItemTemplate>
-            </asp:Repeater>
+                    <div class="eclipse-list" id="dropdownList<%# Eval("Delivery_ID") %>">
+                        <div>
+                            <asp:HyperLink ID="updateStaff" runat="server" NavigateUrl='<%# "UpdateDelivery.aspx?Delivery_ID=" + Eval("Delivery_ID") %>' Text="Update"></asp:HyperLink>
+                        </div>
+                        <div onclick="showDeleteModal(<%# Eval("Delivery_ID") %>);">Delete</div>
+                    </div>
+                </div>
+            </td>
+        </tr>
+    </ItemTemplate>
+    <FooterTemplate>
+        </table>
+    </FooterTemplate>
+</asp:Repeater>
 
 
         </div>
