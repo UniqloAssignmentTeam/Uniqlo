@@ -79,50 +79,37 @@
                     <asp:Button ID="Button1" runat="server" Text="Button" Visible="False" />
                 </div>
             </div>
-            <!--Product 1-->
+            <!--Repeater-->
             <asp:Repeater ID="rptDeliveries" runat="server">
-    <ItemTemplate>
-        <div class="row">
-            <div class="col productid">
-                <%# Eval("Delivery_ID") %>
-            </div>
-            <div class="col name">
-                <%# Eval("DeliveryAddress") %>
-            </div>
-            <div class="col price">
-                <%# Eval("Delivery_Status") %>
-            </div>
-            <div class="col gender">
-                <%# Eval("Order_ID", "{0}") %> <!-- Assuming Order_ID will be included later -->
-            </div>
-            <div class="col eclipse-container">
-                <!-- Action Buttons Here -->
-            </div>
-        </div>
-    </ItemTemplate>
-</asp:Repeater>
-            <!--Product 2-->
-            <div class="row">
-                <div class="col productid">
-                    2
-                </div>
+                <ItemTemplate>
+                    <div class="row">
+                        <div class="col productid">
+                            <%# Eval("Delivery_ID") %>
+                        </div>
+                        <div class="col name">
+                            <%# Eval("DeliveryAddress") %>
+                        </div>
+                        <div class="col price">
+                            <%# Eval("Delivery_Status") %>
+                        </div>
+                        <div class="col gender">
+                            <%# Eval("Order_ID") %>
+                        </div>
+                        <div class="col eclipse-container" onclick="toggleDropdown('dropdownList<%# Eval("Delivery_ID") %>', 'dropdownDisplay<%# Eval("Delivery_ID") %>')">
+                            <div class="eclipse-display" id="dropdownDisplay<%# Eval("Delivery_ID") %>" style="border: none;"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></div>
+                            <div class="eclipse-list" id="dropdownList<%# Eval("Delivery_ID") %>">
 
-                <div class="col name">
-                    123 Main St, Kuala Lumpur, 57000,Selangor Malaysia
-                </div>
+                                <div>
+                                    <asp:HyperLink ID="updateStaff" runat="server" NavigateUrl='<%# "UpdateDelivery.aspx?Delivery_ID=" + Eval("Delivery_ID") %>' Text="Update"></asp:HyperLink>
+                                </div>
+                                <div onclick="showDeleteModal(<%# Eval("Delivery_ID") %>);">Delete</div>
+                            </div>
+                        </div>
+                    </div>
+                </ItemTemplate>
+            </asp:Repeater>
 
-                <div class="col price">
-                    In Transit
-                </div>
-                <div class="col gender">
-                    1
-                </div>
 
-                <div class="col eclipse-container">
-                    <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
-                </div>
-            </div>
-            
         </div>
         <div class="pagination">
             <a href="#" class="page-link" onclick="changePage('prev')">&laquo;</a>
@@ -137,7 +124,7 @@
         </div>
 
     </div>
-    </div>
+
    <footer>
        <script src="../Javascript/productBtnEclipse.js"></script>
        <script src="../Javascript/productAdminDDL.js"></script>
