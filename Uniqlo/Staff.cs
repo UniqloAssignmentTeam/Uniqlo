@@ -25,10 +25,10 @@ namespace Uniqlo
     }
     public class StaffDbContext : DbContext
     {
-        public StaffDbContext() : base("name=UniqloEntities")
+        public StaffDbContext() : base("name=UniqloEntities") // Ensure this matches your connection string in Web.config
         {
         }
 
-        public DbSet<Staff> Staff { get; set; }
+        public DbSet<Staff> Staff { get; set; } // Make sure 'Staff' is properly defined as a class
     }
 }
