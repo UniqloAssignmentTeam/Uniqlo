@@ -88,5 +88,9 @@ namespace Uniqlo.AdminPages
 
             }
         }
+        protected void cancelBtn_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("DiscountHome.aspx");
+        }
     }
 }

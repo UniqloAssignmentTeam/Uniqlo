@@ -51,6 +51,9 @@ namespace Uniqlo.AdminPages
                 {
                     int discountId = int.Parse(discountID.Text);
                     var discount = db.Discount.FirstOrDefault(d => d.Discount_ID == discountId);
+
+
+
                     if (discount != null)
                     {
                         discount.Product_ID = int.Parse(productID.Text);
@@ -67,8 +70,11 @@ namespace Uniqlo.AdminPages
                 }
             }
         }
-        
-        
+
+        protected void cancelBtn_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("DiscountHome.aspx");
+        }
 
     }
 }
