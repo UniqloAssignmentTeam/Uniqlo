@@ -20,11 +20,11 @@ namespace Uniqlo
             this.OrderLists = new HashSet<OrderList>();
             this.Payments = new HashSet<Payment>();
         }
-
+    
         public int Order_ID { get; set; }
         public int Customer_ID { get; set; }
         public double Subtotal { get; set; }
-
+    
         public virtual Customer Customer { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<OrderList> OrderLists { get; set; }
@@ -45,5 +45,4 @@ namespace Uniqlo
 
         public DbSet<Review> Review { get; set; }
     }
-
 }

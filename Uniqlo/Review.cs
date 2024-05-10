@@ -21,14 +21,14 @@ namespace Uniqlo
         public System.DateTime Date_Submitted { get; set; }
     
         public virtual OrderList OrderList { get; set; }
-    }
 
-    public class ReviewDbContext : DbContext
-    {
-        public ReviewDbContext() : base("name=UniqloEntities")
+        public class ReviewDbContext : DbContext
         {
-        }
+            public ReviewDbContext() : base("name=UniqloEntities")
+            {
+            }
 
-        public DbSet<Review> Review { get; set; }
+            public DbSet<Review> Review { get; set; }
+        }
     }
 }

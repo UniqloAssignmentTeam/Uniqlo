@@ -13,7 +13,6 @@ namespace Uniqlo
     using System.Collections.Generic;
     using System.Data.Entity;
     using System.ComponentModel.DataAnnotations;
-
     public partial class Image
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,10 +20,10 @@ namespace Uniqlo
         {
             this.Quantities = new HashSet<Quantity>();
         }
-
+    
         public int Image_ID { get; set; }
         public byte[] ProductImage { get; set; }
-
+    
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Quantity> Quantities { get; set; }
 
