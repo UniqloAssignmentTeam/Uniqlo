@@ -42,6 +42,8 @@ namespace Uniqlo
         public DbSet<Payment> Payment { get; set; }
         public DbSet<Delivery> Delivery { get; set; }
         public DbSet<OrderList> OrderList { get; set; }
+
+        public DbSet<Review> Review { get; set; }
     }
 
 }

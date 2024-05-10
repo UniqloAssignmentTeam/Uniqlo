@@ -15,7 +15,7 @@ namespace Uniqlo.Pages
 
             if (!IsPostBack)
             {
-                BindOrderRepeater(3);
+                BindOrderRepeater(4);
             }
           
         }
