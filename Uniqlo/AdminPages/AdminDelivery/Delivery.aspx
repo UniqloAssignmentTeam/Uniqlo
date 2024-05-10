@@ -99,23 +99,14 @@
         </asp:Repeater>
 
 
-        <asp:HiddenField ID="hiddenDeliveryId" runat="server" Value="" />
+        
+
+       
         <!--DELETE CONFIRMATION-->
-<div id="id01" class="confirmationModal">
-    <div class="confirmation-modal-content">
-        <div class="confirmationContainer">
-            <span onclick="document.getElementById('id01').style.display='none'" class="confirmationClose" title="Close Modal">×</span>
-            <h1>Remove Delivery</h1>
-            <p>Are you sure you want to remove the delivery information?</p>
 
-            <div class="confirmationClearFix">
-                <button type="button" onclick="document.getElementById('id01').style.display='none'" class="confirmationCancelbtn">Cancel</button>
-                <asp:Button ID="btnRemoveStaff" runat="server" Text="Remove" OnClick="btnRemoveDelivery_Click" CssClass="confirmationDeletebtn" />
-            </div>
-        </div>
-    </div>
-</div>
 
+
+         
 
 
     </div>
@@ -131,15 +122,38 @@
         <a href="#" class="page-link" onclick="changePage('next')">&raquo;</a>
     </div>
 
- 
+  <div id="id01" class="confirmationModal">
+    <div class="confirmation-modal-content">
+        <div class="confirmationContainer">
+            <span onclick="document.getElementById('id01').style.display='none'" class="confirmationClose" title="Close Modal">×</span>
+            <h1>Remove Delivery</h1>
+            <p>Are you sure you want to remove the delivery information?</p>
+
+            <div class="confirmationClearFix">
+                <button type="button" onclick="document.getElementById('id01').style.display='none'" class="confirmationCancelbtn">Cancel</button>
+                <asp:Button ID="btnRemoveStaff" runat="server" Text="Remove" OnClick="btnRemoveDelivery_Click" CssClass="confirmationDeletebtn" />
+            </div>
+        </div>
+    </div>
+</div>
+   
+
+     <asp:HiddenField ID="hiddenDeliveryId" runat="server" />
+
    <footer>
-       <script>
+
+       <script type="text/javascript">
 
            function showDeleteModal(deliveryId) {
                document.getElementById('<%= hiddenDeliveryId.ClientID %>').value = deliveryId;  
                document.getElementById('id01').style.display = 'block';  
            }
        </script>
+
+
+
+
+
        <script src="../../Javascript/productBtnEclipse.js"></script>
        <script src="../../Javascript/productAdminDDL.js"></script>
 
