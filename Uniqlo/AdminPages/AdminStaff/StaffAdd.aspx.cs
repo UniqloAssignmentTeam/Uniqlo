@@ -9,6 +9,7 @@ using System.Web.UI.WebControls;
 using System.Xml.Linq;
 
 using Uniqlo;
+using static Uniqlo.Staff;
 namespace Uniqlo.AdminPages.AdminStaff
 {
     public partial class StaffAdd : System.Web.UI.Page

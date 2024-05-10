@@ -79,36 +79,43 @@
                     <td class="col price"><%# Eval("Delivery_Status") %></td>
                     <td class="col gender"><%# Eval("Order_ID") %></td>
 
-
-
-
-
-
                     <td class="col eclipse-container" onclick="toggleDropdown('dropdownList<%# Eval("Delivery_ID") %>', 'dropdownDisplay<%# Eval("Delivery_ID") %>')">
                         <div class="eclipse-display" id="dropdownDisplay<%# Eval("Delivery_ID") %>" style="border: none;"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></div>
                         <div class="eclipse-list" id="dropdownList<%# Eval("Delivery_ID") %>">
 
                             <div>
-                                <asp:HyperLink ID="updateDiscount" runat="server" NavigateUrl='<%# "UpdateDelivery.aspx?DeliveryID=" + Eval("Delivery_ID") %>' Text="Update"></asp:HyperLink></div>
+                                <asp:HyperLink ID="update" runat="server" NavigateUrl='<%# "UpdateDelivery.aspx?DeliveryID=" + Eval("Delivery_ID") %>' Text="View/Update"></asp:HyperLink></div>
+                            <div>
+                                <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl='<%# "UpdateDelivery.aspx?DeliveryID=" + Eval("Delivery_ID") %>' Text="View Order"></asp:HyperLink></div>
                             <div onclick="showDeleteModal(<%# Eval("Delivery_ID") %>);">Delete</div>
 
                         </div>
-
                     </td>
-
-
-
-
-
-
-
-
                 </tr>
             </ItemTemplate>
             <FooterTemplate>
                 </table>
             </FooterTemplate>
         </asp:Repeater>
+
+
+        <asp:HiddenField ID="hiddenDeliveryId" runat="server" Value="" />
+        <!--DELETE CONFIRMATION-->
+<div id="id01" class="confirmationModal">
+    <div class="confirmation-modal-content">
+        <div class="confirmationContainer">
+            <span onclick="document.getElementById('id01').style.display='none'" class="confirmationClose" title="Close Modal">×</span>
+            <h1>Remove Delivery</h1>
+            <p>Are you sure you want to remove the delivery information?</p>
+
+            <div class="confirmationClearFix">
+                <button type="button" onclick="document.getElementById('id01').style.display='none'" class="confirmationCancelbtn">Cancel</button>
+                <asp:Button ID="btnRemoveStaff" runat="server" Text="Remove" OnClick="btnRemoveDelivery_Click" CssClass="confirmationDeletebtn" />
+            </div>
+        </div>
+    </div>
+</div>
+
 
 
     </div>
@@ -126,7 +133,13 @@
 
  
    <footer>
+       <script>
 
+           function showDeleteModal(deliveryId) {
+               document.getElementById('<%= hiddenDeliveryId.ClientID %>').value = deliveryId;  
+               document.getElementById('id01').style.display = 'block';  
+           }
+       </script>
        <script src="../../Javascript/productBtnEclipse.js"></script>
        <script src="../../Javascript/productAdminDDL.js"></script>
 

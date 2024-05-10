@@ -85,7 +85,7 @@
 
 
 
-                <asp:DataList ID="dlValueBuy" runat="server" RepeatColumns="4" RepeatDirection="Horizontal" CellPadding="4" Width="100%">
+                <asp:DataList ID="dlValueBuy" runat="server" RepeatDirection="Horizontal" Width="100%">
                     <ItemTemplate>
 
 
@@ -115,8 +115,8 @@
                                         <p><%# Eval("Description") %></p>
                                     </div>
                                     <div class="product-price">
-                                        <p style="text-decoration: line-through; margin-right: 10px;">RM <%# Eval("Price", "{0:C}") %></p>
-                                        <p style="color: red;">RM <%# Eval("Discount_Amount", "{0:C}") %></p>
+                                        <p style="text-decoration: line-through; margin-right: 10px;"> <%# Eval("Price", "{0:C}") %></p>
+                                        <p style="color: red;"> <%# Eval("Discount_Amount", "{0:C}") %></p>
                                     </div>
                                     <div class="product-rating">
                                         <%# GenerateStars(Convert.ToDouble(Eval("AverageRating")) ) %>
