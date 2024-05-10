@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Uniqlo.AdminPages.AdminStaff;
+using Uniqlo.Pages.Categories.Women;
 using static Uniqlo.Discount;
 
 namespace Uniqlo.AdminPages
@@ -47,9 +48,25 @@ namespace Uniqlo.AdminPages
         {
             if (Page.IsValid)
             {
+
+
                 using (var db = new DiscountDbContext())
                 {
+                    
+
+
                     int discountId = int.Parse(discountID.Text);
+                    int productId = int.Parse(productID.Text);
+                    var existingDiscount = db.Discount
+                                     .Where(d => d.Product_ID == productId && d.Discount_ID != discountId)
+                                     .FirstOrDefault();
+
+                    if (existingDiscount != null)
+                    {
+                        db.Discount.Remove(existingDiscount);
+                        db.SaveChanges(); // Save changes if you want to immediately commit the delete
+                    }
+
                     var discount = db.Discount.FirstOrDefault(d => d.Discount_ID == discountId);
 
 
@@ -70,7 +87,7 @@ namespace Uniqlo.AdminPages
                 }
             }
         }
-
+        
         protected void cancelBtn_Click(object sender, EventArgs e)
         {
             Response.Redirect("DiscountHome.aspx");

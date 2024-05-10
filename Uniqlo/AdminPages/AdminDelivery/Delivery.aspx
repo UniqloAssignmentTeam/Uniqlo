@@ -99,8 +99,14 @@
         </asp:Repeater>
 
 
+        
+
        
-       
+        <!--DELETE CONFIRMATION-->
+
+
+
+         
 
 
     </div>
@@ -115,8 +121,8 @@
 
         <a href="#" class="page-link" onclick="changePage('next')">&raquo;</a>
     </div>
- <!--DELETE CONFIRMATION-->
-    <div id="id01" class="confirmationModal">
+
+  <div id="id01" class="confirmationModal">
     <div class="confirmation-modal-content">
         <div class="confirmationContainer">
             <span onclick="document.getElementById('id01').style.display='none'" class="confirmationClose" title="Close Modal">×</span>
@@ -130,17 +136,24 @@
         </div>
     </div>
 </div>
+   
 
- <asp:HiddenField ID="hiddenDeliveryId" runat="server" Value="" />
- 
+     <asp:HiddenField ID="hiddenDeliveryId" runat="server" />
+
    <footer>
-       <script>
+
+       <script type="text/javascript">
 
            function showDeleteModal(deliveryId) {
                document.getElementById('<%= hiddenDeliveryId.ClientID %>').value = deliveryId;  
                document.getElementById('id01').style.display = 'block';  
            }
        </script>
+
+
+
+
+
        <script src="../../Javascript/productBtnEclipse.js"></script>
        <script src="../../Javascript/productAdminDDL.js"></script>
 
