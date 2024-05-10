@@ -131,18 +131,18 @@
     display: none;
 }
 
-.productid, .price {
+.orderID, .deliveryStatus {
     flex: 0 0 15%; /* Set a base width */
 }
 
 
 
 /* Name Column */
-.name {
+.totalItem {
     flex-grow: 1; /* Allow this column to grow and take up remaining space */
 }
 
-.wear {
+.datePurchased {
     flex-basis: 10%;
 }
 
@@ -152,7 +152,7 @@
     flex-basis: 15%;
 }
 /* Category Column */
-.category {
+.totalAmount {
     min-width: 0;
     flex-basis: 10%;
     word-wrap: break-word;
