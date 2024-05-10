@@ -279,7 +279,7 @@
               clear: both;
               display: table;
             }
-
+            .fa-star.checked { color: orange; }
             /* Change styles for cancel button and delete button on extra small screens */
             @media screen and (max-width: 300px) {
               .confirmationCancelbtn, .confirmationDeletebtn {
@@ -294,7 +294,7 @@
             <a href="Profile.aspx" class="backLinkClass"><i class="fa fa-arrow-left" aria-hidden="true"></i></a>
         </div>
         
-        <h1>ORDER ID : 1001</h1>
+        <h1>ORDER ID :<asp:Label ID="orderIDLabel" runat="server" Text=""></asp:Label></h1>
        
 
 
@@ -338,8 +338,10 @@
                              <p><b>Quantity:</b> <%# Eval("Qty") %></p>
                          <p class="item-subtotal"><b>Sub Total: RM  <%# Eval("Subtotal", "{0:C}") %></b></p>
 
-                         <div class="orderReceivedSection" id="reviewModal">
-                             <a href="#" class="orderReceivedButton">Review</a>
+                         <div class="orderReceivedSection" id="<%# Eval("reviewBtn") %>">
+                             <asp:HyperLink ID="HyperLink1" runat="server" CssClass="orderReceivedButton"><%# Eval("reviewBtn") %></asp:HyperLink>
+                             
+                             
                          </div>
                      </div>
                  </div>
@@ -401,27 +403,29 @@
                     <div class="modal-rating-content">
                         <div style="display: flex;">
                             <p>Rating</p>
-                            <div class="commentRatingSectionStars">
-                                <i class="fa-regular fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
+                           <div class="commentRatingSectionStars">
+                             <i class="fa fa-star" onclick="setRating(1)"></i>
+                             <i class="fa fa-star" onclick="setRating(2)"></i>
+                            <i class="fa fa-star" onclick="setRating(3)"></i>
+                               <i class="fa fa-star" onclick="setRating(4)"></i>
+                             <i class="fa fa-star" onclick="setRating(5)"></i>
                             </div>
+                            <asp:HiddenField ID="HiddenRating" runat="server" />
                         </div>
                         <div>
                             <p>Comment</p>
                             <div class="commentRatingSectionComment">
-                                <textarea id="TextArea1" cols="20" rows="2"></textarea>
+                                <textarea id="commentTextArea" cols="20" rows="2"></textarea>
                             </div>
                         </div>
                         <div class="commentRatingSectionContainer">
-                            <a href="#" class="commentRatingSectionButton">Submit</a>
+                            <asp:Button ID="submitRating" runat="server" Text="Submit" CssClass="commentRatingSectionButton" OnClick=""/>
+                          
                         </div>
                     </div>
                 </div>
             </div>
-
+           
             <!-- Second Modal -->
             <div id="secModal" class="modal">
                 <div class="modal-content">
@@ -504,28 +508,23 @@
          </div>
 
         <script>
-            // Calculate and display total items and total price
-            window.addEventListener('DOMContentLoaded', (event) => {
-                var cartItems = document.querySelectorAll('.cart-item');
-                var totalItems = 0;
-                var totalPrice = 0;
-
-                cartItems.forEach(function (cartItem) {
-                    var quantity = parseInt(cartItem.querySelector('.qty').value);
-                    var subtotal = parseFloat(cartItem.querySelector('.item-subtotal').textContent.replace('Subtotal: RM ', ''));
-                    totalItems += quantity;
-                    totalPrice += subtotal;
-                });
-
-                document.getElementById('totalItemsLabel').textContent = totalItems;
-                document.getElementById('totalPriceLabel').textContent = totalPrice.toFixed(2);
-            });
+       function setRating(rating) {
+    var stars = document.querySelectorAll('.fa-star');
+    for (var i = 0; i < stars.length; i++) {
+        stars[i].classList.remove('checked');
+    }
+    for (var i = 0; i < rating; i++) {
+        stars[i].classList.add('checked');
+    }
+    // Set the value in a hidden field to post to server
+    document.getElementById('<%= HiddenRating.ClientID %>').value = rating;
+}
 
             //REVIEW MODAL
             // Get the modal
-            var modal = document.getElementById("myModal");
-            var secModal = document.getElementById("secModal");
-            var thirdModal = document.getElementById("thirdModal");
+            var modal = document.getElementById("<%# Eval("reviewBtn") %>");
+            var secModal = document.getElementById("<%# Eval("reviewBtn") %>");
+            var thirdModal = document.getElementById("<%# Eval("reviewBtn") %>");
 
             // Get the button that opens the modal
             var btn = document.getElementById("reviewModal");

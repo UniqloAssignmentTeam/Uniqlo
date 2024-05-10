@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Uniqlo.AdminPages;
+using Uniqlo.AdminPages.AdminStaff;
 
 namespace Uniqlo.Pages
 {
@@ -15,12 +16,16 @@ namespace Uniqlo.Pages
             if (!IsPostBack)
             {
                 int orderID = int.Parse(Request.QueryString["Order_ID"]);
+                orderIDLabel.Text = orderID.ToString();
                 BindOrderListDataList(3,orderID);
                 BindOrderSummaryRepeater(3,orderID);
+              
             }
             
 
         }
+      
+
 
         private void BindOrderListDataList(int customerID,int orderID)
         {
@@ -37,7 +42,8 @@ namespace Uniqlo.Pages
                         Item_Price = ol.Item_Price,
                         Qty = ol.Qty,
                         Subtotal = ol.Qty * ol.Item_Price,
-                        Image_ID=ol.Quantity.Image_ID
+                        Image_ID=ol.Quantity.Image_ID,
+                        reviewBtn = ol.Reviews.Any() ? "View" : "Review"
                     }).ToList();
 
                 DataList1.DataSource = orderDetails;
@@ -66,9 +72,30 @@ namespace Uniqlo.Pages
                 orderSummaryRepeater.DataBind();
             }
         }
-        
+
+        /*
+        protected void submitRating_OnClick(object sender, EventArgs e)
+        {
+
+            if (Page.IsValid)
+            {
+                using (var db=new ReviewDbContext())
+                {
 
 
+
+
+
+
+
+
+
+                }
+            }
+
+
+        }
+        */
 
     }
 }

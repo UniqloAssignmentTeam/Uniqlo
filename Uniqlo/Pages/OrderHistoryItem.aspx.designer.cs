@@ -15,6 +15,15 @@ namespace Uniqlo.Pages
     {
 
         /// <summary>
+        /// orderIDLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label orderIDLabel;
+
+        /// <summary>
         /// DataList1 control.
         /// </summary>
         /// <remarks>
@@ -31,5 +40,23 @@ namespace Uniqlo.Pages
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Repeater orderSummaryRepeater;
+
+        /// <summary>
+        /// HiddenRating control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField HiddenRating;
+
+        /// <summary>
+        /// submitRating control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button submitRating;
     }
 }
