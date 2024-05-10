@@ -16,7 +16,10 @@ namespace Uniqlo.AdminPages
         string cs = Global.CS;
         protected void Page_Load(object sender, EventArgs e)
         {
-            bindRepeater();
+            if(!IsPostBack) { 
+                bindRepeater();
+            }
+            
         }
 
         private void bindRepeater()
@@ -48,6 +51,11 @@ namespace Uniqlo.AdminPages
                 }
             }
         }
+        protected void btnRemoveDelivery_Click(object sender, EventArgs e)
+        {
+
+        }
+        
     }
 }
        
