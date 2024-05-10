@@ -11,7 +11,7 @@ namespace Uniqlo
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.Data.Entity;
     public partial class Payment
     {
         public int Payment_ID { get; set; }
@@ -25,5 +25,14 @@ namespace Uniqlo
     
         public virtual Delivery Delivery { get; set; }
         public virtual Order Order { get; set; }
+    }
+
+    public class PaymentDbContext : DbContext
+    {
+        public PaymentDbContext() : base("name=UniqloEntities")
+        {
+        }
+
+        public DbSet<Payment> payment { get; set; }
     }
 }
