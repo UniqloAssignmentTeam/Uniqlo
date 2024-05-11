@@ -24,6 +24,15 @@ namespace Uniqlo.AdminPages
         protected global::System.Web.UI.WebControls.DropDownList DdlProductName;
 
         /// <summary>
+        /// CustomValidatorProduct control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CustomValidator CustomValidatorProduct;
+
+        /// <summary>
         /// discountAmount control.
         /// </summary>
         /// <remarks>
@@ -51,6 +60,15 @@ namespace Uniqlo.AdminPages
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator4;
 
         /// <summary>
+        /// RangeValidatorDiscountAmount control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RangeValidator RangeValidatorDiscountAmount;
+
+        /// <summary>
         /// startDate control.
         /// </summary>
         /// <remarks>
@@ -67,6 +85,15 @@ namespace Uniqlo.AdminPages
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
+
+        /// <summary>
+        /// CustomValidatorDate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CustomValidator CustomValidatorDate;
 
         /// <summary>
         /// endDate control.

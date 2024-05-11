@@ -16,148 +16,187 @@ namespace Uniqlo.AdminPages
         {
             if (!IsPostBack)
             {
-                int discountID = int.Parse(Request.QueryString["discountId"]);
-                if (discountID>0)
+                try
                 {
-                   LoadDiscountDetails(discountID);
-                    DropDownListProductName(discountID);
+                    int discountID;
+                    if (int.TryParse(Request.QueryString["discountId"], out discountID) && discountID > 0)
+                    {
+                        LoadDiscountDetails(discountID);
+                        DropDownListProductName(discountID);
+                       
+                    }
                 }
-            }
-        }
-        
-        private void LoadDiscountDetails(int discountID)
-        {
-            using (var db = new DiscountDbContext())
-            {
-                var discount = db.Discount.FirstOrDefault(s => s.Discount_ID == discountID);
-                if (discount != null)
+                catch (Exception ex)
                 {
-                    // Ensure that you reference the TextBox correctly
-                    this.discountID.Text = discount.Discount_ID.ToString();
-                    discountAmount.Text = discount.Discount_Amount.ToString();
-                    status.SelectedValue = discount.Status;
-                    startDate.Text = discount.Start_Date.ToString("yyyy-MM-dd");
-                    endDate.Text = discount.End_Date.ToString("yyyy-MM-dd");
+                    ScriptManager.RegisterStartupScript(this, GetType(), "loadError", "alert('Failed to load discount details.');", true);
                 }
             }
         }
 
+        private void LoadDiscountDetails(int discountID)
+        {
+            try
+            {
+                using (var db = new DiscountDbContext())
+                {
+                    var discount = db.Discount.FirstOrDefault(s => s.Discount_ID == discountID);
+                    if (discount != null)
+                    {
+                        this.discountID.Text = discount.Discount_ID.ToString();
+                        discountAmount.Text = discount.Discount_Amount.ToString();
+                        status.SelectedValue = discount.Status;
+                        startDate.Text = discount.Start_Date.ToString("yyyy-MM-dd");
+                        endDate.Text = discount.End_Date.ToString("yyyy-MM-dd");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "dataError", "alert('Error retrieving discount data.');", true);
+            }
+        }
 
         protected void updateBtn_Click(object sender, EventArgs e)
         {
             if (Page.IsValid)
             {
-                using (var db = new DiscountDbContext())
+                try
                 {
-                    int discountId = int.Parse(discountID.Text);
-                    Discount existingDiscount = db.Discount.Find(discountId);
-
-                    if (existingDiscount == null)
+                    using (var db = new DiscountDbContext())
                     {
-                        // Handle error: Discount not found
-                        return;
-                    }
-
-                    // Parse and validate dates
-                    if (!DateTime.TryParse(startDate.Text, out DateTime startInput) ||
-                        !DateTime.TryParse(endDate.Text, out DateTime endInput))
-                    {
-                        // Handle error: Date parsing failed
-                        return;
-                    }
-
-                    // Check if the product ID has changed and if there's an existing discount for the new product
-                    int newProductId = int.Parse(DdlProductName.SelectedValue);
-                    if (existingDiscount.Product_ID != newProductId)
-                    {
-                        // Check for and remove any existing discount on the new product
-                        var conflictingDiscount = db.Discount.FirstOrDefault(d => d.Product_ID == newProductId);
-                        if (conflictingDiscount != null)
+                        int discountId = int.Parse(discountID.Text);
+                        int productId = int.Parse(DdlProductName.SelectedValue);
+                        var discount = db.Discount.FirstOrDefault(d => d.Discount_ID == discountId);
+                        if (discount != null)
                         {
-                            db.Discount.Remove(conflictingDiscount);
+                            discount.Product_ID = productId;
+                            discount.Discount_Amount = float.Parse(discountAmount.Text);
+                            discount.Status = status.Text;
+                            discount.Start_Date = DateTime.Parse(startDate.Text);
+                            discount.End_Date = DateTime.Parse(endDate.Text);
+
+                            db.SaveChanges();
+                            try
+                            {
+                        Response.Redirect("DiscountHome.aspx");
+                            }catch (Exception ex)
+                            {
+                                ScriptManager.RegisterStartupScript(this, GetType(), "redirectError", "alert('Failed to redirect to the main page. Please try again.');", true);
+                            }
+                           
                         }
-
-                        // Create a new discount record for the new product
-                        Discount newDiscount = new Discount
-                        {
-                            Product_ID = newProductId,
-                            Discount_Amount = float.Parse(discountAmount.Text),
-                            Start_Date = startInput,
-                            End_Date = endInput,
-                            Status = CalculateStatus(startInput, endInput)
-                        };
-                        db.Discount.Add(newDiscount);
                     }
-                    else
-                    {
-                        // Update existing discount
-                        existingDiscount.Discount_Amount = float.Parse(discountAmount.Text);
-                        existingDiscount.Start_Date = startInput;
-                        existingDiscount.End_Date = endInput;
-                        existingDiscount.Status = CalculateStatus(startInput, endInput);
-                    }
-
-                    db.SaveChanges();
-                    Response.Redirect("DiscountHome.aspx");
+                }
+                catch (Exception ex)
+                {
+                    ScriptManager.RegisterStartupScript(this, GetType(), "updateError", "alert('Error updating discount. Please check your inputs.');", true);
                 }
             }
         }
 
-        private string CalculateStatus(DateTime start, DateTime end)
-        {
-            DateTime today = DateTime.Now.Date;
-            return (today >= start && today <= end) ? "Active" : "Inactive";
-        }
 
+      
 
         private int? getReturnProductID(int discountID)
         {
-            
-            using (var db = new DiscountDbContext())
+            try
             {
-                var discount = db.Discount.FirstOrDefault(d => d.Discount_ID == discountID);
-
-
-                if (discount != null)
+                using (var db = new DiscountDbContext())
                 {
+                    var discount = db.Discount.FirstOrDefault(d => d.Discount_ID == discountID);
 
-                    return discount.Product_ID;
 
+                    if (discount != null)
+                    {
+
+                        return discount.Product_ID;
+
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", "alert('Error getting Product ID. Please try again.');", true);
 
+            }
             return null;
-
-
-              
         }
 
         private void DropDownListProductName(int discountID)
         {
-            using (var db = new ProductDbContext())
+            try
             {
-                // Fetch all non-deleted products
-                var products = db.Product
-                                 .Where(p => !p.IsDeleted)
-                                 .Select(p => new { p.Product_ID, p.Product_Name })
-                                 .ToList();
-
-                DdlProductName.Items.Clear(); // Clear existing items
-
-                // Populate DropDownList with products
-                foreach (var product in products)
+                using (var db = new ProductDbContext())
                 {
-                    ListItem item = new ListItem(product.Product_Name, product.Product_ID.ToString());
-                    DdlProductName.Items.Add(item);
-                }
+                    var discountedProductIds = db.Discount
+                                                 .Where(d => d.Discount_ID != discountID)
+                                                 .Select(d => d.Product_ID)
+                                                 .Distinct()
+                                                 .ToList();
 
-                // Attempt to get the product ID from the discount ID
-                var productID = getReturnProductID(discountID);
-                if (productID.HasValue)
-                {
-                    // Set the selected value of the dropdown list
-                    DdlProductName.SelectedValue = productID.Value.ToString();
+                    var availableProducts = db.Product
+                                              .Where(p => !p.IsDeleted && !discountedProductIds.Contains(p.Product_ID))
+                                              .Select(p => new { p.Product_ID, p.Product_Name })
+                                              .ToList();
+
+                    DdlProductName.Items.Clear();
+
+                    foreach (var product in availableProducts)
+                    {
+                        ListItem item = new ListItem(product.Product_Name, product.Product_ID.ToString());
+                        DdlProductName.Items.Add(item);
+                    }
+
+                    var productID = getReturnProductID(discountID);
+                    if (productID.HasValue)
+                    {
+                        DdlProductName.SelectedValue = productID.Value.ToString();
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                // Log the error or show it somewhere on your page
+                ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", "alert('Error loading product names. Please try again.');", true);
+            }
+        }
+
+
+        protected void CustomValidatorDate_ServerValidate(object source, ServerValidateEventArgs args)
+        {
+            DateTime startInput;
+            DateTime endInput;
+            bool startDateParsed = DateTime.TryParse(startDate.Text, out startInput);
+            bool endDateParsed = DateTime.TryParse(endDate.Text, out endInput);
+            try
+            {
+                // Check if both dates are valid and start is before end
+                if (startDateParsed && endDateParsed && startInput <= endInput)
+            {
+                args.IsValid = true;
+            }
+            else
+            {
+                args.IsValid = false;
+            }
+            }
+            catch (Exception ex)
+            {
+                args.IsValid = false;
+                ScriptManager.RegisterStartupScript(this, GetType(), "validationError", "alert('Invalid date format.');", true);
+            }
+        }
+
+        protected void ValidateProductName_ServerValidate(object source, ServerValidateEventArgs args)
+        {
+            // Ensure that a product other than the default "--Select Product--" is chosen
+            if (DdlProductName.SelectedValue != "")
+            {
+                args.IsValid = true;
+            }
+            else
+            {
+                args.IsValid = false;
             }
         }
 
@@ -165,7 +204,15 @@ namespace Uniqlo.AdminPages
 
         protected void cancelBtn_Click(object sender, EventArgs e)
         {
-            Response.Redirect("DiscountHome.aspx");
+            try
+            {
+                Response.Redirect("DiscountHome.aspx");
+            }
+            catch (Exception ex)
+            {
+                // Log error details if logging is set up or use ScriptManager to alert the user.
+                ScriptManager.RegisterStartupScript(this, GetType(), "redirectError", "alert('Failed to redirect to the main page. Please try again.');", true);
+            }
         }
 
        
