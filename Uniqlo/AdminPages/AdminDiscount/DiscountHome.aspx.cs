@@ -251,16 +251,24 @@ namespace Uniqlo.AdminPages.AdminDiscount
 
         protected void searchBox_TextChanged(object sender, EventArgs e)
         {
+            try
+            {
+
+            
             string searchText = searchBox.Text;
             var results = SearchDatabase(searchText);  // Call the method that performs the search
             discountRepeater.DataSource = results;
             discountRepeater.DataBind();
+            }catch (Exception ex)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('An error occurred while searching the product name.');", true);
+               
+            }
         }
 
         public List<Discount> SearchDatabase(string searchText)
         {
-            try
-            {
+           
                 using (var db = new DiscountDbContext())
                 {
                     var query = db.Discount.Include(d => d.Product)
@@ -269,15 +277,9 @@ namespace Uniqlo.AdminPages.AdminDiscount
                     return query;
                 }
             }
-            catch (Exception ex)
-            {
-                // Log the exception or handle it accordingly
-                Console.WriteLine("An error occurred: " + ex.Message);
-                return new List<Discount>();  // Return an empty list or handle differently depending on your needs
-            }
+          
         }
     }
 
 
 
-}
