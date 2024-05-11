@@ -108,6 +108,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="AdminPages\AdminDelivery\AddDelivery.aspx" />
+    <Content Include="AdminPages\AdminDelivery\Delivery.aspx" />
     <Content Include="AdminPages\AdminDiscount\addDiscount.aspx" />
     <Content Include="AdminPages\AdminDiscount\DiscountHome.aspx" />
     <Content Include="AdminPages\AdminProduct\AddProduct.aspx" />
@@ -116,8 +117,7 @@
     <Content Include="AdminPages\AdminStaff\StaffAdd.aspx" />
     <Content Include="AdminPages\AdminStaff\StaffHome.aspx" />
     <Content Include="AdminPages\Dashboard.aspx" />
-    <Content Include="AdminPages\AdminDelivery\Delivery.aspx" />
-    <Content Include="AdminPages\Login.aspx" />
+    <Content Include="AdminPages\adminLogin.aspx" />
     <Content Include="AdminPages\AdminOrder\Order.aspx" />
     <Content Include="AdminPages\AdminOrder\OrderItem.aspx" />
     <Content Include="AdminPages\AdminDiscount\UpdateDiscount.aspx" />
@@ -280,6 +280,13 @@
     <Compile Include="AdminPages\AdminDelivery\AddDelivery.aspx.designer.cs">
       <DependentUpon>AddDelivery.aspx</DependentUpon>
     </Compile>
+    <Compile Include="AdminPages\AdminDelivery\Delivery.aspx.cs">
+      <DependentUpon>Delivery.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminPages\AdminDelivery\Delivery.aspx.designer.cs">
+      <DependentUpon>Delivery.aspx</DependentUpon>
+    </Compile>
     <Compile Include="AdminPages\AdminDiscount\addDiscount.aspx.cs">
       <DependentUpon>addDiscount.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -336,19 +343,12 @@
     <Compile Include="AdminPages\Dashboard.aspx.designer.cs">
       <DependentUpon>Dashboard.aspx</DependentUpon>
     </Compile>
-    <Compile Include="AdminPages\AdminDelivery\Delivery.aspx.cs">
-      <DependentUpon>Delivery.aspx</DependentUpon>
+    <Compile Include="AdminPages\adminLogin.aspx.cs">
+      <DependentUpon>adminLogin.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="AdminPages\AdminDelivery\Delivery.aspx.designer.cs">
-      <DependentUpon>Delivery.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="AdminPages\Login.aspx.cs">
-      <DependentUpon>Login.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="AdminPages\Login.aspx.designer.cs">
-      <DependentUpon>Login.aspx</DependentUpon>
+    <Compile Include="AdminPages\adminLogin.aspx.designer.cs">
+      <DependentUpon>adminLogin.aspx</DependentUpon>
     </Compile>
     <Compile Include="AdminPages\AdminOrder\Order.aspx.cs">
       <DependentUpon>Order.aspx</DependentUpon>
@@ -672,6 +672,7 @@
     <Content Include="UniqloAdo.edmx.diagram">
       <DependentUpon>UniqloAdo.edmx</DependentUpon>
     </Content>
+    <Content Include="Pages\Web.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

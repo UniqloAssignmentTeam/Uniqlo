@@ -10,7 +10,7 @@ using System.Web.UI.WebControls;
 using static Uniqlo.Product;
 using Uniqlo.Pages;
 
-namespace Uniqlo.AdminPages
+namespace Uniqlo.AdminPages.AdminDelivery
 {
     public partial class Delivery : System.Web.UI.Page
     {
@@ -20,9 +20,8 @@ namespace Uniqlo.AdminPages
             if (!IsPostBack) { 
                 bindRepeater();
             }
-            
-        }
 
+        }
         private void bindRepeater()
         {
             string connString = cs;
@@ -118,4 +117,3 @@ namespace Uniqlo.AdminPages
         }
     }
 }
-       
