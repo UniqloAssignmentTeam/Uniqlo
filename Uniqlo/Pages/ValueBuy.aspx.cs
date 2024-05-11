@@ -8,6 +8,7 @@ using Uniqlo;
 using static Uniqlo.Product;
 using System.Data.Entity;
 using System.Security.Cryptography.X509Certificates;
+using System.Diagnostics;
 
 namespace Uniqlo.Pages
 {
@@ -54,32 +55,58 @@ namespace Uniqlo.Pages
                 dlValueBuy.DataBind();
             }
         }
-        protected void genderSortDDL_SelectedIndexChanged(object sender, EventArgs e)
+
+        protected void FilterProducts(object sender, EventArgs e)
         {
-            using (var context = new ProductDbContext())
+            using (var db = new ProductDbContext())
             {
-                string selectedGender = genderSortDDL.SelectedValue;
-                var today = DateTime.Today; // Use Today instead of Now for date comparison without time
+                var today = DateTime.Today;
+                var selectedGender = genderSortDDL.SelectedValue;
 
-                var productsQuery = context.Product
+                var productDetails = db.Product
                     .Where(p => !p.IsDeleted && p.Category.Gender == selectedGender)
-                    .Join(context.Discount,
-                          p => p.Product_ID,
-                          d => d.Product_ID,
-                          (p, d) => new { p, d })
-                    .Where(pd => pd.d.Status == "Active" && pd.d.Start_Date <= today && pd.d.End_Date >= today)
-                    .Select(pd => new {
-                        Product_Name = pd.p.Product_Name,
-                        Description = pd.p.Description,
-                        Price = pd.p.Price,
-                        Discount_Amount = pd.p.Price - pd.d.Discount_Amount,
-                        Image_ID = pd.p.Quantities.FirstOrDefault().Image.Image_ID, // Assuming each product has at least one image
-                    });
-
-                dlValueBuy.DataSource = productsQuery.Distinct().ToList();
+                    .SelectMany(
+                        p => db.Discount
+                            .Where(d => d.Product_ID == p.Product_ID
+                                && d.Status == "Active"
+                                && d.Start_Date <= today
+                                && d.End_Date >= today),
+                        (product, discount) => new
+                        {
+                            Product_Name = product.Product_Name,
+                            Description = product.Description,
+                            Price = product.Price,
+                            Image_ID = product.Quantities.Select(q => q.Image_ID).FirstOrDefault(),
+                            AverageRating = product.Quantities.SelectMany(q => q.OrderLists).SelectMany(ol => ol.Reviews).Average(r => (int?)r.Rating) ?? 0,
+                            ReviewCount = product.Quantities.SelectMany(q => q.OrderLists).SelectMany(ol => ol.Reviews).Count(),
+                            Discount_Amount = product.Price - discount.Discount_Amount
+                        }
+                    )
+                    .ToList();
+              
+                dlValueBuy.RepeatColumns = productDetails.Count > 4 ? 4 : productDetails.Count;
+                dlValueBuy.DataSource = productDetails;
                 dlValueBuy.DataBind();
             }
         }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         public string GenerateStars(double rating)
         {
             var fullStars = (int)rating; // Number of full stars
