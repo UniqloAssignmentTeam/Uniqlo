@@ -11,15 +11,18 @@ using static Uniqlo.Product;
 using Uniqlo.Pages;
 using static Uniqlo.Staff;
 using OfficeOpenXml;
+using System.IO;
+using System.Text;
 
 namespace Uniqlo.AdminPages.AdminDelivery
 {
-    public partial class Delivery : System.Web.UI.Page
+    public partial class DeliveryHome : System.Web.UI.Page
     {
         string cs = Global.CS;
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack) { 
+            if (!IsPostBack)
+            {
                 bindRepeater();
             }
 
@@ -97,7 +100,7 @@ namespace Uniqlo.AdminPages.AdminDelivery
             int deliveryId = Convert.ToInt32(hiddenDeliveryId.Value); // Retrieve the Delivery ID
             string connectionString = cs;
 
-            using (var connection = new SqlConnection(connectionString)) 
+            using (var connection = new SqlConnection(connectionString))
             {
                 connection.Open();
 
@@ -149,8 +152,53 @@ namespace Uniqlo.AdminPages.AdminDelivery
                 }
             }
             Response.Redirect(Request.RawUrl);
-           
+
         }
+
+        protected void searchBox_TextChanged(object sender, EventArgs e)
+        {
+            string searchTerm = searchBox.Text.Trim();
+            string query = @"
+SELECT 
+    d.Delivery_ID,
+    sa.Address + ', ' + sa.State + ', ' + sa.City + ', ' + sa.Postcode + ', ' + sa.Country AS DeliveryAddress,
+    d.Delivery_Status,
+    p.Order_ID
+FROM 
+    Delivery d
+INNER JOIN 
+    Shipping_Address sa ON d.Address_ID = sa.Address_ID
+INNER JOIN 
+    Payment p ON d.Delivery_ID = p.Delivery_ID";
+
+            // If the search term is empty, do not filter by delivery ID
+            if (!string.IsNullOrEmpty(searchTerm))
+            {
+                query += " WHERE d.Delivery_ID = @DeliveryID";
+            }
+
+            DataTable dt = new DataTable();
+            using (SqlConnection conn = new SqlConnection(Global.CS))
+            {
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    // Add parameter only if the search term is not empty
+                    if (!string.IsNullOrEmpty(searchTerm))
+                    {
+                        cmd.Parameters.AddWithValue("@DeliveryID", searchTerm);
+                    }
+
+                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                    {
+                        da.Fill(dt);
+                    }
+                }
+            }
+
+            rptDeliveries.DataSource = dt;
+            rptDeliveries.DataBind();
+        }
+
 
         protected void addDeliveryBtn_Click(object sender, EventArgs e)
         {
@@ -159,42 +207,46 @@ namespace Uniqlo.AdminPages.AdminDelivery
 
         protected void btnExcel_Click(object sender, EventArgs e)
         {
-            // Create a new Excel package
-            ExcelPackage excelPackage = new ExcelPackage();
-
-            // Add a new worksheet to the Excel package
-            ExcelWorksheet worksheet = excelPackage.Workbook.Worksheets.Add("DeliveryDetails");
-
-            // Set the column names in the first row
-            string[] columnNames = { "Delivery ID", "Delivery Address", "Delivery Status", "Order ID" };
-            for (int i = 0; i < columnNames.Length; i++)
+            string connectionString = cs; // Ensure this is correctly defined
+            using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                worksheet.Cells[1, i + 1].Value = columnNames[i];
+                conn.Open();  // Ensure the connection is opened before executing the command
+
+                StringBuilder query = new StringBuilder(@"
+            SELECT 
+                d.Delivery_ID,
+                sa.Address + ', ' + sa.State + ', ' + sa.City + ', ' + sa.Postcode + ', ' + sa.Country AS DeliveryAddress,
+                d.Delivery_Status,
+                p.Order_ID
+            FROM 
+                Delivery d
+            INNER JOIN 
+                Shipping_Address sa ON d.Address_ID = sa.Address_ID
+            INNER JOIN 
+                Payment p ON d.Delivery_ID = p.Delivery_ID");
+
+                using (SqlCommand cmd = new SqlCommand(query.ToString(), conn))
+                {
+                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                    {
+                        DataTable dt = new DataTable();
+                        da.Fill(dt);
+                        using (ExcelPackage pck = new ExcelPackage())
+                        {
+                            ExcelWorksheet ws = pck.Workbook.Worksheets.Add("Delivery");
+                            ws.Cells["A1"].LoadFromDataTable(dt, true, OfficeOpenXml.Table.TableStyles.Light1);
+                            var memoryStream = new MemoryStream();
+                            pck.SaveAs(memoryStream);
+                            memoryStream.Position = 0;
+
+                            HttpContext.Current.Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+                            HttpContext.Current.Response.AddHeader("content-disposition", "attachment; filename=DeliveryDetails.xlsx");
+                            HttpContext.Current.Response.BinaryWrite(memoryStream.ToArray());
+                            HttpContext.Current.Response.End();
+                        }
+                    }
+                }
             }
-
-            // Fill data from the repeater into the Excel worksheet
-            for (int i = 0; i < rptDeliveries.Items.Count; i++)
-            {
-                RepeaterItem item = rptDeliveries.Items[i];
-                Label lblDeliveryID = (Label)item.FindControl("lblDeliveryID");
-                Label lblDeliveryAddress = (Label)item.FindControl("lblDeliveryAddress");
-                Label lblDeliveryStatus = (Label)item.FindControl("lblDeliveryStatus");
-                Label lblOrderID = (Label)item.FindControl("lblOrderID");
-
-                worksheet.Cells[i + 2, 1].Value = lblDeliveryID.Text;
-                worksheet.Cells[i + 2, 2].Value = lblDeliveryAddress.Text;
-                worksheet.Cells[i + 2, 3].Value = lblDeliveryStatus.Text;
-                worksheet.Cells[i + 2, 4].Value = lblOrderID.Text;
-            }
-
-            // Set the content type and headers for the response
-            Response.Clear();
-            Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
-            Response.AddHeader("content-disposition", "attachment;  filename=DeliveryDetails.xlsx");
-
-            // Write the Excel package to the response stream
-            Response.BinaryWrite(excelPackage.GetAsByteArray());
-            Response.End();
         }
     }
 }

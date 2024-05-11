@@ -118,7 +118,7 @@
     <Content Include="AdminPages\AdminStaff\StaffAdd.aspx" />
     <Content Include="AdminPages\AdminStaff\StaffHome.aspx" />
     <Content Include="AdminPages\Dashboard.aspx" />
-    <Content Include="AdminPages\AdminDelivery\Delivery.aspx" />
+    <Content Include="AdminPages\AdminDelivery\DeliveryHome.aspx" />
     <Content Include="AdminPages\AdminOrder\OrderItem.aspx" />
     <Content Include="AdminPages\AdminDiscount\UpdateDiscount.aspx" />
     <Content Include="AdminPages\AdminProduct\UpdateProduct.aspx" />
@@ -350,12 +350,12 @@
     <Compile Include="AdminPages\Dashboard.aspx.designer.cs">
       <DependentUpon>Dashboard.aspx</DependentUpon>
     </Compile>
-    <Compile Include="AdminPages\AdminDelivery\Delivery.aspx.cs">
-      <DependentUpon>Delivery.aspx</DependentUpon>
+    <Compile Include="AdminPages\AdminDelivery\DeliveryHome.aspx.cs">
+      <DependentUpon>DeliveryHome.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="AdminPages\AdminDelivery\Delivery.aspx.designer.cs">
-      <DependentUpon>Delivery.aspx</DependentUpon>
+    <Compile Include="AdminPages\AdminDelivery\DeliveryHome.aspx.designer.cs">
+      <DependentUpon>DeliveryHome.aspx</DependentUpon>
     </Compile>
     <Compile Include="AdminPages\AdminOrder\OrderItem.aspx.cs">
       <DependentUpon>OrderItem.aspx</DependentUpon>
