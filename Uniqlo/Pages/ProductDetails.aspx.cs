@@ -9,6 +9,8 @@ using System.Data.Entity;
 using System.Configuration;
 using System.Data.SqlClient;
 using System.Data;
+using System.Threading.Tasks;
+using System.Collections;
 
 namespace Uniqlo.Pages
 {
@@ -155,8 +157,10 @@ namespace Uniqlo.Pages
         protected void RadioButtonListColors_SelectedIndexChanged(object sender, EventArgs e)
         {
             RadioButtonList rbList = (RadioButtonList)sender;
-            string selectedColor = rbList.SelectedValue;
+            string selectedColor = rbList.SelectedValue;            
             RadioButtonList rbSizes = (RadioButtonList)formView.FindControl("RadioButtonListSizes");
+            Session["selectedColor"] = selectedColor;
+            Session["selectedSize"] = rbSizes.SelectedValue;
 
             int productId = 0;
             if (Request.QueryString["ProdID"] != null && int.TryParse(Request.QueryString["ProdID"], out productId))
@@ -191,6 +195,9 @@ namespace Uniqlo.Pages
             RadioButtonList rbColors = (RadioButtonList)formView.FindControl("RadioButtonListColors");
             string selectedColor = rbColors.SelectedValue;
             Label labelQuantity = (Label)formView.FindControl("LabelQuantity");
+            Session["selectedColor"] = selectedSize;
+            Session["selectedSize"] = selectedColor;
+
 
             int productId = 0;
             if (Request.QueryString["ProdID"] != null && int.TryParse(Request.QueryString["ProdID"], out productId))
@@ -240,10 +247,23 @@ namespace Uniqlo.Pages
             return html;
         }
 
+        protected void btnAddToCart_Click(object sender, EventArgs e)
+        {
+            // Access the selected size and color
+            string selectedSize = (string)Session["selectedSize"];
+            string selectedColor = (string)Session["selectedColor"];
+            //int quantity = txtQty.Text;
+
+            Response.Redirect("ProductDetails.aspx");
+
+
+
+        }
 
         /*ADD Function*/
 
 
 
     }
+
 }

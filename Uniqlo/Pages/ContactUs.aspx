@@ -11,17 +11,25 @@
             <p>Email: uniqlomy@gmail.com</p>
             <p>Contact No: 04-2657622</p>
         
-            <!-- Chatbot Section -->
             <div class="chatbot-container">
-                <div class="chatbot-messages" id="chatbotMessages">
-                    <!-- Welcome message styled as a chatbot message -->
-                    <div class="chatbot-message">
-                        <p>Welcome to Uniqlo! Please don't hesitate to let us know what we can assist you with.</p>
+                <div class="form">
+                    <div class="bot-inbox inbox">
+                        <div class="icon">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="msg-header">
+                            <p>Welcome to Uniqlo! Please don't hesitate to let us know what we can assist you with.</p>
+                        </div>
                     </div>
-                    <!-- Chatbot messages will appear here -->
+
+                    <div class="user-inbox inbox">
+                        <div class="msg-header">
+                            <p>Welcome to Uniqlo! Please don't hesitate to let us know what we can assist you with.</p>
+                        </div>
+                    </div>
                 </div>
                 <div class="chatbot-input">
-                    <input type="text" id="userInput" placeholder="Type your message..." />
+                    <input type="text" id="userInput" placeholder="Type your message..." required/>
                     <button id="sendButton">Send</button>
                 </div>
             </div>

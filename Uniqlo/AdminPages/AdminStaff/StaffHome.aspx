@@ -25,26 +25,26 @@
 
                         <div class="search">
                             <span class="material-symbols-outlined">search</span>
-                            <input class="search-input" type="search" placeholder="Search" />
+                           <asp:TextBox ID="searchBox" runat="server" CssClass="search-input" AutoPostBack="true" OnTextChanged="searchBox_TextChanged"  placeholder="Search Staff Name"></asp:TextBox>
                         </div>
 
                         <div class="dropdown-wrapper">
 
                             <asp:DropDownList ID="genderSortDDL" runat="server" AutoPostBack="true" OnSelectedIndexChanged="genderSortDDL_SelectedIndexChanged" CssClass="dropdown-display">
-                                <asp:ListItem Value="">Gender</asp:ListItem>
+                                <asp:ListItem Value="">All Genders</asp:ListItem>
                                 <asp:ListItem Value="M">Male</asp:ListItem>
                                 <asp:ListItem Value="F">Female</asp:ListItem>
                             </asp:DropDownList>
-
-
+            
                             <asp:DropDownList ID="roleSortDDL" runat="server" AutoPostBack="true"
                                 OnSelectedIndexChanged="roleSortDDL_SelectedIndexChanged" CssClass="dropdown-display">
-                                <asp:ListItem Value="">Role</asp:ListItem>
+                                <asp:ListItem Value="">All Roles</asp:ListItem>
                                 <asp:ListItem Value="Staff">Staff</asp:ListItem>
                                 <asp:ListItem Value="Admin">Admin</asp:ListItem>
                                 <asp:ListItem Value="Manager">Manager</asp:ListItem>
                             </asp:DropDownList>
-
+                         <asp:CustomValidator ID="CustomValidator1" runat="server" ValidateEmptyText="true" ControlToValidate="roleSortDDL" ErrorMessage="Please select a Role" ForeColor="Red" Display="Dynamic" OnServerValidate="ValidateStaffRole_ServerValidate"></asp:CustomValidator>
+                   
                         </div>
 
                         <div class="btnExcel-Add">
@@ -169,7 +169,11 @@
                 document.getElementById('id01').style.display = 'block';  // Show the modal
             }
         </script>
-
+         <script type="text/javascript">
+     document.getElementById('<%= searchBox.ClientID %>').onkeyup = function() {
+ __doPostBack('<%= searchBox.ClientID %>', '');
+     };
+         </script>
 
         <script src="../../Javascript/productBtnEclipse.js"></script>
         <script src="../../Javascript/productAdminDDL.js"></script>

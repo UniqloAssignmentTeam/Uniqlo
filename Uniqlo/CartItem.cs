@@ -16,9 +16,21 @@ namespace Uniqlo
         public string Size { get; set; }
         public decimal Item_Price // Total price for all units of this item
         {
-            get { return Price * Quantity; }
+
+            get 
+            {
+                if (DiscountedPrice > 0)
+                    return DiscountedPrice * Quantity;
+                else
+                    return Price * Quantity;
+            }
         }
         public int Quantity { get; set; }
+
+        public string Description { get; set; }
+
+        public decimal OriginalPrice { get; set; }
+        public decimal DiscountedPrice { get; set; }
 
 
     }

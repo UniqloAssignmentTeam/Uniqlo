@@ -17,7 +17,7 @@
                 <div class="search">
                     <span class="material-symbols-outlined">search</span>
                   <asp:TextBox ID="searchBox" runat="server" CssClass="search-input" AutoPostBack="true" OnTextChanged="searchBox_TextChanged"  placeholder="Search Product Name"></asp:TextBox>
-        
+       
                 </div> 
                 
 
