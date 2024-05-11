@@ -9,48 +9,57 @@
             <div class="profile-header">
                 <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="User Avatar" class="avatar">
            
-                <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
-                <h4 class="username">Tan Choo Jun</h4>
+                <h4 class="username"><asp:Label ID="lblName" runat="server" Text="Label"></asp:Label></h4>
             </div>
 
                 <div class="info-item">
-                    <span class="info-label">Email:</span>
-            
-                    <!--<span class="info-value"></span>-->
+                    <span class="info-label">Email:</span>            
+                  <span class="info-value"></span>
+                    <asp:Label ID="lblEmail" runat="server" Text=""></asp:Label>
                 </div>
+
                  <div class="info-item">
                     <span class="info-label">Gender:</span>
-                    <span class="info-value">Male</span>
+                     <span class="info-value"></span>
+                         <asp:Label ID="lblGender" runat="server" Text=""></asp:Label>           
                 </div>
+
                 <div class="info-item">
                     <span class="info-label">Contact No:</span>
-                    <span class="info-value">0148169029</span>
+                    <asp:Label ID="lblPhoneNumber" runat="server" Text=""></asp:Label> 
                 </div>
+
                 <div class="info-item">
                     <span class="info-label">Address:</span>
-                    <span class="info-value">1, Jalan Lembah Permai</span>
+                    <asp:Label ID="lblAddress" runat="server" Text=""></asp:Label> 
                 </div>
+
                 <div class="info-item">
-                    <span class="info-label">Postcode</span>
-                    <span class="info-value">11900</span>
+                    <span class="info-label">Postcode:</span>
+                    <asp:Label ID="lblPostcode" runat="server" Text=""></asp:Label> 
                 </div>
+
                  <div class="info-item">
-                    <span class="info-label">City</span>
-                    <span class="info-value">Tanjung Bungah</span>
+                    <span class="info-label">City:</span>
+                    <asp:Label ID="lblCity" runat="server" Text=""></asp:Label> 
                 </div>
+
                 <div class="info-item">
-                    <span class="info-label">State</span>
-                    <span class="info-value">Penang</span>
+                    <span class="info-label">State:</span>
+                    <asp:Label ID="lblState" runat="server" Text=""></asp:Label> 
                 </div>
+
                 <div class="info-item">
-                     <span class="info-label">Country</span>
-                    <span class="info-value">Malaysia</span>
+                     <span class="info-label">Country:</span>
+                    <asp:Label ID="lblCountry" runat="server" Text=""></asp:Label> 
                 </div>
+
                 <br />
                 <div class="edit-profile"  id="orderHistoryBigContainer">
                     <asp:Button ID="btnEditProfile" runat="server" Text="Edit Profile" CssClass="edit-button" OnClick="btnEditProfile_Click" />
                     <asp:Button ID="btnChgPass" runat="server" Text="Change Password" CssClass="edit-button" OnClick="btnChgPass_Click" />
                 </div>
+
             </div>
         </div>
 
