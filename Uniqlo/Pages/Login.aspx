@@ -6,7 +6,7 @@
 
  <head>
 
-        <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+      
 
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -16,7 +16,7 @@
                 
         <!-- Boxicons CSS -->
         <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
-              <script src="https://www.google.com/recaptcha/api.js?render=6LcQr9gpAAAAALZ_qGE5V4MDe0jhOesJLNFfmZd2"></script>
+             
            
  </head>
         <section class="container forms">   
@@ -41,7 +41,7 @@
                         </div>
                         <input type="hidden" id="recaptchaResponse" name="recaptchaResponse" runat="server" />
                         <asp:Label ID="errorLabel" runat="server" Text=""></asp:Label>
-                   <div class="g-recaptcha" data-sitekey="6Lc38NgpAAAAANFR2iSW9Bm0ir6yRA-RqVdC0cVv"></div>
+                  
 
 
 

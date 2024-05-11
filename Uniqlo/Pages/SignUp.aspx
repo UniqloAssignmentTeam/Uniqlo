@@ -9,7 +9,7 @@
         <link href="../css/SignUp.css" rel="stylesheet" />
         <!-- Boxicons CSS -->
         <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
-         
+         <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     </head>
     <div class="mainBody">
 
@@ -77,8 +77,10 @@
                         <asp:Label ID="lblProfilePhoto" runat="server" Text="Profile Photo"></asp:Label>
                         <asp:FileUpload ID="fileProfilePhoto" runat="server" />
                     </div>
+                 <div class="g-recaptcha" data-sitekey="6Lc38NgpAAAAANFR2iSW9Bm0ir6yRA-RqVdC0cVv"></div>
                     <!-- Sign Up Button -->
                     <div class="field button-field">
+                        
                         <asp:Button ID="btnSignUp" runat="server" Text="Sign Up" OnClick="btnSignUp_Click" />
                     </div>
                 
