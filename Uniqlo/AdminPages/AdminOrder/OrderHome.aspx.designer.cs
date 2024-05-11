@@ -7,11 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Uniqlo.AdminPages.AdminProduct
+namespace Uniqlo.AdminPages.AdminOrder
 {
 
 
-    public partial class ProductHome
+    public partial class OrderHome
     {
 
         /// <summary>
@@ -33,22 +33,13 @@ namespace Uniqlo.AdminPages.AdminProduct
         protected global::System.Web.UI.UpdatePanel UpdatePanelProduct;
 
         /// <summary>
-        /// ddlCategory control.
+        /// ddlStatus control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlCategory;
-
-        /// <summary>
-        /// ddlGender control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlGender;
+        protected global::System.Web.UI.WebControls.DropDownList ddlStatus;
 
         /// <summary>
         /// excelExport control.
@@ -60,39 +51,12 @@ namespace Uniqlo.AdminPages.AdminProduct
         protected global::System.Web.UI.WebControls.Button excelExport;
 
         /// <summary>
-        /// addProdBtn control.
+        /// orderRepeater control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button addProdBtn;
-
-        /// <summary>
-        /// prodRepeater control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater prodRepeater;
-
-        /// <summary>
-        /// hiddenProductId control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hiddenProductId;
-
-        /// <summary>
-        /// btnRemoveProduct control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnRemoveProduct;
+        protected global::System.Web.UI.WebControls.Repeater orderRepeater;
     }
 }

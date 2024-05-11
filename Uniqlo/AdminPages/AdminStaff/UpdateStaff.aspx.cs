@@ -20,26 +20,46 @@ namespace Uniqlo.AdminPages
                 string staffId = Request.QueryString["StaffID"];
                 if (!string.IsNullOrEmpty(staffId))
                 {
-                    LoadStaffDetails(int.Parse(staffId));
+                    try
+                    {
+                        LoadStaffDetails(int.Parse(staffId));
+                    }
+                    catch (Exception ex)
+                    {
+                        ScriptManager.RegisterStartupScript(this, GetType(), "loadError", "alert('Failed to load staff details.');", true);
+                        // Log the exception message: ex.Message
+                    }
                 }
             }
         }
 
         private void LoadStaffDetails(int staffId)
         {
-            using (var db = new StaffDbContext())
+            try
             {
-                var staff = db.Staff.FirstOrDefault(s => s.Staff_ID == staffId);
-                if (staff != null)
+                using (var db = new StaffDbContext())
                 {
-                    staffID.Text = staff.Staff_ID.ToString();
-                    staffName.Text = staff.Name;
-                    email.Text = staff.Email;
-                    contactNumber.Text = staff.Contact_No;
-                    staffGender.SelectedValue=staff.Gender;
-                    staffRole.SelectedValue = staff.Role;
-                    password.Text=staff.Password;
+                    var staff = db.Staff.FirstOrDefault(s => s.Staff_ID == staffId);
+                    if (staff != null)
+                    {
+                        staffID.Text = staff.Staff_ID.ToString();
+                        staffName.Text = staff.Name;
+                        email.Text = staff.Email;
+                        contactNumber.Text = staff.Contact_No;
+                        staffGender.SelectedValue = staff.Gender;
+                        staffRole.SelectedValue = staff.Role;
+                        password.Text = staff.Password;
+                    }
+                    else
+                    {
+                        ScriptManager.RegisterStartupScript(this, GetType(), "notFoundError", "alert('Staff not found.');", true);
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "dbError", "alert('Error accessing database.');", true);
+                // Log the exception message: ex.Message
             }
         }
 
@@ -47,23 +67,75 @@ namespace Uniqlo.AdminPages
         {
             if (Page.IsValid)
             {
-                using (var db = new StaffDbContext())
+                try
                 {
-                    int staffId = int.Parse(staffID.Text);
-                    var staff = db.Staff.FirstOrDefault(s => s.Staff_ID == staffId);
-                    if (staff != null)
+                    using (var db = new StaffDbContext())
                     {
-                        staff.Name = staffName.Text;
-                        staff.Email = email.Text;
-                        staff.Contact_No = contactNumber.Text;
-                        staff.Gender = staffGender.SelectedValue;
-                        staff.Role= staffRole.SelectedValue;
-                        // Update other fields like Gender and Role if they are editable
+                        int staffId = int.Parse(staffID.Text);
+                        var staff = db.Staff.FirstOrDefault(s => s.Staff_ID == staffId);
+                        if (staff != null)
+                        {
+                            staff.Name = staffName.Text;
+                            staff.Email = email.Text;
+                            staff.Contact_No = contactNumber.Text;
+                            staff.Gender = staffGender.SelectedValue;
+                            staff.Role = staffRole.SelectedValue;
 
-                        db.SaveChanges();
-                        Response.Redirect("Staff.aspx");
+                            db.SaveChanges();
+                           
+                                Response.Redirect("StaffHome.aspx");
+                           
+                           
+                        }
+                        else
+                        {
+                            ScriptManager.RegisterStartupScript(this, GetType(), "updateError", "alert('Staff not found.');", true);
+                        }
                     }
                 }
+                catch (Exception ex)
+                {
+                    ScriptManager.RegisterStartupScript(this, GetType(), "saveError", "alert('Failed to update staff details.');", true);
+                    // Log the exception message: ex.Message
+                }
+            }
+        }
+
+        protected void cancelBtn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Response.Redirect("StaffHome.aspx");
+            }
+            catch (Exception ex)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "saveError", "alert('Failed to redirect to staff home.');", true);
+            }
+          
+        }
+
+        protected void ValidateStaffGender_ServerValidate(object source, ServerValidateEventArgs args)
+        {
+            // Ensure that a product other than the default "--Select Product--" is chosen
+            if (staffGender.SelectedValue != "")
+            {
+                args.IsValid = true;
+            }
+            else
+            {
+                args.IsValid = false;
+            }
+        }
+        protected void ValidateStaffRole_ServerValidate(object source, ServerValidateEventArgs args)
+        {
+            // Ensure that a product other than the default "--Select Product--" is chosen
+            if (staffRole.SelectedValue != "")
+            {
+                args.IsValid = true;
+            }
+            else
+            {
+                args.IsValid = false;
             }
         }
     }
