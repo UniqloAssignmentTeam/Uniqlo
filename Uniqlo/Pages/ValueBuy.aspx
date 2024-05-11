@@ -69,22 +69,6 @@
 
                 <!--LIMITED OFFER START-->
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                 <asp:DataList ID="dlValueBuy" runat="server" RepeatColumns="4" RepeatDirection="Horizontal" CellPadding="4" Width="100%">
                     <ItemTemplate>
 

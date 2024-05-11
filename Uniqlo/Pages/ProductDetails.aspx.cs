@@ -12,8 +12,15 @@ namespace Uniqlo.Pages
         protected void Page_Load(object sender, EventArgs e)
         {
             //dummy session
-            Product selectedProduct = new Product();
-            //Session[Product] = ;
+            Session["selectedProduct"] = new Product
+            {
+                Product_ID = 1,
+                Category_ID = 1,
+                Product_Name = "Dummy Product",
+                Description = "This is a dummy product for testing purposes.",
+                Price = 9.99,
+                IsDeleted = false
+            }; ;
 
         }
     }
