@@ -9,6 +9,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using static Uniqlo.Product;
 using Uniqlo.Pages;
+using static Uniqlo.Staff;
 
 namespace Uniqlo.AdminPages.AdminDelivery
 {
@@ -51,6 +52,45 @@ namespace Uniqlo.AdminPages.AdminDelivery
                 }
             }
         }
+
+        protected void statusSortDDL_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string connString = cs;
+            using (SqlConnection conn = new SqlConnection(connString))
+            {
+                string selectedStatus = statusSortDDL.SelectedValue;
+                string query = @"
+            SELECT 
+                d.Delivery_ID,
+                CONCAT(sa.Address, ', ', sa.State, ', ', sa.City, ', ', sa.Postcode, ', ', sa.Country) AS DeliveryAddress,
+                d.Delivery_Status,
+                p.Order_ID
+            FROM 
+                Delivery d
+            INNER JOIN 
+                Shipping_Address sa ON d.Address_ID = sa.Address_ID
+            INNER JOIN 
+                Payment p ON d.Delivery_ID = p.Delivery_ID";
+
+                // If a specific status is selected, filter by that status
+                if (!string.IsNullOrEmpty(selectedStatus))
+                {
+                    query += $" WHERE d.Delivery_Status = '{selectedStatus}'";
+                }
+
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    using (SqlDataAdapter sda = new SqlDataAdapter(cmd))
+                    {
+                        DataTable dt = new DataTable();
+                        sda.Fill(dt);
+                        rptDeliveries.DataSource = dt;
+                        rptDeliveries.DataBind();
+                    }
+                }
+            }
+        }
+
         protected void btnRemoveDelivery_Click(object sender, EventArgs e)
         {
             int deliveryId = Convert.ToInt32(hiddenDeliveryId.Value); // Retrieve the Delivery ID
@@ -114,6 +154,11 @@ namespace Uniqlo.AdminPages.AdminDelivery
         protected void addDeliveryBtn_Click(object sender, EventArgs e)
         {
             Response.Redirect("AddDelivery.aspx");
+        }
+
+        protected void btnExcel_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

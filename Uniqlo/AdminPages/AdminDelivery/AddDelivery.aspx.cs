@@ -66,7 +66,7 @@ namespace Uniqlo.AdminPages.AdminDelivery
 
                 // Assign the new delivery to the selected payment
                 int selectedPaymentID = Convert.ToInt32(ddlPaymentID.SelectedValue);
-                AssignDeliveryToPayment(selectedPaymentID, newDeliveryID);
+                AssignDeliveryToPayment(newDeliveryID,selectedPaymentID);
 
                 // Display a success message or redirect to another page
                 ScriptManager.RegisterStartupScript(this, GetType(), "SuccessScript", "alert('Delivery added successfully.'); window.location.href = 'Delivery.aspx';", true);
@@ -163,7 +163,7 @@ namespace Uniqlo.AdminPages.AdminDelivery
             string query = "UPDATE Payment SET Delivery_ID = @DeliveryID WHERE Payment_ID = @PaymentID;";
 
             // Define the connection string and create a SqlConnection object
-            string connectionString = cs; // Replace "YourConnectionString" with your actual connection string
+            string connectionString = cs; 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 // Create a SqlCommand object with the query and connection
