@@ -108,6 +108,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="adminLogin.aspx" />
+    <Content Include="AdminPages\AdminDelivery\AddDelivery.aspx" />
     <Content Include="AdminPages\AdminDiscount\addDiscount.aspx" />
     <Content Include="AdminPages\AdminDiscount\DiscountHome.aspx" />
     <Content Include="AdminPages\AdminOrder\OrderHome.aspx" />
@@ -278,6 +279,13 @@
     </Compile>
     <Compile Include="adminLogin.aspx.designer.cs">
       <DependentUpon>adminLogin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AdminPages\AdminDelivery\AddDelivery.aspx.cs">
+      <DependentUpon>AddDelivery.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminPages\AdminDelivery\AddDelivery.aspx.designer.cs">
+      <DependentUpon>AddDelivery.aspx</DependentUpon>
     </Compile>
     <Compile Include="AdminPages\AdminDiscount\addDiscount.aspx.cs">
       <DependentUpon>addDiscount.aspx</DependentUpon>
