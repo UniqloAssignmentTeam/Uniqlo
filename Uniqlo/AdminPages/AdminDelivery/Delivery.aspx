@@ -124,6 +124,11 @@
     }
 }
 
+        .auto-style1 {
+            left: 0px;
+            top: 0px;
+        }
+
     </style>
 
     <link href="../../css/Admin/adminDelivery.css" rel="stylesheet" />
@@ -138,18 +143,19 @@
                     <input class="search-input" type="search" placeholder="Search" />
                 </div>
                 <div class="dropdown-wrapper">
-                    <div class="dropdown-container" onclick="toggleDropdown('dropdownList', 'dropdownDisplay')">
-                        <div class="dropdown-display" id="dropdownDisplay">Status</div>
-                        <div class="dropdown-list" id="dropdownList">
-                            <div onclick="selectOption('Pending', 'dropdownDisplay')">Pending</div>
-                            <div onclick="selectOption('In Transit', 'dropdownDisplay')">In Transit</div>
-                            <div onclick="selectOption('Delivered', 'dropdownDisplay')">Delivered</div>
-                        </div>
-                    </div>
+
+                    <asp:DropDownList ID="statusSortDDL" runat="server" AutoPostBack="true" OnSelectedIndexChanged="statusSortDDL_SelectedIndexChanged" CssClass="dropdown-display">
+                        <asp:ListItem Value="">Status</asp:ListItem>
+                        <asp:ListItem Value="Pending">Pending</asp:ListItem>
+                        <asp:ListItem Value="In Transit">In Transit</asp:ListItem>
+                        <asp:ListItem Value="Delivered">Delivered</asp:ListItem>
+
+                    </asp:DropDownList>
+
                 </div>
                 <div class="btnExcel-Add">
-                    <button class="excel-export" style="color: #6F6F6F; font-size: 1rem; font-weight: bold;">Export</button>
 
+                    <asp:Button ID="btnExcel" class="excel-export" style="color: #6F6F6F; font-size: 1rem; font-weight: bold;" runat="server" Text="Export" CssClass="auto-style1" OnClick="btnExcel_Click" />
                      <asp:Button ID="addDeliveryBtn" runat="server" Text="➕ Add Delivery" CssClass="product-add" OnClick="addDeliveryBtn_Click" />
                 </div>
             </div>
@@ -203,21 +209,8 @@
      </FooterTemplate>
  </asp:Repeater>
 
-         
-
-
     </div>
-    <div class="pagination">
-        <a href="#" class="page-link" onclick="changePage('prev')">&laquo;</a>
-        <a href="#" class="page-link active" onclick="changePage(1)">1</a>
-        <a href="#" class="page-link" onclick="changePage(2)">2</a>
-        <a href="#" class="page-link" onclick="changePage(3)">3</a>
-        <a href="#" class="page-link" onclick="changePage(4)">4</a>
-        <a href="#" class="page-link" onclick="changePage(5)">5</a>
 
-
-        <a href="#" class="page-link" onclick="changePage('next')">&raquo;</a>
-    </div>
     <div class="pagination">
         <a href="#" class="page-link" onclick="changePage('prev')">&laquo;</a>
         <a href="#" class="page-link active" onclick="changePage(1)">1</a>
