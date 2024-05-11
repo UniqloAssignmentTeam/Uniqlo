@@ -10,6 +10,7 @@ using System.Web.UI.WebControls;
 using static Uniqlo.Product;
 using Uniqlo.Pages;
 using static Uniqlo.Staff;
+using OfficeOpenXml;
 
 namespace Uniqlo.AdminPages.AdminDelivery
 {
@@ -158,7 +159,42 @@ namespace Uniqlo.AdminPages.AdminDelivery
 
         protected void btnExcel_Click(object sender, EventArgs e)
         {
+            // Create a new Excel package
+            ExcelPackage excelPackage = new ExcelPackage();
 
+            // Add a new worksheet to the Excel package
+            ExcelWorksheet worksheet = excelPackage.Workbook.Worksheets.Add("DeliveryDetails");
+
+            // Set the column names in the first row
+            string[] columnNames = { "Delivery ID", "Delivery Address", "Delivery Status", "Order ID" };
+            for (int i = 0; i < columnNames.Length; i++)
+            {
+                worksheet.Cells[1, i + 1].Value = columnNames[i];
+            }
+
+            // Fill data from the repeater into the Excel worksheet
+            for (int i = 0; i < rptDeliveries.Items.Count; i++)
+            {
+                RepeaterItem item = rptDeliveries.Items[i];
+                Label lblDeliveryID = (Label)item.FindControl("lblDeliveryID");
+                Label lblDeliveryAddress = (Label)item.FindControl("lblDeliveryAddress");
+                Label lblDeliveryStatus = (Label)item.FindControl("lblDeliveryStatus");
+                Label lblOrderID = (Label)item.FindControl("lblOrderID");
+
+                worksheet.Cells[i + 2, 1].Value = lblDeliveryID.Text;
+                worksheet.Cells[i + 2, 2].Value = lblDeliveryAddress.Text;
+                worksheet.Cells[i + 2, 3].Value = lblDeliveryStatus.Text;
+                worksheet.Cells[i + 2, 4].Value = lblOrderID.Text;
+            }
+
+            // Set the content type and headers for the response
+            Response.Clear();
+            Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+            Response.AddHeader("content-disposition", "attachment;  filename=DeliveryDetails.xlsx");
+
+            // Write the Excel package to the response stream
+            Response.BinaryWrite(excelPackage.GetAsByteArray());
+            Response.End();
         }
     }
 }
