@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using static Uniqlo.Product;
+using Uniqlo.Pages;
 
 namespace Uniqlo.AdminPages.AdminDelivery
 {
@@ -16,8 +17,7 @@ namespace Uniqlo.AdminPages.AdminDelivery
         string cs = Global.CS;
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
-            {
+            if (!IsPostBack) { 
                 bindRepeater();
             }
 
@@ -53,70 +53,67 @@ namespace Uniqlo.AdminPages.AdminDelivery
         }
         protected void btnRemoveDelivery_Click(object sender, EventArgs e)
         {
-
             int deliveryId = Convert.ToInt32(hiddenDeliveryId.Value); // Retrieve the Delivery ID
-
             string connectionString = cs;
-            using (SqlConnection conn = new SqlConnection(connectionString))
+
+            using (var connection = new SqlConnection(connectionString)) 
             {
-                // Begin a transaction
-                conn.Open();
-                SqlTransaction transaction = conn.BeginTransaction();
+                connection.Open();
 
-                try
+                // Step 1: Retrieve the Address_ID associated with the given Delivery_ID
+                int addressId = 0;
+                string getAddressIdQuery = "SELECT Address_ID FROM Delivery WHERE Delivery_ID = @DeliveryID";
+                using (var getAddressIdCmd = new SqlCommand(getAddressIdQuery, connection))
                 {
-                    // Update Payment records to nullify Delivery_ID
-                    string updatePayments = "UPDATE Payment SET Delivery_ID = NULL WHERE Delivery_ID = @DeliveryID";
-                    using (SqlCommand cmdUpdatePayments = new SqlCommand(updatePayments, conn, transaction))
+                    getAddressIdCmd.Parameters.AddWithValue("@DeliveryID", deliveryId);
+                    using (var reader = getAddressIdCmd.ExecuteReader())
                     {
-                        cmdUpdatePayments.Parameters.AddWithValue("@DeliveryID", deliveryId);
-                        cmdUpdatePayments.ExecuteNonQuery();
+                        if (reader.Read())
+                        {
+                            addressId = Convert.ToInt32(reader["Address_ID"]);
+                        }
                     }
-
-                    // Get the Address_ID for the delivery before deleting it
-                    string getAddressId = "SELECT Address_ID FROM Delivery WHERE Delivery_ID = @DeliveryID";
-                    int addressId;
-                    using (SqlCommand cmdGetAddressId = new SqlCommand(getAddressId, conn, transaction))
-                    {
-                        cmdGetAddressId.Parameters.AddWithValue("@DeliveryID", deliveryId);
-                        addressId = (int)cmdGetAddressId.ExecuteScalar();
-                    }
-
-                    // Delete the Address record
-                    string deleteAddress = "DELETE FROM Shipping_Address WHERE Address_ID = @AddressID";
-                    using (SqlCommand cmdDeleteAddress = new SqlCommand(deleteAddress, conn, transaction))
-                    {
-                        cmdDeleteAddress.Parameters.AddWithValue("@AddressID", addressId);
-                        cmdDeleteAddress.ExecuteNonQuery();
-                    }
-
-                    // Delete the Delivery record
-                    string deleteDelivery = "DELETE FROM Delivery WHERE Delivery_ID = @DeliveryID";
-                    using (SqlCommand cmdDeleteDelivery = new SqlCommand(deleteDelivery, conn, transaction))
-                    {
-                        cmdDeleteDelivery.Parameters.AddWithValue("@DeliveryID", deliveryId);
-                        cmdDeleteDelivery.ExecuteNonQuery();
-                    }
-
-                    // Commit transaction
-                    transaction.Commit();
-                    conn.Close();
-
-                    // Redirect or inform the user
-                    ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Delivery successfully removed.');", true);
-                    Response.Redirect("Delivery.aspx");
                 }
-                catch (Exception ex)
-                {
-                    // Roll back the transaction on error
-                    transaction.Rollback();
-                    conn.Close();
 
-                    // Handle any errors that occur during deletion
-                    ScriptManager.RegisterStartupScript(this, this.GetType(), "error", "alert('An error occurred: " + ex.Message + "');", true);
+                // Step 2: Set the Address_ID in the Delivery table to null for the corresponding Delivery_ID
+                string updateDeliveryQuery = "UPDATE Delivery SET Address_ID = NULL WHERE Delivery_ID = @DeliveryID";
+                using (var updateDeliveryCmd = new SqlCommand(updateDeliveryQuery, connection))
+                {
+                    updateDeliveryCmd.Parameters.AddWithValue("@DeliveryID", deliveryId);
+                    updateDeliveryCmd.ExecuteNonQuery();
+                }
+
+                // Step 3: Delete the Address record associated with the retrieved Address_ID
+                string deleteAddressQuery = "DELETE FROM Shipping_Address WHERE Address_ID = @AddressID";
+                using (var deleteAddressCmd = new SqlCommand(deleteAddressQuery, connection))
+                {
+                    deleteAddressCmd.Parameters.AddWithValue("@AddressID", addressId);
+                    deleteAddressCmd.ExecuteNonQuery();
+                }
+
+                // Step 4: Set the Delivery_ID in the Payment table to null for the corresponding Delivery_ID
+                string updatePaymentQuery = "UPDATE Payment SET Delivery_ID = NULL WHERE Delivery_ID = @DeliveryID";
+                using (var updatePaymentCmd = new SqlCommand(updatePaymentQuery, connection))
+                {
+                    updatePaymentCmd.Parameters.AddWithValue("@DeliveryID", deliveryId);
+                    updatePaymentCmd.ExecuteNonQuery();
+                }
+
+                // Step 5: Delete the Delivery record associated with the given Delivery_ID
+                string deleteDeliveryQuery = "DELETE FROM Delivery WHERE Delivery_ID = @DeliveryID";
+                using (var deleteDeliveryCmd = new SqlCommand(deleteDeliveryQuery, connection))
+                {
+                    deleteDeliveryCmd.Parameters.AddWithValue("@DeliveryID", deliveryId);
+                    deleteDeliveryCmd.ExecuteNonQuery();
                 }
             }
+            Response.Redirect(Request.RawUrl);
+           
         }
 
+        protected void addDeliveryBtn_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("AddDelivery.aspx");
+        }
     }
 }

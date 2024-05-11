@@ -143,14 +143,7 @@ namespace Uniqlo.AdminPages.AdminStaff
 
         protected void excelBtn_Click(object sender, EventArgs e)
         {
-            try
-            {
-                ExportStaffsToExcel();
-            }
-            catch (Exception ex)
-            {
-                ScriptManager.RegisterStartupScript(this, GetType(), "redirectError", "alert('Failed to download staff details. Please try again.');", true);
-            }
+            ExportStaffsToExcel();
         }
 
         private void ExportStaffsToExcel()

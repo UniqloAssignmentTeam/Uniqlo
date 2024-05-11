@@ -150,7 +150,7 @@
                 <div class="btnExcel-Add">
                     <button class="excel-export" style="color: #6F6F6F; font-size: 1rem; font-weight: bold;">Export</button>
 
-
+                     <asp:Button ID="addDeliveryBtn" runat="server" Text="➕ Add Delivery" CssClass="product-add" OnClick="addDeliveryBtn_Click" />
                 </div>
             </div>
         </div>
@@ -235,7 +235,7 @@
         <div class="confirmationContainer">
             <span onclick="document.getElementById('id01').style.display='none'" class="confirmationClose" title="Close Modal">×</span>
             <h1>Remove Delivery</h1>
-            <p>Are you sure you want to remove the delivery information? <%=hiddenDeliveryId.Value + "TESTING" %> </p>
+            <p>Are you sure you want to remove the delivery information?</p>
 
             <div class="confirmationClearFix">
                 <button type="button" onclick="document.getElementById('id01').style.display='none'" class="confirmationCancelbtn">Cancel</button>
@@ -252,7 +252,7 @@
 
        <script type="text/javascript">
            function showDeleteModal(deliveryId) {
-               document.getElementById('<%= hiddenDeliveryId.ClientID %>').value = staffId; 
+               document.getElementById('<%= hiddenDeliveryId.ClientID %>').value = deliveryId; 
                document.getElementById('id01').style.display = 'block';  
            }
        </script>
