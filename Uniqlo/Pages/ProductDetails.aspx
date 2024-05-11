@@ -88,7 +88,7 @@
                                 </div>
                             </div>
 
-                            <!--ANIMATION ADD TO CART BUTTON-->
+                            <!--NO ANIMATION ADD TO CART BUTTON-->
                             <div class="cart-button">
                                 <asp:LinkButton ID="btnAddToCart" runat="server" OnClick="btnAddToCart_Click">
         <span class="add-to-cart" runat="server" id="spnAddToCart">Add To Cart</span>
