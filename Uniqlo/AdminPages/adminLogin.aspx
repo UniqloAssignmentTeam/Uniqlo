@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin.Master" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="Uniqlo.AdminPages.Login" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin.Master" AutoEventWireup="true" CodeBehind="adminLogin.aspx.cs" Inherits="Uniqlo.AdminPages.Login" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="main" runat="server">
     <style>
 .bigDong{
@@ -105,7 +105,7 @@ input[type="submit"]:hover {
     <div class="container">
         <div class="center">
             <h1>Login</h1>
-            <form action="" method="POST">
+           
                 <div class="txt_field">
                     <input type="text" name="text" required placeholder="Username">
                     <span></span>

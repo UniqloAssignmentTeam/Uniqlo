@@ -9,13 +9,14 @@ using static Uniqlo.Product;
 
 namespace Uniqlo.Pages.Categories.Women
 {
-    public partial class Tops : System.Web.UI.Page
+    public partial class Products : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
                 BindDataList();
+                BindDataList2();
             }
         }
 
@@ -26,7 +27,7 @@ namespace Uniqlo.Pages.Categories.Women
             {
                 var today = DateTime.Today;
                 var productDetails = db.Product
-                    .Where(p => !p.IsDeleted)
+                    .Where(p => !p.IsDeleted && p.Category.Gender == "W")
                     .GroupJoin( // Simulate a left join using GroupJoin and DefaultIfEmpty
                         db.Discount,
                         product => product.Product_ID,
@@ -36,6 +37,7 @@ namespace Uniqlo.Pages.Categories.Women
                     .SelectMany(
                         pd => pd.Discounts,
                         (pd, discount) => new {
+                            ProductId = pd.Product.Product_ID,
                             ProductName = pd.Product.Product_Name,
                             Description = pd.Product.Description,
                             Price = pd.Product.Price,
@@ -47,8 +49,50 @@ namespace Uniqlo.Pages.Categories.Women
                     )
                     .ToList();
 
+                
                 dataList.DataSource = productDetails;
                 dataList.DataBind();
+
+                dataList.RepeatColumns = productDetails.Count > 4 ? 4 : productDetails.Count;
+            }
+        }
+
+        private void BindDataList2()
+        {
+            using (var db = new ProductDbContext())
+            {
+                var today = DateTime.Today;
+                var productDetails = db.Product
+                    .Where(p => !p.IsDeleted && p.Category.Gender == "W")
+                    .GroupJoin(
+                        db.Discount,
+                        product => product.Product_ID,
+                        discount => discount.Product_ID,
+                        (product, discounts) => new { Product = product, Discounts = discounts.DefaultIfEmpty() }
+                    )
+                    .SelectMany(
+                        pd => pd.Discounts,
+                        (pd, discount) => new {
+                            ProductId = pd.Product.Product_ID,
+                            ProductName = pd.Product.Product_Name,
+                            Description = pd.Product.Description,
+                            Price = pd.Product.Price,
+                            Image_ID = pd.Product.Quantities.Select(q => q.Image_ID).FirstOrDefault(),
+                            OrderCount = pd.Product.Quantities.SelectMany(q => q.OrderLists).Count(), // Count of orders for each product
+                            AverageRating = pd.Product.Quantities.SelectMany(q => q.OrderLists).SelectMany(ol => ol.Reviews).Average(r => (int?)r.Rating) ?? 0,
+                            ReviewCount = pd.Product.Quantities.SelectMany(q => q.OrderLists).SelectMany(ol => ol.Reviews).Count(),
+                            DiscountAmount = discount != null ? discount.Discount_Amount : 0
+                        }
+                    )
+                    .OrderByDescending(p => p.OrderCount) // Order by the number of orders, descending
+                    .Take(5) // Take only the top 5 products
+                    .ToList();
+
+                carouselDataList.DataSource = productDetails;
+                carouselDataList.DataBind();
+
+
+                carouselDataList.RepeatColumns = productDetails.Count > 4 ? 4 : productDetails.Count;
             }
         }
 

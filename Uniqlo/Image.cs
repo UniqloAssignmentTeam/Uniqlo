@@ -13,7 +13,6 @@ namespace Uniqlo
     using System.Collections.Generic;
     using System.Data.Entity;
     using System.ComponentModel.DataAnnotations;
-
     public partial class Image
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]

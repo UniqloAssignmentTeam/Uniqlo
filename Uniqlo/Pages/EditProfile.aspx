@@ -65,62 +65,80 @@
                 <!-- Full Name -->
                 <div class="form-group">
                     <label for="fullName">Full Name:</label>
-                    <input type="text" id="fullName" name="fullName" value="Tan Choo Jun">
+          
+                     <asp:TextBox ID="txtID" runat="server"
+                Text='<%#Bind("Customer_ID") %>'
+                 ></asp:TextBox>
                 </div>
 
                 <!-- Email -->
                 <div class="form-group">
                     <label for="email">Email:</label>
-                    <input type="email" id="email" name="email" value="cjtan@gmail.com">
+                        <asp:TextBox ID="TextBox1" runat="server"
+                Text='<%#Bind("Customer_ID") %>'
+                ></asp:TextBox>
                 </div>
 
                 <!-- Phone Number -->
                 <div class="form-group">
                     <label for="phone">Phone No.:</label>
-                    <input type="tel" id="phone" name="phone" value="0148169029">
+                         <asp:TextBox ID="TextBox2" runat="server"
+                Text='<%#Bind("Customer_ID") %>'
+                ></asp:TextBox>
                 </div>
 
                 <!-- Address -->
                 <div class="form-group">
                     <label for="address">Address:</label>
-                    <input type="text" id="address" name="address" value="1, Jalan Lembah Permai">
+     <asp:TextBox ID="TextBox3" runat="server"
+Text='<%#Bind("Customer_ID") %>'
+ ></asp:TextBox>
                 </div>
 
                 <!-- Postcode -->
                 <div class="form-group">
                     <label for="postcode">Postcode:</label>
-                    <input type="text" id="postcode" name="postcode" value="11900">
+                        <asp:TextBox ID="TextBox4" runat="server"
+Text='<%#Bind("Customer_ID") %>'
+ ></asp:TextBox>
                 </div>
 
                 <!-- City -->
                 <div class="form-group">
                     <label for="city">City:</label>
-                    <input type="text" id="city" name="city" value="Tanjung Bungah">
+                         <asp:TextBox ID="TextBox5" runat="server"
+Text='<%#Bind("Customer_ID") %>'
+ ></asp:TextBox>
                 </div>
 
                 <!-- State -->
                 <div class="form-group">
                     <label for="state">State:</label>
-                    <input type="text" id="state" name="state" value="Penang">
+                         <asp:TextBox ID="TextBox6" runat="server"
+Text='<%#Bind("Customer_ID") %>'
+ ></asp:TextBox>
                 </div>
 
                 <!-- Country -->
                 <div class="form-group">
                     <label for="country">Country:</label>
-                    <input type="text" id="country" name="country" value="Malaysia">
+                         <asp:TextBox ID="TextBox7" runat="server"
+Text='<%#Bind("Customer_ID") %>'
+ ></asp:TextBox>
                 </div>
 
                 <div class="form-group">
                     <label for="file">Profile Photo:</label>
-                    <input type="file" name="file" value="file">
+                         <asp:TextBox ID="TextBox8" type="file" name="file" value="file" runat="server"
+Text='<%#Bind("Customer_ID") %>' OnTextChanged="TextBox8_TextChanged"
+ ></asp:TextBox>
                 </div>
 
                 <!-- Submit Button -->
                 <div class="form-group">
-                    <button type="submit">Save Changes</button>
-                    <button class="back-button" type="button" onclick="window.history.back();">Back</button>
-              
-                </div>
+                <asp:Button ID="btnSaveChanges" runat="server"  Text="Save Changes" CssClass="save-button" OnClientClick="return confirm('Are you sure you want to save changes?');" OnClick="btnSaveChanges_Click" />
+                <asp:Button ID="btnBack" runat="server" Text="Back" CssClass="back-button" type="button" OnClick="btnBack_Click" />
+               </div>
             </form>
         </div>
     </div>

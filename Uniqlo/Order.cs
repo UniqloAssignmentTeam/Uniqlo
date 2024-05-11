@@ -11,7 +11,7 @@ namespace Uniqlo
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.Data.Entity;
     public partial class Order
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -30,5 +30,19 @@ namespace Uniqlo
         public virtual ICollection<OrderList> OrderLists { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Payment> Payments { get; set; }
+    }
+
+    public class OrderDbContext : DbContext
+    {
+        public OrderDbContext() : base("name=UniqloEntities")
+        {
+        }
+        public DbSet<Customer> Customer { get; set; }
+        public DbSet<Order> Order { get; set; }
+        public DbSet<Payment> Payment { get; set; }
+        public DbSet<Delivery> Delivery { get; set; }
+        public DbSet<OrderList> OrderList { get; set; }
+
+        public DbSet<Review> Review { get; set; }
     }
 }

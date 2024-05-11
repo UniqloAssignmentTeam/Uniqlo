@@ -16,23 +16,24 @@
                 <div class="form-content">
                     <header>Login</header>
                     <form action="#">
+                        <asp:Label ID="errorMSG" runat="server" Text=""></asp:Label>
                         <div class="field input-field">
-                            <input type="email" placeholder="Email" class="input">
+                            <asp:TextBox ID="txtEmail" type="email" placeholder="Email" class="input" runat="server"></asp:TextBox>
                         </div>
                         <div class="field input-field">
-                            <input type="password" placeholder="Password" class="password">
+                            <asp:TextBox ID="txtPassword" type="password" placeholder="Password" class="password" runat="server"></asp:TextBox>
                             <i class='bx bx-hide eye-icon'></i>
                         </div>
                         <div class="form-link">
                             <a href="ForgotPassword.aspx" class="forgot-pass">Forgot password?</a>
                         </div>
                         <div class="field button-field">
-                            <asp:Button ID="Button1" runat="server" Text="Login" PostBackUrl="Home.aspx" />
+                            <asp:Button ID="btnLogin" runat="server" Text="Login" OnClick="btnLogin_Click"/>
                         </div>
                     </form>
                     <div class="form-link">
                  <span>Don't have an account?</span>
-                        <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="SignUp.aspx">Sign Up</asp:HyperLink>
+                        <asp:HyperLink ID="signUpLink" runat="server" NavigateUrl="SignUp.aspx">Sign Up</asp:HyperLink>
                 </div>
                 </div>
                 <div class="line"></div>

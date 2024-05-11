@@ -27,15 +27,16 @@
                            
 
 
-              <div class="form-group">
-                  <label for="productName">Product Name</label>
-                  <asp:TextBox ID="productName" runat="server" Enabled="False"></asp:TextBox>
-                
-              </div>
-                                     <div class="form-group">
-    <label for="productID">Product ID</label>
-    <asp:TextBox ID="productID" runat="server" ></asp:TextBox>
-</div>
+             <div class="form-group">
+     <label for="productName">Product Name</label>
+     
+     <asp:DropDownList ID="DdlProductName" runat="server" CssClass="scrollable-dropdown dropdown-display"></asp:DropDownList>
+                    
+
+ <asp:CustomValidator ID="CustomValidatorProduct" runat="server" ValidateEmptyText="true" ControlToValidate="DdlProductName" ErrorMessage="Please select a product" ForeColor="Red" Display="Dynamic" OnServerValidate="ValidateProductName_ServerValidate"></asp:CustomValidator>
+     
+ </div>
+                                   
 
 
     <div class="form-group">
@@ -47,8 +48,13 @@
         ValidationExpression="^\d+(\.\d{1,2})?$" ErrorMessage="Invalid discount amount" ForeColor="Red" Display="Dynamic"></asp:RegularExpressionValidator>
         <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server"
     ControlToValidate="discountAmount"
-    ValidationExpression="^\d+(\.\d{1,2})?$" ErrorMessage="Please enter a number. Optionally, you can use up to two decimal places." ForeColor="Red" Display="Dynamic"></asp:RegularExpressionValidator>
-
+    ValidationExpression="^\d+(\.\d{1,2})?$" ErrorMessage="Please enter a number" ForeColor="Red" Display="Dynamic"></asp:RegularExpressionValidator>
+                         <asp:RangeValidator ID="RangeValidatorDiscountAmount" runat="server"
+    ControlToValidate="discountAmount"
+    MinimumValue="0.01" MaximumValue="300"
+    Type="Currency"
+    ErrorMessage="Discount amount must be between RM 0.01 and RM 300" ForeColor="Red" Display="Dynamic">
+</asp:RangeValidator>
 </div>
 
 
@@ -69,6 +75,7 @@
                     <asp:TextBox ID="startDate" runat="server" type="date"></asp:TextBox>
               <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="startDate"
  ErrorMessage="Start date is required" ForeColor="Red" Display="Dynamic"></asp:RequiredFieldValidator>
+                    <asp:CustomValidator ID="CustomValidatorDate" runat="server" ControlToValidate="startDate" ErrorMessage="Start date must be before end date" ForeColor="Red" Display="Dynamic" OnServerValidate="CustomValidatorDate_ServerValidate"></asp:CustomValidator>
               </div>
                 <div class="form-group">
     <label for="productName">End Date</label>
@@ -85,8 +92,8 @@ ErrorMessage="End date is required" ForeColor="Red" Display="Dynamic"></asp:Requ
           <div class="button-container">
     
          
-<asp:Button ID="cancelBtn" runat="server" Text="CANCEL" CssClass="cancel-button" CausesValidation="false" />
- <asp:Button ID="addBtn" runat="server" Text="ADD" CssClass="continue-button" CausesValidation="true" />
+<asp:Button ID="cancelBtn" runat="server" Text="CANCEL" CssClass="cancel-button" CausesValidation="false" OnClick="cancelBtn_Click"/>
+ <asp:Button ID="addBtn" runat="server" Text="ADD" CssClass="continue-button" CausesValidation="true" OnClick="updateBtn_Click" />
   </div>
       </div>
   </div>

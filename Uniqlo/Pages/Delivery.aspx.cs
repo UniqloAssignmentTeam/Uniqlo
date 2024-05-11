@@ -43,7 +43,6 @@ namespace Uniqlo.Pages
                 //dummy sesssion
                 Session["Customer_Id"] = "1";
 
-
                 string sql = "SELECT * FROM Customer WHERE Customer_Id =@Customer_Id";
 
                 SqlConnection con = new SqlConnection(cs);

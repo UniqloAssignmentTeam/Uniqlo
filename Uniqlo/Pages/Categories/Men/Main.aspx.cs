@@ -27,7 +27,7 @@ namespace Uniqlo.Pages.Categories.Men
             using (var context = new ProductDbContext())
             {
                 var today = DateTime.Now; // Today's date for active discount checks
-                string targetCategoryName = "Bottom"; // Category you want to filter by
+                string targetCategoryName = "Top"; // Category you want to filter by
                 string targetCategoryGender = "M";
 
 
@@ -43,7 +43,7 @@ namespace Uniqlo.Pages.Categories.Men
                                                        ProductName = p.Product_Name,
                                                        Description = p.Description,
                                                        Price = p.Price,
-                                                       DiscountAmount = d.Discount_Amount,
+                                                       DiscountPrice = p.Price - d.Discount_Amount,
                                                        ImagePath = img.ProductImage,
                                                        AverageRating = (from q in p.Quantities
                                                                         from ol in q.OrderLists
