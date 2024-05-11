@@ -1,9 +1,15 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Uniqlo.Master" AutoEventWireup="true" CodeBehind="ValueBuy.aspx.cs" Inherits="Uniqlo.Pages.ValueBuy" %>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="main" runat="server">
+      <%@ Register TagPrefix="recaptcha" Namespace="Recaptcha" Assembly="Recaptcha" %>
     <header>
-
+         <script src="https://www.google.com/recaptcha/api.js"></script>
         <link href="../css/ValueBuy.css" rel="stylesheet" />
+         <script>
+             function onSubmit(token) {
+                 document.getElementById("demo-form").submit();
+             }
+         </script>
     </header>
 
     <asp:ScriptManager ID="ValueManagerStaff" runat="server" />
@@ -13,7 +19,10 @@
 
         <ContentTemplate>
 
-
+            <button class="g-recaptcha" 
+        data-sitekey="reCAPTCHA_site_key" 
+        data-callback='onSubmit' 
+        data-action='submit'>Submit</button>
 
             <div class="productBody">
                 <!--LIMITED OFFER CARD-->
