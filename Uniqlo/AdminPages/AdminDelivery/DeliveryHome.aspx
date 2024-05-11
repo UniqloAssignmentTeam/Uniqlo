@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin.Master" AutoEventWireup="true" CodeBehind="Delivery.aspx.cs" Inherits="Uniqlo.AdminPages.AdminDelivery.Delivery" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin.Master" AutoEventWireup="true" CodeBehind="DeliveryHome.aspx.cs" Inherits="Uniqlo.AdminPages.AdminDelivery.DeliveryHome" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="main" runat="server">
 
     <style>
@@ -138,10 +138,15 @@
         <h2>UNIQLO DELIVERY MANAGEMENT</h2>
         <div class="crudProduct">
             <div class="wrap-items-search-buttons">
+
                 <div class="search">
-                    <span class="material-symbols-outlined">search</span>
-                    <input class="search-input" type="search" placeholder="Search" />
-                </div>
+    <span class="material-symbols-outlined">search</span>
+  <asp:TextBox ID="searchBox" runat="server" CssClass="search-input" AutoPostBack="true" OnTextChanged="searchBox_TextChanged"  placeholder="Search Delivery ID"></asp:TextBox>
+       
+</div> 
+
+
+
                 <div class="dropdown-wrapper">
 
                     <asp:DropDownList ID="statusSortDDL" runat="server" AutoPostBack="true" OnSelectedIndexChanged="statusSortDDL_SelectedIndexChanged" CssClass="dropdown-display">
@@ -248,6 +253,10 @@
                document.getElementById('<%= hiddenDeliveryId.ClientID %>').value = deliveryId; 
                document.getElementById('id01').style.display = 'block';  
            }
+
+           document.getElementById('<%= searchBox.ClientID %>').onkeyup = function() {
+               __doPostBack('<%= searchBox.ClientID %>', '');
+           };
        </script>
 
 
