@@ -9,9 +9,14 @@ namespace Uniqlo
 {
     public partial class Admin : System.Web.UI.MasterPage
     {
+        protected void btnLogout_Click(object sender, EventArgs e)
+        {
+            Session.Remove("admin");
+            Response.Redirect("~/AdminPages/adminLogin.aspx");
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
-
         }
     }
 }

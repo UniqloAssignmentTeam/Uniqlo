@@ -339,10 +339,14 @@
                          <p class="item-subtotal"><b>Sub Total: RM  <%# Eval("Subtotal", "{0:C}") %></b></p>
 
                          <div class="orderReceivedSection" id="<%# Eval("reviewBtn") %>">
-                    <asp:HyperLink ID="reviewBtn" runat="server" CssClass="orderReceivedButton" onclick='showModal(this.getAttribute('<%# Eval("reviewBtn") %>'));'><%# Eval("reviewBtn") %></asp:HyperLink>
-                             
-                             
-                         </div>
+
+                        <asp:Button ID="reviewValidBtn" runat="server"
+    Text='<%# Convert.ToBoolean(Eval("reviewBtn")) ? "View" : "Review" %>'
+    CssClass="orderReceivedButton"
+    OnClick='<%# GetOnClientClick(Eval("OrderList_ID"), Convert.ToBoolean(Eval("reviewBtn"))) %>'
+    AutoPostBack="false"
+    UseSubmitBehavior="false" />
+ </div>
                      </div>
                  </div>
                          </ItemTemplate>
@@ -421,7 +425,7 @@
                         </div>
                         
                         <div class="commentRatingSectionContainer">
-                            <asp:Button ID="submitRating" runat="server" Text="Submit" CssClass="commentRatingSectionButton" OnClick=""/>
+                            <asp:Button ID="submitRating" runat="server" Text="Submit" CssClass="commentRatingSectionButton" OnClick="submitRating_Click"/>
                           
                         </div>
                     </div>
@@ -510,6 +514,9 @@
          </div>
              <asp:HiddenField ID="HiddenOrderListID" runat="server" />
         <script>
+
+
+
        function setRating(rating) {
     var stars = document.querySelectorAll('.fa-star');
     for (var i = 0; i < stars.length; i++) {
@@ -520,61 +527,29 @@
     }
     // Set the value in a hidden field to post to server
     document.getElementById('<%= HiddenRating.ClientID %>').value = rating;
-}
-function showModal(orderListId) {
-    var modal = document.getElementById('myModal');
-    modal.style.display = "block";
-    document.getElementById('<%= HiddenOrderListID.ClientID %>').value = orderListId;
-}
-            //REVIEW MODAL
-            // Get the modal
-            var modal = document.getElementById("<%# Eval("reviewBtn") %>");
-            var secModal = document.getElementById("<%# Eval("reviewBtn") %>");
-            var thirdModal = document.getElementById("<%# Eval("reviewBtn") %>");
-
-            // Get the button that opens the modal
-            var btn = document.getElementById("reviewModal");
-            var secBtn = document.getElementById("secBtn");
-            var thirdBtn = document.getElementById("thirdBtn");
-
-            // Get the <span> element that closes the modal
-            var span = document.getElementsByClassName("close")[0];
-            var secClose = document.getElementsByClassName("secClose")[0];
-            var thirdClose = document.getElementsByClassName("thirdClose")[0];
-
-            // When the user clicks the button, open the modal 
-            btn.onclick = function() {
-              modal.style.display = "block";
             }
 
-            secBtn.onclick = function () {
-                secModal.style.display = "block";
-            }
-            thirdBtn.onclick = function () {
-                thirdModal.style.display = "block";
+
+
+
+
+            function showModal(orderListId, reviewStatus) {
+
+
+                console.log(orderListId, reviewStatus);
+                var modal = document.getElementById('myModal');
+                var secModal = document.getElementById('secModal');
+
+                if (reviewStatus == "Review") {
+                    modal.style.display = "block";
+                } else {
+                    secModal.style.display = "block";
+                }
+    
+                document.getElementById('<%= HiddenOrderListID.ClientID %>').value = orderListId;
             }
 
-            // When the user clicks on <span> (x), close the modal
-            span.onclick = function() {
-              modal.style.display = "none";
-            }
-            secClose.onclick = function () {
-                secModal.style.display = "none";
-            }
-            thirdClose.onclick = function () {
-                thirdModal.style.display = "none";
-            }
 
-            // When the user clicks anywhere outside of the modal, close it
-            window.onclick = function(event) {
-              if (event.target == modal) {
-                  modal.style.display = "none";
-              } else if (event.target == secModal) {
-                  secModal.style.display = "none";
-              } else if (event.target == thirdModal) {
-                  secModal.style.display = "none";
-              }
-            }
         </script>
     </div>
 

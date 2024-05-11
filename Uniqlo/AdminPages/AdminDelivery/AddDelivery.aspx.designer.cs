@@ -7,11 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Uniqlo.AdminPages
+namespace Uniqlo.AdminPages.AdminDelivery
 {
 
 
-    public partial class UpdateDelivery
+    public partial class AddDelivery
     {
 
         /// <summary>
@@ -24,13 +24,22 @@ namespace Uniqlo.AdminPages
         protected global::System.Web.UI.ScriptManager ScriptManager1;
 
         /// <summary>
-        /// txtDeliveryID control.
+        /// ddlPaymentID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtDeliveryID;
+        protected global::System.Web.UI.WebControls.DropDownList ddlPaymentID;
+
+        /// <summary>
+        /// rfvPaymentID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvPaymentID;
 
         /// <summary>
         /// txtAddress control.
@@ -159,12 +168,12 @@ namespace Uniqlo.AdminPages
         protected global::System.Web.UI.WebControls.LinkButton btnCancel;
 
         /// <summary>
-        /// btnUpdate control.
+        /// btnAddDelivery control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnUpdate;
+        protected global::System.Web.UI.WebControls.LinkButton btnAddDelivery;
     }
 }

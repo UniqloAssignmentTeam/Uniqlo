@@ -18,8 +18,8 @@ namespace Uniqlo.Pages
             {
                 int orderID = int.Parse(Request.QueryString["Order_ID"]);
                 orderIDLabel.Text = orderID.ToString();
-                BindOrderListDataList(3,orderID);
-                BindOrderSummaryRepeater(3,orderID);
+                BindOrderListDataList(4,orderID);
+                BindOrderSummaryRepeater(4,orderID);
               
             }
             
@@ -44,7 +44,8 @@ namespace Uniqlo.Pages
                         Qty = ol.Qty,
                         Subtotal = ol.Qty * ol.Item_Price,
                         Image_ID=ol.Quantity.Image_ID,
-                        reviewBtn = ol.Reviews.Any() ? "View" : "Review"
+                        reviewBtn = db.Review.Any(r => r.OrderList_ID == ol.OrderList_ID),
+                        OrderList_ID=ol.OrderList_ID
                     }).ToList();
 
                 DataList1.DataSource = orderDetails;
@@ -67,6 +68,7 @@ namespace Uniqlo.Pages
                 Total_Item = o.OrderLists.Count(ol => o.Order_ID==ol.Order_ID),
                 Shipping_Amount = o.Payments.FirstOrDefault().Shipping_Amount,
                 Total_Payment = o.Payments.FirstOrDefault().Total_Payment
+
                  }).ToList();
 
                 orderSummaryRepeater.DataSource = orderDetails;
@@ -94,8 +96,16 @@ namespace Uniqlo.Pages
                 context.SaveChanges();
             }
 
-            // Optionally close the modal or redirect
+            Response.Redirect(Request.RawUrl);
         }
+
+        protected string GetOnClientClick(object orderListID, bool reviewBtn)
+        {
+            string buttonText = reviewBtn ? "View" : "Review";
+
+            return "showModal('" + orderListID.ToString() + "', '" + buttonText + "'); return false;";
+        }
+
 
     }
 }

@@ -5,15 +5,18 @@
       
     </header>
     <div class="container" style="margin: auto; max-width: 1100px; position: relative;">
-        <div class="main-body">
+        <div class="main-body" ID="profileDisplay">
             <div class="profile-header">
                 <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="User Avatar" class="avatar">
+           
+                <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
                 <h4 class="username">Tan Choo Jun</h4>
             </div>
 
                 <div class="info-item">
                     <span class="info-label">Email:</span>
-                    <span class="info-value">cjtan@gmail.com</span>
+            
+                    <!--<span class="info-value"></span>-->
                 </div>
                  <div class="info-item">
                     <span class="info-label">Gender:</span>
@@ -64,6 +67,7 @@
 
     <div class="container" style="margin: auto; max-width: 1100px; position: relative;">
     <div class="main-body">
+
         <!-- Existing profile information goes here -->
         
         <!-- Order History Section -->

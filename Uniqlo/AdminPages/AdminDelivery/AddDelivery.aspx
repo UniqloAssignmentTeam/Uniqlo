@@ -1,25 +1,27 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin.Master" AutoEventWireup="true" CodeBehind="UpdateDelivery.aspx.cs" Inherits="Uniqlo.AdminPages.UpdateDelivery" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin.Master" AutoEventWireup="true" CodeBehind="AddDelivery.aspx.cs" Inherits="Uniqlo.AdminPages.AdminDelivery.AddDelivery" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="main" runat="server">
-<asp:ScriptManager ID="ScriptManager1" runat="server" />
+    <asp:ScriptManager ID="ScriptManager1" runat="server" />
     <header>
         <link href="../../css/Admin/addProduct.css" rel="stylesheet" />
         <style>
             .error-message {
-    color: red;
-    font-size: 0.8rem;
-    padding-top: 5px;
-}
+                color: red;
+                font-size: 0.8rem;
+                padding-top: 5px;
+            }
         </style>
     </header>
     <div class="container">
         <div class="productItemCard">
-            <h2 class="product-title">UNIQLO UPDATE DELIVERY</h2>
+            <h2 class="product-title">UNIQLO ADD DELIVERY</h2>
         </div>
         <div class="modal-content">
             <div class="product-content">
                 <div class="form-group">
-                    <label for="txtDeliveryID">Delivery ID</label>
-                    <asp:TextBox ID="txtDeliveryID" runat="server" Enabled="false" CssClass="input-field"></asp:TextBox>
+                    <label for="ddlPaymentID">Payment ID</label>
+                    <asp:DropDownList ID="ddlPaymentID" runat="server" CssClass="dropdown">
+                    </asp:DropDownList>
+                    <asp:RequiredFieldValidator ID="rfvPaymentID" runat="server" ControlToValidate="ddlPaymentID" InitialValue="" ErrorMessage="Please select a Payment ID" CssClass="error-message" Display="Dynamic" />
                 </div>
                 <div class="form-group">
                     <label for="txtAddress">Address</label>
@@ -44,16 +46,12 @@
                 </div>
                 <div class="form-group">
                     <label for="txtCountry">Country</label>
-                    <asp:TextBox ID="txtCountry" runat="server" Enabled="false" CssClass="input-field"></asp:TextBox>
-
+                    <asp:TextBox ID="txtCountry" runat="server" Enabled="false" CssClass="input-field" Text="Malaysia"></asp:TextBox>
                 </div>
-
                 <div class="form-group">
-    <label for="txtDeliveryNote">Delivery Note</label>
-    <asp:TextBox ID="txtDeliveryNote" runat="server" CssClass="input-field" TextMode="MultiLine" Rows="3"></asp:TextBox>
-    
-</div>
-
+                    <label for="txtDeliveryNote">Delivery Note</label>
+                    <asp:TextBox ID="txtDeliveryNote" runat="server" CssClass="input-field" TextMode="MultiLine" Rows="3"></asp:TextBox>
+                </div>
                 <div class="form-group">
                     <label for="ddlStatus">Status</label>
                     <asp:DropDownList ID="ddlStatus" runat="server" CssClass="dropdown">
@@ -61,16 +59,15 @@
                         <asp:ListItem Text="In Transit" Value="In Transit"></asp:ListItem>
                         <asp:ListItem Text="Delivered" Value="Delivered"></asp:ListItem>
                     </asp:DropDownList>
-                     <asp:RequiredFieldValidator ID="rfvStatus" runat="server" ControlToValidate="ddlStatus" InitialValue="" ErrorMessage="Please select a status" CssClass="error-message" Display="Dynamic" />
+                    <asp:RequiredFieldValidator ID="rfvStatus" runat="server" ControlToValidate="ddlStatus" InitialValue="" ErrorMessage="Please select a status" CssClass="error-message" Display="Dynamic" />
                 </div>
-
             </div>
             <div class="button-container">
                 <div class="cancel-div">
                     <asp:LinkButton ID="btnCancel" runat="server" CssClass="cancel-button" PostBackUrl="~/AdminPages/AdminDelivery/Delivery.aspx">CANCEL</asp:LinkButton>
                 </div>
                 <div class="continue-div">
-                    <asp:LinkButton ID="btnUpdate" runat="server" CssClass="continue-button" OnClick="btnUpdate_Click">UPDATE</asp:LinkButton>
+                    <asp:LinkButton ID="btnAddDelivery" runat="server" CssClass="continue-button" OnClick="btnAddDelivery_Click">ADD DELIVERY</asp:LinkButton>
                 </div>
             </div>
         </div>
