@@ -10,6 +10,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data.Entity;
 using static Uniqlo.Staff;
+using System.Text;
 
 namespace Uniqlo.AdminPages.AdminStaff
 {
@@ -96,52 +97,67 @@ namespace Uniqlo.AdminPages.AdminStaff
 
         protected void excelBtn_Click(object sender, EventArgs e)
         {
-            ExportStaffsToExcel();
+            //ExportStaffsToExcel();
         }
-        public void ExportStaffsToExcel()
+
+
+        private void ExportProductsToExcel()
         {
-            string connectionString = cs; // Ensure your connection string is defined above or fetched securely
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            try
             {
-                string query = "SELECT Staff_ID, Name, Gender, Contact_No, Email, Password, Role FROM Staff";
-
-                using (SqlCommand cmd = new SqlCommand(query, conn))
+                string connectionString = Global.CS; // Ensure this is correctly defined
+                using (SqlConnection conn = new SqlConnection(connectionString))
                 {
-                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                    conn.Open();  // Ensure the connection is opened before executing the command
+
+                    // Start building the base query
+                    StringBuilder query = new StringBuilder(@"SELECT Staff_ID, Name, Gender, Contact_No, Email, Password, Role FROM Staff");
+
+                    // Initialize a SqlCommand with an empty query string
+                    using (SqlCommand cmd = new SqlCommand("", conn))
                     {
-                        DataTable dt = new DataTable();
-                        da.Fill(dt);
+                        // Retrieve the selected values from the dropdowns
+                        string selectedCategory = genderSortDDL.SelectedValue;
 
-                        using (ExcelPackage pck = new ExcelPackage())
+
+                        // Check if there are any conditions to add based on dropdown selection
+                        if (!string.IsNullOrEmpty(selectedCategory) && selectedCategory != "Status")
                         {
-                            ExcelWorksheet ws = pck.Workbook.Worksheets.Add("Staff");
-                            ws.Cells["A1"].LoadFromDataTable(dt, true, OfficeOpenXml.Table.TableStyles.Light1);
+                            query.Append(" WHERE c.Status = @Status");
+                            cmd.Parameters.AddWithValue("@Status", selectedCategory);
+                        }
 
-                            // Format the header
-                            using (var range = ws.Cells[1, 1, 1, dt.Columns.Count])
+
+                        // Set the SqlCommand's CommandText to the built query
+                        cmd.CommandText = query.ToString();
+
+                        using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                        {
+                            DataTable dt = new DataTable();
+                            da.Fill(dt);
+                            using (ExcelPackage pck = new ExcelPackage())
                             {
-                                range.Style.Font.Bold = true;
-                                range.Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.Solid;
-                                range.Style.Fill.BackgroundColor.SetColor(System.Drawing.Color.FromArgb(79, 129, 189));
-                                range.Style.Font.Color.SetColor(System.Drawing.Color.White);
+                                ExcelWorksheet ws = pck.Workbook.Worksheets.Add("Discount");
+                                ws.Cells["A1"].LoadFromDataTable(dt, true, OfficeOpenXml.Table.TableStyles.Light1);
+                                var memoryStream = new MemoryStream();
+                                pck.SaveAs(memoryStream);
+                                memoryStream.Position = 0;
+
+                                HttpContext.Current.Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+                                HttpContext.Current.Response.AddHeader("content-disposition", "attachment; filename=Discount.xlsx");
+                                HttpContext.Current.Response.BinaryWrite(memoryStream.ToArray());
+                                HttpContext.Current.Response.End();
                             }
-
-                            // Additional formatting can be applied here based on your specific needs
-                            // For example, formatting phone numbers or emails if necessary
-
-                            // Save the Excel package
-                            var memoryStream = new MemoryStream();
-                            pck.SaveAs(memoryStream);
-
-                            // Stream the file to the client
-                            HttpContext.Current.Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
-                            HttpContext.Current.Response.AddHeader("content-disposition", "attachment; filename=Staff.xlsx");
-                            HttpContext.Current.Response.BinaryWrite(memoryStream.ToArray());
-                            HttpContext.Current.Response.End();
                         }
                     }
                 }
             }
+            catch (Exception ex)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('An error occurred while downloading the discount.');", true);
+                // Handle or log the error
+            }
+
         }
 
       

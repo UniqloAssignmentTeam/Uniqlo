@@ -1,6 +1,6 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin.Master" AutoEventWireup="true" CodeBehind="Delivery.aspx.cs" Inherits="Uniqlo.AdminPages.Delivery" %>
-
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin.Master" AutoEventWireup="true" CodeBehind="Delivery.aspx.cs" Inherits="Uniqlo.AdminPages.AdminDelivery.Delivery" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="main" runat="server">
+
     <style>
         .dropdown-wrapper {
             margin-right: 310px
@@ -158,43 +158,7 @@
 
 
 
-        <asp:Repeater ID="rptDeliveries" runat="server" ViewStateMode="Disabled">
-            <HeaderTemplate>
-                <table class="table" style="width: 100%">
-                    <tr class="row">
-                        <th class="col productid">Delivery ID</th>
-                        <th class="col name">Delivery Address</th>
-                        <th class="col price">Status</th>
-                        <th class="col gender">Order ID</th>
-                        <th class="col eclipse-container">Options</th>
-                    </tr>
-            </HeaderTemplate>
-            <ItemTemplate>
-                <tr class="row">
-                    <td class="col productid"><%# Eval("Delivery_ID") %></td>
-                    <td class="col name"><%# Eval("DeliveryAddress") %></td>
-                    <td class="col price"><%# Eval("Delivery_Status") %></td>
-                    <td class="col gender"><%# Eval("Order_ID") %></td>
-
-                    <td class="col eclipse-container" onclick="toggleDropdown('dropdownList<%# Eval("Delivery_ID") %>', 'dropdownDisplay<%# Eval("Delivery_ID") %>')">
-                        <div class="eclipse-display" id="dropdownDisplay<%# Eval("Delivery_ID") %>" style="border: none;"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></div>
-                        <div class="eclipse-list" id="dropdownList<%# Eval("Delivery_ID") %>">
-
-                            <div>
-                                <asp:HyperLink ID="update" runat="server" NavigateUrl='<%# "UpdateDelivery.aspx?DeliveryID=" + Eval("Delivery_ID") %>' Text="View/Update"></asp:HyperLink></div>
-                            <div>
-                                <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl='<%# "UpdateDelivery.aspx?DeliveryID=" + Eval("Delivery_ID") %>' Text="View Order"></asp:HyperLink></div>
-                            <div onclick="showDeleteModal(<%# Eval("Delivery_ID") %>);">Delete</div>
-
-                        </div>
-                    </td>
-                </tr>
-            </ItemTemplate>
-            <FooterTemplate>
-                </table>
-            </FooterTemplate>
-        </asp:Repeater>
-
+       
 
         
 
@@ -202,10 +166,57 @@
         <!--DELETE CONFIRMATION-->
 
 
+         <asp:Repeater ID="rptDeliveries" runat="server" ViewStateMode="Disabled">
+     <HeaderTemplate>
+         <table class="table" style="width: 100%">
+             <tr class="row">
+                 <th class="col productid">Delivery ID</th>
+                 <th class="col name">Delivery Address</th>
+                 <th class="col price">Status</th>
+                 <th class="col gender">Order ID</th>
+                 <th class="col eclipse-container">Options</th>
+             </tr>
+     </HeaderTemplate>
+     <ItemTemplate>
+         <tr class="row">
+             <td class="col productid"><%# Eval("Delivery_ID") %></td>
+             <td class="col name"><%# Eval("DeliveryAddress") %></td>
+             <td class="col price"><%# Eval("Delivery_Status") %></td>
+             <td class="col gender"><%# Eval("Order_ID") %></td>
+
+             <td class="col eclipse-container" onclick="toggleDropdown('dropdownList<%# Eval("Delivery_ID") %>', 'dropdownDisplay<%# Eval("Delivery_ID") %>')">
+                 <div class="eclipse-display" id="dropdownDisplay<%# Eval("Delivery_ID") %>" style="border: none;"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></div>
+                 <div class="eclipse-list" id="dropdownList<%# Eval("Delivery_ID") %>">
+
+                     <div>
+                         <asp:HyperLink ID="update" runat="server" NavigateUrl='<%# "UpdateDelivery.aspx?DeliveryID=" + Eval("Delivery_ID") %>' Text="View/Update"></asp:HyperLink></div>
+                     <div>
+                         <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl='<%# "UpdateDelivery.aspx?DeliveryID=" + Eval("Delivery_ID") %>' Text="View Order"></asp:HyperLink></div>
+                     <div onclick="showDeleteModal(<%# Eval("Delivery_ID") %>);">Delete</div>
+
+                 </div>
+             </td>
+         </tr>
+     </ItemTemplate>
+     <FooterTemplate>
+         </table>
+     </FooterTemplate>
+ </asp:Repeater>
 
          
 
 
+    </div>
+    <div class="pagination">
+        <a href="#" class="page-link" onclick="changePage('prev')">&laquo;</a>
+        <a href="#" class="page-link active" onclick="changePage(1)">1</a>
+        <a href="#" class="page-link" onclick="changePage(2)">2</a>
+        <a href="#" class="page-link" onclick="changePage(3)">3</a>
+        <a href="#" class="page-link" onclick="changePage(4)">4</a>
+        <a href="#" class="page-link" onclick="changePage(5)">5</a>
+
+
+        <a href="#" class="page-link" onclick="changePage('next')">&raquo;</a>
     </div>
     <div class="pagination">
         <a href="#" class="page-link" onclick="changePage('prev')">&laquo;</a>
@@ -257,3 +268,7 @@
    </footer>
 
 </asp:Content>
+
+
+
+

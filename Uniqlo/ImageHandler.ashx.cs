@@ -47,5 +47,5 @@ namespace Uniqlo
         }
     }
 
-   
+
 }
