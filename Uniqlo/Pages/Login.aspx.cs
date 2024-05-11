@@ -44,18 +44,17 @@ namespace Uniqlo.Pages
                     checkCmd.Parameters.AddWithValue("@password", password);
                     SqlDataReader read = checkCmd.ExecuteReader();
 
-                    if (read.Read())
-                    {
-                        Session["Customer_ID"] = read.GetValue(0).ToString();
-                        Session["Email"] = read.GetValue(1).ToString();
-                        Session["Name"] = read.GetValue(2).ToString();
-                        Response.Redirect("Home.aspx");
-                    }
-                    else
-                    {
-                        errorMSG.Text = "Invalid email or password.";
-                        errorMSG.ForeColor = System.Drawing.Color.Red;
-                    }
+                if (read.Read())
+                {
+                    Session["Customer_ID"] = read.GetValue(0).ToString();
+                    Session["Email"] = read.GetValue(1).ToString();
+                    Session["Name"] = read.GetValue(2).ToString();
+                    Response.Redirect("Home.aspx");
+                }
+                else
+                {
+                    errorMSG.Text = "Invalid email or password.";
+                    errorMSG.ForeColor = System.Drawing.Color.Red;
                     con.Close();
                 }
             }

@@ -83,18 +83,19 @@
 
                                 <div class="purchase-info">
                                     <h3>Quantity: </h3>
-                                    <input type="number" class="qty" min="0" value="1">
+                                    <asp:TextBox ID="txtQty" class="qty" runat="server" Text="1"></asp:TextBox>
+                                    
                                 </div>
                             </div>
 
-                            <!--ANIMATION ADD TO CART BUTTON-->
+                            <!--NO ANIMATION ADD TO CART BUTTON-->
                             <div class="cart-button">
-                                <a href="#">
-                                    <span class="add-to-cart">Add To Cart</span>
-                                    <span class="added">Added</span>
-                                    <i class="fas fa-shopping-cart"></i>
-                                    <i class="fas fa-solid fa-shirt"></i>
-                                </a>
+                                <asp:LinkButton ID="btnAddToCart" runat="server" OnClick="btnAddToCart_Click">
+        <span class="add-to-cart" runat="server" id="spnAddToCart">Add To Cart</span>
+        <span class="added" runat="server" id="spnAdded" style="display: none;">Added</span>
+        <i class="fas fa-shopping-cart"></i>
+        <i class="fas fa-solid fa-shirt"></i>
+    </asp:LinkButton>
                             </div>
 
 
