@@ -13,5 +13,20 @@ namespace Uniqlo.Pages
         {
 
         }
+
+        protected void TextBox8_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnBack_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Profile.aspx");
+        }
+
+        protected void btnSaveChanges_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

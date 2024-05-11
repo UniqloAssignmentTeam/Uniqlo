@@ -35,8 +35,10 @@
                         <i class="fa-regular fa-user user"></i>
                         <!-- Hidden menu that will be displayed on hover -->
                         <div class="hiddenUserMenu">
-                            <a href="/AdminPages/Login.aspx">Login</a>
-                            <a href="/AdminPages/Logout.aspx">Logout</a>
+                            <a href="/AdminPages/Login.aspx" onClick="btnLogin_Click">Login</a>
+                            <a href="/AdminPages/Logout.aspx" onclick="btnLogout_Click">Logout</a>
+
+                          
                         </div>
                     </div>
                 </div>

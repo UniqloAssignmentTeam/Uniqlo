@@ -1,417 +1,236 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Uniqlo.Master" AutoEventWireup="true" CodeBehind="ProductDetails.aspx.cs" Inherits="Uniqlo.Pages.ProductDetails" %>
-
 <asp:Content ID="Content1" ContentPlaceHolderID="main" runat="server">
     <header>
         <link href="../../../css/product.css" rel="stylesheet" />
     </header>
-    <div class="productBody">
-        <div class="card-wrapper">
-            <div class="productItemCard">
-                <!-- card left -->
-                <div class="product-imgs">
-                    <div class="img-display">
-                        <div class="img-showcase">
-                            <img src="../../../Images/Categories/Woman/Tops/AIRismCottonShortSleeveT-Shirt1.jpg" alt="uniqlo image" />
-                            <img src="../../../Images/Categories/Woman/Tops/AIRismCottonShortSleeveT-Shirt2.jpg" alt="uniqlo image" />
-                            <img src="../../../Images/Categories/Woman/Tops/AIRismCottonShortSleeveT-Shirt3.jpg" alt="uniqlo image" />
-                            <img src="../../../Images/Categories/Woman/Tops/AIRismCottonShortSleeveT-Shirt4.jpg" alt="uniqlo image" />
-                        </div>
-                    </div>
-                    <div class="img-select">
-                        <div class="img-item">
-                            <a href="#" data-id="1">
-                                <img src="../../../Images/Categories/Woman/Tops/AIRismCottonShortSleeveT-Shirt1.jpg" alt="uniqlo image" />
-                            </a>
-                        </div>
-                        <div class="img-item">
-                            <a href="#" data-id="2">
-                                <img src="../../../Images/Categories/Woman/Tops/AIRismCottonShortSleeveT-Shirt2.jpg" alt="uniqlo image" />
-                            </a>
-                        </div>
-                        <div class="img-item">
-                            <a href="#" data-id="3">
-                                <img src="../../../Images/Categories/Woman/Tops/AIRismCottonShortSleeveT-Shirt3.jpg" alt="uniqlo image" />
-                            </a>
-                        </div>
-                        <div class="img-item">
-                            <a href="#" data-id="4">
-                                <img src="../../../Images/Categories/Woman/Tops/AIRismCottonShortSleeveT-Shirt4.jpg" alt="uniqlo image" />
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <!-- card right -->
-                <div class="product-content" style="margin-top:100px;">
-                    <h2 class="product-title product-name">AIRism Cotton Short Sleeve T-Shirt</h2>
-                    <div class="product-rating">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star-half-alt"></i>
-                        <span>4.7(21)</span>
-                    </div>
+    <div class="productBody" style="margin-top:50px">
 
-                    <div class="product-price">
-                        <p class="last-price">Price: <span>RM 59.90</span></p>
-                        <p class="new-price"><span class="product-price">RM 30.00</span></p>
-                    </div>
-
-                    <div class="product-detail">
-                        <h2>about this item: </h2>
-                        <p class="product-description">Smooth "AIRism" fabric with the look of cotton. Refined fabric and design.</p>
-                        <ul>
-                            <li>Stock: <span>100</span></li>
-                            <li>Category: <span>Top</span></li>
-                            <li>Shipping Area: <span>Malaysia</span></li>
-                            <li>Shipping Fee: <span>Free of charge for order with total value above RM150. Additional RM20 shipping fees for order below RM150.</span></li>
-                        </ul>
-                    </div>
-
-                    <div class="productColorSection">
-                        <div class="purchase-color">
-                            <h3>Color:
-                        <label id="color">White</label></h3>
-                            <div class="purchase-color-item">
-                                <asp:RadioButtonList ID="RadioButtonList2" runat="server" RepeatDirection="Horizontal" ValidateRequestMode="Enabled" Visible="True" CssClass="color-radio-list">
-                                    <asp:ListItem Value="#"></asp:ListItem>
-                                    <asp:ListItem Value="#"></asp:ListItem>
-                                    <asp:ListItem Value="#"></asp:ListItem>
-                                </asp:RadioButtonList>
+        <asp:FormView ID="formView" runat="server" OnDataBound="formView_DataBound">
+            <ItemTemplate>
+                <div class="card-wrapper">
+                    <div class="productItemCard">
+                        <!-- card left -->
+                        <div class="product-imgs">
+                            <!-- Main Image Display -->
+                            <div class="img-display">
+                                <div class="img-showcase">
+                                    <img id="mainImg" alt="Product Image" />
+                                </div>
                             </div>
-                        </div>
-                    </div>
 
-                    <div class="productQtySizeSection">
-                        <div class="purchase-size">
-                            <h3>Size: Women
-                                        <label id="size">S</label></h3>
-                            <div class="purchase-size-item">
-                                <asp:RadioButtonList ID="RadioButtonList1" runat="server" RepeatDirection="Horizontal" ValidateRequestMode="Enabled" Visible="True" CssClass="custom-radio-list">
-                                    <asp:ListItem>S</asp:ListItem>
-                                    <asp:ListItem>M</asp:ListItem>
-                                    <asp:ListItem>L</asp:ListItem>
-                                    <asp:ListItem>XL</asp:ListItem>
-                                </asp:RadioButtonList>
+                            <!-- Thumbnails -->
+                            <div class="img-select">
+                                <asp:DataList ID="dataList" runat="server" RepeatDirection="Horizontal" Width="100%">
+                                    <ItemTemplate>  
+                                        <div class="img-item">
+                                            <a href="#" onclick="updateMainImage('<%# Eval("FirstImageId") %>'); return false;">
+                                                <img src='/ImageHandler.ashx?id=<%# Eval("FirstImageId") %>' alt="Product Thumbnail" />
+                                            </a>
+                                        </div>
+                                    </ItemTemplate>
+                                </asp:DataList>
                             </div>
                         </div>
 
-                        <div class="purchase-info">
-                            <h3>Quantity: </h3>
-                            <input type="number" class="qty" min="0" value="1">
-                        </div>
-                    </div>
+                        <!-- card right -->
+                        <div class="product-content" style="margin-top: 100px;">
+                            <h2 class="product-title product-name"><%# Eval("Product_Name") %></h2>
+                            <div class="product-rating">
+                                <%# GenerateStars(Convert.ToDouble(Eval("AverageRating")) ) %>
+                                <span><%# Eval("AverageRating") %>(<%# Eval("ReviewCount") %>)</span>
+                            </div>
 
-                    <!--ANIMATION ADD TO CART BUTTON-->
-                    <div class="cart-button">
-                        <a href="#">
-                            <span class="add-to-cart">Add To Cart</span>
-                            <span class="added">Added</span>
-                            <i class="fas fa-shopping-cart"></i>
-                            <i class="fas fa-solid fa-shirt"></i>
-                        </a>
-                    </div>
+                            <div class="product-price">
+                                <p class="last-price">Price: <span><%# Convert.ToDecimal(Eval("DiscountAmount")) > 0  ? "<p style='text-decoration: line-through; margin-right: 10px;'>" + String.Format("{0:C}", Eval("Price")) + "</p>" : "<p style='margin-right: 10px;'>" + String.Format("{0:C}", Eval("Price")) + "</p>" %></span></p>
+                                <p class="new-price"><span class="product-price"><%# Convert.ToDecimal(Eval("DiscountAmount")) > 0  ? "<span style='color: red;'>" + String.Format("{0:C}", Convert.ToDecimal(Eval("Price")) - Convert.ToDecimal(Eval("DiscountAmount"))) + "</span>" : "" %></span></p>
+                            </div>
+
+                            <div class="product-detail">
+                                <h2>about this item: </h2>
+                                <p class="product-description"><%# Eval("Description") %></p>
+                                <ul>
+                                    <li>Category: <span><%# Eval("Category.Name") %></span></li>
+                                    <li>Shipping Area: <span>Malaysia</span></li>
+                                    <li>Shipping Fee: <span>Free of charge for order with total value above RM150. Additional RM20 shipping fees for order below RM150.</span></li>
+                                </ul>
+                            </div>
 
 
-                    <div class="social-links">
-                        <p>Share At: </p>
-                        <a href="#">
-                            <i class="fab fa-facebook-f"></i>
-                        </a>
-                        <a href="#">
-                            <i class="fab fa-twitter"></i>
-                        </a>
-                        <a href="#">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                        <a href="#">
-                            <i class="fab fa-whatsapp"></i>
-                        </a>
-                        <a href="#">
-                            <i class="fab fa-pinterest"></i>
-                        </a>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-        <!--REVIEW SECTIONS-->
-        <div class="reviewSection">
-            <div class="reviewRatingAndBar">
-                <div class="reviewRating">
-                    <h3>4.7</h3>
-                    <i class="fas fa-star star"></i>
-                    <i class="fas fa-star star"></i>
-                    <i class="fas fa-star star"></i>
-                    <i class="fas fa-star star"></i>
-                    <i class="fas fa-star-half-alt star"></i>
-                    <div class="reviewRatingNumUser"><i class="fa-solid fa-user"></i>21 Total</div>
-                </div>
-                <div class="reviewBar">
-                    <h3>Reviews</h3>
-                    <div class="reviewBarDetails">
-                        <div class="reviewBarDetailsRow">
-                            <div class="reviewBarDetailsCol number">
-                                5
+                            <div class="productColorSection">
+                                <div class="purchase-color">
+                                    <h3>Color:
+                                <label id="color"></label></h3>
+                                    <div class="purchase-color-item">
+                                        <asp:RadioButtonList ID="RadioButtonListColors" runat="server" RepeatDirection="Horizontal" Visible="True" AutoPostBack="True" OnSelectedIndexChanged="RadioButtonListColors_SelectedIndexChanged">
+                                        </asp:RadioButtonList>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="reviewBarDetailsCol progress">
-                                <div class="progressBar green"></div>
-                            </div>
-                        </div>
-                        <div class="reviewBarDetailsRow">
-                            <div class="reviewBarDetailsCol number">
-                                4
-                            </div>
-                            <div class="reviewBarDetailsCol progress">
-                                <div class="progressBar lightGreen"></div>
-                            </div>
-                        </div>
-                        <div class="reviewBarDetailsRow">
-                            <div class="reviewBarDetailsCol number">
-                                3
-                            </div>
-                            <div class="reviewBarDetailsCol progress">
-                                <div class="progressBar yellow"></div>
-                            </div>
-                        </div>
-                        <div class="reviewBarDetailsRow">
-                            <div class="reviewBarDetailsCol number">
-                                2
-                            </div>
-                            <div class="reviewBarDetailsCol progress">
-                                <div class="progressBar orange"></div>
-                            </div>
-                        </div>
-                        <div class="reviewBarDetailsRow">
-                            <div class="reviewBarDetailsCol number">
-                                1
-                            </div>
-                            <div class="reviewBarDetailsCol progress">
-                                <div class="progressBar red"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="commentSection">
-                <div class="commentSectionNewRow">
-                    <h3>Korim Mia</h3>
-                    <div class="commentRatingSection">
-                        <div class="commentRatingSectionStars">
-                            <i class="fas fa-star star"></i>
-                            <i class="fas fa-star star"></i>
-                            <i class="fas fa-star star"></i>
-                            <i class="fas fa-star star"></i>
-                            <i class="fas fa-star-half-alt star"></i>
-                        </div>
-                        <div class="commentRatingSectionDate">
-                            25th June, 2020
-                        </div>
-                    </div>
-                    <div class="commentRatingSectionDetails">
-                        Lorem ipsum dolor sit, Lorem ipsum dolor sit amet consectetur, adipisicing elit. Id labore iusto, doloremque eveniet eos nostrum cupiditate. Laboriosam voluptates, eligendi minus totam, fuga, quidem officiis tempore quod placeat voluptate sunt soluta ratione deserunt sequi quia laborum quasi ullam repellendus molestias aliquid illo illum iure. Fugit cupiditate, alias rem nobis iste minima dolor ea porro fugiat, ipsum eum unde error aliquid consequatur. amet consectetur adipisicing elit. Praesentium eligendi maxime possimus temporibus! Labore accusamus facilis sequi dolorem ullam odio.
-                    </div>
-                </div>
-                <div class="commentSectionNewRow">
-                    <h3>Korim Mia</h3>
-                    <div class="commentRatingSection">
-                        <div class="commentRatingSectionStars">
-                            <i class="fas fa-star star"></i>
-                            <i class="fas fa-star star"></i>
-                            <i class="fas fa-star star"></i>
-                            <i class="fas fa-star star"></i>
-                            <i class="fas fa-star-half-alt star"></i>
-                        </div>
-                        <div class="commentRatingSectionDate">
-                            25th June, 2020
-                        </div>
-                    </div>
-                    <div class="commentRatingSectionDetails">
-                        Lorem ipsum dolor sit, Lorem ipsum dolor sit amet consectetur, adipisicing elit. Id labore iusto, doloremque eveniet eos nostrum cupiditate. Laboriosam voluptates, eligendi minus totam, fuga, quidem officiis tempore quod placeat voluptate sunt soluta ratione deserunt sequi quia laborum quasi ullam repellendus molestias aliquid illo illum iure. Fugit cupiditate, alias rem nobis iste minima dolor ea porro fugiat, ipsum eum unde error aliquid consequatur. amet consectetur adipisicing elit. Praesentium eligendi maxime possimus temporibus! Labore accusamus facilis sequi dolorem ullam odio.
-                    </div>
-                </div>
-                <div class="commentSectionNewRow">
-                    <h3>Korim Mia</h3>
-                    <div class="commentRatingSection">
-                        <div class="commentRatingSectionStars">
-                            <i class="fas fa-star star"></i>
-                            <i class="fas fa-star star"></i>
-                            <i class="fas fa-star star"></i>
-                            <i class="fas fa-star star"></i>
-                            <i class="fas fa-star-half-alt star"></i>
-                        </div>
-                        <div class="commentRatingSectionDate">
-                            25th June, 2020
-                        </div>
-                    </div>
-                    <div class="commentRatingSectionDetails">
-                        Lorem ipsum dolor sit, Lorem ipsum dolor sit amet consectetur, adipisicing elit. Id labore iusto, doloremque eveniet eos nostrum cupiditate. Laboriosam voluptates, eligendi minus totam, fuga, quidem officiis tempore quod placeat voluptate sunt soluta ratione deserunt sequi quia laborum quasi ullam repellendus molestias aliquid illo illum iure. Fugit cupiditate, alias rem nobis iste minima dolor ea porro fugiat, ipsum eum unde error aliquid consequatur. amet consectetur adipisicing elit. Praesentium eligendi maxime possimus temporibus! Labore accusamus facilis sequi dolorem ullam odio.
-                    </div>
-                </div>
-                <!--VIEWMORE BUTTON-->
-                <div class="viewMoreSection">
-                    <a href="#" class="viewMoreReviewButton" id="openReviewBtn">VIEW MORE</a>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!--VIEWMOREBUTTON END-->
 
 
 
 
-    <!--REVIEW VIEW MORE SECTION MODAL-->
-    <div id="reviewModal" class="reviewModal">
+                            <div class="productQtySizeSection">
+                                <div class="purchase-size">
+                                    <h3>Size: <%# Eval("Category.Gender").ToString() == "M" ? "Men " : (Eval("Category.Gender").ToString() == "W" ? "Woman" : "Not Specified") %>
+                                        <asp:Label ID="labelQuantity" runat="server" Text=""></asp:Label>
+                                    </h3>
+                                    <div class="purchase-size-item">
+                                        <asp:RadioButtonList ID="RadioButtonListSizes" runat="server" RepeatDirection="Horizontal" Visible="True" CssClass="custom-radio-list"  AutoPostBack="True" OnSelectedIndexChanged="RadioButtonListSizes_SelectedIndexChanged">
+                                        </asp:RadioButtonList>
+                                    </div>
+                                </div>
 
-        <!-- Modal content -->
-        <div class="review-modal-content">
-            <span class="closeReview">&times;</span>
-            <div class="commentSection">
-                <h2>AIRism Cotton Short Sleeve T-Shirt</h2>
-                <div class="reviewModalSection">
-                    <h2>Reviews</h2>
-                    <div class="reviewModalRatingSection">
-                        4.7
-                <i class="fas fa-star star"></i>
-                        <i class="fas fa-star star"></i>
-                        <i class="fas fa-star star"></i>
-                        <i class="fas fa-star star"></i>
-                        <i class="fas fa-star-half-alt star"></i>
-                        (21)
-                    </div>
-                </div>
-                <hr />
+                                <div class="purchase-info">
+                                    <h3>Quantity: </h3>
+                                    <asp:TextBox ID="txtQty" class="qty" runat="server" Text="1"></asp:TextBox>
+                                    
+                                </div>
+                            </div>
 
-                <div class="reviewSectionDropDownLists">
-                    <div class="dropdown-container" onclick="toggleDropdown('dropdownList1', 'dropdownDisplay1')">
-                        <div class="dropdown-display" id="dropdownDisplay1">
-                            Star 
-                    <i class="fas fa-star star reviewStar"></i>
-                            (All)
+                            <!--ANIMATION ADD TO CART BUTTON-->
+                            <div class="cart-button">
+                                <asp:LinkButton ID="btnAddToCart" runat="server" OnClick="btnAddToCart_Click">
+        <span class="add-to-cart" runat="server" id="spnAddToCart">Add To Cart</span>
+        <span class="added" runat="server" id="spnAdded" style="display: none;">Added</span>
+        <i class="fas fa-shopping-cart"></i>
+        <i class="fas fa-solid fa-shirt"></i>
+    </asp:LinkButton>
+                            </div>
+
+
+                            <div class="social-links">
+                                <p>Share At: </p>
+                                <a href="#">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                                <a href="#">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                                <a href="#">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                                <a href="#">
+                                    <i class="fab fa-whatsapp"></i>
+                                </a>
+                                <a href="#">
+                                    <i class="fab fa-pinterest"></i>
+                                </a>
+                            </div>
+
                         </div>
-                        <div class="dropdown-list" id="dropdownList1">
-                            <div onclick="selectOption('5 Star (8)', 'dropdownDisplay1')">
-                                <i class="fas fa-star star"></i>
-                                <i class="fas fa-star star"></i>
-                                <i class="fas fa-star star"></i>
-                                <i class="fas fa-star star"></i>
-                                <i class="fas fa-star star"></i>
-                                (8)
-                            </div>
-                            <div onclick="selectOption('4 Star (5)', 'dropdownDisplay1')">
-                                <i class="fas fa-star star"></i>
-                                <i class="fas fa-star star"></i>
-                                <i class="fas fa-star star"></i>
-                                <i class="fas fa-star star"></i>
-                                (5)
-                            </div>
-                            <div onclick="selectOption('3 Star (4)', 'dropdownDisplay1')">
-                                <i class="fas fa-star star"></i>
-                                <i class="fas fa-star star"></i>
-                                <i class="fas fa-star star"></i>
-                                (4)
-                            </div>
-                            <div onclick="selectOption('2 Star (3)', 'dropdownDisplay1')">
-                                <i class="fas fa-star star"></i>
-                                <i class="fas fa-star star"></i>
-                                (3)
-                            </div>
-                            <div onclick="selectOption('1 Star (1)', 'dropdownDisplay1')">
-                                <i class="fas fa-star star"></i>
-                                (1)
+                    </div>
+            </ItemTemplate>
+        </asp:FormView>
+
+        <asp:FormView ID="formView1" runat="server" OnDataBound="formView_DataBound">
+            <ItemTemplate>
+                <!--REVIEW SECTIONS-->
+                <div class="reviewSection" style="display:flex; margin-top: 100px;">
+                    <div class="reviewRatingAndBar" style="border: 2px solid #6F6F6F; height: 20%; margin: 50px; border-radius: 16px;">
+                        <div class="reviewRating">
+                            <h3 style="margin-left:55px;"><%# Eval("AverageRating") %></h3>
+                            <div style="display:flex;"><%# GenerateStars(Convert.ToDouble(Eval("AverageRating")) ) %></div>
+                            <div class="reviewRatingNumUser" style="margin-left: 50px;"><i class="fa-solid fa-user"></i>
+                                <div style="display: flex; margin-left:-16px;"><div><%# Eval("ReviewCount") %></div> <div>Total</div></div>
                             </div>
                         </div>
                     </div>
 
 
-                    <div class="dropdown-container" onclick="toggleDropdown('dropdownList2', 'dropdownDisplay2')">
-                        <div class="dropdown-display" id="dropdownDisplay2">Variation (All)</div>
-                        <div class="dropdown-list" id="dropdownList2">
-                            <div onclick="selectOption('Variation (S)', 'dropdownDisplay2')">S</div>
-                            <div onclick="selectOption('Variation (M)', 'dropdownDisplay2')">M</div>
-                            <div onclick="selectOption('Variation (L)', 'dropdownDisplay2')">L</div>
-                            <div onclick="selectOption('Variation (XL)', 'dropdownDisplay2')">XL</div>
+                    <div class="commentSection">
+                        <div class="reviewModalSection">
+                            <h2>Reviews</h2>
                         </div>
-                    </div>
+                        <hr />
 
-                </div>
-            </div>
+                        <div class="reviewSectionDropDownLists">
+                            <div class="dropdown-container" onclick="toggleDropdown('dropdownList1', 'dropdownDisplay1')">
+                                <div class="dropdown-display" id="dropdownDisplay1">
+                                    Star 
+                                <i class="fas fa-star star reviewStar"></i>
+                                    (All)
+                                </div>
+                                <div class="dropdown-list" id="dropdownList1">
+                                    <div onclick="selectOption('5 Star (8)', 'dropdownDisplay1')">
+                                        <i class="fas fa-star star"></i>
+                                        <i class="fas fa-star star"></i>
+                                        <i class="fas fa-star star"></i>
+                                        <i class="fas fa-star star"></i>
+                                        <i class="fas fa-star star"></i>
+                                        (8)
+                                    </div>
+                                    <div onclick="selectOption('4 Star (5)', 'dropdownDisplay1')">
+                                        <i class="fas fa-star star"></i>
+                                        <i class="fas fa-star star"></i>
+                                        <i class="fas fa-star star"></i>
+                                        <i class="fas fa-star star"></i>
+                                        (5)
+                                    </div>
+                                    <div onclick="selectOption('3 Star (4)', 'dropdownDisplay1')">
+                                        <i class="fas fa-star star"></i>
+                                        <i class="fas fa-star star"></i>
+                                        <i class="fas fa-star star"></i>
+                                        (4)
+                                    </div>
+                                    <div onclick="selectOption('2 Star (3)', 'dropdownDisplay1')">
+                                        <i class="fas fa-star star"></i>
+                                        <i class="fas fa-star star"></i>
+                                        (3)
+                                    </div>
+                                    <div onclick="selectOption('1 Star (1)', 'dropdownDisplay1')">
+                                        <i class="fas fa-star star"></i>
+                                        (1)
+                                    </div>
+                                </div>
+                            </div>
 
-            <div class="commentSectionNewRow" style="margin-top: 60px;">
-                <h3>Korim Mia</h3>
-                <div class="commentRatingSection">
-                    <div class="commentRatingSectionStars">
-                        <i class="fas fa-star star"></i>
-                        <i class="fas fa-star star"></i>
-                        <i class="fas fa-star star"></i>
-                        <i class="fas fa-star star"></i>
-                        <i class="fas fa-star-half-alt star"></i>
+
+                            <div class="dropdown-container" onclick="toggleDropdown('dropdownList2', 'dropdownDisplay2')">
+                                <div class="dropdown-display" id="dropdownDisplay2">Variation (All)</div>
+                                <div class="dropdown-list" id="dropdownList2">
+                                    <div onclick="selectOption('Variation (S)', 'dropdownDisplay2')">S</div>
+                                    <div onclick="selectOption('Variation (M)', 'dropdownDisplay2')">M</div>
+                                    <div onclick="selectOption('Variation (L)', 'dropdownDisplay2')">L</div>
+                                    <div onclick="selectOption('Variation (XL)', 'dropdownDisplay2')">XL</div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <asp:Repeater ID="reviewsRepeater" runat="server" DataSource='<%# Eval("Reviews") %>'>
+                            <ItemTemplate>
+                                <div class="commentSectionNewRow">
+                                    <h3><%# Eval("CustomerName") %></h3>
+                                    <div class="commentRatingSection">
+                                        <div class="commentRatingSectionStars">
+                                            <%# GenerateStars(Convert.ToDouble(Eval("customerRating")) ) %>
+                                        </div>
+                                        <div class="commentRatingSectionDate">
+                                            <%# Eval("reviewDateSubmit") %>
+                                        </div>
+                                    </div>
+                                    <div class="commentRatingSectionDetails">
+                                        <%# Eval("customerReview") %>
+                                    </div>
+                                </div>
+                            </ItemTemplate>
+                        </asp:Repeater>
+                        <h4 class="noMoreRatingFound">No More Ratings Found</h4>
                     </div>
-                    <div class="commentRatingSectionDate">
-                        25th June, 2020
-                    </div>
+                        
+                   
                 </div>
-                <div class="commentRatingSectionDetails">
-                    Lorem ipsum dolor sit, Lorem ipsum dolor sit amet consectetur, adipisicing elit. Id labore iusto, doloremque eveniet eos nostrum cupiditate. Laboriosam voluptates, eligendi minus totam, fuga, quidem officiis tempore quod placeat voluptate sunt soluta ratione deserunt sequi quia laborum quasi ullam repellendus molestias aliquid illo illum iure. Fugit cupiditate, alias rem nobis iste minima dolor ea porro fugiat, ipsum eum unde error aliquid consequatur. amet consectetur adipisicing elit. Praesentium eligendi maxime possimus temporibus! Labore accusamus facilis sequi dolorem ullam odio.
+                
                 </div>
-            </div>
-            <div class="commentSectionNewRow">
-                <h3>Korim Mia</h3>
-                <div class="commentRatingSection">
-                    <div class="commentRatingSectionStars">
-                        <i class="fas fa-star star"></i>
-                        <i class="fas fa-star star"></i>
-                        <i class="fas fa-star star"></i>
-                        <i class="fas fa-star star"></i>
-                        <i class="fas fa-star-half-alt star"></i>
-                    </div>
-                    <div class="commentRatingSectionDate">
-                        25th June, 2020
-                    </div>
-                </div>
-                <div class="commentRatingSectionDetails">
-                    Lorem ipsum dolor sit, Lorem ipsum dolor sit amet consectetur, adipisicing elit. Id labore iusto, doloremque eveniet eos nostrum cupiditate. Laboriosam voluptates, eligendi minus totam, fuga, quidem officiis tempore quod placeat voluptate sunt soluta ratione deserunt sequi quia laborum quasi ullam repellendus molestias aliquid illo illum iure. Fugit cupiditate, alias rem nobis iste minima dolor ea porro fugiat, ipsum eum unde error aliquid consequatur. amet consectetur adipisicing elit. Praesentium eligendi maxime possimus temporibus! Labore accusamus facilis sequi dolorem ullam odio.
-                </div>
-            </div>
-            <div class="commentSectionNewRow">
-                <h3>Korim Mia</h3>
-                <div class="commentRatingSection">
-                    <div class="commentRatingSectionStars">
-                        <i class="fas fa-star star"></i>
-                        <i class="fas fa-star star"></i>
-                        <i class="fas fa-star star"></i>
-                        <i class="fas fa-star star"></i>
-                        <i class="fas fa-star-half-alt star"></i>
-                    </div>
-                    <div class="commentRatingSectionDate">
-                        25th June, 2020
-                    </div>
-                </div>
-                <div class="commentRatingSectionDetails">
-                    Lorem ipsum dolor sit, Lorem ipsum dolor sit amet consectetur, adipisicing elit. Id labore iusto, doloremque eveniet eos nostrum cupiditate. Laboriosam voluptates, eligendi minus totam, fuga, quidem officiis tempore quod placeat voluptate sunt soluta ratione deserunt sequi quia laborum quasi ullam repellendus molestias aliquid illo illum iure. Fugit cupiditate, alias rem nobis iste minima dolor ea porro fugiat, ipsum eum unde error aliquid consequatur. amet consectetur adipisicing elit. Praesentium eligendi maxime possimus temporibus! Labore accusamus facilis sequi dolorem ullam odio.
-                </div>
-            </div>
-            <div class="commentSectionNewRow">
-                <h3>Korim Mia</h3>
-                <div class="commentRatingSection">
-                    <div class="commentRatingSectionStars">
-                        <i class="fas fa-star star"></i>
-                        <i class="fas fa-star star"></i>
-                        <i class="fas fa-star star"></i>
-                        <i class="fas fa-star star"></i>
-                        <i class="fas fa-star-half-alt star"></i>
-                    </div>
-                    <div class="commentRatingSectionDate">
-                        25th June, 2020
-                    </div>
-                </div>
-                <div class="commentRatingSectionDetails">
-                    Lorem ipsum dolor sit, Lorem ipsum dolor sit amet consectetur, adipisicing elit. Id labore iusto, doloremque eveniet eos nostrum cupiditate. Laboriosam voluptates, eligendi minus totam, fuga, quidem officiis tempore quod placeat voluptate sunt soluta ratione deserunt sequi quia laborum quasi ullam repellendus molestias aliquid illo illum iure. Fugit cupiditate, alias rem nobis iste minima dolor ea porro fugiat, ipsum eum unde error aliquid consequatur. amet consectetur adipisicing elit. Praesentium eligendi maxime possimus temporibus! Labore accusamus facilis sequi dolorem ullam odio.
-                </div>
-            </div>
-            <h4 class="noMoreRatingFound">No More Ratings Found
-            </h4>
-        </div>
+            </ItemTemplate>
+        </asp:FormView>
+            <!--VIEWMOREBUTTON END-->
+        
+
+
+
+
     </div>
     <footer>
         <script src="../../../Javascript/category.js"></script>
@@ -425,3 +244,4 @@
         <script src="../../../Javascript/colorRadioList.js"></script>
     </footer>
 </asp:Content>
+    

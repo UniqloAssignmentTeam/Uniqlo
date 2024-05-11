@@ -8,6 +8,7 @@ using Uniqlo;
 using static Uniqlo.Product;
 using System.Data.Entity;
 using System.Security.Cryptography.X509Certificates;
+using System.Diagnostics;
 
 namespace Uniqlo.Pages
 {
@@ -21,44 +22,91 @@ namespace Uniqlo.Pages
             }
         }
 
+  
+
         private void BindDataList()
         {
-            using (var context = new ProductDbContext())
+            using (var db = new ProductDbContext())
             {
-                // Using DateTime.Now outside the LINQ query to avoid multiple calls which might give slight differences during execution.
-                var today = DateTime.Now;
+                var today = DateTime.Today;
 
-                // Fetching products with active discounts
-                var productsWithActiveDiscounts = (from p in context.Product
-                                                   where !p.IsDeleted
-                                                   join d in context.Discount on p.Product_ID equals d.Product_ID
-                                                   where d.Status == "Active" && d.Start_Date <= today && d.End_Date >= today
-                                                   join q in context.Quantity on p.Product_ID equals q.Product_ID
-                                                   join img in context.Image on q.Image_ID equals img.Image_ID
-                                                   select new
-                                                   {
-                                                       Product_Name = p.Product_Name, // Changed to ProductName to match common naming conventions
-                                                       Description = p.Description,
-                                                       Price = p.Price,
-                                                       Discount_Amount = d.Discount_Amount,
-                                                       Image_ID=img.Image_ID,
-                                                       AverageRating = (from q in p.Quantities
-                                                                        from ol in q.OrderLists
-                                                                        from r in ol.Reviews
-                                                                        select (int?)r.Rating).Average() ?? 0,
-                                                       ReviewCount = (from q in p.Quantities
-                                                                      from ol in q.OrderLists
-                                                                      from r in ol.Reviews
-                                                                      select r).Count()
+                var productDetails = db.Product
+                    .Where(p => !p.IsDeleted)
+                    .SelectMany( // Use SelectMany to flatten the results from the join
+                        p => db.Discount
+                            .Where(d => d.Product_ID == p.Product_ID // Ensure it's the right product
+                                && d.Status == "Active" // Discount must be active
+                                && d.Start_Date <= today // Start date must be on or before today
+                                && d.End_Date >= today), // End date must be on or after today
+                        (product, discount) => new {
+                            Product_Name = product.Product_Name,
+                            Description = product.Description,
+                            Price = product.Price,
+                            Image_ID = product.Quantities.Select(q => q.Image_ID).FirstOrDefault(), // Assuming at least one quantity has an image
+                            AverageRating = product.Quantities.SelectMany(q => q.OrderLists).SelectMany(ol => ol.Reviews).Average(r => (int?)r.Rating) ?? 0,
+                            ReviewCount = product.Quantities.SelectMany(q => q.OrderLists).SelectMany(ol => ol.Reviews).Count(),
+                            Discount_Amount = product.Price- discount.Discount_Amount
+                        }
+                    )
+                    .ToList();
 
-
-                                                   }).Distinct().ToList();
-
-                // Setting the DataList data source
-                dlValueBuy.DataSource = productsWithActiveDiscounts;
+                dlValueBuy.RepeatColumns = productDetails.Count > 4 ? 4 : productDetails.Count;
+                dlValueBuy.DataSource = productDetails;
                 dlValueBuy.DataBind();
             }
         }
+
+        protected void FilterProducts(object sender, EventArgs e)
+        {
+            using (var db = new ProductDbContext())
+            {
+                var today = DateTime.Today;
+                var selectedGender = genderSortDDL.SelectedValue;
+
+                var productDetails = db.Product
+                    .Where(p => !p.IsDeleted && p.Category.Gender == selectedGender)
+                    .SelectMany(
+                        p => db.Discount
+                            .Where(d => d.Product_ID == p.Product_ID
+                                && d.Status == "Active"
+                                && d.Start_Date <= today
+                                && d.End_Date >= today),
+                        (product, discount) => new
+                        {
+                            Product_Name = product.Product_Name,
+                            Description = product.Description,
+                            Price = product.Price,
+                            Image_ID = product.Quantities.Select(q => q.Image_ID).FirstOrDefault(),
+                            AverageRating = product.Quantities.SelectMany(q => q.OrderLists).SelectMany(ol => ol.Reviews).Average(r => (int?)r.Rating) ?? 0,
+                            ReviewCount = product.Quantities.SelectMany(q => q.OrderLists).SelectMany(ol => ol.Reviews).Count(),
+                            Discount_Amount = product.Price - discount.Discount_Amount
+                        }
+                    )
+                    .ToList();
+              
+                dlValueBuy.RepeatColumns = productDetails.Count > 4 ? 4 : productDetails.Count;
+                dlValueBuy.DataSource = productDetails;
+                dlValueBuy.DataBind();
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         public string GenerateStars(double rating)
         {
             var fullStars = (int)rating; // Number of full stars

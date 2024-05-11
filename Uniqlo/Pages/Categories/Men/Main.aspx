@@ -11,7 +11,7 @@
             <div class="mySlides fade">
                 <div class="numbertext">1 / 2</div>
                 <a href="Tops.aspx">
-                    <img src="../../../Images/menTopBanner.png" style="width: 100%; height: 400px;" />
+                    <img src ="../../../Images/menTopBanner.png" style="width: 100%; height: 400px;" />
                 </a>
             </div>
 
@@ -59,7 +59,7 @@
                </div>
                <div class="product-price">
                  <p style="text-decoration: line-through; margin-right: 10px;">RM <%# Eval("Price") %></p>
-                   <p style="color: red;"> RM <%# Eval("DiscountAmount") %></p>
+                   <p style="color: red;"> RM <%# Eval("DiscountPrice") %></p>
                </div>
               <div class="ratings">
      <%# GenerateStars(Convert.ToDouble(Eval("AverageRating"))) %>

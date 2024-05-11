@@ -11,7 +11,7 @@ namespace Uniqlo
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.Data.Entity;
     public partial class Review
     {
         public int Review_ID { get; set; }
@@ -21,5 +21,14 @@ namespace Uniqlo
         public System.DateTime Date_Submitted { get; set; }
     
         public virtual OrderList OrderList { get; set; }
+
+        public class ReviewDbContext : DbContext
+        {
+            public ReviewDbContext() : base("name=UniqloEntities")
+            {
+            }
+
+            public DbSet<Review> Review { get; set; }
+        }
     }
 }

@@ -16,13 +16,14 @@
             <div class="wrap-items-search-buttons">
                 <div class="search">
                     <span class="material-symbols-outlined">search</span>
-                    <asp:TextBox ID="searchBox" runat="server" CssClass="search-input" Text="Search"></asp:TextBox>
-                </div>
+                  <asp:TextBox ID="searchBox" runat="server" CssClass="search-input" AutoPostBack="true" OnTextChanged="searchBox_TextChanged"  placeholder="Search Product Name"></asp:TextBox>
+       
+                </div> 
                 
 
                 <div class="dropdown-wrapper">
  <asp:DropDownList ID="statusSortDDL" runat="server"  AutoPostBack="true" OnSelectedIndexChanged="statusSortDDL_SelectedIndexChanged" CssClass="dropdown-display">
- <asp:ListItem Value="">Status</asp:ListItem>
+ <asp:ListItem Value="">All Status</asp:ListItem>
  <asp:ListItem Value="Active">Active</asp:ListItem>
   <asp:ListItem Value="Inactive">Inactive</asp:ListItem>
 </asp:DropDownList>
@@ -115,6 +116,7 @@
     <Triggers>
         <asp:AsyncPostBackTrigger ControlID="statusSortDDL" EventName="SelectedIndexChanged" />
         <asp:PostBackTrigger ControlID="excelExport" />
+         <asp:AsyncPostBackTrigger ControlID="searchBox" EventName="TextChanged" />
     </Triggers>
 
 
@@ -139,10 +141,10 @@
         <div class="confirmationContainer">
             <span onclick="document.getElementById('id01').style.display='none'" class="confirmationClose" title="Close Modal">×</span>
             <h1>Remove Discount</h1>
-            <p>Are you sure you want to remove this discount?</p>
-
+            <p>Are you sure you want to remove this discount? </p>
+            <b><span style="font-size:30px;">ID:</span></b> <span id="modalDiscountId" style="font-size:30px; color:red;"></span>
             <div class="confirmationClearFix">
-                <asp:Button ID="cancelBtn" runat="server" Text="Cancel" CssClass="confirmationCancelbtn"/>
+                <asp:Button ID="cancelBtn" runat="server" Text="Cancel" CssClass="confirmationCancelbtn" OnClick="cancelRemoveDiscount_Click"/>
                  <asp:Button ID="btnRemoveDiscount" runat="server" Text="Delete" CssClass="confirmationDeletebtn" OnClick="btnRemoveDiscount_Click"/>
                
             </div>
@@ -158,10 +160,15 @@
             function showDeleteModal(discountId) {
                 document.getElementById('<%= hiddenDiscountId.ClientID %>').value = discountId;
                 document.getElementById('id01').style.display = 'block';
+                document.getElementById('modalDiscountId').innerText = discountId;
             }
 
         </script>
-
+        <script type="text/javascript">
+            document.getElementById('<%= searchBox.ClientID %>').onkeyup = function() {
+        __doPostBack('<%= searchBox.ClientID %>', '');
+            };
+        </script>
         <script src="../../Javascript/productBtnEclipse.js"></script>
         <script src="../../Javascript/productAdminDDL.js"></script>
         <script src="../../Javascript/Pagination.js"></script>
