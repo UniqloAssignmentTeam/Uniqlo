@@ -35,8 +35,7 @@
                                 <asp:ListItem Value="M">Male</asp:ListItem>
                                 <asp:ListItem Value="F">Female</asp:ListItem>
                             </asp:DropDownList>
-
-
+            
                             <asp:DropDownList ID="roleSortDDL" runat="server" AutoPostBack="true"
                                 OnSelectedIndexChanged="roleSortDDL_SelectedIndexChanged" CssClass="dropdown-display">
                                 <asp:ListItem Value="">All Roles</asp:ListItem>
@@ -44,7 +43,8 @@
                                 <asp:ListItem Value="Admin">Admin</asp:ListItem>
                                 <asp:ListItem Value="Manager">Manager</asp:ListItem>
                             </asp:DropDownList>
-                            
+                         <asp:CustomValidator ID="CustomValidator1" runat="server" ValidateEmptyText="true" ControlToValidate="roleSortDDL" ErrorMessage="Please select a Role" ForeColor="Red" Display="Dynamic" OnServerValidate="ValidateStaffRole_ServerValidate"></asp:CustomValidator>
+                   
                         </div>
 
                         <div class="btnExcel-Add">

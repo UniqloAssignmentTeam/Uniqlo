@@ -108,36 +108,43 @@ namespace Uniqlo.AdminPages.AdminStaff
 
         protected void roleSortDDL_SelectedIndexChanged(object sender, EventArgs e)
         {
-            try
-            {
-                using (var db = new StaffDbContext())
-                {
-                    string selectedRole = roleSortDDL.SelectedValue;
-                    var staffList = string.IsNullOrEmpty(selectedRole) ? db.Staff.ToList() : db.Staff.Where(s => s.Role == selectedRole).ToList();
-                    staffRepeater.DataSource = staffList;
-                    staffRepeater.DataBind();
-                }
-            }
-            catch (Exception ex)
-            {
-                ScriptManager.RegisterStartupScript(this, GetType(), "redirectError", "alert('Failed to sort staff role. Please try again.');", true);
-            }
+            BindFilteredStaffList();
         }
+
         protected void genderSortDDL_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            BindFilteredStaffList();
+        }
+
+        private void BindFilteredStaffList()
         {
             try
             {
                 using (var db = new StaffDbContext())
                 {
+                    string selectedRole = roleSortDDL.SelectedValue;
                     string selectedGender = genderSortDDL.SelectedValue;
-                    var staffList = string.IsNullOrEmpty(selectedGender) ? db.Staff.ToList() : db.Staff.Where(s => s.Gender == selectedGender).ToList();
+
+                    IQueryable<Staff> query = db.Staff;
+
+                    if (!string.IsNullOrEmpty(selectedRole) && selectedRole != "All Roles")
+                    {
+                        query = query.Where(s => s.Role == selectedRole);
+                    }
+
+                    if (!string.IsNullOrEmpty(selectedGender) && selectedGender != "All Genders")
+                    {
+                        query = query.Where(s => s.Gender == selectedGender);
+                    }
+
+                    var staffList = query.ToList();
                     staffRepeater.DataSource = staffList;
                     staffRepeater.DataBind();
                 }
             }
             catch (Exception ex)
             {
-                ScriptManager.RegisterStartupScript(this, GetType(), "redirectError", "alert('Failed to sort staff gender. Please try again.');", true);
+                ScriptManager.RegisterStartupScript(this, GetType(), "scriptError", "alert('Failed to load filtered staff list. Please try again.');", true);
             }
         }
 
@@ -148,39 +155,42 @@ namespace Uniqlo.AdminPages.AdminStaff
 
         private void ExportStaffsToExcel()
         {
-
-
-
             string connectionString = Global.CS; // Ensure this is correctly defined
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 conn.Open();  // Ensure the connection is opened before executing the command
 
-                // Start building the base query
-                StringBuilder query = new StringBuilder(@"SELECT Staff_ID, Name, Gender, Contact_No, Email, Role FROM Staff");
+                StringBuilder query = new StringBuilder("SELECT Staff_ID, Name, Gender, Contact_No, Email, Role FROM Staff");
+                List<SqlParameter> parameters = new List<SqlParameter>();
 
-                // Initialize a SqlCommand with an empty query string
-                using (SqlCommand cmd = new SqlCommand("", conn))
+                string genderFilter = genderSortDDL.SelectedValue;
+                string roleFilter = roleSortDDL.SelectedValue;
+                bool hasGenderFilter = !string.IsNullOrEmpty(genderFilter) && genderFilter != "All Genders";
+                bool hasRoleFilter = !string.IsNullOrEmpty(roleFilter) && roleFilter != "All Roles";
+
+                if (hasGenderFilter || hasRoleFilter)
                 {
-                    // Retrieve the selected values from the dropdowns
-                    string selectedCategory = genderSortDDL.SelectedValue;
-                    string selectedGender = roleSortDDL.SelectedValue;
-
-                    // Check if there are any conditions to add based on dropdown selection
-                    if (!string.IsNullOrEmpty(selectedCategory) && selectedCategory != "All Genders")
+                    query.Append(" WHERE");
+                    if (hasGenderFilter)
                     {
-                        query.Append(" WHERE Gender = @Gender");
-                        cmd.Parameters.AddWithValue("@Gender", selectedCategory);
-                    }
-                    if (!string.IsNullOrEmpty(selectedGender) && selectedGender != "All Roles")
-                    {
-                        query.Append(" WHERE Role = @Role");
-                        cmd.Parameters.AddWithValue("@Role", selectedGender);
+                        query.Append(" Gender = @Gender");
+                        parameters.Add(new SqlParameter("@Gender", genderFilter));
                     }
 
-                    // Set the SqlCommand's CommandText to the built query
-                    cmd.CommandText = query.ToString();
+                    if (hasRoleFilter)
+                    {
+                        if (hasGenderFilter)
+                        {
+                            query.Append(" AND");
+                        }
+                        query.Append(" Role = @Role");
+                        parameters.Add(new SqlParameter("@Role", roleFilter));
+                    }
+                }
 
+                using (SqlCommand cmd = new SqlCommand(query.ToString(), conn))
+                {
+                    cmd.Parameters.AddRange(parameters.ToArray());
                     using (SqlDataAdapter da = new SqlDataAdapter(cmd))
                     {
                         DataTable dt = new DataTable();
@@ -201,11 +211,6 @@ namespace Uniqlo.AdminPages.AdminStaff
                     }
                 }
             }
-
-
-
-
-
         }
         protected void searchBox_TextChanged(object sender, EventArgs e)
         {
@@ -234,6 +239,32 @@ namespace Uniqlo.AdminPages.AdminStaff
                                 .Where(s => s.Name.Contains(searchText))
                                 .ToList();
                 return query;
+            }
+        }
+
+
+        protected void ValidateStaffGender_ServerValidate(object source, ServerValidateEventArgs args)
+        {
+            // Ensure that a product other than the default "--Select Product--" is chosen
+            if (genderSortDDL.SelectedValue != "")
+            {
+                args.IsValid = true;
+            }
+            else
+            {
+                args.IsValid = false;
+            }
+        }
+        protected void ValidateStaffRole_ServerValidate(object source, ServerValidateEventArgs args)
+        {
+            // Ensure that a product other than the default "--Select Product--" is chosen
+            if (roleSortDDL.SelectedValue != "")
+            {
+                args.IsValid = true;
+            }
+            else
+            {
+                args.IsValid = false;
             }
         }
     }

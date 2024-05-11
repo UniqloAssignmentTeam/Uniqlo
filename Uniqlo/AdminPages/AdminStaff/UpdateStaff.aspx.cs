@@ -82,7 +82,10 @@ namespace Uniqlo.AdminPages
                             staff.Role = staffRole.SelectedValue;
 
                             db.SaveChanges();
-                            Response.Redirect("Staff.aspx");
+                           
+                                Response.Redirect("StaffHome.aspx");
+                           
+                           
                         }
                         else
                         {
@@ -109,6 +112,31 @@ namespace Uniqlo.AdminPages
                 ScriptManager.RegisterStartupScript(this, GetType(), "saveError", "alert('Failed to redirect to staff home.');", true);
             }
           
+        }
+
+        protected void ValidateStaffGender_ServerValidate(object source, ServerValidateEventArgs args)
+        {
+            // Ensure that a product other than the default "--Select Product--" is chosen
+            if (staffGender.SelectedValue != "")
+            {
+                args.IsValid = true;
+            }
+            else
+            {
+                args.IsValid = false;
+            }
+        }
+        protected void ValidateStaffRole_ServerValidate(object source, ServerValidateEventArgs args)
+        {
+            // Ensure that a product other than the default "--Select Product--" is chosen
+            if (staffRole.SelectedValue != "")
+            {
+                args.IsValid = true;
+            }
+            else
+            {
+                args.IsValid = false;
+            }
         }
     }
 }
