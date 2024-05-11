@@ -18,7 +18,7 @@
             <div class="product-content">
                                  <div class="form-group">
       <label for="email">E-mail</label>
-     <asp:TextBox ID="email" runat="server"></asp:TextBox>
+     <asp:TextBox ID="email" runat="server" MaxLength="50"></asp:TextBox>
     <asp:RegularExpressionValidator ID="RegexValidatorEmail" runat="server" ControlToValidate="email" ErrorMessage="Please enter a valid email address." 
     ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" ForeColor="Red" Display="Dynamic">
 </asp:RegularExpressionValidator>
@@ -28,31 +28,27 @@
 </asp:RequiredFieldValidator>
   </div>
 
+
+
                                                 <div class="form-group">
     <label for="password">Password</label>
-   <asp:TextBox ID="password" runat="server"></asp:TextBox>
+   <asp:TextBox ID="password" runat="server" MaxLength="50"></asp:TextBox>
   <asp:RegularExpressionValidator ID="RegexValidatorPassword" runat="server" 
     ControlToValidate="password" 
     ErrorMessage="Password must be at least 8 characters long including numbers, uppercase and lowercase letters." 
-    ValidationExpression="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$" ForeColor="Red" Display="Dynamic">
+    ValidationExpression="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,50}$" ForeColor="Red" Display="Dynamic">
 </asp:RegularExpressionValidator>
    <asp:RequiredFieldValidator ID="RequiredFieldValidatorPassword" runat="server" 
     ControlToValidate="password" 
     ErrorMessage="Password is required." CssClass="errorMessage">
 </asp:RequiredFieldValidator>
-      <asp:RangeValidator ID="RangeValidator1" runat="server" 
-    ControlToValidate="password" 
-    MinimumValue="8" MaximumValue="50" 
-    Type="Integer" 
-    ErrorMessage="Password must be within 8 and 50 characters long." 
-    ForeColor="Red" Display="Dynamic">
-</asp:RangeValidator>        
+     
 
 </div>
               
                 <div class="form-group">
                     <label for="staffName">Staff Name</label>
-                     <asp:TextBox ID="staffName" runat="server"></asp:TextBox>
+                     <asp:TextBox ID="staffName" runat="server" MaxLength="50"></asp:TextBox>
                                      <asp:RegularExpressionValidator ID="RegexValidatorName" runat="server" 
     ControlToValidate="staffName" ErrorMessage="Name must contain only letters." ValidationExpression="^[A-Za-z ]+$" ForeColor="Red" Display="Dynamic">
 </asp:RegularExpressionValidator>
