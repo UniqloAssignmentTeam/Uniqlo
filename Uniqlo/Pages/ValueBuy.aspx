@@ -178,6 +178,18 @@
 
 
     <footer>
+
+         <script>
+
+             grecaptcha.ready(function () {
+                 grecaptcha.execute('6LcQr9gpAAAAALZ_qGE5V4MDe0jhOesJLNFfmZd2', { action: 'login' }).then(function (token) {
+                     document.getElementById('recaptchaResponse').value = token;
+                     // Optionally, you can submit the form here if auto-postback is disabled
+                     // document.getElementById('yourFormId').submit();
+                 });
+             });
+
+         </script>  
         <script src="../Javascript/valueBuy.js"></script>
         <script src="../Javascript/wishlist.js"></script>
         <script src="../Javascript/productItem.js"></script>

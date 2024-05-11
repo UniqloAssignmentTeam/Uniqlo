@@ -131,6 +131,7 @@ namespace Uniqlo.Pages
             using (var db = new ProductDbContext())  
             {
                 RadioButtonList rbList = (RadioButtonList)formView.FindControl("RadioButtonListColors");
+                    
                 
 
                 var colors = db.Quantity
@@ -258,6 +259,10 @@ namespace Uniqlo.Pages
 
 
         }
+
+        /*ADD Function*/
+
+
 
     }
 

@@ -163,12 +163,11 @@
                 document.getElementById('modalDiscountId').innerText = discountId;
             }
 
-        </script>
-        <script type="text/javascript">
             document.getElementById('<%= searchBox.ClientID %>').onkeyup = function() {
         __doPostBack('<%= searchBox.ClientID %>', '');
-            };
+    };
         </script>
+        
         <script src="../../Javascript/productBtnEclipse.js"></script>
         <script src="../../Javascript/productAdminDDL.js"></script>
         <script src="../../Javascript/Pagination.js"></script>

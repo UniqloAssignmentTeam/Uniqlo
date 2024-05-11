@@ -11,7 +11,7 @@ namespace Uniqlo.AdminPages
 {
 
 
-    public partial class Login
+    public partial class adminLogin
     {
 
         /// <summary>
