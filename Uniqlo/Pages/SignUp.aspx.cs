@@ -15,6 +15,8 @@ using System.Net.Mail;
 using System.IO;
 using static System.Net.Mime.MediaTypeNames;
 using Uniqlo.AdminPages;
+using Newtonsoft.Json;
+using System.Collections.Specialized;
 
 namespace Uniqlo.Pages
 {
@@ -31,7 +33,13 @@ namespace Uniqlo.Pages
         }
         protected void btnSignUp_Click(object sender, EventArgs e)
         {
-            if (fileProfilePhoto.PostedFile != null)
+
+
+            string recaptchaResponse = Request.Form["recaptchaResponse"];
+            bool isReCaptchaValid = ValidateReCaptcha(recaptchaResponse);
+            if (isReCaptchaValid)
+            {
+                if (fileProfilePhoto.PostedFile != null)
             {
                 string strpath = Path.GetExtension(fileProfilePhoto.PostedFile.FileName);
                 if (strpath != ".jpg" && strpath != ".jpeg" && strpath != ".gif" && strpath != ".png")
@@ -118,30 +126,34 @@ namespace Uniqlo.Pages
                 // CAPTCHA validation failed, show an alert
                 ClientScript.RegisterStartupScript(this.GetType(), "recaptchaError", "alert('reCAPTCHA verification failed. Please try again.');", true);
             }
+            }
+            else
+            {
+
+
+            }
 
 
         }
 
-        public bool ValidateCaptcha(string response)
+        private bool ValidateReCaptcha(string recaptchaResponse)
         {
-            string secret = "6Lc38NgpAAAAAPvAX0lGe0Zc1plkSyMvdEaMA3sL";
-            var client = new WebClient();
-            var reply =
-                client.DownloadString(
-                    $"https://www.google.com/recaptcha/api/siteverify?secret={secret}&response={response}");
+            string secretKey = "6LcQr9gpAAAAABBoiRNDyntbjoJqz0rQxSE5t1re"; // Replace it with your secret key
+            string apiUrl = "https://www.google.com/recaptcha/api/siteverify";
+            string result = string.Empty;
 
-            var captchaResponse = JsonConvert.DeserializeObject<CaptchaResponse>(reply);
+            using (var client = new WebClient())
+            {
+                var parameters = new NameValueCollection();
+                parameters.Add("secret", secretKey);
+                parameters.Add("response", recaptchaResponse);
 
-            return captchaResponse.Success;
-        }
+                var response = client.UploadValues(apiUrl, "POST", parameters);
+                result = System.Text.Encoding.UTF8.GetString(response);
+            }
 
-        public class CaptchaResponse
-        {
-            [JsonProperty("success")]
-            public bool Success { get; set; }
-
-            [JsonProperty("error-codes")]
-            public List<string> ErrorCodes { get; set; }
+            var obj = JsonConvert.DeserializeObject<dynamic>(result);
+            return obj.success;
         }
 
     }
