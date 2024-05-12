@@ -51,6 +51,24 @@ namespace Uniqlo.Pages
         protected global::System.Web.UI.WebControls.Button btnLogin;
 
         /// <summary>
+        /// recaptchaResponse control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputHidden recaptchaResponse;
+
+        /// <summary>
+        /// errorLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label errorLabel;
+
+        /// <summary>
         /// signUpLink control.
         /// </summary>
         /// <remarks>

@@ -1,35 +1,36 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Uniqlo.Master" AutoEventWireup="true" CodeBehind="OrderHistoryItem.aspx.cs" Inherits="Uniqlo.Pages.OrderHistoryItem" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="main" runat="server">
-      <header>
+    <header>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-          <link href="../css/Admin/OrderItem.css" rel="stylesheet" />
+        <link href="../css/Admin/OrderItem.css" rel="stylesheet" />
         <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet" />
         <style>
-            .backButtonClass{
-                margin: 20px 0px; 
-                border: 2px solid white; 
-                width: 50px; 
-                height: 50px; 
-                padding: 10px 10px 10px 15px; 
-                background-color: #f0f0f0; 
+            .backButtonClass {
+                margin: 20px 0px;
+                border: 2px solid white;
+                width: 50px;
+                height: 50px;
+                padding: 10px 10px 10px 15px;
+                background-color: #f0f0f0;
                 border-radius: 99%;
             }
 
-            .backButtonClass:hover{
-              background-color: #d0d0d0; 
-            }
+                .backButtonClass:hover {
+                    background-color: #d0d0d0;
+                }
 
-            .backLinkClass{
-                color: #6F6F6F; 
+            .backLinkClass {
+                color: #6F6F6F;
                 text-decoration: none;
             }
 
             .backButtonClass:hover > .backLinkClass {
-              color: #8F8F8F; 
-            }            
-            
+                color: #8F8F8F;
+            }
+
             /*Button in table*/
-            .orderReceivedSection{
+            .orderReceivedSection {
                 margin: auto;
                 margin-top: 20px;
                 width: 300px;
@@ -39,99 +40,114 @@
                 transition: all 0.5s ease;
                 font-weight: bold;
                 cursor: pointer;
+                margin-bottom: 20px;
             }
 
-            .orderReceivedSection:hover{
-                background-color: black;
-            }
+                .orderReceivedSection:hover {
+                    background-color: black;
+                }
 
-            .orderReceivedSection:hover > .orderReceivedButton{
-                color: white;
-            }
+                    .orderReceivedSection:hover > .orderReceivedButton {
+                        color: white;
+                    }
 
-            .orderReceivedButton{
+            .orderReceivedButton {
                 text-decoration: none;
                 color: black;
+                background: none;
+                outline: none;
+                border: none;
+                font-weight: bold;
+                font-size: 14px;
             }
 
             /*MODAL*/
             /* The Modal (background) */
             .modal {
-              display: none; /* Hidden by default */
-              position: fixed; /* Stay in place */
-              z-index: 1; /* Sit on top */
-              padding-top: 180px; /* Location of the box */
-              left: 0;
-              top: 0;
-              width: 100%; /* Full width */
-              height: 100%; /* Full height */
-              overflow: auto; /* Enable scroll if needed */
-              background-color: rgb(0,0,0); /* Fallback color */
-              background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+                display: none; /* Hidden by default */
+                position: fixed; /* Stay in place */
+                z-index: 1; /* Sit on top */
+                padding-top: 180px; /* Location of the box */
+                left: 0;
+                top: 0;
+                width: 100%; /* Full width */
+                height: 100%; /* Full height */
+                overflow: auto; /* Enable scroll if needed */
+                background-color: rgb(0,0,0); /* Fallback color */
+                background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
             }
 
             /* Modal Content */
             .modal-content {
-              background-color: #fefefe;
-              margin: auto;
-              padding: 20px;
-              border: 1px solid #888;
-              width: 50%;
+                background-color: #fefefe;
+                margin: auto;
+                padding: 20px;
+                border: 1px solid #888;
+                width: 50%;
             }
 
             /* The Close Button */
             .close, .secClose, .thirdClose {
-              color: #aaaaaa;
-              float: right;
-              font-size: 28px;
-              font-weight: bold;
+                color: #aaaaaa;
+                float: right;
+                font-size: 28px;
+                font-weight: bold;
+                background: none;
+                outline: none;
+                border: none;
             }
 
-            .close:hover,
-            .close:focus {
-              color: #000;
-              text-decoration: none;
-              cursor: pointer;
-            }            
-            
-            .secClose:hover,
-            .secClose:focus {
-              color: #000;
-              text-decoration: none;
-              cursor: pointer;
-            }            
-            .thirdClose:hover,
-            .thirdClose:focus {
-              color: #000;
-              text-decoration: none;
-              cursor: pointer;
-            }
+                .close:hover,
+                .close:focus {
+                    color: #000;
+                    text-decoration: none;
+                    cursor: pointer;
+                }
 
-            .modal-rating-content{
+                .secClose:hover,
+                .secClose:focus {
+                    color: #000;
+                    text-decoration: none;
+                    cursor: pointer;
+                }
+
+                .thirdClose:hover,
+                .thirdClose:focus {
+                    color: #000;
+                    text-decoration: none;
+                    cursor: pointer;
+                }
+
+                .thirdModalButton{
+                    z-index: 10;
+                }
+
+            .modal-rating-content {
                 margin-top: 60px;
                 font-size: 20px;
                 margin-bottom: 10px;
                 margin-left: 60px;
             }
 
-            .commentRatingSectionStars{
+            .commentRatingSectionStars {
                 margin-top: 16px;
                 margin-left: 100px;
                 font-size: 25px;
             }
 
-            .commentRatingSectionComment{
+            .commentRatingSectionComment {
                 margin-top: 30px;
             }
-            .commentRatingSectionComment textarea{
-                margin-top: -10px;
-                width: 600px;
-                height: 110px;
-                font-size: 18px;
-                resize: none;
-            }
 
-            .commentRatingSectionContainer{
+                .commentRatingSectionComment textarea {
+                    margin-top: -10px;
+                    width: 600px;
+                    height: 110px;
+                    font-size: 18px;
+                    resize: none;
+                }
+
+            .commentRatingSectionContainer {
                 border: 2px solid black;
                 width: 91%;
                 margin-left: 0;
@@ -142,7 +158,7 @@
                 padding-top: 5px;
             }
 
-            .commentRatingSectionButton{
+            .commentRatingSectionButton {
                 text-decoration: none;
                 color: black;
                 padding: 50px 300px 50px 275px;
@@ -150,49 +166,53 @@
                 font-size: 15px;
             }
 
-            .commentRatingSectionContainer:hover{
+            .commentRatingSectionContainer:hover {
                 background-color: black;
             }
 
-            .commentRatingSectionContainer:hover > .commentRatingSectionButton{
-                color: white;
-            }
+                .commentRatingSectionContainer:hover > .commentRatingSectionButton {
+                    color: white;
+                }
 
             .star {
                 color: #ffc107;
             }
 
             /*SECOND MODAL BUTTON*/
-            
+
             .secModalBtnBorder1,
-            .secModalBtnBorder2{
+            .secModalBtnBorder2 {
                 transition: all 0.5s ease;
                 cursor: pointer;
+            }
 
-            }       
-            
             .secModalBtn1,
-            .secModalBtn2{
+            .secModalBtn2 {
                 text-decoration: none;
                 color: black;
-                padding: 20px 150px 0px 125px;
-            }
-            
-            .secModalBtnBorder1:hover,
-            .secModalBtnBorder2:hover{
-                background-color: black;
-            }  
-            
-            .secModalBtnBorder1:hover > .secModalBtn1{
-                color: white;
-            }            
-            
-            .secModalBtnBorder2:hover > .secModalBtn2{
-                color: white;
+                width: 100%;
+                background: none;
+                outline: none;
+                border: none;
+                padding: 10px 150px 0px 175px;
+                cursor: pointer;
             }
 
+            .secModalBtnBorder1:hover,
+            .secModalBtnBorder2:hover {
+                background-color: black;
+            }
+
+                .secModalBtnBorder1:hover > .secModalBtn1 {
+                    color: white;
+                }
+
+                .secModalBtnBorder2:hover > .secModalBtn2 {
+                    color: white;
+                }
+
             /*CONFIRMATION MODAL*/
-            .confirmationClearFix{
+            .confirmationClearFix {
                 width: 100%;
                 margin-top: 90px;
             }
@@ -210,183 +230,93 @@
                 text-decoration: none;
                 color: black;
                 width: calc((100% / 2) - 20px);
-    
             }
 
-            .confirmationDeletebtn:hover, 
-            .confirmationCancelbtn:hover {
-                background-color: black;
-                color: white;
-            }             
-   
+                .confirmationDeletebtn:hover,
+                .confirmationCancelbtn:hover {
+                    background-color: black;
+                    color: white;
+                }
+
 
             /* Add padding and center-align text to the container */
             .confirmationContainer {
-              padding: 16px;
-              text-align: center;
+                padding: 16px;
+                text-align: center;
             }
 
             /* The Modal (background) */
             .confirmationModal {
-              display: none; /* Hidden by default */
-              position: fixed; /* Stay in place */
-              z-index: 2; /* Sit on top */
-              left: 0;
-              top: 0;
-              width: 100%; /* Full width */
-              height: 100%; /* Full height */
-              background-color: rgb(0,0,0); /* Fallback color */
-              background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-              padding-top: 50px;
-              margin-top: 55px;
+                display: none; /* Hidden by default */
+                position: fixed; /* Stay in place */
+                z-index: 2; /* Sit on top */
+                left: 0;
+                top: 0;
+                width: 100%; /* Full width */
+                height: 100%; /* Full height */
+                background-color: rgb(0,0,0); /* Fallback color */
+                background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+                padding-top: 50px;
+                margin-top: 55px;
             }
 
             /* Modal Content/Box */
             .confirmation-modal-content {
-              background-color: #fefefe;
-              margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
-              border: 1px solid #888;
-              width: 50%; /* Could be more or less, depending on screen size */
-              height: 440px;
+                background-color: #fefefe;
+                margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+                border: 1px solid #888;
+                width: 50%; /* Could be more or less, depending on screen size */
+                height: 440px;
             }
 
 
-            .confirmation-modal-content h1{
-                margin-top: 60px;
-            }
+                .confirmation-modal-content h1 {
+                    margin-top: 60px;
+                }
 
-            .confirmation-modal-content p{
-                margin-top: 30px;
-            }
- 
+                .confirmation-modal-content p {
+                    margin-top: 30px;
+                }
+
             /* The Modal Close Button (x) */
             .confirmationClose {
-              float: right;
-              font-size: 40px;
-              font-weight: bold;
-              color: #f1f1f1;
+                float: right;
+                font-size: 40px;
+                font-weight: bold;
+                color: #f1f1f1;
             }
 
-            .confirmationClose:hover,
-            .confirmationClose:focus {
-              color: black;
-              cursor: pointer;
-            }
+                .confirmationClose:hover,
+                .confirmationClose:focus {
+                    color: black;
+                    cursor: pointer;
+                }
 
             /* Clear floats */
             .confirmationClearFix::after {
-              content: "";
-              clear: both;
-              display: table;
+                content: "";
+                clear: both;
+                display: table;
             }
-            .fa-star.checked { color: orange; }
+
+            .fa-star.checked {
+                color: orange;
+            }
             /* Change styles for cancel button and delete button on extra small screens */
             @media screen and (max-width: 300px) {
-              .confirmationCancelbtn, .confirmationDeletebtn {
-                 width: 100%;
-              }
+                .confirmationCancelbtn, .confirmationDeletebtn {
+                    width: 100%;
+                }
             }
         </style>
     </header>
     <div class="productBody">
-        
+
         <div class="backButtonClass">
             <a href="Profile.aspx" class="backLinkClass"><i class="fa fa-arrow-left" aria-hidden="true"></i></a>
         </div>
-        
+
         <h1>ORDER ID :<asp:Label ID="orderIDLabel" runat="server" Text=""></asp:Label></h1>
-       
-
-
-
-
-
-
-
-         <div class="cart-page-container">
-             <div class="cart-items-container" style="width: 70%;">
-
-                 <asp:DataList ID="DataList1" runat="server">
-                     <ItemTemplate>
-                 <!-- Cart Item 1 -->
-                 <div class="cart-item" data-product-id="1">
-                     <div class="cart-item-image-container">
-                         <img src='/ImageHandler.ashx?id=<%# Eval("Image_ID") %>' alt='<%# Eval("Product_Name") %>' style="width: 100%" />
-                     </div>
-                    
-
-                     <div class="item-details">
-
-
-                         <div class="item-name">
-
-
-                             <h3><b><%# Eval("Product_Name") %></b></h3>
-
-
-                         </div>
-                         <div class="item-description"> 
-                             <p><%# Eval("Product_Description") %></p><br />
-                         </div>
-                         <div class="item-details">
-
-
-                             <p><b>Size:</b> <%# Eval("Size") %></p>
-                             <p><b>Color:</b>  <%# Eval("Color") %></p>
-                         </div>
-                             <p><b>Item Price:</b> RM<%# Eval("Item_Price") %></p>
-                             <p><b>Quantity:</b> <%# Eval("Qty") %></p>
-                         <p class="item-subtotal"><b>Sub Total: RM  <%# Eval("Subtotal", "{0:C}") %></b></p>
-
-                         <div class="orderReceivedSection" id="<%# Eval("reviewBtn") %>">
-
-                        <asp:Button ID="reviewValidBtn" runat="server"
-    Text='<%# Convert.ToBoolean(Eval("reviewBtn")) ? "View" : "Review" %>'
-    CssClass="orderReceivedButton"
-    OnClick='<%# GetOnClientClick(Eval("OrderList_ID"), Convert.ToBoolean(Eval("reviewBtn"))) %>'
-    AutoPostBack="false"
-    UseSubmitBehavior="false" />
- </div>
-                     </div>
-                 </div>
-                         </ItemTemplate>
-                     </asp:DataList>
-                
-
-             <!-- Cart Summary -->
-                      
-                                          <asp:Repeater ID="orderSummaryRepeater" runat="server" ViewStateMode="Disabled">
-
-    <HeaderTemplate>
-        <table style="width: 100%" class="table">  
-    </HeaderTemplate>
-
-    <ItemTemplate>
-
-      
-
-
-             <div class="cart-summary" style="width: 30%;">
-     <h3>Order Summary</h3>
-     <p><b>Date: </b>  <asp:Label ID="paymentDateLbl" runat="server" Text='<%# Eval("Payment_DateTime", "{0:dd/MM/yyyy}") %>'></asp:Label></td> </p>
-     <p><b>Payment method: </b><asp:Label ID="paymentMethodlbl" runat="server" Text='<%# Eval("Payment_Method", "{0:dd/MM/yyyy}") %>'></asp:Label> </p>
-     <p><b>Payment status: </b><asp:Label ID="paymentStatuslbl" runat="server" Text='<%# Eval("Payment_Status") %>'></asp:Label></p>
-     <p><b>Delivery status: </b> <asp:Label ID="deliveryStatuslbl" runat="server" Text='<%# Eval("Delivery_Status") %>'></asp:Label></p>
-   
-     <p><b>Total Price: </b> <asp:Label ID="subTotallbl" runat="server" Text='<%# Eval("Sub_Total") %>'></asp:Label> </p>
-     <p><b>Total Items: </b><asp:Label ID="totalItemlbl" runat="server" Text='<%# Eval("Total_Item") %>'></asp:Label></p>
-     <p><b>Shipping Charges : </b>RM<asp:Label ID="shipAmountlbl" runat="server" Text='<%# Eval("Shipping_Amount") %>'></asp:Label></p>
-     <p><b>Total: </b>RM<asp:Label ID="totalPaymentlbl" runat="server" Text='<%# Eval("Total_Payment") %>'></asp:Label></p>
- </div>
-
-
-
-
-    </ItemTemplate>
-
-    <FooterTemplate>
-        </table>
-    </FooterTemplate>
 
 
 
@@ -395,162 +325,329 @@
 
 
 
-</asp:Repeater>
+        <div class="cart-page-container">
+            <div class="cart-items-container" style="display: flex; width: 100%;">
+                <div style="width: 70%;">
+                    <asp:DataList ID="DataList1" runat="server">
+                        <ItemTemplate>
+                            <!-- Cart Item 1 -->
+                            <div class="cart-item" data-product-id="1">
+                                <div class="cart-item-image-container" style="width: 40%">
+                                    <img src='/ImageHandler.ashx?id=<%# Eval("Image_ID") %>' alt='<%# Eval("Product_Name") %>' style="width: 100%" />
+                                </div>
 
-            
 
-             
-             <!-- The Modal -->
-            <div id="myModal" class="modal">
-                <div class="modal-content">
-                    <span class="close">&times;</span>
-                    <div class="modal-rating-content">
-                        <div style="display: flex;">
-                            <p>Rating</p>
-                           <div class="commentRatingSectionStars">
-                             <i class="fa fa-star" onclick="setRating(1)"></i>
-                             <i class="fa fa-star" onclick="setRating(2)"></i>
-                            <i class="fa fa-star" onclick="setRating(3)"></i>
-                               <i class="fa fa-star" onclick="setRating(4)"></i>
-                             <i class="fa fa-star" onclick="setRating(5)"></i>
+                                <div class="item-details" style="width: 60%">
+
+
+                                    <div class="item-name">
+
+
+                                        <h3><b><%# Eval("Product_Name") %></b></h3>
+
+
+                                    </div>
+                                    <div class="item-description">
+                                        <p><%# Eval("Product_Description") %></p>
+                                        <br />
+                                    </div>
+                                    <div class="item-details">
+
+
+                                        <p><b>Size:</b> <%# Eval("Size") %></p>
+                                        <p><b>Color:</b>  <%# Eval("Color") %></p>
+                                    </div>
+                                    <p><b>Item Price:</b> <%# Eval("Item_Price", "{0:C}") %></p>
+                                    <p><b>Quantity:</b> <%# Eval("Qty") %></p>
+                                    <p class="item-subtotal"><b>Sub Total: <%# Eval("Subtotal", "{0:C}") %></b></p>
+
+                                    <asp:HiddenField ID="hiddennOrderListID" runat="server" Value='<%# Eval("OrderList_ID") %>' />
+
+                                    <div class="orderReceivedSection" id="<%# Eval("reviewBtn") %>">
+
+                                        <asp:Button ID="reviewValidBtn" runat="server"
+                                        Text='<%# Convert.ToBoolean(Eval("reviewBtn")) ? "View" : "Review" %>' CommandArgument='<%# Eval("OrderList_ID") %>' OnCommand="ReviewValidBtn_Command"
+                                        CssClass="orderReceivedButton" AutoPostBack="false" UseSubmitBehavior="false" />
+
+
+                                    </div>
+                                </div>
                             </div>
-                            <asp:HiddenField ID="HiddenRating" runat="server" />
-                        </div>
-                        <div>
-                            <p>Comment</p>
-                            <div class="commentRatingSectionComment">
-                                <asp:TextBox ID="commentTextArea" runat="server" Type="Area"></asp:TextBox>
-                              
+                        </ItemTemplate>
+                    </asp:DataList>
+                </div>
+
+                <!-- Cart Summary -->
+                <div style="width: 30%;">
+                    <asp:Repeater ID="orderSummaryRepeater" runat="server" ViewStateMode="Disabled">
+
+                        <HeaderTemplate>
+                            <table style="width: 100%" class="table cart-summary">
+                        </HeaderTemplate>
+
+                        <ItemTemplate>
+                            <tr style="width: 30%;">
+                                <td>
+                                    <h2>Order Summary</h2>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <b>Date: </b>
+                                    <asp:Label ID="paymentDateLbl" runat="server" Text='<%# Eval("Payment_DateTime", "{0:dd/MM/yyyy}") %>'></asp:Label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <b>Payment method: </b>
+                                    <asp:Label ID="paymentMethodlbl" runat="server" Text='<%# Eval("Payment_Method", "{0:dd/MM/yyyy}") %>'></asp:Label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <b>Payment status: </b>
+                                    <asp:Label ID="paymentStatuslbl" runat="server" Text='<%# Eval("Payment_Status") %>'></asp:Label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <b>Delivery status: </b>
+                                    <asp:Label ID="deliveryStatuslbl" runat="server" Text='<%# Eval("Delivery_Status") %>'></asp:Label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <b>Total Price: </b>
+                                    <asp:Label ID="subTotallbl" runat="server" Text='<%# Eval("Sub_Total", "{0:C}") %>'></asp:Label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <b>Total Items: </b>
+                                    <asp:Label ID="totalItemlbl" runat="server" Text='<%# Eval("Total_Item") %>'></asp:Label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <b>Discount Amount : </b>
+                                    RM
+                                    <asp:Label ID="Label1" runat="server" Text='<%# (Convert.ToDecimal(Eval("Total_Payment")) - Convert.ToDecimal(Eval("Shipping_Amount")) - Convert.ToDecimal(Eval("Sub_Total"))).ToString("0.00") %>'></asp:Label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <b>Shipping Charges : </b>
+                                    <asp:Label ID="shipAmountlbl" runat="server" Text='<%# Eval("Shipping_Amount", "{0:C}") %>'></asp:Label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <b>Total: </b>
+                                    <asp:Label ID="totalPaymentlbl" runat="server" Text='<%# Eval("Total_Payment", "{0:C}") %>'></asp:Label>
+                                </td>
+                            </tr>
+
+                        </ItemTemplate>
+
+                        <FooterTemplate>
+                            </table>
+                        </FooterTemplate>
+                    </asp:Repeater>
+                </div>
+               </div> 
+            </div>
+
+
+
+                <!-- The Modal -->
+                <div id="myModal" class="modal" runat="server">
+                    <div class="modal-content">
+                        <asp:Button ID="Button1" runat="server" Text="&times;" OnClick="btnCloseModal_Click" CssClass="close" />
+                        <div class="modal-rating-content">
+                            <div style="display: flex;">
+                                <p>Rating</p>
+                                <div class="commentRatingSectionStars">
+                                    <i class="fa fa-star star1" onclick="setRating(1)"></i>
+                                    <i class="fa fa-star star1" onclick="setRating(2)"></i>
+                                    <i class="fa fa-star star1" onclick="setRating(3)"></i>
+                                    <i class="fa fa-star star1" onclick="setRating(4)"></i>
+                                    <i class="fa fa-star star1" onclick="setRating(5)"></i>
+                                </div>
+                                <asp:HiddenField ID="HiddenRating" runat="server" />
                             </div>
-                        </div>
-                        
-                        <div class="commentRatingSectionContainer">
-                            <asp:Button ID="submitRating" runat="server" Text="Submit" CssClass="commentRatingSectionButton" OnClick="submitRating_Click"/>
-                          
+                            <div>
+                                <p>Comment</p>
+                                <div class="commentRatingSectionComment">
+                                    <asp:TextBox ID="commentTextArea" runat="server" Columns="20" Rows="2" TextMode="MultiLine"></asp:TextBox>
+                                        
+                                </div>
+                            </div>
+
+
+                            <div style="width: 91%; border: 2px solid black; height: 50px; margin-top: 2px;" class="commentRatingSectionContainer secModalBtnBorder2">
+                                <asp:Button ID="submitRating" runat="server" Text="Submit" CssClass="commentRatingSectionButtonClick secModalBtn2" OnClick="submitRating_Click" UseSubmitBehavior="true" OnClientClick="return validateAndSubmit();"/>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-           
-            <!-- Second Modal -->
-            <div id="secModal" class="modal">
-                <div class="modal-content">
-                    <span class="secClose">&times;</span>
-                    <div class="modal-rating-content">
-                        <div style="display: flex;">
-                            <p>Rating</p>
-                            <div class="commentRatingSectionStars">
-                                <i class = "fas fa-star star"></i>
-                                <i class = "fas fa-star star"></i>
-                                <i class = "fas fa-star star"></i>
-                                <i class = "fas fa-star star"></i>
-                                <i class = "fas fa-star star"></i>
-                            </div>
-                        </div>
-                        <div>
-                            <p>Comment</p>
-                            <div class="commentRatingSectionComment">
-                                <textarea id="TextArea2" cols="20" rows="2" disabled>Lorem ipsum dolor sit, Lorem ipsum dolor sit amet consectetur, adipisicing elit. Id labore iusto, doloremque eveniet eos nostrum cupiditate. Laboriosam voluptates, eligendi minus totam, fuga, quidem officiis tempore quod placeat voluptate sunt soluta ratione deserunt sequi quia laborum quasi ullam repellendus molestias aliquid illo illum iure. Fugit cupiditate, alias rem nobis iste minima dolor ea porro fugiat, ipsum eum unde error aliquid consequatur. amet consectetur adipisicing elit. Praesentium eligendi maxime possimus temporibus! Labore accusamus facilis sequi dolorem ullam odio.</textarea>
-                            </div>
-                        </div>
-                        <div style="display: flex; margin-top: 20px; width: 600px;" class="secModalBtnBorder">
-                            <div style="width: 50%; border: 2px solid black; margin: 2px; height: 50px;" class="secModalBtnBorder1" id="thirdBtn">
-                                <a href="#" class="secModalBtn1">Edit</a>
-                            </div>
-                            <div style="width: 50%; border: 2px solid black; height: 50px; margin-top: 2px;" class="secModalBtnBorder2">
-                                <a href="#" class="secModalBtn2"  onclick="document.getElementById('id01').style.display='block'">Delete</a>
+                <!-- Second Modal -->
+
+                    <!-- Second Modal -->
+                <div id="secModal" class="modal" runat="server">
+                    <div class="modal-content">
+                        <asp:Button ID="btnCloseModal" runat="server" Text="&times;" OnClick="btnCloseModal_Click" CssClass="secClose" />
+                        <asp:Repeater ID="ratingRepeater" runat="server" ViewStateMode="Disabled">
+                            <ItemTemplate>
+                                <div class="modal-rating-content">
+                                    <div style="display: flex;">
+                                        <p>Rating</p>
+                                        <div class="commentRatingSectionStars">
+                                            <%# GenerateStars(Convert.ToDouble(Eval("Rating")) ) %>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <p>Comment</p>
+                                        <div class="commentRatingSectionComment">
+                                            <asp:TextBox ID="commentTextArea1" runat="server" Columns="20" Rows="2" TextMode="MultiLine" Enabled="false" Text='<%# Eval("Review") %>'></asp:TextBox>
+                                        </div>
+                                    </div>
+                                    <div style="display: flex; margin-top: 20px; width: 600px;" class="secModalBtnBorder">
+                                        <div style="width: 50%; border: 2px solid black; margin: 2px; height: 50px;" class="secModalBtnBorder1" id="thirdBtn">
+                                            <a href="#" class="secModalBtn1">Edit</a>
+                                        </div>
+                                        <div style="width: 50%; border: 2px solid black; height: 50px; margin-top: 2px;" class="secModalBtnBorder2">
+                                            <a href="#" class="secModalBtn2" onclick="document.getElementById('id01').style.display='block'">Delete</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </ItemTemplate>
+                        </asp:Repeater>
+                    </div>
+                </div>
+
+                <!-- THIRD Modal -->
+                <div id="thirdModal" class="modal">
+                    <div class="modal-content">
+                        <asp:Repeater ID="updateRatingRepeater" runat="server" ViewStateMode="Disabled">
+                            <ItemTemplate>
+                                <span class="thirdClose">&times;</span>
+                                <div class="modal-rating-content">
+                                    <div style="display: flex;">
+                                        <p>Rating</p>
+                                        <div class="commentRatingSectionStars">
+                                            <i class="fa fa-star star2" onclick="setRating2(1)"></i>
+                                            <i class="fa fa-star star2" onclick="setRating2(2)"></i>
+                                            <i class="fa fa-star star2" onclick="setRating2(3)"></i>
+                                            <i class="fa fa-star star2" onclick="setRating2(4)"></i>
+                                            <i class="fa fa-star star2" onclick="setRating2(5)"></i>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <p>Comment</p>
+                                        <div class="commentRatingSectionComment">
+                                            <asp:TextBox ID="commentTextArea2" runat="server" Columns="20" Rows="2" TextMode="MultiLine" Text='<%# Eval("Review") %>'></asp:TextBox>
+                                        </div>
+                                    </div>
+                                    <div class="commentRatingSectionContainer">
+                                        <asp:Button ID="submitRating2" runat="server" Text="Submit" CssClass="commentRatingSectionButton secModalBtn1 thirdModalButton" OnClick="updateRating_Click" UseSubmitBehavior="true" OnClientClick="return validateAndSubmit();" />
+                                    </div>
+                                </div>
+                            </ItemTemplate>
+                        </asp:Repeater>
+                    </div>
+                </div>
+                <asp:HiddenField ID="HiddenRatingUpdate" runat="server"/>
+
+                <!--DELETE CONFIRMATION-->
+                <div id="id01" class="confirmationModal">
+                    <div class="confirmation-modal-content">
+                        <div class="confirmationContainer">
+                            <span onclick="document.getElementById('id01').style.display='none'" class="confirmationClose" title="Close Modal">×</span>
+                            <h1>Remove Review</h1>
+                            <p>Are you sure you want to remove your review?</p>
+
+                            <div class="confirmationClearFix">
+                                <button type="button" onclick="document.getElementById('id01').style.display='none'" class="confirmationCancelbtn">Cancel</button>
+                                <button type="button" onclick="document.getElementById('id01').style.display='none'" class="confirmationDeletebtn">Remove</button>
                             </div>
                         </div>
                     </div>
                 </div>
+                <!--DELETE CONFIRMATION END-->
+
+
             </div>
-
-            <!-- THIRD Modal -->
-            <div id="thirdModal" class="modal">
-                <div class="modal-content">
-                    <span class="thirdClose">&times;</span>
-                    <div class="modal-rating-content">
-                        <div style="display: flex;">
-                            <p>Rating</p>
-                            <div class="commentRatingSectionStars">
-                                <i class="fa-regular fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
-                            </div>
-                        </div>
-                        <div>
-                            <p>Comment</p>
-                            <div class="commentRatingSectionComment">
-                                <textarea id="TextArea3" cols="20" rows="2"></textarea>
-                            </div>
-                        </div>
-                        <div class="commentRatingSectionContainer">
-                            <a href="#" class="commentRatingSectionButton">Submit</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-             <!--DELETE CONFIRMATION-->
-            <div id="id01" class="confirmationModal">
-                <div class="confirmation-modal-content">
-                    <div class="confirmationContainer">
-                        <span onclick="document.getElementById('id01').style.display='none'" class="confirmationClose" title="Close Modal">×</span>
-                        <h1>Remove Review</h1>
-                        <p>Are you sure you want to remove your review?</p>
-
-                        <div class="confirmationClearFix">
-                            <button type="button" onclick="document.getElementById('id01').style.display='none'" class="confirmationCancelbtn">Cancel</button>
-                            <button type="button" onclick="document.getElementById('id01').style.display='none'" class="confirmationDeletebtn">Remove</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-           <!--DELETE CONFIRMATION END-->
-
-
-         </div>
-             <asp:HiddenField ID="HiddenOrderListID" runat="server" />
-        <script>
-
-
-
-       function setRating(rating) {
-    var stars = document.querySelectorAll('.fa-star');
-    for (var i = 0; i < stars.length; i++) {
-        stars[i].classList.remove('checked');
-    }
-    for (var i = 0; i < rating; i++) {
-        stars[i].classList.add('checked');
-    }
-    // Set the value in a hidden field to post to server
-    document.getElementById('<%= HiddenRating.ClientID %>').value = rating;
-            }
-
-
-
-
-
-            function showModal(orderListId, reviewStatus) {
-
-
-                console.log(orderListId, reviewStatus);
-                var modal = document.getElementById('myModal');
-                var secModal = document.getElementById('secModal');
-
-                if (reviewStatus == "Review") {
-                    modal.style.display = "block";
-                } else {
-                    secModal.style.display = "block";
+                <asp:HiddenField ID="HiddenOrderListID" runat="server" ClientIDMode="Static"/>
+            <script>
+                function validateAndSubmit() {
+                    var orderListID = document.getElementById('HiddenOrderListID').value;
+                    if (orderListID === '') {
+                        alert('Order List ID is not set. Please try again.');
+                        return false;
+                    }
+                    return true;  // Proceed with submission
                 }
-    
-                document.getElementById('<%= HiddenOrderListID.ClientID %>').value = orderListId;
-            }
 
 
-        </script>
-    </div>
+                function assignOrderListID(orderListID) {
+                    document.getElementById('HiddenOrderListID').value = orderListID;
+                }
 
+
+                function setRating(rating) {
+                    var stars = document.querySelectorAll('.star1');
+                    for (var i = 0; i < stars.length; i++) {
+                        stars[i].classList.remove('checked');
+                    }
+                    for (var i = 0; i < rating; i++) {
+                        stars[i].classList.add('checked');
+                    }
+                    // Set the value in a hidden field to post to server
+                    document.getElementById('<%= HiddenRating.ClientID %>').value = rating;
+                }
+
+
+                function setRating2(rating) {
+                    var stars = document.querySelectorAll('.star2');
+                    for (var i = 0; i < stars.length; i++) {
+                        stars[i].classList.remove('checked');
+                    }
+                    for (var i = 0; i < rating; i++) {
+                        stars[i].classList.add('checked');
+                    }
+                    // Set the value in a hidden field to post to server
+                    document.getElementById('<%= HiddenRatingUpdate.ClientID %>').value = rating;
+                }
+
+
+                window.onload = function () {
+                    // Get the modal
+                    var modal = document.getElementById('thirdModal');
+
+                    // Get the button that opens the modal
+                    var btn = document.getElementById('thirdBtn');
+
+                    // Get the <span> element that closes the modal
+                    var span = document.getElementsByClassName('thirdClose')[0];
+
+                    // When the user clicks the button, open the modal 
+                    btn.onclick = function () {
+                        modal.style.display = "block";
+
+                    }
+
+                    // When the user clicks on <span> (x), close the modal
+                    span.onclick = function () {
+                        modal.style.display = "none";
+                    }
+
+                    // When the user clicks anywhere outside of the modal, close it
+                    window.onclick = function (event) {
+                        if (event.target == modal) {
+                            modal.style.display = "none";
+                        }
+                    }
+                }
+
+            </script>
 </asp:Content>

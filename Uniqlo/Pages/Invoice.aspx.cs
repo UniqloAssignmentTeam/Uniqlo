@@ -1,10 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.IO;
 using System.Linq;
+using System.Net.Mail;
+using System.Net;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Xml.Linq;
+using iTextSharp.text;
+using iTextSharp.text.pdf;
 
 namespace Uniqlo.Pages
 {
@@ -107,8 +113,168 @@ namespace Uniqlo.Pages
                     }
                 }
             }
+            // Generate PDF receipt
+            byte[] pdfBytes = GeneratePDFReceipt();
 
+            // Send email with PDF attachment
+            SendEmailWithAttachment(pdfBytes);
 
+        }
+
+        // Method to generate PDF receipt
+        private byte[] GeneratePDFReceipt()
+        {
+            // Create a MemoryStream to store the PDF content
+            using (MemoryStream memoryStream = new MemoryStream())
+            {
+                // Create a Document
+                using (Document document = new Document())
+                {
+                    // Create a PdfWriter to write content to the Document
+                    PdfWriter writer = PdfWriter.GetInstance(document, memoryStream);
+
+                    // Open the Document
+                    document.Open();
+
+                    // Add the necessary invoice details to the Document
+                    document.Add(new Paragraph("Invoice Details"));
+                    document.Add(new Paragraph("Payment ID: " + lblPaymentId.Text));
+                    document.Add(new Paragraph("Payment Date & Time: " + lblDateTime.Text));
+                    document.Add(new Paragraph("Customer Name: " + lblCustomerName.Text));
+                    document.Add(new Paragraph("Address: " + lblAddress.Text));
+                    document.Add(new Paragraph("Email: " + lblEmail.Text));
+                    document.Add(new Paragraph("Contact No: " + lblContactNo.Text));
+
+                    // Add the invoice table
+                    PdfPTable table = new PdfPTable(4);
+                    table.AddCell("Product");
+                    table.AddCell("Quantity");
+                    table.AddCell("Price");
+                    table.AddCell("Item Price");
+
+                    foreach (RepeaterItem item in rptCartItems.Items)
+                    {
+                        // Find controls by their HTML element tag name
+                        Label lblProductName = (Label)item.FindControl("lblProductName");
+                        Label lblQuantity = (Label)item.FindControl("lblQuantity");
+                        Label lblPrice = (Label)item.FindControl("lblPrice");
+                        Label lblItemPrice = (Label)item.FindControl("lblItemPrice");
+
+                        table.AddCell(lblProductName.Text);
+                        table.AddCell(lblQuantity.Text);
+                        table.AddCell(lblPrice.Text);
+                        table.AddCell(lblItemPrice.Text);
+                    }
+
+                    document.Add(table);
+
+                    // Add total price and delivery charges
+                    document.Add(new Paragraph("Total Price: " + lblTotalPrice.Text));
+                    document.Add(new Paragraph("Delivery Charges: " + lblDeliveryCharges.Text));
+                    document.Add(new Paragraph("Total: " + lblGrandTotal.Text));
+
+                    // Close the Document
+                    document.Close();
+                }
+
+                // Convert the MemoryStream to a byte array
+                byte[] pdfBytes = memoryStream.ToArray();
+                return pdfBytes;
+            }        
+        }
+
+        // Method to send email with PDF attachment
+        private void SendEmailWithAttachment(byte[] pdfBytes)
+        {
+            string customerEmail = lblEmail.Text; // Get customer's email address
+
+            MailMessage message = new MailMessage();
+            message.From = new MailAddress("yipy-pm21@student.tarc.edu.my"); // Your email address
+            message.To.Add("legengyong0505@gmail.com");
+            message.Subject = "Your Invoice";
+            message.Body = "Please find attached your invoice.";
+
+            // Attach the PDF file
+            MemoryStream ms = new MemoryStream(pdfBytes);
+            Attachment attachment = new Attachment(ms, "Invoice.pdf");
+            message.Attachments.Add(attachment);
+
+            // Configure SMTP settings
+            SmtpClient smtpClient = new SmtpClient();
+            smtpClient.Host = "smtp.gmail.com"; // Your SMTP server
+            smtpClient.Port = 587; // SMTP port (e.g., 587 for Gmail)
+            smtpClient.EnableSsl = true; // Enable SSL if required
+            smtpClient.Credentials = new NetworkCredential("yipy-pm21@student.tarc.edu.my", "030505070475"); // Your email credentials
+
+            // Send the email
+            smtpClient.Send(message);      
+
+        }
+
+        protected void btnPDF_Click(object sender, EventArgs e)
+        {
+            // Create a MemoryStream to store the PDF content
+            using (MemoryStream memoryStream = new MemoryStream())
+            {
+                // Create a Document
+                using (Document document = new Document())
+                {
+                    // Create a PdfWriter to write content to the Document
+                    PdfWriter writer = PdfWriter.GetInstance(document, memoryStream);
+
+                    // Open the Document
+                    document.Open();
+
+                    // Add the necessary invoice details to the Document
+                    document.Add(new Paragraph("Invoice Details"));
+                    document.Add(new Paragraph("Payment ID: " + lblPaymentId.Text));
+                    document.Add(new Paragraph("Payment Date & Time: " + lblDateTime.Text));
+                    document.Add(new Paragraph("Customer Name: " + lblCustomerName.Text));
+                    document.Add(new Paragraph("Address: " + lblAddress.Text));
+                    document.Add(new Paragraph("Email: " + lblEmail.Text));
+                    document.Add(new Paragraph("Contact No: " + lblContactNo.Text));
+
+                    // Add the invoice table
+                    PdfPTable table = new PdfPTable(4);
+                    table.AddCell("Product");
+                    table.AddCell("Quantity");
+                    table.AddCell("Price");
+                    table.AddCell("Item Price");
+
+                    foreach (RepeaterItem item in rptCartItems.Items)
+                    {
+                        // Find controls by their HTML element tag name
+                        Label lblProductName = (Label)item.FindControl("lblProductName");
+                        Label lblQuantity = (Label)item.FindControl("lblQuantity");
+                        Label lblPrice = (Label)item.FindControl("lblPrice");
+                        Label lblItemPrice = (Label)item.FindControl("lblItemPrice");
+
+                        table.AddCell(lblProductName.Text);
+                        table.AddCell(lblQuantity.Text);
+                        table.AddCell(lblPrice.Text);
+                        table.AddCell(lblItemPrice.Text);
+                    }
+
+                    document.Add(table);
+
+                    // Add total price and delivery charges
+                    document.Add(new Paragraph("Total Price: " + lblTotalPrice.Text));
+                    document.Add(new Paragraph("Delivery Charges: " + lblDeliveryCharges.Text));
+                    document.Add(new Paragraph("Total: " + lblGrandTotal.Text));
+
+                    // Close the Document
+                    document.Close();
+                }
+
+                // Send the PDF to the client for download
+                Response.Clear();
+                Response.ContentType = "application/pdf";
+                Response.AddHeader("content-disposition", "attachment;filename=invoice.pdf");
+                Response.Buffer = true;
+                Response.OutputStream.Write(memoryStream.GetBuffer(), 0, memoryStream.GetBuffer().Length);
+                Response.OutputStream.Flush();
+                Response.End();
+            }
         }
     }
 }
