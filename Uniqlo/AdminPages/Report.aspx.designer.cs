@@ -24,6 +24,24 @@ namespace Uniqlo.AdminPages
         protected global::System.Web.UI.ScriptManager ScriptManager1;
 
         /// <summary>
+        /// UpdatePanel1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatePanel1;
+
+        /// <summary>
+        /// reviewSort control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList reviewSort;
+
+        /// <summary>
         /// ProductReviewChart control.
         /// </summary>
         /// <remarks>
@@ -31,6 +49,15 @@ namespace Uniqlo.AdminPages
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.DataVisualization.Charting.Chart ProductReviewChart;
+
+        /// <summary>
+        /// ddlProducts control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlProducts;
 
         /// <summary>
         /// BestSellingProductsChart control.
@@ -42,6 +69,15 @@ namespace Uniqlo.AdminPages
         protected global::System.Web.UI.DataVisualization.Charting.Chart BestSellingProductsChart;
 
         /// <summary>
+        /// ddlCategorySort control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlCategorySort;
+
+        /// <summary>
         /// CategoryProductChart control.
         /// </summary>
         /// <remarks>
@@ -49,6 +85,15 @@ namespace Uniqlo.AdminPages
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.DataVisualization.Charting.Chart CategoryProductChart;
+
+        /// <summary>
+        /// ddlDiscountSort control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlDiscountSort;
 
         /// <summary>
         /// TopDiscountsChart control.
@@ -67,15 +112,6 @@ namespace Uniqlo.AdminPages
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlMonths;
-
-        /// <summary>
-        /// UpdatePanel1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatePanel1;
 
         /// <summary>
         /// SalesChart control.
