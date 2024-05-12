@@ -11,11 +11,15 @@ namespace Uniqlo.AdminPages
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            int orderID = int.Parse(Request.QueryString["OrderID"]);
-            orderIDLabel.Text = orderID.ToString();
+            if (!IsPostBack)
+            {
+                int orderID = int.Parse(Request.QueryString["OrderID"]);
+                orderIDLabel.Text = orderID.ToString();
 
-            BindOrderListDataList(orderID);
-            BindOrderSummaryRepeater(orderID);
+                BindOrderListDataList(orderID);
+                BindOrderSummaryRepeater(orderID);
+            }
+          
 
         }
 
@@ -73,8 +77,11 @@ namespace Uniqlo.AdminPages
 
         protected void submitForm(object sender, EventArgs e)
         {
-            int orderID = int.Parse(Request.QueryString["OrderID"]);
-            DropDownList ddlPaymentStatus = (DropDownList)orderSummaryFormView.FindControl("paymentStatuslbl");
+            // Assuming your FormView's DataKeyNames property is set to "Order_ID"
+            int orderID = (int)orderSummaryFormView.DataKey.Value;
+
+            // Finding the DropDownList from within the FormView
+            DropDownList ddlPaymentStatus = orderSummaryFormView.FindControl("paymentStatuslbl") as DropDownList;
 
             if (ddlPaymentStatus != null)
             {
@@ -82,7 +89,6 @@ namespace Uniqlo.AdminPages
 
                 using (var db = new OrderDbContext())
                 {
-
                     var payment = db.Payment.FirstOrDefault(p => p.Order_ID == orderID);
                     if (payment != null)
                     {
@@ -92,24 +98,24 @@ namespace Uniqlo.AdminPages
                         // Save changes to the database
                         db.SaveChanges();
 
-                        // Optionally, redirect or update UI
-                        Response.Redirect(Request.RawUrl); // Refresh the page to reflect changes
+                        // Optionally, add a notification or refresh the page
+                        Response.Redirect(Request.RawUrl); // Refresh the page to see the changes
                     }
                     else
                     {
-                        // Handle the case where the payment is not found
+                        // Handle the case where no payment was found
                         System.Diagnostics.Debug.WriteLine("No payment record found for Order ID: " + orderID);
+                        // Optionally add error handling or user notification here
                     }
                 }
             }
+            else
+            {
+                // Handle the case where the DropDownList was not found
+                System.Diagnostics.Debug.WriteLine("DropDownList not found in the FormView");
+            }
         }
-        protected void ddlPaymentStatus_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            DropDownList ddlPaymentStatus = orderSummaryFormView.FindControl("paymentStatuslbl") as DropDownList;
-            string status = ddlPaymentStatus.SelectedItem.Text;
-            string script = $"alert('Selected Status: {status}');";
-            ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", script, true);
-        }
+
 
 
 

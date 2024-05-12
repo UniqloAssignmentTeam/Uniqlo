@@ -87,7 +87,7 @@
 
                 <!-- Cart Summary -->
                 <div style="width: 30%;">
-                    <asp:FormView ID="orderSummaryFormView" runat="server" ViewStateMode="Enabled">
+                    <asp:FormView ID="orderSummaryFormView" runat="server" DataKeyNames="Order_ID">
 
                         <HeaderTemplate>
                             <table style="width: 100%" class="table cart-summary">
@@ -115,10 +115,10 @@
                                 <td style="display: flex;">
                                     <div style="padding-top: 6px;"><b>Payment status: </b></div>
                                     <div class="dropdown-wrapper" style="margin-left: 10px;">
-                                        <asp:DropDownList ID="paymentStatuslbl" runat="server" CssClass="dropdown-display" AutoPostBack="false" OnSelectedIndexChanged="ddlPaymentStatus_SelectedIndexChanged" SelectedValue='<%# Bind("Payment_Status") %>'>
-                                            <asp:ListItem Value="Paid">Paid</asp:ListItem>
-                                            <asp:ListItem Value="Unpaid">Unpaid</asp:ListItem>
-                                        </asp:DropDownList>
+                                      <asp:DropDownList ID="paymentStatuslbl" runat="server" CssClass="dropdown-display" AutoPostBack="false" SelectedValue='<%# Eval("Payment_Status") %>'>
+                                    <asp:ListItem Value="Paid">Paid</asp:ListItem>
+                                    <asp:ListItem Value="Unpaid">Unpaid</asp:ListItem>
+                                    </asp:DropDownList>
                                     </div>
                                 </td>
                             </tr>

@@ -172,7 +172,7 @@
                             <td class="col name"><%# Eval("CustomerName") %></td>
                             <td class="col price"><%# Eval("OrderListTotalItems") %></td>
                             <td class="col gender"><%# Eval("PaymentTotalAmount") %></td>
-                            <td class="col category"><%# Eval("PaymentDate") %></td>
+                            <td class="col category"><%# Eval("PaymentDate", "{0:dd/MM/yyyy}") %></td>
                             <td class="col wear"><%# Eval("PaymentStatus") %></td>
                             <td class="col eclipse-container" onclick="toggleDropdown('dropdownList<%# Eval("OrderId") %>', 'dropdownDisplay<%# Eval("OrderId") %>')">
                                 <div class="eclipse-display" id="dropdownDisplay<%# Eval("OrderId") %>" style="border: none;"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></div>
