@@ -2,8 +2,12 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="main" runat="server">
     <header>
         <link href="../../../css/product.css" rel="stylesheet" />
+
+
     </header>
+
     <div class="productBody" style="margin-top:50px">
+
 
         <asp:FormView ID="formView" runat="server" OnDataBound="formView_DataBound">
             <ItemTemplate>
@@ -242,6 +246,13 @@
         <script src="../../../Javascript/wishList.js"></script>
         <script src="../../../Javascript/productAdminDDL.js"></script>
         <script src="../../../Javascript/colorRadioList.js"></script>
+
+        <script>
+            function shareOnTwitter() {
+                var shareUrl = 'https://twitter.com/intent/tweet?url=' + encodeURIComponent(window.location.href) + '&text=' + encodeURIComponent(document.title);
+                window.open(shareUrl, '_blank', 'width=600,height=400');
+            } >
+        </script>
     </footer>
 </asp:Content>
     

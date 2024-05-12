@@ -12,6 +12,10 @@
             .continue-button {
                 padding: 20px 100px 20px 60px;
             }
+
+            .validation-error {
+                color: red; /* Set the color to red */
+            }
         </style>
     </header>
 
@@ -46,7 +50,8 @@
                         </tr>
                         <tr>
                             <td class="form-group">
-                                <asp:TextBox ID="txtProdName" runat="server" Text='<%# Eval("Product_Name") %>'></asp:TextBox>
+                                <asp:TextBox ID="txtProdName" runat="server" MaxLength="100" Text='<%# Eval("Product_Name") %>'></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="rfvProductName" ControlToValidate="txtProdName" runat="server" ErrorMessage="Product name is required." CssClass="validation-error"/>
                             </td>
                         </tr>
                         <tr>
@@ -56,7 +61,8 @@
                         </tr>
                         <tr>
                             <td class="form-group">
-                                <asp:TextBox ID="txtDescription" CssClass="form-field" TextMode="MultiLine" runat="server" Rows="4" Columns="50" Text='<%# Eval("Description") %>'></asp:TextBox>
+                                <asp:TextBox ID="txtDescription" CssClass="form-field" TextMode="MultiLine" MaxLength="500" runat="server" Rows="4" Columns="50" Text='<%# Eval("Description") %>'></asp:TextBox>
+                                    <asp:RequiredFieldValidator ID="rfvProductDescription" ControlToValidate="txtDescription" runat="server" ErrorMessage="Product description is required." CssClass="validation-error" />
                             </td>
                         </tr>
                         <tr>
@@ -67,6 +73,17 @@
                         <tr>
                             <td class="form-group">
                                 <asp:TextBox ID="txtPrice" CssClass="form-field" runat="server" Text='<%# Eval("Price") %>'></asp:TextBox>
+                                <div>
+                                    <div>
+                                        <asp:RequiredFieldValidator ID="rfvPrice" ControlToValidate="txtPrice" runat="server" ErrorMessage="Price is required." CssClass="validation-error"/>
+                                    </div>
+                                    <div>
+                                        <asp:RegularExpressionValidator ID="revPrice" ControlToValidate="txtPrice" runat="server" ErrorMessage="Invalid price format." ValidationExpression="^\d+(\.\d{1,2})?$" CssClass="validation-error"/>
+                                    </div>
+                                    <div>
+                                        <asp:RangeValidator ID="rvPrice" ControlToValidate="txtPrice" runat="server" ErrorMessage="Price must be between RM0.01 and RM999.99." MinimumValue="0.01" CssClass="validation-error" MaximumValue="999.99" Type="Double" />
+                                    </div>
+                                </div>
                             </td>
                         </tr>
                         <tr>
@@ -78,10 +95,12 @@
                             <td class="form-group">
                                 <asp:Panel ID="Panel1" runat="server" CssClass="dropdown-container">
                                     <asp:DropDownList ID="ddlCategory" runat="server" CssClass="dropdown-display" SelectedValue='<%# Eval("Category.Name") %>'>
+                                        <asp:ListItem Text="All Category" Value="" Selected="True"></asp:ListItem>
                                         <asp:ListItem Text="Tops" Value="Top"></asp:ListItem>
                                         <asp:ListItem Text="Bottoms" Value="Bottom"></asp:ListItem>
                                     </asp:DropDownList>
                                 </asp:Panel>
+                                <asp:RequiredFieldValidator ID="rfvCategory" ControlToValidate="ddlCategory" runat="server" InitialValue="" ErrorMessage="Please select a Category." CssClass="validation-error"/>
                             </td>
                         </tr>
                         <tr>
@@ -93,17 +112,21 @@
                             <td class="form-group">
                                 <asp:Panel ID="Panel2" runat="server" CssClass="dropdown-container">
                                     <asp:DropDownList ID="ddlGender" runat="server" CssClass="dropdown-display" SelectedValue='<%# Eval("Category.Gender") %>'>
+                                        <asp:ListItem Text="All Gender" Value="" Selected="True"></asp:ListItem>
                                         <asp:ListItem Text="Men" Value="M"></asp:ListItem>
                                         <asp:ListItem Text="Women" Value="W"></asp:ListItem>
                                     </asp:DropDownList>
                                 </asp:Panel>
+                                <asp:RequiredFieldValidator ID="rfvGender" ControlToValidate="ddlGender" runat="server" InitialValue="" ErrorMessage="Please select a Gender." CssClass="validation-error"/>
                             </td>
                         </tr>
                         <tr>
                             <td class="form-group">
                                 <asp:Label ID="lblColor" runat="server" Text="Color"></asp:Label>
                                 <asp:TextBox ID="newColorInput" runat="server" ClientIDMode="Static"></asp:TextBox>
-                                <asp:Button ID="addColorButton" runat="server" Text="Add Color" CssClass="addColor-button" ClientIDMode="Static" />
+                                <div style="display: flex;">
+                                    <asp:Button ID="addColorButton" runat="server" Text="Add Color" CssClass="addColor-button" ClientIDMode="Static" CausesValidation="false" />
+                                </div>
                             </td>
                         </tr>
 
@@ -121,7 +144,7 @@
                                             </td>
                                             <td style="width: 60%;">
                                                 <div style="display:flex; justify-content:right;">
-                                                    <asp:LinkButton ID="btnDelete" runat="server" Text="Delete" class="addColor-button" CommandArgument='<%# Eval("FirstImageId") %>' OnCommand="btnDelete_Click" />
+                                                    <asp:LinkButton ID="btnDelete" runat="server" Text="Delete" class="addColor-button" CommandArgument='<%# Eval("FirstImageId") %>' OnClientClick="return confirmDelete();" OnCommand="btnDelete_Click" />
                                                 </div>
                                             </td>
                                         </tr>
@@ -150,7 +173,6 @@
                     </table>
                 </ItemTemplate>
             </asp:FormView>
-            
 
             <asp:Panel ID="colorTablesContainer" runat="server" ClientIDMode="Static" CssClass="colorTablesContainer"></asp:Panel>
             <asp:HiddenField ID="HiddenFieldData" runat="server" ClientIDMode="Static"/>
@@ -252,6 +274,7 @@
                     if (colorTableWrapper) {
                         colorTableWrapper.remove();
                         updateHiddenField();
+                        alert("Delete successful!");
                     }
                 }
 
@@ -276,54 +299,72 @@
 
 
 
-                //update the hidden field with a list of color, quantity and size
-                function updateHiddenField(button) {
-                    var data = [];
+
+                function updateHiddenField() {
+                    var data = []; // Reset data array
                     var colorTables = document.querySelectorAll('.color-table-wrapper');
                     var totalFilesToRead = colorTables.length;
-                    var readFilesCount = 0;  // Counter to keep track of the number of processed files
+                    var readFilesCount = 0; // Counter to keep track of the number of processed files
+                    var imageFound = false; // Flag to check if any image is found
 
-                    colorTables.forEach(function (table, index) {
-                        var colorName = table.querySelector('input[type="hidden"]').value;
-                        var sizeS = table.querySelector('input[id^="sizeS"]').value;
-                        var sizeM = table.querySelector('input[id^="sizeM"]').value;
-                        var sizeL = table.querySelector('input[id^="sizeL"]').value;
-                        var sizeXL = table.querySelector('input[id^="sizeXL"]').value;
-                        var fileInput = table.querySelector('input[type="file"]');
+                    // If no color tables exist, update the hidden field immediately with an empty array
+                    if (totalFilesToRead === 0) {
+                        document.getElementById('<%= HiddenFieldData.ClientID %>').value = '[]';
+                    console.log("Updated Hidden Field Data: []");
+                    return;
+                }
 
-                        // Function to handle the file reading and data aggregation
-                        function handleFileRead(base64String) {
+                colorTables.forEach(function (table, index) {
+                    var colorName = table.querySelector('input[type="hidden"]').value;
+                    var sizeS = table.querySelector('input[id^="sizeS"]').value;
+                    var sizeM = table.querySelector('input[id^="sizeM"]').value;
+                    var sizeL = table.querySelector('input[id^="sizeL"]').value;
+                    var sizeXL = table.querySelector('input[id^="sizeXL"]').value;
+                    var fileInput = table.querySelector('input[type="file"]');
+
+                    if (fileInput.files.length > 0) {
+                        imageFound = true; // Set flag to true as an image is found
+                        var reader = new FileReader();
+                        reader.onload = function (e) {
                             data.push({
                                 Color: colorName,
                                 SizeS: sizeS,
                                 SizeM: sizeM,
                                 SizeL: sizeL,
                                 SizeXL: sizeXL,
-                                Image: base64String
+                                Image: e.target.result
                             });
-                            readFilesCount++;  // Increment the counter after each file read
+                            readFilesCount++; // Increment the counter
 
                             // Check if all files have been processed
-                            if (readFilesCount === totalFilesToRead) {
+                            if (readFilesCount === totalFilesToRead && imageFound) {
                                 var jsonStr = JSON.stringify(data);
                                 document.getElementById('<%= HiddenFieldData.ClientID %>').value = jsonStr;
                                 console.log("Updated Hidden Field Data:", jsonStr);
+                                alert("Update successful!"); // Alert on successful update
                             }
-                        }
+                        };
+                        reader.readAsDataURL(fileInput.files[0]);
+                    } else {
+                        readFilesCount++; // Increment the counter since processing a table even without an image
+                    }
+                });
 
-                        if (fileInput.files.length > 0) {
-                            var reader = new FileReader();
-                            reader.onload = function (e) {
-                                handleFileRead(e.target.result);
-                            };
-                            reader.readAsDataURL(fileInput.files[0]);
-                        } else {
-                            handleFileRead(''); // Handle case where no file is selected
-                        }
-                    });
+                // Check after processing all tables if no images were found
+                if (!imageFound) {
+                    alert("Please upload at least one image.");
                 }
+            }
 
 
+                function confirmDelete() {
+                    if (confirm("Are you sure you want to delete?")) {
+                        alert("Delete successful!");
+                        return true;
+                    } else {
+                        return false;
+                    }
+                }
 
 
 

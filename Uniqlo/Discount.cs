@@ -13,6 +13,7 @@ namespace Uniqlo
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.Data.Entity;
+
     public partial class Discount
     {
         public int Discount_ID { get; set; }
@@ -24,7 +25,6 @@ namespace Uniqlo
     
         public virtual Product Product { get; set; }
     }
-
     public class DiscountDbContext : DbContext
     {
         public DiscountDbContext() : base("name=UniqloEntities") // Ensure this matches your connection string in Web.config
@@ -33,4 +33,5 @@ namespace Uniqlo
         public DbSet<Product> Product { get; set; }
         public DbSet<Discount> Discount { get; set; }
     }
+
 }

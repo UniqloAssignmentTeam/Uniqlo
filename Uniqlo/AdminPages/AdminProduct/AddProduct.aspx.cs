@@ -24,7 +24,8 @@ namespace Uniqlo.AdminPages
         //string cs = Global.CS;
         protected void Page_Load(object sender, EventArgs e)
         {
-           
+
+
         }
 
         public class ColorSize
@@ -39,6 +40,12 @@ namespace Uniqlo.AdminPages
 
         protected void addButton_Click(object sender, EventArgs e)
         {
+            if (HiddenFieldData.Value.Trim() == "" || HiddenFieldData.Value == "[]")
+            {
+                cvHiddenFieldData.IsValid = false;
+                cvHiddenFieldData.ErrorMessage = "Please add a color.";
+            }
+
             if (Page.IsValid)
             {
                 string productName = txtProductName.Text;

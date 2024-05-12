@@ -1,15 +1,21 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Uniqlo.Master" AutoEventWireup="true" CodeBehind="ValueBuy.aspx.cs" Inherits="Uniqlo.Pages.ValueBuy" %>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="main" runat="server">
-      <%@ Register TagPrefix="recaptcha" Namespace="Recaptcha" Assembly="Recaptcha" %>
+     
     <header>
-         <script src="https://www.google.com/recaptcha/api.js"></script>
+      
         <link href="../css/ValueBuy.css" rel="stylesheet" />
          <script>
              function onSubmit(token) {
                  document.getElementById("demo-form").submit();
              }
          </script>
+<style>
+    .hyperlink{
+        text-decoration: none;
+        color: #6F6F6F;
+    }
+</style>
     </header>
 
     <asp:ScriptManager ID="ValueManagerStaff" runat="server" />
@@ -19,10 +25,7 @@
 
         <ContentTemplate>
 
-            <button class="g-recaptcha" 
-        data-sitekey="reCAPTCHA_site_key" 
-        data-callback='onSubmit' 
-        data-action='submit'>Submit</button>
+          
 
             <div class="productBody">
                 <!--LIMITED OFFER CARD-->
@@ -98,7 +101,7 @@
                     <ItemTemplate>
 
 
-
+                           <asp:HyperLink ID="productLink" runat="server" NavigateUrl='<%# "/Pages/ProductDetails.aspx?ProdID=" +  Eval("Product_ID") %>' CssClass="hyperlink">
                         <div class="limitedOfferCardContainer">
                             <div class="limitedOfferCard" id="product9" data-product-id="1">
                                 <div class="product-image-container">
@@ -136,6 +139,7 @@
                             </div>
 
                         </div>
+                            </asp:HyperLink>
                     </ItemTemplate>
                 </asp:DataList>
 
@@ -181,13 +185,7 @@
 
          <script>
 
-             grecaptcha.ready(function () {
-                 grecaptcha.execute('6LcQr9gpAAAAALZ_qGE5V4MDe0jhOesJLNFfmZd2', { action: 'login' }).then(function (token) {
-                     document.getElementById('recaptchaResponse').value = token;
-                     // Optionally, you can submit the form here if auto-postback is disabled
-                     // document.getElementById('yourFormId').submit();
-                 });
-             });
+            
 
          </script>  
         <script src="../Javascript/valueBuy.js"></script>

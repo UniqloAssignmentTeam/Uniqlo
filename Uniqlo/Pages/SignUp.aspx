@@ -83,6 +83,12 @@
                         
                         <asp:Button ID="btnSignUp" runat="server" Text="Sign Up" OnClick="btnSignUp_Click" />
                     </div>
+
+                    <!-- Message for image -->
+                    <div class="field button-field">
+                        <asp:Label ID="lblUploadMess" runat="server" Text="Label"></asp:Label>
+                        <asp:Label ID="lblReg" runat="server" Text="Label"></asp:Label>
+                    </div>
                 
                 
                 <!-- Redirect to Login -->

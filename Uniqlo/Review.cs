@@ -30,5 +30,6 @@ namespace Uniqlo
 
             public DbSet<Review> Review { get; set; }
         }
+
     }
 }
