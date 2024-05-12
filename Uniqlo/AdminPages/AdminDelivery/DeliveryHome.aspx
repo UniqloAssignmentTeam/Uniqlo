@@ -141,7 +141,7 @@
 
                 <div class="search">
     <span class="material-symbols-outlined">search</span>
-  <asp:TextBox ID="searchBox" runat="server" CssClass="search-input" AutoPostBack="true" OnTextChanged="searchBox_TextChanged"  placeholder="Search Delivery ID"></asp:TextBox>
+  <asp:TextBox ID="searchBox" runat="server" CssClass="search-input" AutoPostBack="true" onkeypress="return isNumber(event)" OnTextChanged="searchBox_TextChanged"  placeholder="Search Delivery ID"></asp:TextBox>
        
 </div> 
 
@@ -216,17 +216,8 @@
 
     </div>
 
-    <div class="pagination">
-        <a href="#" class="page-link" onclick="changePage('prev')">&laquo;</a>
-        <a href="#" class="page-link active" onclick="changePage(1)">1</a>
-        <a href="#" class="page-link" onclick="changePage(2)">2</a>
-        <a href="#" class="page-link" onclick="changePage(3)">3</a>
-        <a href="#" class="page-link" onclick="changePage(4)">4</a>
-        <a href="#" class="page-link" onclick="changePage(5)">5</a>
-
-
-        <a href="#" class="page-link" onclick="changePage('next')">&raquo;</a>
-    </div>
+        <div style="margin-bottom: 80px;">
+        </div>
 
   <div id="id01" class="confirmationModal">
     <div class="confirmation-modal-content">
@@ -249,6 +240,14 @@
    <footer>
 
        <script type="text/javascript">
+
+           function isNumber(evt) {
+               var charCode = (evt.which) ? evt.which : event.keyCode;
+               if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+                   return false;
+               }
+               return true;
+           }
            function showDeleteModal(deliveryId) {
                document.getElementById('<%= hiddenDeliveryId.ClientID %>').value = deliveryId; 
                document.getElementById('id01').style.display = 'block';  

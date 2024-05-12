@@ -40,16 +40,18 @@ namespace Uniqlo.Pages
                 SqlCommand command = new SqlCommand();
                 command.Connection = connection;
                 command.CommandText = @"
-                SELECT 
-                    q.Quantity_Id, p.Product_Name, p.Description, 
-                    q.Size, q.Color, p.Price, 
-                    (p.Price - ISNULL(d.Discount_Amount, 0)) as DiscountedPrice
-                FROM 
-                    Quantity q
-                    JOIN Product p ON q.Product_ID = p.Product_ID
-                    LEFT JOIN Discount d ON p.Product_ID = d.Product_ID AND d.Status = 'Active'
-                WHERE 
-                    q.Quantity_Id IN ({0})";
+        SELECT 
+            q.Quantity_Id, p.Product_Name, p.Description, 
+            q.Size, q.Color, p.Price, 
+            (p.Price - ISNULL(d.Discount_Amount, 0)) as DiscountedPrice,
+            i.ProductImage
+        FROM 
+            Quantity q
+            JOIN Product p ON q.Product_ID = p.Product_ID
+            LEFT JOIN Discount d ON p.Product_ID = d.Product_ID AND d.Status = 'Active'
+            JOIN Image i ON q.Image_ID = i.Image_ID
+        WHERE 
+            q.Quantity_Id IN ({0})";
 
                 // Constructing parameter placeholders and adding parameters to avoid SQL Injection
                 var parameterNames = new List<string>();
@@ -81,7 +83,9 @@ namespace Uniqlo.Pages
                             Price = Convert.ToDecimal(reader["Price"]),
                             Quantity = cartItems.First(c => c.Quantity_Id == quantityId).Quantity,
                             OriginalPrice = Convert.ToDecimal(reader["Price"]), // Assuming original price is just the listed price
-                            DiscountedPrice = Convert.ToDecimal(reader["DiscountedPrice"])
+                            DiscountedPrice = Convert.ToDecimal(reader["DiscountedPrice"]),
+                            // Convert the binary image data to a byte array
+                            ImageData = reader["ProductImage"] as byte[]
                         };
                         items.Add(item);
                     }
@@ -89,5 +93,6 @@ namespace Uniqlo.Pages
             }
             return items;
         }
+
     }
 }

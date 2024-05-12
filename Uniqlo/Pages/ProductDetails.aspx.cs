@@ -11,6 +11,8 @@ using System.Data.SqlClient;
 using System.Data;
 using System.Threading.Tasks;
 using System.Collections;
+using Uniqlo.Pages.Categories.Women;
+using System.Web.UI.HtmlControls;
 
 namespace Uniqlo.Pages
 {
@@ -27,6 +29,7 @@ namespace Uniqlo.Pages
                 if (Request.QueryString["ProdID"] != null && int.TryParse(Request.QueryString["ProdID"], out productId))
                 {
                     BindFormView(productId);
+                    FindQuantity(productId);
                 }
             }
 
@@ -72,7 +75,8 @@ namespace Uniqlo.Pages
                             {
                                 Color = g.Key,
                                 Quantities = g.ToList(),
-                                FirstImageId = g.Select(q => q.Image_ID).FirstOrDefault()
+                                FirstImageId = g.Select(q => q.Image_ID).FirstOrDefault(),
+                                ImageCount = g.Select(q => q.Image_ID).Distinct().Count()
                             }).ToList()
                     }).ToList();
 
@@ -80,8 +84,11 @@ namespace Uniqlo.Pages
                 formView.DataSource = productList;
                 formView.DataBind();
 
+
                 formView1.DataSource = productList;
                 formView1.DataBind();
+
+
             }
         }
 
@@ -110,6 +117,7 @@ namespace Uniqlo.Pages
         {
             if (formView.DataItem != null)
             {
+
                 DataList dataList = formView.FindControl("dataList") as DataList;
 
                 if (dataList != null)
@@ -160,7 +168,7 @@ namespace Uniqlo.Pages
         {
             RadioButtonList rbList = (RadioButtonList)sender;
             string selectedColor = rbList.SelectedValue;
-            
+
             RadioButtonList rbSizes = (RadioButtonList)formView.FindControl("RadioButtonListSizes");
             Session["selectedColor"] = selectedColor;
             Session["selectedSize"] = rbSizes.SelectedValue;
@@ -171,17 +179,27 @@ namespace Uniqlo.Pages
                 using (var db = new ProductDbContext())
                 {
                     var sizes = db.Quantity
-                                  .Where(q => q.Product_ID == productId && q.Color == selectedColor && !q.IsDeleted) 
+                                  .Where(q => q.Product_ID == productId && q.Color == selectedColor && !q.IsDeleted)
                                   .Select(q => q.Size)
                                   .Distinct()
                                   .ToList();
 
                     // Define the custom order
                     var sizeOrder = new List<string> { "S", "M", "L", "XL" };
+
                     sizes = sizes.OrderBy(s => sizeOrder.IndexOf(s)).ToList();
 
                     rbSizes.DataSource = sizes;
                     rbSizes.DataBind();
+
+                    // Get the maximum stock value among all sizes for the selected color
+                    int maxStock = db.Quantity
+                                      .Where(q => q.Product_ID == productId && q.Color == selectedColor && !q.IsDeleted)
+                                      .Max(q => q.Qty);
+
+                    // Update the MaxLength of txtQty based on the maximum stock value
+                    TextBox txtQty = (TextBox)formView.FindControl("txtQty");
+                    txtQty.MaxLength = maxStock.ToString().Length;
                 }
             }
             else
@@ -190,6 +208,32 @@ namespace Uniqlo.Pages
                 rbSizes.Items.Add(new ListItem("Invalid product ID", ""));
             }
         }
+
+        protected void FindQuantity(int productId)
+        {
+            Label lblSize = (Label)formView.FindControl("lblSize");
+
+
+            using (var db = new ProductDbContext())
+            {
+                var sizes = db.Quantity
+                              .Where(q => q.Product_ID == productId && !q.IsDeleted)
+                              .Select(q => q.Size)
+                              .Distinct()
+                              .ToList();
+
+                if (sizes == null || sizes.Count == 0)
+                {
+                    lblSize.Text = "Out of stock";
+                }
+                else
+                {
+                    lblSize.Text = "";
+                }
+            }
+
+        }
+
 
         protected void RadioButtonListSizes_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -209,10 +253,14 @@ namespace Uniqlo.Pages
                 {
                     var quantity = db.Quantity
                                     .Where(q => q.Product_ID == productId && q.Color == selectedColor && q.Size == selectedSize && !q.IsDeleted)
-                                    .Select(q => q.Qty) 
+                                    .Select(q => q.Qty)
                                     .FirstOrDefault();
 
                     labelQuantity.Text = quantity != 0 ? $"  ({quantity})" : "  (Out of Stock)";
+
+                    // Update the MaxLength of txtQty based on the selected size's stock value
+                    TextBox txtQty = (TextBox)formView.FindControl("txtQty");
+                    txtQty.MaxLength = quantity.ToString().Length;
                 }
             }
             else
@@ -220,7 +268,6 @@ namespace Uniqlo.Pages
                 labelQuantity.Text = "Invalid product ID.";
             }
         }
-
 
         public string GenerateStars(double rating)
         {
@@ -257,12 +304,50 @@ namespace Uniqlo.Pages
             string selectedColor = (string)Session["selectedColor"];
             TextBox txtQty = (TextBox)formView.FindControl("txtQty");
             int quantity = Int32.Parse(txtQty.Text);
-            Response.Redirect("ProductDetails.aspx");
+
+            int quantityId = GetQuantityId(int.Parse(Request.QueryString["ProdID"]), selectedSize, selectedColor);
+
+            CartItem item = new CartItem
+            {
+                Quantity_Id = quantityId,
+                Size = selectedSize,
+                Color = selectedColor,
+                Quantity = quantity
+            };
+
+            if (Session["Cart"] == null)
+            {
+                // Create a new cart and add the item to it
+                List<CartItem> cart = new List<CartItem>();
+                cart.Add(item);
+                Session["Cart"] = cart;
+            }
+            else
+            {
+                // Retrieve the existing cart and add the item to it
+                List<CartItem> cart = (List<CartItem>)Session["Cart"];
+                cart.Add(item);
+                Session["Cart"] = cart;
+            }
 
 
-
+            // Redirect the user back to the product details page
+            Response.Redirect("ProductDetails.aspx?ProdID=" + Request.QueryString["ProdID"]);
         }
+    
 
+        // Method to retrieve the quantity ID based on size, color, and product ID
+        private int GetQuantityId(int productId, string selectedSize, string selectedColor)
+        {
+            using (var db = new ProductDbContext())
+            {
+                var quantityId = db.Quantity
+                    .Where(q => q.Product_ID == productId && q.Size == selectedSize && q.Color == selectedColor)
+                    .Select(q => q.Quantity_ID)
+                    .FirstOrDefault();
+                return quantityId;
+            }
+        }
         /*ADD Function*/
 
 

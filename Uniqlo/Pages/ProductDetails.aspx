@@ -2,14 +2,19 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="main" runat="server">
     <header>
         <link href="../../../css/product.css" rel="stylesheet" />
-
+        <style>
+            .lblRed{
+                color:red;
+                font-weight: bold;
+            }
+        </style>
 
     </header>
 
     <div class="productBody" style="margin-top:50px">
 
 
-        <asp:FormView ID="formView" runat="server" OnDataBound="formView_DataBound">
+        <asp:FormView ID="formView" runat="server" OnDataBound="formView_DataBound" OnPageIndexChanging="formView_PageIndexChanging">
             <ItemTemplate>
                 <div class="card-wrapper">
                     <div class="productItemCard">
@@ -22,8 +27,8 @@
                                 </div>
                             </div>
 
-                            <!-- Thumbnails -->
-                            <div class="img-select">
+                            <!-- Thumbnails --> 
+                            <div class="img-select" runat="server" id="imgSelect" style="display:block;">
                                 <asp:DataList ID="dataList" runat="server" RepeatDirection="Horizontal" Width="100%">
                                     <ItemTemplate>  
                                         <div class="img-item">
@@ -59,38 +64,39 @@
                                 </ul>
                             </div>
 
-
-                            <div class="productColorSection">
-                                <div class="purchase-color">
-                                    <h3>Color:
-                                <label id="color"></label></h3>
-                                    <div class="purchase-color-item">
-                                        <asp:RadioButtonList ID="RadioButtonListColors" runat="server" RepeatDirection="Horizontal" Visible="True" AutoPostBack="True" OnSelectedIndexChanged="RadioButtonListColors_SelectedIndexChanged">
-                                        </asp:RadioButtonList>
-                                    </div>
-                                </div>
-                            </div>
-
-
-
-
-                            <div class="productQtySizeSection">
-                                <div class="purchase-size">
-                                    <h3>Size: <%# Eval("Category.Gender").ToString() == "M" ? "Men " : (Eval("Category.Gender").ToString() == "W" ? "Woman" : "Not Specified") %>
-                                        <asp:Label ID="labelQuantity" runat="server" Text=""></asp:Label>
-                                    </h3>
-                                    <div class="purchase-size-item">
-                                        <asp:RadioButtonList ID="RadioButtonListSizes" runat="server" RepeatDirection="Horizontal" Visible="True" CssClass="custom-radio-list"  AutoPostBack="True" OnSelectedIndexChanged="RadioButtonListSizes_SelectedIndexChanged">
-                                        </asp:RadioButtonList>
+                                <div class="productColorSection">
+                                    <div class="purchase-color">
+                                        <h3>Color:
+                                            <label id="color"></label>
+                                        </h3>
+                                        <div class="purchase-color-item">
+                                            <asp:RadioButtonList ID="RadioButtonListColors" runat="server" RepeatDirection="Horizontal" Visible="True" AutoPostBack="True" OnSelectedIndexChanged="RadioButtonListColors_SelectedIndexChanged">
+                                            </asp:RadioButtonList>
+                                        </div>
                                     </div>
                                 </div>
 
-                                <div class="purchase-info">
-                                    <h3>Quantity: </h3>
-                                    <asp:TextBox ID="txtQty" class="qty" runat="server" Text="1"></asp:TextBox>
-                                    
-                                </div>
-                            </div>
+                                <div class="productQtySizeSection">
+                                    <div class="purchase-size">
+                                        <h3>Size: <%# Eval("Category.Gender").ToString() == "M" ? "Men " : (Eval("Category.Gender").ToString() == "W" ? "Woman" : "Not Specified") %>
+                                            <asp:Label ID="labelQuantity" runat="server" Text=""></asp:Label>
+                                        </h3>
+                                        <div class="purchase-size-item">
+                                            <asp:RadioButtonList ID="RadioButtonListSizes" runat="server" RepeatDirection="Horizontal" Visible="True" CssClass="custom-radio-list"  AutoPostBack="True" OnSelectedIndexChanged="RadioButtonListSizes_SelectedIndexChanged">
+                                            </asp:RadioButtonList>
+                                            
+                                        </div>
+                                    </div>
+
+                                    <div class="purchase-info">
+                                        <h3>Quantity: </h3>
+                                        <asp:TextBox ID="txtQty" class="qty" runat="server" Text="1" onkeypress="return isNumber(event)" MaxLength="5"></asp:TextBox>
+                                    </div>
+                                </div> 
+                                    <asp:Label ID="lblSize" runat="server" Text="" CssClass="lblRed"></asp:Label>
+                            
+
+
 
                             <!--NO ANIMATION ADD TO CART BUTTON-->
                             <div class="cart-button">
@@ -237,6 +243,15 @@
 
     </div>
     <footer>
+        <script type="text/javascript">
+            function isNumber(evt) {
+                var charCode = (evt.which) ? evt.which : event.keyCode;
+                if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+                    return false;
+                }
+                return true;
+            }
+        </script>
         <script src="../../../Javascript/category.js"></script>
         <script src="../../../Javascript/slider.js"></script>
         <script src="../../../Javascript/productItem.js"></script>
