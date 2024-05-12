@@ -1,7 +1,6 @@
 ﻿document.addEventListener('DOMContentLoaded', function () {
     var cartItems = document.querySelectorAll('.cart-item');
     var removeItemButtons = document.querySelectorAll('.remove-item');
-
     // Update totals initially
     updateCartTotals();
 
@@ -33,16 +32,22 @@
 
         document.querySelectorAll('.cart-item').forEach(function (cartItem) {
             var quantity = parseInt(cartItem.querySelector('.qty').value, 10);
-            var priceText = cartItem.querySelector('.item-subtotal').textContent;
-            var itemSubtotal = parseFloat(priceText.replace('Subtotal: RM ', ''));
-
+            var priceText = cartItem.querySelector('.item-subtotal').textContent.trim(); // Trim whitespace
+            var itemSubtotal = parseFloat(priceText.replace('Item Price: RM ', '')); // Adjust to match text content
+            console.log("Item Subtotal:", itemSubtotal);
             totalItems += quantity;
             subtotal += itemSubtotal;
         });
 
+        console.log("Total Items:", totalItems);
+        console.log("Subtotal:", subtotal);
+
         document.getElementById('totalItemsLabel').textContent = totalItems;
         document.getElementById('totalSubtotalLabel').textContent = subtotal.toFixed(2);
     }
+
+
+
 
     // Modal close button functionality
     var closeButtons = document.querySelectorAll('.close');
@@ -53,29 +58,6 @@
     });
 });
 
-
-
-
-// Function to update the cart totals
-function updateCartTotals() {
-    var cartItems = document.querySelectorAll('.cart-item');
-    var totalItems = 0;
-    var subtotal = 0;
-
-    cartItems.forEach(function (cartItem) {
-        var quantity = parseInt(cartItem.querySelector('.qty').value, 10);
-        var itemSubtotal = parseFloat(cartItem.querySelector('.item-subtotal').textContent.replace('Subtotal: RM ', ''));
-        totalItems += quantity;
-        subtotal += itemSubtotal;
-    });
-
-    document.getElementById('totalItemsLabel').textContent = totalItems;
-    document.getElementById('totalSubtotalLabel').textContent = subtotal.toFixed(2);
-
-    calculateTax(subtotal); // Calculate and display the tax and total price based on new subtotal
-}
-
-// Function to calculate and display tax and update total price
 function calculateTax(subtotal) {
     var taxRate = 0.10;
     var taxAmount = subtotal * taxRate;
