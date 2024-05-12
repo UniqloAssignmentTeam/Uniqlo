@@ -65,6 +65,7 @@ namespace Uniqlo.Pages
                                 CustomerName = r.OrderList.Order.Customer.Name
                             }).ToList(),
                         ColorGroups = p.Quantities
+                            .Where(q => !q.IsDeleted)
                             .GroupBy(q => q.Color)
                             .Select(g => new
                             {
@@ -135,7 +136,7 @@ namespace Uniqlo.Pages
                 
 
                 var colors = db.Quantity
-               .Where(q => q.Product_ID == prodID)  // Filter by Product_ID
+               .Where(q => q.Product_ID == prodID && !q.IsDeleted)  // Filter by Product_ID
                .Select(q => q.Color)
                .Distinct()
                .ToList();
@@ -168,7 +169,7 @@ namespace Uniqlo.Pages
                 using (var db = new ProductDbContext())
                 {
                     var sizes = db.Quantity
-                                  .Where(q => q.Product_ID == productId && q.Color == selectedColor) 
+                                  .Where(q => q.Product_ID == productId && q.Color == selectedColor && !q.IsDeleted) 
                                   .Select(q => q.Size)
                                   .Distinct()
                                   .ToList();
@@ -205,7 +206,7 @@ namespace Uniqlo.Pages
                 using (var db = new ProductDbContext())
                 {
                     var quantity = db.Quantity
-                                    .Where(q => q.Product_ID == productId && q.Color == selectedColor && q.Size == selectedSize)
+                                    .Where(q => q.Product_ID == productId && q.Color == selectedColor && q.Size == selectedSize && !q.IsDeleted)
                                     .Select(q => q.Qty) 
                                     .FirstOrDefault();
 

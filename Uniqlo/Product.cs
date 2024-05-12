@@ -13,7 +13,6 @@ namespace Uniqlo
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.Data.Entity;
-
     public partial class Product
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]

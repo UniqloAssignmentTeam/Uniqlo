@@ -49,6 +49,7 @@ namespace Uniqlo.AdminPages
                         Price = p.Price,
                         Category = p.Category,
                         ColorGroups = p.Quantities
+                            .Where(q => !q.IsDeleted)
                             .GroupBy(q => q.Color)
                             .Select(g => new
                             {
@@ -107,14 +108,14 @@ namespace Uniqlo.AdminPages
         {
             int imageId = Convert.ToInt32(e.CommandArgument);
 
-
-            using (var dbContext = new ImageDbContext())  
+            using (var dbContext = new ImageDbContext())
             {
-                var quantitiesToDelete = dbContext.Quantities.Where(q => q.Image_ID == imageId).ToList();
+                var quantitiesToUpdate = dbContext.Quantities.Where(q => q.Image_ID == imageId).ToList();
 
-                foreach (var quantity in quantitiesToDelete)
+                foreach (var quantity in quantitiesToUpdate)
                 {
-                    dbContext.Quantities.Remove(quantity);
+                    // Instead of removing, update IsDeleted to 1
+                    quantity.IsDeleted = Convert.ToBoolean(1);
                 }
 
                 dbContext.SaveChanges();

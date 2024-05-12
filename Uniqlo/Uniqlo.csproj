@@ -19,7 +19,8 @@
     <IISExpressSSLPort>44369</IISExpressSSLPort>
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
-    <IISExpressUseClassicPipelineMode>true</IISExpressUseClassicPipelineMode>
+    <IISExpressUseClassicPipelineMode>
+    </IISExpressUseClassicPipelineMode>
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
@@ -124,8 +125,10 @@
   <ItemGroup>
     <Content Include="adminLogin.aspx" />
     <Content Include="AdminPages\AdminDelivery\AddDelivery.aspx" />
+    <Content Include="AdminPages\AdminDelivery\DeliveryHome.aspx" />
     <Content Include="AdminPages\AdminDiscount\addDiscount.aspx" />
     <Content Include="AdminPages\AdminDiscount\DiscountHome.aspx" />
+    <Content Include="AdminPages\adminLogin.aspx" />
     <Content Include="AdminPages\AdminOrder\OrderHome.aspx" />
     <Content Include="AdminPages\AdminProduct\AddProduct.aspx" />
     <Content Include="AdminPages\AdminProduct\ProductHome.aspx" />
@@ -133,7 +136,6 @@
     <Content Include="AdminPages\AdminStaff\StaffAdd.aspx" />
     <Content Include="AdminPages\AdminStaff\StaffHome.aspx" />
     <Content Include="AdminPages\Dashboard.aspx" />
-    <Content Include="AdminPages\AdminDelivery\DeliveryHome.aspx" />
     <Content Include="AdminPages\AdminOrder\OrderItem.aspx" />
     <Content Include="AdminPages\AdminDiscount\UpdateDiscount.aspx" />
     <Content Include="AdminPages\AdminProduct\UpdateProduct.aspx" />
@@ -302,6 +304,13 @@
     <Compile Include="AdminPages\AdminDelivery\AddDelivery.aspx.designer.cs">
       <DependentUpon>AddDelivery.aspx</DependentUpon>
     </Compile>
+    <Compile Include="AdminPages\AdminDelivery\DeliveryHome.aspx.cs">
+      <DependentUpon>DeliveryHome.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminPages\AdminDelivery\DeliveryHome.aspx.designer.cs">
+      <DependentUpon>DeliveryHome.aspx</DependentUpon>
+    </Compile>
     <Compile Include="AdminPages\AdminDiscount\addDiscount.aspx.cs">
       <DependentUpon>addDiscount.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -315,6 +324,13 @@
     </Compile>
     <Compile Include="AdminPages\AdminDiscount\DiscountHome.aspx.designer.cs">
       <DependentUpon>DiscountHome.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AdminPages\adminLogin.aspx.cs">
+      <DependentUpon>adminLogin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminPages\adminLogin.aspx.designer.cs">
+      <DependentUpon>adminLogin.aspx</DependentUpon>
     </Compile>
     <Compile Include="AdminPages\AdminOrder\OrderHome.aspx.cs">
       <DependentUpon>OrderHome.aspx</DependentUpon>
@@ -364,13 +380,6 @@
     </Compile>
     <Compile Include="AdminPages\Dashboard.aspx.designer.cs">
       <DependentUpon>Dashboard.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="AdminPages\AdminDelivery\DeliveryHome.aspx.cs">
-      <DependentUpon>DeliveryHome.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="AdminPages\AdminDelivery\DeliveryHome.aspx.designer.cs">
-      <DependentUpon>DeliveryHome.aspx</DependentUpon>
     </Compile>
     <Compile Include="AdminPages\AdminOrder\OrderItem.aspx.cs">
       <DependentUpon>OrderItem.aspx</DependentUpon>
