@@ -11,6 +11,7 @@ using System.Data;
 using System.IO;
 using System.Text;
 using OfficeOpenXml.Style;
+using static Uniqlo.Order;
 using System.Text.RegularExpressions;
 
 namespace Uniqlo.AdminPages.AdminOrder
@@ -107,7 +108,7 @@ namespace Uniqlo.AdminPages.AdminOrder
 
 
 
-        
+
         private void ExportProductsToExcel()
         {
             string connectionString = Global.CS; // Ensure this is correctly defined
@@ -126,7 +127,7 @@ namespace Uniqlo.AdminPages.AdminOrder
                 using (SqlCommand cmd = new SqlCommand("", conn))
                 {
                     // Retrieve the selected values from the dropdowns
-                    string selectedStatus= ddlStatus.SelectedValue;
+                    string selectedStatus = ddlStatus.SelectedValue;
 
                     // Check if there are any conditions to add based on dropdown selection
                     if (!string.IsNullOrEmpty(selectedStatus) && selectedStatus != "All Status")
@@ -162,6 +163,6 @@ namespace Uniqlo.AdminPages.AdminOrder
                 }
             }
         }
-        
+
     }
 }

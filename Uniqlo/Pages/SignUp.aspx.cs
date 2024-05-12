@@ -108,15 +108,43 @@ namespace Uniqlo.Pages
                     smtp.EnableSsl = true;
                     smtp.Send(mail);
 
-                    lblErrorMsg.Text = "You are registered successfully. Please check your email Inbox/Spam folder for activation code";
-                    lblErrorMsg.ForeColor = System.Drawing.Color.Red;
-                    con.Close();
+                lblErrorMsg.Text = "You are registered successfully. Please check your email Inbox/Spam folder for activation code";
+                lblErrorMsg.ForeColor = System.Drawing.Color.Red;
+                con.Close();
                 }
-
-            }  
-              
             }
+            else
+            {
+                // CAPTCHA validation failed, show an alert
+                ClientScript.RegisterStartupScript(this.GetType(), "recaptchaError", "alert('reCAPTCHA verification failed. Please try again.');", true);
+            }
+
+
         }
+
+        public bool ValidateCaptcha(string response)
+        {
+            string secret = "6Lc38NgpAAAAAPvAX0lGe0Zc1plkSyMvdEaMA3sL";
+            var client = new WebClient();
+            var reply =
+                client.DownloadString(
+                    $"https://www.google.com/recaptcha/api/siteverify?secret={secret}&response={response}");
+
+            var captchaResponse = JsonConvert.DeserializeObject<CaptchaResponse>(reply);
+
+            return captchaResponse.Success;
+        }
+
+        public class CaptchaResponse
+        {
+            [JsonProperty("success")]
+            public bool Success { get; set; }
+
+            [JsonProperty("error-codes")]
+            public List<string> ErrorCodes { get; set; }
+        }
+
+    }
 
     }
 

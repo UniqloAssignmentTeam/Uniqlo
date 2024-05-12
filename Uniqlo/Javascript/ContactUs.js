@@ -14,4 +14,12 @@
 
     // Clear input field
     document.getElementById("userInput").value = "";
+
+    $(document).ready(function () {
+        $("sendButton").on("click", function () {
+            $value = $("data").val();
+            $msg = '<div class="user-inbox inbox">< div class="msg=header" ><p>' + $value + '</p></div ></div > ';
+            $(".chatbot-messages").append($msg);
+        })
+    })
 }

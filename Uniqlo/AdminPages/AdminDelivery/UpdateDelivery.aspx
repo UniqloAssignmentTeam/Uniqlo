@@ -14,10 +14,14 @@
     <div class="container">
         <div class="productItemCard">
             <h2 class="product-title">UNIQLO UPDATE DELIVERY</h2>
-        </div>
+            <div id="map" style="width: 100%; height: 300px; margin: 0 auto; margin-top: 50px;"></div> 
+            </div>
+        
         <div class="modal-content">
             <div class="product-content">
                 <div class="form-group">
+                    
+                    
                     <label for="txtDeliveryID">Delivery ID</label>
                     <asp:TextBox ID="txtDeliveryID" runat="server" Enabled="false" CssClass="input-field"></asp:TextBox>
                 </div>
@@ -67,7 +71,7 @@
             </div>
             <div class="button-container">
                 <div class="cancel-div">
-                    <asp:LinkButton ID="btnCancel" runat="server" CssClass="cancel-button" PostBackUrl="~/AdminPages/AdminDelivery/Delivery.aspx">CANCEL</asp:LinkButton>
+                    <asp:LinkButton ID="btnCancel" runat="server" CssClass="cancel-button" PostBackUrl="~/AdminPages/AdminDelivery/DeliveryHome.aspx">CANCEL</asp:LinkButton>
                 </div>
                 <div class="continue-div">
                     <asp:LinkButton ID="btnUpdate" runat="server" CssClass="continue-button" OnClick="btnUpdate_Click">UPDATE</asp:LinkButton>
