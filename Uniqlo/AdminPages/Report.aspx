@@ -4,7 +4,7 @@
 
 
 <asp:Content ID="Content1" ContentPlaceHolderID="main" runat="server">
-
+    <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
 
 
       <header>
@@ -21,69 +21,101 @@
      </div>
         <!--OVERVIEW CONTAINER-->
     <div class="overview">
-        <div  class="orderOnHold" >
+      
 
          
 
-           <asp:Chart ID="SalesChart" runat="server" Width="250px" Height="250px">
+          <asp:Chart ID="ProductReviewChart" runat="server" Width="1100px" Height="500px">
     <Series>
-        <asp:Series Name="SalesSeries" ChartType="Line"></asp:Series>
-    </Series>
-    <ChartAreas>
-        <asp:ChartArea Name="MainChartArea"></asp:ChartArea>
-    </ChartAreas>
-</asp:Chart>
-
-            </div>
-
-
-
-        <div class="orderCompleted">
-                     <asp:Chart ID="BestSellingProductsChart" runat="server" Width="250px" Height="250px">
-    <Series>
-        <asp:Series Name="BestSellingSeries" ChartType="Bar"></asp:Series>
-    </Series>
-    <ChartAreas>
-        <asp:ChartArea Name="ChartArea1"></asp:ChartArea>
-    </ChartAreas>
-</asp:Chart>
-            </div>
-        
-
-
-
-
-
-
-        <div class="productOutOfStock">
-    <asp:Chart ID="ChartWishlist" runat="server" Width="500px" Height="400px">
-    <Series>
-        <asp:Series Name="Series1" ChartType="Column"></asp:Series>
-    </Series>
-    <ChartAreas>
-        <asp:ChartArea Name="ChartArea1"></asp:ChartArea>
-    </ChartAreas>
-</asp:Chart>
-
-        
-
-        </div>
-
-        <div class="activeUser">
-         <asp:Chart ID="Chart1" runat="server">
-    <Series>
-        <asp:Series Name="Quantity" ChartType="Column">
-           
+        <asp:Series Name="Reviews" ChartType="Column" XValueMember="Product_Name" YValueMembers="ReviewCount">
         </asp:Series>
     </Series>
     <ChartAreas>
         <asp:ChartArea Name="ChartArea1"></asp:ChartArea>
+         <AxisX Title="Product Name">
+     <MajorGrid Enabled="true" />
+ </AxisX>
+ <AxisY Title="Number of Review">
+     <MajorGrid Enabled="true" />
+ </AxisY>
+    </ChartAreas>
+</asp:Chart>
+
+
+      
+
+
+
+       
+                   <asp:Chart ID="BestSellingProductsChart" runat="server" Width="1100px" Height="500px">
+    <Series>
+        <asp:Series Name="BestSellingSeries" ChartType="Column" XValueMember="Product_Name" YValueMembers="TotalQuantity">
+        </asp:Series>
+    </Series>
+    <ChartAreas>
+        <asp:ChartArea Name="ChartArea1">
+            <AxisX Title="Product Name">
+                <MajorGrid Enabled="true" />
+            </AxisX>
+            <AxisY Title="Top 5 Best Selling">
+                <MajorGrid Enabled="true" />
+            </AxisY>
+        </asp:ChartArea>
+    </ChartAreas>
+</asp:Chart>
+
+          
+        
+
+
+
+
+
+
+        
+  <asp:Chart ID="CategoryProductChart" runat="server" Width="1100px" Height="500px">
+    <Series>
+        <asp:Series Name="Products" ChartType="Bar" XValueMember="CategoryName" YValueMembers="ProductCount">
+        </asp:Series>
+    </Series>
+    <ChartAreas>
+        <asp:ChartArea Name="ChartArea1">
+            <AxisY Title="Category">
+                <MajorGrid Enabled="true" />
+            </AxisY>
+            <AxisX Title="Number of Products">
+                <MajorGrid Enabled="true" />
+            </AxisX>
+        </asp:ChartArea>
+    </ChartAreas>
+</asp:Chart>
+
+
+        
+
+       
+      
+       
+      <asp:Chart ID="TopDiscountsChart" runat="server" Width="1100px" Height="500px">
+    <Series>
+        <asp:Series Name="Discounts" ChartType="Bar" XValueMember="Product_Name" YValueMembers="Discount_Amount"></asp:Series>
+    </Series>
+    <ChartAreas>
+        <asp:ChartArea Name="MainChartArea">
+            <AxisX Title="Product Name">
+                <MajorGrid Enabled="false" />
+            </AxisX>
+            <AxisY Title="Discount Amount (RM)">
+                <MajorGrid Enabled="true" />
+            </AxisY>
+        </asp:ChartArea>
     </ChartAreas>
 </asp:Chart>
 
 
         </div>
-    </div>
+        
+   
 
     <!--HEADING-->
     <div class="space"></div>
@@ -95,22 +127,31 @@
 
 
 
-         <div class="dropdown-container" onclick="toggleDropdown('dropdownList', 'dropdownDisplay')">
-      <div class="dropdown-display" id="dropdownDisplay">Year</div>
-      <div class="dropdown-list" id="dropdownList">
-         <div onclick="selectOption('2024', 'dropdownDisplay')">2024</div>
-         <div onclick="selectOption('2023', 'dropdownDisplay')">2023</div>
-         <div onclick="selectOption('2022', 'dropdownDisplay')">2022</div>
-      </div>
-   </div>
+         <asp:DropDownList ID="ddlMonths" runat="server" AutoPostBack="True" CssClass="drop-display" OnSelectedIndexChanged="ddlMonths_SelectedIndexChanged">
+   
+</asp:DropDownList>
 </div>
            
     
 
     <!--LINE CHART-->
-        
-    <canvas id="myChart" style="width:100%;"></canvas>
-   
+
+      <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+    <ContentTemplate>  
+  
+<asp:Chart ID="SalesChart" runat="server" Width="500px" Height="500px">
+    <Series>
+        <asp:Series Name="SalesSeries" ChartType="Column"></asp:Series>
+    </Series>
+    <ChartAreas>
+        <asp:ChartArea Name="MainChartArea"></asp:ChartArea>
+    </ChartAreas>
+</asp:Chart>
+         </ContentTemplate>
+    <Triggers>
+        <asp:AsyncPostBackTrigger ControlID="ddlMonths" EventName="SelectedIndexChanged" />
+    </Triggers>
+</asp:UpdatePanel>
 
     <!--OVERVIEW GRAPH-->
   

@@ -15,13 +15,22 @@ namespace Uniqlo.AdminPages
     {
 
         /// <summary>
-        /// SalesChart control.
+        /// ScriptManager1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.DataVisualization.Charting.Chart SalesChart;
+        protected global::System.Web.UI.ScriptManager ScriptManager1;
+
+        /// <summary>
+        /// ProductReviewChart control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.DataVisualization.Charting.Chart ProductReviewChart;
 
         /// <summary>
         /// BestSellingProductsChart control.
@@ -33,21 +42,48 @@ namespace Uniqlo.AdminPages
         protected global::System.Web.UI.DataVisualization.Charting.Chart BestSellingProductsChart;
 
         /// <summary>
-        /// ChartWishlist control.
+        /// CategoryProductChart control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.DataVisualization.Charting.Chart ChartWishlist;
+        protected global::System.Web.UI.DataVisualization.Charting.Chart CategoryProductChart;
 
         /// <summary>
-        /// Chart1 control.
+        /// TopDiscountsChart control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.DataVisualization.Charting.Chart Chart1;
+        protected global::System.Web.UI.DataVisualization.Charting.Chart TopDiscountsChart;
+
+        /// <summary>
+        /// ddlMonths control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlMonths;
+
+        /// <summary>
+        /// UpdatePanel1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatePanel1;
+
+        /// <summary>
+        /// SalesChart control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.DataVisualization.Charting.Chart SalesChart;
     }
 }
