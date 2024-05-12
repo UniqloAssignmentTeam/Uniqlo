@@ -11,6 +11,8 @@ using System.Data.SqlClient;
 using System.Data;
 using System.Threading.Tasks;
 using System.Collections;
+using Uniqlo.Pages.Categories.Women;
+using System.Web.UI.HtmlControls;
 
 namespace Uniqlo.Pages
 {
@@ -27,6 +29,7 @@ namespace Uniqlo.Pages
                 if (Request.QueryString["ProdID"] != null && int.TryParse(Request.QueryString["ProdID"], out productId))
                 {
                     BindFormView(productId);
+                    FindQuantity(productId);
                 }
             }
 
@@ -72,7 +75,8 @@ namespace Uniqlo.Pages
                             {
                                 Color = g.Key,
                                 Quantities = g.ToList(),
-                                FirstImageId = g.Select(q => q.Image_ID).FirstOrDefault()
+                                FirstImageId = g.Select(q => q.Image_ID).FirstOrDefault(),
+                                ImageCount = g.Select(q => q.Image_ID).Distinct().Count()
                             }).ToList()
                     }).ToList();
 
@@ -80,8 +84,11 @@ namespace Uniqlo.Pages
                 formView.DataSource = productList;
                 formView.DataBind();
 
+
                 formView1.DataSource = productList;
                 formView1.DataBind();
+
+
             }
         }
 
@@ -110,6 +117,7 @@ namespace Uniqlo.Pages
         {
             if (formView.DataItem != null)
             {
+
                 DataList dataList = formView.FindControl("dataList") as DataList;
 
                 if (dataList != null)
@@ -178,7 +186,10 @@ namespace Uniqlo.Pages
 
                     // Define the custom order
                     var sizeOrder = new List<string> { "S", "M", "L", "XL" };
+
+
                     sizes = sizes.OrderBy(s => sizeOrder.IndexOf(s)).ToList();
+
 
                     rbSizes.DataSource = sizes;
                     rbSizes.DataBind();
@@ -189,6 +200,31 @@ namespace Uniqlo.Pages
                 rbSizes.Items.Clear();
                 rbSizes.Items.Add(new ListItem("Invalid product ID", ""));
             }
+        }        
+        
+        protected void FindQuantity(int productId)
+        {
+            Label lblSize = (Label)formView.FindControl("lblSize");
+
+
+            using (var db = new ProductDbContext())
+            {
+                var sizes = db.Quantity
+                              .Where(q => q.Product_ID == productId && !q.IsDeleted)
+                              .Select(q => q.Size)
+                              .Distinct()
+                              .ToList();
+
+                if (sizes == null || sizes.Count == 0)
+                {
+                    lblSize.Text = "Out of stock";
+                }
+                else
+                {
+                    lblSize.Text = "";
+                }
+            }
+
         }
 
         protected void RadioButtonListSizes_SelectedIndexChanged(object sender, EventArgs e)

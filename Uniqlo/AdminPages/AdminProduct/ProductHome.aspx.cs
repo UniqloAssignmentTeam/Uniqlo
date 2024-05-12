@@ -11,6 +11,7 @@ using System.Data.SqlClient;
 using System.Data;
 using System.IO;
 using System.Text;
+using static Uniqlo.Staff;
 
 
 namespace Uniqlo.AdminPages.AdminProduct
@@ -36,26 +37,35 @@ namespace Uniqlo.AdminPages.AdminProduct
         {
             int prodId = int.Parse(hiddenProductId.Value);
 
-            using (var db = new ProductDbContext())
+            try
             {
-                var product = db.Product.Find(prodId);
-                if (product != null)
+                using (var db = new ProductDbContext())
                 {
-                    product.IsDeleted = Convert.ToBoolean(1);
-
-
-                    var discounts = db.Discount.Where(d => d.Product_ID == prodId).ToList();
-                    foreach (var discount in discounts)
+                    var product = db.Product.Find(prodId);
+                    if (product != null)
                     {
-                        discount.Status = "Inactive";
+                        product.IsDeleted = Convert.ToBoolean(1);
+
+
+                        var discounts = db.Discount.Where(d => d.Product_ID == prodId).ToList();
+                        foreach (var discount in discounts)
+                        {
+                            discount.Status = "Inactive";
+                        }
+
+                        db.SaveChanges();
+
+                        // Redirect to refresh the page and reflect changes
+                        Response.Redirect(Request.RawUrl);
                     }
-
-                    db.SaveChanges();
-
-                    // Redirect to refresh the page and reflect changes
-                    Response.Redirect(Request.RawUrl);
                 }
+            } catch (Exception ex)
+            {
+                    
+                    // Optionally display error message on the page
+                    ScriptManager.RegisterStartupScript(this, GetType(), "errorAlert", "alert('An error occurred when retrieving product.');", true);
             }
+
         }
 
 
@@ -91,85 +101,132 @@ namespace Uniqlo.AdminPages.AdminProduct
 
         private void FilterProducts()
         {
-            using (var db = new ProductDbContext())
+            try
             {
-                string selectedCategory = ddlCategory.SelectedValue;
-                string selectedGender = ddlGender.SelectedValue;
-
-                var productQuery = db.Product.Include(p => p.Category).AsQueryable();
-
-                if (!string.IsNullOrEmpty(selectedCategory))
+                using (var db = new ProductDbContext())
                 {
-                    productQuery = productQuery.Where(p => p.Category.Name == selectedCategory);
+                    string selectedCategory = ddlCategory.SelectedValue;
+                    string selectedGender = ddlGender.SelectedValue;
+
+                    var productQuery = db.Product.Include(p => p.Category).AsQueryable();
+
+                    if (!string.IsNullOrEmpty(selectedCategory))
+                    {
+                        productQuery = productQuery.Where(p => p.Category.Name == selectedCategory);
+                    }
+
+                    if (!string.IsNullOrEmpty(selectedGender))
+                    {
+                        productQuery = productQuery.Where(p => p.Category.Gender == selectedGender);
+                    }
+
+                    productQuery = productQuery.Where(p => !p.IsDeleted);
+
+                    var productList = productQuery.ToList();
+                    prodRepeater.DataSource = productList;
+                    prodRepeater.DataBind();
                 }
-
-                if (!string.IsNullOrEmpty(selectedGender))
-                {
-                    productQuery = productQuery.Where(p => p.Category.Gender == selectedGender);
-                }
-
-                productQuery = productQuery.Where(p => !p.IsDeleted);
-
-                var productList = productQuery.ToList();
-                prodRepeater.DataSource = productList;
-                prodRepeater.DataBind();
             }
+            catch (Exception ex)
+            {
+
+                // Optionally display error message on the page
+                ScriptManager.RegisterStartupScript(this, GetType(), "errorAlert", "alert('An error occurred when Filtering product.');", true);
+            }
+
         }
 
         private void ExportProductsToExcel()
         {
             string connectionString = Global.CS; // Ensure this is correctly defined
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            try
             {
-                conn.Open();  // Ensure the connection is opened before executing the command
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();  // Ensure the connection is opened before executing the command
 
-                // Start building the base query
-                StringBuilder query = new StringBuilder(@"SELECT p.Product_ID, p.Product_Name, p.Description, p.Price, c.Name, c.Gender 
+                    // Start building the base query
+                    StringBuilder query = new StringBuilder(@"SELECT p.Product_ID, p.Product_Name, p.Description, p.Price, c.Name, c.Gender 
                                                   FROM Product p 
                                                   JOIN Category c ON p.Category_ID = c.Category_ID 
                                                   WHERE p.IsDeleted = 0");
 
-                // Initialize a SqlCommand with an empty query string
-                using (SqlCommand cmd = new SqlCommand("", conn))
-                {
-                    // Retrieve the selected values from the dropdowns
-                    string selectedCategory = ddlCategory.SelectedValue;
-                    string selectedGender = ddlGender.SelectedValue;
-
-                    // Check if there are any conditions to add based on dropdown selection
-                    if (!string.IsNullOrEmpty(selectedCategory) && selectedCategory != "All Categories")
+                    // Initialize a SqlCommand with an empty query string
+                    using (SqlCommand cmd = new SqlCommand("", conn))
                     {
-                        query.Append(" AND c.Name = @Category");
-                        cmd.Parameters.AddWithValue("@Category", selectedCategory);
-                    }
-                    if (!string.IsNullOrEmpty(selectedGender) && selectedGender != "All Genders")
-                    {
-                        query.Append(" AND c.Gender = @Gender");
-                        cmd.Parameters.AddWithValue("@Gender", selectedGender);
-                    }
+                        // Retrieve the selected values from the dropdowns
+                        string selectedCategory = ddlCategory.SelectedValue;
+                        string selectedGender = ddlGender.SelectedValue;
 
-                    // Set the SqlCommand's CommandText to the built query
-                    cmd.CommandText = query.ToString();
-
-                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
-                    {
-                        DataTable dt = new DataTable();
-                        da.Fill(dt);
-                        using (ExcelPackage pck = new ExcelPackage())
+                        // Check if there are any conditions to add based on dropdown selection
+                        if (!string.IsNullOrEmpty(selectedCategory) && selectedCategory != "All Categories")
                         {
-                            ExcelWorksheet ws = pck.Workbook.Worksheets.Add("Products");
-                            ws.Cells["A1"].LoadFromDataTable(dt, true, OfficeOpenXml.Table.TableStyles.Light1);
-                            var memoryStream = new MemoryStream();
-                            pck.SaveAs(memoryStream);
-                            memoryStream.Position = 0;
+                            query.Append(" AND c.Name = @Category");
+                            cmd.Parameters.AddWithValue("@Category", selectedCategory);
+                        }
+                        if (!string.IsNullOrEmpty(selectedGender) && selectedGender != "All Genders")
+                        {
+                            query.Append(" AND c.Gender = @Gender");
+                            cmd.Parameters.AddWithValue("@Gender", selectedGender);
+                        }
 
-                            HttpContext.Current.Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
-                            HttpContext.Current.Response.AddHeader("content-disposition", "attachment; filename=Products.xlsx");
-                            HttpContext.Current.Response.BinaryWrite(memoryStream.ToArray());
-                            HttpContext.Current.Response.End();
+                        // Set the SqlCommand's CommandText to the built query
+                        cmd.CommandText = query.ToString();
+
+                        using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                        {
+                            DataTable dt = new DataTable();
+                            da.Fill(dt);
+                            using (ExcelPackage pck = new ExcelPackage())
+                            {
+                                ExcelWorksheet ws = pck.Workbook.Worksheets.Add("Products");
+                                ws.Cells["A1"].LoadFromDataTable(dt, true, OfficeOpenXml.Table.TableStyles.Light1);
+                                var memoryStream = new MemoryStream();
+                                pck.SaveAs(memoryStream);
+                                memoryStream.Position = 0;
+
+                                HttpContext.Current.Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+                                HttpContext.Current.Response.AddHeader("content-disposition", "attachment; filename=Products.xlsx");
+                                HttpContext.Current.Response.BinaryWrite(memoryStream.ToArray());
+                                HttpContext.Current.Response.End();
+                            }
                         }
                     }
                 }
+
+            } catch (Exception ex)
+            {
+
+                // Optionally display error message on the page
+                ScriptManager.RegisterStartupScript(this, GetType(), "errorAlert", "alert('An error occurred when Export product.');", true);
+            }
+        }
+
+        protected void searchBox_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+
+
+                string searchText = searchBox.Text;
+                var results = SearchDatabase(searchText);  // Call the method that performs the search
+                prodRepeater.DataSource = results;
+                prodRepeater.DataBind();
+            }
+            catch (Exception ex)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('An error occurred while searching the product name.');", true);
+
+            }
+        }
+
+        public List<Product> SearchDatabase(string searchText)
+        {
+
+            using (var db = new ProductDbContext())
+            {
+                var productList = db.Product.Include(p => p.Category).Where(p => !p.IsDeleted && p.Product_Name.Contains(searchText)).ToList();
+                return productList;
             }
         }
 

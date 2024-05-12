@@ -124,20 +124,30 @@ namespace Uniqlo.Pages
         // Method to generate PDF receipt
         private byte[] GeneratePDFReceipt()
         {
-            // Create a MemoryStream to store the PDF content
             using (MemoryStream memoryStream = new MemoryStream())
             {
-                // Create a Document
                 using (Document document = new Document())
                 {
-                    // Create a PdfWriter to write content to the Document
                     PdfWriter writer = PdfWriter.GetInstance(document, memoryStream);
 
                     // Open the Document
                     document.Open();
 
-                    // Add the necessary invoice details to the Document
+                    // Add Uniqlo logo
+                    string logoPath = Server.MapPath("../Images/Uniqlo-Logos.png"); // Update the path to your logo image
+                    if (File.Exists(logoPath))
+                    {
+                        iTextSharp.text.Image logo = iTextSharp.text.Image.GetInstance(logoPath);
+                        logo.ScaleAbsolute(150f, 50f); // Adjust the size of the logo as needed
+                        document.Add(logo);
+                    }
+
+                    // Add invoice details
                     document.Add(new Paragraph("Invoice Details"));
+                    document.Add(new Paragraph("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"));
+                    // Add a line break
+                    document.Add(new Paragraph("\n"));
+
                     document.Add(new Paragraph("Payment ID: " + lblPaymentId.Text));
                     document.Add(new Paragraph("Payment Date & Time: " + lblDateTime.Text));
                     document.Add(new Paragraph("Customer Name: " + lblCustomerName.Text));
@@ -145,8 +155,14 @@ namespace Uniqlo.Pages
                     document.Add(new Paragraph("Email: " + lblEmail.Text));
                     document.Add(new Paragraph("Contact No: " + lblContactNo.Text));
 
+                    // Add a line break
+                    document.Add(new Paragraph("\n"));
+
                     // Add the invoice table
                     PdfPTable table = new PdfPTable(4);
+                    table.WidthPercentage = 100;
+                    table.SpacingBefore = 10f; // Add spacing before the table
+                    table.SpacingAfter = 10f; // Add spacing after the table
                     table.AddCell("Product");
                     table.AddCell("Quantity");
                     table.AddCell("Price");
@@ -154,7 +170,6 @@ namespace Uniqlo.Pages
 
                     foreach (RepeaterItem item in rptCartItems.Items)
                     {
-                        // Find controls by their HTML element tag name
                         Label lblProductName = (Label)item.FindControl("lblProductName");
                         Label lblQuantity = (Label)item.FindControl("lblQuantity");
                         Label lblPrice = (Label)item.FindControl("lblPrice");
@@ -180,8 +195,9 @@ namespace Uniqlo.Pages
                 // Convert the MemoryStream to a byte array
                 byte[] pdfBytes = memoryStream.ToArray();
                 return pdfBytes;
-            }        
+            }
         }
+
 
         // Method to send email with PDF attachment
         private void SendEmailWithAttachment(byte[] pdfBytes)
@@ -213,68 +229,37 @@ namespace Uniqlo.Pages
 
         protected void btnPDF_Click(object sender, EventArgs e)
         {
-            // Create a MemoryStream to store the PDF content
-            using (MemoryStream memoryStream = new MemoryStream())
+            try
             {
-                // Create a Document
-                using (Document document = new Document())
+                // Generate the PDF receipt
+                byte[] pdfBytes = GeneratePDFReceipt();
+
+                if (pdfBytes != null && pdfBytes.Length > 0)
                 {
-                    // Create a PdfWriter to write content to the Document
-                    PdfWriter writer = PdfWriter.GetInstance(document, memoryStream);
-
-                    // Open the Document
-                    document.Open();
-
-                    // Add the necessary invoice details to the Document
-                    document.Add(new Paragraph("Invoice Details"));
-                    document.Add(new Paragraph("Payment ID: " + lblPaymentId.Text));
-                    document.Add(new Paragraph("Payment Date & Time: " + lblDateTime.Text));
-                    document.Add(new Paragraph("Customer Name: " + lblCustomerName.Text));
-                    document.Add(new Paragraph("Address: " + lblAddress.Text));
-                    document.Add(new Paragraph("Email: " + lblEmail.Text));
-                    document.Add(new Paragraph("Contact No: " + lblContactNo.Text));
-
-                    // Add the invoice table
-                    PdfPTable table = new PdfPTable(4);
-                    table.AddCell("Product");
-                    table.AddCell("Quantity");
-                    table.AddCell("Price");
-                    table.AddCell("Item Price");
-
-                    foreach (RepeaterItem item in rptCartItems.Items)
-                    {
-                        // Find controls by their HTML element tag name
-                        Label lblProductName = (Label)item.FindControl("lblProductName");
-                        Label lblQuantity = (Label)item.FindControl("lblQuantity");
-                        Label lblPrice = (Label)item.FindControl("lblPrice");
-                        Label lblItemPrice = (Label)item.FindControl("lblItemPrice");
-
-                        table.AddCell(lblProductName.Text);
-                        table.AddCell(lblQuantity.Text);
-                        table.AddCell(lblPrice.Text);
-                        table.AddCell(lblItemPrice.Text);
-                    }
-
-                    document.Add(table);
-
-                    // Add total price and delivery charges
-                    document.Add(new Paragraph("Total Price: " + lblTotalPrice.Text));
-                    document.Add(new Paragraph("Delivery Charges: " + lblDeliveryCharges.Text));
-                    document.Add(new Paragraph("Total: " + lblGrandTotal.Text));
-
-                    // Close the Document
-                    document.Close();
+                    // Send the PDF to the client for download
+                    Response.Clear();
+                    Response.ContentType = "application/pdf";
+                    Response.AddHeader("content-disposition", "attachment;filename=invoice.pdf");
+                    Response.BinaryWrite(pdfBytes);
+                    Response.End();
                 }
-
-                // Send the PDF to the client for download
-                Response.Clear();
-                Response.ContentType = "application/pdf";
-                Response.AddHeader("content-disposition", "attachment;filename=invoice.pdf");
-                Response.Buffer = true;
-                Response.OutputStream.Write(memoryStream.GetBuffer(), 0, memoryStream.GetBuffer().Length);
-                Response.OutputStream.Flush();
-                Response.End();
+                else
+                {
+                    // Handle the case where PDF generation failed
+                    DisplayErrorMessage("PDF generation failed. Please try again.");
+                }
             }
+            catch (Exception ex)
+            {
+                // Handle the exception
+                DisplayErrorMessage("An error occurred: " + ex.Message);
+            }
+        }
+
+        private void DisplayErrorMessage(string message)
+        {
+            // Display error message using JavaScript alert
+            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('" + message + "')", true);
         }
     }
 }

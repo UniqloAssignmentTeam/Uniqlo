@@ -67,7 +67,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="card-number">Card Number</label>
-                                        <asp:TextBox ID="txtCardNumber" CssClass="form-control" MaxLength="19" runat="server" />
+                                        <asp:TextBox ID="txtCardNumber" CssClass="form-control" MaxLength="16" runat="server" />
                                         <asp:RequiredFieldValidator ID="rfvCardNumber" ControlToValidate="txtCardNumber" ErrorMessage="Card number is required." Display="Dynamic" ForeColor="Red" runat="server" />
                                         <asp:RegularExpressionValidator ID="revCardNumber" ControlToValidate="txtCardNumber" ValidationExpression="^\d{16}$" ErrorMessage="Card number must be 16 digits." Display="Dynamic" ForeColor="Red" runat="server" />
                                     </div>

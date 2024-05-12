@@ -13,6 +13,7 @@ using System.Text;
 using OfficeOpenXml.Style;
 using static Uniqlo.Order;
 using System.Text.RegularExpressions;
+using static Uniqlo.Staff;
 
 namespace Uniqlo.AdminPages.AdminOrder
 {
@@ -163,6 +164,38 @@ namespace Uniqlo.AdminPages.AdminOrder
                 }
             }
         }
+        private void SearchDatabase(string searchText = "")
+        {
+            using (var db = new OrderDbContext())
+            {
+                var orders = db.Order
+                    .Include(o => o.Customer)
+                    .Include(o => o.OrderLists)
+                    .Include(o => o.Payments)
+                    .Where(o => o.Customer.Name.Contains(searchText))
+                    .Select(o => new
+                    {
+                        OrderId = o.Order_ID,
+                        CustomerName = o.Customer.Name,
+                        OrderListTotalItems = o.OrderLists.Sum(ol => ol.Qty),
+                        PaymentTotalAmount = o.Payments.Sum(p => p.Total_Payment),
+                        PaymentDate = o.Payments.Select(p => p.Payment_DateTime).FirstOrDefault(),
+                        PaymentStatus = o.Payments.Select(p => p.Payment_Status).FirstOrDefault()
+                    })
+                    .ToList();
+
+                orderRepeater.DataSource = orders;
+                orderRepeater.DataBind();
+            }
+        }
+
+        protected void searchBox_TextChanged(object sender, EventArgs e)
+        {
+            SearchDatabase(searchBox.Text);
+        }
+
+
+
 
     }
 }

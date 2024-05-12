@@ -47,6 +47,7 @@ namespace Uniqlo.Pages.Categories.Women
                             DiscountAmount = discount != null ? discount.Discount_Amount : 0 // Handle null discounts
                         }
                     )
+
                     .ToList();
 
                 
@@ -85,7 +86,7 @@ namespace Uniqlo.Pages.Categories.Women
                         }
                     )
                     .OrderByDescending(p => p.OrderCount) // Order by the number of orders, descending
-                    .Take(5) // Take only the top 5 products
+                    .Take(4) // Take only the top 5 products
                     .ToList();
 
                 carouselDataList.DataSource = productDetails;

@@ -138,8 +138,8 @@
 
                         <!--VIEWMORE BUTTON-->
                         <div class="viewMoreSection">
-                            <asp:Button ID="btnProceedToPayment" runat="server" CssClass="viewMoreButton" Text="Next" OnClick="btnProceedToPayment_Click" />
-                        </div>
+    <asp:LinkButton ID="btnProceedToPayment" runat="server" CssClass="viewMoreButton" Text="Next" OnClick="btnProceedToPayment_Click" />
+</div>
 
                     </div>
                 </form>
