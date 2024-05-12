@@ -64,7 +64,7 @@
             </div>
             <div class="button-container">
                 <div class="cancel-div">
-                    <asp:LinkButton ID="btnCancel" runat="server" CssClass="cancel-button" PostBackUrl="~/AdminPages/AdminDelivery/Delivery.aspx">CANCEL</asp:LinkButton>
+                    <asp:LinkButton ID="btnCancel" runat="server" CssClass="cancel-button" OnClick="btnCancel_Click" CausesValidation="false">CANCEL</asp:LinkButton>
                 </div>
                 <div class="continue-div">
                     <asp:LinkButton ID="btnAddDelivery" runat="server" CssClass="continue-button" OnClick="btnAddDelivery_Click">ADD DELIVERY</asp:LinkButton>

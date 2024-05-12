@@ -90,7 +90,7 @@
 
                                     <div class="purchase-info">
                                         <h3>Quantity: </h3>
-                                        <asp:TextBox ID="txtQty" class="qty" runat="server" Text="1"></asp:TextBox>
+                                        <asp:TextBox ID="txtQty" class="qty" runat="server" Text="1" onkeypress="return isNumber(event)" MaxLength="5"></asp:TextBox>
                                     </div>
                                 </div> 
                                     <asp:Label ID="lblSize" runat="server" Text="" CssClass="lblRed"></asp:Label>
@@ -101,8 +101,8 @@
                             <!--NO ANIMATION ADD TO CART BUTTON-->
                             <div class="cart-button">
                                 <asp:LinkButton ID="btnAddToCart" runat="server" OnClick="btnAddToCart_Click">
-        <span class="add-to-cart" runat="server" id="spnAddToCart">Add To Cart</span>
-        <span class="added" runat="server" id="spnAdded" style="display: none;">Added</span>
+        <span class="add-to-cart" runat="server" id="spnAddToCart">Add to Cart</span>
+        <span class="added" runat="server" id="spnAdded" style="display: none;">Added to Cart</span>
         <i class="fas fa-shopping-cart"></i>
         <i class="fas fa-solid fa-shirt"></i>
     </asp:LinkButton>
@@ -243,6 +243,15 @@
 
     </div>
     <footer>
+        <script type="text/javascript">
+            function isNumber(evt) {
+                var charCode = (evt.which) ? evt.which : event.keyCode;
+                if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+                    return false;
+                }
+                return true;
+            }
+        </script>
         <script src="../../../Javascript/category.js"></script>
         <script src="../../../Javascript/slider.js"></script>
         <script src="../../../Javascript/productItem.js"></script>
