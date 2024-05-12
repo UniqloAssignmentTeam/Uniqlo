@@ -132,7 +132,7 @@ namespace Uniqlo.Pages
                 }
                 else
                 {
-                    // Log error or handle case where dataList is not found
+
                 }
             }
         }
@@ -168,7 +168,8 @@ namespace Uniqlo.Pages
         {
             RadioButtonList rbList = (RadioButtonList)sender;
             string selectedColor = rbList.SelectedValue;
-            
+            ScriptManager.RegisterStartupScript(this, GetType(), "errorAlert", "alert('" + selectedColor + "');", true);
+
             RadioButtonList rbSizes = (RadioButtonList)formView.FindControl("RadioButtonListSizes");
             Session["selectedColor"] = selectedColor;
             Session["selectedSize"] = rbSizes.SelectedValue;
@@ -231,11 +232,14 @@ namespace Uniqlo.Pages
         {
             RadioButtonList rbSizes = (RadioButtonList)sender;
             string selectedSize = rbSizes.SelectedValue;
+            ScriptManager.RegisterStartupScript(this, GetType(), "errorAlert", "alert('" + selectedSize + "');", true);
+
             RadioButtonList rbColors = (RadioButtonList)formView.FindControl("RadioButtonListColors");
             string selectedColor = rbColors.SelectedValue;
+
             Label labelQuantity = (Label)formView.FindControl("LabelQuantity");
-            Session["selectedColor"] = selectedSize;
-            Session["selectedSize"] = selectedColor;
+            Session["selectedColor"] = selectedColor;
+            Session["selectedSize"] = selectedSize;
 
 
             int productId = 0;
