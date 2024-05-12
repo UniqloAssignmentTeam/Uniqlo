@@ -168,7 +168,6 @@ namespace Uniqlo.Pages
         {
             RadioButtonList rbList = (RadioButtonList)sender;
             string selectedColor = rbList.SelectedValue;
-            ScriptManager.RegisterStartupScript(this, GetType(), "errorAlert", "alert('" + selectedColor + "');", true);
 
             RadioButtonList rbSizes = (RadioButtonList)formView.FindControl("RadioButtonListSizes");
             Session["selectedColor"] = selectedColor;
@@ -232,7 +231,6 @@ namespace Uniqlo.Pages
         {
             RadioButtonList rbSizes = (RadioButtonList)sender;
             string selectedSize = rbSizes.SelectedValue;
-            ScriptManager.RegisterStartupScript(this, GetType(), "errorAlert", "alert('" + selectedSize + "');", true);
 
             RadioButtonList rbColors = (RadioButtonList)formView.FindControl("RadioButtonListColors");
             string selectedColor = rbColors.SelectedValue;
