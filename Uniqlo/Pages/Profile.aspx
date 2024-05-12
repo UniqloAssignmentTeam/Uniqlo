@@ -3,7 +3,12 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="main" runat="server">
     <header>
         <link href="../css/Profile.css" rel="stylesheet" />
-
+        <style>
+            .dropdownListHyperLink{
+                color: #6F6F6F; 
+                text-decoration: none;
+            }
+        </style>
     </header>
     <div class="container" style="margin: auto; max-width: 1100px; position: relative;">
         <div class="main-body" id="profileDisplay">
@@ -115,7 +120,7 @@
                                 <td class="col totalItem">
                                     <asp:Label ID="totalItem" runat="server" Text='<%# Eval("Total_Item") %>'></asp:Label></td>
                                 <td class="col totalAmount">
-                                    <asp:Label ID="totalAmount" runat="server" Text='<%# Eval("Total_Price") %>'></asp:Label></td>
+                                    <asp:Label ID="totalAmount" runat="server" Text='<%# Eval("Total_Price", "{0:C}") %>'></asp:Label></td>
                                 <td class="col datePurchased">
                                     <asp:Label ID="datePurchased" runat="server" Text='<%# Eval("Payment_DateTime", "{0:dd/MM/yyyy}") %>'></asp:Label></td>
                                 <td class="col deliveryStatus">
@@ -128,7 +133,7 @@
                                     <div class="eclipse-list" id="dropdownList<%# Eval("Order_ID") %>">
 
                                         <div>
-                                            <asp:HyperLink ID="viewOrderDetails" runat="server" NavigateUrl='<%# "OrderHistoryItem.aspx?Order_ID=" + Eval("Order_ID") %>' Text="View More"></asp:HyperLink>
+                                            <asp:HyperLink ID="viewOrderDetails" runat="server" NavigateUrl='<%# "OrderHistoryItem.aspx?Order_ID=" + Eval("Order_ID") %>' Text="View More" CssClass="dropdownListHyperLink"></asp:HyperLink>
                                         </div>
 
 
@@ -161,17 +166,6 @@
 
 
 
-                </div>
-                <div class="pagination">
-                    <a href="#" class="page-link" onclick="changePage('prev')">&laquo;</a>
-                    <a href="#" class="page-link active" onclick="changePage(1)">1</a>
-                    <a href="#" class="page-link" onclick="changePage(2)">2</a>
-                    <a href="#" class="page-link" onclick="changePage(3)">3</a>
-                    <a href="#" class="page-link" onclick="changePage(4)">4</a>
-                    <a href="#" class="page-link" onclick="changePage(5)">5</a>
-
-
-                    <a href="#" class="page-link" onclick="changePage('next')">&raquo;</a>
                 </div>
             </div>
         </div>

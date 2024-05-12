@@ -17,10 +17,11 @@ namespace Uniqlo.Pages
         {
             if (!IsPostBack)
             {
+                int custId = (int)Session["Customer_ID"];
                 int orderID = int.Parse(Request.QueryString["Order_ID"]);
                 orderIDLabel.Text = orderID.ToString();
-                BindOrderListDataList(4,orderID);
-                BindOrderSummaryRepeater(4,orderID);
+                BindOrderListDataList(custId, orderID);
+                BindOrderSummaryRepeater(custId, orderID);
 
 
             }
@@ -135,29 +136,32 @@ namespace Uniqlo.Pages
             myModal.Style["display"] = "none";
             secModal.Style["display"] = "none";
             int orderID = int.Parse(Request.QueryString["Order_ID"]);
+            int custId = (int)Session["Customer_ID"];
 
-            BindOrderListDataList(4, orderID);
-            BindOrderSummaryRepeater(4, orderID);
+            BindOrderListDataList(custId, orderID);
+            BindOrderSummaryRepeater(custId, orderID);
         }
 
         protected void ReviewValidBtn_Command(object sender, CommandEventArgs e)
         {
             int orderListId = Convert.ToInt32(e.CommandArgument);
             int orderID = int.Parse(Request.QueryString["Order_ID"]);
+            int custId = (int)Session["Customer_ID"];
 
             Button clickedButton = (Button)sender;
             if (clickedButton.Text == "View")
             {
                 secModal.Style["display"] = "block";
-                BindOrderListDataList(4, orderID);
-                BindOrderSummaryRepeater(4, orderID);
+
+                BindOrderListDataList(custId, orderID);
+                BindOrderSummaryRepeater(custId, orderID);
                 BindRatingRepeater(orderListId);
             }
             else
             {
                 myModal.Style["display"] = "block";
-                BindOrderListDataList(4, orderID);
-                BindOrderSummaryRepeater(4, orderID);
+                BindOrderListDataList(custId, orderID);
+                BindOrderSummaryRepeater(custId, orderID);
             }
 
             // Execute JavaScript to set the hidden field value

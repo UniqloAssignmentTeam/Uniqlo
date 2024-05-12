@@ -25,23 +25,10 @@ namespace Uniqlo.Pages
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
-            
-
-
-            lblName.Text = (string)Session["Name"];
-            lblEmail.Text = (string)Session["Email"];
-            lblGender.Text = (string)Session["Gender"];          
-            lblPhoneNumber.Text = (string)Session["Contact_No"];
-            lblAddress.Text = (string)Session["Address"];
-            lblPostcode.Text = (string)Session["Postcode"];
-            lblCity.Text = (string)Session["City"];
-            lblState.Text = (string)Session["State"];
-            lblCountry.Text = (string)Session["Country"];
-
             if (!IsPostBack)
             {
-                BindOrderRepeater(4);
+                int custId = (int)Session["Customer_ID"];
+                BindOrderRepeater(custId);
             }
           
         }

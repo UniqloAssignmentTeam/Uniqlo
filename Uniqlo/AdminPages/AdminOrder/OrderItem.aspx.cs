@@ -19,7 +19,7 @@ namespace Uniqlo.AdminPages
                 BindOrderListDataList(orderID);
                 BindOrderSummaryRepeater(orderID);
             }
-          
+
 
         }
 
@@ -115,9 +115,6 @@ namespace Uniqlo.AdminPages
                 System.Diagnostics.Debug.WriteLine("DropDownList not found in the FormView");
             }
         }
-
-
-
 
 
 

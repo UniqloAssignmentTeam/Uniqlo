@@ -19,7 +19,8 @@
     <IISExpressSSLPort>44369</IISExpressSSLPort>
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
-    <IISExpressUseClassicPipelineMode>true</IISExpressUseClassicPipelineMode>
+    <IISExpressUseClassicPipelineMode>
+    </IISExpressUseClassicPipelineMode>
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
@@ -274,6 +275,7 @@
     <Content Include="Javascript\wishList.js" />
     <Content Include="Pages\AboutUs.aspx" />
     <Content Include="Pages\Cart.aspx" />
+    <Content Include="Pages\Categories\Women\yay.aspx" />
     <Content Include="Pages\ChangePassword.aspx" />
     <Content Include="Pages\ConfirmPayment.aspx" />
     <Content Include="Pages\ContactUs.aspx" />
@@ -510,6 +512,13 @@
     </Compile>
     <Compile Include="Pages\Cart.aspx.designer.cs">
       <DependentUpon>Cart.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Categories\Women\yay.aspx.cs">
+      <DependentUpon>yay.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Categories\Women\yay.aspx.designer.cs">
+      <DependentUpon>yay.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\ChangePassword.aspx.cs">
       <DependentUpon>ChangePassword.aspx</DependentUpon>

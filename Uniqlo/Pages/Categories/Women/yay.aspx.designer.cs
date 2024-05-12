@@ -7,11 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Uniqlo.Pages
+namespace Uniqlo.Pages.Categories.Women
 {
 
 
-    public partial class Profile
+    public partial class yay
     {
 
         /// <summary>
@@ -24,30 +24,12 @@ namespace Uniqlo.Pages
         protected global::System.Web.UI.WebControls.Label Label1;
 
         /// <summary>
-        /// btnEditProfile control.
+        /// Label2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnEditProfile;
-
-        /// <summary>
-        /// btnChgPass control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnChgPass;
-
-        /// <summary>
-        /// orderRepeater control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater orderRepeater;
+        protected global::System.Web.UI.WebControls.Label Label2;
     }
 }

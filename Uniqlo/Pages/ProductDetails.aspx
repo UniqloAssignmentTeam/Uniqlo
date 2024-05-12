@@ -14,7 +14,7 @@
     <div class="productBody" style="margin-top:50px">
 
 
-        <asp:FormView ID="formView" runat="server" OnDataBound="formView_DataBound" >
+        <asp:FormView ID="formView" runat="server" OnDataBound="formView_DataBound">
             <ItemTemplate>
                 <div class="card-wrapper">
                     <div class="productItemCard">
@@ -101,8 +101,8 @@
                             <!--NO ANIMATION ADD TO CART BUTTON-->
                             <div class="cart-button">
                                 <asp:LinkButton ID="btnAddToCart" runat="server" OnClick="btnAddToCart_Click">
-        <span class="add-to-cart" runat="server" id="spnAddToCart">Add To Cart</span>
-        <span class="added" runat="server" id="spnAdded" style="display: none;">Added</span>
+        <span class="add-to-cart" runat="server" id="spnAddToCart">Add to Cart</span>
+        <span class="added" runat="server" id="spnAdded" style="display: none;">Added to Cart</span>
         <i class="fas fa-shopping-cart"></i>
         <i class="fas fa-solid fa-shirt"></i>
     </asp:LinkButton>
