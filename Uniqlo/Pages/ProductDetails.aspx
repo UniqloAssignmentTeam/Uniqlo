@@ -14,7 +14,7 @@
     <div class="productBody" style="margin-top:50px">
 
 
-        <asp:FormView ID="formView" runat="server" OnDataBound="formView_DataBound" OnPageIndexChanging="formView_PageIndexChanging">
+        <asp:FormView ID="formView" runat="server" OnDataBound="formView_DataBound" >
             <ItemTemplate>
                 <div class="card-wrapper">
                     <div class="productItemCard">

@@ -23,6 +23,14 @@
         <div class="productItemCard">
             <h2 class="product-title">UNIQLO ADD PRODUCT</h2>
         </div>
+
+
+
+
+
+
+
+
         <div class="modal-content">
             
             
@@ -120,9 +128,10 @@
                 </div>
             </div>
         </div>
-    </div>
+    
+            </div>
+
      
-            
 
         <footer>
         <script>
@@ -230,8 +239,8 @@
                 } else {
                     alert('Please enter a color.');
                 }
-            });
-
+         
+      
 
             function updateHiddenField() {
                 var data = []; // Reset data array

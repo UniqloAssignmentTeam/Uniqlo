@@ -106,7 +106,8 @@
                                         <div>
                                             <asp:HyperLink ID="updateStaff" runat="server" NavigateUrl='<%# "UpdateStaff.aspx?StaffID=" + Eval("Staff_ID") %>' Text="Update"></asp:HyperLink>
                                         </div>
-                                        <div onclick="showDeleteModal(<%# Eval("Staff_ID") %>);">Delete</div>
+                                      <div onclick="showDeleteModal(<%# Eval("Staff_ID") %>);">Delete</div>
+
                                     </div>
                                 </td>
                             </tr>
@@ -136,30 +137,48 @@
     <asp:HiddenField ID="hiddenStaffId" runat="server" Value="" />
 
     <!--DELETE CONFIRMATION-->
-    <div id="id01" class="confirmationModal">
-        <div class="confirmation-modal-content">
-            <div class="confirmationContainer">
-                <span onclick="document.getElementById('id01').style.display='none'" class="confirmationClose" title="Close Modal">×</span>
-                <h1>Remove Staff</h1>
-                <p>Are you sure you want to remove the staff?</p>
+ <div id="id01" class="confirmationModal">
+    <div class="confirmation-modal-content">
+        <div class="confirmationContainer">
+            <span onclick="document.getElementById('id01').style.display='none'" class="confirmationClose" title="Close Modal">×</span>
+            <h1>Remove Staff</h1>
+            <p>Are you sure you want to remove the staff?</p>
+            <label for="userEmail">Enter your email for verification:</label>
+            
+            <asp:TextBox ID="userEmail" runat="server"></asp:TextBox>
+            <asp:Button ID="btnSendCode" runat="server" Text="Send Verification Code" CssClass="confirmationSendCodebtn" OnClick="btnSendCode_Click" />
 
-                <div class="confirmationClearFix">
-                    <button type="button" onclick="document.getElementById('id01').style.display='none'" class="confirmationCancelbtn">Cancel</button>
-                    <asp:Button ID="btnRemoveStaff" runat="server" Text="Remove" OnClick="btnRemoveStaff_Click" CssClass="confirmationDeletebtn" />
-                </div>
+            <div class="confirmationClearFix">
+                <button type="button" onclick="document.getElementById('id01').style.display='none'" class="confirmationCancelbtn">Cancel</button>
+                <asp:Button ID="btnRemoveStaff" runat="server" Text="Remove" OnClick="btnRemoveStaff_Click" CssClass="confirmationDeletebtn" OnClientClick="return validateEmail();" Enabled="false" />
             </div>
         </div>
     </div>
+</div>
+
 
 
 
     <footer>
         <script type="text/javascript">
             function showDeleteModal(staffId) {
-                document.getElementById('<%= hiddenStaffId.ClientID %>').value = staffId;  // Set the staff ID to hidden field
-                document.getElementById('id01').style.display = 'block';  // Show the modal
+                document.getElementById('<%= hiddenStaffId.ClientID %>').value = staffId; // Set the staff ID to hidden field
+               document.getElementById('<%= userEmail.ClientID %>').value = ''; // Clear the email input
+    document.getElementById('id01').style.display = 'block'; // Show the modal
+}
+
+function validateEmail() {
+                var email = document.getElementById('<%= userEmail.ClientID %>').value;
+                var regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/; // Simple email validation regex
+                if (!regex.test(email)) {
+                    alert("Please enter a valid email address.");
+                    return false;
+                }
+                return true;
             }
+
         </script>
+
          <script type="text/javascript">
      document.getElementById('<%= searchBox.ClientID %>').onkeyup = function() {
  __doPostBack('<%= searchBox.ClientID %>', '');
