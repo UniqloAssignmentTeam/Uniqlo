@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -55,8 +56,13 @@ namespace Uniqlo.AdminPages
 
                         db.Discount.Add(newDiscount);
                         db.SaveChanges();
+                       
+                      
+
 
                         Response.Redirect("DiscountHome.aspx");
+                      
+                        
                     }
                 }
                 catch (Exception ex)
@@ -65,6 +71,8 @@ namespace Uniqlo.AdminPages
                 }
             }
         }
+
+
 
         private void DropDownListProductName(bool excludeDiscounted = true)
         {
@@ -141,5 +149,6 @@ namespace Uniqlo.AdminPages
                 ScriptManager.RegisterStartupScript(this, GetType(), "cancelError", "alert('Error navigating back: " + ex.Message + "');", true);
             }
         }
+
     }
 }

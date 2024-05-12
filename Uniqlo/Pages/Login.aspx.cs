@@ -27,10 +27,7 @@ namespace Uniqlo.Pages
 
         protected void btnLogin_Click(object sender, EventArgs e)
         {
-            string captchaResponse = Request.Form["g-recaptcha-response"];
-
-            if (ValidateCaptcha(captchaResponse))
-            {
+            
                 con.Open();
                 if (Page.IsValid)
                 {
@@ -57,37 +54,13 @@ namespace Uniqlo.Pages
                         errorMSG.ForeColor = System.Drawing.Color.Red;
                         con.Close();
                     }
-                }
-                else
-                {
-                    // CAPTCHA validation failed, show an alert
-                    ClientScript.RegisterStartupScript(this.GetType(), "recaptchaError", "alert('reCAPTCHA verification failed. Please try again.');", true);
-                }
+              
+                   
             }
 
         }
 
-        public bool ValidateCaptcha(string response)
-        {
-            string secret = "6Lc38NgpAAAAAPvAX0lGe0Zc1plkSyMvdEaMA3sL";
-            var client = new WebClient();
-            var reply =
-                client.DownloadString(
-                    $"https://www.google.com/recaptcha/api/siteverify?secret={secret}&response={response}");
-
-            var captchaResponse = JsonConvert.DeserializeObject<CaptchaResponse>(reply);
-
-            return captchaResponse.Success;
-        }
-
-        public class CaptchaResponse
-        {
-            [JsonProperty("success")]
-            public bool Success { get; set; }
-
-            [JsonProperty("error-codes")]
-            public List<string> ErrorCodes { get; set; }
-        }
+      
 
 
 

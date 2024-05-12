@@ -15,10 +15,20 @@ namespace Uniqlo.Pages
 {
     public partial class Profile : System.Web.UI.Page
     {
+
         string cs = Global.CS;
         SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["UniqloConnectionString"].ConnectionString);
+
+        //SqlCommand getUserDetails = new SqlCommand("SELECT * FROM Customer WHERE Customer_ID = '" + Request.Session);
+
+        
+
         protected void Page_Load(object sender, EventArgs e)
         {
+
+            
+
+
             lblName.Text = (string)Session["Name"];
             lblEmail.Text = (string)Session["Email"];
             lblGender.Text = (string)Session["Gender"];          

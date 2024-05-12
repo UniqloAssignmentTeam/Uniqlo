@@ -253,8 +253,8 @@ namespace Uniqlo.Pages
             // Access the selected size and color
             string selectedSize = (string)Session["selectedSize"];
             string selectedColor = (string)Session["selectedColor"];
-            //int quantity = txtQty.Text;
-
+            TextBox txtQty = (TextBox)formView.FindControl("txtQty");
+            int quantity = Int32.Parse(txtQty.Text);
             Response.Redirect("ProductDetails.aspx");
 
 

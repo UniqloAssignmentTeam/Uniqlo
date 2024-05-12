@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin.Master" AutoEventWireup="true" CodeBehind="addDiscount.aspx.cs" Inherits="Uniqlo.AdminPages.addDiscount" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin.Master" AutoEventWireup="true" CodeBehind="addDiscount.aspx.cs" Inherits="Uniqlo.AdminPages.addDiscount"%>
 <asp:Content ID="Content1" ContentPlaceHolderID="main" runat="server">
 
                 <header>
@@ -67,7 +67,7 @@ ErrorMessage="Start date is required" ForeColor="Red" Display="Dynamic"></asp:Re
 ErrorMessage="End date is required" ForeColor="Red" Display="Dynamic"></asp:RequiredFieldValidator>
   </div> 
             </div>
-
+            <asp:Label ID="eventLinkLabel" runat="server" Visible="false"></asp:Label>
           
             <div class="button-container">
               
@@ -77,7 +77,7 @@ ErrorMessage="End date is required" ForeColor="Red" Display="Dynamic"></asp:Requ
         </div>
     </div>
    
-
+   
 
         <footer>
         <script src="../../Javascript/productAdminDDL.js"></script>

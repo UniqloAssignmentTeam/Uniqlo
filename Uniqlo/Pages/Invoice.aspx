@@ -138,10 +138,18 @@
                                     <asp:Repeater ID="rptCartItems" runat="server">
                                         <ItemTemplate>
                                             <tr>
-                                                <td><%# Eval("Name") %>, <%# Eval("Color") %>, <%# Eval("Size") %></td>
-                                                <td><%# Eval("Quantity") %></td>
-                                                <td>RM <%# Eval("Price", "{0:F2}") %></td>
-                                                <td>RM <%# Eval("Item_Price", "{0:F2}") %></td>
+                                                <td>
+                                                    <asp:Label ID="lblProductName" runat="server" Text='<%# Eval("Name") + ", " + Eval("Color") + ", " + Eval("Size") %>'></asp:Label>
+                                                </td>
+                                                <td>
+                                                    <asp:Label ID="lblQuantity" runat="server" Text='<%# Eval("Quantity") %>'></asp:Label>
+                                                </td>
+                                                <td>
+                                                    <asp:Label ID="lblPrice" runat="server" Text='<%# Eval("Price", "{0:F2}") %>'></asp:Label>
+                                                </td>
+                                                <td>
+                                                    <asp:Label ID="lblItemPrice" runat="server" Text='<%# Eval("Item_Price", "{0:F2}") %>'></asp:Label>
+                                                </td>
                                             </tr>
                                         </ItemTemplate>
                                     </asp:Repeater>
@@ -161,6 +169,7 @@
 
                             <div class="invoice-footer" style="text-align: center;">
                                 <p>PDF copy of invoice has been send to <asp:Label ID="lblEmail2" runat="server"></asp:Label></p>
+                                <asp:Button ID="btnPDF" runat="server" Text="Download PDF" OnClick="btnPDF_Click" />
                                 <p>Thank you for your purchase. To check on the status of your order, please visit <a href="profile.jsp">Here</a>.</p>
                             </div>
                         </div>
