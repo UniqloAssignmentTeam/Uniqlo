@@ -128,10 +128,10 @@
                     <div class="wrap-items-search-buttons">
                         <div class="search">
                             <span class="material-symbols-outlined">search</span>
-                            <input class="search-input" type="search" placeholder="Search" />
+                            <asp:TextBox ID="searchBox" runat="server" CssClass="search-input" AutoPostBack="true" OnTextChanged="searchBox_TextChanged"  placeholder="Search Customer Name"></asp:TextBox>
                         </div>
 
-                        <div class="dropdown-wrapper">
+                        <div class="dropdown-wrapper" style="margin-left: -300px;">
                             <asp:DropDownList ID="ddlStatus" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlStatus_SelectedIndexChanged" CssClass="dropdown-display">
                                 <asp:ListItem Value="">Status</asp:ListItem>
                                 <asp:ListItem Value="Paid">Paid</asp:ListItem>
@@ -172,7 +172,7 @@
                             <td class="col name"><%# Eval("CustomerName") %></td>
                             <td class="col price"><%# Eval("OrderListTotalItems") %></td>
                             <td class="col gender"><%# Eval("PaymentTotalAmount") %></td>
-                            <td class="col category"><%# Eval("PaymentDate") %></td>
+                            <td class="col category"><%# Eval("PaymentDate", "{0:dd/MM/yyyy}") %></td>
                             <td class="col wear"><%# Eval("PaymentStatus") %></td>
                             <td class="col eclipse-container" onclick="toggleDropdown('dropdownList<%# Eval("OrderId") %>', 'dropdownDisplay<%# Eval("OrderId") %>')">
                                 <div class="eclipse-display" id="dropdownDisplay<%# Eval("OrderId") %>" style="border: none;"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></div>
@@ -199,21 +199,17 @@
 
         </asp:UpdatePanel>
 
-        <div class="pagination">
-            <a href="#" class="page-link" onclick="changePage('prev')">&laquo;</a>
-            <a href="#" class="page-link active" onclick="changePage(1)">1</a>
-            <a href="#" class="page-link" onclick="changePage(2)">2</a>
-            <a href="#" class="page-link" onclick="changePage(3)">3</a>
-            <a href="#" class="page-link" onclick="changePage(4)">4</a>
-            <a href="#" class="page-link" onclick="changePage(5)">5</a>
-
-
-            <a href="#" class="page-link" onclick="changePage('next')">&raquo;</a>
+        <div style="margin-bottom: 80px;">
         </div>
     </div>
 
     <footer>
         <script src="../../Javascript/productBtnEclipse.js"></script>
         <script src="../../Javascript/productAdminDDL.js"></script>
+        <script>
+            document.getElementById('<%= searchBox.ClientID %>').onkeyup = function () {
+                     __doPostBack('<%= searchBox.ClientID %>', '');
+             };
+        </script>
     </footer>
 </asp:Content>

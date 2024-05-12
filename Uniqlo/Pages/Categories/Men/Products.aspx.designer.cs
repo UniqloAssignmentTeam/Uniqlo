@@ -15,21 +15,21 @@ namespace Uniqlo.Pages.Categories.Men
     {
 
         /// <summary>
-        /// RadioButtonList2 control.
+        /// carouselDataList control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList RadioButtonList2;
+        protected global::System.Web.UI.WebControls.DataList carouselDataList;
 
         /// <summary>
-        /// RadioButtonList1 control.
+        /// dataList control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList RadioButtonList1;
+        protected global::System.Web.UI.WebControls.DataList dataList;
     }
 }
