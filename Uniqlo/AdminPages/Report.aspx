@@ -6,7 +6,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="main" runat="server">
     <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
 
-
+    
       <header>
           <link href="../css/Admin/report.css" rel="stylesheet" />
            <script src="https://www.gstatic.com/charts/loader.js"></script>
@@ -23,8 +23,8 @@
 <ContentTemplate>
         <!--OVERVIEW CONTAINER-->
     <div class="overview">
-          
-
+        <div class="report-space">
+           <h3 class="h2">Product Review</h3>
 <asp:DropDownList ID="reviewSort" runat="server" AutoPostBack="True" CssClass="dropdown-display" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged">
    
     <asp:ListItem Text="Top 5 Reviewed Products" Value="1"></asp:ListItem>
@@ -47,11 +47,11 @@
         </asp:ChartArea>
     </ChartAreas>
 </asp:Chart>
-
+</div>
 
       
-
-
+        <div class="report-space">
+        <h3 class="h2">Top Selling</h3>
     <asp:DropDownList ID="ddlProducts" runat="server" AutoPostBack="True" CssClass="dropdown-display" OnSelectedIndexChanged="ddlProducts_SelectedIndexChanged">
           
             <asp:ListItem Text="Top 5 Best Selling Products" Value="1"></asp:ListItem>
@@ -75,12 +75,13 @@
     </ChartAreas>
 </asp:Chart>
 
-          
+         </div> 
         
 
 
 
-
+         <div class="report-space">
+ <h3 class="h2">Most Product Category</h3>
 
     <asp:DropDownList ID="ddlCategorySort" runat="server" AutoPostBack="True" CssClass="dropdown-display" OnSelectedIndexChanged="ddlCategorySort_SelectedIndexChanged">
     <asp:ListItem Text="Most Products" Value="DESC"></asp:ListItem>
@@ -107,7 +108,8 @@
 
         
 
-       
+       <div class="report-space">
+<h3 class="h2">Discount Price</h3>
      
         <asp:DropDownList ID="ddlDiscountSort" runat="server" AutoPostBack="True" CssClass="dropdown-display" OnSelectedIndexChanged="ddlDiscountSort_SelectedIndexChanged">
             <asp:ListItem Text="Highest Discounts" Value="DESC"></asp:ListItem>
@@ -136,6 +138,10 @@
    
 
     <!--HEADING-->
+
+
+ <div class="report-space">
+<h3 class="h2">Sales Number By Month</h3>
       <asp:DropDownList ID="ddlMonths" runat="server" AutoPostBack="True" CssClass="dropdown-display" OnSelectedIndexChanged="ddlMonths_SelectedIndexChanged">
 </asp:DropDownList>
 
