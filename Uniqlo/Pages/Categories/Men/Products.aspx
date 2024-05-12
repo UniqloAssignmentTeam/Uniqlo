@@ -120,9 +120,8 @@
                                            <p><%# Eval("Description") %></p>
                                        </div>
                                        <div class="product-price">
-                                            <%# Convert.ToDecimal(Eval("DiscountAmount")) > 0  ? "<p style='text-decoration: line-through; margin-right: 10px;'>" + String.Format("{0:C}", Eval("Price")) + "</p>" : "<p style='margin-right: 10px;'>" + String.Format("{0:C}", Eval("Price")) + "</p>" %>
-                                       
-                                           <p style="color: red;"> <%# Convert.ToDecimal(Eval("DiscountAmount")) > 0  ? String.Format("{0:C}", Eval("DiscountAmount")) : "" %></p>
+                                            <p style="text-decoration: line-through; margin-right: 10px;"><%# Convert.ToDecimal(Eval("DiscountAmount")) > 0  ? "<p style='text-decoration: line-through; margin-right: 10px;'>" + String.Format("{0:C}", Eval("Price")) + "</p>" : "<p style='margin-right: 10px;'>" + String.Format("{0:C}", Eval("Price")) + "</p>" %></p>
+                                            <p style="color: red;"><%# Convert.ToDecimal(Eval("DiscountAmount")) > 0  ? "<span style='color: red;'>" + String.Format("{0:C}", Convert.ToDecimal(Eval("Price")) - Convert.ToDecimal(Eval("DiscountAmount"))) + "</span>" : "" %></p>
                                        </div>
                                        <div class="product-rating">
                                            <%# GenerateStars(Convert.ToDouble(Eval("AverageRating")) ) %>

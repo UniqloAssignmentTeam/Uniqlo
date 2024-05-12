@@ -132,7 +132,7 @@ namespace Uniqlo.Pages
                 }
                 else
                 {
-                    // Log error or handle case where dataList is not found
+
                 }
             }
         }
@@ -171,7 +171,6 @@ namespace Uniqlo.Pages
 
             RadioButtonList rbSizes = (RadioButtonList)formView.FindControl("RadioButtonListSizes");
             Session["selectedColor"] = selectedColor;
-            Session["selectedSize"] = rbSizes.SelectedValue;
 
             int productId = 0;
             if (Request.QueryString["ProdID"] != null && int.TryParse(Request.QueryString["ProdID"], out productId))
@@ -239,11 +238,12 @@ namespace Uniqlo.Pages
         {
             RadioButtonList rbSizes = (RadioButtonList)sender;
             string selectedSize = rbSizes.SelectedValue;
+
             RadioButtonList rbColors = (RadioButtonList)formView.FindControl("RadioButtonListColors");
             string selectedColor = rbColors.SelectedValue;
+
             Label labelQuantity = (Label)formView.FindControl("LabelQuantity");
-            Session["selectedColor"] = selectedSize;
-            Session["selectedSize"] = selectedColor;
+            Session["selectedSize"] = selectedSize;
 
 
             int productId = 0;
