@@ -20,6 +20,7 @@
 /*OVERVIEW SECTION*/
 .overview, .overviewGraph {
     display: flex;
+    flex-direction:column;
 }
 
 .orderOnHold, .orderCompleted, .productOutOfStock, .activeUser {

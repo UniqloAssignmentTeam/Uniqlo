@@ -10,7 +10,7 @@
         <div class="header">
             <h2>UNIQLO DASHBOARD</h2>
             <p>Here’s what’s going on at your business right now</p>
-        </div>W
+        </div>
 
         <!--OVERVIEW CONTAINER-->
         <div class="overview">
@@ -19,8 +19,9 @@
                     <i class="fa-solid fa-truck truck"></i>
                 </div>
                 <div class="overviewContent">
-                    <h2>57 orders</h2>
-                    <p class="overviewP">To be ship</p>
+                    <h2><asp:Label ID="lblNotDeliveredCount" runat="server" Text="Loading..."></asp:Label>
+ Orders</h2>
+                    <p class="overviewP">To be delivered</p>
                 </div>
             </div>
             <div class="orderCompleted">
@@ -28,17 +29,17 @@
                     <i class="fa-solid fa-receipt order"></i>
                 </div>
                 <div class="overviewContent">
-                    <h2>100 orders</h2>
-                    <p class="overviewP">Completed</p>
+                    <h2><asp:Label ID="lblNotPaid" runat="server" Text="Loading..."> </asp:Label> Orders</h2>
+                    <p class="overviewP">To be Paid</p>
                 </div>
             </div>
             <div class="productOutOfStock">
                 <div>
-                    <i class="fa-solid fa-boxes-stacked product"></i>
+                   <i class="fa-solid fa-users users"></i>
                 </div>
                 <div class="overviewContent">
-                    <h2>5 products</h2>
-                    <p class="overviewP">Out of stock</p>
+                    <h2><asp:Label ID="lblStaff" runat="server" Text="Loading..."> </asp:Label> Staffs</h2>
+                    <p class="overviewP">Currently</p>
                 </div>
             </div>
             <div class="activeUser">
@@ -46,8 +47,8 @@
                     <i class="fa-solid fa-users users"></i>
                 </div>
                 <div class="overviewContent">
-                    <h2>10 register User</h2>
-                    <p class="overviewP">Within 3 months</p>
+                    <h2><asp:Label ID="lblCustomer" runat="server" Text="Loading..."> </asp:Label> Customer</h2>
+                    <p class="overviewP">Registered</p>
                 </div>
             </div>
         </div>
@@ -61,7 +62,22 @@
         </div>
 
         <!--LINE CHART-->
-        <canvas id="myChart" style="width:100%;"></canvas>
+        <asp:Chart ID="SalesChart" runat="server" Width="800px" Height="500px">
+    <Series>
+        <asp:Series Name="SalesSeries" ChartType="Column" XValueMember="SaleMonth" YValueMembers="TotalSales"></asp:Series>
+    </Series>
+    <ChartAreas>
+        <asp:ChartArea Name="MainChartArea">
+            <AxisX Title="Month">
+                <MajorGrid Enabled="false" />
+            </AxisX>
+            <AxisY Title="Total Sales (RM)">
+                <MajorGrid Enabled="true" />
+            </AxisY>
+        </asp:ChartArea>
+    </ChartAreas>
+</asp:Chart>
+
         <div class="space"></div>
        </div>
       

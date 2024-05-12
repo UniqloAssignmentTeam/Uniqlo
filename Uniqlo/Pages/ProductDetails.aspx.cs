@@ -20,6 +20,7 @@ namespace Uniqlo.Pages
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            
             if (!IsPostBack)
             {
                 formView.DataBound += new EventHandler(formView_DataBound);
@@ -166,7 +167,8 @@ namespace Uniqlo.Pages
         protected void RadioButtonListColors_SelectedIndexChanged(object sender, EventArgs e)
         {
             RadioButtonList rbList = (RadioButtonList)sender;
-            string selectedColor = rbList.SelectedValue;            
+            string selectedColor = rbList.SelectedValue;
+            
             RadioButtonList rbSizes = (RadioButtonList)formView.FindControl("RadioButtonListSizes");
             Session["selectedColor"] = selectedColor;
             Session["selectedSize"] = rbSizes.SelectedValue;
