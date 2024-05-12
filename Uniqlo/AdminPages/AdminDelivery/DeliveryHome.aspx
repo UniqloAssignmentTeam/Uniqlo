@@ -141,7 +141,7 @@
 
                 <div class="search">
     <span class="material-symbols-outlined">search</span>
-  <asp:TextBox ID="searchBox" runat="server" CssClass="search-input" AutoPostBack="true" OnTextChanged="searchBox_TextChanged"  placeholder="Search Delivery ID"></asp:TextBox>
+  <asp:TextBox ID="searchBox" runat="server" CssClass="search-input" AutoPostBack="true" onkeypress="return isNumber(event)" OnTextChanged="searchBox_TextChanged"  placeholder="Search Delivery ID"></asp:TextBox>
        
 </div> 
 
@@ -249,6 +249,14 @@
    <footer>
 
        <script type="text/javascript">
+
+           function isNumber(evt) {
+               var charCode = (evt.which) ? evt.which : event.keyCode;
+               if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+                   return false;
+               }
+               return true;
+           }
            function showDeleteModal(deliveryId) {
                document.getElementById('<%= hiddenDeliveryId.ClientID %>').value = deliveryId; 
                document.getElementById('id01').style.display = 'block';  

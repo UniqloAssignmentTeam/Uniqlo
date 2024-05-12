@@ -122,7 +122,6 @@
                         <h5 class="font-weight-medium mb-3">Products</h5>
 
 
-
                         <asp:Repeater ID="CartRepeater" runat="server">
                             <ItemTemplate>
                                 <div class="d-flex justify-content-between">
@@ -159,15 +158,6 @@
                         <asp:Label ID="lblErrorMessage" runat="server" ForeColor="Red" Visible="False"></asp:Label>
                         <asp:LinkButton ID="lnkConfirmOrder" runat="server" CssClass="viewMoreButton" OnClick="lnkConfirmOrder_Click" Text="Confirm Order" />
                     </div>
-                
-                <div id="popup" class="popup">
-                    <div class="popup-content">
-                        <span class="close">&times;</span>
-                        <h2>Thank You for Your Order!</h2>
-                        <p>Your payment id is <span id="payment-id">#getPayment_id</span>.</p>
-                        <p>Your order was placed on <span id="transaction-date"></span>.</p>
-                    </div>
-                </div>
             </div>
         </div>
     </div>

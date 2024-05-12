@@ -190,5 +190,10 @@ namespace Uniqlo.AdminPages.AdminDelivery
             }
         }
 
+        protected void btnCancel_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("DeliveryHome.aspx");
+
+        }
     }
 }

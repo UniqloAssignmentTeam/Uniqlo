@@ -67,7 +67,7 @@
                     <a href="Product.aspx">Product</a>
                     <a href="DiscountHome.aspx">Discount</a>
                     <a href="Order.aspx">Order</a>
-                    <a href="Delivery.aspx">Delivery</a>
+                    <a href="DeliveryHome.aspx">Delivery</a>
                     <a href="Report.aspx">Report</a>
                 
             </div>
