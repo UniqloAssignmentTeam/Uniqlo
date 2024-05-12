@@ -19,25 +19,32 @@
      <div class="header">
          <h2 class="h2">UNIQLO REPORT</h2>
      </div>
+                 <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+<ContentTemplate>
         <!--OVERVIEW CONTAINER-->
     <div class="overview">
-      
+          
 
-         
+<asp:DropDownList ID="reviewSort" runat="server" AutoPostBack="True" CssClass="dropdown-display" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged">
+   
+    <asp:ListItem Text="Top 5 Reviewed Products" Value="1"></asp:ListItem>
+    <asp:ListItem Text="Least 5 Reviewed Products" Value="2"></asp:ListItem>
+</asp:DropDownList>
+
 
           <asp:Chart ID="ProductReviewChart" runat="server" Width="1100px" Height="500px">
     <Series>
-        <asp:Series Name="Reviews" ChartType="Column" XValueMember="Product_Name" YValueMembers="ReviewCount">
-        </asp:Series>
+        <asp:Series Name="Reviews" ChartType="Column" XValueMember="Product_Name" YValueMembers="ReviewCount" />
     </Series>
     <ChartAreas>
-        <asp:ChartArea Name="ChartArea1"></asp:ChartArea>
-         <AxisX Title="Product Name">
-     <MajorGrid Enabled="true" />
- </AxisX>
- <AxisY Title="Number of Review">
-     <MajorGrid Enabled="true" />
- </AxisY>
+        <asp:ChartArea Name="ChartArea1">
+            <AxisX Title="Product Name">
+                <MajorGrid Enabled="true" />
+            </AxisX>
+            <AxisY Title="Number of Reviews">
+                <MajorGrid Enabled="true" />
+            </AxisY>
+        </asp:ChartArea>
     </ChartAreas>
 </asp:Chart>
 
@@ -45,7 +52,11 @@
       
 
 
-
+    <asp:DropDownList ID="ddlProducts" runat="server" AutoPostBack="True" CssClass="dropdown-display" OnSelectedIndexChanged="ddlProducts_SelectedIndexChanged">
+          
+            <asp:ListItem Text="Top 5 Best Selling Products" Value="1"></asp:ListItem>
+            <asp:ListItem Text="Least 5 Best Selling Products" Value="2"></asp:ListItem>
+        </asp:DropDownList>
        
                    <asp:Chart ID="BestSellingProductsChart" runat="server" Width="1100px" Height="500px">
     <Series>
@@ -71,7 +82,10 @@
 
 
 
-
+    <asp:DropDownList ID="ddlCategorySort" runat="server" AutoPostBack="True" CssClass="dropdown-display" OnSelectedIndexChanged="ddlCategorySort_SelectedIndexChanged">
+    <asp:ListItem Text="Most Products" Value="DESC"></asp:ListItem>
+    <asp:ListItem Text="Fewest Products" Value="ASC"></asp:ListItem>
+</asp:DropDownList>
         
   <asp:Chart ID="CategoryProductChart" runat="server" Width="1100px" Height="500px">
     <Series>
@@ -94,7 +108,11 @@
         
 
        
-      
+     
+        <asp:DropDownList ID="ddlDiscountSort" runat="server" AutoPostBack="True" CssClass="dropdown-display" OnSelectedIndexChanged="ddlDiscountSort_SelectedIndexChanged">
+            <asp:ListItem Text="Highest Discounts" Value="DESC"></asp:ListItem>
+            <asp:ListItem Text="Lowest Discounts" Value="ASC"></asp:ListItem>
+        </asp:DropDownList>
        
       <asp:Chart ID="TopDiscountsChart" runat="server" Width="1100px" Height="500px">
     <Series>
@@ -118,28 +136,13 @@
    
 
     <!--HEADING-->
-    <div class="space"></div>
-
-    <div class="header">
-        <h2>Total Item Sold</h2>
-      
-       
-
-
-
-         <asp:DropDownList ID="ddlMonths" runat="server" AutoPostBack="True" CssClass="drop-display" OnSelectedIndexChanged="ddlMonths_SelectedIndexChanged">
-   
+      <asp:DropDownList ID="ddlMonths" runat="server" AutoPostBack="True" CssClass="dropdown-display" OnSelectedIndexChanged="ddlMonths_SelectedIndexChanged">
 </asp:DropDownList>
-</div>
-           
-    
 
-    <!--LINE CHART-->
+        
 
-      <asp:UpdatePanel ID="UpdatePanel1" runat="server">
-    <ContentTemplate>  
   
-<asp:Chart ID="SalesChart" runat="server" Width="500px" Height="500px">
+       <asp:Chart ID="SalesChart" runat="server" Width="1100px" Height="500px">
     <Series>
         <asp:Series Name="SalesSeries" ChartType="Column"></asp:Series>
     </Series>
@@ -147,9 +150,26 @@
         <asp:ChartArea Name="MainChartArea"></asp:ChartArea>
     </ChartAreas>
 </asp:Chart>
+      
+       </div>
+
+
+
+  
+    
+
+    <!--LINE CHART-->
+
+      
+  
+
          </ContentTemplate>
     <Triggers>
         <asp:AsyncPostBackTrigger ControlID="ddlMonths" EventName="SelectedIndexChanged" />
+        <asp:AsyncPostBackTrigger ControlID="reviewSort" EventName="SelectedIndexChanged" />
+        <asp:AsyncPostBackTrigger ControlID="ddlProducts" EventName="SelectedIndexChanged" />
+        <asp:AsyncPostBackTrigger ControlID="ddlCategorySort" EventName="SelectedIndexChanged" />
+        <asp:AsyncPostBackTrigger ControlID="ddlDiscountSort" EventName="SelectedIndexChanged" />
     </Triggers>
 </asp:UpdatePanel>
 

@@ -100,12 +100,12 @@
     box-sizing: border-box;
 }
 
-.cart-summary h3 {
-    font-size: 25px; /* Increase font size to 20px */
-    color: #333;
-    margin-bottom: 20px;
-    text-align: center;
-}
+    .cart-summary h3 {
+        font-size: 25px; /* Increase font size to 20px */
+        color: #333;
+        margin-bottom: 20px;
+        text-align: center;
+    }
 
 .cart-page-container {
     display: flex;
@@ -173,9 +173,9 @@
     .cart-summary {
         margin-top: 20px;
     }
+
     .review-modal-content {
         padding: 50px 10px; /* smaller padding for smaller screens */
-
     }
 }
 
@@ -968,28 +968,29 @@
     visibility: hidden; /* Start hidden */
     transform: translateY(-20px); /* Start slightly above */
     transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s; /* Animate opacity, transform, and visibility */
-    align-items:center;
+    align-items: center;
     text-align: center; /* Centers the text inside the dropdown */
 }
-.dropdown-list.open {
+
+    .dropdown-list.open {
         opacity: 1; /* Fade in to fully opaque */
         visibility: visible; /* Make visible */
         transform: translateY(0px); /* Move to original position */
- }
+    }
 
 
-.dropdown-list.open {
+    .dropdown-list.open {
         display: block; /* Show dropdown */
-}
+    }
 
-.dropdown-list div {
+    .dropdown-list div {
         padding: 10px;
         cursor: pointer;
-}
+    }
 
-.dropdown-list div:hover {
-    background-color: #f0f0f0;
- }
+        .dropdown-list div:hover {
+            background-color: #f0f0f0;
+        }
 
 
 .dropdown-display::after {

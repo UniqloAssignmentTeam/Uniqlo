@@ -54,4 +54,5 @@
             </div>
         </div>
     </div>
+    <script src="../Javascript/cart.js"></script>
 </asp:Content>

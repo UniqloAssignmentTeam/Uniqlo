@@ -35,34 +35,44 @@ namespace Uniqlo.AdminPages
 
         private void BindFormView(int productId)
         {
-            using (var db = new ProductDbContext())
+            try
             {
-                var productList = db.Product
-                    .Where(p => p.Product_ID == productId)
-                    .Include(p => p.Category)
-                    .Include(p => p.Quantities.Select(q => q.Image))
-                    .Select(p => new
-                    {
-                        Product_ID = p.Product_ID,
-                        Product_Name = p.Product_Name,
-                        Description = p.Description,
-                        Price = p.Price,
-                        Category = p.Category,
-                        ColorGroups = p.Quantities
-                            .Where(q => !q.IsDeleted)
-                            .GroupBy(q => q.Color)
-                            .Select(g => new
-                            {
-                                Color = g.Key,
-                                Quantities = g.ToList(),
-                                FirstImageId = g.Select(q => q.Image_ID).FirstOrDefault()
-                            }).ToList()
-                    }).ToList();
+                using (var db = new ProductDbContext())
+                {
+                    var productList = db.Product
+                        .Where(p => p.Product_ID == productId)
+                        .Include(p => p.Category)
+                        .Include(p => p.Quantities.Select(q => q.Image))
+                        .Select(p => new
+                        {
+                            Product_ID = p.Product_ID,
+                            Product_Name = p.Product_Name,
+                            Description = p.Description,
+                            Price = p.Price,
+                            Category = p.Category,
+                            ColorGroups = p.Quantities
+                                .Where(q => !q.IsDeleted)
+                                .GroupBy(q => q.Color)
+                                .Select(g => new
+                                {
+                                    Color = g.Key,
+                                    Quantities = g.ToList(),
+                                    FirstImageId = g.Select(q => q.Image_ID).FirstOrDefault()
+                                }).ToList()
+                        }).ToList();
 
 
-                formView.DataSource = productList;
-                formView.DataBind();
+                    formView.DataSource = productList;
+                    formView.DataBind();
+                }
             }
+            catch (Exception ex)
+            {
+
+                // Optionally display error message on the page
+                ScriptManager.RegisterStartupScript(this, GetType(), "errorAlert", "alert('An error occurred when Filtering product.');", true);
+            }
+
         }
 
         protected void dataList_ItemDataBound(object sender, DataListItemEventArgs e)
@@ -145,9 +155,43 @@ namespace Uniqlo.AdminPages
                 DropDownList ddlCategory = formView.FindControl("ddlCategory") as DropDownList;
                 DropDownList ddlGender = formView.FindControl("ddlGender") as DropDownList;
 
+                bool isValid = true;
+                string errorMessage = "";
+
+                if (string.IsNullOrWhiteSpace(txtProductName.Text))
+                {
+                    errorMessage += "Product name is required.\\n";
+                    isValid = false;
+                }
+
+                if (string.IsNullOrWhiteSpace(txtProductDescription.Text))
+                {
+                    errorMessage += "Description is required.\\n";
+                    isValid = false;
+                }
+
+                double productPrice;
+                if (!double.TryParse(txtProductPrice.Text, out productPrice) || productPrice <= 0)
+                {
+                    errorMessage += "Valid price greater than zero is required.\\n";
+                    isValid = false;
+                }
+
+                if (ddlCategory.SelectedIndex == -1 || ddlGender.SelectedIndex == -1)
+                {
+                    errorMessage += "Both category and gender must be selected.\\n";
+                    isValid = false;
+                }
+
+                if (!isValid)
+                {
+                    ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", $"alert('{errorMessage}');", true);
+                    return;
+                }
+
                 string productName = txtProductName.Text;
                 string productDescription = txtProductDescription.Text;
-                double productPrice = Double.Parse(txtProductPrice.Text);
+                productPrice = Double.Parse(txtProductPrice.Text);
                 string category = ddlCategory.Text;
                 string gender = ddlGender.Text;
 
