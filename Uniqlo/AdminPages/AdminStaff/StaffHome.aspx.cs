@@ -28,6 +28,15 @@ namespace Uniqlo.AdminPages.AdminStaff
                 if (!IsPostBack)
                 {
                     BindRepeater();
+                    modalState.Value = "closed";
+                }
+                else
+                {
+                    // Check the value of the hidden field and show the modal if necessary
+                    if (modalState.Value == "open")
+                    {
+                        ScriptManager.RegisterStartupScript(this, GetType(), "ShowModal", "showDeleteModal();", true);
+                    }
                 }
             }
             catch (Exception ex)
@@ -64,30 +73,6 @@ namespace Uniqlo.AdminPages.AdminStaff
             catch (Exception ex)
             {
                 ScriptManager.RegisterStartupScript(this, GetType(), "redirectError", "alert('Failed to redirect to the update page. Please try again.');", true);
-            }
-        }
-
-        protected void btnRemoveStaff_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                int staffId = int.Parse(hiddenStaffId.Value);
-                using (var db = new StaffDbContext())
-                {
-                    var staff = db.Staff.Find(staffId);
-                    if (staff != null)
-                    {
-                        db.Staff.Remove(staff);
-                        db.SaveChanges();
-                        Response.Redirect(Request.RawUrl);
-                    }
-                }
-            }
-
-
-            catch (Exception ex)
-            {
-                ScriptManager.RegisterStartupScript(this, GetType(), "redirectError", "alert('Failed to remove staff. Please try again.');", true);
             }
         }
 
@@ -270,47 +255,8 @@ namespace Uniqlo.AdminPages.AdminStaff
             }
         }
 
-        protected void btnSendCode_Click(object sender, EventArgs e)
-        {
-            // Use .Text to get the text from an asp:TextBox
-            string userEmailText = userEmail.Text; // Correct property access
+        
 
-            string verificationCode = GenerateVerificationCode(); // Generate a random verification code
-            Session["VerificationCode"] = verificationCode; // Store the code in session to verify later
-
-            try
-            {
-                SmtpClient smtp = new SmtpClient
-                {
-                    Host = "smtp.gmail.com", // Set your SMTP server here
-                    Port = 587,
-                    EnableSsl = true,
-                    Credentials = new System.Net.NetworkCredential("jefferooi123@gmail.com", "1234567890pl,okm")
-                };
-
-                using (MailMessage mail = new MailMessage())
-                {
-                    mail.From = new MailAddress("jefferooi123@gmail.com");
-                    mail.To.Add(userEmailText); // Now using the correct text
-                    mail.Subject = "Verification Code";
-                    mail.Body = "Your verification code is: " + verificationCode;
-                    smtp.Send(mail);
-                }
-
-                ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", "alert('Verification code sent to your email.');", true);
-                btnRemoveStaff.Enabled = true; // Enable the remove button after code is sent
-            }
-            catch (Exception ex)
-            {
-                ScriptManager.RegisterStartupScript(this, GetType(), "errorAlert", "alert('Failed to send verification code. Error: " + ex.Message + "');", true);
-            }
-        }
-
-        private string GenerateVerificationCode()
-        {
-            Random random = new Random();
-            return random.Next(100000, 999999).ToString(); // Generate a 6-digit code
-        }
 
 
 
