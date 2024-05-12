@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
@@ -14,43 +15,47 @@ namespace Uniqlo.AdminPages
 {
     public partial class Report : System.Web.UI.Page
     {
-        string cs=Global.CS;
+        string cs = Global.CS;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                LoadSalesData();
+                BindReviewChartData();
                 BindChartData();
                 BindChartData2();
-                PopulateItemsSoldChart();
+                BindChartData3();
+                BindSalesData();
+                PopulateMonthsDropDown();
             }
         }
 
 
-        private void LoadSalesData()
+        private void BindReviewChartData()
         {
-            
-            using (SqlConnection con = new SqlConnection(cs))
+            using (SqlConnection con = new SqlConnection(cs)) // Ensure 'cs' is your connection string variable
             {
-                using (SqlCommand cmd = new SqlCommand("SELECT CAST(Payment_DateTime AS DATE) AS [Date], SUM(Total_Payment) AS TotalSales FROM Payment WHERE Payment_Status = 'Paid' GROUP BY CAST(Payment_DateTime AS DATE) ORDER BY [Date]", con))
+                string query = @"
+            SELECT TOP 5 p.Product_Name, COUNT(r.Review_ID) AS ReviewCount
+            FROM Product p
+            JOIN Quantity q ON p.Product_ID = q.Product_ID
+            JOIN OrderList ol ON q.Quantity_ID = ol.Quantity_ID
+            JOIN Review r ON ol.OrderList_ID = r.OrderList_ID
+            WHERE p.IsDeleted = 0
+            GROUP BY p.Product_Name
+            ORDER BY ReviewCount DESC";
+
+                using (SqlCommand cmd = new SqlCommand(query, con))
                 {
                     con.Open();
-                    SqlDataReader reader = cmd.ExecuteReader();
-
-                    Series series = SalesChart.Series["SalesSeries"];
-                    series.Points.Clear();
-
-                    while (reader.Read())
-                    {
-                        series.Points.AddXY(reader["Date"].ToString(), reader["TotalSales"]);
-                    }
+                    SqlDataReader rdr = cmd.ExecuteReader();
+                    ProductReviewChart.Series["Reviews"].Points.DataBindXY(rdr, "Product_Name", rdr, "ReviewCount");
                 }
             }
         }
 
+
         private void BindChartData()
         {
-           
             using (SqlConnection con = new SqlConnection(cs))
             {
                 string query = "SELECT TOP 5 p.Product_Name, SUM(ol.Qty) AS TotalQuantity FROM OrderList ol JOIN Quantity q ON ol.Quantity_ID = q.Quantity_ID JOIN Product p ON q.Product_ID = p.Product_ID GROUP BY p.Product_Name ORDER BY TotalQuantity DESC";
@@ -59,6 +64,8 @@ namespace Uniqlo.AdminPages
                     con.Open();
                     SqlDataReader rdr = cmd.ExecuteReader();
                     Series series = BestSellingProductsChart.Series["BestSellingSeries"];
+                    series.Points.Clear();
+
                     while (rdr.Read())
                     {
                         series.Points.AddXY(rdr["Product_Name"], rdr["TotalQuantity"]);
@@ -66,89 +73,121 @@ namespace Uniqlo.AdminPages
                 }
             }
         }
-        private void CustomizeChart()
-        {
-            SalesChart.ChartAreas["MainChartArea"].AxisX.Title = "Date";
-            SalesChart.ChartAreas["MainChartArea"].AxisY.Title = "Total Sales";
-            SalesChart.Legends.Add(new Legend("SalesLegend") { Docking = Docking.Bottom });
 
-            BestSellingProductsChart.Titles.Add("Top 5 Best Selling Products");
-            BestSellingProductsChart.ChartAreas["ChartArea1"].AxisX.Title = "Products";
-            BestSellingProductsChart.ChartAreas["ChartArea1"].AxisY.Title = "Quantity Sold";
-
-            // Style the series
-            BestSellingProductsChart.Series["BestSellingSeries"].Palette = ChartColorPalette.BrightPastel;
-
-           
-        }
 
         private void BindChartData2()
         {
-          
             using (SqlConnection con = new SqlConnection(cs))
             {
                 con.Open();
-                string query = @"SELECT TOP 5 p.Product_Name, COUNT(*) AS WishlistCount
-                         FROM WishlistItem wi
-                         JOIN Quantity q ON wi.Quantity_ID = q.Quantity_ID
-                         JOIN Product p ON q.Product_ID = p.Product_ID
-                         WHERE p.IsDeleted = 0
-                         GROUP BY p.Product_Name
-                         ORDER BY WishlistCount DESC";
+                SqlCommand cmd = new SqlCommand("SELECT c.Name AS CategoryName, COUNT(p.Product_ID) AS ProductCount FROM Product p JOIN Category c ON p.Category_ID = c.Category_ID WHERE p.IsDeleted = 0 GROUP BY c.Name ORDER BY ProductCount DESC", con);
+                SqlDataReader rdr = cmd.ExecuteReader();
 
+                CategoryProductChart.Series["Products"].Points.DataBindXY(rdr, "CategoryName", rdr, "ProductCount");
+
+                rdr.Close();
+            }
+        }
+        private void BindChartData3()
+        {
+            using (SqlConnection con = new SqlConnection(cs))
+            {
+                con.Open();
+                string query = "SELECT TOP 5 p.Product_Name, d.Discount_Amount FROM Discount d JOIN Product p ON d.Product_ID = p.Product_ID WHERE d.Status = 'Active' AND p.IsDeleted = 0 ORDER BY d.Discount_Amount DESC";
                 using (SqlCommand cmd = new SqlCommand(query, con))
                 {
                     SqlDataReader rdr = cmd.ExecuteReader();
-                    ChartWishlist.Series["Series1"].XValueMember = "Product_Name";
-                    ChartWishlist.Series["Series1"].YValueMembers = "WishlistCount";
-                    ChartWishlist.DataSource = rdr;
-                    ChartWishlist.DataBind();
+
+                    TopDiscountsChart.Series["Discounts"].Points.Clear();
+                    TopDiscountsChart.Series["Discounts"].Points.DataBindXY(rdr, "Product_Name", rdr, "Discount_Amount");
+
+                    rdr.Close();
                 }
             }
         }
-        protected void PopulateItemsSoldChart()
+
+
+        private void BindSalesData()
         {
-           
-            List<int> totalItemsSold = new List<int>();
 
-            using (SqlConnection connection = new SqlConnection(cs))
+            using (SqlConnection con = new SqlConnection(cs))
             {
-                connection.Open();
-                string query = "SELECT YEAR(Orders.Date) AS Year, MONTH(Orders.Date) AS Month, SUM(OrderList.Qty) AS TotalItemsSold " +
-                               "FROM Orders " +
-                               "INNER JOIN OrderList ON Orders.Order_ID = OrderList.Order_ID " +
-                               "WHERE Orders.Date >= DATEADD(MONTH, -2, GETDATE()) " +
-                               "GROUP BY YEAR(Orders.Date), MONTH(Orders.Date) " +
-                               "ORDER BY Year, Month";
-
-                SqlCommand command = new SqlCommand(query, connection);
-                SqlDataReader reader = command.ExecuteReader();
-
-                while (reader.Read())
+                string query = @"SELECT FORMAT(Payment_DateTime, 'MMM yyyy') AS Month, SUM(ol.Qty) AS TotalItemsSold
+                         FROM OrderList ol
+                         JOIN Orders o ON ol.Order_ID = o.Order_ID
+                         JOIN Payment p ON o.Order_ID = p.Order_ID
+                         WHERE p.Payment_Status = 'Paid' AND p.Payment_DateTime >= DATEADD(MONTH, -4, GETDATE())
+                         GROUP BY FORMAT(Payment_DateTime, 'MMM yyyy')
+                         ORDER BY MIN(p.Payment_DateTime);";
+                using (SqlCommand cmd = new SqlCommand(query, con))
                 {
-                    int totalSold = Convert.ToInt32(reader["TotalItemsSold"]);
-                    totalItemsSold.Add(totalSold);
+                    con.Open();
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    Series series = SalesChart.Series["SalesSeries"];
+                    series.Points.Clear();
+
+                    while (reader.Read())
+                    {
+                        series.Points.AddXY(reader["Month"].ToString(), reader["TotalItemsSold"]);
+                    }
                 }
-
-                reader.Close();
-            }
-
-            // Add data points to the chart
-            for (int i = 0; i < totalItemsSold.Count; i++)
-            {
-                int month = DateTime.Now.Month - 2 + i;
-                int year = DateTime.Now.Year;
-
-                if (month <= 0)
-                {
-                    month += 12;
-                    year--;
-                }
-
-                Chart1.Series["TotalItemsSold"].Points.AddXY($"{year}-{month}", totalItemsSold[i]);
             }
         }
 
+        private void BindSalesDataFilter()
+        {
+            int selectedMonth = int.Parse(ddlMonths.SelectedValue);
+            if (selectedMonth == 0) return; // Do not execute if "Select Month" is chosen
 
+            using (SqlConnection con = new SqlConnection(cs))
+            {
+                string query = @"
+            SELECT FORMAT(Payment_DateTime, 'MMM yyyy') AS Month, SUM(ol.Qty) AS TotalItemsSold
+            FROM OrderList ol
+            JOIN Orders o ON ol.Order_ID = o.Order_ID
+            JOIN Payment p ON o.Order_ID = p.Order_ID
+            WHERE p.Payment_Status = 'Paid' 
+            AND MONTH(p.Payment_DateTime) = @Month 
+            AND YEAR(p.Payment_DateTime) = YEAR(GETDATE())
+            GROUP BY FORMAT(Payment_DateTime, 'MMM yyyy')
+            ORDER BY MIN(p.Payment_DateTime);";
+
+                using (SqlCommand cmd = new SqlCommand(query, con))
+                {
+                    cmd.Parameters.AddWithValue("@Month", selectedMonth);
+                    con.Open();
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    Series series = SalesChart.Series["SalesSeries"];
+                    series.Points.Clear();
+
+                    while (reader.Read())
+                    {
+                        series.Points.AddXY(reader["Month"].ToString(), reader["TotalItemsSold"]);
+                    }
+                }
+            }
+        }
+        protected void ddlMonths_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            BindSalesDataFilter();
+        }
+
+        private void PopulateMonthsDropDown()
+        {
+            ddlMonths.Items.Clear(); // Clear existing items
+            ddlMonths.Items.Add(new ListItem("Select Month", "0")); // Default item
+
+            DateTime currentDate = DateTime.Now; // Current date
+            for (int i = 0; i < 3; i++)
+            {
+                // Subtract i months from the current date
+                DateTime monthToShow = currentDate.AddMonths(-i);
+                // Format it as "Month Year" for display
+                string monthName = monthToShow.ToString("MMMM yyyy");
+                // Add to dropdown with the month as value (could adjust based on needs)
+                ddlMonths.Items.Add(new ListItem(monthName, monthToShow.Month.ToString()));
+            }
+
+        }
     }
 }

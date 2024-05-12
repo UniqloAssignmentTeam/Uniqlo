@@ -52,31 +52,31 @@ INSERT INTO Image (ProductImage) VALUES
 (CONVERT(varbinary(max), 0x89504E470D0A1A0A0000000D4948445200000010000000100806000000FD503EDF0000001974455874536F667477617265007777772E696E6B73636170652E6F72679BEE3C1A0000002749444154789CAD56DB0E800C00210E6044041FB6887BC106488CD49836E924E00D1C57685318D1E0A58A610000000049454E44AE426082, 2));
 
 -- Insert data into Quantity table
-INSERT INTO Quantity (Product_ID, Image_ID, Color, Size, Qty) VALUES
-(1, 1, 'Red', 'S', 100),
-(1, 1, 'Red', 'M', 150),
-(1, 1, 'Red', 'L', 200),
-(1, 1, 'Red', 'XL', 120),
-(2, 2, 'White', 'S', 100),
-(2, 2, 'White', 'M', 150),
-(2, 2, 'White', 'L', 200),
-(2, 2, 'White', 'XL', 120),
-(3, 3, 'Black', 'S', 100),
-(3, 3, 'Black', 'M', 150),
-(3, 3, 'Black', 'L', 200),
-(3, 3, 'Black', 'XL', 120),
-(4, 4, 'White', 'S', 100),
-(4, 4, 'White', 'M', 150),
-(4, 4, 'White', 'L', 200),
-(4, 4, 'White', 'XL', 120),
-(5, 5, 'White', 'S', 100),
-(5, 5, 'White', 'M', 150),
-(5, 5, 'White', 'L', 200),
-(5, 5, 'White', 'XL', 120),
-(5, 1, 'Grey', 'S', 100),
-(5, 1, 'Grey', 'M', 150),
-(5, 1, 'Grey', 'L', 200),
-(5, 1, 'Grey', 'XL', 120);
+INSERT INTO Quantity (Product_ID, Image_ID, Color, Size, Qty, IsDeleted) VALUES
+(1, 1, 'Red', 'S', 100, 0),
+(1, 1, 'Red', 'M', 150, 0),
+(1, 1, 'Red', 'L', 200, 0),
+(1, 1, 'Red', 'XL', 120, 0),
+(2, 2, 'White', 'S', 100, 0),
+(2, 2, 'White', 'M', 150, 0),
+(2, 2, 'White', 'L', 200, 0),
+(2, 2, 'White', 'XL', 120, 0),
+(3, 3, 'Black', 'S', 100, 0),
+(3, 3, 'Black', 'M', 150, 0),
+(3, 3, 'Black', 'L', 200, 0),
+(3, 3, 'Black', 'XL', 120, 0),
+(4, 4, 'White', 'S', 100, 0),
+(4, 4, 'White', 'M', 150, 0),
+(4, 4, 'White', 'L', 200, 0),
+(4, 4, 'White', 'XL', 120, 0),
+(5, 5, 'White', 'S', 100, 0),
+(5, 5, 'White', 'M', 150, 0),
+(5, 5, 'White', 'L', 200, 0),
+(5, 5, 'White', 'XL', 120, 0),
+(5, 1, 'Grey', 'S', 100, 0),
+(5, 1, 'Grey', 'M', 150, 0),
+(5, 1, 'Grey', 'L', 200, 0),
+(5, 1, 'Grey', 'XL', 120, 0);
 
 
 
