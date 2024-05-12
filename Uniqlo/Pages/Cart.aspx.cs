@@ -14,11 +14,8 @@ namespace Uniqlo.Pages
         {
             if (!IsPostBack)
             {
-                List<CartItem> cartItems = new List<CartItem>
-                {
-                    new CartItem { Quantity_Id = 1, Quantity = 2 },
-                    new CartItem { Quantity_Id = 4, Quantity = 1 }
-                };
+                List<CartItem> cartItems = (List <CartItem>)Session["Cart"];
+                
 
                 cartItems = GetCartItems(cartItems);
                 rptCartItems.DataSource = cartItems;
