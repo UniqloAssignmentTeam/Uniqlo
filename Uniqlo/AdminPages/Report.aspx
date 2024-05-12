@@ -1,5 +1,12 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin.Master" AutoEventWireup="true" CodeBehind="Report.aspx.cs" Inherits="Uniqlo.AdminPages.Report" %>
+
+<%@ Register Assembly="System.Web.DataVisualization, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" Namespace="System.Web.UI.DataVisualization.Charting" TagPrefix="asp" %>
+
+
 <asp:Content ID="Content1" ContentPlaceHolderID="main" runat="server">
+
+
+
       <header>
           <link href="../css/Admin/report.css" rel="stylesheet" />
            <script src="https://www.gstatic.com/charts/loader.js"></script>
@@ -15,20 +22,66 @@
         <!--OVERVIEW CONTAINER-->
     <div class="overview">
         <div  class="orderOnHold" >
-        <div id="curve_chart" style="width: 100%; height:100%"></div>
+
+         
+
+           <asp:Chart ID="SalesChart" runat="server" Width="250px" Height="250px">
+    <Series>
+        <asp:Series Name="SalesSeries" ChartType="Line"></asp:Series>
+    </Series>
+    <ChartAreas>
+        <asp:ChartArea Name="MainChartArea"></asp:ChartArea>
+    </ChartAreas>
+</asp:Chart>
+
             </div>
+
+
 
         <div class="orderCompleted">
-            <div id="curve_chart2" style="width: 100%; height:100%">         
+                     <asp:Chart ID="BestSellingProductsChart" runat="server" Width="250px" Height="250px">
+    <Series>
+        <asp:Series Name="BestSellingSeries" ChartType="Bar"></asp:Series>
+    </Series>
+    <ChartAreas>
+        <asp:ChartArea Name="ChartArea1"></asp:ChartArea>
+    </ChartAreas>
+</asp:Chart>
             </div>
-        </div>
+        
+
+
+
+
+
 
         <div class="productOutOfStock">
-            <div id="curve_chart3" style="width: 100%; height:100%"></div>
+    <asp:Chart ID="ChartWishlist" runat="server" Width="500px" Height="400px">
+    <Series>
+        <asp:Series Name="Series1" ChartType="Column"></asp:Series>
+    </Series>
+    <ChartAreas>
+        <asp:ChartArea Name="ChartArea1"></asp:ChartArea>
+    </ChartAreas>
+</asp:Chart>
+
+        
+
         </div>
 
         <div class="activeUser">
-           <div id="curve_chart4" style="width: 100%; height:100%"></div>
+         <asp:Chart ID="Chart1" runat="server">
+    <Series>
+        <asp:Series Name="Quantity" ChartType="Column">
+           
+        </asp:Series>
+    </Series>
+    <ChartAreas>
+        <asp:ChartArea Name="ChartArea1"></asp:ChartArea>
+    </ChartAreas>
+</asp:Chart>
+
+
         </div>
     </div>
 
