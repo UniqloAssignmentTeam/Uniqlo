@@ -14,7 +14,7 @@
     <div class="productBody" style="margin-top:50px">
 
 
-        <asp:FormView ID="formView" runat="server" OnDataBound="formView_DataBound">
+        <asp:FormView ID="formView" runat="server" OnDataBound="formView_DataBound" OnPageIndexChanging="formView_PageIndexChanging">
             <ItemTemplate>
                 <div class="card-wrapper">
                     <div class="productItemCard">
@@ -90,7 +90,7 @@
 
                                     <div class="purchase-info">
                                         <h3>Quantity: </h3>
-                                        <asp:TextBox ID="txtQty" class="qty" runat="server" Text="1"></asp:TextBox>
+                                        <asp:TextBox ID="txtQty" class="qty" runat="server" Text="1" onkeypress="return isNumber(event)" MaxLength="5"></asp:TextBox>
                                     </div>
                                 </div> 
                                     <asp:Label ID="lblSize" runat="server" Text="" CssClass="lblRed"></asp:Label>
@@ -243,6 +243,15 @@
 
     </div>
     <footer>
+        <script type="text/javascript">
+            function isNumber(evt) {
+                var charCode = (evt.which) ? evt.which : event.keyCode;
+                if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+                    return false;
+                }
+                return true;
+            }
+        </script>
         <script src="../../../Javascript/category.js"></script>
         <script src="../../../Javascript/slider.js"></script>
         <script src="../../../Javascript/productItem.js"></script>
