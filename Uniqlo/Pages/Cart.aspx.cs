@@ -20,6 +20,12 @@ namespace Uniqlo.Pages
                 rptCartItems.DataSource = cartItems;
                 rptCartItems.DataBind();
             }
+
+            if (Request["__EVENTTARGET"] == "RemoveCartItem")
+            {
+                int quantityIdToRemove = int.Parse(Request["__EVENTARGUMENT"]);
+                RemoveItemFromCart(quantityIdToRemove); // Call method to remove item from cart
+            }
         }
 
         public List<CartItem> GetCartItems(List<CartItem> cartItems)
@@ -36,17 +42,17 @@ namespace Uniqlo.Pages
                 SqlCommand command = new SqlCommand();
                 command.Connection = connection;
                 command.CommandText = @"
-        SELECT 
-            q.Quantity_Id, p.Product_Name, p.Description, 
-            q.Size, q.Color, p.Price, 
-            (p.Price - ISNULL(d.Discount_Amount, 0)) as DiscountedPrice,
-            q.Image_ID  -- Modify the query to retrieve Image ID instead of product image
-        FROM 
-            Quantity q
-            JOIN Product p ON q.Product_ID = p.Product_ID
-            LEFT JOIN Discount d ON p.Product_ID = d.Product_ID AND d.Status = 'Active'
-        WHERE 
-            q.Quantity_Id IN ({0})";
+                SELECT 
+                    q.Quantity_Id, p.Product_Name, p.Description, 
+                    q.Size, q.Color, p.Price, 
+                    (p.Price - ISNULL(d.Discount_Amount, 0)) as DiscountedPrice,
+                    q.Image_ID  -- Modify the query to retrieve Image ID instead of product image
+                FROM 
+                    Quantity q
+                    JOIN Product p ON q.Product_ID = p.Product_ID
+                    LEFT JOIN Discount d ON p.Product_ID = d.Product_ID AND d.Status = 'Active'
+                WHERE 
+                    q.Quantity_Id IN ({0})";
 
                 // Constructing parameter placeholders and adding parameters to avoid SQL Injection
                 var parameterNames = new List<string>();
@@ -86,6 +92,35 @@ namespace Uniqlo.Pages
                 }
             }
             return items;
+        }
+        // Method to remove item from the cart and the database
+        public void RemoveItemFromCart(int quantityId)
+        {
+            List<CartItem> cartItems = (List<CartItem>)Session["Cart"];
+            CartItem itemToRemove = cartItems.FirstOrDefault(item => item.Quantity_Id == quantityId);
+            if (itemToRemove != null)
+            {
+                cartItems.Remove(itemToRemove);
+                Session["Cart"] = cartItems;
+                RemoveItemFromDatabase(quantityId); // Call method to remove item from the database
+                rptCartItems.DataSource = cartItems;
+                rptCartItems.DataBind();
+            }
+        }
+
+        // Method to remove item from the database
+        public void RemoveItemFromDatabase(int quantityId)
+        {
+            string connectionString = cs;
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                SqlCommand command = new SqlCommand();
+                command.Connection = connection;
+                command.CommandText = "DELETE FROM Quantity WHERE Quantity_Id = @QuantityId";
+                command.Parameters.AddWithValue("@QuantityId", quantityId);
+                connection.Open();
+                command.ExecuteNonQuery();
+            }
         }
 
     }

@@ -2,8 +2,6 @@
     const userInput = document.getElementById("userInput");
     const sendButton = document.getElementById("sendButton");
     const chatForm = document.querySelector(".chatbot-container .form");
-    const API_KEY = 'sk-proj-WlBiyF3y144pEBPUsX8lT3BlbkFJ530C390tBabj3U3gWqD0';
-    const API_URL = 'https://api.openai.com/v1/chat/completions';
 
     function addUserMessage() {
         var message = userInput.value.trim();
@@ -59,19 +57,10 @@
         return botTypingDiv;
     }
 
-    async function sendMessageToChatGPT(message) {
-        try {
-            const response = await fetch(API_URL, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${API_KEY}`
-                },
-                body: JSON.stringify({
-                    model: "chatgpt-3.5-turbo",
-                    message: [{ "role": "user", "content": message }]
-                })
-            });
+    function sendMessage(message) {
+        // Enhanced response logic for a clothing store
+        let botReply;
+        message = message.toLowerCase(); // Normalize the message for easier matching
 
         if (message.includes("hello") || message.includes("hi") || message.includes("halo") || message.includes("hey") || message.includes("greeting")) {
             botReply = "Hello there! How can I assist you today?";
@@ -164,10 +153,8 @@
         } else {
             botReply = "I'm not sure how to answer that. Can you provide more details or ask about something else?";
         }
+        displayBotResponse(botReply); // Display the hardcoded bot response
     }
-
-
-
 
     function displayBotResponse(message) {
         const botDiv = document.createElement("div");
