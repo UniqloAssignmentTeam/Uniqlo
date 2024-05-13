@@ -46,9 +46,6 @@
         document.getElementById('totalSubtotalLabel').textContent = subtotal.toFixed(2);
     }
 
-
-
-
     // Modal close button functionality
     var closeButtons = document.querySelectorAll('.close');
     closeButtons.forEach(function (button) {
@@ -57,6 +54,12 @@
         });
     });
 });
+
+function removeCartItem(quantityId) {
+    if (confirm("Are you sure you want to remove this item from the cart?")) {
+        __doPostBack('RemoveCartItem', quantityId); // Trigger postback with the quantity ID
+    }
+}
 
 function calculateTax(subtotal) {
     var taxRate = 0.10;
