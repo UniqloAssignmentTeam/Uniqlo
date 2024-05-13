@@ -235,7 +235,7 @@ namespace Uniqlo.AdminPages.AdminOrder
         }
 
 
-        /*
+        
         protected void btnRemoveOrder_Click(object sender, EventArgs e)
         {
             int orderId = int.Parse(hiddenOrderId.Value);
@@ -244,10 +244,10 @@ namespace Uniqlo.AdminPages.AdminOrder
             {
                 using (var db = new OrderDbContext())
                 {
-                    var product = db.Order.Find(orderId);
-                    if (product != null)
+                    var order = db.Order.Find(orderId);
+                    if (order != null)
                     {
-                        orderId.IsDeleted = Convert.ToBoolean(1);
+                        order.IsDe = Convert.ToBoolean(1);
 
 
                         var discounts = db.Discount.Where(d => d.Product_ID == prodId).ToList();
@@ -271,7 +271,7 @@ namespace Uniqlo.AdminPages.AdminOrder
             }
 
         }
-        */
+        
 
 
     }

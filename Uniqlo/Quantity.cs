@@ -11,7 +11,7 @@ namespace Uniqlo
 {
     using System;
     using System.Collections.Generic;
-
+    
     public partial class Quantity
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -20,7 +20,7 @@ namespace Uniqlo
             this.OrderLists = new HashSet<OrderList>();
             this.WishlistItems = new HashSet<WishlistItem>();
         }
-
+    
         public int Quantity_ID { get; set; }
         public int Product_ID { get; set; }
         public int Image_ID { get; set; }
@@ -28,7 +28,7 @@ namespace Uniqlo
         public int Qty { get; set; }
         public string Size { get; set; }
         public bool IsDeleted { get; set; }
-
+    
         public virtual Image Image { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<OrderList> OrderLists { get; set; }

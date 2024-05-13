@@ -20,14 +20,13 @@ namespace Uniqlo
         {
             this.Quantities = new HashSet<Quantity>();
         }
-
+    
         public int Image_ID { get; set; }
         public byte[] ProductImage { get; set; }
-
+    
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Quantity> Quantities { get; set; }
     }
-
     public class ImageDbContext : DbContext
     {
         public ImageDbContext() : base("name=UniqloEntities") // Ensure this matches your connection string in Web.config
