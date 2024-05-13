@@ -17,6 +17,8 @@ using System.Net.Mime;
 using static System.Net.Mime.MediaTypeNames;
 using Uniqlo.AdminPages;
 using Newtonsoft.Json;
+using System.Web.Script.Serialization;
+using System.Web.Services.Description;
 
 namespace Uniqlo.Pages
 {
@@ -116,16 +118,11 @@ namespace Uniqlo.Pages
 
         protected void btnSignUp_Click(object sender, EventArgs e)
         {
-            /*
-            string recaptchaResponse = Request.Form["recaptchaResponse"];
-            bool isReCaptchaValid = ValidateReCaptcha(recaptchaResponse);
-            if (isReCaptchaValid)
-            {
-                ClientScript.RegisterStartupScript(this.GetType(), "recaptchaError", "alert('reCAPTCHA verification failed. Please try again.');", true);
-            }
-              */
 
-            if (fileProfilePhoto.PostedFile != null)
+
+
+
+            /*if (fileProfilePhoto.PostedFile != null)
             {
                 string strpath = Path.GetExtension(fileProfilePhoto.PostedFile.FileName);
                 if (strpath != ".jpg" && strpath != ".jpeg" && strpath != ".gif" && strpath != ".png")
@@ -138,12 +135,14 @@ namespace Uniqlo.Pages
                     lblUploadMess.Text = " Profile Photo is saved ";
                     lblUploadMess.ForeColor = System.Drawing.Color.Green;
                 }
-                string fileimg = Path.GetFileName(fileProfilePhoto.PostedFile.FileName);
+            
+            string fileimg = Path.GetFileName(fileProfilePhoto.PostedFile.FileName);
                 fileProfilePhoto.SaveAs(Server.MapPath("~/Images/ProfilePhoto/") + fileimg);
+            */
 
+           
 
-
-                con.Open();
+            con.Open();
                 SqlCommand checkEmail = new SqlCommand("SELECT Email from Customer WHERE Email='" + txtEmail.Text.ToString() + "'", con);
                 SqlDataReader read = checkEmail.ExecuteReader();
 
@@ -210,45 +209,7 @@ namespace Uniqlo.Pages
                     con.Close();
                 }
             }
-           
 
-
-        }
-
-        public bool ValidateReCaptcha(string response)
-        {
-            try
-            {
-                string secret = "6Lc38NgpAAAAAPvAX0lGe0Zc1plkSyMvdEaMA3sL";
-                using (var client = new WebClient())
-                {
-                    string reply = client.DownloadString($"https://www.google.com/recaptcha/api/siteverify?secret={secret}&response={response}");
-                    var captchaResponse = JsonConvert.DeserializeObject<CaptchaResponse>(reply);
-                    return captchaResponse.Success;
-                }
-            }
-            catch (WebException ex)
-            {
-                // Log exception or handle it appropriately
-                System.Diagnostics.Debug.WriteLine("ReCAPTCHA validation error: " + ex.Message);
-                return false;
-            }
-            catch (JsonException ex)
-            {
-                // Handle JSON parsing error
-                System.Diagnostics.Debug.WriteLine("JSON parsing error: " + ex.Message);
-                return false;
-            }
-        }
-
-        public class CaptchaResponse
-        {
-            [JsonProperty("success")]
-            public bool Success { get; set; }
-
-            [JsonProperty("error-codes")]
-            public List<string> ErrorCodes { get; set; }
-        }
 
 
     }

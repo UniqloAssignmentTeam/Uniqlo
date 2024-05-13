@@ -19,8 +19,7 @@
     <IISExpressSSLPort>44369</IISExpressSSLPort>
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
-    <IISExpressUseClassicPipelineMode>
-    </IISExpressUseClassicPipelineMode>
+    <IISExpressUseClassicPipelineMode>true</IISExpressUseClassicPipelineMode>
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
@@ -296,6 +295,7 @@
     <Content Include="Pages\Profile.aspx" />
     <Content Include="Pages\SendProductGmailToFriend.aspx" />
     <Content Include="Pages\SignUp.aspx" />
+    <Content Include="Pages\test.aspx" />
     <Content Include="Pages\TrackDelivery.aspx" />
     <Content Include="Pages\ValueBuy.aspx" />
     <Content Include="Pages\WishList.aspx" />
@@ -663,6 +663,13 @@
     </Compile>
     <Compile Include="Pages\SignUp.aspx.designer.cs">
       <DependentUpon>SignUp.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\test.aspx.cs">
+      <DependentUpon>test.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\test.aspx.designer.cs">
+      <DependentUpon>test.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\TrackDelivery.aspx.cs">
       <DependentUpon>TrackDelivery.aspx</DependentUpon>
