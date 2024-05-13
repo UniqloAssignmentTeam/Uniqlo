@@ -56,7 +56,7 @@
                 </div>
                 <div class="form-group">
                     <label for="ddlStatus">Status</label>
-                    <asp:DropDownList ID="ddlStatus" runat="server" CssClass="dropdown">
+                    <asp:DropDownList ID="ddlStatus" runat="server"  CssClass="dropdown-display">
                         <asp:ListItem Text="Pending" Value="Pending"></asp:ListItem>
                         <asp:ListItem Text="In Transit" Value="In Transit"></asp:ListItem>
                         <asp:ListItem Text="Delivered" Value="Delivered"></asp:ListItem>

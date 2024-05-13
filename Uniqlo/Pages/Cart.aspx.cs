@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Web.UI;
 using System.Web.UI.WebControls;
 
 namespace Uniqlo.Pages
@@ -89,30 +90,75 @@ namespace Uniqlo.Pages
             return items;
         }
 
-        // Method to remove item from the cart
-        protected void RemoveCartItem(object sender, EventArgs e)
+        protected void btnRemoveItem_Command(object sender, CommandEventArgs e)
+        {
+            if (e.CommandName == "RemoveCartItem")
+            {
+                int quantityIdToRemove = Convert.ToInt32(e.CommandArgument);
+                RemoveItemFromCart(quantityIdToRemove);
+                List<CartItem> cartItems = (List<CartItem>)Session["Cart"];
+                rptCartItems.DataSource = cartItems;
+                rptCartItems.DataBind();
+            }
+        }
+        // Method to remove item from the cart and the database
+        private void RemoveItemFromCart(int quantityId)
+        {
+            List<CartItem> cartItems = (List<CartItem>)Session["Cart"];
+            cartItems.RemoveAll(item => item.Quantity_Id == quantityId);
+            Session["Cart"] = cartItems;
+        }
+
+        protected void txtQuantity_TextChanged(object sender, EventArgs e)
+        {
+            // Find the TextBox control that triggered the event
+            TextBox txtQuantity = (TextBox)sender;
+
+            // Find the parent control (item row) of the TextBox
+            RepeaterItem item = (RepeaterItem)txtQuantity.Parent;
+
+            // Find the Quantity_Id of the item from the CommandArgument
+            int quantityId = Convert.ToInt32(((Button)item.FindControl("btnRemoveItem")).CommandArgument);
+
+            // Find the current quantity value entered by the user
+            int newQuantity = Convert.ToInt32(txtQuantity.Text);
+
+            // Update the quantity of the item in the cart
+            UpdateItemQuantity(quantityId, newQuantity);
+        }
+
+        private void UpdateItemQuantity(int quantityId, int newQuantity)
         {
             int quantityId = Convert.ToInt32(Request.Form["__EVENTARGUMENT"]); // Extract the quantity ID from the postback
             List<CartItem> cartItems = (List<CartItem>)Session["Cart"];
-            cartItems.RemoveAll(item => item.Quantity_Id == quantityId); // Remove item from cart list
-            Session["Cart"] = cartItems; // Update the session
+
+            // Find the item in the cart list
+            CartItem itemToUpdate = cartItems.FirstOrDefault(item => item.Quantity_Id == quantityId);
+
+            if (itemToUpdate != null)
+            {
+                // Update the quantity of the item
+                itemToUpdate.Quantity = newQuantity;
+            }
+
+            // Save the updated cartItems back to the session
+            Session["Cart"] = cartItems;
+
+            // Rebind the Repeater to reflect the changes
             rptCartItems.DataSource = cartItems;
             rptCartItems.DataBind();
-            RemoveItemFromDatabase(quantityId); // Remove item from database
         }
 
-        // Method to remove item from the database
-        protected void RemoveItemFromDatabase(int quantityId)
+        protected void btnCheckout_Click(object sender, EventArgs e)
         {
-            // Your existing code to remove item from the database
-            string connectionString = cs;
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            if (rptCartItems.Items.Count > 0)
             {
-                // Remove the product from the database based on Quantity_Id
-                SqlCommand command = new SqlCommand("DELETE FROM Quantity WHERE Quantity_Id = @QuantityId", connection);
-                command.Parameters.AddWithValue("@QuantityId", quantityId);
-                connection.Open();
-                command.ExecuteNonQuery();
+                Response.Redirect("~/Pages/Delivery.aspx");
+            }
+            else
+            {
+                // Display an alert or message indicating that the cart is empty
+                ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "alert('Your cart is empty. Please add items to proceed.');", true);
             }
         }
     }

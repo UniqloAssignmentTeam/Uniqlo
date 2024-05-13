@@ -43,6 +43,8 @@ namespace Uniqlo.Pages
 
             int paymentId = Convert.ToInt32(Session["PaymentId"]);
             lblPaymentId.Text = paymentId.ToString();
+            lblPaymentType.Text = (string)Session["PaymentMethod"];
+
             using (SqlConnection con = new SqlConnection(connectionString))
             {
                 con.Open();
@@ -150,6 +152,7 @@ namespace Uniqlo.Pages
 
                     document.Add(new Paragraph("Payment ID: " + lblPaymentId.Text));
                     document.Add(new Paragraph("Payment Date & Time: " + lblDateTime.Text));
+                    document.Add(new Paragraph("Payment Method: " + lblPaymentType.Text));
                     document.Add(new Paragraph("Customer Name: " + lblCustomerName.Text));
                     document.Add(new Paragraph("Address: " + lblAddress.Text));
                     document.Add(new Paragraph("Email: " + lblEmail.Text));
@@ -165,8 +168,8 @@ namespace Uniqlo.Pages
                     table.SpacingAfter = 10f; // Add spacing after the table
                     table.AddCell("Product");
                     table.AddCell("Quantity");
-                    table.AddCell("Price");
-                    table.AddCell("Item Price");
+                    table.AddCell("Price (RM)");
+                    table.AddCell("Item Price (RM)");
 
                     foreach (RepeaterItem item in rptCartItems.Items)
                     {
@@ -222,9 +225,16 @@ namespace Uniqlo.Pages
             smtpClient.EnableSsl = true; // Enable SSL if required
             smtpClient.Credentials = new NetworkCredential("yipy-pm21@student.tarc.edu.my", "030505070475"); // Your email credentials
 
-            // Send the email
-            smtpClient.Send(message);      
-
+            try
+            {
+                // Send the email
+                smtpClient.Send(message);
+            }
+            catch (Exception ex)
+            {
+                // Handle the exception, for example, display an error message
+                Response.Write("An error occurred while sending the email: " + ex.Message);
+            }
         }
 
         protected void btnPDF_Click(object sender, EventArgs e)
