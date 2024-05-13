@@ -479,6 +479,9 @@
     <Compile Include="Customer.cs">
       <DependentUpon>UniqloAdo.tt</DependentUpon>
     </Compile>
+    <Compile Include="C__MigrationHistory.cs">
+      <DependentUpon>UniqloAdo.tt</DependentUpon>
+    </Compile>
     <Compile Include="Delivery.cs">
       <DependentUpon>UniqloAdo.tt</DependentUpon>
     </Compile>

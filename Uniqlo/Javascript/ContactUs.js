@@ -140,8 +140,8 @@
             botReply = "Yes, our website offers a virtual try-on feature that lets you see how clothes look on a model that matches your dimensions.";
         } else if (message.includes("business casual")) {
             botReply = "Certainly! For a business casual look, we recommend our range of polos, light sweaters, and chinos. Check out our 'Business Casual' section for more options.";
-        } else if (message.includes("seasonal catalogs")) {
-            botReply = "Our seasonal catalogs are available on our website under the ‘Catalogs’ section. You can also pick up a printed copy in any of our stores.";
+        } else if (message.includes("catalog")) {
+            botReply = "Our catalogs are available on our website under the ‘Category’ section. You can also pick up a printed copy in any of our stores.";
         } else if (message.includes("eco-friendly products")) {
             botReply = "We offer a wide range of eco-friendly products made from organic and recycled materials. Look for our 'Eco-Friendly' badge on products online and in-store.";
         } else if (message.includes("Thank You") || message.includes("Bye")) {

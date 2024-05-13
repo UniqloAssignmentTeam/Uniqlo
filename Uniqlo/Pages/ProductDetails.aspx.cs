@@ -361,6 +361,15 @@ namespace Uniqlo.Pages
                 // Access the selected size and color
                 string selectedSize = (string)Session["selectedSize"];
                 string selectedColor = (string)Session["selectedColor"];
+
+                // Check if the user has selected a size
+                if (string.IsNullOrEmpty(selectedSize))
+                {
+                    // Show a pop-up message indicating that a size must be selected
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "sizeSelectionError", "alert('Please select a size.');", true);
+                    return;
+                }
+
                 int productId = int.Parse(Request.QueryString["ProdID"]);
 
                 // Retrieve the quantity ID
@@ -415,9 +424,6 @@ namespace Uniqlo.Pages
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "addToCartError", $"alert('{ex.Message}');", true);
             }
         }
-
-
-
 
         // Method to retrieve the quantity ID based on size, color, and product ID
         private int GetQuantityId(int productId, string selectedSize, string selectedColor)

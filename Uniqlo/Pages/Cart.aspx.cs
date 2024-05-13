@@ -21,11 +21,6 @@ namespace Uniqlo.Pages
                 rptCartItems.DataBind();
             }
 
-            if (Request["__EVENTTARGET"] == "RemoveCartItem")
-            {
-                int quantityIdToRemove = int.Parse(Request["__EVENTARGUMENT"]);
-                RemoveItemFromCart(quantityIdToRemove); // Call method to remove item from cart
-            }
         }
 
         public List<CartItem> GetCartItems(List<CartItem> cartItems)
@@ -93,30 +88,28 @@ namespace Uniqlo.Pages
             }
             return items;
         }
-        // Method to remove item from the cart and the database
-        public void RemoveItemFromCart(int quantityId)
+
+        // Method to remove item from the cart
+        protected void RemoveCartItem(object sender, EventArgs e)
         {
+            int quantityId = Convert.ToInt32(Request.Form["__EVENTARGUMENT"]); // Extract the quantity ID from the postback
             List<CartItem> cartItems = (List<CartItem>)Session["Cart"];
-            CartItem itemToRemove = cartItems.FirstOrDefault(item => item.Quantity_Id == quantityId);
-            if (itemToRemove != null)
-            {
-                cartItems.Remove(itemToRemove);
-                Session["Cart"] = cartItems;
-                RemoveItemFromDatabase(quantityId); // Call method to remove item from the database
-                rptCartItems.DataSource = cartItems;
-                rptCartItems.DataBind();
-            }
+            cartItems.RemoveAll(item => item.Quantity_Id == quantityId); // Remove item from cart list
+            Session["Cart"] = cartItems; // Update the session
+            rptCartItems.DataSource = cartItems;
+            rptCartItems.DataBind();
+            RemoveItemFromDatabase(quantityId); // Remove item from database
         }
 
         // Method to remove item from the database
-        public void RemoveItemFromDatabase(int quantityId)
+        protected void RemoveItemFromDatabase(int quantityId)
         {
+            // Your existing code to remove item from the database
             string connectionString = cs;
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                SqlCommand command = new SqlCommand();
-                command.Connection = connection;
-                command.CommandText = "DELETE FROM Quantity WHERE Quantity_Id = @QuantityId";
+                // Remove the product from the database based on Quantity_Id
+                SqlCommand command = new SqlCommand("DELETE FROM Quantity WHERE Quantity_Id = @QuantityId", connection);
                 command.Parameters.AddWithValue("@QuantityId", quantityId);
                 connection.Open();
                 command.ExecuteNonQuery();
