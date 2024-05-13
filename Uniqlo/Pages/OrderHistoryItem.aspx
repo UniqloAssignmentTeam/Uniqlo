@@ -366,7 +366,7 @@
                                     <div class="orderReceivedSection" id="<%# Eval("reviewBtn") %>">
 
                                         <asp:Button ID="reviewValidBtn" runat="server"
-                                        Text='<%# Convert.ToBoolean(Eval("reviewBtn")) ? "View" : "Review" %>' CommandArgument='<%# Eval("OrderList_ID") %>' OnCommand="ReviewValidBtn_Command"
+                                        Text='<%# Convert.ToBoolean(Eval("reviewBtn")) ? "View" : "Review" %>' CommandArgument='<%# Eval("OrderList_ID") %>' 
                                         CssClass="orderReceivedButton" AutoPostBack="false" UseSubmitBehavior="false" />
 
 
