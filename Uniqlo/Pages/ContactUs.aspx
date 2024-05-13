@@ -21,7 +21,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="chatbot-input">
                     <input type="text" id="userInput" placeholder="Type your message..." required/>
                     <button id="sendButton">Send</button>

@@ -43,7 +43,7 @@
                                 <asp:ListItem Value="Admin">Admin</asp:ListItem>
                                 <asp:ListItem Value="Manager">Manager</asp:ListItem>
                             </asp:DropDownList>
-                         <asp:CustomValidator ID="CustomValidator1" runat="server" ValidateEmptyText="true" ControlToValidate="roleSortDDL" ErrorMessage="Please select a Role" ForeColor="Red" Display="Dynamic" OnServerValidate="ValidateStaffRole_ServerValidate"></asp:CustomValidator>
+                       
                    
                         </div>
 
@@ -106,8 +106,10 @@
                                         <div>
                                             <asp:HyperLink ID="updateStaff" runat="server" NavigateUrl='<%# "UpdateStaff.aspx?StaffID=" + Eval("Staff_ID") %>' Text="Update"></asp:HyperLink>
                                         </div>
-                                        <div onclick="showDeleteModal(<%# Eval("Staff_ID") %>);">Delete</div>
+                                      <div>
+                                          <asp:HyperLink ID="deleteStaff" runat="server" NavigateUrl='<%# "DeleteStaff.aspx?StaffID=" + Eval("Staff_ID") %>' Text="Delete"></asp:HyperLink>
                                     </div>
+                                      </div>
                                 </td>
                             </tr>
                         </ItemTemplate>
@@ -117,15 +119,7 @@
                     </asp:Repeater>
 
                 </div>
-        </ContentTemplate>
-        <Triggers>
-            <asp:AsyncPostBackTrigger ControlID="roleSortDDL" EventName="SelectedIndexChanged" />
-            <asp:AsyncPostBackTrigger ControlID="genderSortDDL" EventName="SelectedIndexChanged" />
-            <asp:PostBackTrigger ControlID="excelBtn" />
-        </Triggers>
-
-
-    </asp:UpdatePanel>
+       
 
 
         <div style="margin-bottom: 80px;">
@@ -134,32 +128,29 @@
    
 
     <asp:HiddenField ID="hiddenStaffId" runat="server" Value="" />
-
+    
     <!--DELETE CONFIRMATION-->
-    <div id="id01" class="confirmationModal">
-        <div class="confirmation-modal-content">
-            <div class="confirmationContainer">
-                <span onclick="document.getElementById('id01').style.display='none'" class="confirmationClose" title="Close Modal">×</span>
-                <h1>Remove Staff</h1>
-                <p>Are you sure you want to remove the staff?</p>
 
-                <div class="confirmationClearFix">
-                    <button type="button" onclick="document.getElementById('id01').style.display='none'" class="confirmationCancelbtn">Cancel</button>
-                    <asp:Button ID="btnRemoveStaff" runat="server" Text="Remove" OnClick="btnRemoveStaff_Click" CssClass="confirmationDeletebtn" />
-                </div>
-            </div>
-        </div>
-    </div>
+  
 
+
+    </ContentTemplate>
+    <Triggers>
+        <asp:AsyncPostBackTrigger ControlID="roleSortDDL" EventName="SelectedIndexChanged" />
+        <asp:AsyncPostBackTrigger ControlID="genderSortDDL" EventName="SelectedIndexChanged" />
+        <asp:PostBackTrigger ControlID="excelBtn" />
+       
+    </Triggers>
+
+
+</asp:UpdatePanel>
+
+    <asp:HiddenField ID="modalState" runat="server" Value="closed" />
 
 
     <footer>
-        <script type="text/javascript">
-            function showDeleteModal(staffId) {
-                document.getElementById('<%= hiddenStaffId.ClientID %>').value = staffId;  // Set the staff ID to hidden field
-                document.getElementById('id01').style.display = 'block';  // Show the modal
-            }
-        </script>
+        
+
          <script type="text/javascript">
      document.getElementById('<%= searchBox.ClientID %>').onkeyup = function() {
  __doPostBack('<%= searchBox.ClientID %>', '');

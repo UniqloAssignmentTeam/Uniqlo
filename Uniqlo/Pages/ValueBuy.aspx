@@ -43,17 +43,17 @@
                     <div style="display: flex;">
 
                         <div class="dropdown-container" style="margin-right: 15px;">
-                          <asp:DropDownList ID="genderSortDDL" runat="server" AutoPostBack="true" OnSelectedIndexChanged="FilterProducts" CssClass="dropdown-display">
+                          <asp:DropDownList ID="genderSortDDL" runat="server" AutoPostBack="true" OnSelectedIndexChanged="SortbyGender" CssClass="dropdown-display">
     <asp:ListItem Value="">All Genders</asp:ListItem>
     <asp:ListItem Value="M">Men</asp:ListItem>
-    <asp:ListItem Value="F">Women</asp:ListItem>
+    <asp:ListItem Value="W">Women</asp:ListItem>
 </asp:DropDownList>
                         </div>
 
 
 
                         <div class="dropdown-container">
-                            <asp:DropDownList ID="categorySortDDL" runat="server" AutoPostBack="true" OnSelectedIndexChanged="FilterProducts" CssClass="dropdown-display">
+                            <asp:DropDownList ID="categorySortDDL" runat="server" AutoPostBack="true" OnSelectedIndexChanged="SortbyCategory" CssClass="dropdown-display">
     <asp:ListItem>All Categories</asp:ListItem>
     <asp:ListItem>Tops</asp:ListItem>
     <asp:ListItem>Bottom</asp:ListItem>
