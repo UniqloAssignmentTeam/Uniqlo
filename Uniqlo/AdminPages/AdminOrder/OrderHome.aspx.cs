@@ -235,6 +235,43 @@ namespace Uniqlo.AdminPages.AdminOrder
         }
 
 
+        /*
+        protected void btnRemoveOrder_Click(object sender, EventArgs e)
+        {
+            int orderId = int.Parse(hiddenOrderId.Value);
+
+            try
+            {
+                using (var db = new OrderDbContext())
+                {
+                    var product = db.Order.Find(orderId);
+                    if (product != null)
+                    {
+                        orderId.IsDeleted = Convert.ToBoolean(1);
+
+
+                        var discounts = db.Discount.Where(d => d.Product_ID == prodId).ToList();
+                        foreach (var discount in discounts)
+                        {
+                            discount.Status = "Inactive";
+                        }
+
+                        db.SaveChanges();
+
+                        // Redirect to refresh the page and reflect changes
+                        Response.Redirect(Request.RawUrl);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+                // Optionally display error message on the page
+                ScriptManager.RegisterStartupScript(this, GetType(), "errorAlert", "alert('An error occurred when retrieving product.');", true);
+            }
+
+        }
+        */
 
 
     }

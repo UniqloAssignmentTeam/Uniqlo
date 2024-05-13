@@ -440,8 +440,6 @@ namespace Uniqlo.Pages
         }
 
 
-
-
     }
 
 }
