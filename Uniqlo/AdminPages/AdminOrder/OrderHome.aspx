@@ -73,7 +73,7 @@
         /* Modal Content/Box */
         .confirmation-modal-content {
             background-color: #fefefe;
-            margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+            margin: 5% auto 15% auto;
             border: 1px solid #888;
             width: 80%; /* Could be more or less, depending on screen size */
             height: 400px;
@@ -207,7 +207,7 @@
             <div class="confirmation-modal-content">
                 <div class="confirmationContainer">
                     <span onclick="document.getElementById('id01').style.display='none'" class="confirmationClose" title="Close Modal">×</span>
-                    <h1>Remove Product</h1>
+                    <h1>Remove Order</h1>
                     <p>Are you sure you want to remove the Order?</p>
 
                     <div class="confirmationClearFix">

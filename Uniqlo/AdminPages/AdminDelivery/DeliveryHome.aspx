@@ -141,7 +141,6 @@
             <div class="wrap-items-search-buttons">
 
                 <div class="search">
-    <span class="material-symbols-outlined">search</span>
   <asp:TextBox ID="searchBox" runat="server" CssClass="search-input" AutoPostBack="true" onkeypress="return isNumber(event)" OnTextChanged="searchBox_TextChanged"  placeholder="Search Delivery ID"></asp:TextBox>
        
 </div> 
@@ -201,9 +200,10 @@
                  <div class="eclipse-list" id="dropdownList<%# Eval("Delivery_ID") %>">
 
                      <div>
-                         <asp:HyperLink ID="update" runat="server" NavigateUrl='<%# "UpdateDelivery.aspx?DeliveryID=" + Eval("Delivery_ID") %>' Text="View/Update"></asp:HyperLink></div>
+                         <asp:HyperLink ID="update" runat="server" NavigateUrl='<%# "UpdateDelivery.aspx?DeliveryID=" + Eval("Delivery_ID") %>' Text="View/Update" style="text-decoration: none; color: grey;"></asp:HyperLink>
+                    </div>                 
                      <div>
-                         <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl='<%# "UpdateDelivery.aspx?DeliveryID=" + Eval("Delivery_ID") %>' Text="View Order"></asp:HyperLink></div>
+                         <asp:HyperLink ID="viewOrder" runat="server" NavigateUrl='<%# "../AdminOrder/OrderItem.aspx?OrderID=" + Eval("Order_ID") %>' Text="View Order" style="text-decoration: none; color: grey;"></asp:HyperLink></div>
                      <div onclick="showDeleteModal(<%# Eval("Delivery_ID") %>);">Delete</div>
 
                  </div>

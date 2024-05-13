@@ -104,6 +104,10 @@
                                         <strong>Payment Date & Time:</strong>
                                         <asp:Label ID="lblDateTime" runat="server"></asp:Label>
                                     </p>
+                                    <p>
+                                        <strong>Payment Method:</strong>
+                                        <asp:Label ID="lblPaymentType" runat="server"></asp:Label>
+                                    </p>
                                     <br />
                                     <p>
                                         <strong>Customer Name:</strong>
@@ -129,8 +133,8 @@
                                     <tr>
                                         <th>Product</th>
                                         <th>Quantity</th>
-                                        <th>Price</th>
-                                        <th>Item Price</th>
+                                        <th>Price (RM)</th>
+                                        <th>Item Price (RM)</th>
                                     </tr>
                                 </thead>
                                 <tbody>

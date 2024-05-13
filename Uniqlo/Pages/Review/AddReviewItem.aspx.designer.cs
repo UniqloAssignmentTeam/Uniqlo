@@ -7,47 +7,56 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Uniqlo.Pages
+namespace Uniqlo.Pages.Review
 {
 
 
-    public partial class OrderHistoryItem
+    public partial class AddReviewItem
     {
 
         /// <summary>
-        /// orderIDLabel control.
+        /// myModal control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label orderIDLabel;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl myModal;
 
         /// <summary>
-        /// DataList1 control.
+        /// Button1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DataList DataList1;
+        protected global::System.Web.UI.WebControls.Button Button1;
 
         /// <summary>
-        /// orderSummaryRepeater control.
+        /// HiddenRating control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater orderSummaryRepeater;
+        protected global::System.Web.UI.WebControls.HiddenField HiddenRating;
 
         /// <summary>
-        /// HiddenOrderListID control.
+        /// commentTextArea control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField HiddenOrderListID;
+        protected global::System.Web.UI.WebControls.TextBox commentTextArea;
+
+        /// <summary>
+        /// submitRating control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button submitRating;
     }
 }

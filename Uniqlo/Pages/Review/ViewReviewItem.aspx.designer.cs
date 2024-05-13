@@ -11,43 +11,34 @@ namespace Uniqlo.Pages
 {
 
 
-    public partial class OrderHistoryItem
+    public partial class ReviewItem
     {
 
         /// <summary>
-        /// orderIDLabel control.
+        /// secModal control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label orderIDLabel;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl secModal;
 
         /// <summary>
-        /// DataList1 control.
+        /// btnCloseModal control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DataList DataList1;
+        protected global::System.Web.UI.WebControls.Button btnCloseModal;
 
         /// <summary>
-        /// orderSummaryRepeater control.
+        /// ratingRepeater control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater orderSummaryRepeater;
-
-        /// <summary>
-        /// HiddenOrderListID control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField HiddenOrderListID;
+        protected global::System.Web.UI.WebControls.Repeater ratingRepeater;
     }
 }
