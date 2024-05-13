@@ -160,7 +160,7 @@
                 </div>
                 <div class="btnExcel-Add">
 
-                    <asp:Button ID="btnExcel" class="excel-export" style="color: #6F6F6F; font-size: 1rem; font-weight: bold;" runat="server" Text="Export" CssClass="auto-style1" OnClick="btnExcel_Click" />
+                    <asp:Button ID="btnExcel"  CssClass="excel-export" runat="server" Text="Export" OnClick="btnExcel_Click" />
                      <asp:Button ID="addDeliveryBtn" runat="server" Text="➕ Add Delivery" CssClass="product-add" OnClick="addDeliveryBtn_Click" />
                 </div>
             </div>
