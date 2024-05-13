@@ -92,7 +92,7 @@ namespace Uniqlo.Pages
             }
         }
 
-        protected void SortbyCategory(object sender, EventArgs e)
+        protected void FilterProducts(object sender, EventArgs e)
         {
             using (var db = new ProductDbContext())
             {
@@ -128,6 +128,7 @@ namespace Uniqlo.Pages
                 dlValueBuy.RepeatColumns = productDetails.Count > 4 ? 4 : productDetails.Count;
             }
         }
+
 
 
         public string GenerateStars(double rating)

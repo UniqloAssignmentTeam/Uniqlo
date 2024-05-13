@@ -53,11 +53,12 @@
 
 
                         <div class="dropdown-container">
-                            <asp:DropDownList ID="categorySortDDL" runat="server" AutoPostBack="true" OnSelectedIndexChanged="SortbyCategory" CssClass="dropdown-display">
-    <asp:ListItem>All Categories</asp:ListItem>
-    <asp:ListItem>Tops</asp:ListItem>
-    <asp:ListItem>Bottom</asp:ListItem>
+                           <asp:DropDownList ID="categorySortDDL" runat="server" AutoPostBack="true" OnSelectedIndexChanged="FilterProducts" CssClass="dropdown-display">
+    <asp:ListItem Value="">All Categories</asp:ListItem>
+    <asp:ListItem Value="Top">Tops</asp:ListItem>
+    <asp:ListItem Value="Bottom">Bottoms</asp:ListItem>
 </asp:DropDownList>
+
                         </div>
 
 
