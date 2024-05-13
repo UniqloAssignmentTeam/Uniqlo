@@ -251,6 +251,7 @@
                 }
                 return true;
             }
+
         </script>
         <script src="../../../Javascript/category.js"></script>
         <script src="../../../Javascript/slider.js"></script>
@@ -266,7 +267,7 @@
             function shareOnTwitter() {
                 var shareUrl = 'https://twitter.com/intent/tweet?url=' + encodeURIComponent(window.location.href) + '&text=' + encodeURIComponent(document.title);
                 window.open(shareUrl, '_blank', 'width=600,height=400');
-            } >
+            } 
         </script>
     </footer>
 </asp:Content>

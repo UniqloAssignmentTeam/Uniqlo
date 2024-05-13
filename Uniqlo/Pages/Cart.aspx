@@ -15,7 +15,7 @@
                         <div class="cart-item" id='<%# "cart" + Eval("Quantity_Id") %>'>
                             <span class="remove-item">&times;</span>
                             <div class="cart-item-image-container">
-                                 <img src='<%# "data:image/jpeg;base64," + Convert.ToBase64String(Eval("ImageData") as byte[]) %>' alt="Product Image" />
+                                 <img src='/ImageHandler.ashx?id=<%# Eval("Image_Id") %>' alt="ProductImage"/>
                             </div>
                             <div class="item-details">
                                 <div class="item-name">

@@ -14,13 +14,9 @@ namespace Uniqlo.Pages
         {
             if (!IsPostBack)
             {
-                List<CartItem> cartItems = new List<CartItem>
-                {
-                    new CartItem { Quantity_Id = 1, Quantity = 2 },
-                    new CartItem { Quantity_Id = 4, Quantity = 1 }
-                };
-
+                List<CartItem> cartItems = (List<CartItem>)Session["Cart"];
                 cartItems = GetCartItems(cartItems);
+                Session["Cart"] = cartItems; // Save the updated cartItems back to the session
                 rptCartItems.DataSource = cartItems;
                 rptCartItems.DataBind();
             }
@@ -44,12 +40,11 @@ namespace Uniqlo.Pages
             q.Quantity_Id, p.Product_Name, p.Description, 
             q.Size, q.Color, p.Price, 
             (p.Price - ISNULL(d.Discount_Amount, 0)) as DiscountedPrice,
-            i.ProductImage
+            q.Image_ID  -- Modify the query to retrieve Image ID instead of product image
         FROM 
             Quantity q
             JOIN Product p ON q.Product_ID = p.Product_ID
             LEFT JOIN Discount d ON p.Product_ID = d.Product_ID AND d.Status = 'Active'
-            JOIN Image i ON q.Image_ID = i.Image_ID
         WHERE 
             q.Quantity_Id IN ({0})";
 
@@ -84,8 +79,7 @@ namespace Uniqlo.Pages
                             Quantity = cartItems.First(c => c.Quantity_Id == quantityId).Quantity,
                             OriginalPrice = Convert.ToDecimal(reader["Price"]), // Assuming original price is just the listed price
                             DiscountedPrice = Convert.ToDecimal(reader["DiscountedPrice"]),
-                            // Convert the binary image data to a byte array
-                            ImageData = reader["ProductImage"] as byte[]
+                            Image_Id = Convert.ToInt32(reader["Image_ID"])
                         };
                         items.Add(item);
                     }
