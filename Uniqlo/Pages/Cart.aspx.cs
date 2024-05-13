@@ -122,6 +122,5 @@ namespace Uniqlo.Pages
                 command.ExecuteNonQuery();
             }
         }
-
     }
 }

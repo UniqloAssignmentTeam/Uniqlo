@@ -355,76 +355,66 @@ namespace Uniqlo.Pages
 
         protected void btnAddToCart_Click(object sender, EventArgs e)
         {
-            // Access the selected size and color
-            string selectedSize = (string)Session["selectedSize"];
-            string selectedColor = (string)Session["selectedColor"];
-            TextBox txtQty = (TextBox)formView.FindControl("txtQty");
-            int productId = int.Parse(Request.QueryString["ProdID"]);
-            int quantity;
-
-            // Check if the quantity is a valid integer
-            if (!int.TryParse(txtQty.Text, out quantity))
+            try
             {
-                // Show an error message if the quantity is not valid
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "quantityError", "alert('Please enter a valid quantity.');", true);
-                return;
+                // Access the selected size and color
+                string selectedSize = (string)Session["selectedSize"];
+                string selectedColor = (string)Session["selectedColor"];
+                int productId = int.Parse(Request.QueryString["ProdID"]);
+
+                // Retrieve the quantity ID
+                int quantityId = GetQuantityId(productId, selectedSize, selectedColor);
+
+                if (quantityId == 0)
+                {
+                    // Show an error message if the quantity ID is not found
+                    throw new Exception("Invalid quantity ID.");
+                }
+
+                // Get the quantity textbox
+                TextBox txtQty = (TextBox)formView.FindControl("txtQty");
+
+                // Parse quantity value
+                if (!int.TryParse(txtQty.Text, out int quantity) || quantity <= 0)
+                {
+                    // Show an error message if the quantity is not valid
+                    throw new Exception("Please enter a valid quantity.");
+                }
+
+                // Create a new CartItem
+                CartItem item = new CartItem
+                {
+                    Quantity_Id = quantityId,
+                    Size = selectedSize,
+                    Color = selectedColor,
+                    Quantity = quantity
+                };
+
+                if (Session["Cart"] == null)
+                {
+                    // Create a new cart and add the item to it
+                    List<CartItem> cart = new List<CartItem>();
+                    cart.Add(item);
+                    Session["Cart"] = cart;
+                }
+                else
+                {
+                    // Retrieve the existing cart and add the item to it
+                    List<CartItem> cart = (List<CartItem>)Session["Cart"];
+                    cart.Add(item);
+                    Session["Cart"] = cart;
+                }
+
+                // Show a JavaScript alert to confirm successful addition to the cart
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "addToCartSuccess", "alert('Item added to cart successfully!');", true);
             }
-
-            // Validate that the user has selected a size
-            if (string.IsNullOrEmpty(selectedSize))
+            catch (Exception ex)
             {
-                // Show a message asking the user to select a size
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "sizeError", "alert('Please select a size.');", true);
-                return;
+                // Show an error message if an exception occurs
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "addToCartError", $"alert('{ex.Message}');", true);
             }
-
-            // Validate that the user has selected a color
-            if (string.IsNullOrEmpty(selectedColor))
-            {
-                // Show a message asking the user to select a color
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "colorError", "alert('Please select a color.');", true);
-                return;
-            }
-
-            // Get the quantity ID
-            int quantityId = GetQuantityId(productId, selectedSize, selectedColor);
-
-            if (quantityId == 0)
-            {
-                // Show an error message if the quantity ID is not found
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "quantityIdError", "alert('Invalid quantity ID.');", true);
-                return;
-            }
-
-            CartItem item = new CartItem
-            {
-                Quantity_Id = quantityId,
-                Size = selectedSize,
-                Color = selectedColor,
-                Quantity = quantity
-            };
-
-            if (Session["Cart"] == null)
-            {
-                // Create a new cart and add the item to it
-                List<CartItem> cart = new List<CartItem>();
-                cart.Add(item);
-                Session["Cart"] = cart;
-            }
-            else
-            {
-                // Retrieve the existing cart and add the item to it
-                List<CartItem> cart = (List<CartItem>)Session["Cart"];
-                cart.Add(item);
-                Session["Cart"] = cart;
-            }
-
-            // Show a JavaScript alert to confirm successful addition to the cart
-            ScriptManager.RegisterStartupScript(this, this.GetType(), "addToCartSuccess", "alert('Item added to cart successfully!');", true);
-
-            // Redirect the user back to the product details page
-            Response.Redirect("ProductDetails.aspx?ProdID=" + Request.QueryString["ProdID"]);
         }
+
 
 
 

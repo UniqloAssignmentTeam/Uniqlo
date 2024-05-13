@@ -64,7 +64,7 @@
 
         if (message.includes("hello") || message.includes("hi") || message.includes("halo") || message.includes("hey") || message.includes("greeting")) {
             botReply = "Hello there! How can I assist you today?";
-        } else if (message.includes("opening hours") || message.includes("operating hours") || message.includes("when you open")) {
+        } else if (message.includes("opening hour") || message.includes("operating hour") || message.includes("when you open")) {
             botReply = "Our stores are open from 10 AM to 9 PM every day.";
         } else if (message.includes("return policy") || message.includes("refund") || message.includes("exchange policy") || message.includes("returns")) {
             botReply = "You can return products within 30 days of purchase with a valid receipt.";
@@ -145,7 +145,7 @@
         } else if (message.includes("eco-friendly products")) {
             botReply = "We offer a wide range of eco-friendly products made from organic and recycled materials. Look for our 'Eco-Friendly' badge on products online and in-store.";
         } else if (message.includes("Thank You") || message.includes("Bye")) {
-            botReply = "See You!";
+            botReply = "See you!.";
         } else if (message.includes("value buy") || message.includes("valuebuy")) {
             botReply = "We have special value buy deals on selected items. Check our website or visit our stores for the latest offers!";
         } else if (message.includes("promotion") || message.includes("promotions")) {
