@@ -17,16 +17,12 @@ namespace Uniqlo.Pages
             if (!Page.IsPostBack)
             {
                 //dummy cart
-                List<CartItem> cart = new List<CartItem>
-                {
-                    new CartItem { Quantity_Id = 1, Name = "AIRism Cotton Jersey Short Sleeve Skipper Polo Shirt", Price = 99.90m, Color = "Red", Size = "S", Quantity = 2 },
-                    new CartItem { Quantity_Id = 4, Name = "Miracle Air Pants (Cotton Like)", Price = 149.90m, Color = "White", Size = "S", Quantity = 1 },
-                };
+                List<CartItem> cart = (List<CartItem>)Session["Cart"];
                 
                 Session["Cart"] = cart;
 
                 CartRepeater.DataSource = cart;
-                CartRepeater.DataBind();
+                CartRepeater.DataBind();  
 
                 decimal totalPrice = cart.Sum(item => item.Item_Price);
                 lblTotalPrice.Text = "RM " + totalPrice.ToString("N2");
