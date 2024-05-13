@@ -180,6 +180,7 @@
                                     <div>
                                         <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl='<%# "OrderItem.aspx?OrderID=" + Eval("OrderId") %>' Text="View More" Style="text-decoration: none; color: #6F6F6F"></asp:HyperLink>
                                     </div>
+                                    <div onclick="showDeleteModal(<%# Eval("OrderId") %>);">Delete</div>
                                 </div>
                             </td>
                         </tr>
@@ -199,6 +200,25 @@
 
         </asp:UpdatePanel>
 
+         <asp:HiddenField ID="hiddenOrderId" runat="server" Value="" />
+
+        <!--DELETE CONFIRMATION-->
+        <div id="id01" class="confirmationModal">
+            <div class="confirmation-modal-content">
+                <div class="confirmationContainer">
+                    <span onclick="document.getElementById('id01').style.display='none'" class="confirmationClose" title="Close Modal">×</span>
+                    <h1>Remove Product</h1>
+                    <p>Are you sure you want to remove the Order?</p>
+
+                    <div class="confirmationClearFix">
+                        <button type="button" onclick="document.getElementById('id01').style.display='none'" class="confirmationCancelbtn">Cancel</button>
+                        <asp:Button ID="btnRemoveProduct" runat="server" Text="Remove"  CssClass="confirmationDeletebtn" OnClick="btnRemoveOrder_Click" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--DELETE CONFIRMATION END-->
+
         <div style="margin-bottom: 80px;">
         </div>
     </div>
@@ -207,6 +227,12 @@
         <script src="../../Javascript/productBtnEclipse.js"></script>
         <script src="../../Javascript/productAdminDDL.js"></script>
         <script>
+
+            function showDeleteModal(prodID) {
+                document.getElementById('<%= hiddenOrderId.ClientID %>').value = prodID;
+                document.getElementById('id01').style.display = 'block';
+            }
+
             document.getElementById('<%= searchBox.ClientID %>').onkeyup = function () {
                      __doPostBack('<%= searchBox.ClientID %>', '');
             };

@@ -235,6 +235,34 @@ namespace Uniqlo.AdminPages.AdminOrder
         }
 
 
+        
+        protected void btnRemoveOrder_Click(object sender, EventArgs e)
+        {
+            int orderId = int.Parse(hiddenOrderId.Value);
+
+            try
+            {
+                using (var db = new OrderDbContext())
+                {
+                    var order = db.Order.Find(orderId);
+                    if (order != null)
+                    {
+                        order.IsDeleted = Convert.ToBoolean(1);
+
+
+                        Response.Redirect(Request.RawUrl);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+                // Optionally display error message on the page
+                ScriptManager.RegisterStartupScript(this, GetType(), "errorAlert", "alert('An error occurred when retrieving product.');", true);
+            }
+
+        }
+        
 
 
     }
