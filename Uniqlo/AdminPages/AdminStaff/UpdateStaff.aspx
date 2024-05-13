@@ -136,8 +136,8 @@
 
             <div class="button-container">
 
-                <asp:Button ID="cancelBtn" runat="server" Text="CANCEL" CssClass="cancel-button" OnClick="cancelBtn_Click" />
-                <asp:Button ID="updateBtn" runat="server" Text="UPDATE" CssClass="continue-button" OnClick="updateBtn_Click" />
+                <asp:Button ID="cancelBtn" runat="server" Text="CANCEL" CssClass="cancel-button" CausesValidation="false" OnClick="cancelBtn_Click" />
+                <asp:Button ID="updateBtn" runat="server" Text="UPDATE" CssClass="continue-button" CausesValidation="true" OnClick="updateBtn_Click" />
 
             </div>
         </div>

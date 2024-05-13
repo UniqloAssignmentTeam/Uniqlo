@@ -72,7 +72,7 @@ namespace Uniqlo.AdminPages.AdminStaff
         {
             try
             {
-                Response.Redirect("StaffHome.aspx");
+                Response.Redirect("/AdminPages/AdminStaff/StaffHome.aspx");
             }catch(Exception ex)
             {
                 ScriptManager.RegisterStartupScript(this, GetType(), "errorAlert", "alert('An error occurred while redirecting to staff home.');", true);

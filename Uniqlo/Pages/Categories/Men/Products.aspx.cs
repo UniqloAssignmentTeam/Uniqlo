@@ -21,77 +21,97 @@ namespace Uniqlo.Pages.Categories.Men
 
         private void BindDataList()
         {
-            using (var db = new ProductDbContext())
+            try
             {
-                var today = DateTime.Today;
-                var productDetails = db.Product
-                    .Where(p => !p.IsDeleted && p.Category.Gender == "M")
-                    .GroupJoin( // Simulate a left join using GroupJoin and DefaultIfEmpty
-                        db.Discount,
-                        product => product.Product_ID,
-                        discount => discount.Product_ID,
-                        (product, discounts) => new { Product = product, Discounts = discounts.DefaultIfEmpty() }
-                    )
-                    .SelectMany(
-                        pd => pd.Discounts,
-                        (pd, discount) => new {
-                            ProductId = pd.Product.Product_ID,
-                            ProductName = pd.Product.Product_Name,
-                            Description = pd.Product.Description,
-                            Price = pd.Product.Price,
-                            Image_ID = pd.Product.Quantities.Select(q => q.Image_ID).FirstOrDefault(), // Assuming at least one quantity
-                            AverageRating = pd.Product.Quantities.SelectMany(q => q.OrderLists).SelectMany(ol => ol.Reviews).Average(r => (int?)r.Rating) ?? 0,
-                            ReviewCount = pd.Product.Quantities.SelectMany(q => q.OrderLists).SelectMany(ol => ol.Reviews).Count(),
-                            DiscountAmount = discount != null ? discount.Discount_Amount : 0 // Handle null discounts
-                        }
-                    )
-                    .ToList();
+                using (var db = new ProductDbContext())
+                {
+                    var today = DateTime.Today;
+                    var productDetails = db.Product
+                        .Where(p => !p.IsDeleted && p.Category.Gender == "M")
+                        .GroupJoin( // Simulate a left join using GroupJoin and DefaultIfEmpty
+                            db.Discount,
+                            product => product.Product_ID,
+                            discount => discount.Product_ID,
+                            (product, discounts) => new { Product = product, Discounts = discounts.DefaultIfEmpty() }
+                        )
+                        .SelectMany(
+                            pd => pd.Discounts,
+                            (pd, discount) => new {
+                                ProductId = pd.Product.Product_ID,
+                                ProductName = pd.Product.Product_Name,
+                                Description = pd.Product.Description,
+                                Price = pd.Product.Price,
+                                Image_ID = pd.Product.Quantities.Select(q => q.Image_ID).FirstOrDefault(), // Assuming at least one quantity
+                                AverageRating = pd.Product.Quantities.SelectMany(q => q.OrderLists).SelectMany(ol => ol.Reviews).Average(r => (int?)r.Rating) ?? 0,
+                                ReviewCount = pd.Product.Quantities.SelectMany(q => q.OrderLists).SelectMany(ol => ol.Reviews).Count(),
+                                DiscountAmount = discount != null ? discount.Discount_Amount : 0 // Handle null discounts
+                            }
+                        )
+                        .ToList();
 
 
-                dataList.DataSource = productDetails;
-                dataList.DataBind();
+                    dataList.DataSource = productDetails;
+                    dataList.DataBind();
 
-                dataList.RepeatColumns = productDetails.Count > 4 ? 4 : productDetails.Count;
+                    dataList.RepeatColumns = productDetails.Count > 4 ? 4 : productDetails.Count;
+                }
             }
+            catch (Exception ex)
+            {
+
+                // Optionally display error message on the page
+                ScriptManager.RegisterStartupScript(this, GetType(), "errorAlert", "alert('An error occurred when retrieve product.');", true);
+            }
+
         }
 
         private void BindDataList2()
         {
-            using (var db = new ProductDbContext())
+            try
             {
-                var today = DateTime.Today;
-                var productDetails = db.Product
-                    .Where(p => !p.IsDeleted && p.Category.Gender == "M")
-                    .GroupJoin(
-                        db.Discount,
-                        product => product.Product_ID,
-                        discount => discount.Product_ID,
-                        (product, discounts) => new { Product = product, Discounts = discounts.DefaultIfEmpty() }
-                    )
-                    .SelectMany(
-                        pd => pd.Discounts,
-                        (pd, discount) => new {
-                            ProductId = pd.Product.Product_ID,
-                            ProductName = pd.Product.Product_Name,
-                            Description = pd.Product.Description,
-                            Price = pd.Product.Price,
-                            Image_ID = pd.Product.Quantities.Select(q => q.Image_ID).FirstOrDefault(),
-                            OrderCount = pd.Product.Quantities.SelectMany(q => q.OrderLists).Count(), // Count of orders for each product
-                            AverageRating = pd.Product.Quantities.SelectMany(q => q.OrderLists).SelectMany(ol => ol.Reviews).Average(r => (int?)r.Rating) ?? 0,
-                            ReviewCount = pd.Product.Quantities.SelectMany(q => q.OrderLists).SelectMany(ol => ol.Reviews).Count(),
-                            DiscountAmount = discount != null ? discount.Discount_Amount : 0
-                        }
-                    )
-                    .OrderByDescending(p => p.OrderCount) // Order by the number of orders, descending
-                    .Take(4) // Take only the top 5 products
-                    .ToList();
+                using (var db = new ProductDbContext())
+                {
+                    var today = DateTime.Today;
+                    var productDetails = db.Product
+                        .Where(p => !p.IsDeleted && p.Category.Gender == "M")
+                        .GroupJoin(
+                            db.Discount,
+                            product => product.Product_ID,
+                            discount => discount.Product_ID,
+                            (product, discounts) => new { Product = product, Discounts = discounts.DefaultIfEmpty() }
+                        )
+                        .SelectMany(
+                            pd => pd.Discounts,
+                            (pd, discount) => new {
+                                ProductId = pd.Product.Product_ID,
+                                ProductName = pd.Product.Product_Name,
+                                Description = pd.Product.Description,
+                                Price = pd.Product.Price,
+                                Image_ID = pd.Product.Quantities.Select(q => q.Image_ID).FirstOrDefault(),
+                                OrderCount = pd.Product.Quantities.SelectMany(q => q.OrderLists).Count(), // Count of orders for each product
+                                AverageRating = pd.Product.Quantities.SelectMany(q => q.OrderLists).SelectMany(ol => ol.Reviews).Average(r => (int?)r.Rating) ?? 0,
+                                ReviewCount = pd.Product.Quantities.SelectMany(q => q.OrderLists).SelectMany(ol => ol.Reviews).Count(),
+                                DiscountAmount = discount != null ? discount.Discount_Amount : 0
+                            }
+                        )
+                        .OrderByDescending(p => p.OrderCount) // Order by the number of orders, descending
+                        .Take(4) // Take only the top 5 products
+                        .ToList();
 
-                carouselDataList.DataSource = productDetails;
-                carouselDataList.DataBind();
+                    carouselDataList.DataSource = productDetails;
+                    carouselDataList.DataBind();
 
 
-                carouselDataList.RepeatColumns = productDetails.Count > 4 ? 4 : productDetails.Count;
+                    carouselDataList.RepeatColumns = productDetails.Count > 4 ? 4 : productDetails.Count;
+                }
             }
+            catch (Exception ex)
+            {
+
+                // Optionally display error message on the page
+                ScriptManager.RegisterStartupScript(this, GetType(), "errorAlert", "alert('An error occurred when retrieve product.');", true);
+            }
+
         }
 
         public string GenerateStars(double rating)

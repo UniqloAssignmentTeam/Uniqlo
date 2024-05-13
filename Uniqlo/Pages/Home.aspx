@@ -51,7 +51,7 @@
             <div class="column">
                 <div class="card">
                     <div class="img">
-                        <a href="Categories/Women/Tops.aspx" class="tooltip">
+                        <a href="Categories/Women/Products.aspx" class="tooltip">
                             <img src="../Images/womenTopBanner.png" class="img" alt="img" draggable="false"/>
                             <span class="tooltiptext">Click Here</span>
                         </a>
@@ -62,7 +62,7 @@
             <div class="column">
                 <div class="card">
                     <div class="img">
-                        <a href="Categories/Women/Bottoms.aspx" class="tooltip">
+                        <a href="Categories/Women/Products.aspx" class="tooltip">
                             <img src="../Images/womanBottomBanner.png" class="img" alt="img" draggable="false"/>
                             <span class="tooltiptext">Click Here</span>
                         </a>
@@ -77,7 +77,7 @@
             <div class="column">
                 <div class="card">
                     <div class="img">
-                        <a href="Categories/Men/Tops.aspx" class="tooltip">
+                        <a href="Categories/Men/Products.aspx" class="tooltip">
                             <img src="../Images/menTopBanner.png" class="img" alt="img" draggable="false"/>
                             <span class="tooltiptext">Click Here</span>
                         </a>
@@ -88,7 +88,7 @@
             <div class="column">
                 <div class="card">
                     <div class="img">
-                        <a href="Categories/Men/Bottoms.aspx" class="tooltip">
+                        <a href="Categories/Men/Products.aspx" class="tooltip">
                             <img src="../Images/menBottomBanner.jpg" class="img" alt="img" draggable="false"/>
                             <span class="tooltiptext">Click Here</span>
                         </a>

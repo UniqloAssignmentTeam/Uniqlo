@@ -33,48 +33,67 @@ namespace Uniqlo.Pages
 
         private void BindOrderListDataList(int customerID,int orderID)
         {
-            using (var db = new OrderDbContext())
+            try
             {
-                
-                var orderDetails = db.Order
-                    .Where(o => o.Customer_ID == customerID && o.Order_ID== orderID)
-                    .SelectMany(o => o.OrderLists, (o, ol) => new {
-                        Product_Name=ol.Quantity.Product.Product_Name,
-                        Product_Description= ol.Quantity.Product.Description,
-                        Size = ol.Quantity.Size,
-                        Color = ol.Quantity.Color,
-                        Item_Price = ol.Item_Price,
-                        Qty = ol.Qty,
-                        Subtotal = ol.Qty * ol.Item_Price,
-                        Image_ID=ol.Quantity.Image_ID,
-                        reviewBtn = db.Review.Any(r => r.OrderList_ID == ol.OrderList_ID),
-                        OrderList_ID=ol.OrderList_ID,
+                using (var db = new OrderDbContext())
+                {
 
-            }).ToList();
+                    var orderDetails = db.Order
+                        .Where(o => o.Customer_ID == customerID && o.Order_ID == orderID)
+                        .SelectMany(o => o.OrderLists, (o, ol) => new {
+                            Product_Name = ol.Quantity.Product.Product_Name,
+                            Product_Description = ol.Quantity.Product.Description,
+                            Size = ol.Quantity.Size,
+                            Color = ol.Quantity.Color,
+                            Item_Price = ol.Item_Price,
+                            Qty = ol.Qty,
+                            Subtotal = ol.Qty * ol.Item_Price,
+                            Image_ID = ol.Quantity.Image_ID,
+                            reviewBtn = db.Review.Any(r => r.OrderList_ID == ol.OrderList_ID),
+                            OrderList_ID = ol.OrderList_ID,
 
-                DataList1.DataSource = orderDetails;
-                DataList1.DataBind();
+                        }).ToList();
+
+                    DataList1.DataSource = orderDetails;
+                    DataList1.DataBind();
+                }
             }
+            catch (Exception ex)
+            {
+
+                // Optionally display error message on the page
+                ScriptManager.RegisterStartupScript(this, GetType(), "errorAlert", "alert('An error occurred when retrieve order list.');", true);
+            }
+
         }
         
         private void BindOrderSummaryRepeater(int customerID,int orderID)
         {
-            using (var db = new OrderDbContext())
+            try
+            {            
+                using (var db = new OrderDbContext())
+                {
+                    var orderDetails = db.Order
+                     .Where(o => o.Order_ID == orderID && o.Customer_ID == customerID)
+                     .Select(o => new {
+                    Payment_DateTime = o.Payments.FirstOrDefault().Payment_DateTime,
+                    Payment_Method = o.Payments.FirstOrDefault().Payment_Method,
+                    Payment_Status = o.Payments.FirstOrDefault().Payment_Status,
+                    Delivery_Status = o.Payments.FirstOrDefault().Delivery.Delivery_Status,
+                    Sub_Total = o.Subtotal,
+                    Total_Item = o.OrderLists.Where(ol => o.Order_ID == ol.Order_ID).Sum(ol => ol.Qty),
+                    Shipping_Amount = o.Payments.FirstOrDefault().Shipping_Amount,
+                    Total_Payment = o.Payments.FirstOrDefault().Total_Payment
+
+                     }).ToList();
+
+                    orderSummaryRepeater.DataSource = orderDetails;
+                    orderSummaryRepeater.DataBind();
+                }
+
+            }
+            catch (Exception ex)
             {
-                var orderDetails = db.Order
-                 .Where(o => o.Order_ID == orderID && o.Customer_ID == customerID)
-                 .Select(o => new {
-                Payment_DateTime = o.Payments.FirstOrDefault().Payment_DateTime,
-                Payment_Method = o.Payments.FirstOrDefault().Payment_Method,
-                Payment_Status = o.Payments.FirstOrDefault().Payment_Status,
-                Delivery_Status = o.Payments.FirstOrDefault().Delivery.Delivery_Status,
-                Sub_Total = o.Subtotal,
-                Total_Item = o.OrderLists.Where(ol => o.Order_ID == ol.Order_ID).Sum(ol => ol.Qty),
-                Shipping_Amount = o.Payments.FirstOrDefault().Shipping_Amount,
-                Total_Payment = o.Payments.FirstOrDefault().Total_Payment
-
-                 }).ToList();
-
                 orderSummaryRepeater.DataSource = orderDetails;
                 orderSummaryRepeater.DataBind();
             }
@@ -87,6 +106,11 @@ namespace Uniqlo.Pages
             string buttonText = ((Button)sender).Text;
             string orderListID = e.CommandArgument.ToString();
 
+                // Optionally display error message on the page
+                ScriptManager.RegisterStartupScript(this, GetType(), "errorAlert", "alert('An error occurred when retrieve order summary.');", true);
+            }
+
+        }
             if (buttonText == "View")
             {
                 // Redirect to view review page
