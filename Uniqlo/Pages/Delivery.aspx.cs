@@ -14,6 +14,14 @@ namespace Uniqlo.Pages
         string cs = Global.CS;
         protected void Page_Load(object sender, EventArgs e)
         {
+            //Deny not registered customer
+            if (Session["Customer_Id"] == null)
+            {
+                // Call the JavaScript function to show the pop-up and redirect
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "ShowPopup", "alert('Please login to continue checkout.'); window.location = 'Cart.aspx';", true);
+            }
+
+
             if (!Page.IsPostBack)
             {
                
