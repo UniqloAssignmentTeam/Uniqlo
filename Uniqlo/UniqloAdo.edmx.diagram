@@ -4,34 +4,35 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="589d6386e59344babd89a834cbad361a" Name="Diagram1">
+      <Diagram DiagramId="6249f1f63a954e2683033782d0442698" Name="Diagram1">
+        <EntityTypeShape EntityType="UniqloModel.C__MigrationHistory" Width="1.5" PointX="0.75" PointY="4.5" IsExpanded="true" />
         <EntityTypeShape EntityType="UniqloModel.Category" Width="1.5" PointX="0.75" PointY="8.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="UniqloModel.Customer" Width="1.5" PointX="8.25" PointY="11.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="UniqloModel.Customer" Width="1.5" PointX="8.25" PointY="12.5" IsExpanded="true" />
         <EntityTypeShape EntityType="UniqloModel.Delivery" Width="1.5" PointX="8.25" PointY="17.625" IsExpanded="true" />
         <EntityTypeShape EntityType="UniqloModel.Discount" Width="1.5" PointX="5.25" PointY="8" IsExpanded="true" />
         <EntityTypeShape EntityType="UniqloModel.Image" Width="1.5" PointX="6" PointY="5.375" IsExpanded="true" />
         <EntityTypeShape EntityType="UniqloModel.OrderList" Width="1.5" PointX="10.5" PointY="8" IsExpanded="true" />
-        <EntityTypeShape EntityType="UniqloModel.Order" Width="1.5" PointX="8.25" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="UniqloModel.Order" Width="1.5" PointX="8.25" PointY="4" IsExpanded="true" />
         <EntityTypeShape EntityType="UniqloModel.Payment" Width="1.5" PointX="10.5" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="UniqloModel.Product" Width="1.5" PointX="3" PointY="7.875" IsExpanded="true" />
         <EntityTypeShape EntityType="UniqloModel.Quantity" Width="1.5" PointX="8.25" PointY="7.625" IsExpanded="true" />
         <EntityTypeShape EntityType="UniqloModel.Review" Width="1.5" PointX="12.75" PointY="8.125" IsExpanded="true" />
         <EntityTypeShape EntityType="UniqloModel.Shipping_Address" Width="1.5" PointX="6" PointY="17.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="UniqloModel.Staff" Width="1.5" PointX="0.75" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="UniqloModel.Staff" Width="1.5" PointX="2.75" PointY="4.5" IsExpanded="true" />
         <EntityTypeShape EntityType="UniqloModel.WishlistItem" Width="1.5" PointX="10.5" PointY="5.25" IsExpanded="true" />
-        <AssociationConnector Association="UniqloModel.FK__Product__Categor__000AF8CF" ManuallyRouted="false" />
-        <AssociationConnector Association="UniqloModel.FK__Orders__Customer__0F4D3C5F" ManuallyRouted="false" />
-        <AssociationConnector Association="UniqloModel.FK__WishlistI__Custo__0C70CFB4" ManuallyRouted="false" />
-        <AssociationConnector Association="UniqloModel.FK__Delivery__Addres__18D6A699" ManuallyRouted="false" />
-        <AssociationConnector Association="UniqloModel.FK__Payment__Deliver__1BB31344" ManuallyRouted="false" />
-        <AssociationConnector Association="UniqloModel.FK__Discount__Produc__02E7657A" ManuallyRouted="false" />
-        <AssociationConnector Association="UniqloModel.FK__Quantity__Image___08A03ED0" ManuallyRouted="false" />
-        <AssociationConnector Association="UniqloModel.FK__OrderList__Order__131DCD43" ManuallyRouted="false" />
-        <AssociationConnector Association="UniqloModel.FK__OrderList__Quant__1229A90A" ManuallyRouted="false" />
-        <AssociationConnector Association="UniqloModel.FK__Review__OrderLis__15FA39EE" ManuallyRouted="false" />
-        <AssociationConnector Association="UniqloModel.FK__Payment__Order_I__1CA7377D" ManuallyRouted="false" />
-        <AssociationConnector Association="UniqloModel.FK__Quantity__Produc__07AC1A97" ManuallyRouted="false" />
-        <AssociationConnector Association="UniqloModel.FK__WishlistI__Quant__0B7CAB7B" ManuallyRouted="false" />
+        <AssociationConnector Association="UniqloModel.FK__Product__Categor__77FFC2B3" ManuallyRouted="false" />
+        <AssociationConnector Association="UniqloModel.FK__Orders__Customer__07420643" ManuallyRouted="false" />
+        <AssociationConnector Association="UniqloModel.FK__WishlistI__Custo__04659998" ManuallyRouted="false" />
+        <AssociationConnector Association="UniqloModel.FK__Delivery__Addres__10CB707D" ManuallyRouted="false" />
+        <AssociationConnector Association="UniqloModel.FK__Payment__Deliver__13A7DD28" ManuallyRouted="false" />
+        <AssociationConnector Association="UniqloModel.FK__Discount__Produc__7ADC2F5E" ManuallyRouted="false" />
+        <AssociationConnector Association="UniqloModel.FK__Quantity__Image___009508B4" ManuallyRouted="false" />
+        <AssociationConnector Association="UniqloModel.FK__OrderList__Order__0B129727" ManuallyRouted="false" />
+        <AssociationConnector Association="UniqloModel.FK__OrderList__Quant__0A1E72EE" ManuallyRouted="false" />
+        <AssociationConnector Association="UniqloModel.FK__Review__OrderLis__0DEF03D2" ManuallyRouted="false" />
+        <AssociationConnector Association="UniqloModel.FK__Payment__Order_I__149C0161" ManuallyRouted="false" />
+        <AssociationConnector Association="UniqloModel.FK__Quantity__Produc__7FA0E47B" ManuallyRouted="false" />
+        <AssociationConnector Association="UniqloModel.FK__WishlistI__Quant__0371755F" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -22,7 +22,7 @@ namespace Uniqlo
         public string Payment_Method { get; set; }
         public string Payment_Status { get; set; }
         public System.DateTime Payment_DateTime { get; set; }
-    
+
         public virtual Delivery Delivery { get; set; }
         public virtual Order Order { get; set; }
     }
