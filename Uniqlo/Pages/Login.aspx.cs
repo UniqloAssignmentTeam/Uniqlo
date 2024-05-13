@@ -46,12 +46,6 @@ namespace Uniqlo.Pages
                     {
                         Session["Customer_ID"] = read.GetValue(0).ToString();
 
-                        string username = email;
-                        if (!Roles.IsUserInRole(username, "Customer"))
-                        {
-                            Roles.AddUserToRole(username, "Customer");
-                        }
-
                     Response.Redirect("Home.aspx");
                     }
                     else
