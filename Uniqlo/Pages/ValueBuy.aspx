@@ -46,7 +46,7 @@
                           <asp:DropDownList ID="genderSortDDL" runat="server" AutoPostBack="true" OnSelectedIndexChanged="FilterProducts" CssClass="dropdown-display">
     <asp:ListItem Value="">All Genders</asp:ListItem>
     <asp:ListItem Value="M">Men</asp:ListItem>
-    <asp:ListItem Value="F">Women</asp:ListItem>
+    <asp:ListItem Value="W">Women</asp:ListItem>
 </asp:DropDownList>
                         </div>
 

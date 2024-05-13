@@ -11,97 +11,70 @@ namespace Uniqlo.AdminPages.AdminStaff
 {
 
 
-    public partial class StaffHome
+    public partial class DeleteStaff
     {
 
         /// <summary>
-        /// ScriptManagerStaff control.
+        /// staffIdlbl control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.ScriptManager ScriptManagerStaff;
+        protected global::System.Web.UI.WebControls.Label staffIdlbl;
 
         /// <summary>
-        /// UpdatePanelStaff control.
+        /// userEmail control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatePanelStaff;
+        protected global::System.Web.UI.WebControls.TextBox userEmail;
 
         /// <summary>
-        /// searchBox control.
+        /// btnSendCode control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox searchBox;
+        protected global::System.Web.UI.WebControls.Button btnSendCode;
 
         /// <summary>
-        /// genderSortDDL control.
+        /// txtVerificationCode control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList genderSortDDL;
+        protected global::System.Web.UI.WebControls.TextBox txtVerificationCode;
 
         /// <summary>
-        /// roleSortDDL control.
+        /// lblMessage control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList roleSortDDL;
+        protected global::System.Web.UI.WebControls.Label lblMessage;
 
         /// <summary>
-        /// excelBtn control.
+        /// Button1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button excelBtn;
+        protected global::System.Web.UI.WebControls.Button Button1;
 
         /// <summary>
-        /// addStaffBtn control.
+        /// btnRemoveStaff control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button addStaffBtn;
-
-        /// <summary>
-        /// staffRepeater control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater staffRepeater;
-
-        /// <summary>
-        /// hiddenStaffId control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hiddenStaffId;
-
-        /// <summary>
-        /// modalState control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField modalState;
+        protected global::System.Web.UI.WebControls.Button btnRemoveStaff;
     }
 }
