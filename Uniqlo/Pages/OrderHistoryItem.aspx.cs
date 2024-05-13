@@ -82,8 +82,22 @@ namespace Uniqlo.Pages
 
 
 
+        protected void reviewValidBtn_Command(object sender, CommandEventArgs e)
+        {
+            string buttonText = ((Button)sender).Text;
+            string orderListID = e.CommandArgument.ToString();
 
-
+            if (buttonText == "View")
+            {
+                // Redirect to view review page
+                Response.Redirect("~/ViewReviewItem.aspx?OrderListID=" + orderListID);
+            }
+            else if (buttonText == "Review")
+            {
+                // Redirect to add review page
+                Response.Redirect("~/AddReviewItem.aspx?OrderListID=" + orderListID);
+            }
+        }
 
 
 
