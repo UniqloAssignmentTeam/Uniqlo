@@ -33,28 +33,37 @@ namespace Uniqlo.AdminPages.AdminOrder
         {
             try
             {
-                string selectedStatus = ddlStatus.SelectedValue;
-                bool showAll = string.IsNullOrEmpty(selectedStatus);
-
-                if (showAll)
+                using (var db = new OrderDbContext())
                 {
-                    using (var db = new OrderDbContext())
-                    {
-                        var orders = db.Order
-                            .Where(o => !o.IsDeleted)
-                            .Include(o => o.Customer)
-                            .Include(o => o.OrderLists)
-                            .Include(o => o.Payments)
-                            .Select(o => new
-                            {
-                                OrderId = o.Order_ID,
-                                CustomerName = o.Customer.Name,
-                                OrderListTotalItems = o.OrderLists.Sum(ol => ol.Qty),
-                                PaymentTotalAmount = o.Payments.Sum(p => p.Total_Payment),
-                                PaymentDate = o.Payments.Select(p => p.Payment_DateTime).FirstOrDefault(),
-                                PaymentStatus = o.Payments.Select(p => p.Payment_Status).FirstOrDefault()
-                            })
-                            .ToList();
+                    string selectedStatus = ddlStatus.SelectedValue;
+                    bool showAll = string.IsNullOrEmpty(selectedStatus);
+
+                    // Start by including all necessary entities
+                    var orderQuery = db.Order
+                        .Where(o => !o.IsDeleted)
+                        .Include(o => o.Customer)
+                        .Include(o => o.OrderLists)
+                        .Include(o => o.Payments)
+                        .AsQueryable();
+
+                    
+                        // Apply filtering only when a specific status is selected
+                        orderQuery = orderQuery
+                            .Where(o => o.Payments.Any(p => p.Payment_Status == "Paid" || p.Payment_Status == "Unpaid"));
+                    
+
+                    // Projection is the same in both cases, do it after filtering
+                    var orders = orderQuery
+                        .Select(o => new
+                        {
+                            OrderId = o.Order_ID,
+                            CustomerName = o.Customer.Name,
+                            OrderListTotalItems = o.OrderLists.Sum(ol => ol.Qty),
+                            PaymentTotalAmount = o.Payments.Sum(p => p.Total_Payment),
+                            PaymentDate = o.Payments.Select(p => p.Payment_DateTime).FirstOrDefault(),
+                            PaymentStatus = o.Payments.Select(p => p.Payment_Status).FirstOrDefault()
+                        })
+                        .ToList(); // Execute the query
 
                         orderRepeater.DataSource = orders;
                         orderRepeater.DataBind();
@@ -64,11 +73,8 @@ namespace Uniqlo.AdminPages.AdminOrder
             }
             catch (Exception ex)
             {
-
-                // Optionally display error message on the page
-                ScriptManager.RegisterStartupScript(this, GetType(), "errorAlert", "alert('An error occurred when Retrieving orders.');", true);
+                ScriptManager.RegisterStartupScript(this, GetType(), "errorAlert", $"alert('An error occurred when retrieving orders: {ex.Message}');", true);
             }
-
         }
 
 
@@ -91,6 +97,7 @@ namespace Uniqlo.AdminPages.AdminOrder
                 {
                     string selectedStatus = ddlStatus.SelectedValue;
                     bool showAll = string.IsNullOrEmpty(selectedStatus);
+                   
 
                     // Start by including all necessary entities
                     var orderQuery = db.Order
@@ -106,6 +113,8 @@ namespace Uniqlo.AdminPages.AdminOrder
                         orderQuery = orderQuery
                             .Where(o => o.Payments.Any(p => p.Payment_Status == selectedStatus));
                     }
+
+
 
                     // Projection is the same in both cases, do it after filtering
                     var orders = orderQuery
