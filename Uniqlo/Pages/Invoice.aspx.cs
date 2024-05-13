@@ -206,7 +206,7 @@ namespace Uniqlo.Pages
 
             MailMessage message = new MailMessage();
             message.From = new MailAddress("yipy-pm21@student.tarc.edu.my"); // Your email address
-            message.To.Add("legengyong0505@gmail.com");
+            message.To.Add(customerEmail);
             message.Subject = "Your Invoice";
             message.Body = "Please find attached your invoice.";
 

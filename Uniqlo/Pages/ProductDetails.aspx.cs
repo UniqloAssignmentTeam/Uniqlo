@@ -30,6 +30,8 @@ namespace Uniqlo.Pages
                 {
                     BindFormView(productId);
                     FindQuantity(productId);
+                    BindOutsideViewControl();
+                    FirstImageId(productId);
                 }
             }
 
@@ -80,7 +82,7 @@ namespace Uniqlo.Pages
                             }).ToList()
                     }).ToList();
 
-
+                
                 formView.DataSource = productList;
                 formView.DataBind();
 
@@ -89,6 +91,60 @@ namespace Uniqlo.Pages
                 formView1.DataBind();
 
 
+            }
+        }
+
+
+        private void BindOutsideViewControl()
+        {
+            if (formView.Row != null) // Check if there is a data row available
+            {
+                HiddenField hfProductId = (HiddenField)formView.FindControl("productIdHidden");
+                HiddenField hfProductName = (HiddenField)formView.FindControl("productNameHidden");
+                HiddenField hfProductDiscount = (HiddenField)formView.FindControl("productDiscountHidden");
+                HiddenField hfProductPrice = (HiddenField)formView.FindControl("productPriceHidden");
+                HiddenField hfProductDesc = (HiddenField)formView.FindControl("productDescHidden");
+
+                string productId = hfProductId.Value;
+                string productName = hfProductName.Value;
+                string productDiscount = hfProductDiscount.Value;
+                string productPrice = hfProductPrice.Value;
+                string productDescription = hfProductDesc.Value;
+
+                prodIdHidden.Value = productId;
+                prodNameHidden.Value = productName;
+                prodDiscountHidden.Value = productDiscount;
+                prodPriceHidden.Value = productPrice;
+                prodDescHidden.Value = productDescription;
+
+            }
+        }        
+        
+        private void FirstImageId(int productID)
+        {
+            using (var db = new ProductDbContext())
+            {
+                var imageId = db.Quantity
+                                .Where(q => q.Product_ID == productID)
+                                .Select(q => q.Image_ID)
+                                .FirstOrDefault();
+
+
+                var firstQuantity = db.Quantity
+                     .Where(q => q.Product_ID == productID)
+                     .FirstOrDefault();
+
+                if (firstQuantity != null)
+                {
+                    var firstImageId = db.Quantity
+                                        .Where(q => q.Quantity_ID == firstQuantity.Quantity_ID)
+                                        .Select(q => q.Image_ID)
+                                        .FirstOrDefault();
+
+                    prodImageID.Value = firstImageId.ToString();
+                }
+
+                
             }
         }
 

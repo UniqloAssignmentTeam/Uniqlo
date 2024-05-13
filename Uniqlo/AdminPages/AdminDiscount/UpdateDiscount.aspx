@@ -93,7 +93,7 @@ ErrorMessage="End date is required" ForeColor="Red" Display="Dynamic"></asp:Requ
     
          
 <asp:Button ID="cancelBtn" runat="server" Text="CANCEL" CssClass="cancel-button" CausesValidation="false" OnClick="cancelBtn_Click"/>
- <asp:Button ID="addBtn" runat="server" Text="ADD" CssClass="continue-button" CausesValidation="true" OnClick="updateBtn_Click" />
+ <asp:Button ID="addBtn" runat="server" Text="Update" CssClass="continue-button" CausesValidation="true" OnClick="updateBtn_Click" />
   </div>
       </div>
   </div>

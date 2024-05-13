@@ -67,19 +67,29 @@
                 <div class="dropdown-bigcontainer">
                     <div class="productListHeader">Sort By</div>
 
-                    <div class="dropdown-container">
-                        <asp:DropDownList ID="ddlSort" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlSort_SelectedIndexChanged" CssClass="dropdown-display">
-                            <asp:ListItem Value="">All</asp:ListItem>
-                            <asp:ListItem Value="lowToHigh">Price: Low to High</asp:ListItem>
-                            <asp:ListItem Value="highToLow">Price: High to Low</asp:ListItem>
-                        </asp:DropDownList>
+                    <div style="display: flex;">
+                        <div class="dropdown-container">
+                            <asp:DropDownList ID="ddlSort" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlSort_SelectedIndexChanged" CssClass="dropdown-display">
+                                <asp:ListItem Value="">All</asp:ListItem>
+                                <asp:ListItem Value="lowToHigh">Price: Low to High</asp:ListItem>
+                                <asp:ListItem Value="highToLow">Price: High to Low</asp:ListItem>
+                            </asp:DropDownList>
+                        </div>                    
+                        <div class="dropdown-container" style="margin-left: 20px;">
+                            <asp:DropDownList ID="ddlCategory" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlCategory_SelectedIndexChanged" CssClass="dropdown-display">
+                                <asp:ListItem Value="">All Category</asp:ListItem>
+                                <asp:ListItem Value="Top">Top</asp:ListItem>
+                                <asp:ListItem Value="Bottom">Bottom</asp:ListItem>
+                            </asp:DropDownList>
+                        </div>
                     </div>
+
                 </div>
 
                 <div class="wrap-items-search-buttons" style="margin-top: 85px;">
                     <div class="search">
                         <span class="material-symbols-outlined">search</span>
-                        <input class="search-input" type="search" placeholder="Search" />
+                        <asp:TextBox ID="searchBox" runat="server" CssClass="search-input" AutoPostBack="true" OnTextChanged="searchBox_TextChanged"  placeholder="Search Product Name"></asp:TextBox>
                     </div>
                 </div>
             </div>
@@ -149,6 +159,7 @@
                     </ContentTemplate>
                     <Triggers>
                         <asp:AsyncPostBackTrigger ControlID="ddlSort" EventName="SelectedIndexChanged" />
+                        <asp:AsyncPostBackTrigger ControlID="ddlCategory" EventName="SelectedIndexChanged" />
                     </Triggers>
 
 
