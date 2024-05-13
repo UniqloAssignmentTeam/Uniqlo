@@ -214,6 +214,7 @@
     color: #6F6F6F;
     text-decoration: none;
     font-weight: bold;
+    font-size: 1rem;
 }
 
     .product-add:hover, .product-add:focus, .excel-export:hover, .excel-export:focus {

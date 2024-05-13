@@ -18,11 +18,13 @@
         <div class="modal-content">
             <div class="product-content">
                 <div class="form-group">
+
                     <label for="ddlPaymentID">Payment ID</label>
-                    <asp:DropDownList ID="ddlPaymentID" runat="server" CssClass="dropdown">
+                    <asp:DropDownList ID="ddlPaymentID" runat="server" CssClass="dropdown-display">
                     </asp:DropDownList>
                     <asp:RequiredFieldValidator ID="rfvPaymentID" runat="server" ControlToValidate="ddlPaymentID" InitialValue="" ErrorMessage="Please select a Payment ID" CssClass="error-message" Display="Dynamic" />
                 </div>
+
                 <div class="form-group">
                     <label for="txtAddress">Address</label>
                     <asp:TextBox ID="txtAddress" runat="server" CssClass="input-field"></asp:TextBox>
