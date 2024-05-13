@@ -247,18 +247,9 @@ namespace Uniqlo.AdminPages.AdminOrder
                     var order = db.Order.Find(orderId);
                     if (order != null)
                     {
-                        order.IsDe = Convert.ToBoolean(1);
+                        order.IsDeleted = Convert.ToBoolean(1);
 
 
-                        var discounts = db.Discount.Where(d => d.Product_ID == prodId).ToList();
-                        foreach (var discount in discounts)
-                        {
-                            discount.Status = "Inactive";
-                        }
-
-                        db.SaveChanges();
-
-                        // Redirect to refresh the page and reflect changes
                         Response.Redirect(Request.RawUrl);
                     }
                 }
