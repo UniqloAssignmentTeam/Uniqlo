@@ -20,8 +20,10 @@
         button.addEventListener('click', function (event) {
             event.stopPropagation(); // Prevent event from bubbling to cart item
             var cartItem = this.closest('.cart-item');
-            cartItem.remove(); // Remove the cart item from the DOM
-            updateCartTotals(); // Update totals after item removal
+            var quantityId = cartItem.id.split('cart')[1]; // Extract the quantity ID from the cart item's ID
+            if (confirm("Are you sure you want to remove this item from the cart?")) {
+                __doPostBack('RemoveCartItem', quantityId); // Trigger function to remove item from cart
+            }
         });
     });
 
@@ -46,9 +48,6 @@
         document.getElementById('totalSubtotalLabel').textContent = subtotal.toFixed(2);
     }
 
-
-
-
     // Modal close button functionality
     var closeButtons = document.querySelectorAll('.close');
     closeButtons.forEach(function (button) {
@@ -58,11 +57,11 @@
     });
 });
 
-function calculateTax(subtotal) {
-    var taxRate = 0.10;
-    var taxAmount = subtotal * taxRate;
-    var totalWithTax = subtotal + taxAmount;
-
-    document.getElementById('totalTaxLabel').textContent = taxAmount.toFixed(2);
-    document.getElementById('totalPriceLabel').textContent = totalWithTax.toFixed(2);
+function removeCartItemById(quantityId) {
+    // Trigger postback with the quantity ID
+    __doPostBack('RemoveCartItem', quantityId);
 }
+
+
+
+

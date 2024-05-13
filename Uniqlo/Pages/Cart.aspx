@@ -13,7 +13,7 @@
                 <asp:Repeater ID="rptCartItems" runat="server">
                     <ItemTemplate>
                         <div class="cart-item" id='<%# "cart" + Eval("Quantity_Id") %>'>
-                            <span class="remove-item">&times;</span>
+                            <span id='<%# "removeItem_" + Eval("Quantity_Id") %>' class="remove-item" onclick="removeCartItem('<%# Eval("Quantity_Id") %>')">&times;</span>
                             <div class="cart-item-image-container">
                                  <img src='/ImageHandler.ashx?id=<%# Eval("Image_Id") %>' alt="ProductImage"/>
                             </div>

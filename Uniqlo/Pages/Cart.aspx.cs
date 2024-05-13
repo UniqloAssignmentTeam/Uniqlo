@@ -20,6 +20,7 @@ namespace Uniqlo.Pages
                 rptCartItems.DataSource = cartItems;
                 rptCartItems.DataBind();
             }
+
         }
 
         public List<CartItem> GetCartItems(List<CartItem> cartItems)
@@ -36,17 +37,17 @@ namespace Uniqlo.Pages
                 SqlCommand command = new SqlCommand();
                 command.Connection = connection;
                 command.CommandText = @"
-        SELECT 
-            q.Quantity_Id, p.Product_Name, p.Description, 
-            q.Size, q.Color, p.Price, 
-            (p.Price - ISNULL(d.Discount_Amount, 0)) as DiscountedPrice,
-            q.Image_ID  -- Modify the query to retrieve Image ID instead of product image
-        FROM 
-            Quantity q
-            JOIN Product p ON q.Product_ID = p.Product_ID
-            LEFT JOIN Discount d ON p.Product_ID = d.Product_ID AND d.Status = 'Active'
-        WHERE 
-            q.Quantity_Id IN ({0})";
+                SELECT 
+                    q.Quantity_Id, p.Product_Name, p.Description, 
+                    q.Size, q.Color, p.Price, 
+                    (p.Price - ISNULL(d.Discount_Amount, 0)) as DiscountedPrice,
+                    q.Image_ID  -- Modify the query to retrieve Image ID instead of product image
+                FROM 
+                    Quantity q
+                    JOIN Product p ON q.Product_ID = p.Product_ID
+                    LEFT JOIN Discount d ON p.Product_ID = d.Product_ID AND d.Status = 'Active'
+                WHERE 
+                    q.Quantity_Id IN ({0})";
 
                 // Constructing parameter placeholders and adding parameters to avoid SQL Injection
                 var parameterNames = new List<string>();
@@ -88,5 +89,31 @@ namespace Uniqlo.Pages
             return items;
         }
 
+        // Method to remove item from the cart
+        protected void RemoveCartItem(object sender, EventArgs e)
+        {
+            int quantityId = Convert.ToInt32(Request.Form["__EVENTARGUMENT"]); // Extract the quantity ID from the postback
+            List<CartItem> cartItems = (List<CartItem>)Session["Cart"];
+            cartItems.RemoveAll(item => item.Quantity_Id == quantityId); // Remove item from cart list
+            Session["Cart"] = cartItems; // Update the session
+            rptCartItems.DataSource = cartItems;
+            rptCartItems.DataBind();
+            RemoveItemFromDatabase(quantityId); // Remove item from database
+        }
+
+        // Method to remove item from the database
+        protected void RemoveItemFromDatabase(int quantityId)
+        {
+            // Your existing code to remove item from the database
+            string connectionString = cs;
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                // Remove the product from the database based on Quantity_Id
+                SqlCommand command = new SqlCommand("DELETE FROM Quantity WHERE Quantity_Id = @QuantityId", connection);
+                command.Parameters.AddWithValue("@QuantityId", quantityId);
+                connection.Open();
+                command.ExecuteNonQuery();
+            }
+        }
     }
 }
