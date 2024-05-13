@@ -527,7 +527,7 @@
         </Association>
         <Association Name="FK__Delivery__Addres__54817C4C">
           <End Role="Shipping_Address" Type="Self.Shipping_Address" Multiplicity="0..1" />
-          <End Role="Delivery" Type="Self.Delivery" Multiplicity="1" />
+          <End Role="Delivery" Type="Self.Delivery" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Shipping_Address">
               <PropertyRef Name="Address_ID" />
@@ -539,7 +539,7 @@
         </Association>
         <Association Name="FK__Payment__Deliver__575DE8F7">
           <End Role="Delivery" Type="Self.Delivery" Multiplicity="0..1" />
-          <End Role="Payment" Type="Self.Payment" Multiplicity="1" />
+          <End Role="Payment" Type="Self.Payment" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Delivery">
               <PropertyRef Name="Delivery_ID" />
@@ -551,7 +551,7 @@
         </Association>
         <Association Name="FK__Discount__Produc__4262CC11">
           <End Role="Product" Type="Self.Product" Multiplicity="1" />
-          <End Role="Discount" Type="Self.Discount" Multiplicity="1" />
+          <End Role="Discount" Type="Self.Discount" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Product">
               <PropertyRef Name="Product_ID" />
@@ -563,7 +563,7 @@
         </Association>
         <Association Name="FK__Quantity__Image___481BA567">
           <End Role="Image" Type="Self.Image" Multiplicity="1" />
-          <End Role="Quantity" Type="Self.Quantity" Multiplicity="1" />
+          <End Role="Quantity" Type="Self.Quantity" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Image">
               <PropertyRef Name="Image_ID" />
@@ -599,7 +599,7 @@
         </Association>
         <Association Name="FK__Review__OrderLis__51A50FA1">
           <End Role="OrderList" Type="Self.OrderList" Multiplicity="1" />
-          <End Role="Review" Type="Self.Review" Multiplicity="0..1" />
+          <End Role="Review" Type="Self.Review" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="OrderList">
               <PropertyRef Name="OrderList_ID" />
@@ -611,7 +611,7 @@
         </Association>
         <Association Name="FK__Payment__Order_I__58520D30">
           <End Role="Orders" Type="Self.Order" Multiplicity="1" />
-          <End Role="Payment" Type="Self.Payment" Multiplicity="1" />
+          <End Role="Payment" Type="Self.Payment" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Orders">
               <PropertyRef Name="Order_ID" />
