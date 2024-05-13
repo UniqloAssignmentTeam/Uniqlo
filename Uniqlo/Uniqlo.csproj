@@ -211,6 +211,8 @@
     <Content Include="Images\3R.jpg" />
     <Content Include="Images\3RBanner.jpg" />
     <Content Include="Images\accessories.jpg" />
+    <Content Include="Images\Banner3.jpg" />
+    <Content Include="Images\bannerWomen.jpg" />
     <Content Include="Images\Categories\Woman\Bottoms\SweatCargoPants1.jpg" />
     <Content Include="Images\Categories\Woman\Bottoms\SweatCargoPants2.jpg" />
     <Content Include="Images\Categories\Woman\Bottoms\SweatCargoPants3.jpg" />
@@ -228,6 +230,9 @@
     <Content Include="Images\Categories\Woman\Tops\AIRismCottonShortSleeveT-Shirt3.jpg" />
     <Content Include="Images\Categories\Woman\Tops\AIRismCottonShortSleeveT-Shirt4.jpg" />
     <Content Include="Images\icons8-google-48.png" />
+    <Content Include="Images\MenBanner.jpg" />
+    <Content Include="Images\menBanner2.jpg" />
+    <Content Include="Images\menBanners.png" />
     <Content Include="Images\menBottomBanner.jpg" />
     <Content Include="Images\menTopBanner.png" />
     <Content Include="Images\ProfilePhoto\accessories.jpg" />
@@ -241,6 +246,7 @@
     <Content Include="Images\uniqloMenBigBanner.jpg" />
     <Content Include="Images\uniqloMenOuterwear.jpg" />
     <Content Include="Images\uniqloMenPants.jpg" />
+    <Content Include="Images\uniqloMensBanner.jpg" />
     <Content Include="Images\uniqloMenTop.jpg" />
     <Content Include="Images\uniqlostore.jpg" />
     <Content Include="Images\uniqloValueBuyBanner.jpg" />
@@ -252,6 +258,10 @@
     <Content Include="Images\valueBuy.jpg" />
     <Content Include="Images\valueBuyBanner.jpg" />
     <Content Include="Images\womanBottomBanner.png" />
+    <Content Include="Images\WomenBanner.jpg" />
+    <Content Include="Images\womenBanner2.jpg" />
+    <Content Include="Images\womenBanners.jpg" />
+    <Content Include="Images\womensBanner.jpg" />
     <Content Include="Images\womenTopBanner.png" />
     <Content Include="Javascript\addColor.js" />
     <Content Include="Javascript\addToCartButton.js" />

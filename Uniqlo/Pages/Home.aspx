@@ -52,7 +52,7 @@
                 <div class="card">
                     <div class="img">
                         <a href="Categories/Women/Tops.aspx" class="tooltip">
-                            <img src="../Images/womenTopBanner.png" class="img" alt="img" draggable="false"/>
+                            <img src="../Images/womenBanner.jpg" class="img" alt="img" draggable="false"/>
                             <span class="tooltiptext">Click Here</span>
                         </a>
                     </div>
@@ -78,7 +78,7 @@
                 <div class="card">
                     <div class="img">
                         <a href="Categories/Men/Tops.aspx" class="tooltip">
-                            <img src="../Images/menTopBanner.png" class="img" alt="img" draggable="false"/>
+                            <img src="../Images/menBanner2.jpg" class="img" alt="img" draggable="false"/>
                             <span class="tooltiptext">Click Here</span>
                         </a>
                     </div>
