@@ -234,9 +234,9 @@ namespace Uniqlo.Pages.Categories.Women
             try
             {
                 string searchText = searchBox.Text;
-                var results = SearchDatabase(searchText);  // Call the method that performs the search
-                dataList.DataSource = results;
-                dataList.DataBind();
+                //var results = SearchDatabase(searchText);  // Call the method that performs the search
+                //dataList.DataSource = results;
+                //dataList.DataBind();
             }
             catch (Exception ex)
             {
@@ -244,8 +244,8 @@ namespace Uniqlo.Pages.Categories.Women
 
             }
         }
-
         /*
+        
         public List<Product> SearchDatabase(string searchText)
         {
 
@@ -279,6 +279,7 @@ namespace Uniqlo.Pages.Categories.Women
             }
         }
         */
+        
 
 
     }
