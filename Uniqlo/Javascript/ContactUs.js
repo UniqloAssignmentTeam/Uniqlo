@@ -146,6 +146,10 @@
             botReply = "We offer a wide range of eco-friendly products made from organic and recycled materials. Look for our 'Eco-Friendly' badge on products online and in-store.";
         } else if (message.includes("Thank You") || message.includes("Bye")) {
             botReply = "See You!";
+        } else if (message.includes("value buy") || message.includes("valuebuy")) {
+            botReply = "We have special value buy deals on selected items. Check our website or visit our stores for the latest offers!";
+        } else if (message.includes("promotion") || message.includes("promotions")) {
+            botReply = "Stay updated on our promotions and special deals by subscribing to our newsletter or following us on social media!";
         } else {
             botReply = "I'm not sure how to answer that. Can you provide more details or ask about something else?";
         }

@@ -304,8 +304,7 @@ namespace Uniqlo.Pages
             string selectedColor = (string)Session["selectedColor"];
             TextBox txtQty = (TextBox)formView.FindControl("txtQty");
             int productId = int.Parse(Request.QueryString["ProdID"]);
-            int quantity = Int32.Parse(txtQty.Text);
-
+            int quantity;
 
             // Check if the quantity is a valid integer
             if (!int.TryParse(txtQty.Text, out quantity))
@@ -315,11 +314,19 @@ namespace Uniqlo.Pages
                 return;
             }
 
-            // Validate that the user has selected a size and color
-            if (string.IsNullOrEmpty(selectedSize) || string.IsNullOrEmpty(selectedColor))
+            // Validate that the user has selected a size
+            if (string.IsNullOrEmpty(selectedSize))
             {
-                // Show an error message if the size or color is not selected
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "selectionError", "alert('Please select a size and color.');", true);
+                // Show a message asking the user to select a size
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "sizeError", "alert('Please select a size.');", true);
+                return;
+            }
+
+            // Validate that the user has selected a color
+            if (string.IsNullOrEmpty(selectedColor))
+            {
+                // Show a message asking the user to select a color
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "colorError", "alert('Please select a color.');", true);
                 return;
             }
 
@@ -333,7 +340,6 @@ namespace Uniqlo.Pages
                 return;
             }
 
-            
             CartItem item = new CartItem
             {
                 Quantity_Id = quantityId,
@@ -358,13 +364,13 @@ namespace Uniqlo.Pages
             }
 
             // Show a JavaScript alert to confirm successful addition to the cart
-            string script = "alert('Item added to cart successfully!');";
-            ScriptManager.RegisterStartupScript(this, this.GetType(), "addToCartSuccess", script, true);
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "addToCartSuccess", "alert('Item added to cart successfully!');", true);
 
             // Redirect the user back to the product details page
             Response.Redirect("ProductDetails.aspx?ProdID=" + Request.QueryString["ProdID"]);
         }
-    
+
+
 
         // Method to retrieve the quantity ID based on size, color, and product ID
         private int GetQuantityId(int productId, string selectedSize, string selectedColor)
