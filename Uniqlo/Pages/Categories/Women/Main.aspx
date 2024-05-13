@@ -19,19 +19,25 @@
 
         <div class="slideshow-container">
             <div class="mySlides fade">
-                <div class="numbertext">1 / 2</div>
+                <div class="numbertext">1 / 3</div>
                 <a href="Tops.aspx">
-                    <img src="../../../Images/womenTopBanner.png" style="width: 100%; height: 400px;" />
+                    <img src="../../../Images/womensBanner.jpg" style="width: 100%; height: 400px;" />
                 </a>
             </div>
 
             <div class="mySlides fade">
-                <div class="numbertext">2 / 2</div>
+                <div class="numbertext">2 / 3</div>
                 <a href="Bottoms.aspx">
-                    <img src="../../../Images/womanBottomBanner.png" style="width: 100%; height: 400px;" />
+                    <img src="../../../Images/womenBanners.jpg" style="width: 100%; height: 400px;" />
                 </a>
             </div>
 
+            <div class="mySlides fade">
+                <div class="numbertext">3 / 3</div>
+                <a href="Bottoms.aspx">
+                    <img src="../../../Images/womenTopBanner.png" style="width: 100%; height: 400px;" />
+                </a>
+            </div>
             <a class="prev" onclick="plusSlides(-1)">❮</a>
             <a class="next" onclick="plusSlides(1)">❯</a>
 

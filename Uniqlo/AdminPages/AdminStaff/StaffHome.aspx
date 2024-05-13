@@ -1,13 +1,21 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin.Master" AutoEventWireup="true" CodeBehind="StaffHome.aspx.cs" Inherits="Uniqlo.AdminPages.AdminStaff.StaffHome" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="main" runat="server">
-
-
+    <header>
+           <style>
+           .hyperlink{
+                color: #6F6F6F;
+text-decoration: none;
+           }
+       </style>
 
     <link href="../../css/Admin/adminStaff.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <link href="../../css/Admin/ErrorMessage.css" rel="stylesheet" />
+
+
+        </header>
     <asp:ScriptManager ID="ScriptManagerStaff" runat="server" />
     <asp:UpdatePanel ID="UpdatePanelStaff" runat="server">
         <ContentTemplate>
@@ -104,10 +112,10 @@
                                     <div class="eclipse-list" id="dropdownList<%# Eval("Staff_ID") %>">
 
                                         <div>
-                                            <asp:HyperLink ID="updateStaff" runat="server" NavigateUrl='<%# "UpdateStaff.aspx?StaffID=" + Eval("Staff_ID") %>' Text="Update"></asp:HyperLink>
+                                            <asp:HyperLink ID="updateStaff" runat="server" NavigateUrl='<%# "UpdateStaff.aspx?StaffID=" + Eval("Staff_ID") %>' Text="Update" CssClass="hyperlink"></asp:HyperLink>
                                         </div>
                                       <div>
-                                          <asp:HyperLink ID="deleteStaff" runat="server" NavigateUrl='<%# "DeleteStaff.aspx?StaffID=" + Eval("Staff_ID") %>' Text="Delete"></asp:HyperLink>
+                                          <asp:HyperLink ID="deleteStaff" runat="server" NavigateUrl='<%# "DeleteStaff.aspx?StaffID=" + Eval("Staff_ID") %>' Text="Delete" CssClass="hyperlink"></asp:HyperLink>
                                     </div>
                                       </div>
                                 </td>

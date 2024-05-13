@@ -20,7 +20,10 @@ namespace Uniqlo.AdminPages.AdminStaff
             
 
         }
-
+        protected void cancelBtn_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("StaffHome.aspx");
+        }
 
 
 
