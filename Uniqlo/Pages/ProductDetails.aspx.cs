@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 using System.Collections;
 using Uniqlo.Pages.Categories.Women;
 using System.Web.UI.HtmlControls;
+using System.Net.Mail;
 
 namespace Uniqlo.Pages
 {
@@ -434,6 +435,17 @@ namespace Uniqlo.Pages
                 return quantityId;
             }
         }
+
+        protected void fetchProductID(object sender, EventArgs e)
+        {
+            int productID = Int32.Parse(prodIdHidden.Value);
+
+            Response.Redirect("/Pages/SendProductGmailToFriend.aspx?id=" + productID);
+        }
+
+
+
+
     }
 
 }
