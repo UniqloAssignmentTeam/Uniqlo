@@ -57,6 +57,7 @@ namespace Uniqlo.Pages
             }
         }
 
+
         protected void FilterProducts(object sender, EventArgs e)
         {
             using (var db = new ProductDbContext())

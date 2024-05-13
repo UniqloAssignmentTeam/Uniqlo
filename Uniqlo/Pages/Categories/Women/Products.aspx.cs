@@ -172,8 +172,8 @@ namespace Uniqlo.Pages.Categories.Women
                                 ProductId = product.Product_ID,
                                 ProductName = product.Product_Name,
                                 Description = product.Description,
-                                OriginalPrice = product.Price,
-                                DiscountedPrice = product.Price - discount.Discount_Amount,
+                                Price = product.Price,
+                                DiscountAmount = discount.Discount_Amount,
                                 Image_ID = product.Quantities.Select(q => q.Image_ID).FirstOrDefault(),
                                 AverageRating = product.Quantities.SelectMany(q => q.OrderLists).SelectMany(ol => ol.Reviews).Average(r => (int?)r.Rating) ?? 0,
                                 ReviewCount = product.Quantities.SelectMany(q => q.OrderLists).SelectMany(ol => ol.Reviews).Count()
@@ -184,10 +184,10 @@ namespace Uniqlo.Pages.Categories.Women
                     switch (selectedSort)
                     {
                         case "lowToHigh":
-                            productQuery = productQuery.OrderBy(p => p.DiscountedPrice);
+                            productQuery = productQuery.OrderBy(p => p.DiscountAmount);
                             break;
                         case "highToLow":
-                            productQuery = productQuery.OrderByDescending(p => p.DiscountedPrice);
+                            productQuery = productQuery.OrderByDescending(p => p.DiscountAmount);
                             break;
                     }
 
