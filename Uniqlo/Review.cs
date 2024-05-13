@@ -19,7 +19,7 @@ namespace Uniqlo
         public int Rating { get; set; }
         public string Review1 { get; set; }
         public System.DateTime Date_Submitted { get; set; }
-
+    
         public virtual OrderList OrderList { get; set; }
 
         public class ReviewDbContext : DbContext
@@ -30,6 +30,7 @@ namespace Uniqlo
 
             public DbSet<Review> Review { get; set; }
         }
-
     }
+
+
 }

@@ -212,7 +212,7 @@
 
                     <div class="confirmationClearFix">
                         <button type="button" onclick="document.getElementById('id01').style.display='none'" class="confirmationCancelbtn">Cancel</button>
-                        <asp:Button ID="btnRemoveProduct" runat="server" Text="Remove"  CssClass="confirmationDeletebtn" />
+                        <asp:Button ID="btnRemoveProduct" runat="server" Text="Remove"  CssClass="confirmationDeletebtn" OnClick="btnRemoveOrder_Click" />
                     </div>
                 </div>
             </div>

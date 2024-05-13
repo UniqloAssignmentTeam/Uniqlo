@@ -11,7 +11,7 @@ namespace Uniqlo
 {
     using System;
     using System.Collections.Generic;
-
+    
     public partial class Shipping_Address
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -19,14 +19,14 @@ namespace Uniqlo
         {
             this.Deliveries = new HashSet<Delivery>();
         }
-
+    
         public int Address_ID { get; set; }
         public string Address { get; set; }
         public string State { get; set; }
         public string City { get; set; }
         public string Postcode { get; set; }
         public string Country { get; set; }
-
+    
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Delivery> Deliveries { get; set; }
     }

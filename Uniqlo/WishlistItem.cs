@@ -11,13 +11,13 @@ namespace Uniqlo
 {
     using System;
     using System.Collections.Generic;
-
+    
     public partial class WishlistItem
     {
         public int WishlistItem_ID { get; set; }
         public int Quantity_ID { get; set; }
         public int Customer_ID { get; set; }
-
+    
         public virtual Customer Customer { get; set; }
         public virtual Quantity Quantity { get; set; }
     }
