@@ -75,7 +75,7 @@
                                             <label id="color"></label>
                                     </h3>
                                     <div class="purchase-color-item">
-                                        <asp:RadioButtonList ID="RadioButtonListColors" runat="server" RepeatDirection="Horizontal" Visible="True" AutoPostBack="True" OnSelectedIndexChanged="RadioButtonListColors_SelectedIndexChanged">
+                                        <asp:RadioButtonList ID="RadioButtonListColors" runat="server" RepeatDirection="Horizontal" Visible="True"  CssClass="colorRadioList" AutoPostBack="True" OnSelectedIndexChanged="RadioButtonListColors_SelectedIndexChanged">
                                         </asp:RadioButtonList>
                                     </div>
                                 </div>

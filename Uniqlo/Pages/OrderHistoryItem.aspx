@@ -366,7 +366,7 @@
                                     <div class="orderReceivedSection" id="<%# Eval("reviewBtn") %>">
 
                                         <asp:Button ID="reviewValidBtn" runat="server"
-                                        Text='<%# Convert.ToBoolean(Eval("reviewBtn")) ? "View" : "Review" %>' CommandArgument='<%# Eval("OrderList_ID") %>' OnCommand="ReviewValidBtn_Command"
+                                        Text='<%# Convert.ToBoolean(Eval("reviewBtn")) ? "View" : "Review" %>' CommandArgument='<%# Eval("OrderList_ID") %>' 
                                         CssClass="orderReceivedButton" AutoPostBack="false" UseSubmitBehavior="false" />
 
 
@@ -459,121 +459,10 @@
 
 
 
-                <!-- The Modal -->
-                <div id="myModal" class="modal" runat="server">
-                    <div class="modal-content">
-                        <asp:Button ID="Button1" runat="server" Text="&times;" OnClick="btnCloseModal_Click" CssClass="close" />
-                        <div class="modal-rating-content">
-                            <div style="display: flex;">
-                                <p>Rating</p>
-                                <div class="commentRatingSectionStars">
-                                    <i class="fa fa-star star1" onclick="setRating(1)"></i>
-                                    <i class="fa fa-star star1" onclick="setRating(2)"></i>
-                                    <i class="fa fa-star star1" onclick="setRating(3)"></i>
-                                    <i class="fa fa-star star1" onclick="setRating(4)"></i>
-                                    <i class="fa fa-star star1" onclick="setRating(5)"></i>
-                                </div>
-                                <asp:HiddenField ID="HiddenRating" runat="server" />
-                            </div>
-                            <div>
-                                <p>Comment</p>
-                                <div class="commentRatingSectionComment">
-                                    <asp:TextBox ID="commentTextArea" runat="server" Columns="20" Rows="2" TextMode="MultiLine"></asp:TextBox>
-                                        
-                                </div>
-                            </div>
 
 
-                            <div style="width: 91%; border: 2px solid black; height: 50px; margin-top: 2px;" class="commentRatingSectionContainer secModalBtnBorder2">
-                                <asp:Button ID="submitRating" runat="server" Text="Submit" CssClass="commentRatingSectionButtonClick secModalBtn2" OnClick="submitRating_Click" UseSubmitBehavior="true" OnClientClick="return validateAndSubmit();"/>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Second Modal -->
 
-                    <!-- Second Modal -->
-                <div id="secModal" class="modal" runat="server">
-                    <div class="modal-content">
-                        <asp:Button ID="btnCloseModal" runat="server" Text="&times;" OnClick="btnCloseModal_Click" CssClass="secClose" />
-                        <asp:Repeater ID="ratingRepeater" runat="server" ViewStateMode="Disabled">
-                            <ItemTemplate>
-                                <div class="modal-rating-content">
-                                    <div style="display: flex;">
-                                        <p>Rating</p>
-                                        <div class="commentRatingSectionStars">
-                                            <%# GenerateStars(Convert.ToDouble(Eval("Rating")) ) %>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <p>Comment</p>
-                                        <div class="commentRatingSectionComment">
-                                            <asp:TextBox ID="commentTextArea1" runat="server" Columns="20" Rows="2" TextMode="MultiLine" Enabled="false" Text='<%# Eval("Review") %>'></asp:TextBox>
-                                        </div>
-                                    </div>
-                                    <div style="display: flex; margin-top: 20px; width: 600px;" class="secModalBtnBorder">
-                                        <div style="width: 50%; border: 2px solid black; margin: 2px; height: 50px;" class="secModalBtnBorder1" id="thirdBtn">
-                                            <a href="#" class="secModalBtn1">Edit</a>
-                                        </div>
-                                        <div style="width: 50%; border: 2px solid black; height: 50px; margin-top: 2px;" class="secModalBtnBorder2">
-                                            <a href="#" class="secModalBtn2" onclick="document.getElementById('id01').style.display='block'">Delete</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </ItemTemplate>
-                        </asp:Repeater>
-                    </div>
-                </div>
 
-                <!-- THIRD Modal -->
-                <div id="thirdModal" class="modal">
-                    <div class="modal-content">
-                        <asp:Repeater ID="updateRatingRepeater" runat="server" ViewStateMode="Disabled">
-                            <ItemTemplate>
-                                <span class="thirdClose">&times;</span>
-                                <div class="modal-rating-content">
-                                    <div style="display: flex;">
-                                        <p>Rating</p>
-                                        <div class="commentRatingSectionStars">
-                                            <i class="fa fa-star star2" onclick="setRating2(1)"></i>
-                                            <i class="fa fa-star star2" onclick="setRating2(2)"></i>
-                                            <i class="fa fa-star star2" onclick="setRating2(3)"></i>
-                                            <i class="fa fa-star star2" onclick="setRating2(4)"></i>
-                                            <i class="fa fa-star star2" onclick="setRating2(5)"></i>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <p>Comment</p>
-                                        <div class="commentRatingSectionComment">
-                                            <asp:TextBox ID="commentTextArea2" runat="server" Columns="20" Rows="2" TextMode="MultiLine" Text='<%# Eval("Review") %>'></asp:TextBox>
-                                        </div>
-                                    </div>
-                                    <div class="commentRatingSectionContainer">
-                                        <asp:Button ID="submitRating2" runat="server" Text="Submit" CssClass="commentRatingSectionButton secModalBtn1 thirdModalButton" OnClick="updateRating_Click" UseSubmitBehavior="true" OnClientClick="return validateAndSubmit();" />
-                                    </div>
-                                </div>
-                            </ItemTemplate>
-                        </asp:Repeater>
-                    </div>
-                </div>
-                <asp:HiddenField ID="HiddenRatingUpdate" runat="server"/>
-
-                <!--DELETE CONFIRMATION-->
-                <div id="id01" class="confirmationModal">
-                    <div class="confirmation-modal-content">
-                        <div class="confirmationContainer">
-                            <span onclick="document.getElementById('id01').style.display='none'" class="confirmationClose" title="Close Modal">×</span>
-                            <h1>Remove Review</h1>
-                            <p>Are you sure you want to remove your review?</p>
-
-                            <div class="confirmationClearFix">
-                                <button type="button" onclick="document.getElementById('id01').style.display='none'" class="confirmationCancelbtn">Cancel</button>
-                                <button type="button" onclick="document.getElementById('id01').style.display='none'" class="confirmationDeletebtn">Remove</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!--DELETE CONFIRMATION END-->
 
 
             </div>
@@ -594,60 +483,12 @@
                 }
 
 
-                function setRating(rating) {
-                    var stars = document.querySelectorAll('.star1');
-                    for (var i = 0; i < stars.length; i++) {
-                        stars[i].classList.remove('checked');
-                    }
-                    for (var i = 0; i < rating; i++) {
-                        stars[i].classList.add('checked');
-                    }
-                    // Set the value in a hidden field to post to server
-                    document.getElementById('<%= HiddenRating.ClientID %>').value = rating;
-                }
 
 
-                function setRating2(rating) {
-                    var stars = document.querySelectorAll('.star2');
-                    for (var i = 0; i < stars.length; i++) {
-                        stars[i].classList.remove('checked');
-                    }
-                    for (var i = 0; i < rating; i++) {
-                        stars[i].classList.add('checked');
-                    }
-                    // Set the value in a hidden field to post to server
-                    document.getElementById('<%= HiddenRatingUpdate.ClientID %>').value = rating;
-                }
 
 
-                window.onload = function () {
-                    // Get the modal
-                    var modal = document.getElementById('thirdModal');
 
-                    // Get the button that opens the modal
-                    var btn = document.getElementById('thirdBtn');
 
-                    // Get the <span> element that closes the modal
-                    var span = document.getElementsByClassName('thirdClose')[0];
-
-                    // When the user clicks the button, open the modal 
-                    btn.onclick = function () {
-                        modal.style.display = "block";
-
-                    }
-
-                    // When the user clicks on <span> (x), close the modal
-                    span.onclick = function () {
-                        modal.style.display = "none";
-                    }
-
-                    // When the user clicks anywhere outside of the modal, close it
-                    window.onclick = function (event) {
-                        if (event.target == modal) {
-                            modal.style.display = "none";
-                        }
-                    }
-                }
 
             </script>
 </asp:Content>

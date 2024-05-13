@@ -19,6 +19,7 @@ using Uniqlo.AdminPages;
 using Newtonsoft.Json;
 using System.Web.Script.Serialization;
 using System.Web.Services.Description;
+using System.Collections.Specialized;
 
 namespace Uniqlo.Pages
 {
@@ -139,8 +140,14 @@ namespace Uniqlo.Pages
             string fileimg = Path.GetFileName(fileProfilePhoto.PostedFile.FileName);
                 fileProfilePhoto.SaveAs(Server.MapPath("~/Images/ProfilePhoto/") + fileimg);
             */
+            string recaptchaResponse = Request.Form["g-recaptcha-response"];
+            if (!ValidateReCaptcha(recaptchaResponse))
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "error", $"alert('Recaptcha invalid. Please Try Again');", true);
+              
+                return;
 
-
+            }
 
             con.Open();
             SqlCommand checkEmail = new SqlCommand("SELECT Email from Customer WHERE Email='" + txtEmail.Text.ToString() + "'", con);
@@ -210,7 +217,47 @@ namespace Uniqlo.Pages
             }
         }
 
+        private bool ValidateReCaptcha(string recaptchaResponse)
+        {
+            string secretKey = "6LeFetopAAAAACQXt-A76Wr9EV_OlGTrwkFDfr2f";
+            string apiUrl = "https://www.google.com/recaptcha/api/siteverify";
+            WebClient client = new WebClient();
+            NameValueCollection values = new NameValueCollection
+    {
+        { "secret", secretKey },
+        { "response", recaptchaResponse }
+    };
 
+            try
+            {
+                byte[] response = client.UploadValues(apiUrl, values);
+                string JSON = System.Text.Encoding.UTF8.GetString(response);
+
+                var captchaResponse = new JavaScriptSerializer().Deserialize<Dictionary<string, object>>(JSON);
+                if (captchaResponse.ContainsKey("success") && (bool)captchaResponse["success"])
+                {
+                    return true;
+                }
+
+                // Log any errors (optional but useful for troubleshooting)
+                if (captchaResponse.ContainsKey("error-codes"))
+                {
+                    var errorCodes = (List<object>)captchaResponse["error-codes"];
+                    foreach (var code in errorCodes)
+                    {
+                        // Log each error code
+                        Console.WriteLine("reCAPTCHA error: " + code.ToString());
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Log or handle exceptions from calling the reCAPTCHA service
+                Console.WriteLine("Error calling reCAPTCHA: " + ex.Message);
+            }
+
+            return false;
+        }
 
     }
 

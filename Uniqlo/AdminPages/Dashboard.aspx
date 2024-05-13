@@ -62,7 +62,7 @@
         </div>
 
         <!--LINE CHART-->
-        <asp:Chart ID="SalesChart" runat="server" Width="800px" Height="500px">
+        <asp:Chart ID="SalesChart" runat="server" Width="1100px" Height="500px">
     <Series>
         <asp:Series Name="SalesSeries" ChartType="Column" XValueMember="SaleMonth" YValueMembers="TotalSales"></asp:Series>
     </Series>

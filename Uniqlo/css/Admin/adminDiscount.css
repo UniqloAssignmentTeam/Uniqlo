@@ -92,7 +92,7 @@
     display: flex; /* Use flexbox to align the children */
     justify-content: center; /* Center the children horizontally */
     align-items: center; /* Center the children vertically */
-  margin-left:-172px;
+  margin-left:-145px;
 }
 
 .dropdown-container {
@@ -164,6 +164,7 @@
     color: #6F6F6F;
     text-decoration: none;
     font-weight: bold;
+    font-size: 1rem;
 }
 
     .product-add:hover, .product-add:focus, .excel-export:hover, .excel-export:focus {

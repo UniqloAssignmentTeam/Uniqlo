@@ -101,45 +101,55 @@ namespace Uniqlo.Pages
 
         private void BindOrderRepeater(int customerID)
         {
-            using (var db=new OrderDbContext())
+            try
+            {
+                using (var db=new OrderDbContext())
+                {
+
+
+
+                    var orderDetails = db.Order
+                        .Where(o=>o.Customer_ID==customerID && !o.IsDeleted)
+                        .Select(o=> new {
+                            Order_ID=o.Order_ID,
+                            Total_Item =db.OrderList.Count(ol=>ol.Order_ID==o.Order_ID),
+                            Total_Price = db.Payment
+                                    .Where(p => p.Order_ID == o.Order_ID)
+                                    .Select(p => p.Total_Payment)
+                                    .DefaultIfEmpty(0) // Ensures a default if no payment exists
+                                    .Sum(), // Sum of all payments (in case of multiple payments per order)
+                            Payment_DateTime = db.Payment
+                                    .Where(p => p.Order_ID == o.Order_ID)
+                                    .OrderByDescending(p => p.Payment_DateTime) // Most recent payment
+                                    .Select(p => (DateTime?)p.Payment_DateTime) // Nullable DateTime
+                                    .FirstOrDefault(),
+                            Delivery_Status = db.Delivery
+                                       .Where(d => d.Delivery_ID == db.Payment
+                                                    .Where(p => p.Order_ID == o.Order_ID)
+                                                    .Select(p => p.Delivery_ID)
+                                                    .FirstOrDefault())
+                                       .Select(d => d.Delivery_Status)
+                                       .FirstOrDefault() // Assuming there's one delivery per payment
+                        })
+                        .ToList();
+
+
+
+                    orderRepeater.DataSource = orderDetails;
+                    orderRepeater.DataBind();
+
+
+
+
+                }
+            }
+            catch (Exception ex)
             {
 
-
-
-                var orderDetails = db.Order
-                    .Where(o=>o.Customer_ID==customerID && !o.IsDeleted)
-                    .Select(o=> new {
-                        Order_ID=o.Order_ID,
-                        Total_Item =db.OrderList.Count(ol=>ol.Order_ID==o.Order_ID),
-                        Total_Price = db.Payment
-                                .Where(p => p.Order_ID == o.Order_ID)
-                                .Select(p => p.Total_Payment)
-                                .DefaultIfEmpty(0) // Ensures a default if no payment exists
-                                .Sum(), // Sum of all payments (in case of multiple payments per order)
-                        Payment_DateTime = db.Payment
-                                .Where(p => p.Order_ID == o.Order_ID)
-                                .OrderByDescending(p => p.Payment_DateTime) // Most recent payment
-                                .Select(p => (DateTime?)p.Payment_DateTime) // Nullable DateTime
-                                .FirstOrDefault(),
-                        Delivery_Status = db.Delivery
-                                   .Where(d => d.Delivery_ID == db.Payment
-                                                .Where(p => p.Order_ID == o.Order_ID)
-                                                .Select(p => p.Delivery_ID)
-                                                .FirstOrDefault())
-                                   .Select(d => d.Delivery_Status)
-                                   .FirstOrDefault() // Assuming there's one delivery per payment
-                    })
-                    .ToList();
-
-
-
-                orderRepeater.DataSource = orderDetails;
-                orderRepeater.DataBind();
-
-
-
-
+                // Optionally display error message on the page
+                ScriptManager.RegisterStartupScript(this, GetType(), "errorAlert", "alert('An error occurred when retrieve order.');", true);
             }
+
 
 
         }
@@ -206,7 +216,7 @@ namespace Uniqlo.Pages
             }
             catch (Exception ex)
             {
-                ScriptManager.RegisterStartupScript(this, GetType(), "errorAlert", "alert('An error occurred when filtering products.');", true);
+                ScriptManager.RegisterStartupScript(this, GetType(), "errorAlert", "alert('An error occurred when filtering order.');", true);
             }
         }
 

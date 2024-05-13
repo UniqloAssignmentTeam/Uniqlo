@@ -7,11 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Uniqlo.Pages
+namespace Uniqlo.Pages.Review
 {
 
 
-    public partial class ReviewItem
+    public partial class AddReviewItem
     {
 
         /// <summary>

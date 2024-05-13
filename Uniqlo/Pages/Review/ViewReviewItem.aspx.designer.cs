@@ -11,25 +11,34 @@ namespace Uniqlo.Pages
 {
 
 
-    public partial class test
+    public partial class ReviewItem
     {
 
         /// <summary>
-        /// form1 control.
+        /// secModal control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl secModal;
 
         /// <summary>
-        /// btnSignUp control.
+        /// btnCloseModal control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSignUp;
+        protected global::System.Web.UI.WebControls.Button btnCloseModal;
+
+        /// <summary>
+        /// ratingRepeater control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater ratingRepeater;
     }
 }

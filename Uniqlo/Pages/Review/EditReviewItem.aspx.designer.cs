@@ -11,25 +11,25 @@ namespace Uniqlo.Pages
 {
 
 
-    public partial class WishList
+    public partial class EditReview
     {
 
         /// <summary>
-        /// RadioButtonList2 control.
+        /// updateRatingRepeater control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList RadioButtonList2;
+        protected global::System.Web.UI.WebControls.Repeater updateRatingRepeater;
 
         /// <summary>
-        /// RadioButtonList1 control.
+        /// HiddenRatingUpdate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList RadioButtonList1;
+        protected global::System.Web.UI.WebControls.HiddenField HiddenRatingUpdate;
     }
 }

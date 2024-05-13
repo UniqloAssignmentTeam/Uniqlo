@@ -1,6 +1,17 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin.Master" AutoEventWireup="true" CodeBehind="DiscountHome.aspx.cs" Inherits="Uniqlo.AdminPages.AdminDiscount.DiscountHome" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="main" runat="server">
    
+
+    <header>
+        <style>
+            .hyperlink{
+                 color: #6F6F6F;
+ text-decoration: none;
+            }
+        </style>
+    </header>
+
+
     
     <link href="../../css/Admin/adminDiscount.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
@@ -31,7 +42,7 @@
 
                 <div class="btnExcel-Add">
                     <asp:Button ID="excelExport" runat="server" Text="Export" CssClass="excel-export" OnClick="btnExport_Click"/>
-                    <asp:Button ID="addDiscountBtn" runat="server" Text="➕ Add Discount" CssClass="product-add" Onclick="addDiscountBtn_Click"/>
+                    <asp:Button ID="addDiscountBtn" runat="server" Text="➕ Add Discount" CssClass="product-add" Onclick="addDiscountBtn_Click" />
                 </div>
                 
             </div>
@@ -81,7 +92,7 @@
       <div class="eclipse-display" id="dropdownDisplay<%# Eval("Discount_ID") %>" style="border:none;"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></div>
       <div class="eclipse-list" id="dropdownList<%# Eval("Discount_ID") %>">
 
-         <div> <asp:HyperLink ID="updateDiscount" runat="server" NavigateUrl='<%# "UpdateDiscount.aspx?DiscountID=" + Eval("Discount_ID") %>' Text="Update"></asp:HyperLink></div>
+         <div> <asp:HyperLink ID="updateDiscount" runat="server" NavigateUrl='<%# "UpdateDiscount.aspx?DiscountID=" + Eval("Discount_ID") %>' Text="Update" CssClass="hyperlink"></asp:HyperLink></div>
        <div onclick="showDeleteModal(<%# Eval("Discount_ID") %>);">Delete</div>
 
       </div>
