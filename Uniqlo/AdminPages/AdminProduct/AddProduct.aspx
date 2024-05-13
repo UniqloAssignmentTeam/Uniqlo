@@ -96,7 +96,7 @@
                     <asp:TextBox ID="newColorInput" runat="server"></asp:TextBox>
                     <div style="display: flex;">
                         <div>
-                            <asp:Button ID="addColorButton" runat="server" Text="Add color" CssClass="addColor-button" CausesValidation="false"/>
+                            <asp:Button ID="addColorButton" runat="server" Text="Add Color" CssClass="addColor-button" OnClientClick="return false;" ClientIDMode="Static" CausesValidation="false" />
                         </div>
                     
                         <div style="margin-left: 80px;">
@@ -239,6 +239,9 @@
                 } else {
                     alert('Please enter a color.');
                 }
+                // End the click event handler with a closing bracket
+            });
+
          
       
 
