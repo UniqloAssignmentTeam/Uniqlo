@@ -36,6 +36,7 @@ namespace Uniqlo.AdminPages.AdminOrder
                 using (var db = new OrderDbContext())
                 {
                     var orders = db.Order
+                        .Where(o => !o.IsDeleted)
                         .Include(o => o.Customer)
                         .Include(o => o.OrderLists)
                         .Include(o => o.Payments)
@@ -86,6 +87,7 @@ namespace Uniqlo.AdminPages.AdminOrder
 
                     // Start by including all necessary entities
                     var orderQuery = db.Order
+                        .Where(o => !o.IsDeleted)
                         .Include(o => o.Customer)
                         .Include(o => o.OrderLists)
                         .Include(o => o.Payments)
@@ -204,7 +206,7 @@ namespace Uniqlo.AdminPages.AdminOrder
                         .Include(o => o.Customer)
                         .Include(o => o.OrderLists)
                         .Include(o => o.Payments)
-                        .Where(o => o.Customer.Name.Contains(searchText))
+                        .Where(o => o.Customer.Name.Contains(searchText) && !o.IsDeleted)
                         .Select(o => new
                         {
                             OrderId = o.Order_ID,
@@ -235,6 +237,48 @@ namespace Uniqlo.AdminPages.AdminOrder
         }
 
 
+        protected void btnRemoveOrder_Click(object sender, EventArgs e)
+        {
+            int orderId = int.Parse(hiddenOrderId.Value);
+
+            try
+            {
+                using (var db = new OrderDbContext())
+                {
+                    // Retrieve the order and mark it as deleted.
+                    var order = db.Order.Find(orderId);
+                    if (order != null)
+                    {
+                        order.IsDeleted = Convert.ToBoolean(1);
+
+                        // Find and remove the payment related to the order.
+                        var payment = db.Payment.FirstOrDefault(p => p.Order_ID == orderId);
+                        if (payment != null)
+                        {
+                            // Optional: Remove associated Delivery, if needed.
+                            var delivery = db.Delivery.Find(payment.Delivery_ID);
+                            if (delivery != null)
+                            {
+                                db.Delivery.Remove(delivery);
+                            }
+
+                            db.Payment.Remove(payment);
+                        }
+
+                        // Save changes to the database.
+                        db.SaveChanges();
+
+                        // Redirect to the same page to see the changes.
+                        Response.Redirect(Request.RawUrl);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Optionally display an error message on the page
+                ScriptManager.RegisterStartupScript(this, GetType(), "errorAlert", "alert('An error occurred: " + ex.Message + "');", true);
+            }
+        }
 
 
     }

@@ -42,6 +42,15 @@ namespace Uniqlo.Pages
         protected global::System.Web.UI.WebControls.TextBox txtName;
 
         /// <summary>
+        /// rfvName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvName;
+
+        /// <summary>
         /// lblEmail control.
         /// </summary>
         /// <remarks>
@@ -60,6 +69,24 @@ namespace Uniqlo.Pages
         protected global::System.Web.UI.WebControls.TextBox txtEmail;
 
         /// <summary>
+        /// rfvEmail control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvEmail;
+
+        /// <summary>
+        /// revEmail control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator revEmail;
+
+        /// <summary>
         /// lblPassword control.
         /// </summary>
         /// <remarks>
@@ -76,6 +103,15 @@ namespace Uniqlo.Pages
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtPassword;
+
+        /// <summary>
+        /// rfvPassword control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvPassword;
 
         /// <summary>
         /// lblPhone control.
@@ -114,22 +150,67 @@ namespace Uniqlo.Pages
         protected global::System.Web.UI.WebControls.DropDownList ddlGender;
 
         /// <summary>
-        /// lblAddress control.
+        /// rfvGender control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblAddress;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvGender;
 
         /// <summary>
-        /// txtAddress control.
+        /// lblCountry control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtAddress;
+        protected global::System.Web.UI.WebControls.Label lblCountry;
+
+        /// <summary>
+        /// ddlCountry control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlCountry;
+
+        /// <summary>
+        /// rfvCountry control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvCountry;
+
+        /// <summary>
+        /// lblState control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblState;
+
+        /// <summary>
+        /// ddlState control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlState;
+
+        /// <summary>
+        /// rfvState control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvState;
 
         /// <summary>
         /// lblCity control.
@@ -150,22 +231,13 @@ namespace Uniqlo.Pages
         protected global::System.Web.UI.WebControls.TextBox txtCity;
 
         /// <summary>
-        /// lblState control.
+        /// rfvCity control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblState;
-
-        /// <summary>
-        /// txtState control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtState;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvCity;
 
         /// <summary>
         /// lblPostcode control.
@@ -186,22 +258,22 @@ namespace Uniqlo.Pages
         protected global::System.Web.UI.WebControls.TextBox txtPostcode;
 
         /// <summary>
-        /// lblCountry control.
+        /// lblAddress control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblCountry;
+        protected global::System.Web.UI.WebControls.Label lblAddress;
 
         /// <summary>
-        /// txtCountry control.
+        /// txtAddress control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCountry;
+        protected global::System.Web.UI.WebControls.TextBox txtAddress;
 
         /// <summary>
         /// lblProfilePhoto control.

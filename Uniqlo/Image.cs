@@ -27,7 +27,6 @@ namespace Uniqlo
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Quantity> Quantities { get; set; }
     }
-
     public class ImageDbContext : DbContext
     {
         public ImageDbContext() : base("name=UniqloEntities") // Ensure this matches your connection string in Web.config

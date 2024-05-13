@@ -22,18 +22,17 @@ CREATE TABLE Category(
 );
 
 CREATE TABLE Customer(
-	Customer_ID INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
-	Name VARCHAR(70) NOT NULL,
-	Gender CHAR(1) NOT NULL,
-	Contact_No VARCHAR(20) NOT NULL,
-	Address VARCHAR(70),
-	State VARCHAR(30),
-	City VARCHAR(30),
-	Postcode VARCHAR(10),
-	Country VARCHAR(30), 
-	Email VARCHAR(50) NOT NULL,
-	Password VARCHAR(50) NOT NULL,
-	ProfileImage VARBINARY(MAX)
+    Customer_ID INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
+    Name VARCHAR(70) NOT NULL,
+    Gender CHAR(1) NOT NULL,
+    Contact_No VARCHAR(20) NOT NULL,
+    Address VARCHAR(70),
+    State VARCHAR(30),
+    City VARCHAR(30),
+    Postcode VARCHAR(10),
+    Country VARCHAR(30), 
+    Email VARCHAR(50) NOT NULL,
+    Password VARCHAR(50) NOT NULL,
 );
 
 CREATE TABLE Staff(
@@ -109,6 +108,7 @@ CREATE TABLE Orders(
 	Order_ID INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
 	Customer_ID INT NOT NULL,
 	Subtotal FLOAT NOT NULL,
+	IsDeleted BIT NOT NULL,
 	FOREIGN KEY (Customer_ID) REFERENCES Customer(Customer_ID)
 	);
 

@@ -19,8 +19,7 @@
     <IISExpressSSLPort>44369</IISExpressSSLPort>
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
-    <IISExpressUseClassicPipelineMode>
-    </IISExpressUseClassicPipelineMode>
+    <IISExpressUseClassicPipelineMode>true</IISExpressUseClassicPipelineMode>
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
@@ -291,6 +290,8 @@
     <Content Include="Pages\ContactUs.aspx" />
     <Content Include="Pages\Delivery.aspx" />
     <Content Include="Pages\EditProfile.aspx" />
+    <Content Include="Pages\Review\AddReviewItem.aspx" />
+    <Content Include="Pages\Review\EditReviewItem.aspx" />
     <Content Include="Pages\ForgotPassword.aspx" />
     <Content Include="Pages\Home.aspx" />
     <Content Include="Pages\Categories\Men\Main.aspx" />
@@ -304,8 +305,10 @@
     <Content Include="Pages\Payment.aspx" />
     <Content Include="Pages\ProductDetails.aspx" />
     <Content Include="Pages\Profile.aspx" />
+    <Content Include="Pages\Review\ViewReviewItem.aspx" />
     <Content Include="Pages\SendProductGmailToFriend.aspx" />
     <Content Include="Pages\SignUp.aspx" />
+    <Content Include="Pages\testtt.aspx" />
     <Content Include="Pages\TrackDelivery.aspx" />
     <Content Include="Pages\ValueBuy.aspx" />
     <Content Include="Pages\WishList.aspx" />
@@ -566,6 +569,20 @@
     <Compile Include="Pages\EditProfile.aspx.designer.cs">
       <DependentUpon>EditProfile.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Pages\Review\AddReviewItem.aspx.cs">
+      <DependentUpon>AddReviewItem.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Review\AddReviewItem.aspx.designer.cs">
+      <DependentUpon>AddReviewItem.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Review\EditReviewItem.aspx.cs">
+      <DependentUpon>EditReviewItem.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Review\EditReviewItem.aspx.designer.cs">
+      <DependentUpon>EditReviewItem.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Pages\ForgotPassword.aspx.cs">
       <DependentUpon>ForgotPassword.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -657,6 +674,13 @@
     <Compile Include="Pages\Profile.aspx.designer.cs">
       <DependentUpon>Profile.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Pages\Review\ViewReviewItem.aspx.cs">
+      <DependentUpon>ViewReviewItem.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Review\ViewReviewItem.aspx.designer.cs">
+      <DependentUpon>ViewReviewItem.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Pages\SendProductGmailToFriend.aspx.cs">
       <DependentUpon>SendProductGmailToFriend.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -670,6 +694,13 @@
     </Compile>
     <Compile Include="Pages\SignUp.aspx.designer.cs">
       <DependentUpon>SignUp.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\testtt.aspx.cs">
+      <DependentUpon>testtt.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\testtt.aspx.designer.cs">
+      <DependentUpon>testtt.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\TrackDelivery.aspx.cs">
       <DependentUpon>TrackDelivery.aspx</DependentUpon>

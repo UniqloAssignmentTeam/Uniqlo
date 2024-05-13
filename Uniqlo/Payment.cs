@@ -35,4 +35,5 @@ namespace Uniqlo
 
         public DbSet<Payment> payment { get; set; }
     }
+
 }
