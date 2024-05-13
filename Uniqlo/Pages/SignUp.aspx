@@ -130,9 +130,9 @@
     <!-- Add any additional validation as needed -->
  
          
-                 <div class="g-recaptcha" data-sitekey="6LeFetopAAAAALbDjZrPI5w7-yysmbhgyD3t3Iou"></div>
+                
+                      <div class="g-recaptcha" data-sitekey="6LeFetopAAAAALbDjZrPI5w7-yysmbhgyD3t3Iou"></div>
 
-                 
                     <!-- Sign Up Button -->
                     <asp:Button ID="btnSignUp" runat="server" Text="Sign Up" OnClick="btnSignUp_Click" CssClass="button-field" />
 
