@@ -129,7 +129,7 @@ namespace Uniqlo.Pages
 
         private void UpdateItemQuantity(int quantityId, int newQuantity)
         {
-            int quantityId = Convert.ToInt32(Request.Form["__EVENTARGUMENT"]); // Extract the quantity ID from the postback
+       
             List<CartItem> cartItems = (List<CartItem>)Session["Cart"];
 
             // Find the item in the cart list
