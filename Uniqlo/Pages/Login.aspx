@@ -25,23 +25,25 @@
                     <header>Login</header>
 
                    
-                        <asp:Label ID="errorMSG" runat="server" Text=""></asp:Label>
-                        <div class="field input-field">
-                            <asp:TextBox ID="txtEmail" type="email" placeholder="Email" class="input" runat="server"></asp:TextBox>
-                        </div>
-                        <div class="field input-field">
-                            <asp:TextBox ID="txtPassword" type="password" placeholder="Password" class="password" runat="server"></asp:TextBox>
-                            <i class='bx bx-hide eye-icon'></i>
-                        </div>
-                        <div class="form-link">
-                            <a href="ForgotPassword.aspx" class="forgot-pass">Forgot password?</a>
-                        </div>
-                        <div class="field button-field">
-                            <asp:Button ID="btnLogin" runat="server" Text="Login" OnClick="btnLogin_Click"/>
-                        </div>
-                        <input type="hidden" id="recaptchaResponse" name="recaptchaResponse" runat="server" />
-                        <asp:Label ID="errorLabel" runat="server" Text=""></asp:Label>
-                  
+                       <asp:Label ID="errorMSG" runat="server" Text=""></asp:Label>
+<div class="field input-field">
+    <asp:TextBox ID="txtEmail" type="email" placeholder="Email" CssClass="input" runat="server"></asp:TextBox>
+    <asp:RequiredFieldValidator ID="rfvEmail" runat="server" ControlToValidate="txtEmail" ErrorMessage="Email is required." ForeColor="Red"></asp:RequiredFieldValidator>
+    <asp:RegularExpressionValidator ID="revEmail" runat="server" ControlToValidate="txtEmail" ErrorMessage="Invalid email address." ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"></asp:RegularExpressionValidator>
+</div>
+<div class="field input-field">
+    <asp:TextBox ID="txtPassword" type="password" placeholder="Password" CssClass="password" runat="server"></asp:TextBox>
+    <asp:RequiredFieldValidator ID="rfvPassword" runat="server" ControlToValidate="txtPassword" ErrorMessage="Password is required." ForeColor="Red"></asp:RequiredFieldValidator>
+</div>
+<div class="form-link">
+    <a href="ForgotPassword.aspx" class="forgot-pass">Forgot password?</a>
+</div>
+<div class="field button-field">
+    <asp:Button ID="btnLogin" runat="server" Text="Login" OnClick="btnLogin_Click" ValidationGroup="LoginValidation" />
+</div>
+<asp:ValidationSummary ID="ValidationSummary1" runat="server" ValidationGroup="LoginValidation" DisplayMode="BulletList" ForeColor="Red" />
+                   <input type="hidden" id="recaptchaResponse" name="recaptchaResponse" runat="server" />
+ <asp:Label ID="errorLabel" runat="server" Text=""></asp:Label>
 
 
 
@@ -50,19 +52,6 @@
                         <asp:HyperLink ID="signUpLink" runat="server" NavigateUrl="SignUp.aspx">Sign Up</asp:HyperLink>
                 </div>
                 </div>
-                <div class="line"></div>
-                <div class="media-options">
-                    <a href="#" class="field facebook">
-                        <i class='bx bxl-facebook facebook-icon'></i>
-                        <span>Login with Facebook</span>
-                    </a>
-                </div>
-               <div class="media-options">
-        <a href="google.com" class="field google">
-            <i class="fa-brands fa-google"></i>  
-            <span>Login with Google</span>
-        </a>
-    </div>
                 </div>
       
 

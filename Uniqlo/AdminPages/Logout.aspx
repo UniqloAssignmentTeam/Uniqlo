@@ -5,7 +5,7 @@
         <div class="containerLogout">
             <img src="../Images/Uniqlo-Logos.png" />
             <p>You have successfully logged out!</p>
-            <p> You will be redirected to <a href="Login.aspx">Login</a></p>
+            <p> You will be redirected to <a href="adminLogin.aspx">Login</a></p>
         </div>
     </div>
 </asp:Content>
