@@ -1,9 +1,19 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Uniqlo.Master" AutoEventWireup="true" CodeBehind="ProductDetails.aspx.cs" Inherits="Uniqlo.Pages.ProductDetails" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="main" runat="server">
     <header>
         <link href="../../../css/product.css" rel="stylesheet" />
+        <style>
+            .lblRed {
+                color: red;
+                font-weight: bold;
+            }
+        </style>
+
     </header>
-    <div class="productBody" style="margin-top:50px">
+
+    <div class="productBody" style="margin-top: 50px">
+
 
         <asp:FormView ID="formView" runat="server" OnDataBound="formView_DataBound">
             <ItemTemplate>
@@ -19,9 +29,9 @@
                             </div>
 
                             <!-- Thumbnails -->
-                            <div class="img-select">
+                            <div class="img-select" runat="server" id="imgSelect" style="display: block;">
                                 <asp:DataList ID="dataList" runat="server" RepeatDirection="Horizontal" Width="100%">
-                                    <ItemTemplate>  
+                                    <ItemTemplate>
                                         <div class="img-item">
                                             <a href="#" onclick="updateMainImage('<%# Eval("FirstImageId") %>'); return false;">
                                                 <img src='/ImageHandler.ashx?id=<%# Eval("FirstImageId") %>' alt="Product Thumbnail" />
@@ -31,7 +41,11 @@
                                 </asp:DataList>
                             </div>
                         </div>
-
+                        <asp:HiddenField ID="productIdHidden" runat="server" Value='<%# Eval("Product_ID") %>' />
+                        <asp:HiddenField ID="productNameHidden" runat="server" Value='<%# Eval("Product_Name") %>' />
+                        <asp:HiddenField ID="productDiscountHidden" runat="server" Value='<%# Eval("DiscountAmount") %>' />
+                        <asp:HiddenField ID="productPriceHidden" runat="server" Value='<%# Eval("Price") %>' />
+                        <asp:HiddenField ID="productDescHidden" runat="server" Value='<%# Eval("Description") %>' />
                         <!-- card right -->
                         <div class="product-content" style="margin-top: 100px;">
                             <h2 class="product-title product-name"><%# Eval("Product_Name") %></h2>
@@ -55,11 +69,11 @@
                                 </ul>
                             </div>
 
-
                             <div class="productColorSection">
                                 <div class="purchase-color">
                                     <h3>Color:
-                                <label id="color"></label></h3>
+                                            <label id="color"></label>
+                                    </h3>
                                     <div class="purchase-color-item">
                                         <asp:RadioButtonList ID="RadioButtonListColors" runat="server" RepeatDirection="Horizontal" Visible="True" AutoPostBack="True" OnSelectedIndexChanged="RadioButtonListColors_SelectedIndexChanged">
                                         </asp:RadioButtonList>
@@ -67,172 +81,182 @@
                                 </div>
                             </div>
 
-
-
-
                             <div class="productQtySizeSection">
                                 <div class="purchase-size">
                                     <h3>Size: <%# Eval("Category.Gender").ToString() == "M" ? "Men " : (Eval("Category.Gender").ToString() == "W" ? "Woman" : "Not Specified") %>
                                         <asp:Label ID="labelQuantity" runat="server" Text=""></asp:Label>
                                     </h3>
                                     <div class="purchase-size-item">
-                                        <asp:RadioButtonList ID="RadioButtonListSizes" runat="server" RepeatDirection="Horizontal" Visible="True" CssClass="custom-radio-list"  AutoPostBack="True" OnSelectedIndexChanged="RadioButtonListSizes_SelectedIndexChanged">
+                                        <asp:RadioButtonList ID="RadioButtonListSizes" runat="server" RepeatDirection="Horizontal" Visible="True" CssClass="custom-radio-list" AutoPostBack="True" OnSelectedIndexChanged="RadioButtonListSizes_SelectedIndexChanged">
                                         </asp:RadioButtonList>
+
                                     </div>
                                 </div>
 
                                 <div class="purchase-info">
                                     <h3>Quantity: </h3>
-                                    <asp:TextBox ID="txtQty" class="qty" runat="server" Text="1"></asp:TextBox>
-                                    
+                                    <asp:TextBox ID="txtQty" class="qty" runat="server" Text="1" onkeypress="return isNumber(event)" MaxLength="5"></asp:TextBox>
                                 </div>
                             </div>
+                            <asp:Label ID="lblSize" runat="server" Text="" CssClass="lblRed"></asp:Label>
+
+
+
 
                             <!--NO ANIMATION ADD TO CART BUTTON-->
                             <div class="cart-button">
                                 <asp:LinkButton ID="btnAddToCart" runat="server" OnClick="btnAddToCart_Click">
-        <span class="add-to-cart" runat="server" id="spnAddToCart">Add To Cart</span>
-        <span class="added" runat="server" id="spnAdded" style="display: none;">Added</span>
-        <i class="fas fa-shopping-cart"></i>
-        <i class="fas fa-solid fa-shirt"></i>
-    </asp:LinkButton>
+                                    <span class="add-to-cart" runat="server" id="spnAddToCart">Add to Cart</span>
+                                    <span class="added" runat="server" id="spnAdded" style="display: none;">Added to Cart</span>
+                                    <i class="fas fa-shopping-cart"></i>
+                                    <i class="fas fa-solid fa-shirt"></i>
+                                </asp:LinkButton>
                             </div>
 
 
                             <div class="social-links">
                                 <p>Share At: </p>
-                                <a href="#">
-                                    <i class="fab fa-facebook-f"></i>
-                                </a>
-                                <a href="#">
-                                    <i class="fab fa-twitter"></i>
-                                </a>
-                                <a href="#">
-                                    <i class="fab fa-instagram"></i>
-                                </a>
-                                <a href="#">
-                                    <i class="fab fa-whatsapp"></i>
-                                </a>
-                                <a href="#">
+                                <asp:LinkButton CssClass="text-dark px-2" ID="btnPinterest" runat="server" Text="Pinterest" OnClientClick="shareOnPinterest()">
                                     <i class="fab fa-pinterest"></i>
-                                </a>
+                                </asp:LinkButton>
+                                <asp:LinkButton CssClass="text-dark px-2" ID="btnTwitter" runat="server" Text="Twitter" OnClientClick="shareOnTwitter()">
+                                    <i class="fab fa-twitter"></i>
+                                </asp:LinkButton>
+                                <asp:LinkButton CssClass="text-dark px-2" ID="btnWhatsapp" runat="server" Text="Whatsapp" OnClientClick="shareOnWhatsApp(); return false;">
+                                    <i class="fab fa-whatsapp"></i>
+                                </asp:LinkButton>
+                                <asp:LinkButton CssClass="text-dark px-2" ID="btnGmail" runat="server" Text="Gmail" OnClick="fetchProductID">
+                                    <i class="fa-solid fa-envelope"></i>
+                                </asp:LinkButton>
                             </div>
-
                         </div>
                     </div>
             </ItemTemplate>
         </asp:FormView>
 
-        <asp:FormView ID="formView1" runat="server" OnDataBound="formView_DataBound">
-            <ItemTemplate>
-                <!--REVIEW SECTIONS-->
-                <div class="reviewSection" style="display:flex; margin-top: 100px;">
-                    <div class="reviewRatingAndBar" style="border: 2px solid #6F6F6F; height: 20%; margin: 50px; border-radius: 16px;">
-                        <div class="reviewRating">
-                            <h3 style="margin-left:55px;"><%# Eval("AverageRating") %></h3>
-                            <div style="display:flex;"><%# GenerateStars(Convert.ToDouble(Eval("AverageRating")) ) %></div>
-                            <div class="reviewRatingNumUser" style="margin-left: 50px;"><i class="fa-solid fa-user"></i>
-                                <div style="display: flex; margin-left:-16px;"><div><%# Eval("ReviewCount") %></div> <div>Total</div></div>
-                            </div>
-                        </div>
-                    </div>
 
-
-                    <div class="commentSection">
-                        <div class="reviewModalSection">
-                            <h2>Reviews</h2>
-                        </div>
-                        <hr />
-
-                        <div class="reviewSectionDropDownLists">
-                            <div class="dropdown-container" onclick="toggleDropdown('dropdownList1', 'dropdownDisplay1')">
-                                <div class="dropdown-display" id="dropdownDisplay1">
-                                    Star 
-                                <i class="fas fa-star star reviewStar"></i>
-                                    (All)
-                                </div>
-                                <div class="dropdown-list" id="dropdownList1">
-                                    <div onclick="selectOption('5 Star (8)', 'dropdownDisplay1')">
-                                        <i class="fas fa-star star"></i>
-                                        <i class="fas fa-star star"></i>
-                                        <i class="fas fa-star star"></i>
-                                        <i class="fas fa-star star"></i>
-                                        <i class="fas fa-star star"></i>
-                                        (8)
-                                    </div>
-                                    <div onclick="selectOption('4 Star (5)', 'dropdownDisplay1')">
-                                        <i class="fas fa-star star"></i>
-                                        <i class="fas fa-star star"></i>
-                                        <i class="fas fa-star star"></i>
-                                        <i class="fas fa-star star"></i>
-                                        (5)
-                                    </div>
-                                    <div onclick="selectOption('3 Star (4)', 'dropdownDisplay1')">
-                                        <i class="fas fa-star star"></i>
-                                        <i class="fas fa-star star"></i>
-                                        <i class="fas fa-star star"></i>
-                                        (4)
-                                    </div>
-                                    <div onclick="selectOption('2 Star (3)', 'dropdownDisplay1')">
-                                        <i class="fas fa-star star"></i>
-                                        <i class="fas fa-star star"></i>
-                                        (3)
-                                    </div>
-                                    <div onclick="selectOption('1 Star (1)', 'dropdownDisplay1')">
-                                        <i class="fas fa-star star"></i>
-                                        (1)
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            <div class="dropdown-container" onclick="toggleDropdown('dropdownList2', 'dropdownDisplay2')">
-                                <div class="dropdown-display" id="dropdownDisplay2">Variation (All)</div>
-                                <div class="dropdown-list" id="dropdownList2">
-                                    <div onclick="selectOption('Variation (S)', 'dropdownDisplay2')">S</div>
-                                    <div onclick="selectOption('Variation (M)', 'dropdownDisplay2')">M</div>
-                                    <div onclick="selectOption('Variation (L)', 'dropdownDisplay2')">L</div>
-                                    <div onclick="selectOption('Variation (XL)', 'dropdownDisplay2')">XL</div>
-                                </div>
-                            </div>
-
-                        </div>
-
-                        <asp:Repeater ID="reviewsRepeater" runat="server" DataSource='<%# Eval("Reviews") %>'>
-                            <ItemTemplate>
-                                <div class="commentSectionNewRow">
-                                    <h3><%# Eval("CustomerName") %></h3>
-                                    <div class="commentRatingSection">
-                                        <div class="commentRatingSectionStars">
-                                            <%# GenerateStars(Convert.ToDouble(Eval("customerRating")) ) %>
-                                        </div>
-                                        <div class="commentRatingSectionDate">
-                                            <%# Eval("reviewDateSubmit") %>
+                <asp:FormView ID="formView1" runat="server" OnDataBound="formView_DataBound">
+                    <ItemTemplate>
+                        <!--REVIEW SECTIONS-->
+                        <div class="reviewSection" style="display: flex; margin-top: 100px;">
+                            <div class="reviewRatingAndBar" style="border: 2px solid #6F6F6F; height: 20%; margin: 50px; border-radius: 16px;">
+                                <div class="reviewRating">
+                                    <h3 style="margin-left: 55px;"><%# Eval("AverageRating") %></h3>
+                                    <div style="display: flex;"><%# GenerateStars(Convert.ToDouble(Eval("AverageRating")) ) %></div>
+                                    <div class="reviewRatingNumUser" style="margin-left: 50px;">
+                                        <i class="fa-solid fa-user"></i>
+                                        <div style="display: flex; margin-left: -16px;">
+                                            <div><%# Eval("ReviewCount") %></div>
+                                            <div>Total</div>
                                         </div>
                                     </div>
-                                    <div class="commentRatingSectionDetails">
-                                        <%# Eval("customerReview") %>
-                                    </div>
                                 </div>
-                            </ItemTemplate>
-                        </asp:Repeater>
-                        <h4 class="noMoreRatingFound">No More Ratings Found</h4>
-                    </div>
-                        
-                   
-                </div>
-                
-                </div>
-            </ItemTemplate>
-        </asp:FormView>
-            <!--VIEWMOREBUTTON END-->
-        
+                            </div>
 
 
+                            <div class="commentSection">
+                                <div class="reviewModalSection">
+                                    <h2>Reviews</h2>
+                                </div>
 
+                                <hr />
+
+
+                                <asp:Repeater ID="reviewsRepeater" runat="server" DataSource='<%# Eval("Reviews") %>'>
+                                    <ItemTemplate>
+                                        <div class="commentSectionNewRow">
+                                            <h3><%# Eval("CustomerName") %></h3>
+                                            <div class="commentRatingSection">
+                                                <div class="commentRatingSectionStars">
+                                                    <%# GenerateStars(Convert.ToDouble(Eval("customerRating")) ) %>
+                                                </div>
+                                                <div class="commentRatingSectionDate">
+                                                    <%# Eval("reviewDateSubmit") %>
+                                                </div>
+                                            </div>
+                                            <div class="commentRatingSectionDetails">
+                                                <%# Eval("customerReview") %>
+                                            </div>
+                                        </div>
+                                    </ItemTemplate>
+                                </asp:Repeater>
+                                <h4 class="noMoreRatingFound">No More Ratings Found</h4>
+                            </div>
+
+
+                        </div>
+
+                        </div>
+                    </ItemTemplate>
+                </asp:FormView>
+
+
+        <!--VIEWMOREBUTTON END-->
+
+        <asp:HiddenField ID="prodIdHidden" runat="server" />
+        <asp:HiddenField ID="prodNameHidden" runat="server" />
+        <asp:HiddenField ID="prodDiscountHidden" runat="server" />
+        <asp:HiddenField ID="prodPriceHidden" runat="server" />
+        <asp:HiddenField ID="prodDescHidden" runat="server" />
+        <asp:HiddenField ID="prodImageID" runat="server" />
 
     </div>
     <footer>
+        <script type="text/javascript">
+            function isNumber(evt) {
+                var charCode = (evt.which) ? evt.which : event.keyCode;
+                if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+                    return false;
+                }
+                return true;
+            }
+
+            function shareOnTwitter() {
+                var productName = document.getElementById('<%= prodNameHidden.ClientID %>').value;
+                var productDisc = document.getElementById('<%= prodDiscountHidden.ClientID %>').value;
+                var productPrice = document.getElementById('<%= prodPriceHidden.ClientID %>').value;
+                var productDesc = document.getElementById('<%= prodDescHidden.ClientID %>').value;
+                var finalPrice = productPrice - productDisc;
+                var imageUrl = window.location.origin + '/ImageHandler.ashx?id=' + document.getElementById('<%= prodImageID.ClientID %>').value;
+
+                var textToShare = encodeURIComponent("Check out this product: " + productName + " for only RM" + finalPrice.toFixed(2) + "\n" + productDesc + "\nSee image here: " + imageUrl);
+
+                var twitterShareUrl = "https://twitter.com/intent/tweet?" + "text=" + textToShare;
+                window.open(twitterShareUrl, "_blank");
+            }
+
+            function shareOnPinterest() {
+                var productName = document.getElementById('<%= prodNameHidden.ClientID %>').value;
+                var productPrice = document.getElementById('<%= prodPriceHidden.ClientID %>').value;
+                var productDesc = document.getElementById('<%= prodDescHidden.ClientID %>').value;
+                var productDisc = document.getElementById('<%= prodDiscountHidden.ClientID %>').value;
+                var imageUrl = window.location.origin + '/ImageHandler.ashx?id=' + document.getElementById('<%= prodImageID.ClientID %>').value;
+
+                var finalPrice = productPrice - productDisc;
+
+                var pinterestShareUrl = "https://www.pinterest.com/pin/create/button/" +
+                    "?url=" + encodeURIComponent(window.location.href) +
+                    "&description=" + encodeURIComponent("Check out this product: " + productName + " for only RM " + finalPrice.toFixed(2) + "\n" + productDesc + "\nSee image here: " + imageUrl);
+
+                window.open(pinterestShareUrl, "_blank");
+            }
+
+
+            function shareOnWhatsApp() {
+                var productName = document.getElementById('<%= prodNameHidden.ClientID %>').value;
+                var productDisc = parseFloat(document.getElementById('<%= prodDiscountHidden.ClientID %>').value);
+                var productPrice = parseFloat(document.getElementById('<%= prodPriceHidden.ClientID %>').value);
+                var productDesc = document.getElementById('<%= prodDescHidden.ClientID %>').value;
+
+                var finalPrice = productPrice - productDisc;
+                var imageUrl = window.location.origin + '/ImageHandler.ashx?id=' + document.getElementById('<%= prodImageID.ClientID %>').value; // Assuming you have a hidden field for the image ID
+                var textToShare = encodeURIComponent("Check out this product: " + productName + " for only RM" + finalPrice.toFixed(2) + "\n" + productDesc + "\nSee image here: " + imageUrl);
+
+                var whatsappShareUrl = "https://api.whatsapp.com/send?text=" + textToShare;
+                window.open(whatsappShareUrl, "_blank");
+            }
+
+        </script>
         <script src="../../../Javascript/category.js"></script>
         <script src="../../../Javascript/slider.js"></script>
         <script src="../../../Javascript/productItem.js"></script>
@@ -242,6 +266,12 @@
         <script src="../../../Javascript/wishList.js"></script>
         <script src="../../../Javascript/productAdminDDL.js"></script>
         <script src="../../../Javascript/colorRadioList.js"></script>
+
+        <script>
+            function shareOnTwitter() {
+                var shareUrl = 'https://twitter.com/intent/tweet?url=' + encodeURIComponent(window.location.href) + '&text=' + encodeURIComponent(document.title);
+                window.open(shareUrl, '_blank', 'width=600,height=400');
+            } >
+        </script>
     </footer>
 </asp:Content>
-    

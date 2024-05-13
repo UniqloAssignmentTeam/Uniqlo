@@ -20,8 +20,11 @@
 /*OVERVIEW SECTION*/
 .overview, .overviewGraph {
     display: flex;
+    flex-direction:column;
 }
-
+.report-space{
+    margin-bottom:30px;
+}
 .orderOnHold, .orderCompleted, .productOutOfStock, .activeUser {
     background-color: ghostwhite;
     width: 25%;

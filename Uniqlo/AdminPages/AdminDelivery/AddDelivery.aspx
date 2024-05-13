@@ -18,11 +18,13 @@
         <div class="modal-content">
             <div class="product-content">
                 <div class="form-group">
+
                     <label for="ddlPaymentID">Payment ID</label>
-                    <asp:DropDownList ID="ddlPaymentID" runat="server" CssClass="dropdown">
+                    <asp:DropDownList ID="ddlPaymentID" runat="server" CssClass="dropdown-display">
                     </asp:DropDownList>
                     <asp:RequiredFieldValidator ID="rfvPaymentID" runat="server" ControlToValidate="ddlPaymentID" InitialValue="" ErrorMessage="Please select a Payment ID" CssClass="error-message" Display="Dynamic" />
                 </div>
+
                 <div class="form-group">
                     <label for="txtAddress">Address</label>
                     <asp:TextBox ID="txtAddress" runat="server" CssClass="input-field"></asp:TextBox>
@@ -54,7 +56,7 @@
                 </div>
                 <div class="form-group">
                     <label for="ddlStatus">Status</label>
-                    <asp:DropDownList ID="ddlStatus" runat="server" CssClass="dropdown">
+                    <asp:DropDownList ID="ddlStatus" runat="server"  CssClass="dropdown-display">
                         <asp:ListItem Text="Pending" Value="Pending"></asp:ListItem>
                         <asp:ListItem Text="In Transit" Value="In Transit"></asp:ListItem>
                         <asp:ListItem Text="Delivered" Value="Delivered"></asp:ListItem>
@@ -64,7 +66,7 @@
             </div>
             <div class="button-container">
                 <div class="cancel-div">
-                    <asp:LinkButton ID="btnCancel" runat="server" CssClass="cancel-button" PostBackUrl="~/AdminPages/AdminDelivery/Delivery.aspx">CANCEL</asp:LinkButton>
+                    <asp:LinkButton ID="btnCancel" runat="server" CssClass="cancel-button" OnClick="btnCancel_Click" CausesValidation="false">CANCEL</asp:LinkButton>
                 </div>
                 <div class="continue-div">
                     <asp:LinkButton ID="btnAddDelivery" runat="server" CssClass="continue-button" OnClick="btnAddDelivery_Click">ADD DELIVERY</asp:LinkButton>

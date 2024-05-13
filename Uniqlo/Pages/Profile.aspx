@@ -3,7 +3,12 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="main" runat="server">
     <header>
         <link href="../css/Profile.css" rel="stylesheet" />
-
+        <style>
+            .dropdownListHyperLink {
+                color: #6F6F6F;
+                text-decoration: none;
+            }
+        </style>
     </header>
     <div class="container" style="margin: auto; max-width: 1100px; position: relative;">
         <div class="main-body" id="profileDisplay">
@@ -54,12 +59,12 @@
 
     <div class="dropdown-wrapper" style="justify-content: flex-start; margin: auto; max-width: 1100px; position: relative; margin-top: 50px;">
 
-        <div class="dropdown-container" onclick="toggleDropdown('dropdownList', 'dropdownDisplay')">
-            <div class="dropdown-display" id="dropdownDisplay">Sort By Date</div>
-            <div class="dropdown-list" id="dropdownList">
-                <div onclick="selectOption('Ascending', 'dropdownDisplay')">Ascending</div>
-                <div onclick="selectOption('Descending', 'dropdownDisplay')">Descending</div>
-            </div>
+        <div class="dropdown-container" style="margin-left: 20px;">
+            <asp:DropDownList ID="ddlDate" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlDate_SelectedIndexChanged" CssClass="dropdown-display">
+                <asp:ListItem Value="">Default</asp:ListItem>
+                <asp:ListItem Value="ascending">Sort by Oldest</asp:ListItem>
+                <asp:ListItem Value="descending">Sort by Latest</asp:ListItem>
+            </asp:DropDownList>
         </div>
     </div>
 
@@ -69,81 +74,74 @@
             <!-- Existing profile information goes here -->
 
             <!-- Order History Section -->
-            <div class="table">
-                <!-- Header -->
+
+
+                    <asp:ScriptManager ID="ScriptManagerProduct" runat="server" />
+
+
+                    <asp:UpdatePanel ID="UpdatePanelProduct" runat="server">
+
+
+                        <ContentTemplate>
+                            <asp:Repeater ID="orderRepeater" runat="server" ViewStateMode="Disabled">
+
+                                <HeaderTemplate>
+                                    <table style="width: 100%" class="table">
+                                        <tr class="row">
+
+
+                                            <td class="col orderID">Order ID</td>
+                                            <td class="col totalItem">Total Item</td>
+                                            <td class="col totalAmount">Total Amount</td>
+                                            <td class="col datePurchased">Date</td>
+                                            <td class="col deliveryStatus">Status</td>
+                                            <td class="col eclipse-display">
+                                                <asp:Button ID="Button1" runat="server" Text="Button" Visible="False" />
+                                            </div>
+                                        </tr>
+                                </HeaderTemplate>
+
+                                <ItemTemplate>
+
+                                    <tr class="row">
+
+                                        <td class="col orderID">
+                                            <asp:Label ID="orderID" runat="server" Text='<%# Eval("Order_ID") %>'></asp:Label></td>
+                                        <td class="col totalItem">
+                                            <asp:Label ID="totalItem" runat="server" Text='<%# Eval("Total_Item") %>'></asp:Label></td>
+                                        <td class="col totalAmount">
+                                            <asp:Label ID="totalAmount" runat="server" Text='<%# Eval("Total_Price", "{0:C}") %>'></asp:Label></td>
+                                        <td class="col datePurchased">
+                                            <asp:Label ID="datePurchased" runat="server" Text='<%# Eval("Payment_DateTime", "{0:dd/MM/yyyy}") %>'></asp:Label></td>
+                                        <td class="col deliveryStatus">
+                                            <asp:Label ID="deliveryStatus" runat="server" Text='<%# Eval("Delivery_Status") %>'></asp:Label></td>
 
 
 
+                                        <td class="col eclipse-container" onclick="toggleDropdown('dropdownList<%# Eval("Order_ID") %>', 'dropdownDisplay<%# Eval("Order_ID") %>')">
+                                            <div class="eclipse-display" id="dropdownDisplay<%# Eval("Order_ID") %>" style="border: none;"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></div>
+                                            <div class="eclipse-list" id="dropdownList<%# Eval("Order_ID") %>">
 
-                <!-- Product 1 -->
-                <div class="row">
-
-
-
-
-
-
+                                                <div>
+                                                    <asp:HyperLink ID="viewOrderDetails" runat="server" NavigateUrl='<%# "OrderHistoryItem.aspx?Order_ID=" + Eval("Order_ID") %>' Text="View More" CssClass="dropdownListHyperLink"></asp:HyperLink>
+                                                </div>
 
 
-                    <asp:Repeater ID="orderRepeater" runat="server" ViewStateMode="Disabled">
+                                            </div>
 
-                        <HeaderTemplate>
-                            <table style="width: 100%" class="table">
-                                <tr class="row">
+                                        </td>
 
-
-                                    <td class="col orderID">Order ID</td>
-                                    <td class="col totalItem">Total Item</td>
-                                    <td class="col totalAmount">Total Amount</td>
-                                    <td class="col datePurchased">Date</td>
-                                    <td class="col deliveryStatus">Status</td>
-                                    <td class="col eclipse-display">
-                                        <asp:Button ID="Button1" runat="server" Text="Button" Visible="False" />
-                                    </div>
-                                </tr>
-                        </HeaderTemplate>
-
-                        <ItemTemplate>
-
-                            <tr class="row">
-
-                                <td class="col orderID">
-                                    <asp:Label ID="orderID" runat="server" Text='<%# Eval("Order_ID") %>'></asp:Label></td>
-                                <td class="col totalItem">
-                                    <asp:Label ID="totalItem" runat="server" Text='<%# Eval("Total_Item") %>'></asp:Label></td>
-                                <td class="col totalAmount">
-                                    <asp:Label ID="totalAmount" runat="server" Text='<%# Eval("Total_Price") %>'></asp:Label></td>
-                                <td class="col datePurchased">
-                                    <asp:Label ID="datePurchased" runat="server" Text='<%# Eval("Payment_DateTime", "{0:dd/MM/yyyy}") %>'></asp:Label></td>
-                                <td class="col deliveryStatus">
-                                    <asp:Label ID="deliveryStatus" runat="server" Text='<%# Eval("Delivery_Status") %>'></asp:Label></td>
-
-
-
-                                <td class="col eclipse-container" onclick="toggleDropdown('dropdownList<%# Eval("Order_ID") %>', 'dropdownDisplay<%# Eval("Order_ID") %>')">
-                                    <div class="eclipse-display" id="dropdownDisplay<%# Eval("Order_ID") %>" style="border: none;"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></div>
-                                    <div class="eclipse-list" id="dropdownList<%# Eval("Order_ID") %>">
-
-                                        <div>
-                                            <asp:HyperLink ID="viewOrderDetails" runat="server" NavigateUrl='<%# "OrderHistoryItem.aspx?Order_ID=" + Eval("Order_ID") %>' Text="View More"></asp:HyperLink>
-                                        </div>
-
-
-                                    </div>
-
-                                </td>
-
-                            </tr>
+                                    </tr>
 
 
 
 
 
-                        </ItemTemplate>
+                                </ItemTemplate>
 
-                        <FooterTemplate>
-                            </table>
-                        </FooterTemplate>
+                                <FooterTemplate>
+                                    </table>
+                                </FooterTemplate>
 
 
 
@@ -152,27 +150,20 @@
 
 
 
-                    </asp:Repeater>
+                            </asp:Repeater>
+                        </ContentTemplate>
+                        <Triggers>
+                            <asp:AsyncPostBackTrigger ControlID="ddlDate" EventName="SelectedIndexChanged" />
+                        </Triggers>
 
+
+                    </asp:UpdatePanel>
 
 
 
 
                 </div>
-                <div class="pagination">
-                    <a href="#" class="page-link" onclick="changePage('prev')">&laquo;</a>
-                    <a href="#" class="page-link active" onclick="changePage(1)">1</a>
-                    <a href="#" class="page-link" onclick="changePage(2)">2</a>
-                    <a href="#" class="page-link" onclick="changePage(3)">3</a>
-                    <a href="#" class="page-link" onclick="changePage(4)">4</a>
-                    <a href="#" class="page-link" onclick="changePage(5)">5</a>
-
-
-                    <a href="#" class="page-link" onclick="changePage('next')">&raquo;</a>
-                </div>
-            </div>
-        </div>
-
+           
     </div>
     <footer>
 

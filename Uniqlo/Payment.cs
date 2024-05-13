@@ -15,7 +15,7 @@ namespace Uniqlo
     public partial class Payment
     {
         public int Payment_ID { get; set; }
-        public int Delivery_ID { get; set; }
+        public Nullable<int> Delivery_ID { get; set; }
         public int Order_ID { get; set; }
         public double Total_Payment { get; set; }
         public double Shipping_Amount { get; set; }
@@ -35,4 +35,5 @@ namespace Uniqlo
 
         public DbSet<Payment> payment { get; set; }
     }
+
 }

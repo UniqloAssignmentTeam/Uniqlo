@@ -11,6 +11,9 @@ using System.Data.SqlClient;
 using System.Data;
 using System.Threading.Tasks;
 using System.Collections;
+using Uniqlo.Pages.Categories.Women;
+using System.Web.UI.HtmlControls;
+using System.Net.Mail;
 
 namespace Uniqlo.Pages
 {
@@ -18,6 +21,7 @@ namespace Uniqlo.Pages
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            
             if (!IsPostBack)
             {
                 formView.DataBound += new EventHandler(formView_DataBound);
@@ -26,6 +30,9 @@ namespace Uniqlo.Pages
                 if (Request.QueryString["ProdID"] != null && int.TryParse(Request.QueryString["ProdID"], out productId))
                 {
                     BindFormView(productId);
+                    FindQuantity(productId);
+                    BindOutsideViewControl();
+                    FirstImageId(productId);
                 }
             }
 
@@ -65,21 +72,80 @@ namespace Uniqlo.Pages
                                 CustomerName = r.OrderList.Order.Customer.Name
                             }).ToList(),
                         ColorGroups = p.Quantities
+                            .Where(q => !q.IsDeleted)
                             .GroupBy(q => q.Color)
                             .Select(g => new
                             {
                                 Color = g.Key,
                                 Quantities = g.ToList(),
-                                FirstImageId = g.Select(q => q.Image_ID).FirstOrDefault()
+                                FirstImageId = g.Select(q => q.Image_ID).FirstOrDefault(),
+                                ImageCount = g.Select(q => q.Image_ID).Distinct().Count()
                             }).ToList()
                     }).ToList();
 
-
+                
                 formView.DataSource = productList;
                 formView.DataBind();
 
+
                 formView1.DataSource = productList;
                 formView1.DataBind();
+
+
+            }
+        }
+
+
+        private void BindOutsideViewControl()
+        {
+            if (formView.Row != null) // Check if there is a data row available
+            {
+                HiddenField hfProductId = (HiddenField)formView.FindControl("productIdHidden");
+                HiddenField hfProductName = (HiddenField)formView.FindControl("productNameHidden");
+                HiddenField hfProductDiscount = (HiddenField)formView.FindControl("productDiscountHidden");
+                HiddenField hfProductPrice = (HiddenField)formView.FindControl("productPriceHidden");
+                HiddenField hfProductDesc = (HiddenField)formView.FindControl("productDescHidden");
+
+                string productId = hfProductId.Value;
+                string productName = hfProductName.Value;
+                string productDiscount = hfProductDiscount.Value;
+                string productPrice = hfProductPrice.Value;
+                string productDescription = hfProductDesc.Value;
+
+                prodIdHidden.Value = productId;
+                prodNameHidden.Value = productName;
+                prodDiscountHidden.Value = productDiscount;
+                prodPriceHidden.Value = productPrice;
+                prodDescHidden.Value = productDescription;
+
+            }
+        }        
+        
+        private void FirstImageId(int productID)
+        {
+            using (var db = new ProductDbContext())
+            {
+                var imageId = db.Quantity
+                                .Where(q => q.Product_ID == productID)
+                                .Select(q => q.Image_ID)
+                                .FirstOrDefault();
+
+
+                var firstQuantity = db.Quantity
+                     .Where(q => q.Product_ID == productID)
+                     .FirstOrDefault();
+
+                if (firstQuantity != null)
+                {
+                    var firstImageId = db.Quantity
+                                        .Where(q => q.Quantity_ID == firstQuantity.Quantity_ID)
+                                        .Select(q => q.Image_ID)
+                                        .FirstOrDefault();
+
+                    prodImageID.Value = firstImageId.ToString();
+                }
+
+                
             }
         }
 
@@ -108,6 +174,7 @@ namespace Uniqlo.Pages
         {
             if (formView.DataItem != null)
             {
+
                 DataList dataList = formView.FindControl("dataList") as DataList;
 
                 if (dataList != null)
@@ -122,7 +189,7 @@ namespace Uniqlo.Pages
                 }
                 else
                 {
-                    // Log error or handle case where dataList is not found
+
                 }
             }
         }
@@ -135,7 +202,7 @@ namespace Uniqlo.Pages
                 
 
                 var colors = db.Quantity
-               .Where(q => q.Product_ID == prodID)  // Filter by Product_ID
+               .Where(q => q.Product_ID == prodID && !q.IsDeleted)  // Filter by Product_ID
                .Select(q => q.Color)
                .Distinct()
                .ToList();
@@ -157,10 +224,10 @@ namespace Uniqlo.Pages
         protected void RadioButtonListColors_SelectedIndexChanged(object sender, EventArgs e)
         {
             RadioButtonList rbList = (RadioButtonList)sender;
-            string selectedColor = rbList.SelectedValue;            
+            string selectedColor = rbList.SelectedValue;
+
             RadioButtonList rbSizes = (RadioButtonList)formView.FindControl("RadioButtonListSizes");
             Session["selectedColor"] = selectedColor;
-            Session["selectedSize"] = rbSizes.SelectedValue;
 
             int productId = 0;
             if (Request.QueryString["ProdID"] != null && int.TryParse(Request.QueryString["ProdID"], out productId))
@@ -168,17 +235,27 @@ namespace Uniqlo.Pages
                 using (var db = new ProductDbContext())
                 {
                     var sizes = db.Quantity
-                                  .Where(q => q.Product_ID == productId && q.Color == selectedColor) 
+                                  .Where(q => q.Product_ID == productId && q.Color == selectedColor && !q.IsDeleted)
                                   .Select(q => q.Size)
                                   .Distinct()
                                   .ToList();
 
                     // Define the custom order
                     var sizeOrder = new List<string> { "S", "M", "L", "XL" };
+
                     sizes = sizes.OrderBy(s => sizeOrder.IndexOf(s)).ToList();
 
                     rbSizes.DataSource = sizes;
                     rbSizes.DataBind();
+
+                    // Get the maximum stock value among all sizes for the selected color
+                    int maxStock = db.Quantity
+                                      .Where(q => q.Product_ID == productId && q.Color == selectedColor && !q.IsDeleted)
+                                      .Max(q => q.Qty);
+
+                    // Update the MaxLength of txtQty based on the maximum stock value
+                    TextBox txtQty = (TextBox)formView.FindControl("txtQty");
+                    txtQty.MaxLength = maxStock.ToString().Length;
                 }
             }
             else
@@ -188,15 +265,42 @@ namespace Uniqlo.Pages
             }
         }
 
+        protected void FindQuantity(int productId)
+        {
+            Label lblSize = (Label)formView.FindControl("lblSize");
+
+
+            using (var db = new ProductDbContext())
+            {
+                var sizes = db.Quantity
+                              .Where(q => q.Product_ID == productId && !q.IsDeleted)
+                              .Select(q => q.Size)
+                              .Distinct()
+                              .ToList();
+
+                if (sizes == null || sizes.Count == 0)
+                {
+                    lblSize.Text = "Out of stock";
+                }
+                else
+                {
+                    lblSize.Text = "";
+                }
+            }
+
+        }
+
+
         protected void RadioButtonListSizes_SelectedIndexChanged(object sender, EventArgs e)
         {
             RadioButtonList rbSizes = (RadioButtonList)sender;
             string selectedSize = rbSizes.SelectedValue;
+
             RadioButtonList rbColors = (RadioButtonList)formView.FindControl("RadioButtonListColors");
             string selectedColor = rbColors.SelectedValue;
+
             Label labelQuantity = (Label)formView.FindControl("LabelQuantity");
-            Session["selectedColor"] = selectedSize;
-            Session["selectedSize"] = selectedColor;
+            Session["selectedSize"] = selectedSize;
 
 
             int productId = 0;
@@ -205,11 +309,15 @@ namespace Uniqlo.Pages
                 using (var db = new ProductDbContext())
                 {
                     var quantity = db.Quantity
-                                    .Where(q => q.Product_ID == productId && q.Color == selectedColor && q.Size == selectedSize)
-                                    .Select(q => q.Qty) 
+                                    .Where(q => q.Product_ID == productId && q.Color == selectedColor && q.Size == selectedSize && !q.IsDeleted)
+                                    .Select(q => q.Qty)
                                     .FirstOrDefault();
 
                     labelQuantity.Text = quantity != 0 ? $"  ({quantity})" : "  (Out of Stock)";
+
+                    // Update the MaxLength of txtQty based on the selected size's stock value
+                    TextBox txtQty = (TextBox)formView.FindControl("txtQty");
+                    txtQty.MaxLength = quantity.ToString().Length;
                 }
             }
             else
@@ -217,7 +325,6 @@ namespace Uniqlo.Pages
                 labelQuantity.Text = "Invalid product ID.";
             }
         }
-
 
         public string GenerateStars(double rating)
         {
@@ -249,19 +356,94 @@ namespace Uniqlo.Pages
 
         protected void btnAddToCart_Click(object sender, EventArgs e)
         {
-            // Access the selected size and color
-            string selectedSize = (string)Session["selectedSize"];
-            string selectedColor = (string)Session["selectedColor"];
-            TextBox txtQty = (TextBox)formView.FindControl("txtQty");
-            int quantity = Int32.Parse(txtQty.Text);
-            Response.Redirect("ProductDetails.aspx");
+            try
+            {
+                // Access the selected size and color
+                string selectedSize = (string)Session["selectedSize"];
+                string selectedColor = (string)Session["selectedColor"];
 
+                // Check if the user has selected a size
+                if (string.IsNullOrEmpty(selectedSize))
+                {
+                    // Show a pop-up message indicating that a size must be selected
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "sizeSelectionError", "alert('Please select a size.');", true);
+                    return;
+                }
 
+                int productId = int.Parse(Request.QueryString["ProdID"]);
 
+                // Retrieve the quantity ID
+                int quantityId = GetQuantityId(productId, selectedSize, selectedColor);
+
+                if (quantityId == 0)
+                {
+                    // Show an error message if the quantity ID is not found
+                    throw new Exception("Invalid quantity ID.");
+                }
+
+                // Get the quantity textbox
+                TextBox txtQty = (TextBox)formView.FindControl("txtQty");
+
+                // Parse quantity value
+                if (!int.TryParse(txtQty.Text, out int quantity) || quantity <= 0)
+                {
+                    // Show an error message if the quantity is not valid
+                    throw new Exception("Please enter a valid quantity.");
+                }
+
+                // Create a new CartItem
+                CartItem item = new CartItem
+                {
+                    Quantity_Id = quantityId,
+                    Size = selectedSize,
+                    Color = selectedColor,
+                    Quantity = quantity
+                };
+
+                if (Session["Cart"] == null)
+                {
+                    // Create a new cart and add the item to it
+                    List<CartItem> cart = new List<CartItem>();
+                    cart.Add(item);
+                    Session["Cart"] = cart;
+                }
+                else
+                {
+                    // Retrieve the existing cart and add the item to it
+                    List<CartItem> cart = (List<CartItem>)Session["Cart"];
+                    cart.Add(item);
+                    Session["Cart"] = cart;
+                }
+
+                // Show a JavaScript alert to confirm successful addition to the cart
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "addToCartSuccess", "alert('Item added to cart successfully!');", true);
+            }
+            catch (Exception ex)
+            {
+                // Show an error message if an exception occurs
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "addToCartError", $"alert('{ex.Message}');", true);
+            }
         }
 
-        /*ADD Function*/
+        // Method to retrieve the quantity ID based on size, color, and product ID
+        private int GetQuantityId(int productId, string selectedSize, string selectedColor)
+        {
+            using (var db = new ProductDbContext())
+            {
+                var quantityId = db.Quantity
+                    .Where(q => q.Product_ID == productId && q.Size == selectedSize && q.Color == selectedColor)
+                    .Select(q => q.Quantity_ID)
+                    .FirstOrDefault();
+                return quantityId;
+            }
+        }
 
+        protected void fetchProductID(object sender, EventArgs e)
+        {
+            int productID = Int32.Parse(prodIdHidden.Value);
+
+            Response.Redirect("/Pages/SendProductGmailToFriend.aspx?id=" + productID);
+        }
 
 
     }

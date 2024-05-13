@@ -27,33 +27,44 @@ namespace Uniqlo.AdminPages
 
         private void BindFormView(int productId)
         {
-            using (var db = new ProductDbContext())
+            try
             {
-                var productList = db.Product
-                    .Where(p => p.Product_ID == productId)
-                    .Include(p => p.Category)
-                    .Include(p => p.Quantities.Select(q => q.Image))
-                    .Select(p => new
-                    {
-                        Product_ID = p.Product_ID,
-                        Product_Name = p.Product_Name,
-                        Description = p.Description,
-                        Price = p.Price,
-                        Category = p.Category,
-                        ColorGroups = p.Quantities
-                            .GroupBy(q => q.Color)
-                            .Select(g => new
-                            {
-                                Color = g.Key,
-                                Quantities = g.ToList(),
-                                FirstImageId = g.Select(q => q.Image_ID).FirstOrDefault()
-                            }).ToList()
-                    }).ToList();
+                using (var db = new ProductDbContext())
+                {
+                    var productList = db.Product
+                        .Where(p => p.Product_ID == productId)
+                        .Include(p => p.Category)
+                        .Include(p => p.Quantities.Select(q => q.Image))
+                        .Select(p => new
+                        {
+                            Product_ID = p.Product_ID,
+                            Product_Name = p.Product_Name,
+                            Description = p.Description,
+                            Price = p.Price,
+                            Category = p.Category,
+                            ColorGroups = p.Quantities
+                                .Where(q => !q.IsDeleted)
+                                .GroupBy(q => q.Color)
+                                .Select(g => new
+                                {
+                                    Color = g.Key,
+                                    Quantities = g.ToList(),
+                                    FirstImageId = g.Select(q => q.Image_ID).FirstOrDefault()
+                                }).ToList()
+                        }).ToList();
 
 
-                formView.DataSource = productList;
-                formView.DataBind();
+                    formView.DataSource = productList;
+                    formView.DataBind();
+                }
             }
+            catch (Exception ex)
+            {
+
+                // Optionally display error message on the page
+                ScriptManager.RegisterStartupScript(this, GetType(), "errorAlert", "alert('An error occurred when Retrieving product.');", true);
+            }
+
         }
 
         protected void dataList_ItemDataBound(object sender, DataListItemEventArgs e)

@@ -77,7 +77,8 @@ namespace Uniqlo.Pages
 
             if (!IsPostBack)
             {
-                BindOrderRepeater(4);
+                int custId = (int)Session["Customer_ID"];
+                BindOrderRepeater(custId);
             }
           
         }
@@ -106,7 +107,7 @@ namespace Uniqlo.Pages
 
 
                 var orderDetails = db.Order
-                    .Where(o=>o.Customer_ID==customerID)
+                    .Where(o=>o.Customer_ID==customerID && !o.IsDeleted)
                     .Select(o=> new {
                         Order_ID=o.Order_ID,
                         Total_Item =db.OrderList.Count(ol=>ol.Order_ID==o.Order_ID),
@@ -141,6 +142,72 @@ namespace Uniqlo.Pages
             }
 
 
+        }
+
+        protected void ddlDate_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int custId = (int)Session["Customer_ID"];
+            FilterOrder(custId);
+        }
+
+
+
+        private void FilterOrder(int customerID)
+        {
+            try
+            {
+                using (var db = new OrderDbContext())
+                {
+                    string selectedDate = ddlDate.SelectedValue;
+
+                    var orderDetails = db.Order
+                        .Where(o => o.Customer_ID == customerID && !o.IsDeleted)
+                        .Select(o => new
+                        {
+                            Order_ID = o.Order_ID,
+                            Total_Item = db.OrderList.Count(ol => ol.Order_ID == o.Order_ID),
+                            Total_Price = db.Payment
+                                    .Where(p => p.Order_ID == o.Order_ID)
+                                    .Select(p => p.Total_Payment)
+                                    .DefaultIfEmpty(0)
+                                    .Sum(),
+                            Payment_DateTime = db.Payment
+                                    .Where(p => p.Order_ID == o.Order_ID)
+                                    .OrderByDescending(p => p.Payment_DateTime)
+                                    .Select(p => (DateTime?)p.Payment_DateTime)
+                                    .FirstOrDefault(),
+                            Delivery_Status = db.Delivery
+                                       .Where(d => d.Delivery_ID == db.Payment
+                                                    .Where(p => p.Order_ID == o.Order_ID)
+                                                    .Select(p => p.Delivery_ID)
+                                                    .FirstOrDefault())
+                                       .Select(d => d.Delivery_Status)
+                                       .FirstOrDefault()
+                        });
+
+                    // Apply sorting based on price
+                    if (!string.IsNullOrEmpty(selectedDate))
+                    {
+                        switch (selectedDate)
+                        {
+                            case "ascending":
+                                orderDetails = orderDetails.OrderBy(o => o.Payment_DateTime);
+                                break;
+                            case "descending":
+                                orderDetails = orderDetails.OrderByDescending(o => o.Payment_DateTime);
+                                break;
+                        }
+                    }
+
+                    var productList = orderDetails.ToList();
+                    orderRepeater.DataSource = productList;
+                    orderRepeater.DataBind();
+                }
+            }
+            catch (Exception ex)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "errorAlert", "alert('An error occurred when filtering products.');", true);
+            }
         }
 
     }

@@ -1,15 +1,21 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Uniqlo.Master" AutoEventWireup="true" CodeBehind="ValueBuy.aspx.cs" Inherits="Uniqlo.Pages.ValueBuy" %>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="main" runat="server">
-      <%@ Register TagPrefix="recaptcha" Namespace="Recaptcha" Assembly="Recaptcha" %>
+     
     <header>
-         <script src="https://www.google.com/recaptcha/api.js"></script>
+      
         <link href="../css/ValueBuy.css" rel="stylesheet" />
          <script>
              function onSubmit(token) {
                  document.getElementById("demo-form").submit();
              }
          </script>
+<style>
+    .hyperlink{
+        text-decoration: none;
+        color: #6F6F6F;
+    }
+</style>
     </header>
 
     <asp:ScriptManager ID="ValueManagerStaff" runat="server" />
@@ -19,10 +25,7 @@
 
         <ContentTemplate>
 
-            <button class="g-recaptcha" 
-        data-sitekey="reCAPTCHA_site_key" 
-        data-callback='onSubmit' 
-        data-action='submit'>Submit</button>
+          
 
             <div class="productBody">
                 <!--LIMITED OFFER CARD-->
@@ -40,21 +43,22 @@
                     <div style="display: flex;">
 
                         <div class="dropdown-container" style="margin-right: 15px;">
-                          <asp:DropDownList ID="genderSortDDL" runat="server" AutoPostBack="true" OnSelectedIndexChanged="FilterProducts" CssClass="dropdown-display">
+                         <asp:DropDownList ID="genderSortDDL" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ApplyFilters" CssClass="dropdown-display">
     <asp:ListItem Value="">All Genders</asp:ListItem>
     <asp:ListItem Value="M">Men</asp:ListItem>
-    <asp:ListItem Value="F">Women</asp:ListItem>
+    <asp:ListItem Value="W">Women</asp:ListItem>
 </asp:DropDownList>
                         </div>
 
 
 
                         <div class="dropdown-container">
-                            <asp:DropDownList ID="categorySortDDL" runat="server" AutoPostBack="true" OnSelectedIndexChanged="FilterProducts" CssClass="dropdown-display">
-    <asp:ListItem>All Categories</asp:ListItem>
-    <asp:ListItem>Tops</asp:ListItem>
-    <asp:ListItem>Bottom</asp:ListItem>
+                        <asp:DropDownList ID="categorySortDDL" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ApplyFilters" CssClass="dropdown-display">
+    <asp:ListItem Value="">All Categories</asp:ListItem>
+    <asp:ListItem Value="Top">Tops</asp:ListItem>
+    <asp:ListItem Value="Bottom">Bottoms</asp:ListItem>
 </asp:DropDownList>
+
                         </div>
 
 
@@ -62,12 +66,11 @@
 
                         <div style="display: flex; width: 100%; justify-content: flex-end;">
                             <div class="dropdown-container">
-                                <asp:DropDownList ID="sortByDDL" runat="server" CssClass="dropdown-display">
-                                    <asp:ListItem>Sort By</asp:ListItem>
-                                    <asp:ListItem>Most Popular</asp:ListItem>
-                                    <asp:ListItem>High to Low</asp:ListItem>
-                                    <asp:ListItem>Low to High</asp:ListItem>
-                                </asp:DropDownList>
+                             <asp:DropDownList ID="sortByDDL" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ApplyFilters" CssClass="dropdown-display">
+    <asp:ListItem Value="">Sort By</asp:ListItem>
+    <asp:ListItem Value="HighToLow">High to Low</asp:ListItem>
+    <asp:ListItem Value="LowToHigh">Low to High</asp:ListItem>
+</asp:DropDownList>
                             </div>
                         </div>
 
@@ -98,7 +101,7 @@
                     <ItemTemplate>
 
 
-
+                           <asp:HyperLink ID="productLink" runat="server" NavigateUrl='<%# "/Pages/ProductDetails.aspx?ProdID=" +  Eval("Product_ID") %>' CssClass="hyperlink">
                         <div class="limitedOfferCardContainer">
                             <div class="limitedOfferCard" id="product9" data-product-id="1">
                                 <div class="product-image-container">
@@ -136,6 +139,7 @@
                             </div>
 
                         </div>
+                            </asp:HyperLink>
                     </ItemTemplate>
                 </asp:DataList>
 
@@ -181,13 +185,7 @@
 
          <script>
 
-             grecaptcha.ready(function () {
-                 grecaptcha.execute('6LcQr9gpAAAAALZ_qGE5V4MDe0jhOesJLNFfmZd2', { action: 'login' }).then(function (token) {
-                     document.getElementById('recaptchaResponse').value = token;
-                     // Optionally, you can submit the form here if auto-postback is disabled
-                     // document.getElementById('yourFormId').submit();
-                 });
-             });
+            
 
          </script>  
         <script src="../Javascript/valueBuy.js"></script>

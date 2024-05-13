@@ -53,13 +53,7 @@
     ControlToValidate="staffName" ErrorMessage="Name must contain only letters." ValidationExpression="^[A-Za-z ]+$" ForeColor="Red" Display="Dynamic">
 </asp:RegularExpressionValidator>
                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Please Enter a Name" ControlToValidate="staffName" ForeColor="Red" Display="Dynamic"></asp:RequiredFieldValidator>
-          <asp:RangeValidator ID="RangeValidatorName" runat="server" 
-        ControlToValidate="staffName" 
-        MinimumValue="3" MaximumValue="50" 
-        Type="Integer" 
-        ErrorMessage="Name must be within 3 and 50 characters long." 
-        ForeColor="Red" Display="Dynamic">
-    </asp:RangeValidator>        
+              
                     </div>
               
 

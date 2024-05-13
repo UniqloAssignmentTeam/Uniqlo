@@ -35,33 +35,44 @@ namespace Uniqlo.AdminPages
 
         private void BindFormView(int productId)
         {
-            using (var db = new ProductDbContext())
+            try
             {
-                var productList = db.Product
-                    .Where(p => p.Product_ID == productId)
-                    .Include(p => p.Category)
-                    .Include(p => p.Quantities.Select(q => q.Image))
-                    .Select(p => new
-                    {
-                        Product_ID = p.Product_ID,
-                        Product_Name = p.Product_Name,
-                        Description = p.Description,
-                        Price = p.Price,
-                        Category = p.Category,
-                        ColorGroups = p.Quantities
-                            .GroupBy(q => q.Color)
-                            .Select(g => new
-                            {
-                                Color = g.Key,
-                                Quantities = g.ToList(),
-                                FirstImageId = g.Select(q => q.Image_ID).FirstOrDefault()
-                            }).ToList()
-                    }).ToList();
+                using (var db = new ProductDbContext())
+                {
+                    var productList = db.Product
+                        .Where(p => p.Product_ID == productId)
+                        .Include(p => p.Category)
+                        .Include(p => p.Quantities.Select(q => q.Image))
+                        .Select(p => new
+                        {
+                            Product_ID = p.Product_ID,
+                            Product_Name = p.Product_Name,
+                            Description = p.Description,
+                            Price = p.Price,
+                            Category = p.Category,
+                            ColorGroups = p.Quantities
+                                .Where(q => !q.IsDeleted)
+                                .GroupBy(q => q.Color)
+                                .Select(g => new
+                                {
+                                    Color = g.Key,
+                                    Quantities = g.ToList(),
+                                    FirstImageId = g.Select(q => q.Image_ID).FirstOrDefault()
+                                }).ToList()
+                        }).ToList();
 
 
-                formView.DataSource = productList;
-                formView.DataBind();
+                    formView.DataSource = productList;
+                    formView.DataBind();
+                }
             }
+            catch (Exception ex)
+            {
+
+                // Optionally display error message on the page
+                ScriptManager.RegisterStartupScript(this, GetType(), "errorAlert", "alert('An error occurred when retrieving product.');", true);
+            }
+
         }
 
         protected void dataList_ItemDataBound(object sender, DataListItemEventArgs e)
@@ -107,19 +118,29 @@ namespace Uniqlo.AdminPages
         {
             int imageId = Convert.ToInt32(e.CommandArgument);
 
-
-            using (var dbContext = new ImageDbContext())  
+            try
             {
-                var quantitiesToDelete = dbContext.Quantities.Where(q => q.Image_ID == imageId).ToList();
-
-                foreach (var quantity in quantitiesToDelete)
+                using (var dbContext = new ImageDbContext())
                 {
-                    dbContext.Quantities.Remove(quantity);
-                }
+                    var quantitiesToUpdate = dbContext.Quantities.Where(q => q.Image_ID == imageId).ToList();
 
-                dbContext.SaveChanges();
-                Response.Redirect(Request.RawUrl);
+                    foreach (var quantity in quantitiesToUpdate)
+                    {
+                        // Instead of removing, update IsDeleted to 1
+                        quantity.IsDeleted = Convert.ToBoolean(1);
+                    }
+
+                    dbContext.SaveChanges();
+                    Response.Redirect(Request.RawUrl);
+                }
             }
+            catch (Exception ex)
+            {
+
+                // Optionally display error message on the page
+                ScriptManager.RegisterStartupScript(this, GetType(), "errorAlert", "alert('An error occurred when Deleting product.');", true);
+            }
+
         }
 
         /*ADD PRODUCT*/
@@ -144,9 +165,43 @@ namespace Uniqlo.AdminPages
                 DropDownList ddlCategory = formView.FindControl("ddlCategory") as DropDownList;
                 DropDownList ddlGender = formView.FindControl("ddlGender") as DropDownList;
 
+                bool isValid = true;
+                string errorMessage = "";
+
+                if (string.IsNullOrWhiteSpace(txtProductName.Text))
+                {
+                    errorMessage += "Product name is required.\\n";
+                    isValid = false;
+                }
+
+                if (string.IsNullOrWhiteSpace(txtProductDescription.Text))
+                {
+                    errorMessage += "Description is required.\\n";
+                    isValid = false;
+                }
+
+                double productPrice;
+                if (!double.TryParse(txtProductPrice.Text, out productPrice) || productPrice <= 0)
+                {
+                    errorMessage += "Valid price greater than zero is required.\\n";
+                    isValid = false;
+                }
+
+                if (ddlCategory.SelectedIndex == -1 || ddlGender.SelectedIndex == -1)
+                {
+                    errorMessage += "Both category and gender must be selected.\\n";
+                    isValid = false;
+                }
+
+                if (!isValid)
+                {
+                    ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", $"alert('{errorMessage}');", true);
+                    return;
+                }
+
                 string productName = txtProductName.Text;
                 string productDescription = txtProductDescription.Text;
-                double productPrice = Double.Parse(txtProductPrice.Text);
+                productPrice = Double.Parse(txtProductPrice.Text);
                 string category = ddlCategory.Text;
                 string gender = ddlGender.Text;
 
@@ -154,74 +209,83 @@ namespace Uniqlo.AdminPages
                 string jsonData = HiddenFieldData.Value;
                 List<ColorSize> colorSizes = JsonConvert.DeserializeObject<List<ColorSize>>(jsonData);
 
-
-                using (var dbContext = new ProductDbContext())
+                try
                 {
-                    int productIDQuery = int.Parse(Request.QueryString["ProdID"]);
-                    var productID = dbContext.Product.FirstOrDefault(p => p.Product_ID == productIDQuery);
-                    var categoryID = dbContext.Category.Where(c => c.Name == category && c.Gender.ToString() == gender).Select(c => c.Category_ID).FirstOrDefault();
-
-
-                    if (productID != null)
+                   using (var dbContext = new ProductDbContext())
                     {
-                        productID.Product_Name = productName;
-                        productID.Description = productDescription;
-                        productID.Price = productPrice;
-                        productID.Category_ID = categoryID;
-
-                        dbContext.SaveChanges();
+                        int productIDQuery = int.Parse(Request.QueryString["ProdID"]);
+                        var productID = dbContext.Product.FirstOrDefault(p => p.Product_ID == productIDQuery);
+                        var categoryID = dbContext.Category.Where(c => c.Name == category && c.Gender.ToString() == gender).Select(c => c.Category_ID).FirstOrDefault();
 
 
-                        foreach (var colorSize in colorSizes)
+                        if (productID != null)
                         {
-                            if (!String.IsNullOrWhiteSpace(colorSize.Image))
-                            {
-                                // Handling the base64 image string
-                                string base64Image = colorSize.Image.Split(',')[1]; // Ensuring only the base64 part is taken
-                                try
-                                {
-                                    byte[] imageBytes = Convert.FromBase64String(base64Image);
-                                    Image newImage = new Image
-                                    {
-                                        ProductImage = imageBytes
-                                    };
-                                    dbContext.Image.Add(newImage);
-                                    dbContext.SaveChanges();
+                            productID.Product_Name = productName;
+                            productID.Description = productDescription;
+                            productID.Price = productPrice;
+                            productID.Category_ID = categoryID;
 
-                                    // Linking the image with product details
-                                    foreach (var sizeProperty in typeof(ColorSize).GetProperties().Where(p => p.Name.StartsWith("Size")))
+                            dbContext.SaveChanges();
+
+
+                            foreach (var colorSize in colorSizes)
+                            {
+                                if (!String.IsNullOrWhiteSpace(colorSize.Image))
+                                {
+                                    // Handling the base64 image string
+                                    string base64Image = colorSize.Image.Split(',')[1]; // Ensuring only the base64 part is taken
+                                    try
                                     {
-                                        string sizeValue = sizeProperty.GetValue(colorSize) as string;
-                                        if (!string.IsNullOrEmpty(sizeValue))
+                                        byte[] imageBytes = Convert.FromBase64String(base64Image);
+                                        Image newImage = new Image
                                         {
-                                            string size = sizeProperty.Name.Substring(4);
-                                            Quantity newQuantity = new Quantity
+                                            ProductImage = imageBytes
+                                        };
+                                        dbContext.Image.Add(newImage);
+                                        dbContext.SaveChanges();
+
+                                        // Linking the image with product details
+                                        foreach (var sizeProperty in typeof(ColorSize).GetProperties().Where(p => p.Name.StartsWith("Size")))
+                                        {
+                                            string sizeValue = sizeProperty.GetValue(colorSize) as string;
+                                            if (!string.IsNullOrEmpty(sizeValue))
                                             {
-                                                Product_ID = productIDQuery,
-                                                Image_ID = newImage.Image_ID,
-                                                Color = colorSize.Color,
-                                                Size = size,
-                                                Qty = Int32.Parse(sizeValue)
-                                            };
-                                            dbContext.Quantity.Add(newQuantity);
+                                                string size = sizeProperty.Name.Substring(4);
+                                                Quantity newQuantity = new Quantity
+                                                {
+                                                    Product_ID = productIDQuery,
+                                                    Image_ID = newImage.Image_ID,
+                                                    Color = colorSize.Color,
+                                                    Size = size,
+                                                    Qty = Int32.Parse(sizeValue)
+                                                };
+                                                dbContext.Quantity.Add(newQuantity);
+                                            }
                                         }
                                     }
-                                }
-                                catch (FormatException fe)
-                                {
-                                    Console.WriteLine("Failed to convert Base64 string to byte array. Error: " + fe.Message);
-                                }
-                                catch (Exception ex)
-                                {
-                                    Console.WriteLine("Error saving image data: " + ex.Message);
+                                    catch (FormatException fe)
+                                    {
+                                        Console.WriteLine("Failed to convert Base64 string to byte array. Error: " + fe.Message);
+                                    }
+                                    catch (Exception ex)
+                                    {
+                                        Console.WriteLine("Error saving image data: " + ex.Message);
+                                    }
                                 }
                             }
+                            dbContext.SaveChanges();
                         }
-                        dbContext.SaveChanges();
                     }
+                    ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", "alert('Product and details update successfully!');", true);
+                    Response.Redirect(Request.RawUrl);
                 }
-                ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", "alert('Product and details update successfully!');", true);
-                Response.Redirect(Request.RawUrl);
+                catch (Exception ex)
+                {
+
+                    // Optionally display error message on the page
+                    ScriptManager.RegisterStartupScript(this, GetType(), "errorAlert", "alert('An error occurred when updating product.');", true);
+                }
+
             }
         }
 

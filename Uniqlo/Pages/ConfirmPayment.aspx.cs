@@ -143,7 +143,7 @@ namespace Uniqlo.Pages
 
                     // Insert Delivery
                     string deliveryNote = Session["DeliveryNote"] as string;
-                    cmd.CommandText = "INSERT INTO Delivery (Address_Id, Delivery_Note, Delivery_Status) VALUES (@AddressId, @DeliveryNote, 'Packaging'); SELECT SCOPE_IDENTITY();";
+                    cmd.CommandText = "INSERT INTO Delivery (Address_Id, Delivery_Note, Delivery_Status) VALUES (@AddressId, @DeliveryNote, 'Pending'); SELECT SCOPE_IDENTITY();";
                     cmd.Parameters.AddWithValue("@AddressId", addressId);
                     cmd.Parameters.AddWithValue("@DeliveryNote", deliveryNote);
                     int deliveryId = Convert.ToInt32(cmd.ExecuteScalar());

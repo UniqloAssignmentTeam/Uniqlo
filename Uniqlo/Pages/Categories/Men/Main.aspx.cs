@@ -13,7 +13,6 @@ namespace Uniqlo.Pages.Categories.Men
     
     public partial class Main : System.Web.UI.Page
     {
-        string cs = Global.CS;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -22,45 +21,44 @@ namespace Uniqlo.Pages.Categories.Men
             }
         }
 
+
+
         private void BindDataList()
         {
-            using (var context = new ProductDbContext())
+            using (var db = new ProductDbContext())
             {
-                var today = DateTime.Now; // Today's date for active discount checks
-                string targetCategoryName = "Top"; // Category you want to filter by
-                string targetCategoryGender = "M";
+                var today = DateTime.Today;
 
+                var productDetails = db.Product
+                    .Where(p => !p.IsDeleted && p.Category.Gender == "M")
+                    .SelectMany( // Use SelectMany to flatten the results from the join
+                        p => db.Discount
+                            .Where(d => d.Product_ID == p.Product_ID // Ensure it's the right product
+                                && d.Status == "Active" // Discount must be active
+                                && d.Start_Date <= today // Start date must be on or before today
+                                && d.End_Date >= today), // End date must be on or after today
+                        (product, discount) => new {
+                            Product_Id = product.Product_ID,
+                            Product_Name = product.Product_Name,
+                            Description = product.Description,
+                            Price = product.Price,
+                            Image_ID = product.Quantities.Select(q => q.Image_ID).FirstOrDefault(), // Assuming at least one quantity has an image
+                            AverageRating = product.Quantities.SelectMany(q => q.OrderLists).SelectMany(ol => ol.Reviews).Average(r => (int?)r.Rating) ?? 0,
+                            ReviewCount = product.Quantities.SelectMany(q => q.OrderLists).SelectMany(ol => ol.Reviews).Count(),
+                            Discount_Amount = product.Price - discount.Discount_Amount
+                        }
+                    )
+                    .Take(4)
+                    .ToList();
 
-                var productsWithActiveDiscounts = (from p in context.Product
-                                                   join d in context.Discount on p.Product_ID equals d.Product_ID
-                                                   where d.Status == "Active" && d.Start_Date <= today && d.End_Date >= today
-                                                   join q in context.Quantity on p.Product_ID equals q.Product_ID
-                                                   join img in context.Image on q.Image_ID equals img.Image_ID
-                                                   join c in context.Category on p.Category_ID equals c.Category_ID
-                                                   where c.Name == targetCategoryName && c.Gender == targetCategoryGender // Filtering by category name and gender
-                                                   select new
-                                                   {
-                                                       ProductName = p.Product_Name,
-                                                       Description = p.Description,
-                                                       Price = p.Price,
-                                                       DiscountPrice = p.Price - d.Discount_Amount,
-                                                       ImagePath = img.ProductImage,
-                                                       AverageRating = (from q in p.Quantities
-                                                                        from ol in q.OrderLists
-                                                                        from r in ol.Reviews
-                                                                        select (int?)r.Rating).Average() ?? 0,
-                                                       ReviewCount = (from q in p.Quantities
-                                                                      from ol in q.OrderLists
-                                                                      from r in ol.Reviews
-                                                                      select r).Count()
-                                                   }).Distinct().ToList();
+                dlValueBuy.RepeatColumns = productDetails.Count > 4 ? 4 : productDetails.Count;
 
-                // Set the DataList data source
-                dlValueBuy.DataSource = productsWithActiveDiscounts;
+                dlValueBuy.DataSource = productDetails;
                 dlValueBuy.DataBind();
+
+
             }
         }
-
         public string GenerateStars(double rating)
         {
             var fullStars = (int)rating; // Number of full stars
@@ -87,15 +85,6 @@ namespace Uniqlo.Pages.Categories.Men
             }
 
             return html;
-        }
-        protected void lnkTops_Click(object sender, EventArgs e)
-        {
-            Session["SelectedCategory"] = "MenTop";
-        }
-
-        protected void lnkBottoms_Click(object sender, EventArgs e)
-        {
-            Session["SelectedCategory"] = "MenBottom";
         }
     }
 }

@@ -12,7 +12,6 @@ namespace Uniqlo
     using System;
     using System.Collections.Generic;
     using System.Data.Entity;
-
     public partial class Staff
     {
         public int Staff_ID { get; set; }

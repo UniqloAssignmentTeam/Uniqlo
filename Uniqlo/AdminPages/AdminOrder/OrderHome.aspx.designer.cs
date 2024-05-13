@@ -33,6 +33,15 @@ namespace Uniqlo.AdminPages.AdminOrder
         protected global::System.Web.UI.UpdatePanel UpdatePanelProduct;
 
         /// <summary>
+        /// searchBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox searchBox;
+
+        /// <summary>
         /// ddlStatus control.
         /// </summary>
         /// <remarks>
@@ -58,5 +67,23 @@ namespace Uniqlo.AdminPages.AdminOrder
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Repeater orderRepeater;
+
+        /// <summary>
+        /// hiddenOrderId control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hiddenOrderId;
+
+        /// <summary>
+        /// btnRemoveProduct control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnRemoveProduct;
     }
 }

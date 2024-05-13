@@ -1,7 +1,8 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin.Master" AutoEventWireup="true" CodeBehind="DeliveryHome.aspx.cs" Inherits="Uniqlo.AdminPages.AdminDelivery.DeliveryHome" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="main" runat="server">
-
+    
     <style>
+
         .dropdown-wrapper {
             margin-right: 310px
         }
@@ -140,8 +141,7 @@
             <div class="wrap-items-search-buttons">
 
                 <div class="search">
-    <span class="material-symbols-outlined">search</span>
-  <asp:TextBox ID="searchBox" runat="server" CssClass="search-input" AutoPostBack="true" OnTextChanged="searchBox_TextChanged"  placeholder="Search Delivery ID"></asp:TextBox>
+  <asp:TextBox ID="searchBox" runat="server" CssClass="search-input" AutoPostBack="true" onkeypress="return isNumber(event)" OnTextChanged="searchBox_TextChanged"  placeholder="Search Delivery ID"></asp:TextBox>
        
 </div> 
 
@@ -160,7 +160,7 @@
                 </div>
                 <div class="btnExcel-Add">
 
-                    <asp:Button ID="btnExcel" class="excel-export" style="color: #6F6F6F; font-size: 1rem; font-weight: bold;" runat="server" Text="Export" CssClass="auto-style1" OnClick="btnExcel_Click" />
+                    <asp:Button ID="btnExcel"  CssClass="excel-export" runat="server" Text="Export" OnClick="btnExcel_Click" />
                      <asp:Button ID="addDeliveryBtn" runat="server" Text="➕ Add Delivery" CssClass="product-add" OnClick="addDeliveryBtn_Click" />
                 </div>
             </div>
@@ -200,9 +200,10 @@
                  <div class="eclipse-list" id="dropdownList<%# Eval("Delivery_ID") %>">
 
                      <div>
-                         <asp:HyperLink ID="update" runat="server" NavigateUrl='<%# "UpdateDelivery.aspx?DeliveryID=" + Eval("Delivery_ID") %>' Text="View/Update"></asp:HyperLink></div>
+                         <asp:HyperLink ID="update" runat="server" NavigateUrl='<%# "UpdateDelivery.aspx?DeliveryID=" + Eval("Delivery_ID") %>' Text="View/Update" style="text-decoration: none; color: grey;"></asp:HyperLink>
+                    </div>                 
                      <div>
-                         <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl='<%# "UpdateDelivery.aspx?DeliveryID=" + Eval("Delivery_ID") %>' Text="View Order"></asp:HyperLink></div>
+                         <asp:HyperLink ID="viewOrder" runat="server" NavigateUrl='<%# "../AdminOrder/OrderItem.aspx?OrderID=" + Eval("Order_ID") %>' Text="View Order" style="text-decoration: none; color: grey;"></asp:HyperLink></div>
                      <div onclick="showDeleteModal(<%# Eval("Delivery_ID") %>);">Delete</div>
 
                  </div>
@@ -216,17 +217,8 @@
 
     </div>
 
-    <div class="pagination">
-        <a href="#" class="page-link" onclick="changePage('prev')">&laquo;</a>
-        <a href="#" class="page-link active" onclick="changePage(1)">1</a>
-        <a href="#" class="page-link" onclick="changePage(2)">2</a>
-        <a href="#" class="page-link" onclick="changePage(3)">3</a>
-        <a href="#" class="page-link" onclick="changePage(4)">4</a>
-        <a href="#" class="page-link" onclick="changePage(5)">5</a>
-
-
-        <a href="#" class="page-link" onclick="changePage('next')">&raquo;</a>
-    </div>
+        <div style="margin-bottom: 80px;">
+        </div>
 
   <div id="id01" class="confirmationModal">
     <div class="confirmation-modal-content">
@@ -249,6 +241,14 @@
    <footer>
 
        <script type="text/javascript">
+
+           function isNumber(evt) {
+               var charCode = (evt.which) ? evt.which : event.keyCode;
+               if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+                   return false;
+               }
+               return true;
+           }
            function showDeleteModal(deliveryId) {
                document.getElementById('<%= hiddenDeliveryId.ClientID %>').value = deliveryId; 
                document.getElementById('id01').style.display = 'block';  
@@ -270,7 +270,3 @@
    </footer>
 
 </asp:Content>
-
-
-
-

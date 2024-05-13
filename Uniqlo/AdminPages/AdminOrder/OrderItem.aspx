@@ -25,109 +25,155 @@
             .backButtonClass:hover > .backLinkClass {
               color: #8F8F8F; 
             }      
+
+            .viewMoreButton{
+                outline: none;
+                background: none;
+                border: none;
+                font-weight: bold;
+                z-index: 100;
+            }
     </style>
     <div class="productBody">
         <header>
             <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet" />
         </header>
         <div class="backButtonClass">
-            <a href="/AdminPages/AdminOrder/Order.aspx" class="backLinkClass"><i class="fa fa-arrow-left" aria-hidden="true"></i></a>
+            <a href="/AdminPages/AdminOrder/OrderHome.aspx" class="backLinkClass"><i class="fa fa-arrow-left" aria-hidden="true"></i></a>
         </div>
-        <h1>ORDER ID : 1001</h1>
-       
+        <h1>ORDER ID : <asp:Label ID="orderIDLabel" runat="server" Text=""></asp:Label></h1>
+       <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+
         <div class="cart-page-container">
-            <div class="cart-items-container" style="width: 70%;">
-                <!-- Cart Item 1 -->
-                <div class="cart-item" id="cart1" data-product-id="1">
-                    <div class="cart-item-image-container">
-                        <img src="../../../Images/Categories/Woman/Tops/AIRismCottonShortSleeveT-Shirt1.jpg" alt="AIRism Cotton Short Sleeve T-Shirt"/>
-                    </div>
-                    <div class="item-details">
-                        <div class="item-name">
-                            <h3><b>AIRism Cotton Short Sleeve T-Shirt</b></h3>
-                        </div>
-                        <div class="item-description"> 
-                            <p>Smooth "AIRism" fabric with the look of cotton. Refined fabric and design.</p><br />
-                        </div>
-                        <div class="item-details">
-                            <p><b>Size:</b> M</p>
-                            <p><b>Color:</b> Red</p>
-                        </div>
-                            <p><b>Price:</b> RM30.00</p>
-                            <p><b>Quantity:</b> 1</p>
-                        <p class="item-subtotal"><b>Item Price: RM 30.00</b></p>
-                    </div>
+            <div class="cart-items-container" style="display: flex; width: 100%;">
+                <div style="width: 70%;">
+                    <asp:DataList ID="DataList1" runat="server">
+                        <ItemTemplate>
+                            <!-- Cart Item 1 -->
+                            <div class="cart-item" data-product-id="1">
+                                <div class="cart-item-image-container" style="width: 40%">
+                                    <img src='/ImageHandler.ashx?id=<%# Eval("Image_ID") %>' alt='<%# Eval("Product_Name") %>' style="width: 100%" />
+                                </div>
+
+
+                                <div class="item-details" style="width: 60%">
+
+
+                                    <div class="item-name">
+
+
+                                        <h3><b><%# Eval("Product_Name") %></b></h3>
+
+
+                                    </div>
+                                    <div class="item-description">
+                                        <p><%# Eval("Product_Description") %></p>
+                                        <br />
+                                    </div>
+                                    <div class="item-details">
+
+
+                                        <p><b>Size:</b> <%# Eval("Size") %></p>
+                                        <p><b>Color:</b>  <%# Eval("Color") %></p>
+                                    </div>
+                                    <p><b>Item Price:</b> <%# Eval("Item_Price", "{0:C}") %></p>
+                                    <p><b>Quantity:</b> <%# Eval("Qty") %></p>
+                                    <p class="item-subtotal"><b>Sub Total: <%# Eval("Subtotal", "{0:C}") %></b></p>
+                                </div>
+                            </div>
+                        </ItemTemplate>
+                    </asp:DataList>
                 </div>
 
-                <!-- Cart Item 2 -->
-                <div class="cart-item" id="cart2" data-product-id="2">
-                    <div class="cart-item-image-container">
-                        <img src="../../../Images/Categories/Woman/Bottoms/SweatCargoPants1.jpg" alt="Sweat Cargo Pants"/>
-                    </div>
-                    <div class="item-details">
-                        <div class="item-name">
-                            <h3><b>Sweat Cargo Pants</b></h3>
-                        </div>
-                        <div class="item-description">
-                            <p>Smooth "AIRism" fabric with the look of cotton. Refined fabric and design.</p>
-                        </div>
-                        <div class="item-details">
-                            <p><b>Size:</b> M</p>
-                            <p><b>Color:</b> Red</p>
-                        </div>
-                        <p><b>Price:</b> RM30.00</p>
-                        <p><b>Quantity:</b> 1</p>
-                        <p class="item-subtotal"><b>Item Price: RM 30.00</b></p>
-                    </div>
+                <!-- Cart Summary -->
+                <div style="width: 30%;">
+                    <asp:FormView ID="orderSummaryFormView" runat="server" DataKeyNames="Order_ID">
+
+                        <HeaderTemplate>
+                            <table style="width: 100%" class="table cart-summary">
+                        </HeaderTemplate>
+
+                        <ItemTemplate>
+                            <tr style="width: 30%;">
+                                <td>
+                                    <h2>Order Summary</h2>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <b>Date: </b>
+                                    <asp:Label ID="paymentDateLbl" runat="server" Text='<%# Eval("Payment_DateTime", "{0:dd/MM/yyyy}") %>'></asp:Label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <b>Payment method: </b>
+                                    <asp:Label ID="paymentMethodlbl" runat="server" Text='<%# Eval("Payment_Method", "{0:dd/MM/yyyy}") %>'></asp:Label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="display: flex;">
+                                    <div style="padding-top: 6px;"><b>Payment status: </b></div>
+                                    <div class="dropdown-wrapper" style="margin-left: 10px;">
+                                      <asp:DropDownList ID="paymentStatuslbl" runat="server" CssClass="dropdown-display" AutoPostBack="false" SelectedValue='<%# Eval("Payment_Status") %>'>
+                                    <asp:ListItem Value="Paid">Paid</asp:ListItem>
+                                    <asp:ListItem Value="Unpaid">Unpaid</asp:ListItem>
+                                    </asp:DropDownList>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <b>Delivery status: </b>
+                                    <asp:Label ID="deliveryStatuslbl" runat="server" Text='<%# Eval("Delivery_Status") %>'></asp:Label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <b>Total Price: </b>
+                                    <asp:Label ID="subTotallbl" runat="server" Text='<%# Eval("Sub_Total", "{0:C}") %>'></asp:Label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <b>Total Items: </b>
+                                    <asp:Label ID="totalItemlbl" runat="server" Text='<%# Eval("Total_Item") %>'></asp:Label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <b>Discount Amount : </b>
+                                    RM
+                                    <asp:Label ID="Label1" runat="server" Text='<%# (Convert.ToDecimal(Eval("Total_Payment")) - Convert.ToDecimal(Eval("Shipping_Amount")) - Convert.ToDecimal(Eval("Sub_Total"))).ToString("0.00") %>'></asp:Label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <b>Shipping Charges : </b>
+                                    <asp:Label ID="shipAmountlbl" runat="server" Text='<%# Eval("Shipping_Amount", "{0:C}") %>'></asp:Label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <b>Total: </b>
+                                    <asp:Label ID="totalPaymentlbl" runat="server" Text='<%# Eval("Total_Payment", "{0:C}") %>'></asp:Label>
+                                </td>
+                            </tr>
+                            </ItemTemplate>
+                       <FooterTemplate>
+                            <tr>
+                                <td>
+                                    <div class="viewMoreSection">
+                                        <asp:Button ID="btnSubmit" runat="server" Text="Submit" CssClass="viewMoreButton" OnClick="submitForm" />
+                                    </div>
+                                </td>
+                            </tr>
+                            </table>
+                        </FooterTemplate>
+                    </asp:FormView>
                 </div>
+               </div> 
             </div>
-
-            <!-- Cart Summary -->
-            <div class="cart-summary" style="width: 30%;">
-                <h3>Order Summary</h3>
-                <p><b>Date: </b>14/3/2024 </p>
-                <p><b>Payment method: </b>Cash </p>
-                <div style="display: flex; "><b>Payment status: </b>
-                    <div class="dropdown-container" onclick="toggleDropdown('dropdownList2', 'dropdownDisplay2')" style="margin-left: 10px;">
-                        <div class="dropdown-display" id="dropdownDisplay2">Unpaid</div>
-                        <div class="dropdown-list" id="dropdownList2">
-                            <div onclick="selectOption('Paid', 'dropdownDisplay2')">Paid</div>
-                            <div onclick="selectOption('Unpaid', 'dropdownDisplay2')">Unpaid</div>
-                        </div>
-                    </div>       
-                </div>
-                <!-- <p><b>Total Price: </b> <span id="totalItemsLabel" class="total-items"></span> </p> -->
-                <p><b>Total Price: </b>RM109.90 </p>
-                <p><b>Total Items: </b>2</p>
-                <p><b>Shipping Charges : </b>RM20</p>
-                <p><b>Total: </b>RM129.90</p>
-                <div class="viewMoreSection">
-                    <a href="#" class="viewMoreButton">Submit</a>
-                </div>
-            </div>
-        </div>
-
-        <script>
-
-
-            // Calculate and display total items and total price
-            //window.addEventListener('DOMContentLoaded', (event) => {
-              //  var cartItems = document.querySelectorAll('.cart-item');
-                //var totalItems = 0;
-                //var totalPrice = 0;
-
-                //cartItems.forEach(function (cartItem) {
-                  //  var quantity = parseInt(cartItem.querySelector('.qty').value);
-                    //var subtotal = parseFloat(cartItem.querySelector('.item-subtotal').textContent.replace('Subtotal: RM ', ''));
-                   // totalItems += quantity;
-                    //totalPrice += subtotal;
-               // });
-
-               // document.getElementById('totalItemsLabel').textContent = totalItems;
-                //document.getElementById('totalPriceLabel').textContent = totalPrice.toFixed(2);
-            //});
-
-        </script>
         <script src="../../../Javascript/productAdminDDL.js"></script>
     </div>
 

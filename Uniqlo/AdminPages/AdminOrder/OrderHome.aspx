@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin.Master" AutoEventWireup="true" CodeBehind="OrderHome.aspx.cs" Inherits="Uniqlo.AdminPages.AdminOrder.OrderHome" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="main" runat="server">
-    
     <link href="../../css/Admin/adminOrder.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
@@ -73,7 +73,7 @@
         /* Modal Content/Box */
         .confirmation-modal-content {
             background-color: #fefefe;
-            margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+            margin: 5% auto 15% auto;
             border: 1px solid #888;
             width: 80%; /* Could be more or less, depending on screen size */
             height: 400px;
@@ -128,10 +128,10 @@
                     <div class="wrap-items-search-buttons">
                         <div class="search">
                             <span class="material-symbols-outlined">search</span>
-                            <input class="search-input" type="search" placeholder="Search" />
+                            <asp:TextBox ID="searchBox" runat="server" CssClass="search-input" AutoPostBack="true" OnTextChanged="searchBox_TextChanged"  placeholder="Search Customer Name"></asp:TextBox>
                         </div>
 
-                        <div class="dropdown-wrapper">
+                        <div class="dropdown-wrapper" style="margin-left: -300px;">
                             <asp:DropDownList ID="ddlStatus" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlStatus_SelectedIndexChanged" CssClass="dropdown-display">
                                 <asp:ListItem Value="">Status</asp:ListItem>
                                 <asp:ListItem Value="Paid">Paid</asp:ListItem>
@@ -172,7 +172,7 @@
                             <td class="col name"><%# Eval("CustomerName") %></td>
                             <td class="col price"><%# Eval("OrderListTotalItems") %></td>
                             <td class="col gender"><%# Eval("PaymentTotalAmount") %></td>
-                            <td class="col category"><%# Eval("PaymentDate") %></td>
+                            <td class="col category"><%# Eval("PaymentDate", "{0:dd/MM/yyyy}") %></td>
                             <td class="col wear"><%# Eval("PaymentStatus") %></td>
                             <td class="col eclipse-container" onclick="toggleDropdown('dropdownList<%# Eval("OrderId") %>', 'dropdownDisplay<%# Eval("OrderId") %>')">
                                 <div class="eclipse-display" id="dropdownDisplay<%# Eval("OrderId") %>" style="border: none;"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></div>
@@ -180,6 +180,7 @@
                                     <div>
                                         <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl='<%# "OrderItem.aspx?OrderID=" + Eval("OrderId") %>' Text="View More" Style="text-decoration: none; color: #6F6F6F"></asp:HyperLink>
                                     </div>
+                                    <div onclick="showDeleteModal(<%# Eval("OrderId") %>);">Delete</div>
                                 </div>
                             </td>
                         </tr>
@@ -199,21 +200,42 @@
 
         </asp:UpdatePanel>
 
-        <div class="pagination">
-            <a href="#" class="page-link" onclick="changePage('prev')">&laquo;</a>
-            <a href="#" class="page-link active" onclick="changePage(1)">1</a>
-            <a href="#" class="page-link" onclick="changePage(2)">2</a>
-            <a href="#" class="page-link" onclick="changePage(3)">3</a>
-            <a href="#" class="page-link" onclick="changePage(4)">4</a>
-            <a href="#" class="page-link" onclick="changePage(5)">5</a>
+         <asp:HiddenField ID="hiddenOrderId" runat="server" Value="" />
 
+        <!--DELETE CONFIRMATION-->
+        <div id="id01" class="confirmationModal">
+            <div class="confirmation-modal-content">
+                <div class="confirmationContainer">
+                    <span onclick="document.getElementById('id01').style.display='none'" class="confirmationClose" title="Close Modal">×</span>
+                    <h1>Remove Order</h1>
+                    <p>Are you sure you want to remove the Order?</p>
 
-            <a href="#" class="page-link" onclick="changePage('next')">&raquo;</a>
+                    <div class="confirmationClearFix">
+                        <button type="button" onclick="document.getElementById('id01').style.display='none'" class="confirmationCancelbtn">Cancel</button>
+                        <asp:Button ID="btnRemoveProduct" runat="server" Text="Remove"  CssClass="confirmationDeletebtn" OnClick="btnRemoveOrder_Click" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--DELETE CONFIRMATION END-->
+
+        <div style="margin-bottom: 80px;">
         </div>
     </div>
 
     <footer>
         <script src="../../Javascript/productBtnEclipse.js"></script>
         <script src="../../Javascript/productAdminDDL.js"></script>
+        <script>
+
+            function showDeleteModal(prodID) {
+                document.getElementById('<%= hiddenOrderId.ClientID %>').value = prodID;
+                document.getElementById('id01').style.display = 'block';
+            }
+
+            document.getElementById('<%= searchBox.ClientID %>').onkeyup = function () {
+                     __doPostBack('<%= searchBox.ClientID %>', '');
+            };
+        </script>
     </footer>
 </asp:Content>

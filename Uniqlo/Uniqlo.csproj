@@ -59,9 +59,18 @@
     <Reference Include="EPPlus.System.Drawing, Version=6.1.1.0, Culture=neutral, PublicKeyToken=2308d35469c9bac0, processorArchitecture=MSIL">
       <HintPath>..\packages\EPPlus.System.Drawing.6.1.1\lib\net462\EPPlus.System.Drawing.dll</HintPath>
     </Reference>
+    <Reference Include="itextsharp, Version=5.5.13.3, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\iTextSharp.5.5.13.3\lib\itextsharp.dll</HintPath>
+    </Reference>
+    <Reference Include="MailKit, Version=4.5.0.0, Culture=neutral, PublicKeyToken=4e064fe7c44a8f1b, processorArchitecture=MSIL">
+      <HintPath>..\packages\MailKit.4.5.0\lib\net47\MailKit.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.IO.RecyclableMemoryStream, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.IO.RecyclableMemoryStream.3.0.0\lib\netstandard2.0\Microsoft.IO.RecyclableMemoryStream.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.2.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
     </Reference>
     <Reference Include="MimeKit, Version=4.5.0.0, Culture=neutral, PublicKeyToken=bede1c8a46c66814, processorArchitecture=MSIL">
       <HintPath>..\packages\MimeKit.4.5.0\lib\net47\MimeKit.dll</HintPath>
@@ -70,12 +79,15 @@
       <HintPath>..\..\..\..\Desktop\MSCaptcha\MSCaptcha.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.CodeDom, Version=7.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.CodeDom.7.0.0\lib\net462\System.CodeDom.dll</HintPath>
     </Reference>
     <Reference Include="System.ComponentModel.Annotations, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.ComponentModel.Annotations.5.0.0\lib\net461\System.ComponentModel.Annotations.dll</HintPath>
@@ -83,6 +95,7 @@
     <Reference Include="System.Formats.Asn1, Version=8.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Formats.Asn1.8.0.0\lib\net462\System.Formats.Asn1.dll</HintPath>
     </Reference>
+    <Reference Include="System.Management" />
     <Reference Include="System.Memory, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Memory.4.5.5\lib\net461\System.Memory.dll</HintPath>
     </Reference>
@@ -102,6 +115,7 @@
     <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
     </Reference>
+    <Reference Include="System.Web.DataVisualization" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -139,16 +153,18 @@
   <ItemGroup>
     <Content Include="AdminPages\adminLogin.aspx" />
     <Content Include="AdminPages\AdminDelivery\AddDelivery.aspx" />
+    <Content Include="AdminPages\AdminDelivery\DeliveryHome.aspx" />
     <Content Include="AdminPages\AdminDiscount\addDiscount.aspx" />
     <Content Include="AdminPages\AdminDiscount\DiscountHome.aspx" />
+    <Content Include="AdminPages\adminLogin.aspx" />
     <Content Include="AdminPages\AdminOrder\OrderHome.aspx" />
     <Content Include="AdminPages\AdminProduct\AddProduct.aspx" />
     <Content Include="AdminPages\AdminProduct\ProductHome.aspx" />
     <Content Include="AdminPages\adminProfile.aspx" />
+    <Content Include="AdminPages\AdminStaff\DeleteStaff.aspx" />
     <Content Include="AdminPages\AdminStaff\StaffAdd.aspx" />
     <Content Include="AdminPages\AdminStaff\StaffHome.aspx" />
     <Content Include="AdminPages\Dashboard.aspx" />
-    <Content Include="AdminPages\AdminDelivery\DeliveryHome.aspx" />
     <Content Include="AdminPages\AdminOrder\OrderItem.aspx" />
     <Content Include="AdminPages\AdminDiscount\UpdateDiscount.aspx" />
     <Content Include="AdminPages\AdminProduct\UpdateProduct.aspx" />
@@ -279,7 +295,10 @@
     <Content Include="Pages\Payment.aspx" />
     <Content Include="Pages\ProductDetails.aspx" />
     <Content Include="Pages\Profile.aspx" />
+    <Content Include="Pages\ReviewItem.aspx" />
+    <Content Include="Pages\SendProductGmailToFriend.aspx" />
     <Content Include="Pages\SignUp.aspx" />
+    <Content Include="Pages\test.aspx" />
     <Content Include="Pages\TrackDelivery.aspx" />
     <Content Include="Pages\ValueBuy.aspx" />
     <Content Include="Pages\WishList.aspx" />
@@ -318,6 +337,13 @@
     <Compile Include="AdminPages\AdminDelivery\AddDelivery.aspx.designer.cs">
       <DependentUpon>AddDelivery.aspx</DependentUpon>
     </Compile>
+    <Compile Include="AdminPages\AdminDelivery\DeliveryHome.aspx.cs">
+      <DependentUpon>DeliveryHome.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminPages\AdminDelivery\DeliveryHome.aspx.designer.cs">
+      <DependentUpon>DeliveryHome.aspx</DependentUpon>
+    </Compile>
     <Compile Include="AdminPages\AdminDiscount\addDiscount.aspx.cs">
       <DependentUpon>addDiscount.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -331,6 +357,13 @@
     </Compile>
     <Compile Include="AdminPages\AdminDiscount\DiscountHome.aspx.designer.cs">
       <DependentUpon>DiscountHome.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AdminPages\adminLogin.aspx.cs">
+      <DependentUpon>adminLogin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminPages\adminLogin.aspx.designer.cs">
+      <DependentUpon>adminLogin.aspx</DependentUpon>
     </Compile>
     <Compile Include="AdminPages\AdminOrder\OrderHome.aspx.cs">
       <DependentUpon>OrderHome.aspx</DependentUpon>
@@ -360,6 +393,13 @@
     <Compile Include="AdminPages\adminProfile.aspx.designer.cs">
       <DependentUpon>adminProfile.aspx</DependentUpon>
     </Compile>
+    <Compile Include="AdminPages\AdminStaff\DeleteStaff.aspx.cs">
+      <DependentUpon>DeleteStaff.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminPages\AdminStaff\DeleteStaff.aspx.designer.cs">
+      <DependentUpon>DeleteStaff.aspx</DependentUpon>
+    </Compile>
     <Compile Include="AdminPages\AdminStaff\StaffAdd.aspx.cs">
       <DependentUpon>StaffAdd.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -380,13 +420,6 @@
     </Compile>
     <Compile Include="AdminPages\Dashboard.aspx.designer.cs">
       <DependentUpon>Dashboard.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="AdminPages\AdminDelivery\DeliveryHome.aspx.cs">
-      <DependentUpon>DeliveryHome.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="AdminPages\AdminDelivery\DeliveryHome.aspx.designer.cs">
-      <DependentUpon>DeliveryHome.aspx</DependentUpon>
     </Compile>
     <Compile Include="AdminPages\AdminOrder\OrderItem.aspx.cs">
       <DependentUpon>OrderItem.aspx</DependentUpon>
@@ -616,12 +649,33 @@
     <Compile Include="Pages\Profile.aspx.designer.cs">
       <DependentUpon>Profile.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Pages\ReviewItem.aspx.cs">
+      <DependentUpon>ReviewItem.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\ReviewItem.aspx.designer.cs">
+      <DependentUpon>ReviewItem.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\SendProductGmailToFriend.aspx.cs">
+      <DependentUpon>SendProductGmailToFriend.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\SendProductGmailToFriend.aspx.designer.cs">
+      <DependentUpon>SendProductGmailToFriend.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Pages\SignUp.aspx.cs">
       <DependentUpon>SignUp.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Pages\SignUp.aspx.designer.cs">
       <DependentUpon>SignUp.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\test.aspx.cs">
+      <DependentUpon>test.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\test.aspx.designer.cs">
+      <DependentUpon>test.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\TrackDelivery.aspx.cs">
       <DependentUpon>TrackDelivery.aspx</DependentUpon>
@@ -693,6 +747,7 @@
     <Content Include="Admin.Master" />
     <Content Include="admin.sitemap" />
     <Content Include="ImageHandler.ashx" />
+    <Content Include="credentials.json" />
     <None Include="packages.config" />
     <Content Include="Uniqlo.Master" />
     <EntityDeploy Include="UniqloAdo.edmx">

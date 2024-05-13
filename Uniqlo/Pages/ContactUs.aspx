@@ -1,7 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Uniqlo.Master" AutoEventWireup="true" CodeBehind="ContactUs.aspx.cs" Inherits="Uniqlo.ContactUs" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="main" runat="server">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-
     <link href="../css/ContactUs.css?v=1.1" rel="stylesheet" />
     <div class="productBody">
         <div class="contact-container">
@@ -21,12 +20,6 @@
                             <p>Welcome to Uniqlo! Please don't hesitate to let us know what we can assist you with.</p>
                         </div>
                     </div>
-
-                    <div class="user-inbox inbox">
-                        <div class="msg-header">
-                            <p>Welcome to Uniqlo! Please don't hesitate to let us know what we can assist you with.</p>
-                        </div>
-                    </div>
                 </div>
                 <div class="chatbot-input">
                     <input type="text" id="userInput" placeholder="Type your message..." required/>
@@ -35,5 +28,5 @@
             </div>
         </div>
     </div>
-    <script src="../Javascript/ContactUs.js"></script>
+    <script src="../Javascript/ContactUs.js" defer></script>
 </asp:Content>
