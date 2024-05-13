@@ -318,13 +318,6 @@
 
         <h1>ORDER ID :<asp:Label ID="orderIDLabel" runat="server" Text=""></asp:Label></h1>
 
-
-
-
-
-
-
-
         <div class="cart-page-container">
             <div class="cart-items-container" style="display: flex; width: 100%;">
                 <div style="width: 70%;">
@@ -483,17 +476,7 @@
                 }
 
 
-                function setRating(rating) {
-                    var stars = document.querySelectorAll('.star1');
-                    for (var i = 0; i < stars.length; i++) {
-                        stars[i].classList.remove('checked');
-                    }
-                    for (var i = 0; i < rating; i++) {
-                        stars[i].classList.add('checked');
-                    }
-                    // Set the value in a hidden field to post to server
-                    document.getElementById('<%= HiddenRating.ClientID %>').value = rating;
-                }
+
 
 
 
