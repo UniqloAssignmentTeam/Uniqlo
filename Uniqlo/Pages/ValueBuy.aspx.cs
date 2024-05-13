@@ -58,7 +58,7 @@ namespace Uniqlo.Pages
         }
 
 
-        protected void FilterProducts(object sender, EventArgs e)
+        protected void SortbyGender(object sender, EventArgs e)
         {
             using (var db = new ProductDbContext())
             {
@@ -92,6 +92,42 @@ namespace Uniqlo.Pages
             }
         }
 
+        protected void SortbyCategory(object sender, EventArgs e)
+        {
+            using (var db = new ProductDbContext())
+            {
+                var today = DateTime.Today;
+                var selectedCategory = categorySortDDL.SelectedValue;
+
+                var productDetails = db.Product
+                    .Where(p => !p.IsDeleted && (selectedCategory == "" || p.Category.Name == selectedCategory))
+                    .SelectMany(
+                        p => db.Discount
+                            .Where(d => d.Product_ID == p.Product_ID
+                                && d.Status == "Active"
+                                && d.Start_Date <= today
+                                && d.End_Date >= today),
+                        (product, discount) => new {
+                            Product_ID = product.Product_ID,
+                            Product_Name = product.Product_Name,
+                            Description = product.Description,
+                            Price = product.Price,
+                            Image_ID = product.Quantities.Select(q => q.Image_ID).FirstOrDefault(),
+                            AverageRating = product.Quantities.SelectMany(q => q.OrderLists)
+                                                              .SelectMany(ol => ol.Reviews)
+                                                              .Average(r => (int?)r.Rating) ?? 0,
+                            ReviewCount = product.Quantities.SelectMany(q => q.OrderLists)
+                                                            .SelectMany(ol => ol.Reviews).Count(),
+                            Discount_Amount = product.Price - discount.Discount_Amount
+                        }
+                    )
+                    .ToList();
+
+                dlValueBuy.DataSource = productDetails;
+                dlValueBuy.DataBind();
+                dlValueBuy.RepeatColumns = productDetails.Count > 4 ? 4 : productDetails.Count;
+            }
+        }
 
 
         public string GenerateStars(double rating)
