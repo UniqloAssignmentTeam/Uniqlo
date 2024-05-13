@@ -75,7 +75,7 @@ namespace Uniqlo.AdminPages.AdminProduct
         {
             using (var db = new ProductDbContext())
             {
-                var productList = db.Product.Include(p => p.Category).Where(p => !p.IsDeleted.HasValue || !p.IsDeleted.Value).ToList();
+                var productList = db.Product.Include(p => p.Category).Where(p => !p.IsDeleted).ToList();
 
                 prodRepeater.DataSource = productList;
                 prodRepeater.DataBind();
