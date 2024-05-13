@@ -21,39 +21,49 @@ namespace Uniqlo.Pages.Categories.Women
 
         private void BindDataList()
         {
-            using (var db = new ProductDbContext())
+            try
             {
-                var today = DateTime.Today;
+                using (var db = new ProductDbContext())
+                {
+                    var today = DateTime.Today;
 
-                var productDetails = db.Product
-                    .Where(p => !p.IsDeleted && p.Category.Gender == "W")
-                    .SelectMany( // Use SelectMany to flatten the results from the join
-                        p => db.Discount
-                            .Where(d => d.Product_ID == p.Product_ID // Ensure it's the right product
-                                && d.Status == "Active" // Discount must be active
-                                && d.Start_Date <= today // Start date must be on or before today
-                                && d.End_Date >= today), // End date must be on or after today
-                        (product, discount) => new {
-                            Product_Id = product.Product_ID,
-                            Product_Name = product.Product_Name,
-                            Description = product.Description,
-                            Price = product.Price,
-                            Image_ID = product.Quantities.Select(q => q.Image_ID).FirstOrDefault(), // Assuming at least one quantity has an image
-                            AverageRating = product.Quantities.SelectMany(q => q.OrderLists).SelectMany(ol => ol.Reviews).Average(r => (int?)r.Rating) ?? 0,
-                            ReviewCount = product.Quantities.SelectMany(q => q.OrderLists).SelectMany(ol => ol.Reviews).Count(),
-                            Discount_Amount = product.Price - discount.Discount_Amount
-                        }
-                    )
-                    .Take(4)
-                    .ToList();
+                    var productDetails = db.Product
+                        .Where(p => !p.IsDeleted && p.Category.Gender == "W")
+                        .SelectMany( // Use SelectMany to flatten the results from the join
+                            p => db.Discount
+                                .Where(d => d.Product_ID == p.Product_ID // Ensure it's the right product
+                                    && d.Status == "Active" // Discount must be active
+                                    && d.Start_Date <= today // Start date must be on or before today
+                                    && d.End_Date >= today), // End date must be on or after today
+                            (product, discount) => new {
+                                Product_Id = product.Product_ID,
+                                Product_Name = product.Product_Name,
+                                Description = product.Description,
+                                Price = product.Price,
+                                Image_ID = product.Quantities.Select(q => q.Image_ID).FirstOrDefault(), // Assuming at least one quantity has an image
+                                AverageRating = product.Quantities.SelectMany(q => q.OrderLists).SelectMany(ol => ol.Reviews).Average(r => (int?)r.Rating) ?? 0,
+                                ReviewCount = product.Quantities.SelectMany(q => q.OrderLists).SelectMany(ol => ol.Reviews).Count(),
+                                Discount_Amount = product.Price - discount.Discount_Amount
+                            }
+                        )
+                        .Take(4)
+                        .ToList();
 
-                dlValueBuy.RepeatColumns = productDetails.Count > 4 ? 4 : productDetails.Count;
+                    dlValueBuy.RepeatColumns = productDetails.Count > 4 ? 4 : productDetails.Count;
 
-                dlValueBuy.DataSource = productDetails;
-                dlValueBuy.DataBind();
+                    dlValueBuy.DataSource = productDetails;
+                    dlValueBuy.DataBind();
 
-                
+
+                }
             }
+            catch (Exception ex)
+            {
+
+                // Optionally display error message on the page
+                ScriptManager.RegisterStartupScript(this, GetType(), "errorAlert", "alert('An error occurred when retrieve product.');", true);
+            }
+
         }
         public string GenerateStars(double rating)
         {

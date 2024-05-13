@@ -5,7 +5,7 @@
     <!-- Second Modal -->
     <div id="secModal" class="modal" runat="server">
         <div class="modal-content">
-            <asp:Button ID="btnCloseModal" runat="server" Text="&times;" OnClick="btnCloseModal_Click" CssClass="secClose" />
+
             <asp:Repeater ID="ratingRepeater" runat="server" ViewStateMode="Disabled">
                 <ItemTemplate>
                     <div class="modal-rating-content">
@@ -23,11 +23,8 @@
                         </div>
                         <div style="display: flex; margin-top: 20px; width: 600px;" class="secModalBtnBorder">
                             <div style="width: 50%; border: 2px solid black; margin: 2px; height: 50px;" class="secModalBtnBorder1" id="thirdBtn">
-                                <a href="#" class="secModalBtn1">Edit</a>
-                            </div>
-                            <div style="width: 50%; border: 2px solid black; height: 50px; margin-top: 2px;" class="secModalBtnBorder2">
-                                <a href="#" class="secModalBtn2" onclick="document.getElementById('id01').style.display='block'">Delete</a>
-                            </div>
+                                <a href='<%# "EditReviewItem.aspx?ReviewID=" + Eval("Review_ID") %>' class="secModalBtn1">Edit</a>
+                            </div
                         </div>
                     </div>
                 </ItemTemplate>

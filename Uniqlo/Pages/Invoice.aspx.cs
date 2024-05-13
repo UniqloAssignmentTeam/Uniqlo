@@ -26,7 +26,7 @@ namespace Uniqlo.Pages
                     List<CartItem> cart = (List<CartItem>)Session["Cart"];
                     rptCartItems.DataSource = cart;
                     rptCartItems.DataBind();
-                    
+
                 }
 
                 decimal totalPrice = (decimal)Session["TotalPrice"];
@@ -38,7 +38,7 @@ namespace Uniqlo.Pages
                 decimal grandTotal = (decimal)Session["GrandTotal"];
                 lblGrandTotal.Text = "RM " + grandTotal.ToString("N2");
 
-               
+
             }
 
             int paymentId = Convert.ToInt32(Session["PaymentId"]);

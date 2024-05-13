@@ -117,7 +117,7 @@ namespace Uniqlo.Pages
                     int customerId = Convert.ToInt32(Session["Customer_Id"]);
                     List<CartItem> cartItems = Session["Cart"] as List<CartItem>;
                     decimal subtotal = (decimal)Session["TotalPrice"];
-                    cmd.CommandText = "INSERT INTO Orders (Customer_Id, Subtotal) VALUES (@CustomerId, @Subtotal); SELECT SCOPE_IDENTITY();";
+                    cmd.CommandText = "INSERT INTO Orders (Customer_Id, Subtotal, IsDeleted) VALUES (@CustomerId, @Subtotal, 0); SELECT SCOPE_IDENTITY();";
                     cmd.Parameters.AddWithValue("@CustomerId", customerId);
                     cmd.Parameters.AddWithValue("@Subtotal", subtotal);
                     int orderId = Convert.ToInt32(cmd.ExecuteScalar());

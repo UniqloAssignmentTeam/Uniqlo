@@ -118,7 +118,7 @@ namespace Uniqlo.AdminPages.AdminDiscount
             {
                 string searchText = searchBox.Text.Trim();
                 var results = db.Discount.Include(d => d.Product)
-                                .Where(d => d.Product.Product_Name.Contains(searchText) && !d.Product.IsDeleted)
+                                .Where(d => d.Product.Product_Name.Contains(searchText) && d.Product.IsDeleted == false)
                                 .ToList();
 
                 discountRepeater.DataSource = results;

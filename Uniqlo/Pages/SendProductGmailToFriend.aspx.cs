@@ -21,46 +21,56 @@ namespace Uniqlo.Pages
             {
                 if (!IsPostBack)
                 {
-                    using (var db = new ProductDbContext())
+                    try
                     {
-                        var today = DateTime.Today;
+                        using (var db = new ProductDbContext())
+                        {
+                            var today = DateTime.Today;
 
-                        // Expecting a single product due to unique product ID
-                        var product = db.Product
-                            .Where(p => p.Product_ID == prodID && !p.IsDeleted)
-                            .Include(p => p.Discounts)
-                            .Include(p => p.Quantities.Select(q => q.Image))
-                            .Select(p => new
+                            // Expecting a single product due to unique product ID
+                            var product = db.Product
+                                .Where(p => p.Product_ID == prodID && p.IsDeleted == false)
+                                .Include(p => p.Discounts)
+                                .Include(p => p.Quantities.Select(q => q.Image))
+                                .Select(p => new
+                                {
+                                    ProductName = p.Product_Name,
+                                    Description = p.Description,
+                                    Price = p.Price,
+                                    DiscountAmount = p.Discounts
+                                        .Where(d => d.Status == "Active" && d.Start_Date <= today && d.End_Date >= today)
+                                        .Select(d => d.Discount_Amount)
+                                        .FirstOrDefault(),
+                                    FirstImageId = p.Quantities.Select(q => q.Image_ID).FirstOrDefault(),
+                                })
+                                .FirstOrDefault();  // Use FirstOrDefault to get a single product or null
+
+                            // Check if a product was found
+                            if (product != null)
                             {
-                                ProductName = p.Product_Name,
-                                Description = p.Description,
-                                Price = p.Price,
-                                DiscountAmount = p.Discounts
-                                    .Where(d => d.Status == "Active" && d.Start_Date <= today && d.End_Date >= today)
-                                    .Select(d => d.Discount_Amount)
-                                    .FirstOrDefault(),
-                                FirstImageId = p.Quantities.Select(q => q.Image_ID).FirstOrDefault(),
-                            })
-                            .FirstOrDefault();  // Use FirstOrDefault to get a single product or null
-
-                        // Check if a product was found
-                        if (product != null)
-                        {
-                            prodNameHidden.Value = product.ProductName;
-                            prodDiscountHidden.Value = product.DiscountAmount.ToString();
-                            prodPriceHidden.Value = product.Price.ToString();
-                            prodDescHidden.Value = product.Description;
-                            prodImageID.Value = product.FirstImageId.ToString();
-                        }
-                        else
-                        {
-                            prodNameHidden.Value = "Product not found";
-                            prodDiscountHidden.Value = "N/A";
-                            prodPriceHidden.Value = "N/A";
-                            prodDescHidden.Value = "No description available";
-                            prodImageID.Value = "N/A";
+                                prodNameHidden.Value = product.ProductName;
+                                prodDiscountHidden.Value = product.DiscountAmount.ToString();
+                                prodPriceHidden.Value = product.Price.ToString();
+                                prodDescHidden.Value = product.Description;
+                                prodImageID.Value = product.FirstImageId.ToString();
+                            }
+                            else
+                            {
+                                prodNameHidden.Value = "Product not found";
+                                prodDiscountHidden.Value = "N/A";
+                                prodPriceHidden.Value = "N/A";
+                                prodDescHidden.Value = "No description available";
+                                prodImageID.Value = "N/A";
+                            }
                         }
                     }
+                    catch (Exception ex)
+                    {
+
+                        // Optionally display error message on the page
+                        ScriptManager.RegisterStartupScript(this, GetType(), "errorAlert", "alert('An error occurred when retrieving product information.');", true);
+                    }
+
                 }
             }
             else
@@ -128,10 +138,11 @@ namespace Uniqlo.Pages
                 int prodID = Int32.Parse(Request.QueryString["id"]);
 
                 return db.Image
-                 .Where(img => img.Image_ID == imageID)
-                 .Select(img => img.ProductImage)
-                 .FirstOrDefault();
+                .Where(img => img.Image_ID == imageID)
+                .Select(img => img.ProductImage)
+                .FirstOrDefault();
             }
+
         }
 
         private string getUserEmailAddress()

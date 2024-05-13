@@ -32,7 +32,6 @@ namespace Uniqlo
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Payment> Payments { get; set; }
     }
-
     public class OrderDbContext : DbContext
     {
         public OrderDbContext() : base("name=UniqloEntities")

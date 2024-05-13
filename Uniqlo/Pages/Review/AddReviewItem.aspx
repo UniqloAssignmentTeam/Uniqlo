@@ -2,7 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="main" runat="server">
         <div id="myModal" class="modal" runat="server">
         <div class="modal-content">
-            <asp:Button ID="Button1" runat="server" Text="&times;" OnClick="btnCloseModal_Click" CssClass="close" />
+            
             <div class="modal-rating-content">
                 <div style="display: flex;">
                     <p>Rating</p>

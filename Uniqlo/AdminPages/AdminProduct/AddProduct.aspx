@@ -44,6 +44,7 @@
 
                 <div class="form-group">
                     <asp:Label ID="lblDescription" runat="server" Text="Description"></asp:Label>
+
                     <asp:TextBox ID="txtDescription" CssClass="form-field" TextMode="MultiLine" runat="server" Rows="4" Columns="50" MaxLength="500"></asp:TextBox>
                     <asp:RequiredFieldValidator ID="rfvProductDescription" ControlToValidate="txtDescription" runat="server" ErrorMessage="Product description is required." CssClass="validation-error"/>
                 </div>
@@ -96,7 +97,7 @@
                     <asp:TextBox ID="newColorInput" runat="server"></asp:TextBox>
                     <div style="display: flex;">
                         <div>
-                            <asp:Button ID="addColorButton" runat="server" Text="Add color" CssClass="addColor-button" CausesValidation="false"/>
+                            <asp:Button ID="addColorButton" runat="server" Text="Add Color" CssClass="addColor-button" OnClientClick="return false;" ClientIDMode="Static" CausesValidation="false" />
                         </div>
                     
                         <div style="margin-left: 80px;">
@@ -239,7 +240,9 @@
                 } else {
                     alert('Please enter a color.');
                 }
+                // End the click event handler with a closing bracket
             });
+
          
       
 

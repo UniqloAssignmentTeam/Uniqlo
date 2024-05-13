@@ -33,27 +33,34 @@ namespace Uniqlo.AdminPages.AdminOrder
         {
             try
             {
-                using (var db = new OrderDbContext())
-                {
-                    var orders = db.Order
-                        .Where(o => !o.IsDeleted)
-                        .Include(o => o.Customer)
-                        .Include(o => o.OrderLists)
-                        .Include(o => o.Payments)
-                        .Select(o => new
-                        {
-                            OrderId = o.Order_ID,
-                            CustomerName = o.Customer.Name,
-                            OrderListTotalItems = o.OrderLists.Sum(ol => ol.Qty),
-                            PaymentTotalAmount = o.Payments.Sum(p => p.Total_Payment),
-                            PaymentDate = o.Payments.Select(p => p.Payment_DateTime).FirstOrDefault(),
-                            PaymentStatus = o.Payments.Select(p => p.Payment_Status).FirstOrDefault()
-                        })
-                        .ToList();
+                string selectedStatus = ddlStatus.SelectedValue;
+                bool showAll = string.IsNullOrEmpty(selectedStatus);
 
-                    orderRepeater.DataSource = orders;
-                    orderRepeater.DataBind();
+                if (showAll)
+                {
+                    using (var db = new OrderDbContext())
+                    {
+                        var orders = db.Order
+                            .Where(o => !o.IsDeleted)
+                            .Include(o => o.Customer)
+                            .Include(o => o.OrderLists)
+                            .Include(o => o.Payments)
+                            .Select(o => new
+                            {
+                                OrderId = o.Order_ID,
+                                CustomerName = o.Customer.Name,
+                                OrderListTotalItems = o.OrderLists.Sum(ol => ol.Qty),
+                                PaymentTotalAmount = o.Payments.Sum(p => p.Total_Payment),
+                                PaymentDate = o.Payments.Select(p => p.Payment_DateTime).FirstOrDefault(),
+                                PaymentStatus = o.Payments.Select(p => p.Payment_Status).FirstOrDefault()
+                            })
+                            .ToList();
+
+                        orderRepeater.DataSource = orders;
+                        orderRepeater.DataBind();
+                    }
                 }
+
             }
             catch (Exception ex)
             {
@@ -279,6 +286,7 @@ namespace Uniqlo.AdminPages.AdminOrder
                 ScriptManager.RegisterStartupScript(this, GetType(), "errorAlert", "alert('An error occurred: " + ex.Message + "');", true);
             }
         }
+
 
 
     }

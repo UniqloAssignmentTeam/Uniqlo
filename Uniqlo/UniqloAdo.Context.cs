@@ -38,6 +38,5 @@ namespace Uniqlo
         public virtual DbSet<Review> Reviews { get; set; }
         public virtual DbSet<Shipping_Address> Shipping_Address { get; set; }
         public virtual DbSet<Staff> Staffs { get; set; }
-        public virtual DbSet<WishlistItem> WishlistItems { get; set; }
     }
 }

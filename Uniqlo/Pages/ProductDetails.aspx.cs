@@ -34,65 +34,77 @@ namespace Uniqlo.Pages
                     BindOutsideViewControl();
                     FirstImageId(productId);
                 }
+                RadioButtonList rbList = (RadioButtonList)formView.FindControl("RadioButtonListColors");
+                rbList.ClearSelection();
             }
 
         }
 
         private void BindFormView(int productId)
         {
-            using (var db = new ProductDbContext())
+            try
             {
-                var today = DateTime.Today;
+                using (var db = new ProductDbContext())
+                {
+                    var today = DateTime.Today;
 
-                var productList = db.Product
-                    .Where(p => p.Product_ID == productId && !p.IsDeleted)
-                    .Include(p => p.Category)
-                    .Include(p => p.Discounts)
-                    .Include(p => p.Quantities.Select(q => q.Image))
-                    .Select(p => new
-                    {
-                        Product_ID = p.Product_ID,
-                        Product_Name = p.Product_Name,
-                        Description = p.Description,
-                        Price = p.Price,
-                        DiscountAmount = p.Discounts
-                            .Where(d => d.Status == "Active" && d.Start_Date <= today && d.End_Date >= today)
-                            .Select(d => d.Discount_Amount)
-                            .FirstOrDefault(), // Assumes applying the first active discount found
-                        Category = p.Category,
-                        AverageRating = p.Quantities.SelectMany(q => q.OrderLists).SelectMany(ol => ol.Reviews).Average(r => (int?)r.Rating) ?? 0,
-                        ReviewCount = p.Quantities.SelectMany(q => q.OrderLists).SelectMany(ol => ol.Reviews).Count(),
-                        Reviews = p.Quantities
-                            .SelectMany(q => q.OrderLists)
-                            .SelectMany(ol => ol.Reviews)
-                            .Select(r => new {
-                                customerRating = r.Rating,
-                                customerReview = r.Review1,
-                                reviewDateSubmit = r.Date_Submitted,
-                                CustomerName = r.OrderList.Order.Customer.Name
-                            }).ToList(),
-                        ColorGroups = p.Quantities
-                            .Where(q => !q.IsDeleted)
-                            .GroupBy(q => q.Color)
-                            .Select(g => new
-                            {
-                                Color = g.Key,
-                                Quantities = g.ToList(),
-                                FirstImageId = g.Select(q => q.Image_ID).FirstOrDefault(),
-                                ImageCount = g.Select(q => q.Image_ID).Distinct().Count()
-                            }).ToList()
-                    }).ToList();
+                    var productList = db.Product
+                        .Where(p => p.Product_ID == productId && !p.IsDeleted)
+                        .Include(p => p.Category)
+                        .Include(p => p.Discounts)
+                        .Include(p => p.Quantities.Select(q => q.Image))
+                        .Select(p => new
+                        {
+                            Product_ID = p.Product_ID,
+                            Product_Name = p.Product_Name,
+                            Description = p.Description,
+                            Price = p.Price,
+                            DiscountAmount = p.Discounts
+                                .Where(d => d.Status == "Active" && d.Start_Date <= today && d.End_Date >= today)
+                                .Select(d => d.Discount_Amount)
+                                .FirstOrDefault(), // Assumes applying the first active discount found
+                            Category = p.Category,
+                            AverageRating = p.Quantities.SelectMany(q => q.OrderLists).SelectMany(ol => ol.Reviews).Average(r => (int?)r.Rating) ?? 0,
+                            ReviewCount = p.Quantities.SelectMany(q => q.OrderLists).SelectMany(ol => ol.Reviews).Count(),
+                            Reviews = p.Quantities
+                                .SelectMany(q => q.OrderLists)
+                                .SelectMany(ol => ol.Reviews)
+                                .Select(r => new {
+                                    customerRating = r.Rating,
+                                    customerReview = r.Review1,
+                                    reviewDateSubmit = r.Date_Submitted,
+                                    CustomerName = r.OrderList.Order.Customer.Name
+                                }).ToList(),
+                            ColorGroups = p.Quantities
+                                .Where(q => q.IsDeleted == false)
+                                .GroupBy(q => q.Color)
+                                .Select(g => new
+                                {
+                                    Color = g.Key,
+                                    Quantities = g.ToList(),
+                                    FirstImageId = g.Select(q => q.Image_ID).FirstOrDefault(),
+                                    ImageCount = g.Select(q => q.Image_ID).Distinct().Count()
+                                }).ToList()
+                        }).ToList();
 
                 
-                formView.DataSource = productList;
-                formView.DataBind();
+                    formView.DataSource = productList;
+                    formView.DataBind();
 
 
-                formView1.DataSource = productList;
-                formView1.DataBind();
+                    formView1.DataSource = productList;
+                    formView1.DataBind();
 
 
+                }
             }
+            catch (Exception ex)
+            {
+
+                // Optionally display error message on the page
+                ScriptManager.RegisterStartupScript(this, GetType(), "errorAlert", "alert('An error occurred when retrieving product details.');", true);
+            }
+
         }
 
 
@@ -123,30 +135,40 @@ namespace Uniqlo.Pages
         
         private void FirstImageId(int productID)
         {
-            using (var db = new ProductDbContext())
+            try
             {
-                var imageId = db.Quantity
-                                .Where(q => q.Product_ID == productID)
-                                .Select(q => q.Image_ID)
-                                .FirstOrDefault();
-
-
-                var firstQuantity = db.Quantity
-                     .Where(q => q.Product_ID == productID)
-                     .FirstOrDefault();
-
-                if (firstQuantity != null)
+                using (var db = new ProductDbContext())
                 {
-                    var firstImageId = db.Quantity
-                                        .Where(q => q.Quantity_ID == firstQuantity.Quantity_ID)
-                                        .Select(q => q.Image_ID)
-                                        .FirstOrDefault();
+                    var imageId = db.Quantity
+                                    .Where(q => q.Product_ID == productID)
+                                    .Select(q => q.Image_ID)
+                                    .FirstOrDefault();
 
-                    prodImageID.Value = firstImageId.ToString();
-                }
+
+                    var firstQuantity = db.Quantity
+                         .Where(q => q.Product_ID == productID)
+                         .FirstOrDefault();
+
+                    if (firstQuantity != null)
+                    {
+                        var firstImageId = db.Quantity
+                                            .Where(q => q.Quantity_ID == firstQuantity.Quantity_ID)
+                                            .Select(q => q.Image_ID)
+                                            .FirstOrDefault();
+
+                        prodImageID.Value = firstImageId.ToString();
+                    }
 
                 
+                }
             }
+            catch (Exception ex)
+            {
+
+                // Optionally display error message on the page
+                ScriptManager.RegisterStartupScript(this, GetType(), "errorAlert", "alert('An error occurred when retrieving Image ID.');", true);
+            }
+
         }
 
         protected void dataList_ItemDataBound(object sender, DataListItemEventArgs e)
@@ -195,29 +217,39 @@ namespace Uniqlo.Pages
         }
         private void BindColorRadioButtonList(int prodID)
         {
-            using (var db = new ProductDbContext())  
+            try
             {
-                RadioButtonList rbList = (RadioButtonList)formView.FindControl("RadioButtonListColors");
+                using (var db = new ProductDbContext())  
+                {
+                    RadioButtonList rbList = (RadioButtonList)formView.FindControl("RadioButtonListColors");
                     
                 
 
-                var colors = db.Quantity
-               .Where(q => q.Product_ID == prodID && !q.IsDeleted)  // Filter by Product_ID
-               .Select(q => q.Color)
-               .Distinct()
-               .ToList();
+                    var colors = db.Quantity
+                   .Where(q => q.Product_ID == prodID && !q.IsDeleted)  // Filter by Product_ID
+                   .Select(q => q.Color)
+                   .Distinct()
+                   .ToList();
 
-                rbList.DataSource = colors;
-                rbList.DataBind();
+                    rbList.DataSource = colors;
+                    rbList.DataBind();
 
-                if (colors.Any())
-                {
-                    rbList.SelectedIndex = 0;
-                    RadioButtonListColors_SelectedIndexChanged(rbList, EventArgs.Empty);  // Manually trigger the event to load sizes for the first color
+                    if (colors.Any())
+                    {
+                        rbList.SelectedIndex = 0;
+                        RadioButtonListColors_SelectedIndexChanged(rbList, EventArgs.Empty);  // Manually trigger the event to load sizes for the first color
+                    }
+
+
                 }
-
-
             }
+            catch (Exception ex)
+            {
+
+                // Optionally display error message on the page
+                ScriptManager.RegisterStartupScript(this, GetType(), "errorAlert", "alert('An error occurred when retrieving product');", true);
+            }
+
         }
 
 
@@ -232,31 +264,41 @@ namespace Uniqlo.Pages
             int productId = 0;
             if (Request.QueryString["ProdID"] != null && int.TryParse(Request.QueryString["ProdID"], out productId))
             {
-                using (var db = new ProductDbContext())
+                try
                 {
-                    var sizes = db.Quantity
-                                  .Where(q => q.Product_ID == productId && q.Color == selectedColor && !q.IsDeleted)
-                                  .Select(q => q.Size)
-                                  .Distinct()
-                                  .ToList();
-
-                    // Define the custom order
-                    var sizeOrder = new List<string> { "S", "M", "L", "XL" };
-
-                    sizes = sizes.OrderBy(s => sizeOrder.IndexOf(s)).ToList();
-
-                    rbSizes.DataSource = sizes;
-                    rbSizes.DataBind();
-
-                    // Get the maximum stock value among all sizes for the selected color
-                    int maxStock = db.Quantity
+                    using (var db = new ProductDbContext())
+                    {
+                        var sizes = db.Quantity
                                       .Where(q => q.Product_ID == productId && q.Color == selectedColor && !q.IsDeleted)
-                                      .Max(q => q.Qty);
+                                      .Select(q => q.Size)
+                                      .Distinct()
+                                      .ToList();
 
-                    // Update the MaxLength of txtQty based on the maximum stock value
-                    TextBox txtQty = (TextBox)formView.FindControl("txtQty");
-                    txtQty.MaxLength = maxStock.ToString().Length;
+                        // Define the custom order
+                        var sizeOrder = new List<string> { "S", "M", "L", "XL" };
+
+                        sizes = sizes.OrderBy(s => sizeOrder.IndexOf(s)).ToList();
+
+                        rbSizes.DataSource = sizes;
+                        rbSizes.DataBind();
+
+                        // Get the maximum stock value among all sizes for the selected color
+                        int maxStock = db.Quantity
+                                          .Where(q => q.Product_ID == productId && q.Color == selectedColor && !q.IsDeleted)
+                                          .Max(q => q.Qty);
+
+                        // Update the MaxLength of txtQty based on the maximum stock value
+                        TextBox txtQty = (TextBox)formView.FindControl("txtQty");
+                        txtQty.MaxLength = maxStock.ToString().Length;
+                    }
                 }
+                catch (Exception ex)
+                {
+
+                    // Optionally display error message on the page
+                    ScriptManager.RegisterStartupScript(this, GetType(), "errorAlert", "alert('An error occurred when retrieving product color.');", true);
+                }
+
             }
             else
             {
@@ -269,24 +311,33 @@ namespace Uniqlo.Pages
         {
             Label lblSize = (Label)formView.FindControl("lblSize");
 
-
-            using (var db = new ProductDbContext())
+            try
             {
-                var sizes = db.Quantity
-                              .Where(q => q.Product_ID == productId && !q.IsDeleted)
-                              .Select(q => q.Size)
-                              .Distinct()
-                              .ToList();
+                using (var db = new ProductDbContext())
+                {
+                    var sizes = db.Quantity
+                                  .Where(q => q.Product_ID == productId && !q.IsDeleted)
+                                  .Select(q => q.Size)
+                                  .Distinct()
+                                  .ToList();
 
-                if (sizes == null || sizes.Count == 0)
-                {
-                    lblSize.Text = "Out of stock";
-                }
-                else
-                {
-                    lblSize.Text = "";
+                    if (sizes == null || sizes.Count == 0)
+                    {
+                        lblSize.Text = "Out of stock";
+                    }
+                    else
+                    {
+                        lblSize.Text = "";
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+
+                // Optionally display error message on the page
+                ScriptManager.RegisterStartupScript(this, GetType(), "errorAlert", "alert('An error occurred when retrieving product quantity.');", true);
+            }
+
 
         }
 
@@ -306,19 +357,29 @@ namespace Uniqlo.Pages
             int productId = 0;
             if (Request.QueryString["ProdID"] != null && int.TryParse(Request.QueryString["ProdID"], out productId))
             {
-                using (var db = new ProductDbContext())
+                try
                 {
-                    var quantity = db.Quantity
-                                    .Where(q => q.Product_ID == productId && q.Color == selectedColor && q.Size == selectedSize && !q.IsDeleted)
-                                    .Select(q => q.Qty)
-                                    .FirstOrDefault();
+                    using (var db = new ProductDbContext())
+                    {
+                        var quantity = db.Quantity
+                                        .Where(q => q.Product_ID == productId && q.Color == selectedColor && q.Size == selectedSize && !q.IsDeleted)
+                                        .Select(q => q.Qty)
+                                        .FirstOrDefault();
 
-                    labelQuantity.Text = quantity != 0 ? $"  ({quantity})" : "  (Out of Stock)";
+                        labelQuantity.Text = quantity != 0 ? $"  ({quantity})" : "  (Out of Stock)";
 
-                    // Update the MaxLength of txtQty based on the selected size's stock value
-                    TextBox txtQty = (TextBox)formView.FindControl("txtQty");
-                    txtQty.MaxLength = quantity.ToString().Length;
+                        // Update the MaxLength of txtQty based on the selected size's stock value
+                        TextBox txtQty = (TextBox)formView.FindControl("txtQty");
+                        txtQty.MaxLength = quantity.ToString().Length;
+                    }
                 }
+                catch (Exception ex)
+                {
+
+                    // Optionally display error message on the page
+                    ScriptManager.RegisterStartupScript(this, GetType(), "errorAlert", "alert('An error occurred when retrieve product size.');", true);
+                }
+
             }
             else
             {

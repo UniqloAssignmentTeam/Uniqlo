@@ -49,7 +49,6 @@ namespace Uniqlo
         public DbSet<Order> Order { get; set; }
         public DbSet<OrderList> OrderList { get; set; }
         public DbSet<Customer> Customer { get; set; }
-        public DbSet<WishlistItem> WishlistItems { get; set; }
 
     }
 }

@@ -120,7 +120,7 @@ namespace Uniqlo.AdminPages.AdminProduct
                         productQuery = productQuery.Where(p => p.Category.Gender == selectedGender);
                     }
 
-                    productQuery = productQuery.Where(p => !p.IsDeleted);
+                    productQuery = productQuery.Where(p => p.IsDeleted == false);
 
                     var productList = productQuery.ToList();
                     prodRepeater.DataSource = productList;
@@ -225,7 +225,7 @@ namespace Uniqlo.AdminPages.AdminProduct
 
             using (var db = new ProductDbContext())
             {
-                var productList = db.Product.Include(p => p.Category).Where(p => !p.IsDeleted && p.Product_Name.Contains(searchText)).ToList();
+                var productList = db.Product.Include(p => p.Category).Where(p => p.IsDeleted == false && p.Product_Name.Contains(searchText)).ToList();
                 return productList;
             }
         }
