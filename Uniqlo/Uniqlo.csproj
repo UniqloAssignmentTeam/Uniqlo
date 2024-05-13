@@ -281,6 +281,8 @@
     <Content Include="Pages\ContactUs.aspx" />
     <Content Include="Pages\Delivery.aspx" />
     <Content Include="Pages\EditProfile.aspx" />
+    <Content Include="Pages\Review\AddReviewItem.aspx" />
+    <Content Include="Pages\Review\EditReviewItem.aspx" />
     <Content Include="Pages\ForgotPassword.aspx" />
     <Content Include="Pages\Home.aspx" />
     <Content Include="Pages\Categories\Men\Main.aspx" />
@@ -294,7 +296,7 @@
     <Content Include="Pages\Payment.aspx" />
     <Content Include="Pages\ProductDetails.aspx" />
     <Content Include="Pages\Profile.aspx" />
-    <Content Include="Pages\ReviewItem.aspx" />
+    <Content Include="Pages\Review\ViewReviewItem.aspx" />
     <Content Include="Pages\SendProductGmailToFriend.aspx" />
     <Content Include="Pages\SignUp.aspx" />
     <Content Include="Pages\test.aspx" />
@@ -558,6 +560,20 @@
     <Compile Include="Pages\EditProfile.aspx.designer.cs">
       <DependentUpon>EditProfile.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Pages\Review\AddReviewItem.aspx.cs">
+      <DependentUpon>AddReviewItem.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Review\AddReviewItem.aspx.designer.cs">
+      <DependentUpon>AddReviewItem.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Review\EditReviewItem.aspx.cs">
+      <DependentUpon>EditReviewItem.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Review\EditReviewItem.aspx.designer.cs">
+      <DependentUpon>EditReviewItem.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Pages\ForgotPassword.aspx.cs">
       <DependentUpon>ForgotPassword.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -649,12 +665,12 @@
     <Compile Include="Pages\Profile.aspx.designer.cs">
       <DependentUpon>Profile.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Pages\ReviewItem.aspx.cs">
-      <DependentUpon>ReviewItem.aspx</DependentUpon>
+    <Compile Include="Pages\Review\ViewReviewItem.aspx.cs">
+      <DependentUpon>ViewReviewItem.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Pages\ReviewItem.aspx.designer.cs">
-      <DependentUpon>ReviewItem.aspx</DependentUpon>
+    <Compile Include="Pages\Review\ViewReviewItem.aspx.designer.cs">
+      <DependentUpon>ViewReviewItem.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\SendProductGmailToFriend.aspx.cs">
       <DependentUpon>SendProductGmailToFriend.aspx</DependentUpon>
