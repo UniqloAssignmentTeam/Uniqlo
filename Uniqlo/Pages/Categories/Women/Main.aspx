@@ -3,6 +3,15 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="main" runat="server">
     <header>
         <link href="../../../css/product.css" rel="stylesheet" />
+        <style>
+            .hyperlink{
+                text-decoration: none;
+                color: #6F6F6F;
+            }
+
+        </style>
+
+
     </header>
     <div class="productBody">
         <!--CATEGORY SECTION-->
@@ -32,43 +41,45 @@
         <h1 class="genderHeader">Limited Offers</h1>
         <asp:DataList ID="dlValueBuy" runat="server" RepeatDirection="Horizontal" Width="100%">
             <ItemTemplate>
-                <div class="limitedOfferCardContainer">
-                    <div class="limitedOfferCard" id="product9" data-product-id="1">
-                        <div class="product-image-container">
-                            <img src='/ImageHandler.ashx?id=<%# Eval("Image_ID") %>' alt='<%# Eval("Product_Name") %>' style="width: 100%" />
-                            <div class="wishlistSection">
-                                <div class="wishlist-heart-group">
-                                    <input name="wishListProduct" id="wishListProduct9" data-product-id="1" type="checkbox" />
-                                    <label for="wishListProduct" data-hover-text="Wish List">
-                                        <svg xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" version="1.1" x="0px" y="0px" viewBox="0 0 100 100">
-                                            <g transform="translate(0,-952.36218)">
-                                                <path style="color: #000000; enable-background: accumulate;" d="m 34.166665,972.36218 c -11.41955,0 -19.16666,8.91891 -19.16666,20.27029 0,19.45943 15,27.56753 35,39.72973 20.00001,-12.1622 34.99999,-20.2703 34.99999,-39.72973 0,-11.35137 -7.7471,-20.27029 -19.16665,-20.27029 -7.35014,0 -13.39148,4.05405 -15.83334,6.48647 -2.44185,-2.43241 -8.48319,-6.48647 -15.83334,-6.48647 z" fill="transparent" id="heart-path" stroke="#737373" stroke-width="5" marker="none" visibility="visible" display="inline" overflow="visible" />
-                                            </g>
-                                        </svg>
-                                    </label>
+                <asp:HyperLink ID="productLink" runat="server" NavigateUrl='<%# "/Pages/ProductDetails.aspx?ProdID=" +  Eval("Product_Id") %>' CssClass="hyperlink">
+                    <div class="limitedOfferCardContainer">
+                        <div class="limitedOfferCard" id="product9" data-product-id="1">
+                            <div class="product-image-container">
+                                <img src='/ImageHandler.ashx?id=<%# Eval("Image_ID") %>' alt='<%# Eval("Product_Name") %>' style="width: 100%" />
+                                <div class="wishlistSection">
+                                    <div class="wishlist-heart-group">
+                                        <input name="wishListProduct" id="wishListProduct9" data-product-id="1" type="checkbox" />
+                                        <label for="wishListProduct" data-hover-text="Wish List">
+                                            <svg xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" version="1.1" x="0px" y="0px" viewBox="0 0 100 100">
+                                                <g transform="translate(0,-952.36218)">
+                                                    <path style="color: #000000; enable-background: accumulate;" d="m 34.166665,972.36218 c -11.41955,0 -19.16666,8.91891 -19.16666,20.27029 0,19.45943 15,27.56753 35,39.72973 20.00001,-12.1622 34.99999,-20.2703 34.99999,-39.72973 0,-11.35137 -7.7471,-20.27029 -19.16665,-20.27029 -7.35014,0 -13.39148,4.05405 -15.83334,6.48647 -2.44185,-2.43241 -8.48319,-6.48647 -15.83334,-6.48647 z" fill="transparent" id="heart-path" stroke="#737373" stroke-width="5" marker="none" visibility="visible" display="inline" overflow="visible" />
+                                                </g>
+                                            </svg>
+                                        </label>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="limitedOfferContainer">
-                            <div class="product-name">
-                                <h3><b><%# Eval("Product_Name") %></b></h3>
-                            </div>
-                            <div class="product-description">
-                                <p><%# Eval("Description") %></p>
-                            </div>
-                            <div class="product-price">
-                                <p style="text-decoration: line-through; margin-right: 10px;"> <%# Eval("Price", "{0:C}") %></p>
-                                <p style="color: red;"> <%# Eval("Discount_Amount", "{0:C}") %></p>
-                            </div>
-                            <div class="product-rating">
-                                <%# GenerateStars(Convert.ToDouble(Eval("AverageRating")) ) %>
-                                <span><%# Eval("ReviewCount") %></span>
-                            </div>
+                            <div class="limitedOfferContainer">
+                                <div class="product-name">
+                                    <h3><b><%# Eval("Product_Name") %></b></h3>
+                                </div>
+                                <div class="product-description">
+                                    <p><%# Eval("Description") %></p>
+                                </div>
+                                <div class="product-price">
+                                    <p style="text-decoration: line-through; margin-right: 10px;"> <%# Eval("Price", "{0:C}") %></p>
+                                    <p style="color: red;"> <%# Eval("Discount_Amount", "{0:C}") %></p>
+                                </div>
+                                <div class="product-rating">
+                                    <%# GenerateStars(Convert.ToDouble(Eval("AverageRating")) ) %>
+                                    <span><%# Eval("ReviewCount") %></span>
+                                </div>
 
+                            </div>
                         </div>
+
                     </div>
-
-                </div>
+                    </asp:HyperLink>
             </ItemTemplate>
         </asp:DataList>
 

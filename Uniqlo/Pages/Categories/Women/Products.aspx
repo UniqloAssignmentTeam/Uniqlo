@@ -188,5 +188,6 @@
         <script src="../../../Javascript/productReview.js"></script>
         <script src="../../../Javascript/productAdminDDL.js"></script>
         <script src="../../../Javascript/colorRadioList.js"></script>
+
     </footer>
 </asp:Content>

@@ -123,6 +123,9 @@
                                 </asp:LinkButton>                    
                                 <asp:LinkButton CssClass="text-dark px-2" ID="btnWhatsapp" runat="server" Text="Whatsapp" OnClientClick="shareOnWhatsApp(); return false;">
                                     <i class="fab fa-whatsapp"></i>
+                                </asp:LinkButton>                                
+                                <asp:LinkButton CssClass="text-dark px-2" ID="btnGmail" runat="server" Text="Gmail" OnClick="fetchProductID">
+                                    <i class="fa-solid fa-envelope"></i>
                                 </asp:LinkButton>
                             </div>
                         </div>
@@ -259,8 +262,9 @@
                 var productPrice = document.getElementById('<%= prodPriceHidden.ClientID %>').value;
                 var productDesc = document.getElementById('<%= prodDescHidden.ClientID %>').value;
                 var finalPrice = productPrice - productDisc;
+                var imageUrl = window.location.origin + '/ImageHandler.ashx?id=' + document.getElementById('<%= prodImageID.ClientID %>').value;
 
-                var textToShare = encodeURIComponent("Check out this product: " + productName + " - " + finalPrice + "\n" + productDesc);
+                var textToShare = encodeURIComponent("Check out this product: " + productName + " for only RM" + finalPrice.toFixed(2) + "\n" + productDesc + "\nSee image here: " + imageUrl);
 
                 var twitterShareUrl = "https://twitter.com/intent/tweet?" + "text=" + textToShare;
                 window.open(twitterShareUrl, "_blank");
@@ -291,7 +295,7 @@
 
                 var finalPrice = productPrice - productDisc;
                 var imageUrl = window.location.origin + '/ImageHandler.ashx?id=' + document.getElementById('<%= prodImageID.ClientID %>').value; // Assuming you have a hidden field for the image ID
-                var textToShare = encodeURIComponent("Check out this product: " + productName + " for only $" + finalPrice.toFixed(2) + "\n" + productDesc + "\nSee image here: " + imageUrl);
+                var textToShare = encodeURIComponent("Check out this product: " + productName + " for only RM" + finalPrice.toFixed(2) + "\n" + productDesc + "\nSee image here: " + imageUrl);
 
                 var whatsappShareUrl = "https://api.whatsapp.com/send?text=" + textToShare;
                 window.open(whatsappShareUrl, "_blank");
