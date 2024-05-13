@@ -105,11 +105,11 @@
                             <!--NO ANIMATION ADD TO CART BUTTON-->
                             <div class="cart-button">
                                 <asp:LinkButton ID="btnAddToCart" runat="server" OnClick="btnAddToCart_Click">
-                                <span class="add-to-cart" runat="server" id="spnAddToCart">Add to Cart</span>
-                                <span class="added" runat="server" id="spnAdded" style="display: none;">Added to Cart</span>
-                                <i class="fas fa-shopping-cart"></i>
-                                <i class="fas fa-solid fa-shirt"></i>
-                            </asp:LinkButton>
+                                    <span class="add-to-cart" runat="server" id="spnAddToCart">Add to Cart</span>
+                                    <span class="added" runat="server" id="spnAdded" style="display: none;">Added to Cart</span>
+                                    <i class="fas fa-shopping-cart"></i>
+                                    <i class="fas fa-solid fa-shirt"></i>
+                                </asp:LinkButton>
                             </div>
 
 
@@ -244,8 +244,6 @@
         <asp:HiddenField ID="prodPriceHidden" runat="server" />
         <asp:HiddenField ID="prodDescHidden" runat="server" />
         <asp:HiddenField ID="prodImageID" runat="server" />
-
-
 
     </div>
     <footer>

@@ -34,6 +34,7 @@ namespace Uniqlo.Pages.Categories.Women
                                 && d.Start_Date <= today // Start date must be on or before today
                                 && d.End_Date >= today), // End date must be on or after today
                         (product, discount) => new {
+                            Product_Id = product.Product_ID,
                             Product_Name = product.Product_Name,
                             Description = product.Description,
                             Price = product.Price,
