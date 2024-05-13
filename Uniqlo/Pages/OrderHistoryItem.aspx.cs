@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -17,15 +18,33 @@ namespace Uniqlo.Pages
         {
             if (!IsPostBack)
             {
-                int custId = (int)Session["Customer_ID"];
-                int orderID = int.Parse(Request.QueryString["Order_ID"]);
-                orderIDLabel.Text = orderID.ToString();
-                BindOrderListDataList(custId, orderID);
-                BindOrderSummaryRepeater(custId, orderID);
-
-
+                // Try to retrieve and convert the customer ID from the session
+                string sessionValue = Session["Customer_ID"] as string;
+                if (int.TryParse(sessionValue, out int custId))
+                {
+                    // Attempt to parse the Order_ID from the query string
+                    if (int.TryParse(Request.QueryString["Order_ID"], out int orderID))
+                    {
+                        orderIDLabel.Text = orderID.ToString();
+                        BindOrderListDataList(custId, orderID);
+                        BindOrderSummaryRepeater(custId, orderID);
+                    }
+                    else
+                    {
+                        // Log or handle the error if Order_ID is not a valid integer
+                        Debug.WriteLine("Failed to convert QueryString 'Order_ID' to integer.");
+                        // Optionally redirect or display an error message
+                        Response.Redirect("ErrorPage.aspx"); // Change this to your error handling page
+                    }
+                }
+                else
+                {
+                    Debug.WriteLine("Failed to convert session value to integer: " + sessionValue);
+                    // Optionally redirect or display an error message
+                    Response.Redirect("ErrorPage.aspx"); // Change this to your error handling page
+                }
             }
-            
+
 
         }
       
@@ -113,12 +132,12 @@ namespace Uniqlo.Pages
             if (buttonText == "View")
             {
                 // Redirect to view review page
-                Response.Redirect("~/ViewReviewItem.aspx?OrderListID=" + orderListID);
+                Response.Redirect("/Pages/Review/ViewReviewItem.aspx?OrderListID=" + orderListID);
             }
             else if (buttonText == "Review")
             {
                 // Redirect to add review page
-                Response.Redirect("~/AddReviewItem.aspx?OrderListID=" + orderListID);
+                Response.Redirect("/Pages/Review/AddReviewItem.aspx?OrderListID=" + orderListID);
             }
         }
 

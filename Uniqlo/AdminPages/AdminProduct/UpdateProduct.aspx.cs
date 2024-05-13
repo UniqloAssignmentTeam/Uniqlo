@@ -51,7 +51,7 @@ namespace Uniqlo.AdminPages
                             Price = p.Price,
                             Category = p.Category,
                             ColorGroups = p.Quantities
-                                .Where(q => q.IsDeleted == false)
+                                .Where(q => !q.IsDeleted)
                                 .GroupBy(q => q.Color)
                                 .Select(g => new
                                 {
@@ -165,43 +165,9 @@ namespace Uniqlo.AdminPages
                 DropDownList ddlCategory = formView.FindControl("ddlCategory") as DropDownList;
                 DropDownList ddlGender = formView.FindControl("ddlGender") as DropDownList;
 
-                bool isValid = true;
-                string errorMessage = "";
-
-                if (string.IsNullOrWhiteSpace(txtProductName.Text))
-                {
-                    errorMessage += "Product name is required.\\n";
-                    isValid = false;
-                }
-
-                if (string.IsNullOrWhiteSpace(txtProductDescription.Text))
-                {
-                    errorMessage += "Description is required.\\n";
-                    isValid = false;
-                }
-
-                double productPrice;
-                if (!double.TryParse(txtProductPrice.Text, out productPrice) || productPrice <= 0)
-                {
-                    errorMessage += "Valid price greater than zero is required.\\n";
-                    isValid = false;
-                }
-
-                if (ddlCategory.SelectedIndex == -1 || ddlGender.SelectedIndex == -1)
-                {
-                    errorMessage += "Both category and gender must be selected.\\n";
-                    isValid = false;
-                }
-
-                if (!isValid)
-                {
-                    ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", $"alert('{errorMessage}');", true);
-                    return;
-                }
-
                 string productName = txtProductName.Text;
                 string productDescription = txtProductDescription.Text;
-                productPrice = Double.Parse(txtProductPrice.Text);
+                double productPrice = Double.Parse(txtProductPrice.Text);
                 string category = ddlCategory.Text;
                 string gender = ddlGender.Text;
 
@@ -224,6 +190,7 @@ namespace Uniqlo.AdminPages
                             productID.Description = productDescription;
                             productID.Price = productPrice;
                             productID.Category_ID = categoryID;
+                            productID.IsDeleted = false;
 
                             dbContext.SaveChanges();
 
@@ -281,9 +248,7 @@ namespace Uniqlo.AdminPages
                 }
                 catch (Exception ex)
                 {
-
-                    // Optionally display error message on the page
-                    ScriptManager.RegisterStartupScript(this, GetType(), "errorAlert", "alert('An error occurred when updating product.');", true);
+                    
                 }
 
             }

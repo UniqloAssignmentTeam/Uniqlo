@@ -60,13 +60,6 @@ namespace Uniqlo.Pages
 
         }
 
-      
-
-
-
-
-
-
     }
 
 }

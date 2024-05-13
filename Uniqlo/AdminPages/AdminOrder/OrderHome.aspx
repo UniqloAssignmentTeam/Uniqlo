@@ -133,10 +133,10 @@
 
                         <div class="dropdown-wrapper" style="margin-left: -300px;">
                             <asp:DropDownList ID="ddlStatus" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlStatus_SelectedIndexChanged" CssClass="dropdown-display">
-                                <asp:ListItem Value="">Status</asp:ListItem>
-                                <asp:ListItem Value="Paid">Paid</asp:ListItem>
-                                <asp:ListItem Value="Unpaid">Unpaid</asp:ListItem>
-                            </asp:DropDownList>
+      <asp:ListItem Value="">Status</asp:ListItem>
+      <asp:ListItem Value="Paid">Paid</asp:ListItem>
+      <asp:ListItem Value="Unpaid">Unpaid</asp:ListItem>
+  </asp:DropDownList>
                         </div>
 
                         <div class="btnExcel-Add">
