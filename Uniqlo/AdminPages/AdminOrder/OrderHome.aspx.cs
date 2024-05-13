@@ -46,11 +46,11 @@ namespace Uniqlo.AdminPages.AdminOrder
                         .Include(o => o.Payments)
                         .AsQueryable();
 
-                    
-                        // Apply filtering only when a specific status is selected
-                        orderQuery = orderQuery
-                            .Where(o => o.Payments.Any(p => p.Payment_Status == "Paid" || p.Payment_Status == "Unpaid"));
-                    
+
+                    // Apply filtering only when a specific status is selected
+                    orderQuery = orderQuery
+                        .Where(o => o.Payments.Any(p => p.Payment_Status == "Paid" || p.Payment_Status == "Unpaid"));
+
 
                     // Projection is the same in both cases, do it after filtering
                     var orders = orderQuery
@@ -65,9 +65,8 @@ namespace Uniqlo.AdminPages.AdminOrder
                         })
                         .ToList(); // Execute the query
 
-                        orderRepeater.DataSource = orders;
-                        orderRepeater.DataBind();
-                    }
+                    orderRepeater.DataSource = orders;
+                    orderRepeater.DataBind();
                 }
 
             }
@@ -76,6 +75,8 @@ namespace Uniqlo.AdminPages.AdminOrder
                 ScriptManager.RegisterStartupScript(this, GetType(), "errorAlert", $"alert('An error occurred when retrieving orders: {ex.Message}');", true);
             }
         }
+
+        
 
 
         protected void btnExport_Click(object sender, EventArgs e)
