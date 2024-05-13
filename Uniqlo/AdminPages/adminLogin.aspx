@@ -107,15 +107,17 @@ input[type="submit"]:hover {
             <h1>Login</h1>
            
                 <div class="txt_field">
-                    <input type="text" name="text" required placeholder="Username">
+                    
+                    <asp:TextBox ID="txtEmail" type="text" name="text" required="true" runat="server"></asp:TextBox> 
                     <span></span>
                     
                 </div>
                 <div class="txt_field">
-                    <input type="password" name="password" required placeholder="Password">
+                  
+                    <asp:TextBox ID="txtPassword" type="password" name="password" required="true"  runat="server"></asp:TextBox> 
                     <span></span>
                 </div>         
-                <asp:Button ID="btnLogin" runat="server" name="submit" type="Submit" value="Login" Text="Login" OnClick="btnLogin_Click" />
+                <asp:Button ID="btnLogin" runat="server" name="submit" type="Submit" value="Login" Text="Login"  onClick="btnLogin_Click"/>
 
             </form>
         </div>
@@ -124,3 +126,4 @@ input[type="submit"]:hover {
 
 
 </asp:Content>
+
