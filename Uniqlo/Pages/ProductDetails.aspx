@@ -1,17 +1,18 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Uniqlo.Master" AutoEventWireup="true" CodeBehind="ProductDetails.aspx.cs" Inherits="Uniqlo.Pages.ProductDetails" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="main" runat="server">
     <header>
         <link href="../../../css/product.css" rel="stylesheet" />
         <style>
-            .lblRed{
-                color:red;
+            .lblRed {
+                color: red;
                 font-weight: bold;
             }
         </style>
 
     </header>
 
-    <div class="productBody" style="margin-top:50px">
+    <div class="productBody" style="margin-top: 50px">
 
 
         <asp:FormView ID="formView" runat="server" OnDataBound="formView_DataBound">
@@ -27,10 +28,10 @@
                                 </div>
                             </div>
 
-                            <!-- Thumbnails --> 
-                            <div class="img-select" runat="server" id="imgSelect" style="display:block;">
+                            <!-- Thumbnails -->
+                            <div class="img-select" runat="server" id="imgSelect" style="display: block;">
                                 <asp:DataList ID="dataList" runat="server" RepeatDirection="Horizontal" Width="100%">
-                                    <ItemTemplate>  
+                                    <ItemTemplate>
                                         <div class="img-item">
                                             <a href="#" onclick="updateMainImage('<%# Eval("FirstImageId") %>'); return false;">
                                                 <img src='/ImageHandler.ashx?id=<%# Eval("FirstImageId") %>' alt="Product Thumbnail" />
@@ -40,11 +41,11 @@
                                 </asp:DataList>
                             </div>
                         </div>
-                        <asp:HiddenField ID="productIdHidden" runat="server" Value='<%# Eval("Product_ID") %>'/>
-                        <asp:HiddenField ID="productNameHidden" runat="server" Value='<%# Eval("Product_Name") %>'/>
-                        <asp:HiddenField ID="productDiscountHidden" runat="server" Value='<%# Eval("DiscountAmount") %>'/>
-                        <asp:HiddenField ID="productPriceHidden" runat="server" Value='<%# Eval("Price") %>'/>
-                        <asp:HiddenField ID="productDescHidden" runat="server" Value='<%# Eval("Description") %>'/>
+                        <asp:HiddenField ID="productIdHidden" runat="server" Value='<%# Eval("Product_ID") %>' />
+                        <asp:HiddenField ID="productNameHidden" runat="server" Value='<%# Eval("Product_Name") %>' />
+                        <asp:HiddenField ID="productDiscountHidden" runat="server" Value='<%# Eval("DiscountAmount") %>' />
+                        <asp:HiddenField ID="productPriceHidden" runat="server" Value='<%# Eval("Price") %>' />
+                        <asp:HiddenField ID="productDescHidden" runat="server" Value='<%# Eval("Description") %>' />
                         <!-- card right -->
                         <div class="product-content" style="margin-top: 100px;">
                             <h2 class="product-title product-name"><%# Eval("Product_Name") %></h2>
@@ -68,37 +69,37 @@
                                 </ul>
                             </div>
 
-                                <div class="productColorSection">
-                                    <div class="purchase-color">
-                                        <h3>Color:
+                            <div class="productColorSection">
+                                <div class="purchase-color">
+                                    <h3>Color:
                                             <label id="color"></label>
-                                        </h3>
-                                        <div class="purchase-color-item">
-                                            <asp:RadioButtonList ID="RadioButtonListColors" runat="server" RepeatDirection="Horizontal" Visible="True" AutoPostBack="True" OnSelectedIndexChanged="RadioButtonListColors_SelectedIndexChanged">
-                                            </asp:RadioButtonList>
-                                        </div>
+                                    </h3>
+                                    <div class="purchase-color-item">
+                                        <asp:RadioButtonList ID="RadioButtonListColors" runat="server" RepeatDirection="Horizontal" Visible="True" AutoPostBack="True" OnSelectedIndexChanged="RadioButtonListColors_SelectedIndexChanged">
+                                        </asp:RadioButtonList>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="productQtySizeSection">
+                                <div class="purchase-size">
+                                    <h3>Size: <%# Eval("Category.Gender").ToString() == "M" ? "Men " : (Eval("Category.Gender").ToString() == "W" ? "Woman" : "Not Specified") %>
+                                        <asp:Label ID="labelQuantity" runat="server" Text=""></asp:Label>
+                                    </h3>
+                                    <div class="purchase-size-item">
+                                        <asp:RadioButtonList ID="RadioButtonListSizes" runat="server" RepeatDirection="Horizontal" Visible="True" CssClass="custom-radio-list" AutoPostBack="True" OnSelectedIndexChanged="RadioButtonListSizes_SelectedIndexChanged">
+                                        </asp:RadioButtonList>
+
                                     </div>
                                 </div>
 
-                                <div class="productQtySizeSection">
-                                    <div class="purchase-size">
-                                        <h3>Size: <%# Eval("Category.Gender").ToString() == "M" ? "Men " : (Eval("Category.Gender").ToString() == "W" ? "Woman" : "Not Specified") %>
-                                            <asp:Label ID="labelQuantity" runat="server" Text=""></asp:Label>
-                                        </h3>
-                                        <div class="purchase-size-item">
-                                            <asp:RadioButtonList ID="RadioButtonListSizes" runat="server" RepeatDirection="Horizontal" Visible="True" CssClass="custom-radio-list"  AutoPostBack="True" OnSelectedIndexChanged="RadioButtonListSizes_SelectedIndexChanged">
-                                            </asp:RadioButtonList>
-                                            
-                                        </div>
-                                    </div>
+                                <div class="purchase-info">
+                                    <h3>Quantity: </h3>
+                                    <asp:TextBox ID="txtQty" class="qty" runat="server" Text="1" onkeypress="return isNumber(event)" MaxLength="5"></asp:TextBox>
+                                </div>
+                            </div>
+                            <asp:Label ID="lblSize" runat="server" Text="" CssClass="lblRed"></asp:Label>
 
-                                    <div class="purchase-info">
-                                        <h3>Quantity: </h3>
-                                        <asp:TextBox ID="txtQty" class="qty" runat="server" Text="1" onkeypress="return isNumber(event)" MaxLength="5"></asp:TextBox>
-                                    </div>
-                                </div> 
-                                    <asp:Label ID="lblSize" runat="server" Text="" CssClass="lblRed"></asp:Label>
-                            
 
 
 
@@ -117,129 +118,83 @@
                                 <p>Share At: </p>
                                 <asp:LinkButton CssClass="text-dark px-2" ID="btnPinterest" runat="server" Text="Pinterest" OnClientClick="shareOnPinterest()">
                                     <i class="fab fa-pinterest"></i>
-                                </asp:LinkButton>                                             
+                                </asp:LinkButton>
                                 <asp:LinkButton CssClass="text-dark px-2" ID="btnTwitter" runat="server" Text="Twitter" OnClientClick="shareOnTwitter()">
                                     <i class="fab fa-twitter"></i>
-                                </asp:LinkButton>                    
+                                </asp:LinkButton>
                                 <asp:LinkButton CssClass="text-dark px-2" ID="btnWhatsapp" runat="server" Text="Whatsapp" OnClientClick="shareOnWhatsApp(); return false;">
                                     <i class="fab fa-whatsapp"></i>
-                                </asp:LinkButton>                                
+                                </asp:LinkButton>
                                 <asp:LinkButton CssClass="text-dark px-2" ID="btnGmail" runat="server" Text="Gmail" OnClick="fetchProductID">
                                     <i class="fa-solid fa-envelope"></i>
                                 </asp:LinkButton>
                             </div>
                         </div>
                     </div>
-
             </ItemTemplate>
         </asp:FormView>
 
-        <asp:FormView ID="formView1" runat="server" OnDataBound="formView_DataBound">
-            <ItemTemplate>
-                <!--REVIEW SECTIONS-->
-                <div class="reviewSection" style="display:flex; margin-top: 100px;">
-                    <div class="reviewRatingAndBar" style="border: 2px solid #6F6F6F; height: 20%; margin: 50px; border-radius: 16px;">
-                        <div class="reviewRating">
-                            <h3 style="margin-left:55px;"><%# Eval("AverageRating") %></h3>
-                            <div style="display:flex;"><%# GenerateStars(Convert.ToDouble(Eval("AverageRating")) ) %></div>
-                            <div class="reviewRatingNumUser" style="margin-left: 50px;"><i class="fa-solid fa-user"></i>
-                                <div style="display: flex; margin-left:-16px;"><div><%# Eval("ReviewCount") %></div> <div>Total</div></div>
-                            </div>
-                        </div>
-                    </div>
 
-
-                    <div class="commentSection">
-                        <div class="reviewModalSection">
-                            <h2>Reviews</h2>
-                        </div>
-                        <hr />
-
-                        <div class="reviewSectionDropDownLists">
-                            <div class="dropdown-container" onclick="toggleDropdown('dropdownList1', 'dropdownDisplay1')">
-                                <div class="dropdown-display" id="dropdownDisplay1">
-                                    Star 
-                                <i class="fas fa-star star reviewStar"></i>
-                                    (All)
-                                </div>
-                                <div class="dropdown-list" id="dropdownList1">
-                                    <div onclick="selectOption('5 Star (8)', 'dropdownDisplay1')">
-                                        <i class="fas fa-star star"></i>
-                                        <i class="fas fa-star star"></i>
-                                        <i class="fas fa-star star"></i>
-                                        <i class="fas fa-star star"></i>
-                                        <i class="fas fa-star star"></i>
-                                        (8)
-                                    </div>
-                                    <div onclick="selectOption('4 Star (5)', 'dropdownDisplay1')">
-                                        <i class="fas fa-star star"></i>
-                                        <i class="fas fa-star star"></i>
-                                        <i class="fas fa-star star"></i>
-                                        <i class="fas fa-star star"></i>
-                                        (5)
-                                    </div>
-                                    <div onclick="selectOption('3 Star (4)', 'dropdownDisplay1')">
-                                        <i class="fas fa-star star"></i>
-                                        <i class="fas fa-star star"></i>
-                                        <i class="fas fa-star star"></i>
-                                        (4)
-                                    </div>
-                                    <div onclick="selectOption('2 Star (3)', 'dropdownDisplay1')">
-                                        <i class="fas fa-star star"></i>
-                                        <i class="fas fa-star star"></i>
-                                        (3)
-                                    </div>
-                                    <div onclick="selectOption('1 Star (1)', 'dropdownDisplay1')">
-                                        <i class="fas fa-star star"></i>
-                                        (1)
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            <div class="dropdown-container" onclick="toggleDropdown('dropdownList2', 'dropdownDisplay2')">
-                                <div class="dropdown-display" id="dropdownDisplay2">Variation (All)</div>
-                                <div class="dropdown-list" id="dropdownList2">
-                                    <div onclick="selectOption('Variation (S)', 'dropdownDisplay2')">S</div>
-                                    <div onclick="selectOption('Variation (M)', 'dropdownDisplay2')">M</div>
-                                    <div onclick="selectOption('Variation (L)', 'dropdownDisplay2')">L</div>
-                                    <div onclick="selectOption('Variation (XL)', 'dropdownDisplay2')">XL</div>
-                                </div>
-                            </div>
-
-                        </div>
-
-                        <asp:Repeater ID="reviewsRepeater" runat="server" DataSource='<%# Eval("Reviews") %>'>
-                            <ItemTemplate>
-                                <div class="commentSectionNewRow">
-                                    <h3><%# Eval("CustomerName") %></h3>
-                                    <div class="commentRatingSection">
-                                        <div class="commentRatingSectionStars">
-                                            <%# GenerateStars(Convert.ToDouble(Eval("customerRating")) ) %>
-                                        </div>
-                                        <div class="commentRatingSectionDate">
-                                            <%# Eval("reviewDateSubmit") %>
+                <asp:FormView ID="formView1" runat="server" OnDataBound="formView_DataBound">
+                    <ItemTemplate>
+                        <!--REVIEW SECTIONS-->
+                        <div class="reviewSection" style="display: flex; margin-top: 100px;">
+                            <div class="reviewRatingAndBar" style="border: 2px solid #6F6F6F; height: 20%; margin: 50px; border-radius: 16px;">
+                                <div class="reviewRating">
+                                    <h3 style="margin-left: 55px;"><%# Eval("AverageRating") %></h3>
+                                    <div style="display: flex;"><%# GenerateStars(Convert.ToDouble(Eval("AverageRating")) ) %></div>
+                                    <div class="reviewRatingNumUser" style="margin-left: 50px;">
+                                        <i class="fa-solid fa-user"></i>
+                                        <div style="display: flex; margin-left: -16px;">
+                                            <div><%# Eval("ReviewCount") %></div>
+                                            <div>Total</div>
                                         </div>
                                     </div>
-                                    <div class="commentRatingSectionDetails">
-                                        <%# Eval("customerReview") %>
-                                    </div>
                                 </div>
-                            </ItemTemplate>
-                        </asp:Repeater>
-                        <h4 class="noMoreRatingFound">No More Ratings Found</h4>
-                    </div>
-                        
-                   
-                </div>
-                
-                </div>
-            </ItemTemplate>
-        </asp:FormView>
-            <!--VIEWMOREBUTTON END-->
+                            </div>
 
-        <asp:HiddenField ID="prodIdHidden" runat="server"/>
-        <asp:HiddenField ID="prodNameHidden" runat="server"/>
+
+                            <div class="commentSection">
+                                <div class="reviewModalSection">
+                                    <h2>Reviews</h2>
+                                </div>
+
+                                <hr />
+
+
+                                <asp:Repeater ID="reviewsRepeater" runat="server" DataSource='<%# Eval("Reviews") %>'>
+                                    <ItemTemplate>
+                                        <div class="commentSectionNewRow">
+                                            <h3><%# Eval("CustomerName") %></h3>
+                                            <div class="commentRatingSection">
+                                                <div class="commentRatingSectionStars">
+                                                    <%# GenerateStars(Convert.ToDouble(Eval("customerRating")) ) %>
+                                                </div>
+                                                <div class="commentRatingSectionDate">
+                                                    <%# Eval("reviewDateSubmit") %>
+                                                </div>
+                                            </div>
+                                            <div class="commentRatingSectionDetails">
+                                                <%# Eval("customerReview") %>
+                                            </div>
+                                        </div>
+                                    </ItemTemplate>
+                                </asp:Repeater>
+                                <h4 class="noMoreRatingFound">No More Ratings Found</h4>
+                            </div>
+
+
+                        </div>
+
+                        </div>
+                    </ItemTemplate>
+                </asp:FormView>
+
+
+        <!--VIEWMOREBUTTON END-->
+
+        <asp:HiddenField ID="prodIdHidden" runat="server" />
+        <asp:HiddenField ID="prodNameHidden" runat="server" />
         <asp:HiddenField ID="prodDiscountHidden" runat="server" />
         <asp:HiddenField ID="prodPriceHidden" runat="server" />
         <asp:HiddenField ID="prodDescHidden" runat="server" />
@@ -320,4 +275,3 @@
         </script>
     </footer>
 </asp:Content>
-    
