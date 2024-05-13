@@ -150,72 +150,72 @@ namespace Uniqlo.Pages
             }
 
             con.Open();
-                SqlCommand checkEmail = new SqlCommand("SELECT Email from Customer WHERE Email='" + txtEmail.Text.ToString() + "'", con);
-                SqlDataReader read = checkEmail.ExecuteReader();
+            SqlCommand checkEmail = new SqlCommand("SELECT Email from Customer WHERE Email='" + txtEmail.Text.ToString() + "'", con);
+            SqlDataReader read = checkEmail.ExecuteReader();
 
 
-                if (read.HasRows)
-                {
-                    lblErrorMsg.Text = "Email address is already exists. Please try with different email address";
-                    lblErrorMsg.ForeColor = System.Drawing.Color.Red;
-                    con.Close();
-                }
-                else
-                {
-                    con.Close();
-                    Random random = new Random();
-                    int myRandom = random.Next(10000000, 999999999);
-                    string Activation_Code = myRandom.ToString();
-
-                    con.Open();
-                    string insertUser = "INSERT INTO Customer(Name, Gender, Contact_No, Address, State, City, Postcode, Country, Email, Password) VALUES(@Name, @Gender, @ContactNo, @Address, @State, @City, @Postcode, @Country, @Email, @Password)";
-                    SqlCommand insertCmd = new SqlCommand(insertUser, con);
-                    insertCmd.Parameters.AddWithValue("@Name", txtName.Text.ToString());
-                    insertCmd.Parameters.AddWithValue("@Gender", ddlGender.Text);
-                    insertCmd.Parameters.AddWithValue("@ContactNo", txtPhone.Text);
-                    insertCmd.Parameters.AddWithValue("@Address", txtAddress.Text);
-                    insertCmd.Parameters.AddWithValue("@State", ddlState.Text);
-                    insertCmd.Parameters.AddWithValue("@City", txtCity.Text);
-                    insertCmd.Parameters.AddWithValue("@Postcode", txtPostcode.Text);
-                    insertCmd.Parameters.AddWithValue("@Country", ddlCountry.Text);
-                    insertCmd.Parameters.AddWithValue("@Email", txtEmail.Text.ToString());
-                    insertCmd.Parameters.AddWithValue("@Password", txtPassword.Text);
-                    //insertCmd.Parameters.AddWithValue("@ProfileImage",fileProfilePhoto.FileName);
-                    insertCmd.ExecuteNonQuery();
-                    Response.Redirect("Login.aspx");
-                    //MailMessage mail = new MailMessage();
-                    //mail.To.Add(txtEmail.Text.ToString());
-                    //mail.From = new MailAddress("bengyee.oh@gmail.com");
-                    // mail.Subject = "Thank you for registering with us.";
-
-                    // string emailBody = "";
-
-                    // emailBody += "<h1>Hello" + txtName.Text.ToString() + ",</h1>";
-                    //emailBody += "Click the link below to activate your account.</br>";
-                    //emailBody += "<p><a href='" + "https://localhost:44369/SignUp.aspx?Activation_Code=" + Activation_Code + "&Email=" + txtEmail.Text.ToString() + "'> Click here to activate</p>";
-                    //emailBody += "Thank you and have a nice day";
-
-                    //mail.Body = emailBody;
-                    //mail.IsBodyHtml = true;
-
-                    //Configure SMTP Settings
-                    //SmtpClient smtp = new SmtpClient();
-                    //smtp.Port =587 ; //25 265 587
-                    //smtp.EnableSsl = true;
-                    //smtp.UseDefaultCredentials = false;
-                    //smtp.Host = "smtp.gmail.com";
-                    //smtp.Credentials = new NetworkCredential("bengyee.oh@gmail.com", "pues rhde cdsd jxyu");
-                    //smtp.EnableSsl = true;
-
-                    //Send the email
-                    //smtp.Send(mail);
-
-                    //lblErrorMsg.Text = "You are registered successfully. Please login to your account";
-                    // lblErrorMsg.ForeColor = System.Drawing.Color.Red;
-
-                    con.Close();
-                }
+            if (read.HasRows)
+            {
+                lblErrorMsg.Text = "Email address is already exists. Please try with different email address";
+                lblErrorMsg.ForeColor = System.Drawing.Color.Red;
+                con.Close();
             }
+            else
+            {
+                con.Close();
+                Random random = new Random();
+                int myRandom = random.Next(10000000, 999999999);
+                string Activation_Code = myRandom.ToString();
+
+                con.Open();
+                string insertUser = "INSERT INTO Customer(Name, Gender, Contact_No, Address, State, City, Postcode, Country, Email, Password) VALUES(@Name, @Gender, @ContactNo, @Address, @State, @City, @Postcode, @Country, @Email, @Password)";
+                SqlCommand insertCmd = new SqlCommand(insertUser, con);
+                insertCmd.Parameters.AddWithValue("@Name", txtName.Text.ToString());
+                insertCmd.Parameters.AddWithValue("@Gender", ddlGender.Text);
+                insertCmd.Parameters.AddWithValue("@ContactNo", txtPhone.Text);
+                insertCmd.Parameters.AddWithValue("@Address", txtAddress.Text);
+                insertCmd.Parameters.AddWithValue("@State", ddlState.Text);
+                insertCmd.Parameters.AddWithValue("@City", txtCity.Text);
+                insertCmd.Parameters.AddWithValue("@Postcode", txtPostcode.Text);
+                insertCmd.Parameters.AddWithValue("@Country", ddlCountry.Text);
+                insertCmd.Parameters.AddWithValue("@Email", txtEmail.Text.ToString());
+                insertCmd.Parameters.AddWithValue("@Password", txtPassword.Text);
+                //insertCmd.Parameters.AddWithValue("@ProfileImage",fileProfilePhoto.FileName);
+                insertCmd.ExecuteNonQuery();
+                Response.Redirect("Login.aspx");
+                //MailMessage mail = new MailMessage();
+                //mail.To.Add(txtEmail.Text.ToString());
+                //mail.From = new MailAddress("bengyee.oh@gmail.com");
+                // mail.Subject = "Thank you for registering with us.";
+
+                // string emailBody = "";
+
+                // emailBody += "<h1>Hello" + txtName.Text.ToString() + ",</h1>";
+                //emailBody += "Click the link below to activate your account.</br>";
+                //emailBody += "<p><a href='" + "https://localhost:44369/SignUp.aspx?Activation_Code=" + Activation_Code + "&Email=" + txtEmail.Text.ToString() + "'> Click here to activate</p>";
+                //emailBody += "Thank you and have a nice day";
+
+                //mail.Body = emailBody;
+                //mail.IsBodyHtml = true;
+
+                //Configure SMTP Settings
+                //SmtpClient smtp = new SmtpClient();
+                //smtp.Port =587 ; //25 265 587
+                //smtp.EnableSsl = true;
+                //smtp.UseDefaultCredentials = false;
+                //smtp.Host = "smtp.gmail.com";
+                //smtp.Credentials = new NetworkCredential("bengyee.oh@gmail.com", "pues rhde cdsd jxyu");
+                //smtp.EnableSsl = true;
+
+                //Send the email
+                //smtp.Send(mail);
+
+                //lblErrorMsg.Text = "You are registered successfully. Please login to your account";
+                // lblErrorMsg.ForeColor = System.Drawing.Color.Red;
+
+                con.Close();
+            }
+        }
 
         private bool ValidateReCaptcha(string recaptchaResponse)
         {

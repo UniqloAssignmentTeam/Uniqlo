@@ -13,7 +13,19 @@ namespace Uniqlo.Pages
         {
             if (!IsPostBack)
             {
-                BindReviewData("1");
+                // Retrieve the OrderListID from the query string
+                string orderListID = Request.QueryString["OrderListID"];
+
+                if (!string.IsNullOrEmpty(orderListID))
+                {
+                    BindReviewData(orderListID);
+                }
+                else
+                {
+                    // Handle the case where OrderListID is missing from the query string
+                    // For example, display an error message or redirect the user
+                    Response.Write("OrderListID is missing from the query string.");
+                }
             }
         }
 

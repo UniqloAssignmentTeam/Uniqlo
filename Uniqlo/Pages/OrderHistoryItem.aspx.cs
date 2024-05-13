@@ -94,8 +94,7 @@ namespace Uniqlo.Pages
             }
             catch (Exception ex)
             {
-                orderSummaryRepeater.DataSource = orderDetails;
-                orderSummaryRepeater.DataBind();
+              
             }
         }
 
@@ -108,9 +107,9 @@ namespace Uniqlo.Pages
 
                 // Optionally display error message on the page
                 ScriptManager.RegisterStartupScript(this, GetType(), "errorAlert", "alert('An error occurred when retrieve order summary.');", true);
-            }
+            
 
-        }
+        
             if (buttonText == "View")
             {
                 // Redirect to view review page

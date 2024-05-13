@@ -100,7 +100,7 @@ namespace Uniqlo.Pages
             }
 
             // Optionally, you can redirect the user to another page after the update
-            Response.Redirect("ViewReviewItem.aspx");
+            Response.Redirect("OrderHistoryItem.aspx");
         }
 
 
