@@ -43,7 +43,7 @@
                     <div style="display: flex;">
 
                         <div class="dropdown-container" style="margin-right: 15px;">
-                          <asp:DropDownList ID="genderSortDDL" runat="server" AutoPostBack="true" OnSelectedIndexChanged="SortbyGender" CssClass="dropdown-display">
+                         <asp:DropDownList ID="genderSortDDL" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ApplyFilters" CssClass="dropdown-display">
     <asp:ListItem Value="">All Genders</asp:ListItem>
     <asp:ListItem Value="M">Men</asp:ListItem>
     <asp:ListItem Value="W">Women</asp:ListItem>
@@ -53,7 +53,7 @@
 
 
                         <div class="dropdown-container">
-                           <asp:DropDownList ID="categorySortDDL" runat="server" AutoPostBack="true" OnSelectedIndexChanged="FilterProducts" CssClass="dropdown-display">
+                        <asp:DropDownList ID="categorySortDDL" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ApplyFilters" CssClass="dropdown-display">
     <asp:ListItem Value="">All Categories</asp:ListItem>
     <asp:ListItem Value="Top">Tops</asp:ListItem>
     <asp:ListItem Value="Bottom">Bottoms</asp:ListItem>
@@ -66,12 +66,11 @@
 
                         <div style="display: flex; width: 100%; justify-content: flex-end;">
                             <div class="dropdown-container">
-                                <asp:DropDownList ID="sortByDDL" runat="server" CssClass="dropdown-display">
-                                    <asp:ListItem>Sort By</asp:ListItem>
-                                    <asp:ListItem>Most Popular</asp:ListItem>
-                                    <asp:ListItem>High to Low</asp:ListItem>
-                                    <asp:ListItem>Low to High</asp:ListItem>
-                                </asp:DropDownList>
+                             <asp:DropDownList ID="sortByDDL" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ApplyFilters" CssClass="dropdown-display">
+    <asp:ListItem Value="">Sort By</asp:ListItem>
+    <asp:ListItem Value="HighToLow">High to Low</asp:ListItem>
+    <asp:ListItem Value="LowToHigh">Low to High</asp:ListItem>
+</asp:DropDownList>
                             </div>
                         </div>
 
