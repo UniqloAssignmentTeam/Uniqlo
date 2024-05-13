@@ -318,13 +318,6 @@
 
         <h1>ORDER ID :<asp:Label ID="orderIDLabel" runat="server" Text=""></asp:Label></h1>
 
-
-
-
-
-
-
-
         <div class="cart-page-container">
             <div class="cart-items-container" style="display: flex; width: 100%;">
                 <div style="width: 70%;">

@@ -11,7 +11,7 @@ namespace Uniqlo
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["Customer_ID"] == null || Session["Email"] == null)
+            if (Session["Customer_ID"] == null )
             {
                 
                 hlLogin.Visible = true;

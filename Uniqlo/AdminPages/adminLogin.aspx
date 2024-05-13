@@ -1,6 +1,6 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin.Master" AutoEventWireup="true" CodeBehind="adminLogin.aspx.cs" Inherits="Uniqlo.AdminPages.adminLogin" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin.Master" AutoEventWireup="true" CodeBehind="adminLogin.aspx.cs" Inherits="Uniqlo.adminLogin" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="main" runat="server">
-        <style>
+    <style>
 .bigDong{
     margin: 0 auto;
     max-width: 1100px;
@@ -97,28 +97,33 @@ input[type="submit"]:hover {
     background-color: #357ae8; /* Darker blue on hover */
 }
 </style>
-    <header>
+    <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-    </header>
+    </head>
     <div class="bigDong">
     <div class="container">
         <div class="center">
             <h1>Login</h1>
            
                 <div class="txt_field">
-                    <input type="text" name="text" required placeholder="Username">
+                    
+                    <asp:TextBox ID="txtEmail" type="text" name="text" required="true" runat="server"></asp:TextBox> 
                     <span></span>
                     
                 </div>
                 <div class="txt_field">
-                    <input type="password" name="password" required placeholder="Password">
+                  
+                    <asp:TextBox ID="txtPassword" type="password" name="password" required="true"  runat="server"></asp:TextBox> 
                     <span></span>
                 </div>         
-                <asp:Button ID="btnLogin" runat="server" name="submit" type="Submit" value="Login" Text="Login" OnClick="btnLogin_Click" />
+                <asp:Button ID="btnLogin" runat="server" name="submit" type="Submit" value="Login" Text="Login"  onClick="btnLogin_Click"/>
 
+            </form>
         </div>
     </div>
         </div>
 
+
 </asp:Content>
+

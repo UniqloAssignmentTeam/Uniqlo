@@ -15,13 +15,22 @@ namespace Uniqlo.Pages
     {
 
         /// <summary>
-        /// updateRatingRepeater control.
+        /// Review control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater updateRatingRepeater;
+        protected global::System.Web.UI.WebControls.TextBox Review;
+
+        /// <summary>
+        /// submitReview control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button submitReview;
 
         /// <summary>
         /// HiddenRatingUpdate control.

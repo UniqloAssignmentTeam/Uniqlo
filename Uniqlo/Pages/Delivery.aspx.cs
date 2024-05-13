@@ -35,9 +35,6 @@ namespace Uniqlo.Pages
                 decimal grandTotal = totalPrice + deliveryCharge;
                 lblGrandTotal.Text = "RM " + grandTotal.ToString("N2");
                 Session["GrandTotal"]= grandTotal;  
-              
-                //dummy sesssion
-                Session["Customer_Id"] = "1";
 
                 string sql = "SELECT * FROM Customer WHERE Customer_Id =@Customer_Id";
 
@@ -50,15 +47,32 @@ namespace Uniqlo.Pages
 
                 if (dr.Read())
                 {
-                    
                     txtName.Text = (string)dr["Name"];
                     txtEmail.Text = (string)dr["Email"];
                     txtContact.Text = (string)dr["Contact_No"];
+
+                    // Check if the address is not null before populating the text boxes
+                    if (!DBNull.Value.Equals(dr["Address"]))
+                        txtAddress.Text = dr["Address"].ToString();
+
+                    if (!DBNull.Value.Equals(dr["State"]))
+                        txtState.Text = dr["State"].ToString();
+
+                    if (!DBNull.Value.Equals(dr["City"]))
+                        txtCity.Text = dr["City"].ToString();
+
+                    if (!DBNull.Value.Equals(dr["Postcode"]))
+                        txtPostcode.Text = dr["Postcode"].ToString();
+
+                    if (!DBNull.Value.Equals(dr["Country"]))
+                        txtCountry.Text = dr["Country"].ToString();
 
                 }
 
             }
         }
+
+
 
         protected void btnProceedToPayment_Click(object sender, EventArgs e)
         {

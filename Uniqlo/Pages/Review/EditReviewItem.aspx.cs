@@ -1,9 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+using System.Data;
+using System.Data.SqlClient;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Uniqlo.AdminPages;
 
 namespace Uniqlo.Pages
 {
@@ -11,63 +11,115 @@ namespace Uniqlo.Pages
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (!IsPostBack)
+            {
+                // Populate the review data
+                BindReviewData();
+            }
         }
 
-        /*
-         * 
-        private void BindRatingRepeater(int orderListId)
+        private void BindReviewData()
         {
-            int orderID = int.Parse(Request.QueryString["Order_ID"]);
+            // Retrieve ReviewID from query string
+            string reviewID = Request.QueryString["ReviewID"];
 
-            using (var db = new OrderDbContext())
+            if (!string.IsNullOrEmpty(reviewID))
             {
-                var orderDetails = db.OrderList
-                                    .Where(ol => ol.Order_ID == orderID && ol.OrderList_ID == orderListId)
-                                    .SelectMany(ol => ol.Reviews, (ol, r) => new
-                                    {
-                                        OrderList_ID = ol.OrderList_ID,
-                                        Rating = r.Rating,
-                                        Review = r.Review1
-                                    })
-                                    .FirstOrDefault();
+                // Connection string retrieved from web.config
+                string connectionString = Global.CS;
 
-                ratingRepeater.DataSource = new List<object> { orderDetails };
-                ratingRepeater.DataBind();
+                // SQL query to retrieve review data based on ReviewID
+                string query = "SELECT Rating, Review FROM Review WHERE Review_ID = @ReviewID";
 
-                updateRatingRepeater.DataSource = new List<object> { orderDetails };
-                updateRatingRepeater.DataBind();
+                // Create a new SqlConnection using the connection string
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    // Create a new SqlCommand with the query and connection
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        // Add parameter for ReviewID
+                        command.Parameters.AddWithValue("@ReviewID", reviewID);
 
+                        // Open the connection
+                        connection.Open();
+
+                        // Execute the command and retrieve the data
+                        SqlDataReader reader = command.ExecuteReader();
+
+                        // Check if data exists
+                        if (reader.Read())
+                        {
+                            // Populate the rating
+                            HiddenRatingUpdate.Value = reader["Rating"].ToString();
+
+                            // Populate the review
+                            Review.Text = reader["Review"].ToString();
+                        }
+
+                        // Close the reader and connection
+                        reader.Close();
+                        connection.Close();
+                    }
+                }
             }
         }
 
         protected void updateRating_Click(object sender, EventArgs e)
         {
+            // Retrieve the rating and review from the controls
+            int rating = Convert.ToInt32(HiddenRatingUpdate.Value);
+            string comment = Review.Text;
 
-            int orderListId = int.Parse(HiddenOrderListID.Value);
-            int rating = int.Parse(HiddenRatingUpdate.Value);
-            TextBox txtComment = (TextBox)ratingRepeater.FindControl("commentTextArea2");
+            // Get the ReviewID from the query string
+            int reviewID = GetReviewIDFromQueryString();
 
+            // Update the review in the database
+            UpdateReview(reviewID, rating, comment);
 
-            string comment = txtComment.Text;
-            ScriptManager.RegisterStartupScript(this, GetType(), "redirectError", "alert('" + orderListId + "," + rating + "," + comment + "');", true);
+            // Display popup using JavaScript
+            ScriptManager.RegisterStartupScript(this, GetType(), "Popup", "showPopup();", true);
+        }
 
+        private void UpdateReview(int reviewID, int rating, string comment)
+        {
+            // Implement logic to update the review in the database
+            string connectionString = Global.CS;
+            string query = "UPDATE Review SET Rating = @Rating, Review = @Review WHERE Review_ID = @ReviewID";
 
-            using (var context = new ReviewDbContext())
+            using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                Review review = context.Review.FirstOrDefault(r => r.OrderList_ID == orderListId);
-
-                if (review != null)
+                using (SqlCommand command = new SqlCommand(query, connection))
                 {
-                    review.Rating = rating;
-                    review.Review1 = comment;
-                    review.Date_Submitted = DateTime.Now;
+                    command.Parameters.AddWithValue("@Rating", rating);
+                    command.Parameters.AddWithValue("@Review", comment);
+                    command.Parameters.AddWithValue("@ReviewID", reviewID);
+
+                    connection.Open();
+                    command.ExecuteNonQuery();
                 }
-                context.SaveChanges();
             }
 
-            Response.Redirect(Request.RawUrl);
+            // Optionally, you can redirect the user to another page after the update
+            Response.Redirect("OrderHistoryItem.aspx");
         }
-        */
+
+
+        private int GetReviewIDFromQueryString()
+        {
+            // Implement logic to retrieve ReviewID from the query string
+            // For example:
+            if (!string.IsNullOrEmpty(Request.QueryString["ReviewID"]))
+            {
+                return Convert.ToInt32(Request.QueryString["ReviewID"]);
+            }
+            else
+            {
+                // Handle the case where ReviewID is not present in the query string
+                // You may throw an exception or return a default value
+                throw new Exception("ReviewID is missing in the query string.");
+            }
+        }
+
+
     }
 }
