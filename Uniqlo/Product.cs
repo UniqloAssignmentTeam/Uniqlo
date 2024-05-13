@@ -27,7 +27,7 @@ namespace Uniqlo
         public string Product_Name { get; set; }
         public string Description { get; set; }
         public double Price { get; set; }
-        public bool IsDeleted { get; set; }
+        public Nullable<bool> IsDeleted { get; set; }
     
         public virtual Category Category { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -35,6 +35,7 @@ namespace Uniqlo
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Quantity> Quantities { get; set; }
     }
+
     public class ProductDbContext : DbContext
     {
         public ProductDbContext() : base("name=UniqloEntities") // Ensure this matches your connection string in Web.config
@@ -49,7 +50,6 @@ namespace Uniqlo
         public DbSet<Order> Order { get; set; }
         public DbSet<OrderList> OrderList { get; set; }
         public DbSet<Customer> Customer { get; set; }
-        public DbSet<WishlistItem> WishlistItems { get; set; }
 
     }
 }

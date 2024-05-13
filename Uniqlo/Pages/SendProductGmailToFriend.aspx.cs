@@ -29,7 +29,7 @@ namespace Uniqlo.Pages
 
                             // Expecting a single product due to unique product ID
                             var product = db.Product
-                                .Where(p => p.Product_ID == prodID && !p.IsDeleted)
+                                .Where(p => p.Product_ID == prodID && p.IsDeleted == false)
                                 .Include(p => p.Discounts)
                                 .Include(p => p.Quantities.Select(q => q.Image))
                                 .Select(p => new

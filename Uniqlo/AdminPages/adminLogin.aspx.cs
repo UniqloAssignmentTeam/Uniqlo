@@ -21,14 +21,14 @@ namespace Uniqlo.AdminPages
             con.Open();
             if (Page.IsValid)
             {
-                string email = txtEmail.Text;
-                string password = txtPassword.Text.Trim();
+                //string email = txtEmail.Text;
+                //string password = txtPassword.Text.Trim();
 
                 //check user
                 string checkUser = "SELECT* FROM Staff WHERE email=@email and password=@password";
                 SqlCommand checkCmd = new SqlCommand(checkUser, con);
-                checkCmd.Parameters.AddWithValue("@email", email);
-                checkCmd.Parameters.AddWithValue("@password", password);
+                //checkCmd.Parameters.AddWithValue("@email", email);
+                //checkCmd.Parameters.AddWithValue("@password", password);
                 SqlDataReader read = checkCmd.ExecuteReader();
 
                 if (read.Read())

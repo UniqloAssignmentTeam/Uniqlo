@@ -18,7 +18,6 @@ namespace Uniqlo
         public Quantity()
         {
             this.OrderLists = new HashSet<OrderList>();
-            this.WishlistItems = new HashSet<WishlistItem>();
         }
     
         public int Quantity_ID { get; set; }
@@ -27,13 +26,11 @@ namespace Uniqlo
         public string Color { get; set; }
         public int Qty { get; set; }
         public string Size { get; set; }
-        public bool IsDeleted { get; set; }
+        public Nullable<bool> IsDeleted { get; set; }
     
         public virtual Image Image { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<OrderList> OrderLists { get; set; }
         public virtual Product Product { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<WishlistItem> WishlistItems { get; set; }
     }
 }

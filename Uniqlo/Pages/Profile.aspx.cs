@@ -11,6 +11,7 @@ using System.Data.Sql;
 using System.Data.SqlTypes;
 using System.Xml.Linq;
 using Newtonsoft.Json;
+using iTextSharp.text.pdf;
 
 
 namespace Uniqlo.Pages
@@ -109,7 +110,7 @@ namespace Uniqlo.Pages
 
 
                     var orderDetails = db.Order
-                        .Where(o=>o.Customer_ID==customerID && !o.IsDeleted)
+                        .Where(o=>o.Customer_ID==customerID && o.IsDeleted == false)
                         .Select(o=> new {
                             Order_ID=o.Order_ID,
                             Total_Item =db.OrderList.Count(ol=>ol.Order_ID==o.Order_ID),
@@ -171,7 +172,7 @@ namespace Uniqlo.Pages
                     string selectedDate = ddlDate.SelectedValue;
 
                     var orderDetails = db.Order
-                        .Where(o => o.Customer_ID == customerID && !o.IsDeleted)
+                        .Where(o => o.Customer_ID == customerID && o.IsDeleted == false)
                         .Select(o => new
                         {
                             Order_ID = o.Order_ID,

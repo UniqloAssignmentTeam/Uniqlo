@@ -28,7 +28,7 @@ namespace Uniqlo.Pages.Categories.Women
                     var today = DateTime.Today;
 
                     var productDetails = db.Product
-                        .Where(p => !p.IsDeleted && p.Category.Gender == "W")
+                        .Where(p => p.IsDeleted == false && p.Category.Gender == "W")
                         .SelectMany( // Use SelectMany to flatten the results from the join
                             p => db.Discount
                                 .Where(d => d.Product_ID == p.Product_ID // Ensure it's the right product

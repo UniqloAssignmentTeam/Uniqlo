@@ -123,6 +123,33 @@ namespace Uniqlo.Pages
         protected global::System.Web.UI.WebControls.Button btnChgPass;
 
         /// <summary>
+        /// ddlDate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlDate;
+
+        /// <summary>
+        /// ScriptManagerProduct control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.ScriptManager ScriptManagerProduct;
+
+        /// <summary>
+        /// UpdatePanelProduct control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatePanelProduct;
+
+        /// <summary>
         /// orderRepeater control.
         /// </summary>
         /// <remarks>

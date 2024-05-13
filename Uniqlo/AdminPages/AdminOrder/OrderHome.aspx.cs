@@ -36,7 +36,7 @@ namespace Uniqlo.AdminPages.AdminOrder
                 using (var db = new OrderDbContext())
                 {
                     var orders = db.Order
-                        .Where(o => !o.IsDeleted)
+                        .Where(o => o.IsDeleted == false)
                         .Include(o => o.Customer)
                         .Include(o => o.OrderLists)
                         .Include(o => o.Payments)
@@ -87,7 +87,7 @@ namespace Uniqlo.AdminPages.AdminOrder
 
                     // Start by including all necessary entities
                     var orderQuery = db.Order
-                        .Where(o => !o.IsDeleted)
+                        .Where(o => o.IsDeleted == false)
                         .Include(o => o.Customer)
                         .Include(o => o.OrderLists)
                         .Include(o => o.Payments)
@@ -206,7 +206,7 @@ namespace Uniqlo.AdminPages.AdminOrder
                         .Include(o => o.Customer)
                         .Include(o => o.OrderLists)
                         .Include(o => o.Payments)
-                        .Where(o => o.Customer.Name.Contains(searchText) && !o.IsDeleted)
+                        .Where(o => o.Customer.Name.Contains(searchText) && o.IsDeleted == false)
                         .Select(o => new
                         {
                             OrderId = o.Order_ID,

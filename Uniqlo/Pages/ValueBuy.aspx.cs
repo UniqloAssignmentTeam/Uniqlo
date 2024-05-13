@@ -31,7 +31,7 @@ namespace Uniqlo.Pages
                 var today = DateTime.Today;
 
                 var productDetails = db.Product
-                    .Where(p => !p.IsDeleted)
+                    .Where(p => p.IsDeleted == false)
                     .SelectMany( // Use SelectMany to flatten the results from the join
                         p => db.Discount
                             .Where(d => d.Product_ID == p.Product_ID // Ensure it's the right product
@@ -69,7 +69,7 @@ namespace Uniqlo.Pages
 
                 // Start with all products that are not deleted
                 var query = db.Product
-                    .Where(p => !p.IsDeleted)
+                    .Where(p => p.IsDeleted == false)
                     .AsQueryable();
 
                 // Filter by gender if a specific gender is selected

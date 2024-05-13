@@ -51,7 +51,7 @@ namespace Uniqlo.AdminPages
                             Price = p.Price,
                             Category = p.Category,
                             ColorGroups = p.Quantities
-                                .Where(q => !q.IsDeleted)
+                                .Where(q => q.IsDeleted == false)
                                 .GroupBy(q => q.Color)
                                 .Select(g => new
                                 {

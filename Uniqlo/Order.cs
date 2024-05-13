@@ -24,7 +24,7 @@ namespace Uniqlo
         public int Order_ID { get; set; }
         public int Customer_ID { get; set; }
         public double Subtotal { get; set; }
-        public bool IsDeleted { get; set; }
+        public Nullable<bool> IsDeleted { get; set; }
     
         public virtual Customer Customer { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -32,7 +32,6 @@ namespace Uniqlo
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Payment> Payments { get; set; }
     }
-
     public class OrderDbContext : DbContext
     {
         public OrderDbContext() : base("name=UniqloEntities")

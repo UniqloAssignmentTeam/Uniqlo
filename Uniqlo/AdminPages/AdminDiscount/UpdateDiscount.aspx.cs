@@ -135,7 +135,7 @@ namespace Uniqlo.AdminPages
                                                  .ToList();
 
                     var availableProducts = db.Product
-                                              .Where(p => !p.IsDeleted && !discountedProductIds.Contains(p.Product_ID))
+                                              .Where(p => p.IsDeleted == false && !discountedProductIds.Contains(p.Product_ID))
                                               .Select(p => new { p.Product_ID, p.Product_Name })
                                               .ToList();
 

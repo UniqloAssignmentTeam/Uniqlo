@@ -24,6 +24,7 @@ namespace Uniqlo
     
         public virtual Product Product { get; set; }
     }
+
     public class DiscountDbContext : DbContext
     {
         public DiscountDbContext() : base("name=UniqloEntities") // Ensure this matches your connection string in Web.config

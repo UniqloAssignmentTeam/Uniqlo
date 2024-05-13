@@ -731,9 +731,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>UniqloAdo.edmx</DependentUpon>
     </Compile>
-    <Compile Include="WishlistItem.cs">
-      <DependentUpon>UniqloAdo.tt</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Admin.Master" />

@@ -27,7 +27,7 @@ namespace Uniqlo.Pages.Categories.Men
                 {
                     var today = DateTime.Today;
                     var productDetails = db.Product
-                        .Where(p => !p.IsDeleted && p.Category.Gender == "M")
+                        .Where(p => p.IsDeleted == false && p.Category.Gender == "M")
                         .GroupJoin( // Simulate a left join using GroupJoin and DefaultIfEmpty
                             db.Discount,
                             product => product.Product_ID,
@@ -73,7 +73,7 @@ namespace Uniqlo.Pages.Categories.Men
                 {
                     var today = DateTime.Today;
                     var productDetails = db.Product
-                        .Where(p => !p.IsDeleted && p.Category.Gender == "M")
+                        .Where(p => p.IsDeleted == false && p.Category.Gender == "M")
                         .GroupJoin(
                             db.Discount,
                             product => product.Product_ID,
@@ -161,7 +161,7 @@ namespace Uniqlo.Pages.Categories.Men
 
                     // Start with a base query that can be modified according to filters and sorting
                     var productQuery = db.Product
-                        .Where(p => !p.IsDeleted && p.Category.Gender == "M");
+                        .Where(p => p.IsDeleted == false && p.Category.Gender == "M");
 
                     // Apply category filter
                     if (!string.IsNullOrEmpty(selectedCategory))
@@ -239,7 +239,7 @@ namespace Uniqlo.Pages.Categories.Men
                 {
                     var today = DateTime.Today;
                     var productDetails = db.Product
-                        .Where(p => !p.IsDeleted && p.Category.Gender == "M" && p.Product_Name.Contains(searchText))
+                        .Where(p => p.IsDeleted == false && p.Category.Gender == "M" && p.Product_Name.Contains(searchText))
                         .GroupJoin( // Simulate a left join using GroupJoin and DefaultIfEmpty
                             db.Discount,
                             product => product.Product_ID,

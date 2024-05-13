@@ -26,7 +26,6 @@ namespace Uniqlo
         public virtual Delivery Delivery { get; set; }
         public virtual Order Order { get; set; }
     }
-
     public class PaymentDbContext : DbContext
     {
         public PaymentDbContext() : base("name=UniqloEntities")
@@ -35,5 +34,4 @@ namespace Uniqlo
 
         public DbSet<Payment> payment { get; set; }
     }
-
 }

@@ -49,7 +49,7 @@ namespace Uniqlo.Pages
                     var today = DateTime.Today;
 
                     var productList = db.Product
-                        .Where(p => p.Product_ID == productId && !p.IsDeleted)
+                        .Where(p => p.Product_ID == productId && p.IsDeleted == false)
                         .Include(p => p.Category)
                         .Include(p => p.Discounts)
                         .Include(p => p.Quantities.Select(q => q.Image))
@@ -76,7 +76,7 @@ namespace Uniqlo.Pages
                                     CustomerName = r.OrderList.Order.Customer.Name
                                 }).ToList(),
                             ColorGroups = p.Quantities
-                                .Where(q => !q.IsDeleted)
+                                .Where(q => q.IsDeleted == false)
                                 .GroupBy(q => q.Color)
                                 .Select(g => new
                                 {
@@ -226,7 +226,7 @@ namespace Uniqlo.Pages
                 
 
                     var colors = db.Quantity
-                   .Where(q => q.Product_ID == prodID && !q.IsDeleted)  // Filter by Product_ID
+                   .Where(q => q.Product_ID == prodID && q.IsDeleted == false)  // Filter by Product_ID
                    .Select(q => q.Color)
                    .Distinct()
                    .ToList();
@@ -269,7 +269,7 @@ namespace Uniqlo.Pages
                     using (var db = new ProductDbContext())
                     {
                         var sizes = db.Quantity
-                                      .Where(q => q.Product_ID == productId && q.Color == selectedColor && !q.IsDeleted)
+                                      .Where(q => q.Product_ID == productId && q.Color == selectedColor && q.IsDeleted == false)
                                       .Select(q => q.Size)
                                       .Distinct()
                                       .ToList();
@@ -284,7 +284,7 @@ namespace Uniqlo.Pages
 
                         // Get the maximum stock value among all sizes for the selected color
                         int maxStock = db.Quantity
-                                          .Where(q => q.Product_ID == productId && q.Color == selectedColor && !q.IsDeleted)
+                                          .Where(q => q.Product_ID == productId && q.Color == selectedColor && q.IsDeleted == false)
                                           .Max(q => q.Qty);
 
                         // Update the MaxLength of txtQty based on the maximum stock value
@@ -316,7 +316,7 @@ namespace Uniqlo.Pages
                 using (var db = new ProductDbContext())
                 {
                     var sizes = db.Quantity
-                                  .Where(q => q.Product_ID == productId && !q.IsDeleted)
+                                  .Where(q => q.Product_ID == productId && q.IsDeleted == false)
                                   .Select(q => q.Size)
                                   .Distinct()
                                   .ToList();
@@ -362,7 +362,7 @@ namespace Uniqlo.Pages
                     using (var db = new ProductDbContext())
                     {
                         var quantity = db.Quantity
-                                        .Where(q => q.Product_ID == productId && q.Color == selectedColor && q.Size == selectedSize && !q.IsDeleted)
+                                        .Where(q => q.Product_ID == productId && q.Color == selectedColor && q.Size == selectedSize && q.IsDeleted == false)
                                         .Select(q => q.Qty)
                                         .FirstOrDefault();
 
