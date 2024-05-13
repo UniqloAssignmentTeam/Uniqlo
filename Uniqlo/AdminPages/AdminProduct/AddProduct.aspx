@@ -44,6 +44,7 @@
 
                 <div class="form-group">
                     <asp:Label ID="lblDescription" runat="server" Text="Description"></asp:Label>
+
                     <asp:TextBox ID="txtDescription" CssClass="form-field" TextMode="MultiLine" runat="server" Rows="4" Columns="50" MaxLength="500"></asp:TextBox>
                     <asp:RequiredFieldValidator ID="rfvProductDescription" ControlToValidate="txtDescription" runat="server" ErrorMessage="Product description is required." CssClass="validation-error"/>
                 </div>

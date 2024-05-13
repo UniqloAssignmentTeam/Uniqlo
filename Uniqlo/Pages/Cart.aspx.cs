@@ -15,6 +15,8 @@ namespace Uniqlo.Pages
         {
             if (!IsPostBack)
             {
+
+
                 List<CartItem> cartItems = (List<CartItem>)Session["Cart"];
                 cartItems = GetCartItems(cartItems);
                 Session["Cart"] = cartItems; // Save the updated cartItems back to the session

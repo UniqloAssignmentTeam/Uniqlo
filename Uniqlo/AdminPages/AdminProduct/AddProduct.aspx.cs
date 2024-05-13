@@ -42,6 +42,8 @@ namespace Uniqlo.AdminPages
         {
             bool isValid = true;
 
+            string test = txtDescription.Text;
+
             if (HiddenFieldData.Value.Trim() == "" || HiddenFieldData.Value == "[]")
             {
                 cvHiddenFieldData.IsValid = false;
@@ -50,76 +52,10 @@ namespace Uniqlo.AdminPages
 
             if (Page.IsValid)
             {
-                if (string.IsNullOrWhiteSpace(txtProductName.Text))
-                {
-                    rfvProductName.Text = "Product name is required.";
-                    isValid = false;
-                }
-                else
-                {
-                    rfvProductName.Text = "";
-                    
-                }
-
-                if (string.IsNullOrWhiteSpace(txtDescription.Text))
-                {
-                    txtDescription.Text = "Product description is required.";
-                    isValid = false;
-                }
-                else
-                {
-                    txtDescription.Text = "";
-                    
-                }
-
-                double productPrice;
-                if (!double.TryParse(txtPrice.Text, out productPrice))
-                {
-                    rfvPrice.Text = "Valid price is required.";
-                    isValid = false;
-                }
-                else if (productPrice <= 0)
-                {
-                    revPrice.Text = "Price must be greater than zero.";
-                    isValid = false;
-                }
-                else
-                {
-                    revPrice.Text = "";
-                    
-                }
-
-                if (ddlCategory.SelectedIndex <= 0 )
-                {
-                    rfvCategory.Text = "Category selection is required.";
-                    isValid = false;
-                }
-                else
-                {
-                    rfvCategory.Text = "";
-                    
-                }                
                 
-                
-                if (ddlGender.SelectedIndex <= 0 )
-                {
-                    rfvGender.Text = "Gender selection is required.";
-                    isValid = false;
-                }
-                else
-                {
-                    rfvGender.Text = "";
-                    
-                }
-
-                if (!isValid)
-                {
-                    return;
-                }
-
                 string productName = txtProductName.Text;
                 string productDescription = txtDescription.Text;
-                productPrice = Double.Parse(txtPrice.Text);
+                double productPrice = Double.Parse(txtPrice.Text);
                 string category = ddlCategory.SelectedValue;
                 string gender = ddlGender.SelectedValue;
                 string jsonData = HiddenFieldData.Value;

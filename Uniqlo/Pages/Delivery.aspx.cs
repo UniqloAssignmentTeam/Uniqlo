@@ -16,7 +16,7 @@ namespace Uniqlo.Pages
         {
             if (!Page.IsPostBack)
             {
-                //dummy cart
+               
                 List<CartItem> cart = (List<CartItem>)Session["Cart"];
                 
                 Session["Cart"] = cart;
