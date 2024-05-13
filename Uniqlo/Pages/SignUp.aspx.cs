@@ -139,10 +139,15 @@ namespace Uniqlo.Pages
             string fileimg = Path.GetFileName(fileProfilePhoto.PostedFile.FileName);
                 fileProfilePhoto.SaveAs(Server.MapPath("~/Images/ProfilePhoto/") + fileimg);
             */
+            string recaptchaResponse = Request.Form["g-recaptcha-response"];
+            if (!ValidateReCaptcha(recaptchaResponse))
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "error", $"alert('Error. Please Try Again');", true);
+                Response.Redirect(Request.RawUrl);
+            }
 
-           
 
-            con.Open();
+                con.Open();
                 SqlCommand checkEmail = new SqlCommand("SELECT Email from Customer WHERE Email='" + txtEmail.Text.ToString() + "'", con);
                 SqlDataReader read = checkEmail.ExecuteReader();
 
@@ -210,8 +215,15 @@ namespace Uniqlo.Pages
                 }
             }
 
+            private bool ValidateReCaptcha(string recaptchaResponse)
+            {
+                string secret = "6LeFetopAAAAACQXt-A76Wr9EV_OlGTrwkFDfr2f";
+                var client = new WebClient();
+                var result = client.DownloadString($"https://www.google.com/recaptcha/api/siteverify?secret={secret}&response={recaptchaResponse}");
+                var obj = new JavaScriptSerializer().Deserialize<Dictionary<string, object>>(result);
+                return (bool)obj["success"];
+            }
 
-
-    }
+        }
 
 }

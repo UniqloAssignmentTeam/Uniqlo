@@ -68,10 +68,11 @@
              <asp:ListItem Value="M">Male</asp:ListItem>
              <asp:ListItem Value="F">Female</asp:ListItem>
                                 </asp:DropDownList>
-        
+       
     </div>
+                                    <asp:RequiredFieldValidator ID="RequiredFieldValidatorGender" runat="server" ControlToValidate="staffGender" InitialValue="" ErrorMessage="Please select a gender." ForeColor="Red" Display="Dynamic"></asp:RequiredFieldValidator>
                </div>
-                <asp:RequiredFieldValidator ID="RequiredFieldValidatorGender" runat="server" ControlToValidate="staffGender" InitialValue="" ErrorMessage="Please select a gender." ForeColor="Red" Display="Dynamic"></asp:RequiredFieldValidator>
+               
                 <div class="form-group">
 
     <label for="productName">Role</label>
@@ -84,23 +85,24 @@
     <asp:ListItem>Manager</asp:ListItem>
     <asp:ListItem>Admin</asp:ListItem>
 </asp:DropDownList>
-       
+     
     </div>
+                      <asp:RequiredFieldValidator ID="RequiredFieldValidatorRole" runat="server" ControlToValidate="staffRole" InitialValue="" ErrorMessage="Please select a role." ForeColor="Red" Display="Dynamic"></asp:RequiredFieldValidator>
 </div> 
-     <asp:RequiredFieldValidator ID="RequiredFieldValidatorRole" runat="server" ControlToValidate="staffRole" InitialValue="" ErrorMessage="Please select a role." ForeColor="Red" Display="Dynamic"></asp:RequiredFieldValidator>
+     
 
                 <div class="form-group">
                     <label for="contactNumber">Contact Number</label>
                    <asp:TextBox ID="contactNumber" runat="server"></asp:TextBox>
-                    <asp:RegularExpressionValidator ID="RegexValidatorPhone" runat="server" 
+                   
+                </div>
+               
+
+                                    <asp:RegularExpressionValidator ID="RegexValidatorPhone" runat="server" 
     ControlToValidate="contactNumber" 
     ErrorMessage="Please enter a valid phone number." 
     ValidationExpression="^\+?([0-9]{1,3})?([0-9]{10})$" ForeColor="Red" Display="Dynamic">
 </asp:RegularExpressionValidator>
-                </div>
-               
-
-
              
                  
                            
@@ -109,7 +111,7 @@
           
                   <div class="button-container">
   
-         <asp:Button ID="cancelBtn" runat="server" Text="CANCEL" CssClass="cancel-button" OnClick="cancelBtn_Click"/>
+         <asp:Button ID="cancelBtn" runat="server" Text="CANCEL" CssClass="cancel-button" CausesValidation="false" OnClick="cancelBtn_Click"/>
          <asp:Button ID="addBtn" runat="server" Text="ADD" CssClass="continue-button" OnClick="addBtn_Click"/>
 </div>
         </div>

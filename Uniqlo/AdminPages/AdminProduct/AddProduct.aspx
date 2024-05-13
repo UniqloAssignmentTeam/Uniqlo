@@ -121,7 +121,7 @@
 
             <div class="button-container">
                 <div class="cancel-div">
-                    <asp:Button ID="cancelButton" runat="server" Text="Cancel" CssClass="cancel-button" PostBackUrl="~/AdminPages/AdminProduct/ProductHome.aspx"/>
+                    <asp:Button ID="cancelButton" runat="server" Text="Cancel" CssClass="cancel-button" CausesValidation="false" PostBackUrl="~/AdminPages/AdminProduct/ProductHome.aspx"/>
                 </div>
                 <div class="continue-div">
                     <asp:Button ID="addButton" runat="server" Text="Add" CssClass="continue-button" OnClick="addButton_Click" CausesValidation="true"/>

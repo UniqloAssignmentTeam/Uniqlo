@@ -1,10 +1,12 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Uniqlo.Master" AutoEventWireup="true" CodeBehind="SignUp.aspx.cs" Inherits="Uniqlo.Pages.SignUp" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="main" runat="server">
      <!-- Signup Form -->
-    <head>
+    <header>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
         <style>
         .button-field {
     background-color: #4CAF50; /* Green background */
@@ -29,7 +31,7 @@
         <!-- Boxicons CSS -->
         <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
          <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-    </head>
+    </header>
     <div class="mainBody">
 
         <div class="form signup">
@@ -128,7 +130,7 @@
     <!-- Add any additional validation as needed -->
  
          
-
+                 <div class="g-recaptcha" data-sitekey="6LeFetopAAAAALbDjZrPI5w7-yysmbhgyD3t3Iou"></div>
 
                  
                     <!-- Sign Up Button -->

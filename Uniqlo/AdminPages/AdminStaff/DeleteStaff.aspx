@@ -43,7 +43,7 @@
 
 
                     <div class="confirmationClearFix">
-                        <asp:Button ID="Button1" runat="server" Text="Cancel" CssClass="confirmationDeletebtn" />
+                        <asp:Button ID="cancelBtn" runat="server" Text="Cancel" CssClass="confirmationDeletebtn" OnClick="cancelBtn_Click"/>
                         <asp:Button ID="btnRemoveStaff" runat="server" Text="Remove" OnClick="btnCheckCode_Click" CssClass="confirmationDeletebtn" OnClientClick="return validateEmail();" Enabled="false" />
                     </div>
                 </div>

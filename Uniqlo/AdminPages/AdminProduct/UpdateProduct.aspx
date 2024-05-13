@@ -179,10 +179,10 @@
 
             <div class="button-container">
                 <div class="cancel-div">
-                    <asp:Button ID="cancelButton" runat="server" Text="Cancel" CssClass="cancel-button" PostBackUrl="~/AdminPages/AdminProduct/ProductHome.aspx" />
+                    <asp:Button ID="cancelButton" runat="server" Text="Cancel" CssClass="cancel-button" CausesValidation="false" PostBackUrl="~/AdminPages/AdminProduct/ProductHome.aspx" />
                 </div>
                 <div class="continue-div">
-                    <asp:Button ID="addButton" runat="server" Text="Update" CssClass="continue-button" OnClick="updateButton_Click" />
+                    <asp:Button ID="addButton" runat="server" Text="Update" CssClass="continue-button" CausesValidation="true" OnClick="updateButton_Click" />
                 </div>
             </div>
         </div>
