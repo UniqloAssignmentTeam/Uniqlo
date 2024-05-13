@@ -116,16 +116,16 @@ namespace Uniqlo.Pages
 
         protected void btnSignUp_Click(object sender, EventArgs e)
         {
-
+            /*
             string recaptchaResponse = Request.Form["recaptchaResponse"];
             bool isReCaptchaValid = ValidateReCaptcha(recaptchaResponse);
-            if (!isReCaptchaValid)
+            if (isReCaptchaValid)
             {
                 ClientScript.RegisterStartupScript(this.GetType(), "recaptchaError", "alert('reCAPTCHA verification failed. Please try again.');", true);
             }
-                
+              */
 
-                if (fileProfilePhoto.PostedFile != null)
+            if (fileProfilePhoto.PostedFile != null)
             {
                 string strpath = Path.GetExtension(fileProfilePhoto.PostedFile.FileName);
                 if (strpath != ".jpg" && strpath != ".jpeg" && strpath != ".gif" && strpath != ".png")
@@ -217,15 +217,28 @@ namespace Uniqlo.Pages
 
         public bool ValidateReCaptcha(string response)
         {
-            string secret = "6Lc38NgpAAAAAPvAX0lGe0Zc1plkSyMvdEaMA3sL";
-            var client = new WebClient();
-            var reply =
-                client.DownloadString(
-                    $"https://www.google.com/recaptcha/api/siteverify?secret={secret}&response={response}");
-
-            var captchaResponse = JsonConvert.DeserializeObject<CaptchaResponse>(reply);
-
-            return captchaResponse.Success;
+            try
+            {
+                string secret = "6Lc38NgpAAAAAPvAX0lGe0Zc1plkSyMvdEaMA3sL";
+                using (var client = new WebClient())
+                {
+                    string reply = client.DownloadString($"https://www.google.com/recaptcha/api/siteverify?secret={secret}&response={response}");
+                    var captchaResponse = JsonConvert.DeserializeObject<CaptchaResponse>(reply);
+                    return captchaResponse.Success;
+                }
+            }
+            catch (WebException ex)
+            {
+                // Log exception or handle it appropriately
+                System.Diagnostics.Debug.WriteLine("ReCAPTCHA validation error: " + ex.Message);
+                return false;
+            }
+            catch (JsonException ex)
+            {
+                // Handle JSON parsing error
+                System.Diagnostics.Debug.WriteLine("JSON parsing error: " + ex.Message);
+                return false;
+            }
         }
 
         public class CaptchaResponse
