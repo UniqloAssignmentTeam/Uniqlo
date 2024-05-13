@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 using System.Collections;
 using Uniqlo.Pages.Categories.Women;
 using System.Web.UI.HtmlControls;
+using System.Net.Mail;
 
 namespace Uniqlo.Pages
 {
@@ -355,72 +356,68 @@ namespace Uniqlo.Pages
 
         protected void btnAddToCart_Click(object sender, EventArgs e)
         {
-            // Access the selected size and color
-            string selectedSize = (string)Session["selectedSize"];
-            string selectedColor = (string)Session["selectedColor"];
-            TextBox txtQty = (TextBox)formView.FindControl("txtQty");
-            int productId = int.Parse(Request.QueryString["ProdID"]);
-            int quantity = Int32.Parse(txtQty.Text);
-
-
-            // Check if the quantity is a valid integer
-            if (!int.TryParse(txtQty.Text, out quantity))
+            try
             {
-                // Show an error message if the quantity is not valid
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "quantityError", "alert('Please enter a valid quantity.');", true);
-                return;
+                // Access the selected size and color
+                string selectedSize = (string)Session["selectedSize"];
+                string selectedColor = (string)Session["selectedColor"];
+                int productId = int.Parse(Request.QueryString["ProdID"]);
+
+                // Retrieve the quantity ID
+                int quantityId = GetQuantityId(productId, selectedSize, selectedColor);
+
+                if (quantityId == 0)
+                {
+                    // Show an error message if the quantity ID is not found
+                    throw new Exception("Invalid quantity ID.");
+                }
+
+                // Get the quantity textbox
+                TextBox txtQty = (TextBox)formView.FindControl("txtQty");
+
+                // Parse quantity value
+                if (!int.TryParse(txtQty.Text, out int quantity) || quantity <= 0)
+                {
+                    // Show an error message if the quantity is not valid
+                    throw new Exception("Please enter a valid quantity.");
+                }
+
+                // Create a new CartItem
+                CartItem item = new CartItem
+                {
+                    Quantity_Id = quantityId,
+                    Size = selectedSize,
+                    Color = selectedColor,
+                    Quantity = quantity
+                };
+
+                if (Session["Cart"] == null)
+                {
+                    // Create a new cart and add the item to it
+                    List<CartItem> cart = new List<CartItem>();
+                    cart.Add(item);
+                    Session["Cart"] = cart;
+                }
+                else
+                {
+                    // Retrieve the existing cart and add the item to it
+                    List<CartItem> cart = (List<CartItem>)Session["Cart"];
+                    cart.Add(item);
+                    Session["Cart"] = cart;
+                }
+
+                // Show a JavaScript alert to confirm successful addition to the cart
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "addToCartSuccess", "alert('Item added to cart successfully!');", true);
             }
-
-            // Validate that the user has selected a size and color
-            if (string.IsNullOrEmpty(selectedSize) || string.IsNullOrEmpty(selectedColor))
+            catch (Exception ex)
             {
-                // Show an error message if the size or color is not selected
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "selectionError", "alert('Please select a size and color.');", true);
-                return;
+                // Show an error message if an exception occurs
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "addToCartError", $"alert('{ex.Message}');", true);
             }
-
-            // Get the quantity ID
-            int quantityId = GetQuantityId(productId, selectedSize, selectedColor);
-
-            if (quantityId == 0)
-            {
-                // Show an error message if the quantity ID is not found
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "quantityIdError", "alert('Invalid quantity ID.');", true);
-                return;
-            }
-
-            
-            CartItem item = new CartItem
-            {
-                Quantity_Id = quantityId,
-                Size = selectedSize,
-                Color = selectedColor,
-                Quantity = quantity
-            };
-
-            if (Session["Cart"] == null)
-            {
-                // Create a new cart and add the item to it
-                List<CartItem> cart = new List<CartItem>();
-                cart.Add(item);
-                Session["Cart"] = cart;
-            }
-            else
-            {
-                // Retrieve the existing cart and add the item to it
-                List<CartItem> cart = (List<CartItem>)Session["Cart"];
-                cart.Add(item);
-                Session["Cart"] = cart;
-            }
-
-            // Show a JavaScript alert to confirm successful addition to the cart
-            string script = "alert('Item added to cart successfully!');";
-            ScriptManager.RegisterStartupScript(this, this.GetType(), "addToCartSuccess", script, true);
-
-            // Redirect the user back to the product details page
-            Response.Redirect("ProductDetails.aspx?ProdID=" + Request.QueryString["ProdID"]);
         }
-    
+
+
+
 
         // Method to retrieve the quantity ID based on size, color, and product ID
         private int GetQuantityId(int productId, string selectedSize, string selectedColor)
@@ -434,6 +431,17 @@ namespace Uniqlo.Pages
                 return quantityId;
             }
         }
+
+        protected void fetchProductID(object sender, EventArgs e)
+        {
+            int productID = Int32.Parse(prodIdHidden.Value);
+
+            Response.Redirect("/Pages/SendProductGmailToFriend.aspx?id=" + productID);
+        }
+
+
+
+
     }
 
 }

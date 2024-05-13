@@ -234,9 +234,37 @@ namespace Uniqlo.Pages.Categories.Women
             try
             {
                 string searchText = searchBox.Text;
-                //var results = SearchDatabase(searchText);  // Call the method that performs the search
-                //dataList.DataSource = results;
-                //dataList.DataBind();
+
+
+                using (var db = new ProductDbContext())
+                {
+                    var today = DateTime.Today;
+                    var productDetails = db.Product
+                        .Where(p => !p.IsDeleted && p.Category.Gender == "W" && p.Product_Name.Contains(searchText))
+                        .GroupJoin( // Simulate a left join using GroupJoin and DefaultIfEmpty
+                            db.Discount,
+                            product => product.Product_ID,
+                            discount => discount.Product_ID,
+                            (product, discounts) => new { Product = product, Discounts = discounts.DefaultIfEmpty() }
+                        )
+                        .SelectMany(
+                            pd => pd.Discounts,
+                            (pd, discount) => new {
+                                ProductId = pd.Product.Product_ID,
+                                ProductName = pd.Product.Product_Name,
+                                Description = pd.Product.Description,
+                                Price = pd.Product.Price,
+                                Image_ID = pd.Product.Quantities.Select(q => q.Image_ID).FirstOrDefault(), // Assuming at least one quantity
+                                AverageRating = pd.Product.Quantities.SelectMany(q => q.OrderLists).SelectMany(ol => ol.Reviews).Average(r => (int?)r.Rating) ?? 0,
+                                ReviewCount = pd.Product.Quantities.SelectMany(q => q.OrderLists).SelectMany(ol => ol.Reviews).Count(),
+                                DiscountAmount = discount != null ? discount.Discount_Amount : 0 // Handle null discounts
+                            }
+                        ).ToList();
+
+
+                    dataList.DataSource = productDetails;
+                    dataList.DataBind();
+                }
             }
             catch (Exception ex)
             {
@@ -244,41 +272,7 @@ namespace Uniqlo.Pages.Categories.Women
 
             }
         }
-        /*
-        
-        public List<Product> SearchDatabase(string searchText)
-        {
 
-            using (var db = new ProductDbContext())
-            {
-                var today = DateTime.Today;
-                var productList = db.Product
-                    .Where(p => !p.IsDeleted && p.Category.Gender == "W" && p.Product_Name.Contains(searchText))
-                    .GroupJoin( // Simulate a left join using GroupJoin and DefaultIfEmpty
-                        db.Discount,
-                        product => product.Product_ID,
-                        discount => discount.Product_ID,
-                        (product, discounts) => new { Product = product, Discounts = discounts.DefaultIfEmpty() }
-                    )
-                    .SelectMany(
-                        pd => pd.Discounts,
-                        (pd, discount) => new {
-                            ProductId = pd.Product.Product_ID,
-                            ProductName = pd.Product.Product_Name,
-                            Description = pd.Product.Description,
-                            Price = pd.Product.Price,
-                            Image_ID = pd.Product.Quantities.Select(q => q.Image_ID).FirstOrDefault(), // Assuming at least one quantity
-                            AverageRating = pd.Product.Quantities.SelectMany(q => q.OrderLists).SelectMany(ol => ol.Reviews).Average(r => (int?)r.Rating) ?? 0,
-                            ReviewCount = pd.Product.Quantities.SelectMany(q => q.OrderLists).SelectMany(ol => ol.Reviews).Count(),
-                            DiscountAmount = discount != null ? discount.Discount_Amount : 0 // Handle null discounts
-                        }
-                    ).ToList();
-
-
-                return productList;
-            }
-        }
-        */
         
 
 
