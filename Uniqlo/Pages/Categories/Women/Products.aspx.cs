@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Diagnostics;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -48,9 +49,7 @@ namespace Uniqlo.Pages.Categories.Women
                                 ReviewCount = pd.Product.Quantities.SelectMany(q => q.OrderLists).SelectMany(ol => ol.Reviews).Count(),
                                 DiscountAmount = discount != null ? discount.Discount_Amount : 0 // Handle null discounts
                             }
-                        )
-
-                        .ToList();
+                        ).ToList();
 
 
                     dataList.DataSource = productDetails;
@@ -158,50 +157,128 @@ namespace Uniqlo.Pages.Categories.Women
             {
                 using (var db = new ProductDbContext())
                 {
+                    string selectedCategory = ddlCategory.SelectedValue;
                     string selectedSort = ddlSort.SelectedValue;
-                    var today = DateTime.Today;
 
-                    // Filter products that have an active discount
+                    // Start with a base query that can be modified according to filters and sorting
                     var productQuery = db.Product
-                        .Where(p => !p.IsDeleted && p.Category.Gender == "W")
-                        .Join(
-                            db.Discount.Where(d => d.Status == "Active" && d.Start_Date <= today && d.End_Date >= today),
+                        .Where(p => !p.IsDeleted && p.Category.Gender == "W");
+
+                    // Apply category filter
+                    if (!string.IsNullOrEmpty(selectedCategory))
+                    {
+                        productQuery = productQuery.Where(p => p.Category.Name == selectedCategory);
+                    }
+
+                    // Transform the products to include discount information
+                    var discountQuery = productQuery
+                        .GroupJoin(
+                            db.Discount,
                             product => product.Product_ID,
                             discount => discount.Product_ID,
-                            (product, discount) => new {
-                                ProductId = product.Product_ID,
-                                ProductName = product.Product_Name,
-                                Description = product.Description,
-                                Price = product.Price,
-                                DiscountAmount = discount.Discount_Amount,
-                                Image_ID = product.Quantities.Select(q => q.Image_ID).FirstOrDefault(),
-                                AverageRating = product.Quantities.SelectMany(q => q.OrderLists).SelectMany(ol => ol.Reviews).Average(r => (int?)r.Rating) ?? 0,
-                                ReviewCount = product.Quantities.SelectMany(q => q.OrderLists).SelectMany(ol => ol.Reviews).Count()
+                            (product, discounts) => new { Product = product, Discounts = discounts.DefaultIfEmpty() }
+                        )
+                        .SelectMany(
+                            pd => pd.Discounts.DefaultIfEmpty(),
+                            (pd, discount) => new
+                            {
+                                ProductId = pd.Product.Product_ID,
+                                ProductName = pd.Product.Product_Name,
+                                Description = pd.Product.Description,
+                                Price = pd.Product.Price,
+                                Image_ID = pd.Product.Quantities.Select(q => q.Image_ID).FirstOrDefault(),
+                                AverageRating = pd.Product.Quantities.SelectMany(q => q.OrderLists).SelectMany(ol => ol.Reviews).DefaultIfEmpty().Average(r => (int?)r.Rating) ?? 0,
+                                ReviewCount = pd.Product.Quantities.SelectMany(q => q.OrderLists).SelectMany(ol => ol.Reviews).Count(),
+                                DiscountAmount = discount != null ? discount.Discount_Amount : 0,
+                                DiscountedPrice = pd.Product.Price - (discount != null ? discount.Discount_Amount : 0)
                             }
                         );
 
-                    // Apply sorting based on user selection
-                    switch (selectedSort)
+                    // Apply sorting based on price
+                    if (!string.IsNullOrEmpty(selectedSort))
                     {
-                        case "lowToHigh":
-                            productQuery = productQuery.OrderBy(p => p.DiscountAmount);
-                            break;
-                        case "highToLow":
-                            productQuery = productQuery.OrderByDescending(p => p.DiscountAmount);
-                            break;
+                        switch (selectedSort)
+                        {
+                            case "lowToHigh":
+                                discountQuery = discountQuery.OrderBy(p => p.DiscountedPrice);
+                                break;
+                            case "highToLow":
+                                discountQuery = discountQuery.OrderByDescending(p => p.DiscountedPrice);
+                                break;
+                        }
                     }
 
-                    var productList = productQuery.ToList();
+                    var productList = discountQuery.ToList();
                     dataList.DataSource = productList;
                     dataList.DataBind();
                 }
             }
             catch (Exception ex)
             {
-                // Optionally display error message on the page
                 ScriptManager.RegisterStartupScript(this, GetType(), "errorAlert", "alert('An error occurred when filtering products.');", true);
             }
         }
+
+
+
+
+        protected void ddlCategory_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            FilterProducts();
+        }
+
+
+
+        protected void searchBox_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                string searchText = searchBox.Text;
+                var results = SearchDatabase(searchText);  // Call the method that performs the search
+                dataList.DataSource = results;
+                dataList.DataBind();
+            }
+            catch (Exception ex)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('An error occurred while searching the product name.');", true);
+
+            }
+        }
+
+        /*
+        public List<Product> SearchDatabase(string searchText)
+        {
+
+            using (var db = new ProductDbContext())
+            {
+                var today = DateTime.Today;
+                var productList = db.Product
+                    .Where(p => !p.IsDeleted && p.Category.Gender == "W" && p.Product_Name.Contains(searchText))
+                    .GroupJoin( // Simulate a left join using GroupJoin and DefaultIfEmpty
+                        db.Discount,
+                        product => product.Product_ID,
+                        discount => discount.Product_ID,
+                        (product, discounts) => new { Product = product, Discounts = discounts.DefaultIfEmpty() }
+                    )
+                    .SelectMany(
+                        pd => pd.Discounts,
+                        (pd, discount) => new {
+                            ProductId = pd.Product.Product_ID,
+                            ProductName = pd.Product.Product_Name,
+                            Description = pd.Product.Description,
+                            Price = pd.Product.Price,
+                            Image_ID = pd.Product.Quantities.Select(q => q.Image_ID).FirstOrDefault(), // Assuming at least one quantity
+                            AverageRating = pd.Product.Quantities.SelectMany(q => q.OrderLists).SelectMany(ol => ol.Reviews).Average(r => (int?)r.Rating) ?? 0,
+                            ReviewCount = pd.Product.Quantities.SelectMany(q => q.OrderLists).SelectMany(ol => ol.Reviews).Count(),
+                            DiscountAmount = discount != null ? discount.Discount_Amount : 0 // Handle null discounts
+                        }
+                    ).ToList();
+
+
+                return productList;
+            }
+        }
+        */
 
 
     }

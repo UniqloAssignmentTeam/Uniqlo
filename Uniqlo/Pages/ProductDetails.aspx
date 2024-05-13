@@ -40,7 +40,11 @@
                                 </asp:DataList>
                             </div>
                         </div>
-
+                        <asp:HiddenField ID="productIdHidden" runat="server" Value='<%# Eval("Product_ID") %>'/>
+                        <asp:HiddenField ID="productNameHidden" runat="server" Value='<%# Eval("Product_Name") %>'/>
+                        <asp:HiddenField ID="productDiscountHidden" runat="server" Value='<%# Eval("DiscountAmount") %>'/>
+                        <asp:HiddenField ID="productPriceHidden" runat="server" Value='<%# Eval("Price") %>'/>
+                        <asp:HiddenField ID="productDescHidden" runat="server" Value='<%# Eval("Description") %>'/>
                         <!-- card right -->
                         <div class="product-content" style="margin-top: 100px;">
                             <h2 class="product-title product-name"><%# Eval("Product_Name") %></h2>
@@ -101,35 +105,29 @@
                             <!--NO ANIMATION ADD TO CART BUTTON-->
                             <div class="cart-button">
                                 <asp:LinkButton ID="btnAddToCart" runat="server" OnClick="btnAddToCart_Click">
-        <span class="add-to-cart" runat="server" id="spnAddToCart">Add to Cart</span>
-        <span class="added" runat="server" id="spnAdded" style="display: none;">Added to Cart</span>
-        <i class="fas fa-shopping-cart"></i>
-        <i class="fas fa-solid fa-shirt"></i>
-    </asp:LinkButton>
+                                <span class="add-to-cart" runat="server" id="spnAddToCart">Add to Cart</span>
+                                <span class="added" runat="server" id="spnAdded" style="display: none;">Added to Cart</span>
+                                <i class="fas fa-shopping-cart"></i>
+                                <i class="fas fa-solid fa-shirt"></i>
+                            </asp:LinkButton>
                             </div>
 
 
                             <div class="social-links">
                                 <p>Share At: </p>
-                                <a href="#">
-                                    <i class="fab fa-facebook-f"></i>
-                                </a>
-                                <a href="#">
-                                    <i class="fab fa-twitter"></i>
-                                </a>
-                                <a href="#">
-                                    <i class="fab fa-instagram"></i>
-                                </a>
-                                <a href="#">
-                                    <i class="fab fa-whatsapp"></i>
-                                </a>
-                                <a href="#">
+                                <asp:LinkButton CssClass="text-dark px-2" ID="btnPinterest" runat="server" Text="Pinterest" OnClientClick="shareOnPinterest()">
                                     <i class="fab fa-pinterest"></i>
-                                </a>
+                                </asp:LinkButton>                                             
+                                <asp:LinkButton CssClass="text-dark px-2" ID="btnTwitter" runat="server" Text="Twitter" OnClientClick="shareOnTwitter()">
+                                    <i class="fab fa-twitter"></i>
+                                </asp:LinkButton>                    
+                                <asp:LinkButton CssClass="text-dark px-2" ID="btnWhatsapp" runat="server" Text="Whatsapp" OnClientClick="shareOnWhatsApp(); return false;">
+                                    <i class="fab fa-whatsapp"></i>
+                                </asp:LinkButton>
                             </div>
-
                         </div>
                     </div>
+
             </ItemTemplate>
         </asp:FormView>
 
@@ -236,8 +234,13 @@
             </ItemTemplate>
         </asp:FormView>
             <!--VIEWMOREBUTTON END-->
-        
 
+        <asp:HiddenField ID="prodIdHidden" runat="server"/>
+        <asp:HiddenField ID="prodNameHidden" runat="server"/>
+        <asp:HiddenField ID="prodDiscountHidden" runat="server" />
+        <asp:HiddenField ID="prodPriceHidden" runat="server" />
+        <asp:HiddenField ID="prodDescHidden" runat="server" />
+        <asp:HiddenField ID="prodImageID" runat="server" />
 
 
 
@@ -250,6 +253,50 @@
                     return false;
                 }
                 return true;
+            }
+
+            function shareOnTwitter() {
+                var productName = document.getElementById('<%= prodNameHidden.ClientID %>').value;
+                var productDisc = document.getElementById('<%= prodDiscountHidden.ClientID %>').value;
+                var productPrice = document.getElementById('<%= prodPriceHidden.ClientID %>').value;
+                var productDesc = document.getElementById('<%= prodDescHidden.ClientID %>').value;
+                var finalPrice = productPrice - productDisc;
+
+                var textToShare = encodeURIComponent("Check out this product: " + productName + " - " + finalPrice + "\n" + productDesc);
+
+                var twitterShareUrl = "https://twitter.com/intent/tweet?" + "text=" + textToShare;
+                window.open(twitterShareUrl, "_blank");
+            }
+
+            function shareOnPinterest() {
+                var productName = document.getElementById('<%= prodNameHidden.ClientID %>').value;
+                var productPrice = document.getElementById('<%= prodPriceHidden.ClientID %>').value;
+                var productDesc = document.getElementById('<%= prodDescHidden.ClientID %>').value;
+                var productDisc = document.getElementById('<%= prodDiscountHidden.ClientID %>').value;
+                var imageUrl = window.location.origin + '/ImageHandler.ashx?id=' + document.getElementById('<%= prodImageID.ClientID %>').value;
+
+                var finalPrice = productPrice - productDisc;
+
+                var pinterestShareUrl = "https://www.pinterest.com/pin/create/button/" +
+                    "?url=" + encodeURIComponent(window.location.href) +
+                    "&description=" + encodeURIComponent("Check out this product: " + productName + " for only RM " + finalPrice.toFixed(2) + "\n" + productDesc + "\nSee image here: " + imageUrl);
+
+                window.open(pinterestShareUrl, "_blank");
+            }
+
+
+            function shareOnWhatsApp() {
+                var productName = document.getElementById('<%= prodNameHidden.ClientID %>').value;
+                var productDisc = parseFloat(document.getElementById('<%= prodDiscountHidden.ClientID %>').value);
+                var productPrice = parseFloat(document.getElementById('<%= prodPriceHidden.ClientID %>').value);
+                var productDesc = document.getElementById('<%= prodDescHidden.ClientID %>').value;
+
+                var finalPrice = productPrice - productDisc;
+                var imageUrl = window.location.origin + '/ImageHandler.ashx?id=' + document.getElementById('<%= prodImageID.ClientID %>').value; // Assuming you have a hidden field for the image ID
+                var textToShare = encodeURIComponent("Check out this product: " + productName + " for only $" + finalPrice.toFixed(2) + "\n" + productDesc + "\nSee image here: " + imageUrl);
+
+                var whatsappShareUrl = "https://api.whatsapp.com/send?text=" + textToShare;
+                window.open(whatsappShareUrl, "_blank");
             }
 
         </script>
@@ -267,7 +314,7 @@
             function shareOnTwitter() {
                 var shareUrl = 'https://twitter.com/intent/tweet?url=' + encodeURIComponent(window.location.href) + '&text=' + encodeURIComponent(document.title);
                 window.open(shareUrl, '_blank', 'width=600,height=400');
-            } 
+            } >
         </script>
     </footer>
 </asp:Content>
