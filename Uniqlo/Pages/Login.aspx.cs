@@ -10,6 +10,7 @@ using System.Xml.Linq;
 using System.Net;
 using System.IO;
 using Newtonsoft.Json;
+using System.Web.Security;
 
 
 
@@ -44,7 +45,14 @@ namespace Uniqlo.Pages
                     if (read.Read())
                     {
                         Session["Customer_ID"] = read.GetValue(0).ToString();
-                        Response.Redirect("Home.aspx");
+
+                        string username = email;
+                        if (!Roles.IsUserInRole(username, "Customer"))
+                        {
+                            Roles.AddUserToRole(username, "Customer");
+                        }
+
+                    Response.Redirect("Home.aspx");
                     }
                     else
                     {
