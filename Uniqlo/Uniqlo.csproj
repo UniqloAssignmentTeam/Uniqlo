@@ -609,6 +609,7 @@
     </Compile>
     <Compile Include="Pages\Invoice.aspx.cs">
       <DependentUpon>Invoice.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Pages\Invoice.aspx.designer.cs">
       <DependentUpon>Invoice.aspx</DependentUpon>
