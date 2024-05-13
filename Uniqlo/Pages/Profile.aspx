@@ -7,45 +7,42 @@
     </header>
     <div class="container" style="margin: auto; max-width: 1100px; position: relative;">
         <div class="main-body" id="profileDisplay">
-            <div class="profile-header">
-                <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="User Avatar" class="avatar">
-
-                <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
-                <h4 class="username">Tan Choo Jun</h4>
+            <div class="profile-header">             
+                <!--<asp:Image ID="ImgUpload" runat="server" alt="User Avatar" class="avatar" AlternateText='<%#Eval("img_src") %>' />         -->       
+                <h4 class="username"> <asp:Label ID="txtName" class="form-control read-only-textbox" runat="server"></asp:Label></h4>
             </div>
 
             <div class="info-item">
                 <span class="info-label">Email:</span>
-
-                <!--<span class="info-value"></span>-->
+                 <asp:TextBox ID="txtEmail" class="info-value" runat="server" autofocus="" ReadOnly="True"></asp:TextBox>
             </div>
             <div class="info-item">
                 <span class="info-label">Gender:</span>
-                <span class="info-value">Male</span>
+                <asp:TextBox ID="txtGender" class="info-value" runat="server" autofocus="" ReadOnly="True"></asp:TextBox>
             </div>
             <div class="info-item">
                 <span class="info-label">Contact No:</span>
-                <span class="info-value">0148169029</span>
+                <asp:TextBox ID="txtPhone" class="info-value" runat="server" autofocus="" ReadOnly="True"></asp:TextBox>
             </div>
             <div class="info-item">
                 <span class="info-label">Address:</span>
-                <span class="info-value">1, Jalan Lembah Permai</span>
+                <asp:TextBox ID="txtAddress" class="info-value" runat="server"  autofocus="" ReadOnly="True"></asp:TextBox>
             </div>
             <div class="info-item">
                 <span class="info-label">Postcode</span>
-                <span class="info-value">11900</span>
+                <asp:TextBox ID="txtPostCode" class="info-value" runat="server" autofocus="" maxlength="5" ReadOnly="True" ></asp:TextBox>
             </div>
             <div class="info-item">
                 <span class="info-label">City</span>
-                <span class="info-value">Tanjung Bungah</span>
+                 <asp:TextBox ID="txtCity" class="info-value" runat="server" autofocus="" ReadOnly="True"></asp:TextBox>
             </div>
             <div class="info-item">
                 <span class="info-label">State</span>
-                <span class="info-value">Penang</span>
+                 <asp:TextBox ID="txtState" class="info-value" runat="server" autofocus="" ReadOnly="True"></asp:TextBox>
             </div>
             <div class="info-item">
                 <span class="info-label">Country</span>
-                <span class="info-value">Malaysia</span>
+                <asp:TextBox ID="txtCountry" class="info-value" runat="server" autofocus="" ReadOnly="True"></asp:TextBox>
             </div>
             <br />
             <div class="edit-profile" id="orderHistoryBigContainer">

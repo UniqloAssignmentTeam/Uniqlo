@@ -19,7 +19,8 @@
     <IISExpressSSLPort>44369</IISExpressSSLPort>
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
-    <IISExpressUseClassicPipelineMode>true</IISExpressUseClassicPipelineMode>
+    <IISExpressUseClassicPipelineMode>
+    </IISExpressUseClassicPipelineMode>
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
@@ -72,6 +73,7 @@
       <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
     <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
     </Reference>
@@ -135,7 +137,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="adminLogin.aspx" />
+    <Content Include="AdminPages\adminLogin.aspx" />
     <Content Include="AdminPages\AdminDelivery\AddDelivery.aspx" />
     <Content Include="AdminPages\AdminDiscount\addDiscount.aspx" />
     <Content Include="AdminPages\AdminDiscount\DiscountHome.aspx" />
@@ -302,11 +304,11 @@
     <Compile Include="Admin.Master.designer.cs">
       <DependentUpon>Admin.Master</DependentUpon>
     </Compile>
-    <Compile Include="adminLogin.aspx.cs">
+    <Compile Include="AdminPages\adminLogin.aspx.cs">
       <DependentUpon>adminLogin.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="adminLogin.aspx.designer.cs">
+    <Compile Include="AdminPages\adminLogin.aspx.designer.cs">
       <DependentUpon>adminLogin.aspx</DependentUpon>
     </Compile>
     <Compile Include="AdminPages\AdminDelivery\AddDelivery.aspx.cs">
@@ -463,6 +465,7 @@
     <Compile Include="AdminPages\AdminDelivery\UpdateDelivery.aspx.designer.cs">
       <DependentUpon>UpdateDelivery.aspx</DependentUpon>
     </Compile>
+    <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Image.cs">
       <DependentUpon>UniqloAdo.tt</DependentUpon>
     </Compile>
@@ -526,7 +529,6 @@
     </Compile>
     <Compile Include="Pages\ForgotPassword.aspx.cs">
       <DependentUpon>ForgotPassword.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Pages\ForgotPassword.aspx.designer.cs">
       <DependentUpon>ForgotPassword.aspx</DependentUpon>
@@ -568,7 +570,6 @@
     </Compile>
     <Compile Include="Pages\Invoice.aspx.cs">
       <DependentUpon>Invoice.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Pages\Invoice.aspx.designer.cs">
       <DependentUpon>Invoice.aspx</DependentUpon>

@@ -21,7 +21,6 @@
     </style>
 
 
-
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
 <div class="form-gap"></div>
@@ -32,7 +31,7 @@
               <div class="panel-body">
                 <div class="text-center">
                   <h3><i class="fa fa-lock fa-4x"></i></h3>
-                  <h2 class="text-center">Forgot Password?</h2>
+                  <h2 class="text-center">Change Password?</h2>
                   <p>You can reset your password here.</p>
                   <div class="panel-body">
     
@@ -41,13 +40,14 @@
                       <div class="form-group">
                         <div class="input-group">
                           <span class="input-group-addon"><i class="glyphicon glyphicon-envelope color-blue"></i></span>
-                          <input id="email" name="email" placeholder="Email" class="form-control"  type="email">
+                            <asp:TextBox ID="txtEmail" name="email" placeholder="Email" class="form-control" type="email" runat="server"></asp:TextBox>
                         </div>
                       </div>
                       <div class="form-group">
-                        <input name="recover-submit" class="btn btn-lg btn-primary btn-block" value="Reset Password" type="submit" style="background-color: red" onclick="myFunction()">
+                      <!--  <input name="recover-submit" class="btn btn-lg btn-primary btn-block" value="Reset Password" type="submit" style="background-color: red" onclick="myFunction()">-->
+                          <asp:Button ID="btnForgotPassword" class="btn btn-lg btn-primary btn-block" value="Reset Password" type="submit" style="background-color: red"  runat="server" Text="Submit" OnClick="btnForgotPassword_Click" />
                       </div>
-                      
+                        <asp:Label ID="lblMsg" runat="server" Text="" ForeColor="Red"></asp:Label>
                       <input type="hidden" class="hide" name="token" id="token" value=""> 
                     </form>
 
@@ -59,9 +59,4 @@
           </div>
 	</div>
 </div>
-    <script>
-        function myFunction() {
-            alert("Please check your Email Inbox");
-        }
-    </script>
 </asp:Content>

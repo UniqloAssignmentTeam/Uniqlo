@@ -1,6 +1,6 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin.Master" AutoEventWireup="true" CodeBehind="adminLogin.aspx.cs" Inherits="Uniqlo.AdminPages.adminLogin" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin.Master" AutoEventWireup="true" CodeBehind="adminLogin.aspx.cs" Inherits="Uniqlo.adminLogin" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="main" runat="server">
-        <style>
+    <style>
 .bigDong{
     margin: 0 auto;
     max-width: 1100px;
@@ -97,10 +97,10 @@ input[type="submit"]:hover {
     background-color: #357ae8; /* Darker blue on hover */
 }
 </style>
-    <header>
+    <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-    </header>
+    </head>
     <div class="bigDong">
     <div class="container">
         <div class="center">
@@ -117,8 +117,10 @@ input[type="submit"]:hover {
                 </div>         
                 <asp:Button ID="btnLogin" runat="server" name="submit" type="Submit" value="Login" Text="Login" OnClick="btnLogin_Click" />
 
+            </form>
         </div>
     </div>
         </div>
+
 
 </asp:Content>
