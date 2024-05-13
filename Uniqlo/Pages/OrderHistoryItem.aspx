@@ -483,17 +483,7 @@
                 }
 
 
-                function setRating(rating) {
-                    var stars = document.querySelectorAll('.star1');
-                    for (var i = 0; i < stars.length; i++) {
-                        stars[i].classList.remove('checked');
-                    }
-                    for (var i = 0; i < rating; i++) {
-                        stars[i].classList.add('checked');
-                    }
-                    // Set the value in a hidden field to post to server
-                    document.getElementById('<%= HiddenRating.ClientID %>').value = rating;
-                }
+
 
 
 
