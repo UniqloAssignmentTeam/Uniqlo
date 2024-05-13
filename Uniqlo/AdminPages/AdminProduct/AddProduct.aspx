@@ -239,6 +239,7 @@
                 } else {
                     alert('Please enter a color.');
                 }
+            });
          
       
 
