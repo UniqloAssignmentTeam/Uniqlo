@@ -19,8 +19,7 @@
     <IISExpressSSLPort>44369</IISExpressSSLPort>
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
-    <IISExpressUseClassicPipelineMode>
-    </IISExpressUseClassicPipelineMode>
+    <IISExpressUseClassicPipelineMode>true</IISExpressUseClassicPipelineMode>
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
@@ -160,6 +159,7 @@
     <Content Include="AdminPages\AdminProduct\AddProduct.aspx" />
     <Content Include="AdminPages\AdminProduct\ProductHome.aspx" />
     <Content Include="AdminPages\adminProfile.aspx" />
+    <Content Include="AdminPages\AdminStaff\DeleteStaff.aspx" />
     <Content Include="AdminPages\AdminStaff\StaffAdd.aspx" />
     <Content Include="AdminPages\AdminStaff\StaffHome.aspx" />
     <Content Include="AdminPages\Dashboard.aspx" />
@@ -388,6 +388,13 @@
     </Compile>
     <Compile Include="AdminPages\adminProfile.aspx.designer.cs">
       <DependentUpon>adminProfile.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AdminPages\AdminStaff\DeleteStaff.aspx.cs">
+      <DependentUpon>DeleteStaff.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminPages\AdminStaff\DeleteStaff.aspx.designer.cs">
+      <DependentUpon>DeleteStaff.aspx</DependentUpon>
     </Compile>
     <Compile Include="AdminPages\AdminStaff\StaffAdd.aspx.cs">
       <DependentUpon>StaffAdd.aspx</DependentUpon>

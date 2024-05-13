@@ -11,6 +11,8 @@ using System.Web.UI.WebControls;
 using System.Data.Entity;
 using static Uniqlo.Staff;
 using System.Text;
+using System.Net;
+using System.Net.Mail;
 
 namespace Uniqlo.AdminPages.AdminStaff
 {
@@ -26,6 +28,15 @@ namespace Uniqlo.AdminPages.AdminStaff
                 if (!IsPostBack)
                 {
                     BindRepeater();
+                    modalState.Value = "closed";
+                }
+                else
+                {
+                    // Check the value of the hidden field and show the modal if necessary
+                    if (modalState.Value == "open")
+                    {
+                        ScriptManager.RegisterStartupScript(this, GetType(), "ShowModal", "showDeleteModal();", true);
+                    }
                 }
             }
             catch (Exception ex)
@@ -62,30 +73,6 @@ namespace Uniqlo.AdminPages.AdminStaff
             catch (Exception ex)
             {
                 ScriptManager.RegisterStartupScript(this, GetType(), "redirectError", "alert('Failed to redirect to the update page. Please try again.');", true);
-            }
-        }
-
-        protected void btnRemoveStaff_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                int staffId = int.Parse(hiddenStaffId.Value);
-                using (var db = new StaffDbContext())
-                {
-                    var staff = db.Staff.Find(staffId);
-                    if (staff != null)
-                    {
-                        db.Staff.Remove(staff);
-                        db.SaveChanges();
-                        Response.Redirect(Request.RawUrl);
-                    }
-                }
-            }
-
-
-            catch (Exception ex)
-            {
-                ScriptManager.RegisterStartupScript(this, GetType(), "redirectError", "alert('Failed to remove staff. Please try again.');", true);
             }
         }
 
@@ -267,5 +254,15 @@ namespace Uniqlo.AdminPages.AdminStaff
                 args.IsValid = false;
             }
         }
+
+        
+
+
+
+
+
+
+
+
     }
 }

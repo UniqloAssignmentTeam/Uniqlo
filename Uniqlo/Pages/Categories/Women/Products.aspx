@@ -90,10 +90,20 @@
             <div class="limitedOfferCardBigContainer">
                 <!--START OF COLUMN-->
                 <asp:ScriptManager ID="ScriptManagerProduct" runat="server" />
+
+
                 <asp:UpdatePanel ID="UpdatePanelProduct" runat="server">
+
+
                     <ContentTemplate>
+
+
                         <asp:DataList ID="dataList" runat="server" RepeatDirection="Horizontal" Width="100%">
+
+
                             <ItemTemplate>
+
+
                                 <asp:HyperLink ID="productLink" runat="server" NavigateUrl='<%# "/Pages/ProductDetails.aspx?ProdID=" +  Eval("ProductId") %>' CssClass="hyperlink">
                                        <div class="limitedOfferCardContainer">
                                            <div class="limitedOfferCard" id="product9" data-product-id="1">
@@ -112,6 +122,8 @@
                                                        </div>
                                                    </div>
                                                </div>
+
+
                                                <div class="limitedOfferContainer">
                                                    <div class="product-name">
                                                        <h3><b><%# Eval("ProductName") %></b></h3>
@@ -128,6 +140,7 @@
                                                        <span><%# Eval("ReviewCount") %></span>
                                                    </div>
                                                </div>
+
                                            </div>
                                        </div>
                                 </asp:HyperLink>

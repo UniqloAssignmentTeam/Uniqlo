@@ -80,7 +80,7 @@ namespace Uniqlo.AdminPages
                             staff.Contact_No = contactNumber.Text;
                             staff.Gender = staffGender.SelectedValue;
                             staff.Role = staffRole.SelectedValue;
-
+                            staff.Password= password.Text;
                             db.SaveChanges();
                            
                                 Response.Redirect("StaffHome.aspx");
@@ -100,6 +100,8 @@ namespace Uniqlo.AdminPages
                 }
             }
         }
+
+
 
         protected void cancelBtn_Click(object sender, EventArgs e)
         {
