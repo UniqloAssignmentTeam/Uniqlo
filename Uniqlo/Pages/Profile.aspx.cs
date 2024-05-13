@@ -84,7 +84,6 @@ namespace Uniqlo.Pages
           
         }
 
-       
         protected void btnEditProfile_Click(object sender, EventArgs e)
         {
             Response.Redirect("EditProfile.aspx");
@@ -161,8 +160,6 @@ namespace Uniqlo.Pages
             FilterOrder(custId);
         }
 
-
-
         private void FilterOrder(int customerID)
         {
             try
@@ -170,7 +167,7 @@ namespace Uniqlo.Pages
                 using (var db = new OrderDbContext())
                 {
                     string selectedDate = ddlDate.SelectedValue;
-
+                    
                     var orderDetails = db.Order
                         .Where(o => o.Customer_ID == customerID && !o.IsDeleted)
                         .Select(o => new
