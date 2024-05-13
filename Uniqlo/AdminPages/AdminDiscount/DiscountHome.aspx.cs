@@ -25,102 +25,37 @@ namespace Uniqlo.AdminPages.AdminDiscount
                
             }
         }
+
         protected void addDiscountBtn_Click(object sender, EventArgs e)
         {
-            try
-            {
-            Response.Redirect("addDiscount.aspx");
-            }catch(Exception ex)
-            {
-                ScriptManager.RegisterStartupScript(this, GetType(), "redirectError", "alert('Failed to redirect to the add page. Please try again.');", true);
-            }
-          
+            RedirectTo("addDiscount.aspx");
         }
 
-
-        protected void Update_Click(object sender, EventArgs e)
+        protected void update_Click(object sender, EventArgs e)
         {
-            try
-            {
-                var button = sender as Button;
-                if (button == null)
-                {
-                    throw new InvalidOperationException("The sender is not a Button.");
-                }
-
-                var item = button.NamingContainer as RepeaterItem;
-                if (item == null)
-                {
-                    throw new InvalidOperationException("The Button is not contained within a RepeaterItem.");
-                }
-
-                var discountIdLabel = item.FindControl("discountId") as Label;
-                if (discountIdLabel == null || string.IsNullOrEmpty(discountIdLabel.Text))
-                {
-                    throw new InvalidOperationException("Discount ID label not found or is empty.");
-                }
-
-                int discountId;
-                if (!int.TryParse(discountIdLabel.Text, out discountId))
-                {
-                    throw new InvalidOperationException("Invalid Discount ID.");
-                }
-
-                Session["discountId"] = discountId;
-                try
-                {
-                    Response.Redirect("UpdateDiscount.aspx");
-                }
-                catch (Exception ex)
-                {
-                    ScriptManager.RegisterStartupScript(this, GetType(), "redirectError", "alert('Failed to redirect to the main page. Please try again.');", true);
-                }
-                
-            }
-            catch (Exception ex)
-            {
-
-                // Show a user-friendly message or redirect to an error page
-                ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('An error occurred while processing your request. Please try again.');", true);
-            }
+            HandleDiscountUpdate(sender);
         }
-
 
         protected void btnRemoveDiscount_Click(object sender, EventArgs e)
         {
-            try
-            {
-                int discountId = int.Parse(hiddenDiscountId.Value);
-                using (var db = new DiscountDbContext())
-                {
-                    var discount = db.Discount.Find(discountId);
-                    if (discount != null)
-                    {
-                        db.Discount.Remove(discount);
-                        db.SaveChanges();
-                        try
-                        {
-                            Response.Redirect("DiscountHome.aspx");
-                        }catch(Exception ex)
-                        {
-                            ScriptManager.RegisterStartupScript(this, GetType(), "redirectError", "alert('Failed to redirect to the main page. Please try again.');", true);
-                        }
+            RemoveDiscount();
+        }
 
-                      
-                    }
-                    else
-                    {
-                        // Log error or notify admin if discount not found
-                        throw new Exception("Discount not found for ID: " + discountId);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
+        protected void BtnExport_Click(object sender, EventArgs e)
+        {
+            ExportProductsToExcel();
+        }
 
-                // Optionally show a user-friendly error message or redirect to an error page
-                ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('An error occurred while removing the discount.');", true);
-            }
+        
+
+        protected void cancelRemoveDiscount_Click(object sender, EventArgs e)
+        {
+            RedirectTo("DiscountHome.aspx");
+        }
+
+        protected void searchBox_TextChanged(object sender, EventArgs e)
+        {
+            SearchDiscounts();
         }
 
         private void BindRepeater()
@@ -129,66 +64,77 @@ namespace Uniqlo.AdminPages.AdminDiscount
             {
                 using (var db = new DiscountDbContext())
                 {
-                    var discountList = db.Discount.Include("Product").ToList();
-                    discountRepeater.DataSource = discountList;
+                    discountRepeater.DataSource = db.Discount.Include("Product").ToList();
                     discountRepeater.DataBind();
                 }
             }
             catch (Exception ex)
             {
-                ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('An error occurred while displaying the discount.');", true);
-                // Handle errors (e.g., display error messages, log to a file or database)
+                AlertError("An error occurred while displaying the discount.");
             }
         }
 
+        private void HandleDiscountUpdate(object sender)
+        {
+            var button = sender as Button;
+            var item = button?.NamingContainer as RepeaterItem;
+            var discountIdLabel = item?.FindControl("discountId") as Label;
+
+            if (int.TryParse(discountIdLabel?.Text, out int discountId))
+            {
+                Session["discountId"] = discountId;
+                RedirectTo("UpdateDiscount.aspx");
+            }
+            else
+            {
+                AlertError("Invalid operation.");
+            }
+        }
+
+        private void RemoveDiscount()
+        {
+            int discountId = int.Parse(hiddenDiscountId.Value);
+            using (var db = new DiscountDbContext())
+            {
+                var discount = db.Discount.Find(discountId);
+                if (discount != null)
+                {
+                    db.Discount.Remove(discount);
+                    db.SaveChanges();
+                    RedirectTo("DiscountHome.aspx");
+                }
+                else
+                {
+                    AlertError("Discount not found.");
+                }
+            }
+        }
+
+      
+
+        private void SearchDiscounts()
+        {
+            using (var db = new DiscountDbContext())
+            {
+                string searchText = searchBox.Text.Trim();
+                var results = db.Discount.Include(d => d.Product)
+                                .Where(d => d.Product.Product_Name.Contains(searchText) && !d.Product.IsDeleted)
+                                .ToList();
+
+                discountRepeater.DataSource = results;
+                discountRepeater.DataBind();
+            }
+        }
+
+
+
+
+
+       
         protected void btnExport_Click(object sender, EventArgs e)
         {
             ExportProductsToExcel();
         }
-
-        protected void statusSortDDL_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                using (var db = new DiscountDbContext())
-                {
-                    string selectedStatus = statusSortDDL.SelectedValue;
-                    var discountQuery = db.Discount.AsQueryable();
-                    if (!string.IsNullOrEmpty(selectedStatus))
-                    {
-                        discountQuery = discountQuery.Include("Product").Where(d => d.Status == selectedStatus);
-                    }
-                    else
-                    {
-                        discountQuery = discountQuery.Include("Product");
-                    }
-                    var discountList = discountQuery.ToList();
-                    discountRepeater.DataSource = discountList;
-                    discountRepeater.DataBind();
-                }
-            }
-            catch (Exception ex)
-            {
-                ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('An error occurred while sorting the discount.');", true);
-                // Handle the error
-            }
-        }
-
-
-        protected void cancelRemoveDiscount_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                Response.Redirect("DiscountHome.aspx");
-            }
-            catch (Exception ex)
-            {
-                ScriptManager.RegisterStartupScript(this, GetType(), "redirectError", "alert('Failed to redirect to the main page. Please try again.');", true);
-            }
-           
-
-        }
-
         private void ExportProductsToExcel()
         {
             try
@@ -249,33 +195,51 @@ namespace Uniqlo.AdminPages.AdminDiscount
 
         }
 
-        protected void searchBox_TextChanged(object sender, EventArgs e)
+
+        protected void statusSortDDL_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
             {
-
                 using (var db = new DiscountDbContext())
                 {
-                   
-                string searchText = searchBox.Text;
-            var results = db.Discount.Include(d => d.Product)
-                                    .Where(d => d.Product.Product_Name.Contains(searchText) && !d.Product.IsDeleted)
-                                    .ToList();
-                    discountRepeater.DataSource = results;
+                    string selectedStatus = statusSortDDL.SelectedValue;
+                    var discountQuery = db.Discount.AsQueryable();
+                    if (!string.IsNullOrEmpty(selectedStatus))
+                    {
+                        discountQuery = discountQuery.Include("Product").Where(d => d.Status == selectedStatus);
+                    }
+                    else
+                    {
+                        discountQuery = discountQuery.Include("Product");
+                    }
+                    var discountList = discountQuery.ToList();
+                    discountRepeater.DataSource = discountList;
                     discountRepeater.DataBind();
-
                 }
-               
-            }catch (Exception ex)
+            }
+            catch (Exception ex)
             {
-                ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('An error occurred while searching the product name.');", true);
-               
+                ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('An error occurred while sorting the discount.');", true);
+                // Handle the error
             }
         }
-
-       
-          
+        private void RedirectTo(string url)
+        {
+            try
+            {
+                Response.Redirect(url);
+            }
+            catch (Exception)
+            {
+                AlertError("Failed to redirect.");
+            }
         }
+        private void AlertError(string message)
+        {
+            ScriptManager.RegisterStartupScript(this, GetType(), "error", $"alert('{message}');", true);
+        }
+
+    }
     }
 
 

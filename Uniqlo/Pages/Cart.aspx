@@ -7,7 +7,7 @@
             <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet" />
         </header>
         <h1>Shopping Cart</h1>
-
+        <a href="Cart.aspx">Cart.aspx</a>
         <div class="cart-page-container">
             <div class="cart-items-container">
                 <asp:Repeater ID="rptCartItems" runat="server">

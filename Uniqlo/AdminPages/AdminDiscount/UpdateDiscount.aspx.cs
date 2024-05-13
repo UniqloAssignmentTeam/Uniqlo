@@ -189,7 +189,7 @@ namespace Uniqlo.AdminPages
 
         protected void ValidateProductName_ServerValidate(object source, ServerValidateEventArgs args)
         {
-            // Ensure that a product other than the default "--Select Product--" is chosen
+            
             if (DdlProductName.SelectedValue != "")
             {
                 args.IsValid = true;
