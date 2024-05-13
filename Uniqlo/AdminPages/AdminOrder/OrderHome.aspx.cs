@@ -65,9 +65,11 @@ namespace Uniqlo.AdminPages.AdminOrder
                         })
                         .ToList(); // Execute the query
 
-                    orderRepeater.DataSource = orders;
-                    orderRepeater.DataBind();
+                        orderRepeater.DataSource = orders;
+                        orderRepeater.DataBind();
+                    }
                 }
+
             }
             catch (Exception ex)
             {
