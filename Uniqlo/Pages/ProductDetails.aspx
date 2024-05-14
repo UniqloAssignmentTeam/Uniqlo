@@ -107,7 +107,8 @@
 
                                 <div class="purchase-info">
                                     <h3>Quantity: </h3>
-                                   <asp:TextBox ID="txtQty" class="qty" runat="server" Text="" onkeypress="return isNumber(event)" MaxLength="5" Enabled="False"></asp:TextBox>
+                                 <asp:TextBox ID="txtQty" class="qty" runat="server" Text="" onkeypress="return isNumber(event)" MaxLength="5" Enabled="False"></asp:TextBox>
+
 
                                 </div>
                             </div>

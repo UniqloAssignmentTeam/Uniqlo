@@ -29,6 +29,7 @@ namespace Uniqlo.Pages
                 int productId = 0;
                 if (Request.QueryString["ProdID"] != null && int.TryParse(Request.QueryString["ProdID"], out productId))
                 {
+
                     BindFormView(productId);
                     FindQuantity(productId);
                     BindOutsideViewControl();
