@@ -32,14 +32,9 @@ namespace Uniqlo.Pages
             if (!IsPostBack)
             {
                 string sessionValue = Session["Customer_ID"] as string;
+
                 if (int.TryParse(sessionValue, out int custId))
                 {
-                    // if (cust != null)
-                    // {
-                    // Use the customer's name to fetch additional data from the database
-                    // int id = cust.Customer_ID;
-
-                    // Your database query to fetch additional data based on the name
                     string sql = "SELECT * FROM Customer WHERE Customer_ID = @Customer_ID";
 
                     SqlConnection con = new SqlConnection(cs);
@@ -51,8 +46,6 @@ namespace Uniqlo.Pages
 
                     if (dr.Read())
                     {
-                        //ViewState["imgSource"] = imageDestination + Convert.ToString(dr["img_src"]);
-                        //ImgUpload.ImageUrl = ViewState["imgSource"].ToString();
                         txtName.Text = (string)dr["Name"];
                         txtEmail.Text = (string)dr["Email"];
                         string gender = (string)dr["Gender"];
@@ -74,20 +67,13 @@ namespace Uniqlo.Pages
                         txtCountry.Text = (string)dr["Country"];
                     }
                     con.Close();
+
+                    BindOrderRepeater(custId);
                 }
                 else
                 {
                     Debug.WriteLine("Failed to convert session value to integer: " + sessionValue);
-                    // Handle the error scenario, e.g., redirect to an error page or log the issue
                 }
-
-
-                //}
-
-
-
-
-                BindOrderRepeater(custId);
             }
           
         }
@@ -164,8 +150,17 @@ namespace Uniqlo.Pages
 
         protected void ddlDate_SelectedIndexChanged(object sender, EventArgs e)
         {
-            int custId = (int)Session["Customer_ID"];
-            FilterOrder(custId);
+            string sessionValue = Session["Customer_ID"] as string;
+
+            if (int.TryParse(sessionValue, out int custId))
+            {
+                FilterOrder(custId);
+            }
+            else
+            {
+                Debug.WriteLine("Failed to convert session value to integer: " + sessionValue);
+            }
+                
         }
 
         private void FilterOrder(int customerID)

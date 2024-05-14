@@ -250,7 +250,8 @@
                 var data = []; // Reset data array
                 var colorTables = document.querySelectorAll('.color-table-wrapper');
                 var totalFilesToRead = colorTables.length;
-                var readFilesCount = 0; // Counter to keep track of the number of processed files
+                var readFilesCount = 0; // Counter to keep track of the num
+                ber of processed files
                 var imageFound = false; // Flag to check if any image is found
 
                 // If no color tables exist, update the hidden field immediately with an empty array
@@ -267,6 +268,12 @@
                     var sizeL = table.querySelector('input[id^="sizeL"]').value;
                     var sizeXL = table.querySelector('input[id^="sizeXL"]').value;
                     var fileInput = table.querySelector('input[type="file"]');
+
+
+                    if (parseInt(sizeS) <= 0 || parseInt(sizeM) <= 0 || parseInt(sizeL) <= 0 || parseInt(sizeXL) <= 0) {
+                        alert('Please enter a valid size greater than 0 for all sizes.');
+                        return; // Stop further execution if invalid input is found
+                    }
 
                     if (fileInput.files.length > 0) {
                         imageFound = true; // Set flag to true as an image is found
