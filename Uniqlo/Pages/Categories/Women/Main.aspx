@@ -34,7 +34,7 @@
 
             <div class="mySlides fade">
                 <div class="numbertext">3 / 3</div>
-                <a href="Bottoms.aspx">
+                <a href="/Pages/Categories/Women/Products.aspx">
                     <img src="../../../Images/womenTopBanner.png" style="width: 100%; height: 400px;" />
                 </a>
             </div>
@@ -45,7 +45,7 @@
 
         <!--LIMITED OFFER CARD-->
         <h1 class="genderHeader">Limited Offers</h1>
-        <asp:DataList ID="dlValueBuy" runat="server" RepeatDirection="Horizontal" Width="100%">
+        <asp:DataList ID="dlValueBuy" runat="server" RepeatDirection="Horizontal" Width="100%" >
             <ItemTemplate>
                 <asp:HyperLink ID="productLink" runat="server" NavigateUrl='<%# "/Pages/ProductDetails.aspx?ProdID=" +  Eval("Product_Id") %>' CssClass="hyperlink">
                     <div class="limitedOfferCardContainer">
