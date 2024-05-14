@@ -1,95 +1,88 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+using System.Collections.Specialized;
+using System.Configuration;
+using System.Data.SqlClient;
+using System.Net;
+using System.Web.Script.Serialization;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Data.SqlClient;
-using System.Configuration;
-using System.Xml.Linq;
-using System.Drawing;
-using System.Net.NetworkInformation;
-using System.Data;
-using System.Net;
-using System.Net.Mail;
-using System.IO;
-using System.Net.Mime;
-using static System.Net.Mime.MediaTypeNames;
-using Uniqlo.AdminPages;
-using Newtonsoft.Json;
-using System.Web.Script.Serialization;
-using System.Web.Services.Description;
-using System.Collections.Specialized;
 
 namespace Uniqlo.Pages
 {
     public partial class SignUp : System.Web.UI.Page
     {
-
-
-        // string cs = Global.CS;
         SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["UniqloConnectionString"].ConnectionString);
 
         protected void Page_Load(object sender, EventArgs e)
         {
-           
         }
-
-
-
-
 
         protected void btnSignUp_Click(object sender, EventArgs e)
         {
-            string recaptchaResponse = Request.Form["g-recaptcha-response"];
+            string errorMessage = "";
 
+            // Check reCAPTCHA
+            string recaptchaResponse = Request.Form["g-recaptcha-response"];
             if (!ValidateReCaptcha(recaptchaResponse))
             {
-                captchaLbl.Visible = true;
+                errorMessage += "Captcha Invalid. Please Try Again.<br/>";
+            }
+
+            // Check if email exists
+            con.Open();
+            SqlCommand checkEmail = new SqlCommand("SELECT Email FROM Customer WHERE Email=@Email", con);
+            checkEmail.Parameters.AddWithValue("@Email", txtEmail.Text);
+            SqlDataReader read = checkEmail.ExecuteReader();
+
+            if (read.HasRows)
+            {
+                errorMessage += "Email address already exists. Please try with a different email address.<br/>";
+            }
+            con.Close();
+
+            // Perform field validations
+            if (!Page.IsValid)
+            {
+                foreach (BaseValidator validator in Page.Validators)
+                {
+                    if (!validator.IsValid)
+                    {
+                        errorMessage += validator.ErrorMessage + "<br/>";
+                    }
+                }
+            }
+
+            // If there are errors, show them in a SweetAlert
+            if (!string.IsNullOrEmpty(errorMessage))
+            {
+                ShowSweetAlert("Error", errorMessage, "error");
                 return;
             }
 
+            // If no errors, proceed with sign up
             try
             {
+                Random random = new Random();
+                int myRandom = random.Next(10000000, 999999999);
+                string Activation_Code = myRandom.ToString();
+
                 con.Open();
-                SqlCommand checkEmail = new SqlCommand("SELECT Email FROM Customer WHERE Email = @Email", con);
-                checkEmail.Parameters.AddWithValue("@Email", txtEmail.Text);
-                SqlDataReader read = checkEmail.ExecuteReader();
+                string insertUser = "INSERT INTO Customer (Name, Gender, Contact_No, Email, Password) VALUES (@Name, @Gender, @ContactNo, @Email, @Password)";
+                SqlCommand insertCmd = new SqlCommand(insertUser, con);
+                insertCmd.Parameters.AddWithValue("@Name", txtName.Text);
+                insertCmd.Parameters.AddWithValue("@Gender", ddlGender.SelectedValue);
+                insertCmd.Parameters.AddWithValue("@ContactNo", txtPhone.Text);
+                insertCmd.Parameters.AddWithValue("@Email", txtEmail.Text);
+                insertCmd.Parameters.AddWithValue("@Password", txtPassword.Text);
+                insertCmd.ExecuteNonQuery();
+                con.Close();
 
-                if (read.HasRows)
-                {
-                    lblErrorMsg.Text = "Email address already exists. Please try with a different email address.";
-                    lblErrorMsg.ForeColor = System.Drawing.Color.Red;
-                }
-                else
-                {
-                    read.Close(); // Close the reader before executing another command
-                    Random random = new Random();
-                    int myRandom = random.Next(10000000, 999999999);
-                    string Activation_Code = myRandom.ToString();
-
-                    string insertUser = "INSERT INTO Customer (Name, Gender, Contact_No, Email, Password) VALUES (@Name, @Gender, @ContactNo, @Email, @Password)";
-                    SqlCommand insertCmd = new SqlCommand(insertUser, con);
-                    insertCmd.Parameters.AddWithValue("@Name", txtName.Text);
-                    insertCmd.Parameters.AddWithValue("@Gender", ddlGender.SelectedValue);
-                    insertCmd.Parameters.AddWithValue("@ContactNo", txtPhone.Text);
-                    insertCmd.Parameters.AddWithValue("@Email", txtEmail.Text);
-                    insertCmd.Parameters.AddWithValue("@Password", txtPassword.Text);
-                    insertCmd.ExecuteNonQuery();
-
-                  
-                    Response.Redirect("/Pages/Login.aspx");
-                }
+                ShowSweetAlert("Success", "Sign up successful! Please login to your account.", "success", "Login.aspx");
             }
             catch (Exception ex)
             {
-                // Log the error (optional)
-                lblErrorMsg.Text = "An error occurred: " + ex.Message;
-                lblErrorMsg.ForeColor = System.Drawing.Color.Red;
-            }
-            finally
-            {
-                con.Close();
+                ShowSweetAlert("Error", "An error occurred: " + ex.Message, "error");
             }
         }
 
@@ -99,10 +92,10 @@ namespace Uniqlo.Pages
             string apiUrl = "https://www.google.com/recaptcha/api/siteverify";
             WebClient client = new WebClient();
             NameValueCollection values = new NameValueCollection
-    {
-        { "secret", secretKey },
-        { "response", recaptchaResponse }
-    };
+            {
+                { "secret", secretKey },
+                { "response", recaptchaResponse }
+            };
 
             try
             {
@@ -115,7 +108,6 @@ namespace Uniqlo.Pages
                     return true;
                 }
 
-                // Log any errors (optional but useful for troubleshooting)
                 if (captchaResponse.ContainsKey("error-codes"))
                 {
                     var errorCodes = (List<object>)captchaResponse["error-codes"];
@@ -133,12 +125,10 @@ namespace Uniqlo.Pages
             return false;
         }
 
-        private void ShowSuccessMessage()
+        private void ShowSweetAlert(string title, string message, string icon, string redirectUrl = "")
         {
-            ScriptManager.RegisterStartupScript(this, GetType(), "showSuccessMessage", "showSuccessMessage();", true);
+            string script = $"Swal.fire({{ title: '{title}', html: '{message}', icon: '{icon}' }}).then((result) => {{ if (result.isConfirmed && '{redirectUrl}' !== '') {{ window.location.href = '{redirectUrl}'; }} }});";
+            ScriptManager.RegisterStartupScript(this, GetType(), "ShowSweetAlert", script, true);
         }
-
-
     }
-
 }
