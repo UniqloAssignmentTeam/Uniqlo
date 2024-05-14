@@ -186,24 +186,6 @@ namespace Uniqlo.Pages
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvGender;
 
         /// <summary>
-        /// lblProfilePhoto control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblProfilePhoto;
-
-        /// <summary>
-        /// fileProfilePhoto control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.FileUpload fileProfilePhoto;
-
-        /// <summary>
         /// captchaLbl control.
         /// </summary>
         /// <remarks>
@@ -220,23 +202,5 @@ namespace Uniqlo.Pages
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnSignUp;
-
-        /// <summary>
-        /// lblUploadMess control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblUploadMess;
-
-        /// <summary>
-        /// lblReg control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblReg;
     }
 }
