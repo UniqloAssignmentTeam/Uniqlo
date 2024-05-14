@@ -36,26 +36,39 @@ namespace Uniqlo.Pages
                     string password = txtPassword.Text.Trim();
 
                     //check user
-                    string checkUser = "SELECT Customer_ID, Name, Gender, Contact_No, Email, Password from Customer where email=@email and password=@password";
-                    SqlCommand checkCmd = new SqlCommand(checkUser, con);
-                    checkCmd.Parameters.AddWithValue("@email", email);
-                    checkCmd.Parameters.AddWithValue("@password", password);
-                    SqlDataReader read = checkCmd.ExecuteReader();
-
-                    if (read.Read())
+                    if (Membership.ValidateUser(email, password))
                     {
-                        Session["Customer_ID"] = read.GetValue(0).ToString();
-
-                    Response.Redirect("Home.aspx");
+                    // Authentication successful, redirect the user to the home page
+                    FormsAuthentication.RedirectFromLoginPage(email, false);
                     }
                     else
                     {
-                        errorMSG.Text = "Invalid email or password.";
-                        errorMSG.ForeColor = System.Drawing.Color.Red;
-                        con.Close();
+                    // Authentication failed, display an error message
+                    // (You may want to display a more user-friendly message)
+                     Response.Write("Invalid email or password.");
                     }
-              
-                   
+
+
+                /**string checkUser = "SELECT Customer_ID, Name, Gender, Contact_No, Email, Password from Customer where email=@email and password=@password";
+                SqlCommand checkCmd = new SqlCommand(checkUser, con);
+                checkCmd.Parameters.AddWithValue("@email", email);
+                checkCmd.Parameters.AddWithValue("@password", password);
+                SqlDataReader read = checkCmd.ExecuteReader();
+
+                if (read.Read())
+                {
+                    Session["Customer_ID"] = read.GetValue(0).ToString();
+
+                Response.Redirect("Home.aspx");
+                }
+                else
+                {
+                    errorMSG.Text = "Invalid email or password.";
+                    errorMSG.ForeColor = System.Drawing.Color.Red;
+                    con.Close();
+                }**/
+
+
             }
 
         }
