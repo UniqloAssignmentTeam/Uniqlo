@@ -11,6 +11,8 @@ using System.Net;
 using System.IO;
 using Newtonsoft.Json;
 using System.Web.Security;
+using System.Security.Policy;
+using crypto;
 
 
 
@@ -35,9 +37,6 @@ namespace Uniqlo.Pages
                     string email = txtEmail.Text;
                     string password = txtPassword.Text.Trim();
 
-                   
-
-
                 string checkUser = "SELECT Customer_ID, Name, Gender, Contact_No, Email, Password from Customer where email=@email and password=@password";
                 SqlCommand checkCmd = new SqlCommand(checkUser, con);
                 checkCmd.Parameters.AddWithValue("@email", email);
@@ -46,18 +45,7 @@ namespace Uniqlo.Pages
 
                 if (read.Read())
                 {
-                    // Ensure the role exists
-                    if (!Roles.RoleExists("Customer"))
-                    {
-                        Roles.CreateRole("Customer");
-                    }
-
-                    // Add user to "Customer" role if not already in the role
-                    if (!Roles.IsUserInRole(email, "Customer"))
-                    {
-                        Roles.AddUserToRole(email, "Customer");
-                    }
-
+                    
                     Session["Customer_ID"] = read.GetValue(0).ToString();
 
                     Response.Redirect("Home.aspx");
