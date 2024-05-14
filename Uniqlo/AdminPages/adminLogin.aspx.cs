@@ -12,7 +12,7 @@ namespace Uniqlo.AdminPages
 {
     public partial class adminLogin : System.Web.UI.Page
     {
-        SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["UniqloConnectionString"].ConnectionString);
+        string cs = Global.CS;
         int i;
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -20,6 +20,7 @@ namespace Uniqlo.AdminPages
         }
         protected void btnLogin_Click(object sender, EventArgs e)
         {
+            SqlConnection con = new SqlConnection(cs);
             con.Open();
             if (Page.IsValid)
             {
