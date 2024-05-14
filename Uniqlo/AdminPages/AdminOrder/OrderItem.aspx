@@ -164,7 +164,7 @@
                             <tr>
                                 <td>
                                     <div class="viewMoreSection">
-                                        <asp:Button ID="btnSubmit" runat="server" Text="Submit" CssClass="viewMoreButton" OnClick="submitForm" />
+                                        <asp:Button ID="btnSubmit" runat="server" Text="Submit" CssClass="viewMoreButton" OnClick="submitForm" style="cursor: pointer;" />
                                     </div>
                                 </td>
                             </tr>

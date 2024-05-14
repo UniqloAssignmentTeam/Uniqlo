@@ -40,19 +40,18 @@ namespace Uniqlo.AdminPages
 
         protected void addButton_Click(object sender, EventArgs e)
         {
-            bool isValid = true;
-
             string test = txtDescription.Text;
 
             if (HiddenFieldData.Value.Trim() == "" || HiddenFieldData.Value == "[]")
             {
                 cvHiddenFieldData.IsValid = false;
                 cvHiddenFieldData.ErrorMessage = "Please add a color.";
+                ScriptManager.RegisterStartupScript(this, GetType(), "validationAlert", "Swal.fire('Error!', 'Please add a color.', 'error');", true);
+                return; // Exit the method to prevent further execution
             }
 
             if (Page.IsValid)
             {
-                
                 string productName = txtProductName.Text;
                 string productDescription = txtDescription.Text;
                 double productPrice = Double.Parse(txtPrice.Text);
@@ -66,7 +65,6 @@ namespace Uniqlo.AdminPages
                     using (var db = new ProductDbContext())
                     {
                         var categoryID = db.Category.Where(c => c.Name == category && c.Gender.ToString() == gender).Select(c => c.Category_ID).FirstOrDefault();
-
                         Product newProduct = new Product
                         {
                             Product_Name = productName,
@@ -81,67 +79,51 @@ namespace Uniqlo.AdminPages
                         {
                             if (!String.IsNullOrWhiteSpace(colorSize.Image))
                             {
-                                // Handling the base64 image string
-                                string base64Image = colorSize.Image.Split(',')[1]; // Ensuring only the base64 part is taken
-                                try
+                                string base64Image = colorSize.Image.Split(',')[1];
+                                byte[] imageBytes = Convert.FromBase64String(base64Image);
+                                Image newImage = new Image
                                 {
-                                    byte[] imageBytes = Convert.FromBase64String(base64Image);
-                                    Image newImage = new Image
-                                    {
-                                        ProductImage = imageBytes
-                                    };
-                                    db.Image.Add(newImage);
-                                    db.SaveChanges();
+                                    ProductImage = imageBytes
+                                };
+                                db.Image.Add(newImage);
+                                db.SaveChanges();
 
-                                    // Linking the image with product details
-                                    foreach (var sizeProperty in typeof(ColorSize).GetProperties().Where(p => p.Name.StartsWith("Size")))
+                                foreach (var sizeProperty in typeof(ColorSize).GetProperties().Where(p => p.Name.StartsWith("Size")))
+                                {
+                                    string sizeValue = sizeProperty.GetValue(colorSize) as string;
+                                    if (!string.IsNullOrEmpty(sizeValue))
                                     {
-                                        string sizeValue = sizeProperty.GetValue(colorSize) as string;
-                                        if (!string.IsNullOrEmpty(sizeValue))
+                                        string size = sizeProperty.Name.Substring(4);
+                                        Quantity newQuantity = new Quantity
                                         {
-                                            string size = sizeProperty.Name.Substring(4);
-                                            Quantity newQuantity = new Quantity
-                                            {
-                                                Product_ID = newProduct.Product_ID,
-                                                Image_ID = newImage.Image_ID,
-                                                Color = colorSize.Color,
-                                                Size = size,
-                                                Qty = Int32.Parse(sizeValue)
-                                            };
-                                            db.Quantity.Add(newQuantity);
-                                        }
+                                            Product_ID = newProduct.Product_ID,
+                                            Image_ID = newImage.Image_ID,
+                                            Color = colorSize.Color,
+                                            Size = size,
+                                            Qty = Int32.Parse(sizeValue)
+                                        };
+                                        db.Quantity.Add(newQuantity);
                                     }
                                 }
-                                catch (FormatException fe)
-                                {
-                                    ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", "alert('Failed to convert Base64 string to byte array. Error: " + fe.Message + " ');", true);
-                                }
-                                catch (Exception ex)
-                                {
-                                    ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", "alert('Error saving image data: " + ex.Message + "');", true);
-                                }
+                                db.SaveChanges();
                             }
                         }
-                        db.SaveChanges();
-                    }
 
-                    ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", "alert('Product and details added successfully!');", true);
-                    Response.Redirect("~/AdminPages/AdminProduct/ProductHome.aspx");
+                        ScriptManager.RegisterStartupScript(this, GetType(), "successAlert", "Swal.fire('Success!', 'Product and details added successfully!', 'success').then((result) => { window.location = '/AdminPages/AdminProduct/ProductHome.aspx'; });", true);
+                    }
                 }
                 catch (Exception ex)
                 {
-
-                    // Optionally display error message on the page
-                    ScriptManager.RegisterStartupScript(this, GetType(), "errorAlert", "alert('An error occurred when add product.');", true);
+                    ScriptManager.RegisterStartupScript(this, GetType(), "errorAlert", "Swal.fire('Error!', 'An error occurred when adding product: " + ex.Message.Replace("'", "\\'") + "', 'error');", true);
                 }
-
-
             }
         }
 
 
 
-
-
     }
 }
+
+
+
+
