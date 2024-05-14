@@ -43,23 +43,32 @@
 <!-- Full Name Field -->
 <div class="field input-field">
     <asp:Label ID="lblName" runat="server" Text="Name"></asp:Label>
-    <asp:TextBox ID="txtName" runat="server" type="text" placeholder="Full Name" CssClass="input"></asp:TextBox>
-    <asp:RequiredFieldValidator ID="rfvName" runat="server" ControlToValidate="txtName" ErrorMessage="Name is required." ForeColor="Red"></asp:RequiredFieldValidator>
+    <asp:TextBox ID="txtName" runat="server" type="text" placeholder="Full Name" CssClass="input" MaxLength="50"></asp:TextBox>
+      <asp:RegularExpressionValidator ID="RegexValidatorName" runat="server" 
+    ControlToValidate="txtName" ErrorMessage="Name must contain only letters." ValidationExpression="^[A-Za-z ]+$" ForeColor="Red" Display="Dynamic">
+</asp:RegularExpressionValidator>
+                   <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Please Enter a Name" ControlToValidate="txtName" ForeColor="Red" Display="Dynamic"></asp:RequiredFieldValidator>
 </div>
 
 <!-- Email Field -->
 <div class="field input-field">
     <asp:Label ID="lblEmail" runat="server" Text="Email"></asp:Label>
-    <asp:TextBox ID="txtEmail" runat="server" type="email" placeholder="Email" CssClass="input"></asp:TextBox>
-    <asp:RequiredFieldValidator ID="rfvEmail" runat="server" ControlToValidate="txtEmail" ErrorMessage="Email is required." ForeColor="Red"></asp:RequiredFieldValidator>
-    <asp:RegularExpressionValidator ID="revEmail" runat="server" ControlToValidate="txtEmail" ErrorMessage="Invalid email address." ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"></asp:RegularExpressionValidator>
+    <asp:TextBox ID="txtEmail" runat="server" type="email" placeholder="Email" CssClass="input" MaxLength="50"></asp:TextBox>
+    <asp:RequiredFieldValidator ID="rfvEmail" runat="server" ControlToValidate="txtEmail" ErrorMessage="Email is required." ForeColor="Red" Display="Dynamic" ></asp:RequiredFieldValidator>
+    <asp:RegularExpressionValidator ID="revEmail" runat="server" ControlToValidate="txtEmail" ErrorMessage="Invalid email address." ForeColor="Red" Display="Dynamic" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"></asp:RegularExpressionValidator>
 </div>
 
 <!-- Password Field -->
 <div class="field input-field">
     <asp:Label ID="lblPassword" runat="server" Text="Password"></asp:Label>
-    <asp:TextBox ID="txtPassword" runat="server" placeholder="Create password" CssClass="input"></asp:TextBox>
-    <asp:RequiredFieldValidator ID="rfvPassword" runat="server" ControlToValidate="txtPassword" ErrorMessage="Password is required." ForeColor="Red"></asp:RequiredFieldValidator>
+    <asp:TextBox ID="txtPassword" runat="server" placeholder="Create password" CssClass="input" MaxLength="50" TextMode="Password"></asp:TextBox>
+    
+      <asp:RegularExpressionValidator ID="RegexValidatorPassword" runat="server" 
+    ControlToValidate="txtPassword" 
+    ErrorMessage="Password must be at least 8 characters long including numbers, uppercase and lowercase letters." 
+    ValidationExpression="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,50}$" ForeColor="Red" Display="Dynamic">
+</asp:RegularExpressionValidator>
+    <asp:RequiredFieldValidator ID="rfvPassword" runat="server" ControlToValidate="txtPassword" ErrorMessage="Password is required." Display="Dynamic" ForeColor="Red"></asp:RequiredFieldValidator>
 </div>
 
 <!-- Phone Number Field -->
@@ -67,6 +76,11 @@
     <asp:Label ID="lblPhone" runat="server" Text="Phone"></asp:Label>
     <asp:TextBox ID="txtPhone" runat="server" type="text" placeholder="Phone Number" CssClass="input"></asp:TextBox>
     <!-- Add any additional validation as needed -->
+                                        <asp:RegularExpressionValidator ID="RegexValidatorPhone" runat="server" 
+    ControlToValidate="txtPhone" 
+    ErrorMessage="Please enter a valid phone number." 
+    ValidationExpression="^\+?([0-9]{1,3})?([0-9]{10})$" ForeColor="Red" Display="Dynamic">
+</asp:RegularExpressionValidator>
 </div>
 
 <!-- Gender Field -->
@@ -78,49 +92,7 @@
         <asp:ListItem Value="M">Male</asp:ListItem>
         <asp:ListItem Value="F">Female</asp:ListItem>
     </asp:DropDownList>
-    <asp:RequiredFieldValidator ID="rfvGender" runat="server" ControlToValidate="ddlGender" ErrorMessage="Gender is required." ForeColor="Red" InitialValue=""></asp:RequiredFieldValidator>
-</div>
-
-<!-- Country Field -->
-<div class="field input-field">
-    <asp:Label ID="lblCountry" runat="server" Text="Country"></asp:Label>
-    <br />
-    <asp:DropDownList ID="ddlCountry" runat="server" CssClass="input" AppendDataBoundItems="true" OnSelectedIndexChanged="ddlCountry_SelectedIndexChanged" AutoPostBack="true" Height="40px" Width="1020px" ForeColor="Gray">
-        <asp:ListItem Text="Select Country" Value=""></asp:ListItem>
-    </asp:DropDownList>
-    <asp:RequiredFieldValidator ID="rfvCountry" runat="server" ControlToValidate="ddlCountry" ErrorMessage="Country is required." ForeColor="Red" InitialValue=""></asp:RequiredFieldValidator>
-</div>
-
-<!-- State Field -->
-<div class="field input-field">
-    <asp:Label ID="lblState" runat="server" Text="State"></asp:Label>
-    <br />
-    <asp:DropDownList ID="ddlState" runat="server" CssClass="input" AppendDataBoundItems="true" OnSelectedIndexChanged="ddlCountry_SelectedIndexChanged"  Height="40px" Width="1020px" ForeColor="Gray">
-        <asp:ListItem Text="Select State" Value=""></asp:ListItem>
-    </asp:DropDownList>
-    <asp:RequiredFieldValidator ID="rfvState" runat="server" ControlToValidate="ddlState" ErrorMessage="State is required." ForeColor="Red" InitialValue=""></asp:RequiredFieldValidator>
-</div>
-
-<!-- City Field -->
-<div class="field input-field">
-    <asp:Label ID="lblCity" runat="server" Text="City"></asp:Label>
-    <br />
-    <asp:TextBox ID="txtCity" runat="server" type="text" placeholder="City" CssClass="input"></asp:TextBox>
-    <asp:RequiredFieldValidator ID="rfvCity" runat="server" ControlToValidate="txtCity" ErrorMessage="City is required." ForeColor="Red"></asp:RequiredFieldValidator>
-</div>
-
-<!-- Postcode Field -->
-<div class="field input-field">
-    <asp:Label ID="lblPostcode" runat="server" Text="Postcode"></asp:Label>
-    <asp:TextBox ID="txtPostcode" runat="server" type="text" placeholder="Postcode" CssClass="input"></asp:TextBox>
-    <!-- Add any additional validation as needed -->
-</div>
-
-<!-- Address Field -->
-<div class="field input-field">
-    <asp:Label ID="lblAddress" runat="server" Text="Address"></asp:Label>
-    <asp:TextBox ID="txtAddress" runat="server" type="text" placeholder="Address" CssClass="input"></asp:TextBox>
-    <!-- Add any additional validation as needed -->
+    <asp:RequiredFieldValidator ID="rfvGender" runat="server" ControlToValidate="ddlGender" ErrorMessage="Gender is required." Display="Dynamic" ForeColor="Red" InitialValue=""></asp:RequiredFieldValidator>
 </div>
 
 <!-- Profile Photo Field -->
@@ -130,7 +102,7 @@
     <!-- Add any additional validation as needed -->
  
          
-                
+                <asp:Label ID="captchaLbl" runat="server" Text="Captcha Invalid. Please Try Again." Visible="false" ForeColor="Red"></asp:Label>
                       <div class="g-recaptcha" data-sitekey="6LeFetopAAAAALbDjZrPI5w7-yysmbhgyD3t3Iou"></div>
 
                     <!-- Sign Up Button -->

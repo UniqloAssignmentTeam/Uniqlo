@@ -32,89 +32,11 @@ namespace Uniqlo.Pages
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
-            {
-                BindCountryDropDown();
-            }
+           
         }
-        protected void ddlCountry_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            BindStateDropDown(ddlCountry.SelectedValue);
-        }
-        private void BindCountryDropDown()
-        {
-            // Here you can fetch country list from a database or any other source
-            List<string> countries = new List<string> { "Malaysia", "Singapore", "USA", "Canada", "UK", "Australia", "India" };
+     
 
-            ddlCountry.DataSource = countries;
-            ddlCountry.DataBind();
-
-
-        }
-
-        private void BindStateDropDown(string country)
-        {
-            // Here you can fetch state list based on the selected country from a database or any other source
-            List<string> states = new List<string>();
-            if (country == "Malaysia")
-            {
-                states.Add("Johor");
-                states.Add("Kedah");
-                states.Add("Kelantan");
-                states.Add("Malacca");
-                states.Add("Negeri Sembilan");
-                states.Add("Pahang");
-                states.Add("Penang");
-                states.Add("Perak");
-                states.Add("Perlis");
-                states.Add("Selangor");
-                states.Add("Sabah");
-                states.Add("Sarawak");
-                states.Add("Terengganu");
-                states.Add("Kuala Lumpur");
-                states.Add("Labuan");
-                states.Add("Putrajaya");
-
-            }
-            if (country == "USA")
-            {
-                states.Add("California");
-                states.Add("Texas");
-                states.Add("New York");
-            }
-            else if (country == "Canada")
-            {
-                states.Add("Ontario");
-                states.Add("Quebec");
-                states.Add("British Columbia");
-            }
-            else if (country == "UK")
-            {
-                states.Add("England");
-                states.Add("Scotland");
-                states.Add("Wales");
-                states.Add("Northern Ireland");
-            }
-            else if (country == "Australia")
-            {
-                states.Add("New South Wales");
-                states.Add("Queensland");
-                states.Add("Victoria");
-                states.Add("Western Australia");
-            }
-            else if (country == "India")
-            {
-                states.Add("Maharashtra");
-                states.Add("Uttar Pradesh");
-                states.Add("Tamil Nadu");
-                states.Add("Karnataka");
-            }
-
-            ddlState.DataSource = states;
-            ddlState.DataBind();
-        }
-
-
+       
 
 
         protected void btnSignUp_Click(object sender, EventArgs e)
@@ -143,8 +65,8 @@ namespace Uniqlo.Pages
             string recaptchaResponse = Request.Form["g-recaptcha-response"];
             if (!ValidateReCaptcha(recaptchaResponse))
             {
-                ScriptManager.RegisterStartupScript(this, GetType(), "error", $"alert('Recaptcha invalid. Please Try Again');", true);
-              
+
+                captchaLbl.Visible = true;
                 return;
 
             }
@@ -168,16 +90,12 @@ namespace Uniqlo.Pages
                 string Activation_Code = myRandom.ToString();
 
                 con.Open();
-                string insertUser = "INSERT INTO Customer(Name, Gender, Contact_No, Address, State, City, Postcode, Country, Email, Password) VALUES(@Name, @Gender, @ContactNo, @Address, @State, @City, @Postcode, @Country, @Email, @Password)";
+                string insertUser = "INSERT INTO Customer(Name, Gender, Contact_No,  Email, Password) VALUES(@Name, @Gender, @ContactNo, @Email, @Password)";
                 SqlCommand insertCmd = new SqlCommand(insertUser, con);
                 insertCmd.Parameters.AddWithValue("@Name", txtName.Text.ToString());
                 insertCmd.Parameters.AddWithValue("@Gender", ddlGender.Text);
                 insertCmd.Parameters.AddWithValue("@ContactNo", txtPhone.Text);
-                insertCmd.Parameters.AddWithValue("@Address", txtAddress.Text);
-                insertCmd.Parameters.AddWithValue("@State", ddlState.Text);
-                insertCmd.Parameters.AddWithValue("@City", txtCity.Text);
-                insertCmd.Parameters.AddWithValue("@Postcode", txtPostcode.Text);
-                insertCmd.Parameters.AddWithValue("@Country", ddlCountry.Text);
+             
                 insertCmd.Parameters.AddWithValue("@Email", txtEmail.Text.ToString());
                 insertCmd.Parameters.AddWithValue("@Password", txtPassword.Text);
                 //insertCmd.Parameters.AddWithValue("@ProfileImage",fileProfilePhoto.FileName);

@@ -32,7 +32,7 @@
 
                                                 <div class="form-group">
     <label for="password">Password</label>
-   <asp:TextBox ID="password" runat="server" MaxLength="50"></asp:TextBox>
+   <asp:TextBox ID="password" runat="server" MaxLength="50" TextMode="Password"></asp:TextBox>
   <asp:RegularExpressionValidator ID="RegexValidatorPassword" runat="server" 
     ControlToValidate="password" 
     ErrorMessage="Password must be at least 8 characters long including numbers, uppercase and lowercase letters." 
@@ -49,7 +49,7 @@
                 <div class="form-group">
                     <label for="staffName">Staff Name</label>
                      <asp:TextBox ID="staffName" runat="server" MaxLength="50"></asp:TextBox>
-                                     <asp:RegularExpressionValidator ID="RegexValidatorName" runat="server" 
+ <asp:RegularExpressionValidator ID="RegexValidatorName" runat="server" 
     ControlToValidate="staffName" ErrorMessage="Name must contain only letters." ValidationExpression="^[A-Za-z ]+$" ForeColor="Red" Display="Dynamic">
 </asp:RegularExpressionValidator>
                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Please Enter a Name" ControlToValidate="staffName" ForeColor="Red" Display="Dynamic"></asp:RequiredFieldValidator>
