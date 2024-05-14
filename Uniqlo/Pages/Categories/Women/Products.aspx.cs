@@ -32,7 +32,7 @@ namespace Uniqlo.Pages.Categories.Women
                     var productDetails = db.Product
                         .Where(p => !p.IsDeleted && p.Category.Gender == "W")
                         .GroupJoin( // Simulate a left join using GroupJoin and DefaultIfEmpty
-                            db.Discount,
+                            db.Discount.Where(d => d.Start_Date <= today && d.End_Date >= today && d.Status == "Active"),
                             product => product.Product_ID,
                             discount => discount.Product_ID,
                             (product, discounts) => new { Product = product, Discounts = discounts.DefaultIfEmpty() }
@@ -77,7 +77,7 @@ namespace Uniqlo.Pages.Categories.Women
                     var productDetails = db.Product
                         .Where(p => !p.IsDeleted && p.Category.Gender == "W")
                         .GroupJoin(
-                            db.Discount,
+                            db.Discount.Where(d => d.Start_Date <= today && d.End_Date >= today && d.Status == "Active"),
                             product => product.Product_ID,
                             discount => discount.Product_ID,
                             (product, discounts) => new { Product = product, Discounts = discounts.DefaultIfEmpty() }
@@ -155,6 +155,7 @@ namespace Uniqlo.Pages.Categories.Women
         {
             try
             {
+                var today = DateTime.Today;
                 using (var db = new ProductDbContext())
                 {
                     string selectedCategory = ddlCategory.SelectedValue;
@@ -173,7 +174,7 @@ namespace Uniqlo.Pages.Categories.Women
                     // Transform the products to include discount information
                     var discountQuery = productQuery
                         .GroupJoin(
-                            db.Discount,
+                            db.Discount.Where(d => d.Start_Date <= today && d.End_Date >= today && d.Status == "Active"),
                             product => product.Product_ID,
                             discount => discount.Product_ID,
                             (product, discounts) => new { Product = product, Discounts = discounts.DefaultIfEmpty() }
@@ -242,7 +243,7 @@ namespace Uniqlo.Pages.Categories.Women
                     var productDetails = db.Product
                         .Where(p => !p.IsDeleted && p.Category.Gender == "W" && p.Product_Name.Contains(searchText))
                         .GroupJoin( // Simulate a left join using GroupJoin and DefaultIfEmpty
-                            db.Discount,
+                            db.Discount.Where(d => d.Start_Date <= today && d.End_Date >= today && d.Status == "Active"),
                             product => product.Product_ID,
                             discount => discount.Product_ID,
                             (product, discounts) => new { Product = product, Discounts = discounts.DefaultIfEmpty() }
