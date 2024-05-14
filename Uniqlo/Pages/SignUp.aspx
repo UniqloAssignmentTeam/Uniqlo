@@ -25,6 +25,52 @@
 .button-field:hover {
     background-color: #45a049; /* Darker green on hover */
 }
+
+
+.success-panel {
+    display: none; /* Initially hidden */
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    background-color: #d4edda;
+    border: 1px solid #c3e6cb;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    text-align: center;
+    padding: 20px;
+    opacity: 0;
+    transition: opacity 0.5s, transform 0.5s;
+}
+
+.success-panel.show {
+    display: block;
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.success-content {
+    margin: 20px;
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 20px;
+    cursor: pointer;
+    color: #155724;
+}
+
+#successMessage {
+    color: #155724;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+
 </style>
         <!-- CSS -->
         <link href="../css/SignUp.css" rel="stylesheet" />
@@ -125,7 +171,11 @@
             <!-- Separator Line -->
             <div class="line"></div>
 
+
+
      
         </div>
     </div>
+
+   
 </asp:Content>

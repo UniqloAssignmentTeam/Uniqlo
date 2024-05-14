@@ -34,103 +34,61 @@ namespace Uniqlo.Pages
         {
            
         }
-     
 
-       
+
+
 
 
         protected void btnSignUp_Click(object sender, EventArgs e)
         {
+            string recaptchaResponse = Request.Form["g-recaptcha-response"];
 
-
-
-
-            /*if (fileProfilePhoto.PostedFile != null)
+            if (!ValidateReCaptcha(recaptchaResponse))
             {
-                string strpath = Path.GetExtension(fileProfilePhoto.PostedFile.FileName);
-                if (strpath != ".jpg" && strpath != ".jpeg" && strpath != ".gif" && strpath != ".png")
+                captchaLbl.Visible = true;
+                return;
+            }
+
+            try
+            {
+                con.Open();
+                SqlCommand checkEmail = new SqlCommand("SELECT Email FROM Customer WHERE Email = @Email", con);
+                checkEmail.Parameters.AddWithValue("@Email", txtEmail.Text);
+                SqlDataReader read = checkEmail.ExecuteReader();
+
+                if (read.HasRows)
                 {
-                    lblUploadMess.Text = " This file type is not supported.Please try with another file ";
-                    lblUploadMess.ForeColor = System.Drawing.Color.Red;
+                    lblErrorMsg.Text = "Email address already exists. Please try with a different email address.";
+                    lblErrorMsg.ForeColor = System.Drawing.Color.Red;
                 }
                 else
                 {
-                    lblUploadMess.Text = " Profile Photo is saved ";
-                    lblUploadMess.ForeColor = System.Drawing.Color.Green;
+                    read.Close(); // Close the reader before executing another command
+                    Random random = new Random();
+                    int myRandom = random.Next(10000000, 999999999);
+                    string Activation_Code = myRandom.ToString();
+
+                    string insertUser = "INSERT INTO Customer (Name, Gender, Contact_No, Email, Password) VALUES (@Name, @Gender, @ContactNo, @Email, @Password)";
+                    SqlCommand insertCmd = new SqlCommand(insertUser, con);
+                    insertCmd.Parameters.AddWithValue("@Name", txtName.Text);
+                    insertCmd.Parameters.AddWithValue("@Gender", ddlGender.SelectedValue);
+                    insertCmd.Parameters.AddWithValue("@ContactNo", txtPhone.Text);
+                    insertCmd.Parameters.AddWithValue("@Email", txtEmail.Text);
+                    insertCmd.Parameters.AddWithValue("@Password", txtPassword.Text);
+                    insertCmd.ExecuteNonQuery();
+
+                  
+                    Response.Redirect("/Pages/Login.aspx");
                 }
-            
-            string fileimg = Path.GetFileName(fileProfilePhoto.PostedFile.FileName);
-                fileProfilePhoto.SaveAs(Server.MapPath("~/Images/ProfilePhoto/") + fileimg);
-            */
-            string recaptchaResponse = Request.Form["g-recaptcha-response"];
-            if (!ValidateReCaptcha(recaptchaResponse))
-            {
-
-                captchaLbl.Visible = true;
-                return;
-
             }
-
-            con.Open();
-            SqlCommand checkEmail = new SqlCommand("SELECT Email from Customer WHERE Email='" + txtEmail.Text.ToString() + "'", con);
-            SqlDataReader read = checkEmail.ExecuteReader();
-
-
-            if (read.HasRows)
+            catch (Exception ex)
             {
-                lblErrorMsg.Text = "Email address is already exists. Please try with different email address";
+                // Log the error (optional)
+                lblErrorMsg.Text = "An error occurred: " + ex.Message;
                 lblErrorMsg.ForeColor = System.Drawing.Color.Red;
-                con.Close();
             }
-            else
+            finally
             {
-                con.Close();
-                Random random = new Random();
-                int myRandom = random.Next(10000000, 999999999);
-                string Activation_Code = myRandom.ToString();
-
-                con.Open();
-                string insertUser = "INSERT INTO Customer(Name, Gender, Contact_No,  Email, Password) VALUES(@Name, @Gender, @ContactNo, @Email, @Password)";
-                SqlCommand insertCmd = new SqlCommand(insertUser, con);
-                insertCmd.Parameters.AddWithValue("@Name", txtName.Text.ToString());
-                insertCmd.Parameters.AddWithValue("@Gender", ddlGender.Text);
-                insertCmd.Parameters.AddWithValue("@ContactNo", txtPhone.Text);
-             
-                insertCmd.Parameters.AddWithValue("@Email", txtEmail.Text.ToString());
-                insertCmd.Parameters.AddWithValue("@Password", txtPassword.Text);
-                //insertCmd.Parameters.AddWithValue("@ProfileImage",fileProfilePhoto.FileName);
-                insertCmd.ExecuteNonQuery();
-                Response.Redirect("Login.aspx");
-                //MailMessage mail = new MailMessage();
-                //mail.To.Add(txtEmail.Text.ToString());
-                //mail.From = new MailAddress("bengyee.oh@gmail.com");
-                // mail.Subject = "Thank you for registering with us.";
-
-                // string emailBody = "";
-
-                // emailBody += "<h1>Hello" + txtName.Text.ToString() + ",</h1>";
-                //emailBody += "Click the link below to activate your account.</br>";
-                //emailBody += "<p><a href='" + "https://localhost:44369/SignUp.aspx?Activation_Code=" + Activation_Code + "&Email=" + txtEmail.Text.ToString() + "'> Click here to activate</p>";
-                //emailBody += "Thank you and have a nice day";
-
-                //mail.Body = emailBody;
-                //mail.IsBodyHtml = true;
-
-                //Configure SMTP Settings
-                //SmtpClient smtp = new SmtpClient();
-                //smtp.Port =587 ; //25 265 587
-                //smtp.EnableSsl = true;
-                //smtp.UseDefaultCredentials = false;
-                //smtp.Host = "smtp.gmail.com";
-                //smtp.Credentials = new NetworkCredential("bengyee.oh@gmail.com", "pues rhde cdsd jxyu");
-                //smtp.EnableSsl = true;
-
-                //Send the email
-                //smtp.Send(mail);
-
-                //lblErrorMsg.Text = "You are registered successfully. Please login to your account";
-                // lblErrorMsg.ForeColor = System.Drawing.Color.Red;
-
                 con.Close();
             }
         }
@@ -163,19 +121,23 @@ namespace Uniqlo.Pages
                     var errorCodes = (List<object>)captchaResponse["error-codes"];
                     foreach (var code in errorCodes)
                     {
-                        // Log each error code
                         Console.WriteLine("reCAPTCHA error: " + code.ToString());
                     }
                 }
             }
             catch (Exception ex)
             {
-                // Log or handle exceptions from calling the reCAPTCHA service
                 Console.WriteLine("Error calling reCAPTCHA: " + ex.Message);
             }
 
             return false;
         }
+
+        private void ShowSuccessMessage()
+        {
+            ScriptManager.RegisterStartupScript(this, GetType(), "showSuccessMessage", "showSuccessMessage();", true);
+        }
+
 
     }
 
