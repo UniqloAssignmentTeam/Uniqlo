@@ -20,18 +20,19 @@ namespace Uniqlo.Pages
             try
             {
                 SaveUserProfile();
-                ScriptManager.RegisterStartupScript(this, GetType(), "showSuccessMessage", "showSuccessMessage('Profile updated successfully!');", true);
+                // Ensure the script is registered at the correct point in the page lifecycle
+                ScriptManager.RegisterStartupScript(Page, Page.GetType(), "showSuccessMessage", "showSuccessMessage('Profile updated successfully!');", true);
             }
             catch (Exception ex)
             {
-                ScriptManager.RegisterStartupScript(this, GetType(), "showErrorMessage", $"showErrorMessage('Error updating profile: {ex.Message}');", true);
+                ScriptManager.RegisterStartupScript(Page, Page.GetType(), "showErrorMessage", $"showErrorMessage('Error updating profile: {ex.Message}');", true);
             }
         }
 
         protected void btnBack_Click(object sender, EventArgs e)
         {
             // Navigate back to the previous page
-            Response.Redirect("PreviousPage.aspx"); // Change to the actual previous page URL
+            Response.Redirect("/Pages/Profile.aspx"); // Change to the actual previous page URL
         }
 
         private void LoadUserProfile()
