@@ -98,19 +98,25 @@
 
                 <asp:Label ID="friendEmail" runat="server" Text="Write your Friend Email here: "></asp:Label>
                 <asp:TextBox ID="friendEmailInput" runat="server"></asp:TextBox>
+                <asp:RequiredFieldValidator ID="rfvEmail" runat="server" ControlToValidate="friendEmailInput"
+                    ErrorMessage="Email is required." ForeColor="Red" Display="Dynamic" />
+                <asp:RegularExpressionValidator ID="revEmail" runat="server" ControlToValidate="friendEmailInput"
+                    ErrorMessage="Invalid email format." ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"
+                    ForeColor="Red" Display="Dynamic" />
 
                 <br />
                 <asp:Label ID="emailContent" runat="server" Text="Write your Message here: "></asp:Label>
                 <asp:TextBox ID="emailContentInput" runat="server" TextMode="MultiLine" Rows="4" Columns="50" MaxLength="500"></asp:TextBox>
-
+                <asp:RequiredFieldValidator ID="rfvContent" runat="server" ControlToValidate="emailContentInput"
+                ErrorMessage="Message content is required." ForeColor="Red" Display="Dynamic" />
                 <br />
 
                 <div class="button-container">
                     <div class="cancel-div">
-                        <asp:Button ID="cancelButton" runat="server" Text="Cancel" CssClass="cancel-button" OnClick="backToProductDetails"  />
+                        <asp:Button ID="cancelButton" runat="server" Text="Cancel" CssClass="cancel-button" OnClick="backToProductDetails"  CausesValidation="false"/>
                     </div>
                     <div class="continue-div">
-                        <asp:Button ID="addButton" runat="server" Text="Submit" CssClass="continue-button" OnClick="btnSend_Click"/>
+                        <asp:Button ID="addButton" runat="server" Text="Submit" CssClass="continue-button" OnClick="btnSend_Click" CausesValidation="true"/>
                     </div>
                 </div>
 
