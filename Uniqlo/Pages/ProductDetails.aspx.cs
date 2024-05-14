@@ -431,7 +431,11 @@ namespace Uniqlo.Pages
                     return;
                 }
 
-                int productId = int.Parse(Request.QueryString["ProdID"]);
+                // Check if the product ID is valid
+                if (string.IsNullOrEmpty(Request.QueryString["ProdID"]) || !int.TryParse(Request.QueryString["ProdID"], out int productId))
+                {
+                    throw new Exception("Invalid product ID.");
+                }
 
                 // Retrieve the quantity ID
                 int quantityId = GetQuantityId(productId, selectedSize, selectedColor);
@@ -461,20 +465,38 @@ namespace Uniqlo.Pages
                     Quantity = quantity
                 };
 
+                List<CartItem> cart;
+
                 if (Session["Cart"] == null)
                 {
                     // Create a new cart and add the item to it
-                    List<CartItem> cart = new List<CartItem>();
+                    cart = new List<CartItem>();
                     cart.Add(item);
-                    Session["Cart"] = cart;
                 }
                 else
                 {
                     // Retrieve the existing cart and add the item to it
-                    List<CartItem> cart = (List<CartItem>)Session["Cart"];
-                    cart.Add(item);
-                    Session["Cart"] = cart;
+                    cart = (List<CartItem>)Session["Cart"];
+                    bool itemExists = cart.Any(c => c.Quantity_Id == quantityId);
+
+                    if (itemExists)
+                    {
+                        // If item already exists, update its quantity
+                        foreach (var cartItem in cart)
+                        {
+                            if (cartItem.Quantity_Id == quantityId)
+                            {
+                                cartItem.Quantity += quantity; // Increment the existing quantity
+                            }
+                        }
+                    }
+                    else
+                    {
+                        cart.Add(item);
+                    }
                 }
+
+                Session["Cart"] = cart;
 
                 // Show a JavaScript alert to confirm successful addition to the cart
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "addToCartSuccess", "alert('Item added to cart successfully!');", true);
