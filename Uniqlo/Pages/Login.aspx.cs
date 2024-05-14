@@ -35,21 +35,10 @@ namespace Uniqlo.Pages
                     string email = txtEmail.Text;
                     string password = txtPassword.Text.Trim();
 
-                    //check user
-                    if (Membership.ValidateUser(email, password))
-                    {
-                    // Authentication successful, redirect the user to the home page
-                    FormsAuthentication.RedirectFromLoginPage(email, false);
-                    }
-                    else
-                    {
-                    // Authentication failed, display an error message
-                    // (You may want to display a more user-friendly message)
-                     Response.Write("Invalid email or password.");
-                    }
+                   
 
 
-                /**string checkUser = "SELECT Customer_ID, Name, Gender, Contact_No, Email, Password from Customer where email=@email and password=@password";
+                string checkUser = "SELECT Customer_ID, Name, Gender, Contact_No, Email, Password from Customer where email=@email and password=@password";
                 SqlCommand checkCmd = new SqlCommand(checkUser, con);
                 checkCmd.Parameters.AddWithValue("@email", email);
                 checkCmd.Parameters.AddWithValue("@password", password);
@@ -57,16 +46,28 @@ namespace Uniqlo.Pages
 
                 if (read.Read())
                 {
+                    // Ensure the role exists
+                    if (!Roles.RoleExists("Customer"))
+                    {
+                        Roles.CreateRole("Customer");
+                    }
+
+                    // Add user to "Customer" role if not already in the role
+                    if (!Roles.IsUserInRole(email, "Customer"))
+                    {
+                        Roles.AddUserToRole(email, "Customer");
+                    }
+
                     Session["Customer_ID"] = read.GetValue(0).ToString();
 
-                Response.Redirect("Home.aspx");
+                    Response.Redirect("Home.aspx");
                 }
                 else
                 {
                     errorMSG.Text = "Invalid email or password.";
                     errorMSG.ForeColor = System.Drawing.Color.Red;
                     con.Close();
-                }**/
+                }
 
 
             }
