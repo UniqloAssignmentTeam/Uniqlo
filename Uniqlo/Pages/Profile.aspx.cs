@@ -43,17 +43,15 @@ namespace Uniqlo.Pages
                     SqlDataReader dr = cmd.ExecuteReader();
                     if (dr.Read())
                     {
-                        txtName.Text = dr["Name"].ToString();
-                        txtEmail.Text = dr["Email"].ToString();
-                        txtGender.Text = dr["Gender"].ToString() == "M" ? "Male" : "Female";
-                        txtPhone.Text = dr["Contact_No"].ToString();
-                        txtAddress.Text = dr["Address"].ToString();
-                        txtPostCode.Text = dr["Postcode"].ToString();
-                        txtCity.Text = dr["City"].ToString();
-                        txtState.Text = dr["State"].ToString();
-                        txtCountry.Text = dr["Country"].ToString();
-
-                      
+                        lblName.Text = dr["Name"].ToString();
+                        lblEmail.Text = dr["Email"].ToString();
+                        lblGender.Text = dr["Gender"].ToString() == "M" ? "Male" : "Female";
+                        lblPhone.Text = dr["Contact_No"].ToString();
+                        lblAddress.Text = dr["Address"].ToString();
+                        lblPostCode.Text = dr["Postcode"].ToString();
+                        lblCity.Text = dr["City"].ToString();
+                        lblState.Text = dr["State"].ToString();
+                        lblCountry.Text = dr["Country"].ToString();
                     }
                 }
             }
@@ -73,15 +71,13 @@ namespace Uniqlo.Pages
         {
             Response.Redirect("ChangePassword.aspx");
         }
+
         private void BindOrderRepeater(int customerID)
         {
             try
             {
                 using (var db = new OrderDbContext())
                 {
-
-
-
                     var orderDetails = db.Order
                         .Where(o => o.Customer_ID == customerID && !o.IsDeleted)
                         .Select(o => new {
@@ -90,12 +86,12 @@ namespace Uniqlo.Pages
                             Total_Price = db.Payment
                                     .Where(p => p.Order_ID == o.Order_ID)
                                     .Select(p => p.Total_Payment)
-                                    .DefaultIfEmpty(0) // Ensures a default if no payment exists
-                                    .Sum(), // Sum of all payments (in case of multiple payments per order)
+                                    .DefaultIfEmpty(0)
+                                    .Sum(),
                             Payment_DateTime = db.Payment
                                     .Where(p => p.Order_ID == o.Order_ID)
-                                    .OrderByDescending(p => p.Payment_DateTime) // Most recent payment
-                                    .Select(p => (DateTime?)p.Payment_DateTime) // Nullable DateTime
+                                    .OrderByDescending(p => p.Payment_DateTime)
+                                    .Select(p => (DateTime?)p.Payment_DateTime)
                                     .FirstOrDefault(),
                             Delivery_Status = db.Delivery
                                        .Where(d => d.Delivery_ID == db.Payment
@@ -103,29 +99,18 @@ namespace Uniqlo.Pages
                                                     .Select(p => p.Delivery_ID)
                                                     .FirstOrDefault())
                                        .Select(d => d.Delivery_Status)
-                                       .FirstOrDefault() // Assuming there's one delivery per payment
+                                       .FirstOrDefault()
                         })
                         .ToList();
 
-
-
                     orderRepeater.DataSource = orderDetails;
                     orderRepeater.DataBind();
-
-
-
-
                 }
             }
             catch (Exception ex)
             {
-
-                // Optionally display error message on the page
-                ScriptManager.RegisterStartupScript(this, GetType(), "errorAlert", "alert('An error occurred when retrieve order.');", true);
+                ScriptManager.RegisterStartupScript(this, GetType(), "errorAlert", "alert('An error occurred when retrieving orders.');", true);
             }
-
-
-
         }
 
         protected void ddlDate_SelectedIndexChanged(object sender, EventArgs e)
@@ -140,7 +125,6 @@ namespace Uniqlo.Pages
             {
                 Debug.WriteLine("Failed to convert session value to integer: " + sessionValue);
             }
-
         }
 
         private void FilterOrder(int customerID)
@@ -176,7 +160,6 @@ namespace Uniqlo.Pages
                                        .FirstOrDefault()
                         });
 
-                    // Apply sorting based on price
                     if (!string.IsNullOrEmpty(selectedDate))
                     {
                         switch (selectedDate)
@@ -197,7 +180,7 @@ namespace Uniqlo.Pages
             }
             catch (Exception ex)
             {
-                ScriptManager.RegisterStartupScript(this, GetType(), "errorAlert", "alert('An error occurred when filtering order.');", true);
+                ScriptManager.RegisterStartupScript(this, GetType(), "errorAlert", "alert('An error occurred when filtering orders.');", true);
             }
         }
     }

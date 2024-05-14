@@ -33,20 +33,15 @@
                 color: #555;
             }
 
-            /* Textbox styling */
+            /* Info label styling */
             .info-value {
-                width: 100%;
+                display: block;
                 padding: 10px;
-                border-radius: 5px;
-                border: 1px solid #ccc;
                 margin-top: 5px;
                 margin-bottom: 15px;
+                border-radius: 5px;
+                background-color: #fff;
                 box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-                transition: border-color 0.3s ease-in-out;
-            }
-
-            .info-value:focus {
-                border-color: #4285f4;
             }
 
             /* Button styling */
@@ -81,40 +76,40 @@
             <div class="profile-header">             
                 <asp:Image ID="ImgUpload" runat="server" CssClass="avatar" AlternateText="User Avatar" Visible="false" /> 
                 <div id="noImagePlaceholder" class="no-image-placeholder" runat="server" Visible="false">No Image</div>
-                <h4 class="username"><asp:Label ID="txtName" class="form-control read-only-textbox" runat="server"></asp:Label></h4>
+                <h4 class="username"><asp:Label ID="lblName" class="form-control read-only-textbox" runat="server"></asp:Label></h4>
             </div>
 
             <div class="info-item">
                 <span class="info-label">Email:</span>
-                <asp:TextBox ID="txtEmail" class="info-value" runat="server" ReadOnly="True"></asp:TextBox>
+                <asp:Label ID="lblEmail" class="info-value" runat="server"></asp:Label>
             </div>
             <div class="info-item">
                 <span class="info-label">Gender:</span>
-                <asp:TextBox ID="txtGender" class="info-value" runat="server" ReadOnly="True"></asp:TextBox>
+                <asp:Label ID="lblGender" class="info-value" runat="server"></asp:Label>
             </div>
             <div class="info-item">
                 <span class="info-label">Contact No:</span>
-                <asp:TextBox ID="txtPhone" class="info-value" runat="server" ReadOnly="True"></asp:TextBox>
+                <asp:Label ID="lblPhone" class="info-value" runat="server"></asp:Label>
             </div>
             <div class="info-item">
                 <span class="info-label">Address:</span>
-                <asp:TextBox ID="txtAddress" class="info-value" runat="server" ReadOnly="True"></asp:TextBox>
+                <asp:Label ID="lblAddress" class="info-value" runat="server"></asp:Label>
             </div>
             <div class="info-item">
                 <span class="info-label">Postcode:</span>
-                <asp:TextBox ID="txtPostCode" class="info-value" runat="server" ReadOnly="True"></asp:TextBox>
+                <asp:Label ID="lblPostCode" class="info-value" runat="server"></asp:Label>
             </div>
             <div class="info-item">
                 <span class="info-label">City:</span>
-                <asp:TextBox ID="txtCity" class="info-value" runat="server" ReadOnly="True"></asp:TextBox>
+                <asp:Label ID="lblCity" class="info-value" runat="server"></asp:Label>
             </div>
             <div class="info-item">
                 <span class="info-label">State:</span>
-                <asp:TextBox ID="txtState" class="info-value" runat="server" ReadOnly="True"></asp:TextBox>
+                <asp:Label ID="lblState" class="info-value" runat="server"></asp:Label>
             </div>
             <div class="info-item">
                 <span class="info-label">Country:</span>
-                <asp:TextBox ID="txtCountry" class="info-value" runat="server" ReadOnly="True"></asp:TextBox>
+                <asp:Label ID="lblCountry" class="info-value" runat="server"></asp:Label>
             </div>    
             
             <asp:Button ID="btnEditProfile" runat="server" Text="Edit Profile" CssClass="edit-button" OnClick="btnEditProfile_Click" />
@@ -163,7 +158,7 @@
                                     <div class="eclipse-display" id="dropdownDisplay<%# Eval("Order_ID") %>" style="border: none;"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></div>
                                     <div class="eclipse-list" id="dropdownList<%# Eval("Order_ID") %>">
                                         <div>
-                                            <asp:HyperLink ID="viewOrderDetails" runat="server" NavigateUrl='<%# "OrderHistoryItem.aspx?Order_ID=" + Eval("Order_ID") %>' Text="View More" CssClass="dropdownListHyperLink"></asp:HyperLink>
+                                            <asp:HyperLink ID="viewOrderDetails" runat="server" NavigateUrl='<%# "OrderHistoryItem.aspx?Order_ID=" + Uniqlo.EncryptionHelper.Encrypt(Eval("Order_ID").ToString()) %>' Text="View More" CssClass="dropdownListHyperLink"></asp:HyperLink>
                                         </div>
                                     </div>
                                 </td>

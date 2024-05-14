@@ -69,6 +69,13 @@
                                 </ul>
                             </div>
 
+
+
+
+
+
+
+
                             <div class="productColorSection">
                                 <div class="purchase-color">
                                     <h3>Color:
@@ -87,7 +94,7 @@
                                         <asp:Label ID="labelQuantity" runat="server" Text=""></asp:Label>
                                     </h3>
                                     <div class="purchase-size-item">
-                                        <asp:RadioButtonList ID="RadioButtonListSizes" runat="server" RepeatDirection="Horizontal" Visible="True" CssClass="custom-radio-list" AutoPostBack="True" OnSelectedIndexChanged="RadioButtonListSizes_SelectedIndexChanged">
+                                        <asp:RadioButtonList ID="RadioButtonListSizes" runat="server" RepeatDirection="Horizontal" Visible="False" CssClass="custom-radio-list" AutoPostBack="True" OnSelectedIndexChanged="RadioButtonListSizes_SelectedIndexChanged">
                                         </asp:RadioButtonList>
 
                                     </div>
@@ -99,6 +106,18 @@
                                 </div>
                             </div>
                             <asp:Label ID="lblSize" runat="server" Text="" CssClass="lblRed"></asp:Label>
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
