@@ -16,21 +16,21 @@
         <div class="slideshow-container">
             <div class="mySlides fade">
                 <div class="numbertext">1 / 3</div>
-                <a href="Tops.aspx">
+                <a href="/Pages/Categories/Men/Products.aspx">
                     <img src ="../../../Images/menTopBanner.png" style="width: 100%; height: 400px;" />
                 </a>
             </div>
 
             <div class="mySlides fade">
                 <div class="numbertext">2 / 3</div>
-                <a href="Bottoms.aspx">
+                <a href="/Pages/Categories/Men/Products.aspx">
                     <img src="../../../Images/menBottomBanner.jpg" style="width: 100%; height: 400px;" />
                 </a>
             </div>
 
             <div class="mySlides fade">
                 <div class="numbertext">3 / 3</div>
-                <a href="Bottoms.aspx">
+                <a href="/Pages/Categories/Men/Products.aspx">
                     <img src="../../../Images/menBanner2.jpg" style="width: 100%; height: 400px;" />
                 </a>
             </div>
@@ -66,10 +66,8 @@
                                     <%# GenerateStars(Convert.ToDouble(Eval("AverageRating")) ) %>
                                     <span><%# Eval("ReviewCount") %></span>
                                 </div>
-
                             </div>
                         </div>
-
                     </div>
                 </asp:HyperLink>
             </ItemTemplate>

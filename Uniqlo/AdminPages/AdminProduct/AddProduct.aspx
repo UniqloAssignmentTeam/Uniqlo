@@ -250,8 +250,7 @@
                 var data = []; // Reset data array
                 var colorTables = document.querySelectorAll('.color-table-wrapper');
                 var totalFilesToRead = colorTables.length;
-                var readFilesCount = 0; // Counter to keep track of the num
-                ber of processed files
+                var readFilesCount = 0; // Counter to keep track of the number of processed files
                 var imageFound = false; // Flag to check if any image is found
 
                 // If no color tables exist, update the hidden field immediately with an empty array
@@ -260,6 +259,7 @@
                     console.log("Updated Hidden Field Data: []");
                     return;
                 }
+
 
                 colorTables.forEach(function (table, index) {
                     var colorName = table.querySelector('input[type="hidden"]').value;
@@ -270,13 +270,13 @@
                     var fileInput = table.querySelector('input[type="file"]');
 
 
-                    if (parseInt(sizeS) <= 0 || parseInt(sizeM) <= 0 || parseInt(sizeL) <= 0 || parseInt(sizeXL) <= 0) {
-                        alert('Please enter a valid size greater than 0 for all sizes.');
-                        return; // Stop further execution if invalid input is found
+                    if (!sizeS || !sizeM || !sizeL || !sizeXL || parseInt(sizeS) <= 0 || parseInt(sizeM) <= 0 || parseInt(sizeL) <= 0 || parseInt(sizeXL) <= 0 || fileInput.files.length < 0) {
+                        alert('Please enter a valid size greater than 0 for all sizes and an image to continue.');
+                        return; 
                     }
 
                     if (fileInput.files.length > 0) {
-                        imageFound = true; // Set flag to true as an image is found
+                        imageFound = true; 
                         var reader = new FileReader();
                         reader.onload = function (e) {
                             data.push({
@@ -287,27 +287,21 @@
                                 SizeXL: sizeXL,
                                 Image: e.target.result
                             });
-                            readFilesCount++; // Increment the counter
+                            readFilesCount++; 
 
-                            // Check if all files have been processed
                             if (readFilesCount === totalFilesToRead && imageFound) {
                                 var jsonStr = JSON.stringify(data);
                                 document.getElementById('<%= HiddenFieldData.ClientID %>').value = jsonStr;
                                 console.log("Updated Hidden Field Data:", jsonStr);
-                                alert("Update successful!"); // Alert on successful update
+                                alert("Update successful!"); 
                                 document.getElementById('<%= cvHiddenFieldData.ClientID %>').style.display = 'none';
                             }
                         };
                         reader.readAsDataURL(fileInput.files[0]);
                     } else {
-                        readFilesCount++; // Increment the counter since processing a table even without an image
+                        readFilesCount++; 
                     }
                 });
-
-                // Check after processing all tables if no images were found
-                if (!imageFound) {
-                    alert("Please upload at least one image.");
-                }
             }
 
 
