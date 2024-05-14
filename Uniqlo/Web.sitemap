@@ -10,5 +10,6 @@
 		  </siteMapNode>
 	  </siteMapNode>
     <siteMapNode url="Pages/ValueBuy.aspx" title="Value Buy"/>
+	<siteMapNode url="Pages/AboutUs.aspx" title="About Us"/>
   </siteMapNode>
 </siteMap>

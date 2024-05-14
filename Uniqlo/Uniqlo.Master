@@ -45,7 +45,6 @@
                         <i class="fa-solid fa-phone user"></i>
                         <!-- Hidden menu that will be displayed on hover -->
                         <div class="hiddenUserMenu">
-                            <a href="/Pages/AboutUs.aspx">About Us</a>
                             <a href="/Pages/ContactUs.aspx">Contact Us</a>
                         </div>
                     </div>

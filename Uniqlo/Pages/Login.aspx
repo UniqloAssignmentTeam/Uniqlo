@@ -5,7 +5,7 @@
 
 
 
-    <head>
+    <header>
 
 
 
@@ -17,7 +17,7 @@
 
         <!-- Boxicons CSS -->
         <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
-    </head>
+    </header>
     <section class="container forms">
         <div class="form login">
             <div class="form-content">
