@@ -3,6 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="main" runat="server">
     <header>
         <link href="../../../css/product.css" rel="stylesheet" />
+         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.all.min.js"></script>
         <style>
             .lblRed {
                 color: red;
@@ -69,6 +70,14 @@
                                 </ul>
                             </div>
 
+
+
+  <asp:ScriptManager ID="ValueManagerStaff" runat="server" />
+ <asp:UpdatePanel ID="ValuePanelStaff" runat="server">
+    <ContentTemplate>
+
+
+
                             <div class="productColorSection">
                                 <div class="purchase-color">
                                     <h3>Color:
@@ -83,22 +92,33 @@
 
                             <div class="productQtySizeSection">
                                 <div class="purchase-size">
-                                    <h3>Size: <%# Eval("Category.Gender").ToString() == "M" ? "Men " : (Eval("Category.Gender").ToString() == "W" ? "Woman" : "Not Specified") %>
+                                    <h3><asp:Label ID="sizelbl" runat="server" Text="Size: "></asp:Label><asp:Label ID="Label1" runat="server" Text='<%# Eval("Category.Gender").ToString() == "M" ? "Men " : (Eval("Category.Gender").ToString() == "W" ? "Woman" : "Not Specified") %>'></asp:Label>
+                                        
+                                        
+                                        
                                         <asp:Label ID="labelQuantity" runat="server" Text=""></asp:Label>
                                     </h3>
                                     <div class="purchase-size-item">
-                                        <asp:RadioButtonList ID="RadioButtonListSizes" runat="server" RepeatDirection="Horizontal" Visible="True" CssClass="custom-radio-list" AutoPostBack="True" OnSelectedIndexChanged="RadioButtonListSizes_SelectedIndexChanged">
+                                        <asp:RadioButtonList ID="RadioButtonListSizes" runat="server" RepeatDirection="Horizontal" Visible="false" CssClass="custom-radio-list" AutoPostBack="True" OnSelectedIndexChanged="RadioButtonListSizes_SelectedIndexChanged">
                                         </asp:RadioButtonList>
-
+                                        
                                     </div>
                                 </div>
 
                                 <div class="purchase-info">
                                     <h3>Quantity: </h3>
-                                    <asp:TextBox ID="txtQty" class="qty" runat="server" Text="1" onkeypress="return isNumber(event)" MaxLength="5"></asp:TextBox>
+                                 <asp:TextBox ID="txtQty" class="qty" runat="server" Text="" onkeypress="return isNumber(event)" MaxLength="5" Enabled="False"></asp:TextBox>
+
+
                                 </div>
                             </div>
                             <asp:Label ID="lblSize" runat="server" Text="" CssClass="lblRed"></asp:Label>
+
+
+
+
+
+
 
 
 
@@ -113,7 +133,17 @@
                                 </asp:LinkButton>
                             </div>
 
+        
+            </ContentTemplate>
+    <Triggers>
+        <asp:AsyncPostBackTrigger ControlID="RadioButtonListSizes" EventName="SelectedIndexChanged" />
+    <asp:AsyncPostBackTrigger ControlID="RadioButtonListColors" EventName="SelectedIndexChanged" />
+         <asp:AsyncPostBackTrigger ControlID="btnAddToCart" EventName="Click" />
 
+    </Triggers>
+
+
+</asp:UpdatePanel>
                             <div class="social-links">
                                 <p>Share At: </p>
                                 <asp:LinkButton CssClass="text-dark px-2" ID="btnPinterest" runat="server" Text="Pinterest" OnClientClick="shareOnPinterest()">

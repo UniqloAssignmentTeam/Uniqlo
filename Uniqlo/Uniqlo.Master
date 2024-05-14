@@ -83,7 +83,6 @@
             <div class="footerNav">                
                 <a href="/Pages/Home.aspx">Home</a>
                 <a href="/Pages/ValueBuy.aspx">Value Buy</a>
-                <a href="/Pages/WishList.aspx">Wish List</a>
                 <a href="/Pages/Profile.aspx#orderHistoryBigContainer">Order History</a>
                 <a href="/Pages/AboutUs.aspx">About Us</a>
                 <a href="/Pages/ContactUs.aspx">Contact Us</a>       

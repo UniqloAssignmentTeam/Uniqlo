@@ -707,6 +707,7 @@
     <Compile Include="Review.cs">
       <DependentUpon>UniqloAdo.tt</DependentUpon>
     </Compile>
+    <Compile Include="SessionRoleProvider.cs" />
     <Compile Include="Shipping_Address.cs">
       <DependentUpon>UniqloAdo.tt</DependentUpon>
     </Compile>
