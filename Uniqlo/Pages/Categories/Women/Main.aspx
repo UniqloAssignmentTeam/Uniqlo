@@ -20,14 +20,14 @@
         <div class="slideshow-container">
             <div class="mySlides fade">
                 <div class="numbertext">1 / 3</div>
-                <a href="Tops.aspx">
+                <a href="/Pages/Categories/Women/Products.aspx">
                     <img src="../../../Images/womensBanner.jpg" style="width: 100%; height: 400px;" />
                 </a>
             </div>
 
             <div class="mySlides fade">
                 <div class="numbertext">2 / 3</div>
-                <a href="Bottoms.aspx">
+                <a href="/Pages/Categories/Women/Products.aspx">
                     <img src="../../../Images/womenBanners.jpg" style="width: 100%; height: 400px;" />
                 </a>
             </div>
