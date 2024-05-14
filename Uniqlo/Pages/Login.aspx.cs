@@ -46,7 +46,7 @@ namespace Uniqlo.Pages
                     {
                         Session["Customer_ID"] = read.GetValue(0).ToString();
 
-                        Response.Redirect("Home.aspx");
+                    Response.Redirect("Home.aspx");
                     }
                     else
                     {
