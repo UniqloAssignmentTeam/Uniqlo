@@ -19,6 +19,7 @@ namespace Uniqlo.Pages
             {
                 // Call the JavaScript function to show the pop-up and redirect
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "ShowPopup", "alert('Please login to continue checkout.'); window.location = 'Cart.aspx';", true);
+                Response.Redirect("cart.aspx");
             }
 
 
