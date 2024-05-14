@@ -24,6 +24,15 @@ namespace Uniqlo.Pages
         protected global::System.Web.UI.WebControls.Image ImgUpload;
 
         /// <summary>
+        /// noImagePlaceholder control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl noImagePlaceholder;
+
+        /// <summary>
         /// txtName control.
         /// </summary>
         /// <remarks>
@@ -112,15 +121,6 @@ namespace Uniqlo.Pages
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnEditProfile;
-
-        /// <summary>
-        /// btnChgPass control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnChgPass;
 
         /// <summary>
         /// ddlDate control.
