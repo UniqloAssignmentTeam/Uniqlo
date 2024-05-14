@@ -290,15 +290,16 @@ namespace Uniqlo.Pages
                         // Update the MaxLength of txtQty based on the maximum stock value
                         TextBox txtQty = (TextBox)formView.FindControl("txtQty");
                         txtQty.MaxLength = maxStock.ToString().Length;
+
+                        // Show the sizes
+                        rbSizes.Visible = true;
                     }
                 }
                 catch (Exception ex)
                 {
-
                     // Optionally display error message on the page
                     ScriptManager.RegisterStartupScript(this, GetType(), "errorAlert", "alert('An error occurred when retrieving product color.');", true);
                 }
-
             }
             else
             {
@@ -306,7 +307,6 @@ namespace Uniqlo.Pages
                 rbSizes.Items.Add(new ListItem("Invalid product ID", ""));
             }
         }
-
         protected void FindQuantity(int productId)
         {
             Label lblSize = (Label)formView.FindControl("lblSize");
@@ -340,6 +340,7 @@ namespace Uniqlo.Pages
 
 
         }
+
 
 
         protected void RadioButtonListSizes_SelectedIndexChanged(object sender, EventArgs e)
@@ -387,6 +388,15 @@ namespace Uniqlo.Pages
             }
         }
 
+
+
+
+
+
+
+
+
+
         public string GenerateStars(double rating)
         {
             var fullStars = (int)rating; // Number of full stars
@@ -414,6 +424,27 @@ namespace Uniqlo.Pages
 
             return html;
         }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         protected void btnAddToCart_Click(object sender, EventArgs e)
         {
