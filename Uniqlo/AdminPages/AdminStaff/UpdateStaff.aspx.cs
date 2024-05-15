@@ -1,13 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data.SqlClient;
 using System.Linq;
-using System.Web;
 using System.Web.UI;
-using System.Web.UI.WebControls;
-using System.Xml.Linq;
-using Uniqlo.AdminPages.AdminStaff;
 using static Uniqlo.Staff;
+using System.Web.UI.WebControls;
 
 namespace Uniqlo.AdminPages
 {
@@ -27,7 +22,6 @@ namespace Uniqlo.AdminPages
                     catch (Exception ex)
                     {
                         ScriptManager.RegisterStartupScript(this, GetType(), "loadError", "alert('Failed to load staff details.');", true);
-                        // Log the exception message: ex.Message
                     }
                 }
             }
@@ -59,7 +53,6 @@ namespace Uniqlo.AdminPages
             catch (Exception ex)
             {
                 ScriptManager.RegisterStartupScript(this, GetType(), "dbError", "alert('Error accessing database.');", true);
-                // Log the exception message: ex.Message
             }
         }
 
@@ -80,12 +73,12 @@ namespace Uniqlo.AdminPages
                             staff.Contact_No = contactNumber.Text;
                             staff.Gender = staffGender.SelectedValue;
                             staff.Role = staffRole.SelectedValue;
-                            staff.Password= password.Text;
+                            staff.Password = password.Text;
                             db.SaveChanges();
-                           
-                                Response.Redirect("StaffHome.aspx");
-                           
-                           
+
+                            // Set session variable to indicate success
+                            Session["StaffUpdated"] = true;
+                            Response.Redirect("UpdateStaff.aspx?StaffID=" + staffId); // Refresh page to trigger SweetAlert
                         }
                         else
                         {
@@ -96,12 +89,9 @@ namespace Uniqlo.AdminPages
                 catch (Exception ex)
                 {
                     ScriptManager.RegisterStartupScript(this, GetType(), "saveError", "alert('Failed to update staff details.');", true);
-                    // Log the exception message: ex.Message
                 }
             }
         }
-
-
 
         protected void cancelBtn_Click(object sender, EventArgs e)
         {
@@ -113,12 +103,10 @@ namespace Uniqlo.AdminPages
             {
                 ScriptManager.RegisterStartupScript(this, GetType(), "saveError", "alert('Failed to redirect to staff home.');", true);
             }
-          
         }
 
         protected void ValidateStaffGender_ServerValidate(object source, ServerValidateEventArgs args)
         {
-            // Ensure that a product other than the default "--Select Product--" is chosen
             if (staffGender.SelectedValue != "")
             {
                 args.IsValid = true;
@@ -128,9 +116,9 @@ namespace Uniqlo.AdminPages
                 args.IsValid = false;
             }
         }
+
         protected void ValidateStaffRole_ServerValidate(object source, ServerValidateEventArgs args)
         {
-            // Ensure that a product other than the default "--Select Product--" is chosen
             if (staffRole.SelectedValue != "")
             {
                 args.IsValid = true;

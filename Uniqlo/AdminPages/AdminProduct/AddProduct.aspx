@@ -43,14 +43,14 @@
             <div class="product-content">
                 <div class="form-group">
                     <asp:Label ID="lblProductName" runat="server" Text="Product Name"></asp:Label>
-                    <asp:TextBox ID="txtProductName" runat="server" MaxLength="100"></asp:TextBox>
+                    <asp:TextBox ID="txtProductName" runat="server" MaxLength="45"></asp:TextBox>
                     <asp:RequiredFieldValidator ID="rfvProductName" ControlToValidate="txtProductName" runat="server" ErrorMessage="Product name is required." CssClass="validation-error"/>
                 </div>
 
                 <div class="form-group">
                     <asp:Label ID="lblDescription" runat="server" Text="Description"></asp:Label>
 
-                    <asp:TextBox ID="txtDescription" CssClass="form-field" TextMode="MultiLine" runat="server" Rows="4" Columns="50" MaxLength="500"></asp:TextBox>
+                    <asp:TextBox ID="txtDescription" CssClass="form-field" TextMode="MultiLine" runat="server" Rows="4" Columns="50" MaxLength="250"></asp:TextBox>
                     <asp:RequiredFieldValidator ID="rfvProductDescription" ControlToValidate="txtDescription" runat="server" ErrorMessage="Product description is required." CssClass="validation-error"/>
                 </div>
 

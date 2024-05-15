@@ -66,8 +66,15 @@ namespace Uniqlo.AdminPages.AdminDiscount
             {
                 using (var db = new DiscountDbContext())
                 {
-                    discountRepeater.DataSource = db.Discount.Include("Product").ToList();
+                    var discounts = db.Discount.Include("Product").ToList();
+                    discountRepeater.DataSource = discounts;
                     discountRepeater.DataBind();
+
+                    // Show the label if there are no discounts
+
+                    noDiscount.Visible = discounts.Count == 0;
+
+
                 }
             }
             catch (Exception ex)
@@ -75,6 +82,7 @@ namespace Uniqlo.AdminPages.AdminDiscount
                 ScriptManager.RegisterStartupScript(this, GetType(), "displayError", "showAlert('error', 'Error!', 'An error occurred while displaying the discount.');", true);
             }
         }
+
 
 
         private void HandleDiscountUpdate(object sender)
@@ -116,15 +124,25 @@ namespace Uniqlo.AdminPages.AdminDiscount
 
         private void SearchDiscounts()
         {
-            using (var db = new DiscountDbContext())
+            try
             {
-                string searchText = searchBox.Text.Trim();
-                var results = db.Discount.Include(d => d.Product)
-                                .Where(d => d.Product.Product_Name.Contains(searchText) && d.Product.IsDeleted == false)
-                                .ToList();
+                using (var db = new DiscountDbContext())
+                {
+                    string searchText = searchBox.Text.Trim();
+                    var results = db.Discount.Include(d => d.Product)
+                                    .Where(d => d.Product.Product_Name.Contains(searchText) && d.Product.IsDeleted == false)
+                                    .ToList();
 
-                discountRepeater.DataSource = results;
-                discountRepeater.DataBind();
+                    discountRepeater.DataSource = results;
+                    discountRepeater.DataBind();
+
+                    // Show the label if there are no search results
+                    noDiscount.Visible = results.Count == 0;
+                }
+            }
+            catch (Exception ex)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "searchError", "showAlert('error', 'Error!', 'An error occurred while searching the discounts.');", true);
             }
         }
 
@@ -132,7 +150,6 @@ namespace Uniqlo.AdminPages.AdminDiscount
 
 
 
-       
         protected void btnExport_Click(object sender, EventArgs e)
         {
             ExportProductsToExcel();
@@ -141,31 +158,29 @@ namespace Uniqlo.AdminPages.AdminDiscount
         {
             try
             {
-                string connectionString = Global.CS; // Ensure this is correctly defined
+                string connectionString = Global.CS; 
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
-                    conn.Open();  // Ensure the connection is opened before executing the command
+                    conn.Open(); 
 
-                    // Start building the base query
+                   
                     StringBuilder query = new StringBuilder(@"SELECT d.Discount_ID, d.Discount_Amount, d.Status, d.Start_Date, d.End_Date, d.Product_ID, 
-        p.Product_Name FROM Discount d JOIN Product p ON d.Product_ID = p.Product_ID");
+            p.Product_Name FROM Discount d JOIN Product p ON d.Product_ID = p.Product_ID");
 
-                    // Initialize a SqlCommand with an empty query string
+                   
                     using (SqlCommand cmd = new SqlCommand("", conn))
                     {
-                        // Retrieve the selected values from the dropdowns
+                        
                         string selectedCategory = statusSortDDL.SelectedValue;
 
-
-                        // Check if there are any conditions to add based on dropdown selection
+                     
                         if (!string.IsNullOrEmpty(selectedCategory) && selectedCategory != "Status")
                         {
                             query.Append(" WHERE d.Status = @Status");
                             cmd.Parameters.AddWithValue("@Status", selectedCategory);
                         }
 
-
-                        // Set the SqlCommand's CommandText to the built query
+                
                         cmd.CommandText = query.ToString();
 
                         using (SqlDataAdapter da = new SqlDataAdapter(cmd))
@@ -180,6 +195,9 @@ namespace Uniqlo.AdminPages.AdminDiscount
                                 pck.SaveAs(memoryStream);
                                 memoryStream.Position = 0;
 
+                        
+
+                                
                                 HttpContext.Current.Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
                                 HttpContext.Current.Response.AddHeader("content-disposition", "attachment; filename=Discount.xlsx");
                                 HttpContext.Current.Response.BinaryWrite(memoryStream.ToArray());
@@ -192,10 +210,10 @@ namespace Uniqlo.AdminPages.AdminDiscount
             catch (Exception ex)
             {
                 ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('An error occurred while downloading the discount.');", true);
-                // Handle or log the error
+              
             }
-
         }
+
 
 
         protected void statusSortDDL_SelectedIndexChanged(object sender, EventArgs e)
@@ -217,7 +235,9 @@ namespace Uniqlo.AdminPages.AdminDiscount
                     var discountList = discountQuery.ToList();
                     discountRepeater.DataSource = discountList;
                     discountRepeater.DataBind();
+                    noDiscount.Visible = discountList.Count == 0;
                 }
+                
             }
             catch (Exception ex)
             {

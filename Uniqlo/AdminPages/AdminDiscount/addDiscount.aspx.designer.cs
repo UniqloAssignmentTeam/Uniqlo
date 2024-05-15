@@ -42,15 +42,6 @@ namespace Uniqlo.AdminPages
         protected global::System.Web.UI.WebControls.TextBox discountAmount;
 
         /// <summary>
-        /// RegexValidatorDiscountAmount control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RegularExpressionValidator RegexValidatorDiscountAmount;
-
-        /// <summary>
         /// RequiredFieldValidator4 control.
         /// </summary>
         /// <remarks>
