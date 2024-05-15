@@ -39,6 +39,7 @@ namespace Uniqlo.AdminPages.AdminProduct
         }
 
 
+
         protected void btnRemoveProduct_Click(object sender, CommandEventArgs e)
         {
             int prodId = Convert.ToInt32(e.CommandArgument);
@@ -49,45 +50,53 @@ namespace Uniqlo.AdminPages.AdminProduct
         {
             if (int.TryParse(args, out int prodId))
             {
-                ProductDbContext db = null;
-                System.Data.Entity.DbContextTransaction transaction = null;
-                try
+                using (var db = new ProductDbContext())
                 {
-                    db = new ProductDbContext();
-                    transaction = db.Database.BeginTransaction();
-
-                    var product = db.Product.Find(prodId);
-                    if (product != null)
+                    using (var transaction = db.Database.BeginTransaction())
                     {
-                        product.IsDeleted = true;
-                        var discounts = db.Discount.Where(d => d.Product_ID == prodId).ToList();
-                        foreach (var discount in discounts)
+                        try
                         {
-                            discount.Status = "Inactive";
+                            var product = db.Product.Find(prodId);
+                            if (product != null)
+                            {
+                                product.IsDeleted = true;
+
+                                var discounts = db.Discount.Where(d => d.Product_ID == prodId).ToList();
+                                foreach (var discount in discounts)
+                                {
+                                    discount.Status = "Inactive";
+                                }
+
+                                var quantities = db.Quantity.Where(q => q.Product_ID == prodId).ToList();
+                                foreach (var quantity in quantities)
+                                {
+                                    quantity.Qty = 0;
+                                }
+
+                                db.SaveChanges();
+                                transaction.Commit();  // Commit changes here
+
+                                ScriptManager.RegisterStartupScript(this, GetType(), "deleteSuccess",
+                                    @"Swal.fire({
+                                title: 'Deleted!',
+                                text: 'The item has been deleted.',
+                                icon: 'success',
+                                confirmButtonText: 'Ok'
+                            }).then((result) => {
+                                if (result.value) {
+                                    window.location.href = '" + Request.RawUrl + "';}}); ", true);
+                            }
+                            else
+                            {
+                                ScriptManager.RegisterStartupScript(this, GetType(), "errorAlert", "Swal.fire('Error!', 'Product not found.', 'error');", true);
+                            }
                         }
-
-                        var quantities = db.Quantity.Where(q => q.Product_ID == prodId).ToList();
-                        foreach (var quantity in quantities)
+                        catch (Exception ex)
                         {
-                            quantity.Qty = 0;
-
-                            db.SaveChanges();
-                            Response.Redirect(Request.RawUrl);
+                            transaction.Rollback();  // Roll back the transaction on error
+                            ScriptManager.RegisterStartupScript(this, GetType(), "errorAlert", "Swal.fire('Error!', 'An error occurred: " + ex.Message.Replace("'", "\\'") + "', 'error');", true);
                         }
                     }
-                    else
-                    {
-                        ScriptManager.RegisterStartupScript(this, GetType(), "errorAlert", "Swal.fire('Error!', 'Product not found.', 'error');", true);
-                    }
-                }
-                catch (Exception ex)
-                {
-                    if (transaction != null) transaction.Rollback();  // Explicitly roll back the transaction on error
-                    ScriptManager.RegisterStartupScript(this, GetType(), "errorAlert", "Swal.fire('Error!', 'An error occurred: " + ex.Message.Replace("'", "\\'") + "', 'error');", true);
-                }
-                finally
-                {
-                    if (db != null) db.Dispose();
                 }
             }
         }
