@@ -39,7 +39,7 @@ namespace Uniqlo.AdminPages.AdminProduct
         }
 
 
-        protected void btnRemoveProduct_Click(object sender, EventArgs e)
+        protected void btnRemoveProduct_Click(object sender, CommandEventArgs e)
         {
             int prodId = Convert.ToInt32(e.CommandArgument);
             ScriptManager.RegisterStartupScript(this, GetType(), "confirmDeleteScript", $"confirmDelete('DeleteConfirmed', '{prodId}');", true);
@@ -70,7 +70,6 @@ namespace Uniqlo.AdminPages.AdminProduct
                         foreach (var quantity in quantities)
                         {
                             quantity.Qty = 0;
-                        }
 
                             db.SaveChanges();
                             Response.Redirect(Request.RawUrl);
