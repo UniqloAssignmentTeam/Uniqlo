@@ -49,7 +49,7 @@
                 </div>
             </div>
             <div class="button-container">
-                <asp:Button ID="cancelBtn" runat="server" Text="CANCEL" CssClass="cancel-button" CausesValidation="false" OnClick="cancelBtn_Click"/>
+                <asp:Button ID="cancelBtn" runat="server" Text="Cancel" CssClass="cancel-button" CausesValidation="false" OnClick="cancelBtn_Click"/>
                 <asp:Button ID="addBtn" runat="server" Text="Update" CssClass="continue-button" CausesValidation="true" OnClick="updateBtn_Click"/>
             </div>
         </div>
