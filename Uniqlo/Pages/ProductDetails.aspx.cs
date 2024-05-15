@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -484,24 +485,38 @@ namespace Uniqlo.Pages
                     return;
                 }
 
-                if (quantity > stockInfo.AvailableStock)
+                // Check if the item already exists in the cart
+                List<CartItem> cart = (List<CartItem>)Session["Cart"] ?? new List<CartItem>();
+                foreach (var item in cart)
                 {
-                    ScriptManager.RegisterStartupScript(this, this.GetType(), "overQuantityError", $"Swal.fire('Error', 'Only {stockInfo.AvailableStock} items available. You cannot add {quantity} items to the cart.', 'error');", true);
-                    return;
+                    if (item.Size == selectedSize && item.Color == selectedColor)
+                    {
+                        // If the item already exists, check if adding the new quantity exceeds available stock
+                        int totalQuantity = item.Quantity + quantity;
+                        if (totalQuantity > stockInfo.AvailableStock)
+                        {
+                            ScriptManager.RegisterStartupScript(this, this.GetType(), "overQuantityError", $"Swal.fire('Error', 'Only {stockInfo.AvailableStock} items available for the selected product. You cannot add {totalQuantity} items to the cart.', 'error');", true);
+                            return;
+                        }
+                        else
+                        {
+                            // Update the quantity of the existing item in the cart
+                            item.Quantity = totalQuantity;
+                            ScriptManager.RegisterStartupScript(this, this.GetType(), "addToCartSuccess", "Swal.fire('Success', 'Quantity updated in cart successfully!', 'success');", true);
+                            return;
+                        }
+                    }
                 }
 
-                // Create a new CartItem and add it to the cart
-                CartItem item = new CartItem
+                // If the item does not exist in the cart, create a new CartItem and add it to the cart
+                CartItem newItem = new CartItem
                 {
                     Quantity_Id = stockInfo.QuantityId,
                     Size = selectedSize,
                     Color = selectedColor,
                     Quantity = quantity
                 };
-
-                // Retrieve or create a new cart and add the item
-                List<CartItem> cart = (List<CartItem>)Session["Cart"] ?? new List<CartItem>();
-                cart.Add(item);
+                cart.Add(newItem);
                 Session["Cart"] = cart;
 
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "addToCartSuccess", "Swal.fire('Success', 'Item added to cart successfully!', 'success');", true);
@@ -511,6 +526,7 @@ namespace Uniqlo.Pages
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "addToCartError", $"Swal.fire('Error', '{ex.Message}', 'error');", true);
             }
         }
+
 
         private (int AvailableStock, int QuantityId) GetStockAndQuantityId(int productId, string selectedSize, string selectedColor)
         {
