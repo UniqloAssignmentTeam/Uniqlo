@@ -67,6 +67,7 @@ namespace Uniqlo.AdminPages.AdminOrder
 
                     orderRepeater.DataSource = orders;
                     orderRepeater.DataBind();
+                    noDiscount.Visible = orders.Count == 0;
                 }
 
             }
@@ -132,6 +133,7 @@ namespace Uniqlo.AdminPages.AdminOrder
 
                     orderRepeater.DataSource = orders;
                     orderRepeater.DataBind();
+                    noDiscount.Visible = orders.Count == 0;
                 }
             }
             catch (Exception ex)
@@ -237,6 +239,7 @@ namespace Uniqlo.AdminPages.AdminOrder
 
                     orderRepeater.DataSource = orders;
                     orderRepeater.DataBind();
+                    noDiscount.Visible = orders.Count == 0;
                 }
             }
             catch (Exception ex)

@@ -103,6 +103,7 @@ namespace Uniqlo.AdminPages.AdminProduct
 
                 prodRepeater.DataSource = productList;
                 prodRepeater.DataBind();
+                noDiscount.Visible = productList.Count == 0;
             }
         }
 
