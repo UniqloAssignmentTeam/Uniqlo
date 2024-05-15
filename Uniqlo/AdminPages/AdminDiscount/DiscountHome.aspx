@@ -12,7 +12,8 @@
     </header>
 
 
-    
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <link href="../../css/Admin/adminDiscount.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
@@ -138,37 +139,59 @@
 
 
      <!--DELETE CONFIRMATION-->
-<div id="id01" class="confirmationModal">
-    <div class="confirmation-modal-content">
-        <div class="confirmationContainer">
-            <span onclick="document.getElementById('id01').style.display='none'" class="confirmationClose" title="Close Modal">×</span>
-            <h1>Remove Discount</h1>
-            <p>Are you sure you want to remove this discount? </p>
-            <b><span style="font-size:30px;">ID:</span></b> <span id="modalDiscountId" style="font-size:30px; color:red;"></span>
-            <div class="confirmationClearFix">
-                <asp:Button ID="cancelBtn" runat="server" Text="Cancel" CssClass="confirmationCancelbtn" OnClick="cancelRemoveDiscount_Click"/>
-                 <asp:Button ID="btnRemoveDiscount" runat="server" Text="Delete" CssClass="confirmationDeletebtn" OnClick="btnRemoveDiscount_Click"/>
-               
-            </div>
-        </div>
-    </div>
-</div>
+    <asp:HiddenField ID="hiddenDiscountId" runat="server" />
+<asp:Button ID="hiddenDeleteButton" runat="server" Text="Delete" OnClick="btnRemoveDiscount_Click" Style="display:none;" />
 
-
-       <asp:HiddenField ID="hiddenDiscountId" runat="server" Value="" />
 
     <footer>
         <script type="text/javascript">
             function showDeleteModal(discountId) {
-                document.getElementById('<%= hiddenDiscountId.ClientID %>').value = discountId;
-                document.getElementById('id01').style.display = 'block';
-                document.getElementById('modalDiscountId').innerText = discountId;
+                Swal.fire({
+                    title: 'Are you sure?',
+                    html: "<strong>You are about to delete the discount with ID:</strong> <span style='color: red;'>" + discountId + "</span>.<br>This action cannot be undone!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, delete it!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        document.getElementById('<%= hiddenDiscountId.ClientID %>').value = discountId;
+            __doPostBack('<%= hiddenDeleteButton.UniqueID %>', '');
+        }
+    });
             }
+
+
 
             document.getElementById('<%= searchBox.ClientID %>').onkeyup = function() {
         __doPostBack('<%= searchBox.ClientID %>', '');
-    };
+            };
+            function showDeleteSuccess() {
+                Swal.fire({
+                    title: 'Deleted!',
+                    text: 'The discount has been successfully deleted.',
+                    icon: 'success',
+                    confirmButtonText: 'Ok'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = window.location.href; // This will reload the page
+                    }
+                });
+            }
+
+         
+                function showAlert(type, title, message) {
+                    Swal.fire({
+                        icon: type,
+                        title: title,
+                        text: message,
+                        timer: 5000
+                    });
+}
         </script>
+
+     
         
         <script src="../../Javascript/productBtnEclipse.js"></script>
         <script src="../../Javascript/productAdminDDL.js"></script>
