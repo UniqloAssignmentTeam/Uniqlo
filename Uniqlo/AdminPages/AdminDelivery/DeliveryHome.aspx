@@ -220,23 +220,10 @@
         <div style="margin-bottom: 80px;">
         </div>
 
-  <div id="id01" class="confirmationModal">
-    <div class="confirmation-modal-content">
-        <div class="confirmationContainer">
-            <span onclick="document.getElementById('id01').style.display='none'" class="confirmationClose" title="Close Modal">×</span>
-            <h1>Remove Delivery</h1>
-            <p>Are you sure you want to remove the delivery information?</p>
-
-            <div class="confirmationClearFix">
-                <button type="button" onclick="document.getElementById('id01').style.display='none'" class="confirmationCancelbtn">Cancel</button>
-                <asp:Button ID="btnRemoveDelivery" runat="server" Text="Remove" OnClick="btnRemoveDelivery_Click" CssClass="confirmationDeletebtn" />
-            </div>
-        </div>
-    </div>
-</div>
    
 
      <asp:HiddenField ID="hiddenDeliveryId" Value="" runat="server" />
+      <asp:Button ID="hiddenDeleteButton" runat="server" Text="Delete" OnClick="btnRemoveOrder_Click" Style="display:none;" />
 
    <footer>
 

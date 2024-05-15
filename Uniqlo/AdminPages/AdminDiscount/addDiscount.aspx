@@ -10,6 +10,7 @@
                             overflow-y: auto;  
                         }
                     </style>
+                     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
         </header>
        
  
@@ -37,11 +38,10 @@
                  <div class="form-group">
      <label for="discountAmount">Amount - Discount</label>
          <asp:TextBox ID="discountAmount" runat="server"></asp:TextBox>
-                      <asp:RegularExpressionValidator ID="RegexValidatorDiscountAmount" runat="server" ControlToValidate="discountAmount"
-     ValidationExpression="^\d+(\.\d{1,2})?$" ErrorMessage="Invalid discount amount" ForeColor="Red" Display="Dynamic"></asp:RegularExpressionValidator>
+                    
 <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="discountAmount"
 ErrorMessage="Discount amount is required" ForeColor="Red" Display="Dynamic"></asp:RequiredFieldValidator>
-                     <asp:RangeValidator ID="RangeValidatorDiscountAmount" runat="server"
+<asp:RangeValidator ID="RangeValidatorDiscountAmount" runat="server"
         ControlToValidate="discountAmount"
         MinimumValue="0.01" MaximumValue="300"
         Type="Currency"
@@ -71,8 +71,8 @@ ErrorMessage="End date is required" ForeColor="Red" Display="Dynamic"></asp:Requ
           
             <div class="button-container">
               
-                     <asp:Button ID="cancelBtn" runat="server" Text="CANCEL" CssClass="cancel-button" Onclick="cancelBtn_Click"/>
-                     <asp:Button ID="addBtn" runat="server" Text="ADD" CssClass="continue-button" CausesValidation="true" Onclick="addBtn_Click"/>
+                     <asp:Button ID="cancelBtn" runat="server" Text="Cancel" CssClass="cancel-button" Onclick="cancelBtn_Click" CausesValidation="false"/>
+                     <asp:Button ID="addBtn" runat="server" Text="Add" CssClass="continue-button" CausesValidation="true" Onclick="addBtn_Click"/>
             </div>
         </div>
     </div>

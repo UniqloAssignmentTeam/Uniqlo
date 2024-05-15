@@ -1,15 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Mail;
-using System.Web;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 using static Uniqlo.Staff;
 
 namespace Uniqlo.AdminPages.AdminStaff
 {
-    public partial class DeleteStaff : System.Web.UI.Page
+    public partial class DeleteStaff : Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -17,15 +13,12 @@ namespace Uniqlo.AdminPages.AdminStaff
             {
                 staffIdlbl.Text = Request.QueryString["StaffId"];
             }
-            
-
         }
+
         protected void cancelBtn_Click(object sender, EventArgs e)
         {
             Response.Redirect("StaffHome.aspx");
         }
-
-
 
         protected void btnCheckCode_Click(object sender, EventArgs e)
         {
@@ -58,7 +51,8 @@ namespace Uniqlo.AdminPages.AdminStaff
                         {
                             db.Staff.Remove(staff);
                             db.SaveChanges();
-                            Response.Redirect("StaffHome.aspx");
+                            // Show SweetAlert on success
+                            ScriptManager.RegisterStartupScript(this, GetType(), "showSuccessAlert", "showSuccessAlert();", true);
                         }
                         else
                         {
@@ -81,18 +75,23 @@ namespace Uniqlo.AdminPages.AdminStaff
             }
         }
 
-
-
-
         protected void btnSendCode_Click(object sender, EventArgs e)
         {
+            DateTime? lastRequestTime = Session["LastRequestTime"] as DateTime?;
+            if (lastRequestTime != null && (DateTime.Now - lastRequestTime.Value).TotalSeconds < 30)
+            {
+                lblMessage.ForeColor = System.Drawing.Color.Red;
+                lblMessage.Text = "Please wait for 30 seconds before requesting a new code.";
+                return;
+            }
+
             string userEmailText = userEmail.Text;
             string verificationCode = GenerateVerificationCode();
             Session["VerificationCode"] = verificationCode;
+            Session["LastRequestTime"] = DateTime.Now; // Update the last request time
 
             try
             {
-
                 SmtpClient smtp = new SmtpClient
                 {
                     Host = "smtp.gmail.com",
@@ -114,15 +113,15 @@ namespace Uniqlo.AdminPages.AdminStaff
                 lblMessage.Text = "Verification code sent to your email.";
                 btnRemoveStaff.Enabled = true;
                 txtVerificationCode.Visible = true; // Show the verification code TextBox
-              
-                
+
+                // Start the countdown timer on the client-side
+                ScriptManager.RegisterStartupScript(this, GetType(), "startCountdown", "startCountdown(30);", true);
             }
             catch (Exception ex)
             {
                 lblMessage.ForeColor = System.Drawing.Color.Red;
-                lblMessage.Text = "Failed to send verification code. Error: " + ex.Message;
+                lblMessage.Text = "Failed to send verification code. Please enter a valid email.";
             }
-
         }
 
         private string GenerateVerificationCode()
