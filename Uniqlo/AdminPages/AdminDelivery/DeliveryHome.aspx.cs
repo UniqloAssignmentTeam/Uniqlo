@@ -1,8 +1,7 @@
 ﻿using OfficeOpenXml;
 using System;
-using System.Collections.Generic;
-using System.Data.SqlClient;
 using System.Data;
+using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -12,34 +11,35 @@ using System.Web.UI.WebControls;
 
 namespace Uniqlo.AdminPages.AdminDelivery
 {
-	public partial class DeliveryHome : System.Web.UI.Page
-	{
+    public partial class DeliveryHome : System.Web.UI.Page
+    {
         string cs = Global.CS;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
                 bindRepeater();
             }
-
         }
+
         private void bindRepeater()
         {
             string connString = cs;
             using (SqlConnection conn = new SqlConnection(connString))
             {
                 string query = @"
-            SELECT 
-                d.Delivery_ID,
-                sa.Address + ', ' + sa.State + ', ' + sa.City + ', ' + sa.Postcode + ', ' + sa.Country AS DeliveryAddress,
-                d.Delivery_Status,
-                p.Order_ID
-            FROM 
-                Delivery d
-            INNER JOIN 
-                Shipping_Address sa ON d.Address_ID = sa.Address_ID
-            INNER JOIN 
-                Payment p ON d.Delivery_ID = p.Delivery_ID";
+                SELECT 
+                    d.Delivery_ID,
+                    sa.Address + ', ' + sa.State + ', ' + sa.City + ', ' + sa.Postcode + ', ' + sa.Country AS DeliveryAddress,
+                    d.Delivery_Status,
+                    p.Order_ID
+                FROM 
+                    Delivery d
+                INNER JOIN 
+                    Shipping_Address sa ON d.Address_ID = sa.Address_ID
+                INNER JOIN 
+                    Payment p ON d.Delivery_ID = p.Delivery_ID";
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
                     using (SqlDataAdapter sda = new SqlDataAdapter(cmd))
@@ -48,6 +48,7 @@ namespace Uniqlo.AdminPages.AdminDelivery
                         sda.Fill(dt);
                         rptDeliveries.DataSource = dt;
                         rptDeliveries.DataBind();
+                        noDeliveryLabel.Visible = dt.Rows.Count == 0;
                     }
                 }
             }
@@ -60,32 +61,37 @@ namespace Uniqlo.AdminPages.AdminDelivery
             {
                 string selectedStatus = statusSortDDL.SelectedValue;
                 string query = @"
-            SELECT 
-                d.Delivery_ID,
-                CONCAT(sa.Address, ', ', sa.State, ', ', sa.City, ', ', sa.Postcode, ', ', sa.Country) AS DeliveryAddress,
-                d.Delivery_Status,
-                p.Order_ID
-            FROM 
-                Delivery d
-            INNER JOIN 
-                Shipping_Address sa ON d.Address_ID = sa.Address_ID
-            INNER JOIN 
-                Payment p ON d.Delivery_ID = p.Delivery_ID";
+                SELECT 
+                    d.Delivery_ID,
+                    CONCAT(sa.Address, ', ', sa.State, ', ', sa.City, ', ', sa.Postcode, ', ', sa.Country) AS DeliveryAddress,
+                    d.Delivery_Status,
+                    p.Order_ID
+                FROM 
+                    Delivery d
+                INNER JOIN 
+                    Shipping_Address sa ON d.Address_ID = sa.Address_ID
+                INNER JOIN 
+                    Payment p ON d.Delivery_ID = p.Delivery_ID";
 
-                // If a specific status is selected, filter by that status
                 if (!string.IsNullOrEmpty(selectedStatus))
                 {
-                    query += $" WHERE d.Delivery_Status = '{selectedStatus}'";
+                    query += " WHERE d.Delivery_Status = @DeliveryStatus";
                 }
 
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
+                    if (!string.IsNullOrEmpty(selectedStatus))
+                    {
+                        cmd.Parameters.AddWithValue("@DeliveryStatus", selectedStatus);
+                    }
+
                     using (SqlDataAdapter sda = new SqlDataAdapter(cmd))
                     {
                         DataTable dt = new DataTable();
                         sda.Fill(dt);
                         rptDeliveries.DataSource = dt;
                         rptDeliveries.DataBind();
+                        noDeliveryLabel.Visible = dt.Rows.Count == 0;
                     }
                 }
             }
@@ -93,14 +99,13 @@ namespace Uniqlo.AdminPages.AdminDelivery
 
         protected void btnRemoveDelivery_Click(object sender, EventArgs e)
         {
-            int deliveryId = Convert.ToInt32(hiddenDeliveryId.Value); // Retrieve the Delivery ID
+            int deliveryId = Convert.ToInt32(hiddenDeliveryId.Value);
             string connectionString = cs;
 
             using (var connection = new SqlConnection(connectionString))
             {
                 connection.Open();
 
-                // Step 1: Retrieve the Address_ID associated with the given Delivery_ID
                 int addressId = 0;
                 string getAddressIdQuery = "SELECT Address_ID FROM Delivery WHERE Delivery_ID = @DeliveryID";
                 using (var getAddressIdCmd = new SqlCommand(getAddressIdQuery, connection))
@@ -115,7 +120,6 @@ namespace Uniqlo.AdminPages.AdminDelivery
                     }
                 }
 
-                // Step 2: Set the Address_ID in the Delivery table to null for the corresponding Delivery_ID
                 string updateDeliveryQuery = "UPDATE Delivery SET Address_ID = NULL WHERE Delivery_ID = @DeliveryID";
                 using (var updateDeliveryCmd = new SqlCommand(updateDeliveryQuery, connection))
                 {
@@ -123,7 +127,6 @@ namespace Uniqlo.AdminPages.AdminDelivery
                     updateDeliveryCmd.ExecuteNonQuery();
                 }
 
-                // Step 3: Delete the Address record associated with the retrieved Address_ID
                 string deleteAddressQuery = "DELETE FROM Shipping_Address WHERE Address_ID = @AddressID";
                 using (var deleteAddressCmd = new SqlCommand(deleteAddressQuery, connection))
                 {
@@ -131,7 +134,6 @@ namespace Uniqlo.AdminPages.AdminDelivery
                     deleteAddressCmd.ExecuteNonQuery();
                 }
 
-                // Step 4: Set the Delivery_ID in the Payment table to null for the corresponding Delivery_ID
                 string updatePaymentQuery = "UPDATE Payment SET Delivery_ID = NULL WHERE Delivery_ID = @DeliveryID";
                 using (var updatePaymentCmd = new SqlCommand(updatePaymentQuery, connection))
                 {
@@ -139,7 +141,6 @@ namespace Uniqlo.AdminPages.AdminDelivery
                     updatePaymentCmd.ExecuteNonQuery();
                 }
 
-                // Step 5: Delete the Delivery record associated with the given Delivery_ID
                 string deleteDeliveryQuery = "DELETE FROM Delivery WHERE Delivery_ID = @DeliveryID";
                 using (var deleteDeliveryCmd = new SqlCommand(deleteDeliveryQuery, connection))
                 {
@@ -147,13 +148,16 @@ namespace Uniqlo.AdminPages.AdminDelivery
                     deleteDeliveryCmd.ExecuteNonQuery();
                 }
             }
-            Response.Redirect(Request.RawUrl);
 
+            ScriptManager.RegisterStartupScript(this, GetType(), "showDeleteSuccess", "showDeleteSuccess();", true);
         }
 
         protected void searchBox_TextChanged(object sender, EventArgs e)
         {
             string searchTerm = searchBox.Text.Trim();
+            int deliveryID;
+
+            // Base query
             string query = @"
 SELECT 
     d.Delivery_ID,
@@ -167,34 +171,46 @@ INNER JOIN
 INNER JOIN 
     Payment p ON d.Delivery_ID = p.Delivery_ID";
 
-            // If the search term is empty, do not filter by delivery ID
-            if (!string.IsNullOrEmpty(searchTerm))
+            DataTable dt = new DataTable();
+
+            // Check if the search term is a valid integer
+            if (int.TryParse(searchTerm, out deliveryID))
             {
                 query += " WHERE d.Delivery_ID = @DeliveryID";
-            }
 
-            DataTable dt = new DataTable();
-            using (SqlConnection conn = new SqlConnection(Global.CS))
-            {
-                using (SqlCommand cmd = new SqlCommand(query, conn))
+                using (SqlConnection conn = new SqlConnection(cs))
                 {
-                    // Add parameter only if the search term is not empty
-                    if (!string.IsNullOrEmpty(searchTerm))
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
                     {
-                        cmd.Parameters.AddWithValue("@DeliveryID", searchTerm);
-                    }
+                        cmd.Parameters.AddWithValue("@DeliveryID", deliveryID);
 
-                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                        using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                        {
+                            da.Fill(dt);
+                        }
+                    }
+                }
+            }
+            else if (string.IsNullOrEmpty(searchTerm))
+            {
+                // If search term is empty, show all records
+                using (SqlConnection conn = new SqlConnection(cs))
+                {
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
                     {
-                        da.Fill(dt);
+                        using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                        {
+                            da.Fill(dt);
+                        }
                     }
                 }
             }
 
-            rptDeliveries.DataSource = dt;
+            // Bind the data to the Repeater
+            rptDeliveries.DataSource = dt.Rows.Count > 0 ? dt : null;
             rptDeliveries.DataBind();
+            noDeliveryLabel.Visible = dt.Rows.Count == 0;
         }
-
 
         protected void addDeliveryBtn_Click(object sender, EventArgs e)
         {
@@ -203,23 +219,23 @@ INNER JOIN
 
         protected void btnExcel_Click(object sender, EventArgs e)
         {
-            string connectionString = cs; // Ensure this is correctly defined
+            string connectionString = cs;
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                conn.Open();  // Ensure the connection is opened before executing the command
+                conn.Open();
 
                 StringBuilder query = new StringBuilder(@"
-            SELECT 
-                d.Delivery_ID,
-                sa.Address + ', ' + sa.State + ', ' + sa.City + ', ' + sa.Postcode + ', ' + sa.Country AS DeliveryAddress,
-                d.Delivery_Status,
-                p.Order_ID
-            FROM 
-                Delivery d
-            INNER JOIN 
-                Shipping_Address sa ON d.Address_ID = sa.Address_ID
-            INNER JOIN 
-                Payment p ON d.Delivery_ID = p.Delivery_ID");
+                SELECT 
+                    d.Delivery_ID,
+                    sa.Address + ', ' + sa.State + ', ' + sa.City + ', ' + sa.Postcode + ', ' + sa.Country AS DeliveryAddress,
+                    d.Delivery_Status,
+                    p.Order_ID
+                FROM 
+                    Delivery d
+                INNER JOIN 
+                    Shipping_Address sa ON d.Address_ID = sa.Address_ID
+                INNER JOIN 
+                    Payment p ON d.Delivery_ID = p.Delivery_ID");
 
                 using (SqlCommand cmd = new SqlCommand(query.ToString(), conn))
                 {
