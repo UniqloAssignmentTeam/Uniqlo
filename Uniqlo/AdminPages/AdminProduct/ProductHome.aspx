@@ -6,11 +6,7 @@
         <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
-        <script src="sweetalert2.all.min.js"></script>
-        <script src="sweetalert2.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
-        <link rel="stylesheet" href="sweetalert2.min.css">
+
 
         <style>
             .confirmationClearFix {
@@ -186,9 +182,9 @@
                                         <div>
                                             <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl='<%# "UpdateProduct.aspx?ProdID=" + Eval("Product_ID") %>' Text="Update" Style="text-decoration: none; color: #6F6F6F"></asp:HyperLink>
                                         </div>
-                                        <div onclick="showDeleteModal(<%# Eval("Product_ID") %>);">Delete</div>
                                         <div>
-                                             <asp:LinkButton ID="btnRemoveProduct" runat="server" Text="Delete" CommandArgument='<%# Eval("Product_ID") %>' OnCommand="btnRemoveProduct_Click" Style="text-decoration: none; color: #6F6F6F"/>
+                                            <asp:LinkButton ID="btnRemoveProduct" runat="server" Text="Delete" CommandName="Delete" CommandArgument='<%# Eval("Product_ID") %>' OnClientClick='return confirmDelete(this);' data-id='<%# Eval("Product_ID") %>' Style="text-decoration: none; color: #6F6F6F"/>
+
                                         </div>
                                     </div>
                                 </td>
@@ -234,16 +230,8 @@
                 __doPostBack('<%= searchBox.UniqueID %>', '');
             };
 
-            function confirmDelete(deleteFunctionName, deleteValue) {
-                const swalWithBootstrapButtons = Swal.mixin({
-                    customClass: {
-                        confirmButton: 'btn btn-success',
-                        cancelButton: 'btn btn-danger'
-                    },
-                    buttonsStyling: true
-                });
-
-                swalWithBootstrapButtons.fire({
+            function confirmDelete(button) {
+                Swal.fire({
                     title: 'Are you sure?',
                     text: "You won't be able to revert this!",
                     icon: 'warning',
@@ -253,10 +241,14 @@
                     reverseButtons: true
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        __doPostBack(deleteFunctionName, deleteValue);
+                        __doPostBack('DeleteConfirmed', button.getAttribute('data-id'));
                     }
                 });
+                return false;
             }
+
+
+
         </script>
         <script src="../../Javascript/Pagination.js"></script>
         <script src="../../Javascript/productBtnEclipse.js"></script>

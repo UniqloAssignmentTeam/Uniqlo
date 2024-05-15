@@ -122,25 +122,25 @@ namespace Uniqlo.Pages
 
 
 
-        protected void reviewValidBtn_Command(object sender, CommandEventArgs e)
+        protected void reviewValidBtn_Click(object sender, EventArgs e)
         {
-            string buttonText = ((Button)sender).Text;
-            string orderListID = HiddenOrderListID.ToString();
+            Button btn = (Button)sender;
+            string buttonText = btn.Text;
 
-                // Optionally display error message on the page
-                ScriptManager.RegisterStartupScript(this, GetType(), "errorAlert", "alert('An error occurred when retrieve order summary.');", true);
-            
+            // Get the OrderList_ID from the CommandArgument
+            string orderListID = btn.CommandArgument;
 
-        
-            if (buttonText == "View")
+            //Encrypt
+            orderListID = EncryptionHelper.Encrypt(orderListID);
+
+            // Redirect based on the button text
+            if (buttonText == "Review")
             {
-                // Redirect to view review page
-                Response.Redirect("/Pages/Review/ViewReviewItem.aspx?OrderListID=" + orderListID);
+                Response.Redirect("./Review/addReviewItem.aspx?OrderList_ID=" + orderListID);
             }
-            else if (buttonText == "Review")
+            else if (buttonText == "View")
             {
-                // Redirect to add review page
-                Response.Redirect("/Pages/Review/AddReviewItem.aspx?OrderListID=" + orderListID);
+                Response.Redirect("./Review/viewReviewItem.aspx?OrderList_ID=" + orderListID);
             }
         }
 

@@ -13,59 +13,63 @@ namespace Uniqlo.Pages
         {
             if (!IsPostBack)
             {
-                // Retrieve the OrderListID from the query string
-                string orderListID = Request.QueryString["OrderListID"];
+                // Retrieve the OrderListID from the query 
+                string orderListID = Request.QueryString["OrderList_ID"];
+
+                //Decrypt
+                orderListID = EncryptionHelper.Decrypt(orderListID);
 
                 if (!string.IsNullOrEmpty(orderListID))
                 {
                     BindReviewData(orderListID);
+                    DataBind();
                 }
                 else
                 {
-                    // Handle the case where OrderListID is missing from the query string
-                    // For example, display an error message or redirect the user
                     Response.Write("OrderListID is missing from the query string.");
                 }
             }
         }
 
         // Method to bind review data to the repeater
-        private void BindReviewData(string orderItemId)
+        private void BindReviewData(string orderListId)
         {
             // Connection string retrieved from web.config
             string connectionString = Global.CS;
 
-            // SQL query to retrieve review data based on OrderItemID
+            // SQL query to retrieve review data based on OrderList_ID
             string query = "SELECT r.Rating, r.Review, r.Review_ID " +
                 "FROM Review r " +
                 "INNER JOIN OrderList ol ON r.OrderList_ID = ol.OrderList_ID " +
-                "WHERE ol.OrderList_ID = @OrderItemID";
+                "WHERE ol.OrderList_ID = @OrderListID";
 
             // Create a new SqlConnection using the connection string
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                // Create a new SqlDataAdapter with the query and connection
-                using (SqlDataAdapter adapter = new SqlDataAdapter(query, connection))
+                // Create a new SqlCommand with the query and connection
+                using (SqlCommand command = new SqlCommand(query, connection))
                 {
-                    // Add parameter for OrderItemID
-                    adapter.SelectCommand.Parameters.AddWithValue("@OrderItemID", orderItemId);
-
-                    // Create a new DataTable to store the fetched data
-                    DataTable reviewData = new DataTable();
+                    // Add parameter for OrderList_ID
+                    command.Parameters.AddWithValue("@OrderListID", orderListId);
 
                     // Open the connection
                     connection.Open();
 
-                    // Fill the DataTable with data from the SqlDataAdapter
-                    adapter.Fill(reviewData);
+                    // Execute the query and get the data
+                    SqlDataReader reader = command.ExecuteReader();
 
-                    // Close the connection
-                    connection.Close();
+                    // Check if there are rows returned
+                    if (reader.Read())
+                    {
+                        // Set the value of the ASP.NET TextBox with the retrieved review
+                        commentTextArea1.Text = reader["Review"].ToString();
+                        hdfRating.Value = reader["Rating"].ToString();
+                    }
 
-                    // Bind the review data to the repeater
-                    ratingRepeater.DataSource = reviewData;
-                    ratingRepeater.DataBind();
+                    // Close the reader
+                    reader.Close();
                 }
+
             }
         }
 
@@ -97,5 +101,71 @@ namespace Uniqlo.Pages
 
             return html;
         }
+
+        protected void EditButton_Click(object sender, EventArgs e)
+        {
+            string orderListId = Request.QueryString["OrderList_ID"];
+            Response.Redirect("EditReviewItem.aspx?OrderList_ID=" + orderListId);
+        }
+        protected void btnDeleteReview_Click(object sender, EventArgs e)
+        {
+            // Retrieve the OrderlistID from the query string
+            string orderListId = EncryptionHelper.Decrypt(Request.QueryString["OrderList_ID"]);
+
+            // Connection string retrieved from web.config
+            string connectionString = Global.CS;
+
+            // SQL query to retrieve the Order ID and delete the review based on OrderList_ID
+            string query = @"
+        DECLARE @OrderID INT;
+        SELECT @OrderID = ol.Order_ID
+        FROM OrderList ol
+        WHERE ol.OrderList_ID = @OrderListID;
+
+        DELETE FROM Review WHERE OrderList_ID = @OrderListID;
+
+        SELECT @OrderID AS OrderID;";
+
+            // Create a new SqlConnection using the connection string
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                // Create a new SqlCommand with the combined query and connection
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    // Add parameter for OrderListID
+                    command.Parameters.AddWithValue("@OrderListID", orderListId);
+
+                    // Open the connection
+                    connection.Open();
+
+                    // Execute the query
+                    SqlDataReader reader = command.ExecuteReader();
+
+                    // Check if there are rows in the result
+                    if (reader.HasRows)
+                    {
+                        // Read the Order ID
+                        reader.Read();
+                        string orderId = reader["OrderID"].ToString();
+
+                        // Close the reader
+                        reader.Close();
+
+                        // Redirect to OrderItemList.aspx with OrderID query string
+                        Response.Redirect($"../OrderHistoryItem.aspx?Order_ID={EncryptionHelper.Encrypt(orderId)}");
+                    }
+                    else
+                    {
+                        // Close the reader
+                        reader.Close();
+
+                        // Display an error message if the review was not found or could not be deleted
+                        Response.Write("Review not found or could not be deleted.");
+                    }
+                }
+            }
+
+        }
+
     }
 }
