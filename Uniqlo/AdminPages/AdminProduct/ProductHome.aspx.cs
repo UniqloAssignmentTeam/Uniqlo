@@ -25,6 +25,13 @@ namespace Uniqlo.AdminPages.AdminProduct
             {
                 BindRepeater();
             }
+            string eventTarget = Request["__EVENTTARGET"];
+            string eventArgument = Request["__EVENTARGUMENT"];
+
+            if (eventTarget == "DeleteConfirmed")
+            {
+                DeleteConfirmed(eventArgument);
+            }
         }
 
 
@@ -34,44 +41,70 @@ namespace Uniqlo.AdminPages.AdminProduct
         }
 
 
-        protected void btnRemoveProduct_Click(object sender, EventArgs e)
+        protected void btnRemoveProduct_Click(object sender, CommandEventArgs e)
         {
-            int prodId = int.Parse(hiddenProductId.Value);
+            int prodId = Convert.ToInt32(e.CommandArgument);
+            ScriptManager.RegisterStartupScript(this, GetType(), "confirmDeleteScript", $"confirmDelete('DeleteConfirmed', '{prodId}');", true);
+        }
 
-            try
+        protected void DeleteConfirmed(string args)
+        {
+            if (int.TryParse(args, out int prodId))
             {
-                using (var db = new ProductDbContext())
+                ProductDbContext db = null;
+                System.Data.Entity.DbContextTransaction transaction = null;
+                try
                 {
-                    using (var transaction = db.Database.BeginTransaction())
+                    db = new ProductDbContext();
+                    transaction = db.Database.BeginTransaction();
+
+                    var product = db.Product.Find(prodId);
+                    if (product != null)
                     {
-                        var product = db.Product.Find(prodId);
-                        if (product != null)
+                        product.IsDeleted = true;
+                        var discounts = db.Discount.Where(d => d.Product_ID == prodId).ToList();
+                        foreach (var discount in discounts)
                         {
-                            product.IsDeleted = true;
-
-                            var discounts = db.Discount.Where(d => d.Product_ID == prodId).ToList();
-                            foreach (var discount in discounts)
-                            {
-                                discount.Status = "Inactive";
-                            }
-
-                            var quantities = db.Quantity.Where(q => q.Product_ID == prodId).ToList();
-                            foreach (var quantity in quantities)
-                            {
-                                quantity.Qty = 0;
-                            }
-
-                            db.SaveChanges();
-                            Response.Redirect(Request.RawUrl);
+                            discount.Status = "Inactive";
                         }
+
+                        var quantities = db.Quantity.Where(q => q.Product_ID == prodId).ToList();
+                        foreach (var quantity in quantities)
+                        {
+                            quantity.Qty = 0;
+                        }
+
+                        db.SaveChanges();
+                        transaction.Commit();
+                        ScriptManager.RegisterStartupScript(this, GetType(), "deleteSuccess",
+                            @"Swal.fire({
+                        title: 'Deleted!',
+                        text: 'The item has been deleted.',
+                        icon: 'success',
+                        confirmButtonText: 'Ok'
+                    }).then((result) => {
+                        if (result.value) {
+                            window.location.href = '" + Request.RawUrl + "';}}); ", true);
+                    }
+                    else
+                    {
+                        ScriptManager.RegisterStartupScript(this, GetType(), "errorAlert", "Swal.fire('Error!', 'Product not found.', 'error');", true);
                     }
                 }
-            }
-            catch (Exception ex)
-            {
-                ScriptManager.RegisterStartupScript(this, GetType(), "errorAlert", "alert('Error: " + ex.Message.Replace("'", "\\'") + "');", true);
+                catch (Exception ex)
+                {
+                    if (transaction != null) transaction.Rollback();  // Explicitly roll back the transaction on error
+                    ScriptManager.RegisterStartupScript(this, GetType(), "errorAlert", "Swal.fire('Error!', 'An error occurred: " + ex.Message.Replace("'", "\\'") + "', 'error');", true);
+                }
+                finally
+                {
+                    if (db != null) db.Dispose();
+                }
             }
         }
+
+
+
 
 
 

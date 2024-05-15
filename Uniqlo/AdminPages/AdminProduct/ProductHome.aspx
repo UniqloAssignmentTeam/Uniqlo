@@ -5,6 +5,11 @@
         <link href="../../css/Admin/adminProduct.css" rel="stylesheet" />
         <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+        <script src="sweetalert2.all.min.js"></script>
+        <script src="sweetalert2.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
+        <link rel="stylesheet" href="sweetalert2.min.css">
 
         <style>
             .confirmationClearFix {
@@ -185,8 +190,9 @@
                                         <div>
                                             <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl='<%# "UpdateProduct.aspx?ProdID=" + Eval("Product_ID") %>' Text="Update" Style="text-decoration: none; color: #6F6F6F"></asp:HyperLink>
                                         </div>
-                                        <div onclick="showDeleteModal(<%# Eval("Product_ID") %>);">Delete</div>
-
+                                        <div>
+                                             <asp:LinkButton ID="btnRemoveProduct" runat="server" Text="Delete" CommandArgument='<%# Eval("Product_ID") %>' OnCommand="btnRemoveProduct_Click" Style="text-decoration: none; color: #6F6F6F"/>
+                                        </div>
                                     </div>
                                 </td>
 
@@ -213,41 +219,41 @@
         </div>
 
 
-        <!--DELETE CONFIRMATION-->
-        <asp:HiddenField ID="hiddenProductId" runat="server" Value="" />
-
-
-        <!--DELETE CONFIRMATION-->
-        <div id="id01" class="confirmationModal">
-            <div class="confirmation-modal-content">
-                <div class="confirmationContainer">
-                    <span onclick="document.getElementById('id01').style.display='none'" class="confirmationClose" title="Close Modal">×</span>
-                    <h1>Remove Product</h1>
-                    <p>Are you sure you want to remove the product?</p>
-
-                    <div class="confirmationClearFix">
-                        <button type="button" onclick="document.getElementById('id01').style.display='none'" class="confirmationCancelbtn">Cancel</button>
-                        <asp:Button ID="btnRemoveProduct" runat="server" Text="Remove" OnClick="btnRemoveProduct_Click" CssClass="confirmationDeletebtn" />
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!--DELETE CONFIRMATION END-->
 
     </div>
 
 
     <footer>
         <script type="text/javascript">
-            function showDeleteModal(prodID) {
-                document.getElementById('<%= hiddenProductId.ClientID %>').value = prodID;
-                document.getElementById('id01').style.display = 'block';
-            }
 
 
             document.getElementById('<%= searchBox.ClientID %>').onkeyup = function() {
                 __doPostBack('<%= searchBox.ClientID %>', '');
             };
+
+            function confirmDelete(deleteFunctionName, deleteValue) {
+                const swalWithBootstrapButtons = Swal.mixin({
+                    customClass: {
+                        confirmButton: 'btn btn-success',
+                        cancelButton: 'btn btn-danger'
+                    },
+                    buttonsStyling: true
+                });
+
+                swalWithBootstrapButtons.fire({
+                    title: 'Are you sure?',
+                    text: "You won't be able to revert this!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: 'Yes, delete it!',
+                    cancelButtonText: 'No, cancel!',
+                    reverseButtons: true
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        __doPostBack(deleteFunctionName, deleteValue);
+                    }
+                });
+            }
         </script>
         <script src="../../Javascript/Pagination.js"></script>
         <script src="../../Javascript/productBtnEclipse.js"></script>
