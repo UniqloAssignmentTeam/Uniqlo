@@ -371,6 +371,15 @@
                         var sizeLValid = sizeL && parseInt(sizeL) > 0;
                         var sizeXLValid = sizeXL && parseInt(sizeXL) > 0;
 
+                        if ((sizeS <= 0 && sizeS !== '') || (sizeM <= 0 && sizeM !== '') || (sizeL <= 0 && sizeL !== '') || (sizeXL <= 0 && sizeXL !== '')) {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Invalid Input',
+                                text: 'Size values must be greater than 0.'
+                            });
+                            return; // Stop the function if any size is invalid
+                        }
+
                         if (!(sizeSValid || sizeMValid || sizeLValid || sizeXLValid)) {
                             Swal.fire({
                                 icon: 'error',

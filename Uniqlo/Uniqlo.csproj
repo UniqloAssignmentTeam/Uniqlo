@@ -474,6 +474,7 @@
     <Compile Include="Category.cs">
       <DependentUpon>UniqloAdo.tt</DependentUpon>
     </Compile>
+    <Compile Include="Crypto.cs" />
     <Compile Include="Customer.cs">
       <DependentUpon>UniqloAdo.tt</DependentUpon>
     </Compile>
@@ -765,6 +766,7 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="AdminPages\AdminCustomer\" />
     <Folder Include="Images\Categories\Men\Bottoms\" />
     <Folder Include="Images\Categories\Men\Tops\" />
   </ItemGroup>

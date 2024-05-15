@@ -61,6 +61,8 @@ namespace Uniqlo.Pages
             }
 
             // If no errors, proceed with sign up
+            string hashedPassword = Crypto.HashPassword(txtPassword.Text);
+
             try
             {
                 Random random = new Random();
@@ -74,7 +76,7 @@ namespace Uniqlo.Pages
                 insertCmd.Parameters.AddWithValue("@Gender", ddlGender.SelectedValue);
                 insertCmd.Parameters.AddWithValue("@ContactNo", txtPhone.Text);
                 insertCmd.Parameters.AddWithValue("@Email", txtEmail.Text);
-                insertCmd.Parameters.AddWithValue("@Password", txtPassword.Text);
+                insertCmd.Parameters.AddWithValue("@Password", hashedPassword);
                 insertCmd.ExecuteNonQuery();
                 con.Close();
 

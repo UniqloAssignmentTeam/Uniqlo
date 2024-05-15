@@ -210,8 +210,10 @@ namespace Uniqlo.Pages
             MailMessage message = new MailMessage();
             message.From = new MailAddress("yipy-pm21@student.tarc.edu.my"); // Your email address
             message.To.Add(customerEmail);
-            message.Subject = "Your Invoice";
-            message.Body = "Please find attached your invoice.";
+
+            // Set the email subject and body
+            message.Subject = "Invoice for Your Recent Purchase";
+            message.Body = "Dear Customer,\n\nPlease find attached your invoice for the recent purchase. If you have any questions or concerns, please feel free to contact us.\n\nThank you for shopping with us!\n\nBest regards,\nUniqlo";
 
             // Attach the PDF file
             MemoryStream ms = new MemoryStream(pdfBytes);
@@ -236,6 +238,7 @@ namespace Uniqlo.Pages
                 Response.Write("An error occurred while sending the email: " + ex.Message);
             }
         }
+
 
         protected void btnPDF_Click(object sender, EventArgs e)
         {
