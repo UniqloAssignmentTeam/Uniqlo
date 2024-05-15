@@ -20,14 +20,17 @@ namespace Uniqlo.Pages.Review
             string comment = commentTextArea.Text;
 
             // Get the OrderList_ID from the query string
-            int orderListID = Convert.ToInt32(Request.QueryString["OrderList_ID"]);
+            string orderListID = EncryptionHelper.Decrypt(Request.QueryString["OrderList_ID"]);
+
 
             // Insert the review into the database
-            InsertReview(orderListID, rating, comment); // Implement this method to insert the review
+            InsertReview(int.Parse(orderListID), rating, comment);
 
             // Optionally, you can display a confirmation message or redirect the user
             // For example, you can display a popup message using JavaScript
             ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Review submitted successfully!');", true);
+
+            Response.Redirect("../Profile.aspx");
         }
 
         // Method to insert the review into the database

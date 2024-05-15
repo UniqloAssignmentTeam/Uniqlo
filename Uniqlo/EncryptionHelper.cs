@@ -32,6 +32,11 @@ namespace Uniqlo
 
         public static string Decrypt(string cipherText)
         {
+            if (string.IsNullOrEmpty(cipherText))
+            {
+                // Handle the case when cipherText is null or empty
+                return string.Empty;
+            }
             cipherText = cipherText.Replace(" ", "+");
             byte[] cipherBytes = Convert.FromBase64String(cipherText);
             using (Aes encryptor = Aes.Create())
