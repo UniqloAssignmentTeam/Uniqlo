@@ -1,12 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using Uniqlo.AdminPages.AdminStaff;
-using Uniqlo.Pages.Categories.Women;
-using static Uniqlo.Discount;
 
 namespace Uniqlo.AdminPages
 {
@@ -23,12 +18,11 @@ namespace Uniqlo.AdminPages
                     {
                         LoadDiscountDetails(discountID);
                         DropDownListProductName(discountID);
-                       
                     }
                 }
                 catch (Exception ex)
                 {
-                    ScriptManager.RegisterStartupScript(this, GetType(), "loadError", "alert('Failed to load discount details.');", true);
+                    ShowSweetAlert("Error", "Failed to load discount details.", "error");
                 }
             }
         }
@@ -52,10 +46,9 @@ namespace Uniqlo.AdminPages
             }
             catch (Exception ex)
             {
-                ScriptManager.RegisterStartupScript(this, GetType(), "dataError", "alert('Error retrieving discount data.');", true);
+                ShowSweetAlert("Error", "Error retrieving discount data.", "error");
             }
         }
-
         protected void updateBtn_Click(object sender, EventArgs e)
         {
             if (Page.IsValid)
@@ -65,37 +58,59 @@ namespace Uniqlo.AdminPages
                     using (var db = new DiscountDbContext())
                     {
                         int discountId = int.Parse(discountID.Text);
-                        int productId = int.Parse(DdlProductName.SelectedValue);
+                        DateTime parsedEndDate = DateTime.Parse(endDate.Text);
+
                         var discount = db.Discount.FirstOrDefault(d => d.Discount_ID == discountId);
                         if (discount != null)
                         {
-                            discount.Product_ID = productId;
-                            discount.Discount_Amount = float.Parse(discountAmount.Text);
-                            discount.Status = status.Text;
+                            discount.Product_ID = int.Parse(DdlProductName.SelectedValue);
+                            discount.Discount_Amount = double.Parse(discountAmount.Text);
+
+                            if (parsedEndDate < DateTime.Today && status.SelectedValue == "Active")
+                            {
+                                ShowSweetAlert("Error", "Cannot set the discount to active as the end date is already over.", "error");
+                                return; // Abort the update if the end date is past and trying to set to Active
+                            }
+
+                            discount.Status = status.SelectedValue;
                             discount.Start_Date = DateTime.Parse(startDate.Text);
-                            discount.End_Date = DateTime.Parse(endDate.Text);
+                            discount.End_Date = parsedEndDate;
 
                             db.SaveChanges();
-                            try
-                            {
-                        Response.Redirect("DiscountHome.aspx");
-                            }catch (Exception ex)
-                            {
-                                ScriptManager.RegisterStartupScript(this, GetType(), "redirectError", "alert('Failed to redirect to the main page. Please try again.');", true);
-                            }
-                           
+                            ShowSuccessAlert("Success", "Discount updated successfully!", "DiscountHome.aspx");
                         }
                     }
                 }
                 catch (Exception ex)
                 {
-                    ScriptManager.RegisterStartupScript(this, GetType(), "updateError", "alert('Error updating discount. Please check your inputs.');", true);
+                    ShowSweetAlert("Error", "Error updating discount. Please check your inputs.", "error");
                 }
             }
         }
-
-
-      
+        protected void CustomValidatorDate_ServerValidate(object source, ServerValidateEventArgs args)
+        {
+            DateTime startInput;
+            DateTime endInput;
+            bool startDateParsed = DateTime.TryParse(startDate.Text, out startInput);
+            bool endDateParsed = DateTime.TryParse(endDate.Text, out endInput);
+            try
+            {
+                // Check if both dates are valid and start is before end
+                if (startDateParsed && endDateParsed && startInput <= endInput)
+                {
+                    args.IsValid = true;
+                }
+                else
+                {
+                    args.IsValid = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                args.IsValid = false;
+                ShowSweetAlert("Error", "Invalid date format.", "error");
+            }
+        }
 
         private int? getReturnProductID(int discountID)
         {
@@ -104,20 +119,15 @@ namespace Uniqlo.AdminPages
                 using (var db = new DiscountDbContext())
                 {
                     var discount = db.Discount.FirstOrDefault(d => d.Discount_ID == discountID);
-
-
                     if (discount != null)
                     {
-
                         return discount.Product_ID;
-
                     }
                 }
             }
             catch (Exception ex)
             {
-                ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", "alert('Error getting Product ID. Please try again.');", true);
-
+                ShowSweetAlert("Error", "Error getting Product ID. Please try again.", "error");
             }
             return null;
         }
@@ -156,40 +166,14 @@ namespace Uniqlo.AdminPages
             }
             catch (Exception ex)
             {
-                // Log the error or show it somewhere on your page
-                ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", "alert('Error loading product names. Please try again.');", true);
+                ShowSweetAlert("Error", "Error loading product names. Please try again.", "error");
             }
         }
 
-
-        protected void CustomValidatorDate_ServerValidate(object source, ServerValidateEventArgs args)
-        {
-            DateTime startInput;
-            DateTime endInput;
-            bool startDateParsed = DateTime.TryParse(startDate.Text, out startInput);
-            bool endDateParsed = DateTime.TryParse(endDate.Text, out endInput);
-            try
-            {
-                // Check if both dates are valid and start is before end
-                if (startDateParsed && endDateParsed && startInput <= endInput)
-            {
-                args.IsValid = true;
-            }
-            else
-            {
-                args.IsValid = false;
-            }
-            }
-            catch (Exception ex)
-            {
-                args.IsValid = false;
-                ScriptManager.RegisterStartupScript(this, GetType(), "validationError", "alert('Invalid date format.');", true);
-            }
-        }
+       
 
         protected void ValidateProductName_ServerValidate(object source, ServerValidateEventArgs args)
         {
-            
             if (DdlProductName.SelectedValue != "")
             {
                 args.IsValid = true;
@@ -200,8 +184,6 @@ namespace Uniqlo.AdminPages
             }
         }
 
-
-
         protected void cancelBtn_Click(object sender, EventArgs e)
         {
             try
@@ -210,11 +192,22 @@ namespace Uniqlo.AdminPages
             }
             catch (Exception ex)
             {
-                // Log error details if logging is set up or use ScriptManager to alert the user.
-                ScriptManager.RegisterStartupScript(this, GetType(), "redirectError", "alert('Failed to redirect to the main page. Please try again.');", true);
+                ShowSweetAlert("Error", "Failed to redirect to the main page. Please try again.", "error");
             }
         }
 
-       
+        private void ShowSweetAlert(string title, string message, string icon, string redirectUrl = "")
+        {
+            string script = $"Swal.fire({{ title: '{title}', html: '{message}', icon: '{icon}' }}).then((result) => {{ if (result.isConfirmed && '{redirectUrl}' !== '') {{ window.location.href = '{redirectUrl}'; }} }});";
+            ScriptManager.RegisterStartupScript(this, GetType(), "ShowSweetAlert", script, true);
+        }
+
+        // Use this method for success messages
+        private void ShowSuccessAlert(string title, string message, string redirectUrl = "")
+        {
+            string script = $"Swal.fire({{ title: '{title}', text: '{message}', icon: 'success', confirmButtonText: 'OK' }}).then(() => {{ window.location.href = '{redirectUrl}'; }});";
+            ScriptManager.RegisterStartupScript(this, GetType(), "ShowSuccessAlert", script, true);
+        }
+
     }
 }

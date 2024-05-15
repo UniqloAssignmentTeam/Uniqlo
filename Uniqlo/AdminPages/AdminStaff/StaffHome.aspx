@@ -7,6 +7,13 @@
                 color: #6F6F6F;
 text-decoration: none;
            }
+                       .no-discount-label {
+    color: red;
+    font-size: 16px;
+    margin-top: 20px;
+    display: block;
+    text-align: center;
+}
        </style>
 
     <link href="../../css/Admin/adminStaff.css" rel="stylesheet" />
@@ -123,9 +130,10 @@ text-decoration: none;
                         </ItemTemplate>
                         <FooterTemplate>
                             </table>
+                              
                         </FooterTemplate>
                     </asp:Repeater>
-
+                    <asp:Label ID="lblNoStaffFound" runat="server" Text="No Staff Found" Visible="false" CssClass="no-discount-label"></asp:Label>
                 </div>
        
 

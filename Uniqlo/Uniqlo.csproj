@@ -483,6 +483,8 @@
     <Compile Include="Discount.cs">
       <DependentUpon>UniqloAdo.tt</DependentUpon>
     </Compile>
+    <Compile Include="EncryptionHelper.cs" />
+    <Compile Include="EncryptionKeyGenerator.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

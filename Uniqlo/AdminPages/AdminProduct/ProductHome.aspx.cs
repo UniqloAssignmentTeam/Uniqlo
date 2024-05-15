@@ -13,7 +13,6 @@ using System.IO;
 using System.Text;
 using static Uniqlo.Staff;
 
-
 namespace Uniqlo.AdminPages.AdminProduct
 {
     public partial class ProductHome : System.Web.UI.Page
@@ -34,14 +33,13 @@ namespace Uniqlo.AdminPages.AdminProduct
             }
         }
 
-
         protected void addProdBtn_Click(object sender, EventArgs e)
         {
             Response.Redirect("AddProduct.aspx");
         }
 
 
-        protected void btnRemoveProduct_Click(object sender, CommandEventArgs e)
+        protected void btnRemoveProduct_Click(object sender, EventArgs e)
         {
             int prodId = Convert.ToInt32(e.CommandArgument);
             ScriptManager.RegisterStartupScript(this, GetType(), "confirmDeleteScript", $"confirmDelete('DeleteConfirmed', '{prodId}');", true);
@@ -74,17 +72,9 @@ namespace Uniqlo.AdminPages.AdminProduct
                             quantity.Qty = 0;
                         }
 
-                        db.SaveChanges();
-                        transaction.Commit();
-                        ScriptManager.RegisterStartupScript(this, GetType(), "deleteSuccess",
-                            @"Swal.fire({
-                        title: 'Deleted!',
-                        text: 'The item has been deleted.',
-                        icon: 'success',
-                        confirmButtonText: 'Ok'
-                    }).then((result) => {
-                        if (result.value) {
-                            window.location.href = '" + Request.RawUrl + "';}}); ", true);
+                            db.SaveChanges();
+                            Response.Redirect(Request.RawUrl);
+                        }
                     }
                     else
                     {
@@ -105,9 +95,6 @@ namespace Uniqlo.AdminPages.AdminProduct
 
 
 
-
-
-
         private void BindRepeater()
         {
             using (var db = new ProductDbContext())
@@ -118,7 +105,6 @@ namespace Uniqlo.AdminPages.AdminProduct
                 prodRepeater.DataBind();
             }
         }
-
 
         protected void btnExport_Click(object sender, EventArgs e)
         {
@@ -134,7 +120,6 @@ namespace Uniqlo.AdminPages.AdminProduct
         {
             FilterProducts();
         }
-
 
         private void FilterProducts()
         {
@@ -162,40 +147,34 @@ namespace Uniqlo.AdminPages.AdminProduct
                     var productList = productQuery.ToList();
                     prodRepeater.DataSource = productList;
                     prodRepeater.DataBind();
+                    noDiscount.Visible = productList.Count == 0;
                 }
             }
             catch (Exception ex)
             {
-
-                // Optionally display error message on the page
                 ScriptManager.RegisterStartupScript(this, GetType(), "errorAlert", "alert('An error occurred when Filtering product.');", true);
             }
-
         }
 
         private void ExportProductsToExcel()
         {
-            string connectionString = Global.CS; // Ensure this is correctly defined
+            string connectionString = Global.CS;
             try
             {
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
-                    conn.Open();  // Ensure the connection is opened before executing the command
+                    conn.Open();
 
-                    // Start building the base query
                     StringBuilder query = new StringBuilder(@"SELECT p.Product_ID, p.Product_Name, p.Description, p.Price, c.Name, c.Gender 
-                                                  FROM Product p 
-                                                  JOIN Category c ON p.Category_ID = c.Category_ID 
-                                                  WHERE p.IsDeleted = 0");
+                                                              FROM Product p 
+                                                              JOIN Category c ON p.Category_ID = c.Category_ID 
+                                                              WHERE p.IsDeleted = 0");
 
-                    // Initialize a SqlCommand with an empty query string
                     using (SqlCommand cmd = new SqlCommand("", conn))
                     {
-                        // Retrieve the selected values from the dropdowns
                         string selectedCategory = ddlCategory.SelectedValue;
                         string selectedGender = ddlGender.SelectedValue;
 
-                        // Check if there are any conditions to add based on dropdown selection
                         if (!string.IsNullOrEmpty(selectedCategory) && selectedCategory != "All Categories")
                         {
                             query.Append(" AND c.Name = @Category");
@@ -207,7 +186,6 @@ namespace Uniqlo.AdminPages.AdminProduct
                             cmd.Parameters.AddWithValue("@Gender", selectedGender);
                         }
 
-                        // Set the SqlCommand's CommandText to the built query
                         cmd.CommandText = query.ToString();
 
                         using (SqlDataAdapter da = new SqlDataAdapter(cmd))
@@ -230,11 +208,9 @@ namespace Uniqlo.AdminPages.AdminProduct
                         }
                     }
                 }
-
-            } catch (Exception ex)
+            }
+            catch (Exception ex)
             {
-
-                // Optionally display error message on the page
                 ScriptManager.RegisterStartupScript(this, GetType(), "errorAlert", "alert('An error occurred when Export product.');", true);
             }
         }
@@ -243,29 +219,25 @@ namespace Uniqlo.AdminPages.AdminProduct
         {
             try
             {
-
-
                 string searchText = searchBox.Text;
-                var results = SearchDatabase(searchText);  // Call the method that performs the search
+                var results = SearchDatabase(searchText);
                 prodRepeater.DataSource = results;
                 prodRepeater.DataBind();
+                noDiscount.Visible = results.Count == 0;
             }
             catch (Exception ex)
             {
                 ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('An error occurred while searching the product name.');", true);
-
             }
         }
 
         public List<Product> SearchDatabase(string searchText)
         {
-
             using (var db = new ProductDbContext())
             {
                 var productList = db.Product.Include(p => p.Category).Where(p => p.IsDeleted == false && p.Product_Name.Contains(searchText)).ToList();
                 return productList;
             }
         }
-
     }
 }

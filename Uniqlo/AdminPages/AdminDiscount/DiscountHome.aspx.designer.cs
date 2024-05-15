@@ -78,22 +78,13 @@ namespace Uniqlo.AdminPages.AdminDiscount
         protected global::System.Web.UI.WebControls.Repeater discountRepeater;
 
         /// <summary>
-        /// cancelBtn control.
+        /// noDiscount control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button cancelBtn;
-
-        /// <summary>
-        /// btnRemoveDiscount control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnRemoveDiscount;
+        protected global::System.Web.UI.WebControls.Label noDiscount;
 
         /// <summary>
         /// hiddenDiscountId control.
@@ -103,5 +94,14 @@ namespace Uniqlo.AdminPages.AdminDiscount
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField hiddenDiscountId;
+
+        /// <summary>
+        /// hiddenDeleteButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button hiddenDeleteButton;
     }
 }
