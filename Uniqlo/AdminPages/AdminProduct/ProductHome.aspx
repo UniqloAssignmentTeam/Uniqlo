@@ -212,7 +212,6 @@
         <div style="margin-bottom: 80px;"></div>
 
         <asp:HiddenField ID="hiddenProductId" runat="server" />
-        <asp:Button ID="hiddenDeleteButton" runat="server" Text="Delete" OnClick="btnRemoveProduct_Click" Style="display:none;" />
 
 
     </div>
