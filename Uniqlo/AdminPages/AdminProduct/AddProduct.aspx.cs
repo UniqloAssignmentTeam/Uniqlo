@@ -54,7 +54,7 @@ namespace Uniqlo.AdminPages
             {
                 string productName = txtProductName.Text;
                 string productDescription = txtDescription.Text;
-                double productPrice = Double.Parse(txtPrice.Text);
+                double productPrice = double.Parse(txtPrice.Text);
                 string category = ddlCategory.SelectedValue;
                 string gender = ddlGender.SelectedValue;
                 string jsonData = HiddenFieldData.Value;

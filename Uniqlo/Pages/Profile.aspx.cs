@@ -16,7 +16,6 @@ namespace Uniqlo.Pages
         {
             if (!IsPostBack)
             {
-                Session["Customer_ID"] = "2";
                 string sessionValue = Session["Customer_ID"] as string;
 
                 if (int.TryParse(sessionValue, out int custId))
