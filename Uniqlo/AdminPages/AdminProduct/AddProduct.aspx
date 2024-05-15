@@ -3,6 +3,11 @@
     
         <header>
             <link href="../../css/Admin/addProduct.css" rel="stylesheet" />
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+            <script src="sweetalert2.all.min.js"></script>
+            <script src="sweetalert2.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
+            <link rel="stylesheet" href="sweetalert2.min.css">
             <style>
                 .cancel-button{
                     padding:20px 100px 20px 60px;
@@ -212,17 +217,50 @@
 
             // Function to delete a color table
             function deleteColorTable(button) {
-                var colorTableWrapper = button.closest('.color-table-wrapper');
-                if (colorTableWrapper) {
-                    colorTableWrapper.remove(); 
-                    updateHiddenField();
-                    alert("Delete successful!");
+                const swalWithBootstrapButtons = Swal.mixin({
+                    customClass: {
+                        confirmButton: "btn btn-success",
+                        cancelButton: "btn btn-danger"
+                    },
+                    buttonsStyling: true
+                });
 
-                    var jsonStr = document.getElementById('<%= HiddenFieldData.ClientID %>').value;
-                    if (jsonStr === '[]' || jsonStr === '') {
-                        document.getElementById('<%= cvHiddenFieldData.ClientID %>').style.display = 'block';
+                swalWithBootstrapButtons.fire({
+                    title: "Are you sure?",
+                    text: "You won't be able to revert this!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonText: "Yes, delete it!",
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    cancelButtonText: "No, cancel!",
+                    reverseButtons: true
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        var colorTableWrapper = button.closest('.color-table-wrapper');
+
+                        if (colorTableWrapper) {
+                            colorTableWrapper.remove();
+                            updateHiddenField();
+
+                            var jsonStr = document.getElementById('<%= HiddenFieldData.ClientID %>').value;
+                            if (jsonStr === '[]' || jsonStr === '') {
+                                document.getElementById('<%= cvHiddenFieldData.ClientID %>').style.display = 'block';
+                            }
+                            swalWithBootstrapButtons.fire({
+                                title: "Deleted!",
+                                text: "The color has been deleted.",
+                                icon: "success"
+                            });
+                        }
+                    } else if (result.dismiss === Swal.DismissReason.cancel) {
+                        swalWithBootstrapButtons.fire({
+                            title: "Cancelled",
+                            text: "The color was not deleted",
+                            icon: "error"
+                        });
                     }
-                }
+                });
             }
 
 
@@ -238,7 +276,12 @@
                     colorTablesContainer.appendChild(newColorTable);
                     newColorInput.value = '';
                 } else {
-                    alert('Please enter a color.');
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Invalid Input',
+                        text: 'Please enter a color.'
+                    });
+                    return;
                 }
                 // End the click event handler with a closing bracket
             });
@@ -269,11 +312,20 @@
                     var sizeXL = table.querySelector('input[id^="sizeXL"]').value;
                     var fileInput = table.querySelector('input[type="file"]');
 
+                    var sizeSValid = sizeS && parseInt(sizeS) > 0;
+                    var sizeMValid = sizeM && parseInt(sizeM) > 0;
+                    var sizeLValid = sizeL && parseInt(sizeL) > 0;
+                    var sizeXLValid = sizeXL && parseInt(sizeXL) > 0;
 
-                    if (!sizeS || !sizeM || !sizeL || !sizeXL || parseInt(sizeS) <= 0 || parseInt(sizeM) <= 0 || parseInt(sizeL) <= 0 || parseInt(sizeXL) <= 0 || fileInput.files.length < 0) {
-                        alert('Please enter a valid size greater than 0 for all sizes and an image to continue.');
-                        return; 
+                    if (!(sizeSValid || sizeMValid || sizeLValid || sizeXLValid)) {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Invalid Input',
+                            text: 'Please enter a valid size greater than 0 for at least one size to continue.'
+                        });
+                        return;
                     }
+
 
                     if (fileInput.files.length > 0) {
                         imageFound = true; 
@@ -293,7 +345,11 @@
                                 var jsonStr = JSON.stringify(data);
                                 document.getElementById('<%= HiddenFieldData.ClientID %>').value = jsonStr;
                                 console.log("Updated Hidden Field Data:", jsonStr);
-                                alert("Update successful!"); 
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: 'Update Successful',
+                                    text: 'The Colors and Sizes are updated successfully!'
+                                });
                                 document.getElementById('<%= cvHiddenFieldData.ClientID %>').style.display = 'none';
                             }
                         };
@@ -312,8 +368,11 @@
             }
 
 
+
         </script>
 
-        <script src="../../Javascript/productAdminDDL.js"></script>
-            </footer>
+            
+            
+            <script src="../../Javascript/productAdminDDL.js"></script>
+   </footer>
 </asp:Content>

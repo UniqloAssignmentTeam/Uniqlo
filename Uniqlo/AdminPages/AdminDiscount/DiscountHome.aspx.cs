@@ -19,11 +19,13 @@ namespace Uniqlo.AdminPages.AdminDiscount
         string cs = Global.CS;
         protected void Page_Load(object sender, EventArgs e)
         {
+
             if (!IsPostBack)
             {
                 BindRepeater();
                
             }
+          
         }
 
         protected void addDiscountBtn_Click(object sender, EventArgs e)
@@ -70,9 +72,10 @@ namespace Uniqlo.AdminPages.AdminDiscount
             }
             catch (Exception ex)
             {
-                AlertError("An error occurred while displaying the discount.");
+                ScriptManager.RegisterStartupScript(this, GetType(), "displayError", "showAlert('error', 'Error!', 'An error occurred while displaying the discount.');", true);
             }
         }
+
 
         private void HandleDiscountUpdate(object sender)
         {
@@ -93,7 +96,7 @@ namespace Uniqlo.AdminPages.AdminDiscount
 
         private void RemoveDiscount()
         {
-            int discountId = int.Parse(hiddenDiscountId.Value);
+            int discountId = Convert.ToInt32(hiddenDiscountId.Value);
             using (var db = new DiscountDbContext())
             {
                 var discount = db.Discount.Find(discountId);
@@ -101,7 +104,7 @@ namespace Uniqlo.AdminPages.AdminDiscount
                 {
                     db.Discount.Remove(discount);
                     db.SaveChanges();
-                    RedirectTo("DiscountHome.aspx");
+                    ScriptManager.RegisterStartupScript(this, GetType(), "deleteSuccess", "showDeleteSuccess();", true);
                 }
                 else
                 {
@@ -110,7 +113,6 @@ namespace Uniqlo.AdminPages.AdminDiscount
             }
         }
 
-      
 
         private void SearchDiscounts()
         {
@@ -234,13 +236,15 @@ namespace Uniqlo.AdminPages.AdminDiscount
                 AlertError("Failed to redirect.");
             }
         }
+      
         private void AlertError(string message)
         {
-            ScriptManager.RegisterStartupScript(this, GetType(), "error", $"alert('{message}');", true);
+            ScriptManager.RegisterStartupScript(this, GetType(), "alertError", "showAlert('error', 'Error!', '" + message + "');", true);
         }
 
+
     }
-    }
+}
 
 
 

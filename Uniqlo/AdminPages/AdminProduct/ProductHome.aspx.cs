@@ -33,6 +33,7 @@ namespace Uniqlo.AdminPages.AdminProduct
             Response.Redirect("AddProduct.aspx");
         }
 
+
         protected void btnRemoveProduct_Click(object sender, EventArgs e)
         {
             int prodId = int.Parse(hiddenProductId.Value);
@@ -41,33 +42,36 @@ namespace Uniqlo.AdminPages.AdminProduct
             {
                 using (var db = new ProductDbContext())
                 {
-                    var product = db.Product.Find(prodId);
-                    if (product != null)
+                    using (var transaction = db.Database.BeginTransaction())
                     {
-                        product.IsDeleted = Convert.ToBoolean(1);
-
-
-                        var discounts = db.Discount.Where(d => d.Product_ID == prodId).ToList();
-                        foreach (var discount in discounts)
+                        var product = db.Product.Find(prodId);
+                        if (product != null)
                         {
-                            discount.Status = "Inactive";
+                            product.IsDeleted = true;
+
+                            var discounts = db.Discount.Where(d => d.Product_ID == prodId).ToList();
+                            foreach (var discount in discounts)
+                            {
+                                discount.Status = "Inactive";
+                            }
+
+                            var quantities = db.Quantity.Where(q => q.Product_ID == prodId).ToList();
+                            foreach (var quantity in quantities)
+                            {
+                                quantity.Qty = 0;
+                            }
+
+                            db.SaveChanges();
+                            Response.Redirect(Request.RawUrl);
                         }
-
-                        db.SaveChanges();
-
-                        // Redirect to refresh the page and reflect changes
-                        Response.Redirect(Request.RawUrl);
                     }
                 }
-            } catch (Exception ex)
-            {
-                    
-                    // Optionally display error message on the page
-                    ScriptManager.RegisterStartupScript(this, GetType(), "errorAlert", "alert('An error occurred when retrieving product.');", true);
             }
-
+            catch (Exception ex)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "errorAlert", "alert('Error: " + ex.Message.Replace("'", "\\'") + "');", true);
+            }
         }
-
 
 
 
