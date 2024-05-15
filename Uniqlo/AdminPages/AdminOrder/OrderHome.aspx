@@ -78,7 +78,13 @@
             width: 80%; /* Could be more or less, depending on screen size */
             height: 400px;
         }
-
+                    .no-discount-label {
+    color: red;
+    font-size: 16px;
+    margin-top: 20px;
+    display: block;
+    text-align: center;
+}
 
             .confirmation-modal-content h1 {
                 margin-top: 60px;
@@ -156,7 +162,7 @@
                             <tr class="row">
                                 <td class="col productid">Order ID</td>
                                 <td class="col name">Customer Name</td>
-                                <td class="col price">Total Item</td>
+                                <td class="col price">Total Item</td>s
                                 <td class="col gender">Total Amount</td>
                                 <td class="col category">Date</td>
                                 <td class="col wear">Status</td>
@@ -190,7 +196,7 @@
                     </FooterTemplate>
 
                 </asp:Repeater>
-
+                  <asp:Label ID="noDiscount" runat="server" Text="No Orders Available" CssClass="no-discount-label" Visible="false"></asp:Label>
             </ContentTemplate>
             <Triggers>
                 <asp:AsyncPostBackTrigger ControlID="ddlStatus" EventName="SelectedIndexChanged" />
