@@ -85,7 +85,35 @@
                     window.location.href = 'DiscountHome.aspx'; // Redirect to the desired page after success message
                 });
             }
+            document.addEventListener('DOMContentLoaded', function () {
+                var endDateInput = document.getElementById('<%= endDate.ClientID %>');
+                var statusSelect = document.getElementById('<%= status.ClientID %>');
 
+                function updateStatusOptions() {
+                    var endDate = new Date(endDateInput.value);
+                    var today = new Date();
+                    today.setHours(0, 0, 0, 0); // Normalize today's date
+
+                    // Disable selecting 'Active' if the end date is in the past
+                    if (endDate < today) {
+                        if (statusSelect.value === 'Active') {
+                            statusSelect.value = 'Inactive';
+                        }
+                        Array.from(statusSelect.options).forEach(function (option) {
+                            if (option.value === 'Active') {
+                                option.disabled = true;
+                            }
+                        });
+                    } else {
+                        Array.from(statusSelect.options).forEach(function (option) {
+                            option.disabled = false;
+                        });
+                    }
+                }
+
+                endDateInput.addEventListener('change', updateStatusOptions);
+                updateStatusOptions(); // Call on page load to set initial state
+            });
         </script>
     </footer>
 </asp:Content>
