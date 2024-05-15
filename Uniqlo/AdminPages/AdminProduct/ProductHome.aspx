@@ -6,6 +6,11 @@
         <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+        <script src="sweetalert2.all.min.js"></script>
+        <script src="sweetalert2.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
+        <link rel="stylesheet" href="sweetalert2.min.css">
 
         <style>
             .confirmationClearFix {
@@ -182,6 +187,9 @@
                                             <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl='<%# "UpdateProduct.aspx?ProdID=" + Eval("Product_ID") %>' Text="Update" Style="text-decoration: none; color: #6F6F6F"></asp:HyperLink>
                                         </div>
                                         <div onclick="showDeleteModal(<%# Eval("Product_ID") %>);">Delete</div>
+                                        <div>
+                                             <asp:LinkButton ID="btnRemoveProduct" runat="server" Text="Delete" CommandArgument='<%# Eval("Product_ID") %>' OnCommand="btnRemoveProduct_Click" Style="text-decoration: none; color: #6F6F6F"/>
+                                        </div>
                                     </div>
                                 </td>
                             </tr>
@@ -204,40 +212,12 @@
         <div style="margin-bottom: 80px;"></div>
 
         <asp:HiddenField ID="hiddenProductId" runat="server" />
-        <asp:Button ID="hiddenDeleteButton" runat="server" Text="Delete" OnClick="btnRemoveProduct_Click" Style="display:none;" />
+
+
     </div>
 
     <footer>
         <script type="text/javascript">
-            function showDeleteModal(prodID) {
-                Swal.fire({
-                    title: 'Are you sure?',
-                    html: "<strong>You are about to delete the product with ID:</strong> <span style='color: red;'>" + prodID + "</span>.<br>This action cannot be undone!",
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#3085d6',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: 'Yes, delete it!'
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        document.getElementById('<%= hiddenProductId.ClientID %>').value = prodID;
-                        __doPostBack('<%= hiddenDeleteButton.UniqueID %>', '');
-                    }
-                });
-            }
-
-            function showDeleteSuccess() {
-                Swal.fire({
-                    title: 'Deleted!',
-                    text: 'The product has been successfully deleted.',
-                    icon: 'success',
-                    confirmButtonText: 'Ok'
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        window.location.href = window.location.href; // This will reload the page
-                    }
-                });
-            }
 
             function showAlert(type, title, message) {
                 Swal.fire({
@@ -253,6 +233,30 @@
             document.getElementById('<%= searchBox.ClientID %>').onkeyup = function () {
                 __doPostBack('<%= searchBox.UniqueID %>', '');
             };
+
+            function confirmDelete(deleteFunctionName, deleteValue) {
+                const swalWithBootstrapButtons = Swal.mixin({
+                    customClass: {
+                        confirmButton: 'btn btn-success',
+                        cancelButton: 'btn btn-danger'
+                    },
+                    buttonsStyling: true
+                });
+
+                swalWithBootstrapButtons.fire({
+                    title: 'Are you sure?',
+                    text: "You won't be able to revert this!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: 'Yes, delete it!',
+                    cancelButtonText: 'No, cancel!',
+                    reverseButtons: true
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        __doPostBack(deleteFunctionName, deleteValue);
+                    }
+                });
+            }
         </script>
         <script src="../../Javascript/Pagination.js"></script>
         <script src="../../Javascript/productBtnEclipse.js"></script>
