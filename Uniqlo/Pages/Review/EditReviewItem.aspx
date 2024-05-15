@@ -22,7 +22,8 @@
                     </div>
                 </div>
                 <div class="commentRatingSectionContainer">
-                    <asp:Button ID="submitReview" runat="server" Text="Update" CssClass="commentRatingSectionButton secModalBtn1 thirdModalButton" OnClick="updateRating_Click" UseSubmitBehavior="true" OnClientClick="return validateAndSubmit();" />
+                    <asp:Button ID="btnUpdate" runat="server" Text="Update" CssClass="commentRatingSectionButton secModalBtn1 thirdModalButton" OnClick="btnUpdate_Click" UseSubmitBehavior="true" OnClientClick="return validateAndSubmit();" />
+
                 </div>
             </div>
         </div>

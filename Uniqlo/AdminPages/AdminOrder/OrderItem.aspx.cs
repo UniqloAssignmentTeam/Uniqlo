@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -19,17 +17,12 @@ namespace Uniqlo.AdminPages
                 BindOrderListDataList(orderID);
                 BindOrderSummaryRepeater(orderID);
             }
-
-
         }
-
-
 
         private void BindOrderListDataList(int orderID)
         {
             using (var db = new OrderDbContext())
             {
-
                 var orderDetails = db.Order
                     .Where(o => o.Order_ID == orderID)
                     .SelectMany(o => o.OrderLists, (o, ol) => new {
@@ -43,7 +36,6 @@ namespace Uniqlo.AdminPages
                         Image_ID = ol.Quantity.Image_ID,
                         reviewBtn = db.Review.Any(r => r.OrderList_ID == ol.OrderList_ID),
                         OrderList_ID = ol.OrderList_ID,
-
                     }).ToList();
 
                 DataList1.DataSource = orderDetails;
@@ -67,7 +59,6 @@ namespace Uniqlo.AdminPages
                      Total_Item = o.OrderLists.Where(ol => o.Order_ID == ol.Order_ID).Sum(ol => ol.Qty),
                      Shipping_Amount = o.Payments.FirstOrDefault().Shipping_Amount,
                      Total_Payment = o.Payments.FirstOrDefault().Total_Payment
-
                  }).ToList();
 
                 orderSummaryFormView.DataSource = orderDetails;
@@ -77,10 +68,8 @@ namespace Uniqlo.AdminPages
 
         protected void submitForm(object sender, EventArgs e)
         {
-            // Assuming your FormView's DataKeyNames property is set to "Order_ID"
             int orderID = (int)orderSummaryFormView.DataKey.Value;
 
-            // Finding the DropDownList from within the FormView
             DropDownList ddlPaymentStatus = orderSummaryFormView.FindControl("paymentStatuslbl") as DropDownList;
 
             if (ddlPaymentStatus != null)
@@ -92,31 +81,21 @@ namespace Uniqlo.AdminPages
                     var payment = db.Payment.FirstOrDefault(p => p.Order_ID == orderID);
                     if (payment != null)
                     {
-                        // Update the Payment Status
                         payment.Payment_Status = newPaymentStatus;
-
-                        // Save changes to the database
                         db.SaveChanges();
 
-                        // Optionally, add a notification or refresh the page
-                        Response.Redirect(Request.RawUrl); // Refresh the page to see the changes
+                        ScriptManager.RegisterStartupScript(this, GetType(), "showUpdateSuccess", "showUpdateSuccess();", true);
                     }
                     else
                     {
-                        // Handle the case where no payment was found
                         System.Diagnostics.Debug.WriteLine("No payment record found for Order ID: " + orderID);
-                        // Optionally add error handling or user notification here
                     }
                 }
             }
             else
             {
-                // Handle the case where the DropDownList was not found
                 System.Diagnostics.Debug.WriteLine("DropDownList not found in the FormView");
             }
         }
-
-
-
     }
 }

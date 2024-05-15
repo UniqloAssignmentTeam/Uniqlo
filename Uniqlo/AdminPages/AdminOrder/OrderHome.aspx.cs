@@ -1,19 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data.Entity;
-using OfficeOpenXml;
 using System.Data.SqlClient;
 using System.Data;
 using System.IO;
 using System.Text;
-using OfficeOpenXml.Style;
-using static Uniqlo.Order;
-using System.Text.RegularExpressions;
-using static Uniqlo.Staff;
+using System.Web;
 
 namespace Uniqlo.AdminPages.AdminOrder
 {
@@ -28,7 +22,6 @@ namespace Uniqlo.AdminPages.AdminOrder
             }
         }
 
-
         private void BindRepeater()
         {
             try
@@ -38,70 +31,6 @@ namespace Uniqlo.AdminPages.AdminOrder
                     string selectedStatus = ddlStatus.SelectedValue;
                     bool showAll = string.IsNullOrEmpty(selectedStatus);
 
-                    // Start by including all necessary entities
-                    var orderQuery = db.Order
-                        .Where(o => !o.IsDeleted)
-                        .Include(o => o.Customer)
-                        .Include(o => o.OrderLists)
-                        .Include(o => o.Payments)
-                        .AsQueryable();
-
-
-                    // Apply filtering only when a specific status is selected
-                    orderQuery = orderQuery
-                        .Where(o => o.Payments.Any(p => p.Payment_Status == "Paid" || p.Payment_Status == "Unpaid"));
-
-
-                    // Projection is the same in both cases, do it after filtering
-                    var orders = orderQuery
-                        .Select(o => new
-                        {
-                            OrderId = o.Order_ID,
-                            CustomerName = o.Customer.Name,
-                            OrderListTotalItems = o.OrderLists.Sum(ol => ol.Qty),
-                            PaymentTotalAmount = o.Payments.Sum(p => p.Total_Payment),
-                            PaymentDate = o.Payments.Select(p => p.Payment_DateTime).FirstOrDefault(),
-                            PaymentStatus = o.Payments.Select(p => p.Payment_Status).FirstOrDefault()
-                        })
-                        .ToList(); // Execute the query
-
-                    orderRepeater.DataSource = orders;
-                    orderRepeater.DataBind();
-                    noDiscount.Visible = orders.Count == 0;
-                }
-
-            }
-            catch (Exception ex)
-            {
-                ScriptManager.RegisterStartupScript(this, GetType(), "errorAlert", $"alert('An error occurred when retrieving orders: {ex.Message}');", true);
-            }
-        }
-
-        
-
-
-        protected void btnExport_Click(object sender, EventArgs e)
-        {
-            ExportProductsToExcel();
-        }
-
-        protected void ddlStatus_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            FilterOrdersByPaymentStatus();
-        }
-
-
-        protected void FilterOrdersByPaymentStatus()
-        {
-            try
-            {
-                using (var db = new OrderDbContext())
-                {
-                    string selectedStatus = ddlStatus.SelectedValue;
-                    bool showAll = string.IsNullOrEmpty(selectedStatus);
-                   
-
-                    // Start by including all necessary entities
                     var orderQuery = db.Order
                         .Where(o => !o.IsDeleted)
                         .Include(o => o.Customer)
@@ -111,14 +40,10 @@ namespace Uniqlo.AdminPages.AdminOrder
 
                     if (!showAll)
                     {
-                        // Apply filtering only when a specific status is selected
                         orderQuery = orderQuery
                             .Where(o => o.Payments.Any(p => p.Payment_Status == selectedStatus));
                     }
 
-
-
-                    // Projection is the same in both cases, do it after filtering
                     var orders = orderQuery
                         .Select(o => new
                         {
@@ -129,7 +54,7 @@ namespace Uniqlo.AdminPages.AdminOrder
                             PaymentDate = o.Payments.Select(p => p.Payment_DateTime).FirstOrDefault(),
                             PaymentStatus = o.Payments.Select(p => p.Payment_Status).FirstOrDefault()
                         })
-                        .ToList(); // Execute the query
+                        .ToList();
 
                     orderRepeater.DataSource = orders;
                     orderRepeater.DataBind();
@@ -138,83 +63,97 @@ namespace Uniqlo.AdminPages.AdminOrder
             }
             catch (Exception ex)
             {
-
-                // Optionally display error message on the page
-                ScriptManager.RegisterStartupScript(this, GetType(), "errorAlert", "alert('An error occurred when Filtering orders.');", true);
+                ScriptManager.RegisterStartupScript(this, GetType(), "errorAlert", $"alert('An error occurred when retrieving orders: {ex.Message}');", true);
             }
-
         }
 
-
-
-
-
-
-
-        private void ExportProductsToExcel()
+        protected void btnRemoveOrder_Click(object sender, EventArgs e)
         {
-            string connectionString = Global.CS; // Ensure this is correctly defined
+            int orderId = int.Parse(hiddenOrderId.Value);
+
             try
             {
-                using (SqlConnection conn = new SqlConnection(connectionString))
+                using (var db = new OrderDbContext())
                 {
-                    conn.Open();  // Ensure the connection is opened before executing the command
-
-                    // Start building the base query
-                    StringBuilder query = new StringBuilder(@"SELECT o.Order_ID, c.Name, SUM(ol.Qty) AS TotalQty, p.Total_Payment, p.Payment_DateTime, p.Payment_Status 
-                                                      FROM Orders o 
-                                                      JOIN Customer c ON o.Customer_ID = c.Customer_ID
-                                                      JOIN OrderList ol ON o.Order_ID = ol.Order_ID
-                                                      JOIN Payment p ON o.Order_ID = p.Order_ID");
-
-                    // Initialize a SqlCommand with an empty query string
-                    using (SqlCommand cmd = new SqlCommand("", conn))
+                    var order = db.Order.Find(orderId);
+                    if (order != null)
                     {
-                        // Retrieve the selected values from the dropdowns
-                        string selectedStatus = ddlStatus.SelectedValue;
+                        order.IsDeleted = true;
 
-                        // Check if there are any conditions to add based on dropdown selection
-                        if (!string.IsNullOrEmpty(selectedStatus) && selectedStatus != "All Status")
+                        var payment = db.Payment.FirstOrDefault(p => p.Order_ID == orderId);
+                        if (payment != null)
                         {
-                            query.Append(" WHERE p.Payment_Status = @PaymentStatus");
-                            cmd.Parameters.AddWithValue("@PaymentStatus", selectedStatus);
-                        }
-
-                        query.Append(" GROUP BY o.Order_ID, c.Name, p.Total_Payment, p.Payment_DateTime, p.Payment_Status;");
-
-
-                        // Set the SqlCommand's CommandText to the built query
-                        cmd.CommandText = query.ToString();
-
-                        using (SqlDataAdapter da = new SqlDataAdapter(cmd))
-                        {
-                            DataTable dt = new DataTable();
-                            da.Fill(dt);
-                            using (ExcelPackage pck = new ExcelPackage())
+                            var delivery = db.Delivery.Find(payment.Delivery_ID);
+                            if (delivery != null)
                             {
-                                ExcelWorksheet ws = pck.Workbook.Worksheets.Add("Orders");
-                                ws.Cells["A1"].LoadFromDataTable(dt, true, OfficeOpenXml.Table.TableStyles.Light1);
-                                var memoryStream = new MemoryStream();
-                                pck.SaveAs(memoryStream);
-                                memoryStream.Position = 0;
-
-                                HttpContext.Current.Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
-                                HttpContext.Current.Response.AddHeader("content-disposition", "attachment; filename=Orders.xlsx");
-                                HttpContext.Current.Response.BinaryWrite(memoryStream.ToArray());
-                                HttpContext.Current.Response.End();
+                                db.Delivery.Remove(delivery);
                             }
-                        }
-                    }
 
+                            db.Payment.Remove(payment);
+                        }
+
+                        db.SaveChanges();
+
+                        ScriptManager.RegisterStartupScript(this, GetType(), "showDeleteSuccess", "showDeleteSuccess();", true);
+                    }
                 }
             }
             catch (Exception ex)
             {
-
-                // Optionally display error message on the page
-                ScriptManager.RegisterStartupScript(this, GetType(), "errorAlert", "alert('An error occurred when Export Orders.');", true);
+                ScriptManager.RegisterStartupScript(this, GetType(), "errorAlert", $"alert('An error occurred: {ex.Message}');", true);
             }
         }
+
+        protected void ddlStatus_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            FilterOrdersByPaymentStatus();
+        }
+
+        protected void FilterOrdersByPaymentStatus()
+        {
+            try
+            {
+                using (var db = new OrderDbContext())
+                {
+                    string selectedStatus = ddlStatus.SelectedValue;
+                    bool showAll = string.IsNullOrEmpty(selectedStatus);
+
+                    var orderQuery = db.Order
+                        .Where(o => !o.IsDeleted)
+                        .Include(o => o.Customer)
+                        .Include(o => o.OrderLists)
+                        .Include(o => o.Payments)
+                        .AsQueryable();
+
+                    if (!showAll)
+                    {
+                        orderQuery = orderQuery
+                            .Where(o => o.Payments.Any(p => p.Payment_Status == selectedStatus));
+                    }
+
+                    var orders = orderQuery
+                        .Select(o => new
+                        {
+                            OrderId = o.Order_ID,
+                            CustomerName = o.Customer.Name,
+                            OrderListTotalItems = o.OrderLists.Sum(ol => ol.Qty),
+                            PaymentTotalAmount = o.Payments.Sum(p => p.Total_Payment),
+                            PaymentDate = o.Payments.Select(p => p.Payment_DateTime).FirstOrDefault(),
+                            PaymentStatus = o.Payments.Select(p => p.Payment_Status).FirstOrDefault()
+                        })
+                        .ToList();
+
+                    orderRepeater.DataSource = orders;
+                    orderRepeater.DataBind();
+                    noDiscount.Visible = orders.Count == 0;
+                }
+            }
+            catch (Exception ex)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "errorAlert", "alert('An error occurred when Filtering orders.');", true);
+            }
+        }
+
         private void SearchDatabase(string searchText = "")
         {
             try
@@ -244,11 +183,8 @@ namespace Uniqlo.AdminPages.AdminOrder
             }
             catch (Exception ex)
             {
-
-                // Optionally display error message on the page
                 ScriptManager.RegisterStartupScript(this, GetType(), "errorAlert", "alert('An error occurred when Searching Customer Name.');", true);
             }
-
         }
 
         protected void searchBox_TextChanged(object sender, EventArgs e)
@@ -256,51 +192,65 @@ namespace Uniqlo.AdminPages.AdminOrder
             SearchDatabase(searchBox.Text);
         }
 
-
-        protected void btnRemoveOrder_Click(object sender, EventArgs e)
+        protected void btnExport_Click(object sender, EventArgs e)
         {
-            int orderId = int.Parse(hiddenOrderId.Value);
+            ExportProductsToExcel();
+        }
 
+        private void ExportProductsToExcel()
+        {
+            string connectionString = Global.CS;
             try
             {
-                using (var db = new OrderDbContext())
+                using (SqlConnection conn = new SqlConnection(connectionString))
                 {
-                    // Retrieve the order and mark it as deleted.
-                    var order = db.Order.Find(orderId);
-                    if (order != null)
+                    conn.Open();
+
+                    StringBuilder query = new StringBuilder(@"SELECT o.Order_ID, c.Name, SUM(ol.Qty) AS TotalQty, p.Total_Payment, p.Payment_DateTime, p.Payment_Status 
+                                                      FROM Orders o 
+                                                      JOIN Customer c ON o.Customer_ID = c.Customer_ID
+                                                      JOIN OrderList ol ON o.Order_ID = ol.Order_ID
+                                                      JOIN Payment p ON o.Order_ID = p.Order_ID");
+
+                    using (SqlCommand cmd = new SqlCommand("", conn))
                     {
-                        order.IsDeleted = Convert.ToBoolean(1);
+                        string selectedStatus = ddlStatus.SelectedValue;
 
-                        // Find and remove the payment related to the order.
-                        var payment = db.Payment.FirstOrDefault(p => p.Order_ID == orderId);
-                        if (payment != null)
+                        if (!string.IsNullOrEmpty(selectedStatus) && selectedStatus != "All Status")
                         {
-                            // Optional: Remove associated Delivery, if needed.
-                            var delivery = db.Delivery.Find(payment.Delivery_ID);
-                            if (delivery != null)
-                            {
-                                db.Delivery.Remove(delivery);
-                            }
-
-                            db.Payment.Remove(payment);
+                            query.Append(" WHERE p.Payment_Status = @PaymentStatus");
+                            cmd.Parameters.AddWithValue("@PaymentStatus", selectedStatus);
                         }
 
-                        // Save changes to the database.
-                        db.SaveChanges();
+                        query.Append(" GROUP BY o.Order_ID, c.Name, p.Total_Payment, p.Payment_DateTime, p.Payment_Status;");
 
-                        // Redirect to the same page to see the changes.
-                        Response.Redirect(Request.RawUrl);
+                        cmd.CommandText = query.ToString();
+
+                        using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                        {
+                            DataTable dt = new DataTable();
+                            da.Fill(dt);
+                            using (OfficeOpenXml.ExcelPackage pck = new OfficeOpenXml.ExcelPackage())
+                            {
+                                OfficeOpenXml.ExcelWorksheet ws = pck.Workbook.Worksheets.Add("Orders");
+                                ws.Cells["A1"].LoadFromDataTable(dt, true, OfficeOpenXml.Table.TableStyles.Light1);
+                                var memoryStream = new MemoryStream();
+                                pck.SaveAs(memoryStream);
+                                memoryStream.Position = 0;
+
+                                HttpContext.Current.Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+                                HttpContext.Current.Response.AddHeader("content-disposition", "attachment; filename=Orders.xlsx");
+                                HttpContext.Current.Response.BinaryWrite(memoryStream.ToArray());
+                                HttpContext.Current.Response.End();
+                            }
+                        }
                     }
                 }
             }
             catch (Exception ex)
             {
-                // Optionally display an error message on the page
-                ScriptManager.RegisterStartupScript(this, GetType(), "errorAlert", "alert('An error occurred: " + ex.Message + "');", true);
+                ScriptManager.RegisterStartupScript(this, GetType(), "errorAlert", "alert('An error occurred when Export Orders.');", true);
             }
         }
-
-
-
     }
 }

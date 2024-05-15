@@ -79,7 +79,7 @@
                             <div class="eclipse-display" id="dropdownDisplay<%# Eval("Discount_ID") %>" style="border:none;"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></div>
                             <div class="eclipse-list" id="dropdownList<%# Eval("Discount_ID") %>">
                                 <div><asp:HyperLink ID="updateDiscount" runat="server" NavigateUrl='<%# "UpdateDiscount.aspx?DiscountID=" + Eval("Discount_ID") %>' Text="Update" CssClass="hyperlink"></asp:HyperLink></div>
-                                <div onclick="showDeleteModal(<%# Eval("Discount_ID") %>);">Delete</div>
+                                <div onclick="showDeleteSweet(<%# Eval("Discount_ID") %>);">Delete</div>
                             </div>
                         </td>
 
@@ -117,7 +117,7 @@
               __doPostBack('<%= searchBox.UniqueID %>', '');
     };
 
-    function showDeleteModal(discountId) {
+    function showDeleteSweet(discountId) {
         Swal.fire({
             title: 'Are you sure?',
             html: "<strong>You are about to delete the discount with ID:</strong> <span style='color: red;'>" + discountId + "</span>.<br>This action cannot be undone!",
