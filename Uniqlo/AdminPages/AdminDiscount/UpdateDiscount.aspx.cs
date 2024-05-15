@@ -58,15 +58,23 @@ namespace Uniqlo.AdminPages
                     using (var db = new DiscountDbContext())
                     {
                         int discountId = int.Parse(discountID.Text);
-                        int productId = int.Parse(DdlProductName.SelectedValue);
+                        DateTime parsedEndDate = DateTime.Parse(endDate.Text);
+
                         var discount = db.Discount.FirstOrDefault(d => d.Discount_ID == discountId);
                         if (discount != null)
                         {
-                            discount.Product_ID = productId;
+                            discount.Product_ID = int.Parse(DdlProductName.SelectedValue);
                             discount.Discount_Amount = float.Parse(discountAmount.Text);
-                            discount.Status = status.Text;
+
+                            if (parsedEndDate < DateTime.Today && status.SelectedValue == "Active")
+                            {
+                                ShowSweetAlert("Error", "Cannot set the discount to active as the end date is already over.", "error");
+                                return; // Abort the update if the end date is past and trying to set to Active
+                            }
+
+                            discount.Status = status.SelectedValue;
                             discount.Start_Date = DateTime.Parse(startDate.Text);
-                            discount.End_Date = DateTime.Parse(endDate.Text);
+                            discount.End_Date = parsedEndDate;
 
                             db.SaveChanges();
                             ShowSuccessAlert("Success", "Discount updated successfully!", "DiscountHome.aspx");
@@ -77,6 +85,30 @@ namespace Uniqlo.AdminPages
                 {
                     ShowSweetAlert("Error", "Error updating discount. Please check your inputs.", "error");
                 }
+            }
+        }
+        protected void CustomValidatorDate_ServerValidate(object source, ServerValidateEventArgs args)
+        {
+            DateTime startInput;
+            DateTime endInput;
+            bool startDateParsed = DateTime.TryParse(startDate.Text, out startInput);
+            bool endDateParsed = DateTime.TryParse(endDate.Text, out endInput);
+            try
+            {
+                // Check if both dates are valid and start is before end
+                if (startDateParsed && endDateParsed && startInput <= endInput)
+                {
+                    args.IsValid = true;
+                }
+                else
+                {
+                    args.IsValid = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                args.IsValid = false;
+                ShowSweetAlert("Error", "Invalid date format.", "error");
             }
         }
 
@@ -138,30 +170,7 @@ namespace Uniqlo.AdminPages
             }
         }
 
-        protected void CustomValidatorDate_ServerValidate(object source, ServerValidateEventArgs args)
-        {
-            DateTime startInput;
-            DateTime endInput;
-            bool startDateParsed = DateTime.TryParse(startDate.Text, out startInput);
-            bool endDateParsed = DateTime.TryParse(endDate.Text, out endInput);
-            try
-            {
-                // Check if both dates are valid and start is before end
-                if (startDateParsed && endDateParsed && startInput <= endInput)
-                {
-                    args.IsValid = true;
-                }
-                else
-                {
-                    args.IsValid = false;
-                }
-            }
-            catch (Exception ex)
-            {
-                args.IsValid = false;
-                ShowSweetAlert("Error", "Invalid date format.", "error");
-            }
-        }
+       
 
         protected void ValidateProductName_ServerValidate(object source, ServerValidateEventArgs args)
         {
