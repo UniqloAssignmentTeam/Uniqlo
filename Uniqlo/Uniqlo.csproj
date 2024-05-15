@@ -154,6 +154,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AdminPages\AdminCustomer\CustomerHome.aspx" />
     <Content Include="AdminPages\AdminDelivery\AddDelivery.aspx" />
     <Content Include="AdminPages\AdminDelivery\DeliveryHome.aspx" />
     <Content Include="AdminPages\AdminDiscount\addDiscount.aspx" />
@@ -324,6 +325,13 @@
     </Compile>
     <Compile Include="Admin.Master.designer.cs">
       <DependentUpon>Admin.Master</DependentUpon>
+    </Compile>
+    <Compile Include="AdminPages\AdminCustomer\CustomerHome.aspx.cs">
+      <DependentUpon>CustomerHome.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminPages\AdminCustomer\CustomerHome.aspx.designer.cs">
+      <DependentUpon>CustomerHome.aspx</DependentUpon>
     </Compile>
     <Compile Include="AdminPages\AdminDelivery\AddDelivery.aspx.cs">
       <DependentUpon>AddDelivery.aspx</DependentUpon>
@@ -766,7 +774,6 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="AdminPages\AdminCustomer\" />
     <Folder Include="Images\Categories\Men\Bottoms\" />
     <Folder Include="Images\Categories\Men\Tops\" />
   </ItemGroup>

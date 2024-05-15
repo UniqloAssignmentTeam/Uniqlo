@@ -11,7 +11,7 @@ namespace Uniqlo
 {
     using System;
     using System.Collections.Generic;
-    using System.Data.Entity;
+    
     public partial class Staff
     {
         public int Staff_ID { get; set; }
@@ -21,14 +21,5 @@ namespace Uniqlo
         public string Email { get; set; }
         public string Password { get; set; }
         public string Role { get; set; }
-
-        public class StaffDbContext : DbContext
-        {
-            public StaffDbContext() : base("name=UniqloEntities")
-            {
-            }
-
-            public DbSet<Staff> Staff { get; set; }
-        }
     }
 }

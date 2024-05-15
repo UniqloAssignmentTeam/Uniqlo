@@ -7,6 +7,12 @@
             <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet" />
         </header>
         <h1>Shopping Cart</h1>
+
+
+        <asp:ScriptManager ID="ScriptManager1" runat="server">  </asp:ScriptManager>
+
+        <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+             <ContentTemplate>
         <div class="cart-page-container">
             <div class="cart-items-container">
                 <asp:Repeater ID="rptCartItems" runat="server">
@@ -41,11 +47,15 @@
                 </asp:Repeater>
             </div>
 
+
+          
+            
             <!-- Cart Summary -->
             <div class="cart-summary">
                 <h3>Cart Summary</h3>
-                <p><b>Total Items: </b><span id="totalItemsLabel" class="total-items"></span></p>
-                <p><b>Subtotal: RM </b><span id="totalSubtotalLabel" class="total-subtotal"></span></p>
+                <p><b>Total Items: </b><asp:Label ID="lblTotalItems" runat="server" Text="Label" CssClass="total-items"></asp:Label></p>
+
+                <p><b>Subtotal: RM </b><asp:Label ID="lblSubtotal" runat="server" Text="" CssClass="total-subtotal"></asp:Label></p>
                 <div class="buttons-container">
                     <asp:Button ID="btnCheckout" runat="server" Text="Proceed to Checkout" CssClass="btn-checkout" OnClick="btnCheckout_Click" />
 
@@ -54,5 +64,16 @@
             </div>
         </div>
     </div>
-    <script src="../Javascript/cart.js"></script>
+                 
+           </ContentTemplate>
+
+             <Triggers>
+                <asp:AsyncPostBackTrigger ControlID="rptCartItems" EventName="ItemCommand" />
+              
+
+
+            </Triggers>
+            </asp:UpdatePanel>
+
+   
 </asp:Content>
