@@ -202,10 +202,11 @@
     <Content Include="AdminPages\AdminProduct\viewMoreProduct.aspx" />
     <Content Include="AdminPages\Logout.aspx" />
     <Content Include="AdminPages\Reports\DiscountReport.aspx" />
-    <Content Include="AdminPages\Reports\OrderReport.aspx" />
     <Content Include="AdminPages\Reports\ProductReport.aspx" />
     <Content Include="AdminPages\Report.aspx" />
+    <Content Include="AdminPages\Reports\ReportHome.aspx" />
     <Content Include="AdminPages\Reports\ReviewReport.aspx" />
+    <Content Include="AdminPages\Reports\SalesReport.aspx" />
     <Content Include="AdminPages\test.aspx" />
     <Content Include="AdminPages\AdminDelivery\UpdateDelivery.aspx" />
     <Content Include="App_Data\Uniqlo.mdf" />
@@ -525,13 +526,6 @@
     <Compile Include="AdminPages\Reports\DiscountReport.aspx.designer.cs">
       <DependentUpon>DiscountReport.aspx</DependentUpon>
     </Compile>
-    <Compile Include="AdminPages\Reports\OrderReport.aspx.cs">
-      <DependentUpon>OrderReport.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="AdminPages\Reports\OrderReport.aspx.designer.cs">
-      <DependentUpon>OrderReport.aspx</DependentUpon>
-    </Compile>
     <Compile Include="AdminPages\Reports\ProductReport.aspx.cs">
       <DependentUpon>ProductReport.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -546,12 +540,26 @@
     <Compile Include="AdminPages\Report.aspx.designer.cs">
       <DependentUpon>Report.aspx</DependentUpon>
     </Compile>
+    <Compile Include="AdminPages\Reports\ReportHome.aspx.cs">
+      <DependentUpon>ReportHome.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminPages\Reports\ReportHome.aspx.designer.cs">
+      <DependentUpon>ReportHome.aspx</DependentUpon>
+    </Compile>
     <Compile Include="AdminPages\Reports\ReviewReport.aspx.cs">
       <DependentUpon>ReviewReport.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="AdminPages\Reports\ReviewReport.aspx.designer.cs">
       <DependentUpon>ReviewReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AdminPages\Reports\SalesReport.aspx.cs">
+      <DependentUpon>SalesReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminPages\Reports\SalesReport.aspx.designer.cs">
+      <DependentUpon>SalesReport.aspx</DependentUpon>
     </Compile>
     <Compile Include="AdminPages\test.aspx.cs">
       <DependentUpon>test.aspx</DependentUpon>

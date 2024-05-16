@@ -65,7 +65,7 @@
                     legend: { position: 'top', alignment: 'end' },
                     animation: {
                         startup: true,
-                        duration: 1000,
+                        duration: 1000, 
                         easing: 'out',
                     },
                     tooltip: { 
