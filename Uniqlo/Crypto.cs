@@ -28,21 +28,11 @@ namespace Uniqlo
 
         public static bool VerifyPassword(string savedPasswordHash, string password)
         {
-            byte[] hashBytes = Convert.FromBase64String(savedPasswordHash);
-            byte[] salt = new byte[16];
-            Array.Copy(hashBytes, 0, salt, 0, 16);
+            // Compute the hash of the password using the same algorithm as HashPassword
+            string hashedPassword = HashPassword(password);
 
-            var pbkdf2 = new Rfc2898DeriveBytes(password, salt, 10000);
-            byte[] hash = pbkdf2.GetBytes(20);
-
-            for (int i = 0; i < 20; i++)
-            {
-                if (hashBytes[i + 16] != hash[i])
-                {
-                    return false;
-                }
-            }
-            return true;
+            // Compare the computed hash with the saved password hash
+            return savedPasswordHash.Equals(hashedPassword);
         }
     }
 }
