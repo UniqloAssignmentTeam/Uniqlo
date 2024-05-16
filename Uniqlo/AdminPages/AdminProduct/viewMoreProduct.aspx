@@ -80,7 +80,7 @@
                         </tr>
                         <tr>
                             <td class="form-group">
-                                <asp:TextBox ID="txtPrice" CssClass="form-field" Enabled="false" runat="server" Text='<%# Eval("Price") %>'></asp:TextBox>
+                                <asp:TextBox ID="txtPrice" CssClass="form-field" Enabled="false" runat="server" Text='<%# Eval("Price", "{0:C}") %>'></asp:TextBox>
                             </td>
                         </tr>
                         <tr>

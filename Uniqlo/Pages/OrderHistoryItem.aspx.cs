@@ -9,6 +9,7 @@ using Uniqlo.AdminPages;
 using Uniqlo.AdminPages.AdminStaff;
 using static Uniqlo.OrderList;
 using static Uniqlo.Review;
+using static Uniqlo.EncryptionHelper;
 
 namespace Uniqlo.Pages
 {
@@ -22,20 +23,22 @@ namespace Uniqlo.Pages
                 string sessionValue = Session["Customer_ID"] as string;
                 if (int.TryParse(sessionValue, out int custId))
                 {
-                    // Attempt to parse the Order_ID from the query string
-                    if (int.TryParse(Request.QueryString["Order_ID"], out int orderID))
+
+                    if(Request.QueryString["Order_ID"] != null)
                     {
-                        orderIDLabel.Text = orderID.ToString();
-                        BindOrderListDataList(custId, orderID);
-                        BindOrderSummaryRepeater(custId, orderID);
+                        string encryptedOrderId = Request.QueryString["Order_ID"];
+                        string decryptedOrderId = EncryptionHelper.Decrypt(encryptedOrderId);
+                        int orderId;
+                        if (int.TryParse(decryptedOrderId, out orderId))
+                        {
+                            orderIDLabel.Text = orderId.ToString();
+                            BindOrderListDataList(custId, orderId);
+                            BindOrderSummaryRepeater(custId, orderId);
+                        }
                     }
-                    else
-                    {
-                        // Log or handle the error if Order_ID is not a valid integer
-                        Debug.WriteLine("Failed to convert QueryString 'Order_ID' to integer.");
-                        // Optionally redirect or display an error message
-                        Response.Redirect("ErrorPage.aspx"); // Change this to your error handling page
-                    }
+                    
+                        
+                       
                 }
                 else
                 {
@@ -122,7 +125,7 @@ namespace Uniqlo.Pages
         protected void reviewValidBtn_Command(object sender, CommandEventArgs e)
         {
             string buttonText = ((Button)sender).Text;
-            string orderListID = e.CommandArgument.ToString();
+            string orderListID = HiddenOrderListID.ToString();
 
                 // Optionally display error message on the page
                 ScriptManager.RegisterStartupScript(this, GetType(), "errorAlert", "alert('An error occurred when retrieve order summary.');", true);

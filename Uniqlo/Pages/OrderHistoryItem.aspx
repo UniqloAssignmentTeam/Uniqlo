@@ -354,7 +354,7 @@
                                     <p><b>Quantity:</b> <%# Eval("Qty") %></p>
                                     <p class="item-subtotal"><b>Sub Total: <%# Eval("Subtotal", "{0:C}") %></b></p>
 
-                                    <asp:HiddenField ID="hiddennOrderListID" runat="server" Value='<%# Eval("OrderList_ID") %>' />
+                                    <asp:HiddenField ID="hiddenOrderListID" runat="server" Value='<%# Eval("OrderList_ID") %>' />
 
                                     <div class="orderReceivedSection" id="<%# Eval("reviewBtn") %>">
 

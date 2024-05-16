@@ -4,6 +4,11 @@
 
     <header>
         <link href="../../css/Admin/addProduct.css" rel="stylesheet" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+        <script src="sweetalert2.all.min.js"></script>
+        <script src="sweetalert2.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
+        <link rel="stylesheet" href="sweetalert2.min.css">
         <style>
             .cancel-button {
                 padding: 20px 100px 20px 60px;
@@ -144,7 +149,7 @@
                                             </td>
                                             <td style="width: 60%;">
                                                 <div style="display:flex; justify-content:right;">
-                                                    <asp:LinkButton ID="btnDelete" runat="server" Text="Delete" class="addColor-button" CommandArgument='<%# Eval("FirstImageId") %>' OnClientClick="return confirmDelete();" OnCommand="btnDelete_Click" />
+                                                    <asp:LinkButton ID="btnDelete" runat="server" Text="Delete" class="addColor-button" CommandArgument='<%# Eval("FirstImageId") %>' OnCommand="btnDelete_Click" />
                                                 </div>
                                             </td>
                                         </tr>
@@ -270,13 +275,47 @@
 
                 // Function to delete a color table
                 function deleteColorTable(button) {
-                    var colorTableWrapper = button.closest('.color-table-wrapper');
-                    if (colorTableWrapper) {
-                        colorTableWrapper.remove();
-                        updateHiddenField();
-                        alert("Delete successful!");
-                    }
+                    const swalWithBootstrapButtons = Swal.mixin({
+                        customClass: {
+                            confirmButton: "btn btn-success",
+                            cancelButton: "btn btn-danger"
+                        },
+                        buttonsStyling: true
+                    });
+
+                    swalWithBootstrapButtons.fire({
+                        title: "Are you sure?",
+                        text: "You won't be able to revert this!",
+                        icon: "warning",
+                        showCancelButton: true,
+                        confirmButtonText: "Yes, delete it!",
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        cancelButtonText: "No, cancel!",
+                        reverseButtons: true
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            var colorTableWrapper = button.closest('.color-table-wrapper');
+                            if (colorTableWrapper) {
+                                colorTableWrapper.remove();
+                                updateHiddenField();
+
+                                swalWithBootstrapButtons.fire({
+                                    title: "Deleted!",
+                                    text: "The color has been deleted.",
+                                    icon: "success"
+                                });
+                            } else if (result.dismiss === Swal.DismissReason.cancel) {
+                                swalWithBootstrapButtons.fire({
+                                    title: "Cancelled",
+                                    text: "The color was not deleted",
+                                    icon: "error"
+                                });
+                            }
+                        }
+                    });
                 }
+
 
 
                 //function to add new row for the table
@@ -292,7 +331,12 @@
                             colorTablesContainer.appendChild(newColorTable);
                             newColorInput.value = '';
                         } else {
-                            alert('Please enter a color.');
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Invalid Input',
+                                text: 'Please enter a color.'
+                            });
+                            return;
                         }
                     });
                 });
@@ -305,65 +349,92 @@
                     var colorTables = document.querySelectorAll('.color-table-wrapper');
                     var totalFilesToRead = colorTables.length;
                     var readFilesCount = 0; // Counter to keep track of the number of processed files
-                    var imageFound = false; // Flag to check if any image is found
+                    var imageFound = false;
 
                     // If no color tables exist, update the hidden field immediately with an empty array
                     if (totalFilesToRead === 0) {
                         document.getElementById('<%= HiddenFieldData.ClientID %>').value = '[]';
-                    console.log("Updated Hidden Field Data: []");
-                    return;
-                }
+                        console.log("Updated Hidden Field Data: []");
+                        return;
+                    }
 
-                colorTables.forEach(function (table, index) {
-                    var colorName = table.querySelector('input[type="hidden"]').value;
-                    var sizeS = table.querySelector('input[id^="sizeS"]').value;
-                    var sizeM = table.querySelector('input[id^="sizeM"]').value;
-                    var sizeL = table.querySelector('input[id^="sizeL"]').value;
-                    var sizeXL = table.querySelector('input[id^="sizeXL"]').value;
-                    var fileInput = table.querySelector('input[type="file"]');
+                    colorTables.forEach(function (table, index) {
+                        var colorName = table.querySelector('input[type="hidden"]').value;
+                        var sizeS = table.querySelector('input[id^="sizeS"]').value;
+                        var sizeM = table.querySelector('input[id^="sizeM"]').value;
+                        var sizeL = table.querySelector('input[id^="sizeL"]').value;
+                        var sizeXL = table.querySelector('input[id^="sizeXL"]').value;
+                        var fileInput = table.querySelector('input[type="file"]');
 
-                    if (fileInput.files.length > 0) {
-                        imageFound = true; // Set flag to true as an image is found
-                        var reader = new FileReader();
-                        reader.onload = function (e) {
-                            data.push({
-                                Color: colorName,
-                                SizeS: sizeS,
-                                SizeM: sizeM,
-                                SizeL: sizeL,
-                                SizeXL: sizeXL,
-                                Image: e.target.result
+                        var sizeSValid = sizeS && parseInt(sizeS) > 0;
+                        var sizeMValid = sizeM && parseInt(sizeM) > 0;
+                        var sizeLValid = sizeL && parseInt(sizeL) > 0;
+                        var sizeXLValid = sizeXL && parseInt(sizeXL) > 0;
+
+                        if (!(sizeSValid || sizeMValid || sizeLValid || sizeXLValid)) {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Invalid Input',
+                                text: 'Please enter a valid size greater than 0 for at least one size to continue.'
                             });
-                            readFilesCount++; // Increment the counter
+                            return;
+                        }
 
-                            // Check if all files have been processed
-                            if (readFilesCount === totalFilesToRead && imageFound) {
-                                var jsonStr = JSON.stringify(data);
-                                document.getElementById('<%= HiddenFieldData.ClientID %>').value = jsonStr;
-                                console.log("Updated Hidden Field Data:", jsonStr);
-                                alert("Update successful!"); // Alert on successful update
-                            }
-                        };
-                        reader.readAsDataURL(fileInput.files[0]);
-                    } else {
-                        readFilesCount++; // Increment the counter since processing a table even without an image
-                    }
-                });
+                        if (fileInput.files.length > 0) {
+                            imageFound = true; 
+                            var reader = new FileReader();
+                            reader.onload = function (e) {
+                                data.push({
+                                    Color: colorName,
+                                    SizeS: sizeS,
+                                    SizeM: sizeM,
+                                    SizeL: sizeL,
+                                    SizeXL: sizeXL,
+                                    Image: e.target.result
+                                });
+                                readFilesCount++; // Increment the counter
 
-                // Check after processing all tables if no images were found
-                if (!imageFound) {
-                    alert("Please upload at least one image.");
+                                // Check if all files have been processed
+                                if (readFilesCount === totalFilesToRead && imageFound) {
+                                    var jsonStr = JSON.stringify(data);
+                                    document.getElementById('<%= HiddenFieldData.ClientID %>').value = jsonStr;
+                                    console.log("Updated Hidden Field Data:", jsonStr);
+                                    Swal.fire({
+                                        icon: 'success',
+                                        title: 'Update Successful',
+                                        text: 'The Colors and Sizes are updated successfully!'
+                                    });
+                                }
+                            };
+                            reader.readAsDataURL(fileInput.files[0]);
+                        } else {
+                            readFilesCount++; // Increment the counter since processing a table even without an image
+                        }
+                    });
                 }
-            }
 
+                function confirmDelete(deleteFunctionName, deleteValue) {
+                    const swalWithBootstrapButtons = Swal.mixin({
+                        customClass: {
+                            confirmButton: 'btn btn-success',
+                            cancelButton: 'btn btn-danger'
+                        },
+                        buttonsStyling: true
+                    });
 
-                function confirmDelete() {
-                    if (confirm("Are you sure you want to delete?")) {
-                        alert("Delete successful!");
-                        return true;
-                    } else {
-                        return false;
-                    }
+                    swalWithBootstrapButtons.fire({
+                        title: 'Are you sure?',
+                        text: "You won't be able to revert this!",
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonText: 'Yes, delete it!',
+                        cancelButtonText: 'No, cancel!',
+                        reverseButtons: true
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            __doPostBack(deleteFunctionName, deleteValue);
+                        }
+                    });
                 }
 
 
@@ -372,5 +443,6 @@
 
             </script>
             <script src="../../Javascript/productAdminDDL.js"></script>
+
         </footer>
 </asp:Content>

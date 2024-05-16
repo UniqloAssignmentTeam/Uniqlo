@@ -27,8 +27,20 @@ namespace Uniqlo.AdminPages
                 int productId = 0;
                 if (Request.QueryString["ProdID"] != null && int.TryParse(Request.QueryString["ProdID"], out productId))
                 {
-                    BindFormView(productId); 
+                    BindFormView(productId);
+
+
                 }
+
+
+            }
+
+            string eventTarget = Request["__EVENTTARGET"];
+            string eventArgument = Request["__EVENTARGUMENT"];
+
+            if (eventTarget == "DeleteConfirmed")
+            {
+                DeleteConfirmed(eventArgument);
             }
 
         }
@@ -88,7 +100,7 @@ namespace Uniqlo.AdminPages
                 }
                 else
                 {
-                    // Log error or handle case where repeater is not found
+                    ScriptManager.RegisterStartupScript(this, GetType(), "errorAlert", "alert('An error occurred when retrieving product.');", true);
                 }
             }
         }
@@ -109,38 +121,42 @@ namespace Uniqlo.AdminPages
                 }
                 else
                 {
-                    // Log error or handle case where dataList is not found
+                    ScriptManager.RegisterStartupScript(this, GetType(), "errorAlert", "alert('An error occurred when retrieving product.');", true);
                 }
             }
-        }    
-        
+        }
+
         protected void btnDelete_Click(object sender, CommandEventArgs e)
         {
             int imageId = Convert.ToInt32(e.CommandArgument);
+            ScriptManager.RegisterStartupScript(this, GetType(), "confirmDeleteScript", $"confirmDelete('DeleteConfirmed', '{imageId}');", true);
+        }
 
-            try
+        protected void DeleteConfirmed(string args)
+        {
+            if (int.TryParse(args, out int imageId))
             {
-                using (var dbContext = new ImageDbContext())
+                try
                 {
-                    var quantitiesToUpdate = dbContext.Quantities.Where(q => q.Image_ID == imageId).ToList();
-
-                    foreach (var quantity in quantitiesToUpdate)
+                    using (var dbContext = new ImageDbContext())
                     {
-                        // Instead of removing, update IsDeleted to 1
-                        quantity.IsDeleted = Convert.ToBoolean(1);
-                    }
+                        var quantitiesToUpdate = dbContext.Quantities.Where(q => q.Image_ID == imageId).ToList();
 
-                    dbContext.SaveChanges();
-                    Response.Redirect(Request.RawUrl);
+                        foreach (var quantity in quantitiesToUpdate)
+                        {
+                            quantity.IsDeleted = true; // Assuming IsDeleted is a flag in your DB schema
+                        }
+
+                        dbContext.SaveChanges();
+                        ScriptManager.RegisterStartupScript(this, GetType(), "deleteSuccess", "Swal.fire('Deleted!', 'The item has been deleted.', 'success');", true);
+                        Response.Redirect(Request.RawUrl); // Refresh the page to reflect changes
+                    }
+                }
+                catch (Exception ex)
+                {
+                    ScriptManager.RegisterStartupScript(this, GetType(), "errorAlert", "Swal.fire('Error!', 'An error occurred when deleting the product.', 'error');", true);
                 }
             }
-            catch (Exception ex)
-            {
-
-                // Optionally display error message on the page
-                ScriptManager.RegisterStartupScript(this, GetType(), "errorAlert", "alert('An error occurred when Deleting product.');", true);
-            }
-
         }
 
         /*ADD PRODUCT*/
@@ -248,7 +264,7 @@ namespace Uniqlo.AdminPages
                 }
                 catch (Exception ex)
                 {
-                    
+                    ScriptManager.RegisterStartupScript(this, GetType(), "errorAlert", "alert('An error occurred when updating product.');", true);
                 }
 
             }

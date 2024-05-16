@@ -21,7 +21,7 @@ namespace Uniqlo.Pages
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+
             if (!IsPostBack)
             {
                 formView.DataBound += new EventHandler(formView_DataBound);
@@ -29,6 +29,7 @@ namespace Uniqlo.Pages
                 int productId = 0;
                 if (Request.QueryString["ProdID"] != null && int.TryParse(Request.QueryString["ProdID"], out productId))
                 {
+
                     BindFormView(productId);
                     FindQuantity(productId);
                     BindOutsideViewControl();
@@ -87,7 +88,7 @@ namespace Uniqlo.Pages
                                 }).ToList()
                         }).ToList();
 
-                
+
                     formView.DataSource = productList;
                     formView.DataBind();
 
@@ -100,9 +101,7 @@ namespace Uniqlo.Pages
             }
             catch (Exception ex)
             {
-
-                // Optionally display error message on the page
-                ScriptManager.RegisterStartupScript(this, GetType(), "errorAlert", "alert('An error occurred when retrieving product details.');", true);
+                ScriptManager.RegisterStartupScript(this, GetType(), "errorAlert", "Swal.fire('Error', 'An error occurred when retrieving product details.', 'error');", true);
             }
 
         }
@@ -131,8 +130,8 @@ namespace Uniqlo.Pages
                 prodDescHidden.Value = productDescription;
 
             }
-        }        
-        
+        }
+
         private void FirstImageId(int productID)
         {
             try
@@ -159,14 +158,12 @@ namespace Uniqlo.Pages
                         prodImageID.Value = firstImageId.ToString();
                     }
 
-                
+
                 }
             }
             catch (Exception ex)
             {
-
-                // Optionally display error message on the page
-                ScriptManager.RegisterStartupScript(this, GetType(), "errorAlert", "alert('An error occurred when retrieving Image ID.');", true);
+                ScriptManager.RegisterStartupScript(this, GetType(), "errorAlert", "Swal.fire('Error', 'An error occurred when retrieving Image ID.', 'error');", true);
             }
 
         }
@@ -219,11 +216,11 @@ namespace Uniqlo.Pages
         {
             try
             {
-                using (var db = new ProductDbContext())  
+                using (var db = new ProductDbContext())
                 {
                     RadioButtonList rbList = (RadioButtonList)formView.FindControl("RadioButtonListColors");
-                    
-                
+
+
 
                     var colors = db.Quantity
                    .Where(q => q.Product_ID == prodID && !q.IsDeleted)  // Filter by Product_ID
@@ -245,9 +242,7 @@ namespace Uniqlo.Pages
             }
             catch (Exception ex)
             {
-
-                // Optionally display error message on the page
-                ScriptManager.RegisterStartupScript(this, GetType(), "errorAlert", "alert('An error occurred when retrieving product');", true);
+                ScriptManager.RegisterStartupScript(this, GetType(), "errorAlert", "Swal.fire('Error', 'An error occurred when retrieving product.', 'error');", true);
             }
 
         }
@@ -290,15 +285,13 @@ namespace Uniqlo.Pages
                         // Update the MaxLength of txtQty based on the maximum stock value
                         TextBox txtQty = (TextBox)formView.FindControl("txtQty");
                         txtQty.MaxLength = maxStock.ToString().Length;
-
-                        // Show the sizes
                         rbSizes.Visible = true;
+                        UpdateQuantityTextboxState();
                     }
                 }
                 catch (Exception ex)
                 {
-                    // Optionally display error message on the page
-                    ScriptManager.RegisterStartupScript(this, GetType(), "errorAlert", "alert('An error occurred when retrieving product color.');", true);
+                    ScriptManager.RegisterStartupScript(this, GetType(), "errorAlert", "Swal.fire('Error', 'An error occurred when retrieving product color.', 'error');", true);
                 }
             }
             else
@@ -333,9 +326,7 @@ namespace Uniqlo.Pages
             }
             catch (Exception ex)
             {
-
-                // Optionally display error message on the page
-                ScriptManager.RegisterStartupScript(this, GetType(), "errorAlert", "alert('An error occurred when retrieving product quantity.');", true);
+                ScriptManager.RegisterStartupScript(this, GetType(), "errorAlert", "Swal.fire('Error', 'An error occurred when retrieving product quantity.', 'error');", true);
             }
 
 
@@ -372,13 +363,13 @@ namespace Uniqlo.Pages
                         // Update the MaxLength of txtQty based on the selected size's stock value
                         TextBox txtQty = (TextBox)formView.FindControl("txtQty");
                         txtQty.MaxLength = quantity.ToString().Length;
+
+                        UpdateQuantityTextboxState();
                     }
                 }
                 catch (Exception ex)
                 {
-
-                    // Optionally display error message on the page
-                    ScriptManager.RegisterStartupScript(this, GetType(), "errorAlert", "alert('An error occurred when retrieve product size.');", true);
+                    ScriptManager.RegisterStartupScript(this, GetType(), "errorAlert", "Swal.fire('Error', 'An error occurred when retrieving product size.', 'error');", true);
                 }
 
             }
@@ -390,7 +381,17 @@ namespace Uniqlo.Pages
 
 
 
+        private void UpdateQuantityTextboxState()
+        {
+            TextBox txtQty = (TextBox)formView.FindControl("txtQty");
+            RadioButtonList rbSizes = (RadioButtonList)formView.FindControl("RadioButtonListSizes");
+            RadioButtonList rbColors = (RadioButtonList)formView.FindControl("RadioButtonListColors");
 
+            bool colorSelected = !string.IsNullOrEmpty(rbColors.SelectedValue);
+            bool sizeSelected = !string.IsNullOrEmpty(rbSizes.SelectedValue);
+
+            txtQty.Enabled = colorSelected && sizeSelected;
+        }
 
 
 
@@ -445,99 +446,97 @@ namespace Uniqlo.Pages
 
 
 
-
         protected void btnAddToCart_Click(object sender, EventArgs e)
         {
             try
             {
-                // Access the selected size and color
+                // Access the selected size and color from session
                 string selectedSize = (string)Session["selectedSize"];
                 string selectedColor = (string)Session["selectedColor"];
 
-                // Check if the user has selected a size
-                if (string.IsNullOrEmpty(selectedSize))
+                // Check if the user has selected both size and color
+                if (string.IsNullOrEmpty(selectedSize) || string.IsNullOrEmpty(selectedColor))
                 {
-                    // Show a pop-up message indicating that a size must be selected
-                    ScriptManager.RegisterStartupScript(this, this.GetType(), "sizeSelectionError", "alert('Please select a size.');", true);
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "selectionError", "Swal.fire('Error', 'Please select both size and color.', 'error');", true);
                     return;
                 }
 
-                // Check if the product ID is valid
-                if (string.IsNullOrEmpty(Request.QueryString["ProdID"]) || !int.TryParse(Request.QueryString["ProdID"], out int productId))
+                // Retrieve product ID from query string
+                if (!int.TryParse(Request.QueryString["ProdID"], out int productId))
                 {
-                    throw new Exception("Invalid product ID.");
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "productError", "Swal.fire('Error', 'Invalid product ID.', 'error');", true);
+                    return;
                 }
 
-                // Retrieve the quantity ID
-                int quantityId = GetQuantityId(productId, selectedSize, selectedColor);
-
-                if (quantityId == 0)
+                // Retrieve the available stock and quantity ID for the selected size and color
+                var stockInfo = GetStockAndQuantityId(productId, selectedSize, selectedColor);
+                if (stockInfo.AvailableStock == 0)
                 {
-                    // Show an error message if the quantity ID is not found
-                    throw new Exception("Invalid quantity ID.");
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "noStockError", "Swal.fire('Error', 'No stock available for the selected product.', 'error');", true);
+                    return;
                 }
 
-                // Get the quantity textbox
+                // Get the quantity textbox and parse the entered quantity
                 TextBox txtQty = (TextBox)formView.FindControl("txtQty");
-
-                // Parse quantity value
                 if (!int.TryParse(txtQty.Text, out int quantity) || quantity <= 0)
                 {
-                    // Show an error message if the quantity is not valid
-                    throw new Exception("Please enter a valid quantity.");
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "invalidQuantityError", "Swal.fire('Error', 'Please enter a valid quantity.', 'error');", true);
+                    return;
                 }
 
-                // Create a new CartItem
+                if (quantity > stockInfo.AvailableStock)
+                {
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "overQuantityError", $"Swal.fire('Error', 'Only {stockInfo.AvailableStock} items available. You cannot add {quantity} items to the cart.', 'error');", true);
+                    return;
+                }
+
+                // Create a new CartItem and add it to the cart
                 CartItem item = new CartItem
                 {
-                    Quantity_Id = quantityId,
+                    Quantity_Id = stockInfo.QuantityId,
                     Size = selectedSize,
                     Color = selectedColor,
                     Quantity = quantity
                 };
 
-                List<CartItem> cart;
-
-                if (Session["Cart"] == null)
-                {
-                    // Create a new cart and add the item to it
-                    cart = new List<CartItem>();
-                    cart.Add(item);
-                }
-                else
-                {
-                    // Retrieve the existing cart and add the item to it
-                    cart = (List<CartItem>)Session["Cart"];
-                    bool itemExists = cart.Any(c => c.Quantity_Id == quantityId);
-
-                    if (itemExists)
-                    {
-                        // If item already exists, update its quantity
-                        foreach (var cartItem in cart)
-                        {
-                            if (cartItem.Quantity_Id == quantityId)
-                            {
-                                cartItem.Quantity += quantity; // Increment the existing quantity
-                            }
-                        }
-                    }
-                    else
-                    {
-                        cart.Add(item);
-                    }
-                }
-
+                // Retrieve or create a new cart and add the item
+                List<CartItem> cart = (List<CartItem>)Session["Cart"] ?? new List<CartItem>();
+                cart.Add(item);
                 Session["Cart"] = cart;
 
-                // Show a JavaScript alert to confirm successful addition to the cart
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "addToCartSuccess", "alert('Item added to cart successfully!');", true);
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "addToCartSuccess", "Swal.fire('Success', 'Item added to cart successfully!', 'success');", true);
             }
             catch (Exception ex)
             {
-                // Show an error message if an exception occurs
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "addToCartError", $"alert('{ex.Message}');", true);
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "addToCartError", $"Swal.fire('Error', '{ex.Message}', 'error');", true);
             }
         }
+
+        private (int AvailableStock, int QuantityId) GetStockAndQuantityId(int productId, string selectedSize, string selectedColor)
+        {
+            using (var db = new ProductDbContext())
+            {
+                var quantityInfo = db.Quantity
+                    .Where(q => q.Product_ID == productId && q.Color == selectedColor && q.Size == selectedSize && !q.IsDeleted)
+                    .Select(q => new { q.Qty, q.Quantity_ID })
+                    .FirstOrDefault();
+
+                return (quantityInfo?.Qty ?? 0, quantityInfo?.Quantity_ID ?? 0);
+            }
+        }
+
+
+        private int GetAvailableStock(int productId, string selectedSize, string selectedColor)
+        {
+            using (var db = new ProductDbContext())
+            {
+                return db.Quantity
+                         .Where(q => q.Product_ID == productId && q.Color == selectedColor && q.Size == selectedSize && !q.IsDeleted)
+                         .Select(q => q.Qty)
+                         .FirstOrDefault(); // Assuming there's always a corresponding entry
+            }
+        }
+
 
         // Method to retrieve the quantity ID based on size, color, and product ID
         private int GetQuantityId(int productId, string selectedSize, string selectedColor)
