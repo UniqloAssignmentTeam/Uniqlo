@@ -96,15 +96,6 @@ namespace Uniqlo.AdminPages.AdminCustomer
         protected global::System.Web.UI.WebControls.TextBox txtAddress;
 
         /// <summary>
-        /// RequiredFieldValidatorAddress control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidatorAddress;
-
-        /// <summary>
         /// txtState control.
         /// </summary>
         /// <remarks>
@@ -112,15 +103,6 @@ namespace Uniqlo.AdminPages.AdminCustomer
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtState;
-
-        /// <summary>
-        /// RequiredFieldValidatorState control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidatorState;
 
         /// <summary>
         /// txtCity control.
@@ -132,15 +114,6 @@ namespace Uniqlo.AdminPages.AdminCustomer
         protected global::System.Web.UI.WebControls.TextBox txtCity;
 
         /// <summary>
-        /// RequiredFieldValidatorCity control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidatorCity;
-
-        /// <summary>
         /// txtPostcode control.
         /// </summary>
         /// <remarks>
@@ -150,15 +123,6 @@ namespace Uniqlo.AdminPages.AdminCustomer
         protected global::System.Web.UI.WebControls.TextBox txtPostcode;
 
         /// <summary>
-        /// RequiredFieldValidatorPostcode control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidatorPostcode;
-
-        /// <summary>
         /// txtCountry control.
         /// </summary>
         /// <remarks>
@@ -166,15 +130,6 @@ namespace Uniqlo.AdminPages.AdminCustomer
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtCountry;
-
-        /// <summary>
-        /// RequiredFieldValidatorCountry control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidatorCountry;
 
         /// <summary>
         /// txtEmail control.
