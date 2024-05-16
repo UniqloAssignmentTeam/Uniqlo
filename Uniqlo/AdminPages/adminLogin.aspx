@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin.Master" AutoEventWireup="true" CodeBehind="adminLogin.aspx.cs" Inherits="Uniqlo.AdminPages.adminLogin" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="main" runat="server">
     <style>
         .bigDong {
@@ -167,21 +168,21 @@ input[type="submit"] {
                 </div>
                 <div class="txt_field">
                     <asp:TextBox ID="txtPassword" placeholder="Password" type="password" name="password" required="true" runat="server"></asp:TextBox>
- <i id="togglePassword" class="fa fa-eye" onclick="togglePasswordVisibility()"></i>
-<span></span>
+                    <i id="togglePassword" class="fa fa-eye" onclick="togglePasswordVisibility()"></i>
+                    <span></span>
                 </div>
                 <asp:Button ID="btnLogin" runat="server" name="submit" type="Submit" value="Login" Text="Login" OnClick="btnLogin_Click" />
-                
+
                 <asp:Label ID="lblError" runat="server" Text="" ForeColor="Red" Visible="false"></asp:Label>
             </div>
         </div>
     </div>
-                  
-                   
+
+
 
     <footer>
-    <script src="../Javascript/Login.js"></script>
-    <script>
+        <script src="../Javascript/Login.js"></script>
+        <script>
         document.addEventListener("DOMContentLoaded", function () {
             var passwordField = document.getElementById('<%= txtPassword.ClientID %>');
                 var toggleIcon = document.getElementById('togglePassword');
@@ -207,6 +208,6 @@ input[type="submit"] {
                     toggleIcon.classList.add('fa-eye-slash');
                 }
             }
-    </script>
-</footer>
+        </script>
+    </footer>
 </asp:Content>

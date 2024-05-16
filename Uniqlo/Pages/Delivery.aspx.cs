@@ -17,8 +17,7 @@ namespace Uniqlo.Pages
             //Deny not registered customer
             if (Session["Customer_Id"] == null)
             {
-                // Call the JavaScript function to show the pop-up and redirect
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "ShowPopup", "alert('Please login to continue checkout.'); window.location = 'Cart.aspx';", true);
+                //Sweet you havent login
                 Response.Redirect("cart.aspx");
             }
 
@@ -61,21 +60,25 @@ namespace Uniqlo.Pages
                     txtContact.Text = (string)dr["Contact_No"];
 
                     // Check if the address is not null before populating the text boxes
-                    if (!DBNull.Value.Equals(dr["Address"]))
                         txtAddress.Text = dr["Address"].ToString();
-
-                    if (!DBNull.Value.Equals(dr["State"]))
+                        if (txtAddress.Text.Equals("NULL"))
+                            txtAddress.Text = "";
+ 
                         txtState.Text = dr["State"].ToString();
+                    if (txtState.Text.Equals("NULL"))
+                        txtState.Text = "";
 
-                    if (!DBNull.Value.Equals(dr["City"]))
-                        txtCity.Text = dr["City"].ToString();
+                    txtCity.Text = dr["City"].ToString();
+                    if (txtCity.Text.Equals("NULL"))
+                        txtCity.Text = "";
 
-                    if (!DBNull.Value.Equals(dr["Postcode"]))
-                        txtPostcode.Text = dr["Postcode"].ToString();
+                    txtPostcode.Text = dr["Postcode"].ToString();
+                    if (txtPostcode.Text.Equals("NULL"))
+                        txtPostcode.Text = "";
 
-                    if (!DBNull.Value.Equals(dr["Country"]))
-                        txtCountry.Text = dr["Country"].ToString();
-
+                    txtCountry.Text = dr["Country"].ToString();
+                    if (txtCountry.Text.Equals("NULL"))
+                        txtCountry.Text = "";
                 }
 
             }

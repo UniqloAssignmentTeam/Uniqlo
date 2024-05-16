@@ -60,6 +60,30 @@ namespace Uniqlo.AdminPages.AdminCustomer
         // Event handler for the UPDATE button click
         protected void updateBtn_Click(object sender, EventArgs e)
         {
+            string customerId = txtCustId.Text;
+            string name = txtName.Text;
+            string gender = ddlGender.SelectedValue;
+            string contactNumber = txtContactNumber.Text;
+            string address = txtAddress.Text;
+            string state = txtState.Text;
+            string city = txtCity.Text;
+            string postcode = txtPostcode.Text;
+            string country = txtCountry.Text;
+            string email = txtEmail.Text;
+            string password = Crypto.HashPassword(txtResetPassword.Text);
+
+            // Check if the provided email or contact number already exist for other customers
+            if (IsDuplicateEmailForOtherCustomers(email, customerId))
+            {
+                //add sweet
+                return; // Stop further execution
+            }
+            if(IsDuplicateContactNumberForOtherCustomers(contactNumber, customerId))
+            {
+                //add sweet
+                return;
+            }
+
             using (SqlConnection con = new SqlConnection(cs))
             {
                 string query = "UPDATE Customer SET Name = @Name, Gender = @Gender, Contact_No = @Contact_No, " +
@@ -67,26 +91,60 @@ namespace Uniqlo.AdminPages.AdminCustomer
                                "Country = @Country, Email = @Email, password = @password WHERE Customer_ID = @Customer_Id";
                 using (SqlCommand cmd = new SqlCommand(query, con))
                 {
-                    cmd.Parameters.AddWithValue("@Name", txtName.Text);
-                    cmd.Parameters.AddWithValue("@Gender", ddlGender.SelectedValue);
-                    cmd.Parameters.AddWithValue("@Contact_No", txtContactNumber.Text);
-                    cmd.Parameters.AddWithValue("@Address", txtAddress.Text);
-                    cmd.Parameters.AddWithValue("@State", txtState.Text);
-                    cmd.Parameters.AddWithValue("@City", txtCity.Text);
-                    cmd.Parameters.AddWithValue("@Postcode", txtPostcode.Text);
-                    cmd.Parameters.AddWithValue("@Country", txtCountry.Text);
-                    cmd.Parameters.AddWithValue("@Email", txtEmail.Text);
-                    cmd.Parameters.AddWithValue("@password", Crypto.HashPassword(txtResetPassword.Text));
-                    cmd.Parameters.AddWithValue("@Customer_Id", txtCustId.Text);
-                    
+                    cmd.Parameters.AddWithValue("@Name", name);
+                    cmd.Parameters.AddWithValue("@Gender", gender);
+                    cmd.Parameters.AddWithValue("@Contact_No", contactNumber);
+                    cmd.Parameters.AddWithValue("@Address", address);
+                    cmd.Parameters.AddWithValue("@State", state);
+                    cmd.Parameters.AddWithValue("@City", city);
+                    cmd.Parameters.AddWithValue("@Postcode", postcode);
+                    cmd.Parameters.AddWithValue("@Country", country);
+                    cmd.Parameters.AddWithValue("@Email", email);
+                    cmd.Parameters.AddWithValue("@password", password);
+                    cmd.Parameters.AddWithValue("@Customer_Id", customerId);
+
                     con.Open();
                     int rowsAffected = cmd.ExecuteNonQuery();
                     if (rowsAffected > 0)
                     {
                         // Set a session variable to indicate that the customer was updated
                         Session["CustomerUpdated"] = "True";
-                        Response.Redirect("CustomerHome.aspx    ");
+                        Response.Redirect("CustomerHome.aspx");
                     }
+                }
+            }
+        }
+
+        // Method to check if the provided email already exists for other customers
+        private bool IsDuplicateEmailForOtherCustomers(string email, string customerId)
+        {
+            string query = "SELECT COUNT(*) FROM Customer WHERE Email = @Email AND Customer_ID != @Customer_Id";
+            using (SqlConnection connection = new SqlConnection(cs))
+            {
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@Email", email);
+                    command.Parameters.AddWithValue("@Customer_Id", customerId);
+                    connection.Open();
+                    int count = (int)command.ExecuteScalar();
+                    return count > 0; // If count > 0, email already exists for other customers
+                }
+            }
+        }
+
+        // Method to check if the provided contact number already exists for other customers
+        private bool IsDuplicateContactNumberForOtherCustomers(string contactNumber, string customerId)
+        {
+            string query = "SELECT COUNT(*) FROM Customer WHERE Contact_No = @Contact_No AND Customer_ID != @Customer_Id";
+            using (SqlConnection connection = new SqlConnection(cs))
+            {
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@Contact_No", contactNumber);
+                    command.Parameters.AddWithValue("@Customer_Id", customerId);
+                    connection.Open();
+                    int count = (int)command.ExecuteScalar();
+                    return count > 0; // If count > 0, contact number already exists for other customers
                 }
             }
         }
