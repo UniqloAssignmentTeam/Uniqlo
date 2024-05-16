@@ -29,18 +29,18 @@ namespace Uniqlo.AdminPages.AdminStaff
                 {
                     if (Session["StaffRole"] != null)
                     {
-                        if (!Session["StaffRole"].Equals("Admin") || Session["StaffRole"].Equals("Manager"))
+                        if (!Session["StaffRole"].Equals("Admin") && !Session["StaffRole"].Equals("Manager"))
                         {
-                            // Redirect to adminLogin.aspx if the session role is invalid or not set
-                            Response.Redirect("../adminLogin.aspx");
+                            // Set the unauthorized session variable and redirect to adminLogin.aspx if the session role is invalid
                             Session["Unauthorized"] = true;
+                            Response.Redirect("../adminLogin.aspx");
                         }
                     }
                     else
                     {
-                        // Redirect to adminLogin.aspx if the session role is invalid or not set
-                        Response.Redirect("../adminLogin.aspx");
+                        // Set the unauthorized session variable and redirect to adminLogin.aspx if the session role is not set
                         Session["Unauthorized"] = true;
+                        Response.Redirect("../adminLogin.aspx");
                     }
 
                     BindRepeater();

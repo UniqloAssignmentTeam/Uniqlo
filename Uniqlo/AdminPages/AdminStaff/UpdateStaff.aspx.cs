@@ -42,7 +42,7 @@ namespace Uniqlo.AdminPages
                         contactNumber.Text = staff.Contact_No;
                         staffGender.SelectedValue = staff.Gender;
                         staffRole.SelectedValue = staff.Role;
-                        password.Text = staff.Password;
+                       
                     }
                     else
                     {
@@ -73,7 +73,7 @@ namespace Uniqlo.AdminPages
                             staff.Contact_No = contactNumber.Text;
                             staff.Gender = staffGender.SelectedValue;
                             staff.Role = staffRole.SelectedValue;
-                            staff.Password = password.Text;
+                            staff.Password = txtResetPassword.Text;
                             db.SaveChanges();
 
                             // Set session variable to indicate success
