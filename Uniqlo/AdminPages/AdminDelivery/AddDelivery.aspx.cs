@@ -50,29 +50,25 @@ namespace Uniqlo.AdminPages.AdminDelivery
         {
             if (Page.IsValid)
             {
-                // Retrieve address details from textboxes
-                string address = txtAddress.Text;
-                string state = txtState.Text;
-                string city = txtCity.Text;
-                string postcode = txtPostcode.Text;
-                string country = txtCountry.Text;
+                
+                try
+                {
+             
+                    int addressID = CreateNewAddress(txtAddress.Text, txtState.Text, txtCity.Text, txtPostcode.Text, txtCountry.Text);
+                    int newDeliveryID = AddNewDelivery(addressID, txtDeliveryNote.Text, ddlStatus.SelectedValue);
+                    AssignDeliveryToPayment(newDeliveryID, Convert.ToInt32(ddlPaymentID.SelectedValue));
 
-                int addressID = CreateNewAddress(address, state, city, postcode, country);
-
-                // Add a new delivery
-                string deliveryNote = txtDeliveryNote.Text;
-                string deliveryStatus = ddlStatus.SelectedValue;
-                int newDeliveryID = AddNewDelivery(addressID, deliveryNote, deliveryStatus);
-
-                // Assign the new delivery to the selected payment
-                int selectedPaymentID = Convert.ToInt32(ddlPaymentID.SelectedValue);
-                AssignDeliveryToPayment(newDeliveryID,selectedPaymentID);
-
-                // Display a success message or redirect to another page
-                ScriptManager.RegisterStartupScript(this, GetType(), "SuccessScript", "alert('Delivery added successfully.'); window.location.href = 'Delivery.aspx';", true);
+                    // Trigger a SweetAlert success message
+                    ScriptManager.RegisterStartupScript(this, GetType(), "SuccessMessage", "Swal.fire('Success!', 'Delivery added successfully!', 'success').then((result) => { window.location.href = 'DeliveryHome.aspx'; });", true);
+                }
+                catch (Exception ex)
+                {
+                    ScriptManager.RegisterStartupScript(this, GetType(), "ErrorMessage",
+                 $"showErrorMessage('An error occurred: {ex.Message}');", true);
+                }
             }
-            Response.Redirect("Delivery.aspx");
         }
+
 
         protected int CreateNewAddress(string address, string state, string city, string postcode, string country)
         {
@@ -111,8 +107,8 @@ namespace Uniqlo.AdminPages.AdminDelivery
                     }
                     catch (Exception ex)
                     {
-                        // Handle any exceptions (e.g., logging, displaying an error message)
-                        Console.WriteLine("An error occurred: " + ex.Message);
+                        ScriptManager.RegisterStartupScript(this, GetType(), "ErrorMessage",
+                   $"showErrorMessage('An error occurred: {ex.Message}');", true);
                     }
                 }
             }
@@ -149,8 +145,8 @@ namespace Uniqlo.AdminPages.AdminDelivery
                     }
                     catch (Exception ex)
                     {
-                        // Handle any exceptions (e.g., logging, displaying an error message)
-                        Console.WriteLine("An error occurred: " + ex.Message);
+                        ScriptManager.RegisterStartupScript(this, GetType(), "ErrorMessage",
+                   $"showErrorMessage('An error occurred: {ex.Message}');", true);
                     }
                 }
             }
@@ -183,8 +179,8 @@ namespace Uniqlo.AdminPages.AdminDelivery
                     }
                     catch (Exception ex)
                     {
-                        // Handle any exceptions (e.g., logging, displaying an error message)
-                        Console.WriteLine("An error occurred: " + ex.Message);
+                        ScriptManager.RegisterStartupScript(this, GetType(), "ErrorMessage",
+                 $"showErrorMessage('An error occurred: {ex.Message}');", true);
                     }
                 }
             }
