@@ -32,10 +32,7 @@
                     </div>
                     <asp:RequiredFieldValidator ID="rfvPassword" runat="server" ControlToValidate="txtPassword" ErrorMessage="Password is required." ForeColor="Red"></asp:RequiredFieldValidator>
                 </div>
-                <div class="form-link">
-                    <a href="ForgotPassword.aspx" class="forgot-pass">Forgot password?</a>
-                </div>
-                <div class="field button-field">
+                <div class="field button-field" style="margin-top: 30px;">
                     <asp:Button ID="btnLogin" runat="server" Text="Login" OnClick="btnLogin_Click" ValidationGroup="LoginValidation" style="cursor: pointer;"/>
                 </div>
                 <asp:ValidationSummary ID="ValidationSummary1" runat="server" ValidationGroup="LoginValidation" DisplayMode="BulletList" ForeColor="Red" />

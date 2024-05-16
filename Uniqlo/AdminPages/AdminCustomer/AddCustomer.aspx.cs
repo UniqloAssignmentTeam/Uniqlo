@@ -63,8 +63,22 @@ namespace Uniqlo.AdminPages.AdminCustomer
                 }
             }
 
+            string script = @"
+                            <script>
+                                Swal.fire({
+                                    title: 'Success!',
+                                    text: 'Customer added successfully!',
+                                    icon: 'success',
+                                    confirmButtonText: 'OK'
+                                }).then((result) => {
+                                    if (result.isConfirmed) {
+                                        window.location.href = 'CustomerHome.aspx';
+                                    }
+                                });
+                            </script>";
+
             Session["CustomerAdded"] = "True";
-            Response.Redirect("CustomerHome.aspx");
+            ClientScript.RegisterStartupScript(this.GetType(), "SweetAlert", script);
         }
 
         // Method to check if the email already exists in the database

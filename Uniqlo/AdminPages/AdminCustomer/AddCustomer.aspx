@@ -4,13 +4,56 @@
         <link href="../../css/Admin/ErrorMessage.css" rel="stylesheet" />
         <link href="../../css/Admin/addStaff.css" rel="stylesheet" />
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <style>
+            .button-container {
+                display: flex;
+                text-align: center;
+                margin: 60px 0px 60px 0px;
+                width: 80%;
+                margin-top: 50px;
+                margin-left: 210px;
+            }
+            .cancel-button {
+                border: 2px solid lightgrey;
+                padding: 20px 100px 20px 60px;
+                background: none;
+                outline: none;
+                font-weight: bold;
+                cursor: pointer;
+                transition: all 0.5s ease;
+                text-decoration: none;
+                color: black;
+                width: 30%;
+            }
+
+
+            .continue-button {
+                border: 2px solid lightgrey;
+                padding: 20px 90px 20px 60px;
+                background: none;
+                outline: none;
+                font-weight: bold;
+                cursor: pointer;
+                transition: all 0.5s ease;
+                text-decoration: none;
+                color: black;
+                width: 30%;
+            }
+
+                .continue-button:hover, .cancel-button:hover {
+                    background-color: black;
+                    color: white;
+                }
+   
+
+        </style>
     </header>
 
     <div class="container">
         <div class="customerItemCard">
-            <h2 class="customer-title">UNIQLO ADD CUSTOMER</h2>
+            <h2 class="customer-title" style="padding-left: 370px">UNIQLO ADD CUSTOMER</h2>
         </div>
-        <div class="modal-content">
+        <div class="modal-content" style="padding-top: 30px;padding-left: 250px;">
             <div class="customer-content">
                 <div class="form-group">
                     <label for="name">Name</label>
@@ -38,6 +81,8 @@
                     <asp:TextBox ID="txtContactNumber" runat="server"></asp:TextBox>
                     <asp:RegularExpressionValidator ID="RegexValidatorPhone" runat="server" ControlToValidate="txtContactNumber" 
                         ErrorMessage="Please enter a valid phone number." ValidationExpression="^\+?([0-9]{1,3})?([0-9]{10})$" ForeColor="Red" Display="Dynamic"></asp:RegularExpressionValidator>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtContactNumber" InitialValue="" 
+                        ErrorMessage="Please insert a contact number." ForeColor="Red" Display="Dynamic"></asp:RequiredFieldValidator>
                 </div>
 
                 <div class="form-group">
@@ -87,10 +132,13 @@
                     <asp:RequiredFieldValidator ID="RequiredFieldValidatorPassword" runat="server" ControlToValidate="txtPassword" ErrorMessage="Password is required." ForeColor="Red" Display="Dynamic"></asp:RequiredFieldValidator>
                 </div>
             </div>
-
-            <div class="button-container">
-                <asp:Button ID="cancelBtn" runat="server" Text="CANCEL" CssClass="cancel-button" CausesValidation="false" OnClick="cancelBtn_Click"/>
-                <asp:Button ID="addBtn" runat="server" Text="ADD" CssClass="continue-button" OnClick="addBtn_Click"/>
+            <div class="button-container" style="margin-left: -30px;">
+                <div class="cancel-div">
+                   <asp:Button ID="cancelBtn" runat="server" Text="CANCEL" CssClass="cancel-button" CausesValidation="false" PostBackUrl="~/AdminPages/AdminCustomer/CustomerHome.aspx" />
+                </div>
+                <div class="continue-div">
+                    <asp:Button ID="addBtn" runat="server" Text="ADD" CssClass="continue-button" OnClick="addBtn_Click"/>
+                </div>
             </div>
         </div>
     </div>
