@@ -125,9 +125,9 @@
                 }).then((result) => {
                     if (result.isConfirmed) {
                         document.getElementById('<%= hiddenCustomerId.ClientID %>').value = customerId;
-            __doPostBack('<%= hiddenDeleteButton.UniqueID %>', '');
-        }
-    });
+                        __doPostBack('<%= hiddenDeleteButton.UniqueID %>', '');
+                    }
+                });
             }
 
             function showDeleteSuccess() {
