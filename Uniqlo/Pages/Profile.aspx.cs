@@ -47,11 +47,11 @@ namespace Uniqlo.Pages
                         lblEmail.Text = dr["Email"].ToString();
                         lblGender.Text = dr["Gender"].ToString() == "M" ? "Male" : "Female";
                         lblPhone.Text = dr["Contact_No"].ToString();
-                        lblAddress.Text = dr["Address"].ToString();
-                        lblPostCode.Text = dr["Postcode"].ToString();
-                        lblCity.Text = dr["City"].ToString();
-                        lblState.Text = dr["State"].ToString();
-                        lblCountry.Text = dr["Country"].ToString();
+                        lblAddress.Text = dr["Address"] != DBNull.Value ? dr["Address"].ToString() : "";
+                        lblPostCode.Text = dr["Postcode"] != DBNull.Value ? dr["Postcode"].ToString() : "";
+                        lblCity.Text = dr["City"] != DBNull.Value ? dr["City"].ToString() : "";
+                        lblState.Text = dr["State"] != DBNull.Value ? dr["State"].ToString() : "";
+                        lblCountry.Text = dr["Country"] != DBNull.Value ? dr["Country"].ToString() : "";
                     }
                 }
             }

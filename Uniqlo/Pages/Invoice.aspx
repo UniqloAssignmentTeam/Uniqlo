@@ -204,7 +204,7 @@
                                         <asp:Button ID="btnPDF" runat="server" Text="Download PDF" CssClass="continue-button" OnClick="btnPDF_Click"/>
                                     </div>
                                 </div>
-                                <p>Thank you for your purchase. To check on the status of your order, please visit <a href="profile.jsp">Here</a>.</p>
+                                <p>Thank you for your purchase. To check on the status of your order, please visit <a href="/Pages/profile.aspx">Here</a>.</p>
                             </div>
                         </div>
                     </div>
