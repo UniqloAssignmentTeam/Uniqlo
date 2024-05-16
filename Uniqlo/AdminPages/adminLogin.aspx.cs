@@ -11,7 +11,10 @@ namespace Uniqlo.AdminPages
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if ((bool)Session["Unauthorized"])
+            {
+                //pop up You are not authorized to view this page
+            }
         }
 
         protected void btnLogin_Click(object sender, EventArgs e)
