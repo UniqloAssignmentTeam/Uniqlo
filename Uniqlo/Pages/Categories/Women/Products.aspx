@@ -12,13 +12,14 @@
         </style>
     </header>
     <div class="categoryBody">
+        <asp:ScriptManager ID="ScriptManagerProduct" runat="server" />
         <h1 class="bestSellerHeader">Women's Products</h1>
         <h2 class="bestSellerHeader" style="margin-top: -4px;">Best Seller</h2>
 
         <div class="wrapper">
             <asp:DataList ID="carouselDataList" runat="server" RepeatDirection="Horizontal" Width="100%">
                 <ItemTemplate>
-                    <asp:HyperLink ID="productLink" runat="server" NavigateUrl='<%# "/Pages/ProductDetails.aspx?ProdID=" +  Eval("ProductId") %>' CssClass="hyperlink">
+                    <asp:HyperLink ID="productLink" runat="server" NavigateUrl='<%# "/Pages/ProductDetails.aspx?ProdID="  + Uniqlo.EncryptionHelper.Encrypt((string)  Eval("ProductId").ToString()) %>' CssClass="hyperlink">
                     <div class="limitedOfferCardContainer">
                         <div class="limitedOfferCard" id="product9" data-product-id="1">
                             <div class="product-image-container">
@@ -33,7 +34,7 @@
                                 </div>
                                 <div class="product-price">
                                     <p style="text-decoration: line-through; margin-right: 10px;"><%# Convert.ToDecimal(Eval("DiscountAmount")) > 0  ? "<p style='text-decoration: line-through; margin-right: 10px;'>" + String.Format("{0:C}", Eval("Price")) + "</p>" : "<p style='margin-right: 10px;'>" + String.Format("{0:C}", Eval("Price")) + "</p>" %></p>
-                                    <p style="color: red;"><%# Convert.ToDecimal(Eval("DiscountAmount")) > 0  ? "<span style='color: red;'>" + String.Format("{0:C}", Convert.ToDecimal(Eval("Price")) - Convert.ToDecimal(Eval("DiscountAmount"))) + "</span>" : "" %></p>
+                                    <p style="color: red;"><%# Convert.ToDecimal(Eval("DiscountAmount")) > 0  ? "<span style='color: red;'>" + String.Format("{0:C}", Convert.ToDecimal(Eval("Price").ToString()) - Convert.ToDecimal(Eval("DiscountAmount"))) + "</span>" : "" %></p>
                                 </div>
                                 <div class="product-rating">
                                     <%# GenerateStars(Convert.ToDouble(Eval("AverageRating")) ) %>
@@ -87,7 +88,7 @@
             <!--PRODUCT LIST DISPLAY HERE-->
             <div class="limitedOfferCardBigContainer">
                 <!--START OF COLUMN-->
-                <asp:ScriptManager ID="ScriptManagerProduct" runat="server" />
+                
 
 
                 <asp:UpdatePanel ID="UpdatePanelProduct" runat="server">
@@ -102,7 +103,7 @@
                             <ItemTemplate>
 
 
-                                <asp:HyperLink ID="productLink" runat="server" NavigateUrl='<%# "/Pages/ProductDetails.aspx?ProdID=" +  Eval("ProductId") %>' CssClass="hyperlink">
+                                <asp:HyperLink ID="productLink" runat="server" NavigateUrl='<%# "/Pages/ProductDetails.aspx?ProdID=" + Uniqlo.EncryptionHelper.Encrypt((string) Eval("ProductId").ToString()) %>' CssClass="hyperlink">
                                        <div class="limitedOfferCardContainer">
                                            <div class="limitedOfferCard" id="product9" data-product-id="1">
                                                <div class="product-image-container">

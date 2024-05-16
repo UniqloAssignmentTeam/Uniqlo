@@ -78,7 +78,7 @@
                         <td class="col eclipse-container" onclick="toggleDropdown('dropdownList<%# Eval("Discount_ID") %>', 'dropdownDisplay<%# Eval("Discount_ID") %>')">   
                             <div class="eclipse-display" id="dropdownDisplay<%# Eval("Discount_ID") %>" style="border:none;"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></div>
                             <div class="eclipse-list" id="dropdownList<%# Eval("Discount_ID") %>">
-                                <div><asp:HyperLink ID="updateDiscount" runat="server" NavigateUrl='<%# "UpdateDiscount.aspx?DiscountID=" + Eval("Discount_ID") %>' Text="Update" CssClass="hyperlink"></asp:HyperLink></div>
+                                <div><asp:HyperLink ID="updateDiscount" runat="server" NavigateUrl='<%# "UpdateDiscount.aspx?DiscountID=" +Uniqlo.EncryptionHelper.Encrypt((string)Eval("Discount_ID").ToString()) %>' Text="Update" CssClass="hyperlink"></asp:HyperLink></div>
                                 <div onclick="showDeleteSweet(<%# Eval("Discount_ID") %>);">Delete</div>
                             </div>
                         </td>

@@ -28,7 +28,7 @@ namespace Uniqlo.Pages
                 formView.DataBound += new EventHandler(formView_DataBound);
 
                 int productId = 0;
-                if (Request.QueryString["ProdID"] != null && int.TryParse(Request.QueryString["ProdID"], out productId))
+                if (EncryptionHelper.Decrypt(Request.QueryString["ProdID"]) != null && int.TryParse(EncryptionHelper.Decrypt(Request.QueryString["ProdID"]), out productId))
                 {
 
                     BindFormView(productId);
@@ -205,7 +205,7 @@ namespace Uniqlo.Pages
 
                     int count = data.Count;
                     dataList.RepeatColumns = count > 4 ? 4 : count;
-                    BindColorRadioButtonList(Int32.Parse(Request.QueryString["ProdID"]));
+                    BindColorRadioButtonList(Int32.Parse(EncryptionHelper.Decrypt(Request.QueryString["ProdID"].ToString())));
                 }
                 else
                 {
@@ -258,7 +258,7 @@ namespace Uniqlo.Pages
             Session["selectedColor"] = selectedColor;
 
             int productId = 0;
-            if (Request.QueryString["ProdID"] != null && int.TryParse(Request.QueryString["ProdID"], out productId))
+            if (Request.QueryString["ProdID"] != null && int.TryParse(EncryptionHelper.Decrypt(Request.QueryString["ProdID"].ToString()), out productId))
             {
                 try
                 {
@@ -348,7 +348,7 @@ namespace Uniqlo.Pages
 
 
             int productId = 0;
-            if (Request.QueryString["ProdID"] != null && int.TryParse(Request.QueryString["ProdID"], out productId))
+            if (Request.QueryString["ProdID"] != null && int.TryParse(EncryptionHelper.Decrypt(Request.QueryString["ProdID"]), out productId))
             {
                 try
                 {
@@ -463,7 +463,7 @@ namespace Uniqlo.Pages
                 }
 
                 // Retrieve product ID from query string
-                if (!int.TryParse(Request.QueryString["ProdID"], out int productId))
+                if (!int.TryParse(EncryptionHelper.Decrypt(Request.QueryString["ProdID"].ToString()), out int productId))
                 {
                     ScriptManager.RegisterStartupScript(this, this.GetType(), "productError", "Swal.fire('Error', 'Invalid product ID.', 'error');", true);
                     return;
@@ -493,7 +493,13 @@ namespace Uniqlo.Pages
                     {
                         // If the item already exists, check if adding the new quantity exceeds available stock
                         int totalQuantity = item.Quantity + quantity;
-                        if (totalQuantity > stockInfo.AvailableStock)
+
+                        if (quantity > stockInfo.AvailableStock)
+                        {
+                            ScriptManager.RegisterStartupScript(this, this.GetType(), "overQuantityError", $"Swal.fire('Error', 'Only {stockInfo.AvailableStock} items available for the selected product. You cannot add {totalQuantity} items to the cart.', 'error');", true);
+                            return;
+                        }
+                        else if (totalQuantity > stockInfo.AvailableStock)
                         {
                             ScriptManager.RegisterStartupScript(this, this.GetType(), "overQuantityError", $"Swal.fire('Error', 'Only {stockInfo.AvailableStock} items available for the selected product. You cannot add {totalQuantity} items to the cart.', 'error');", true);
                             return;
@@ -506,6 +512,22 @@ namespace Uniqlo.Pages
                             return;
                         }
                     }
+                    else
+                    {
+                        // Check if the entered quantity exceeds the available stock
+                        if (quantity > stockInfo.AvailableStock)
+                        {
+                            ScriptManager.RegisterStartupScript(this, this.GetType(), "overQuantityError", $"Swal.fire('Error', 'Only {stockInfo.AvailableStock} items available for the selected product. You cannot add {quantity} items to the cart.', 'error');", true);
+                            return;
+                        }
+                    }
+                }
+
+                // Check if the entered quantity exceeds the available stock if the product hasnt been add
+                if (quantity > stockInfo.AvailableStock)
+                {
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "overQuantityError", $"Swal.fire('Error', 'Only {stockInfo.AvailableStock} items available for the selected product. You cannot add {quantity} items to the cart.', 'error');", true);
+                    return;
                 }
 
                 // If the item does not exist in the cart, create a new CartItem and add it to the cart
@@ -569,9 +591,10 @@ namespace Uniqlo.Pages
 
         protected void fetchProductID(object sender, EventArgs e)
         {
-            int productID = Int32.Parse(prodIdHidden.Value);
+            string productID = (prodIdHidden.Value);
 
-            Response.Redirect("/Pages/SendProductGmailToFriend.aspx?id=" + productID);
+            string encryptedProductID = EncryptionHelper.Encrypt(productID);
+            Response.Redirect("/Pages/SendProductGmailToFriend.aspx?id=" + encryptedProductID);
         }
 
 

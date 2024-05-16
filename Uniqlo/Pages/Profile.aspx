@@ -42,6 +42,7 @@
                 border-radius: 5px;
                 background-color: #fff;
                 box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+
             }
 
             /* Button styling */
@@ -69,50 +70,77 @@
                 text-align: center;
                 padding: 20px;
             }
+
+            .info-label{
+                text-align: left;
+            }
+
         </style>
     </header>
     <div class="container" style="margin: auto; max-width: 1100px; position: relative;">
-        <div class="main-body" id="profileDisplay">
-            <div class="profile-header">             
-                <asp:Image ID="ImgUpload" runat="server" CssClass="avatar" AlternateText="User Avatar" Visible="false" /> 
-                <div id="noImagePlaceholder" class="no-image-placeholder" runat="server" Visible="false">No Image</div>
-                <h4 class="username"><asp:Label ID="lblName" class="form-control read-only-textbox" runat="server"></asp:Label></h4>
+        <div class="main-body" id="profileDisplay" style="padding: 50px 35px">
+            <div style="background-color: white;">
+                <table style="width: 100%; border: none;" class="table">
+                    <tr class="row">
+                        <td>
+                            <h1><asp:Label ID="lblName" class="form-control read-only-textbox" runat="server"></asp:Label></h1>
+                        </td>
+                    </tr>
+                    <tr class="row">
+                        <td class="col" style="display: flex;">
+                            <span class="info-label">Email:</span>
+                            <asp:Label ID="lblEmail" runat="server"></asp:Label>
+                        </td>
+                    </tr>
+                    <tr class="row">
+                        <td class="col" style="display: flex;">
+                            <span class="info-label">Gender:</span>
+                            <asp:Label ID="lblGender" runat="server"></asp:Label>
+                        </td>
+                    </tr>
+                    <tr class="row">
+                        <td class="col" style="display: flex;">
+                            <span class="info-label">Contact No:</span>
+                            <asp:Label ID="lblPhone" runat="server"></asp:Label>
+                        </td>
+                    </tr>
+                    <tr class="row">
+                        <td class="col" style="display: flex;">
+                            <span class="info-label">Address:</span>
+                            <asp:Label ID="lblAddress" runat="server"></asp:Label>
+                        </td>
+                    </tr>
+                    <tr class="row">
+                        <td class="col" style="display: flex;">
+                            <span class="info-label">Postcode:</span>
+                            <asp:Label ID="lblPostCode" runat="server"></asp:Label>
+                        </td>
+                    </tr>
+                    <tr class="row">
+                        <td class="col" style="display: flex;">
+                            <span class="info-label">City:</span>
+                            <asp:Label ID="lblCity" runat="server"></asp:Label>
+                        </td>
+                    </tr>
+                    <tr class="row">
+                        <td class="col" style="display: flex;">
+                            <span class="info-label">State:</span>
+                            <asp:Label ID="lblState" runat="server"></asp:Label>
+                        </td>
+                    </tr>
+                    <tr class="row">
+                        <td class="col" style="display: flex;">
+                            <span class="info-label">Country:</span>
+                            <asp:Label ID="lblCountry" runat="server"></asp:Label>
+                        </td>
+                    </tr>
+                </table>
             </div>
-
-            <div class="info-item">
-                <span class="info-label">Email:</span>
-                <asp:Label ID="lblEmail" class="info-value" runat="server"></asp:Label>
+            <div class="button-container">
+                <div class="continue-div">
+                    <asp:Button ID="btnEditProfile" runat="server" Text="Edit Profile" CssClass="edit-button" OnClick="btnEditProfile_Click" />
+                </div>
             </div>
-            <div class="info-item">
-                <span class="info-label">Gender:</span>
-                <asp:Label ID="lblGender" class="info-value" runat="server"></asp:Label>
-            </div>
-            <div class="info-item">
-                <span class="info-label">Contact No:</span>
-                <asp:Label ID="lblPhone" class="info-value" runat="server"></asp:Label>
-            </div>
-            <div class="info-item">
-                <span class="info-label">Address:</span>
-                <asp:Label ID="lblAddress" class="info-value" runat="server"></asp:Label>
-            </div>
-            <div class="info-item">
-                <span class="info-label">Postcode:</span>
-                <asp:Label ID="lblPostCode" class="info-value" runat="server"></asp:Label>
-            </div>
-            <div class="info-item">
-                <span class="info-label">City:</span>
-                <asp:Label ID="lblCity" class="info-value" runat="server"></asp:Label>
-            </div>
-            <div class="info-item">
-                <span class="info-label">State:</span>
-                <asp:Label ID="lblState" class="info-value" runat="server"></asp:Label>
-            </div>
-            <div class="info-item">
-                <span class="info-label">Country:</span>
-                <asp:Label ID="lblCountry" class="info-value" runat="server"></asp:Label>
-            </div>    
-            
-            <asp:Button ID="btnEditProfile" runat="server" Text="Edit Profile" CssClass="edit-button" OnClick="btnEditProfile_Click" />
         </div>
     </div>
 

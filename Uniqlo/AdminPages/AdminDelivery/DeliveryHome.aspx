@@ -158,10 +158,10 @@
                         <div class="eclipse-display" id="dropdownDisplay<%# Eval("Delivery_ID") %>" style="border: none;"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></div>
                         <div class="eclipse-list" id="dropdownList<%# Eval("Delivery_ID") %>">
                             <div>
-                                <asp:HyperLink ID="update" runat="server" NavigateUrl='<%# "UpdateDelivery.aspx?DeliveryID=" + Eval("Delivery_ID") %>' Text="View/Update" style="text-decoration: none; color: grey;"></asp:HyperLink>
+                                <asp:HyperLink ID="update" runat="server" NavigateUrl='<%# "UpdateDelivery.aspx?DeliveryID=" + Uniqlo.EncryptionHelper.Encrypt((string)Eval("Delivery_ID").ToString()) %>' Text="View/Update" style="text-decoration: none; color: grey;"></asp:HyperLink>
                             </div>
                             <div>
-                                <asp:HyperLink ID="viewOrder" runat="server" NavigateUrl='<%# "../AdminOrder/OrderItem.aspx?OrderID=" + Eval("Order_ID") %>' Text="View Order" style="text-decoration: none; color: grey;"></asp:HyperLink>
+                                <asp:HyperLink ID="viewOrder" runat="server" NavigateUrl='<%# "../AdminOrder/OrderItem.aspx?OrderID=" + Uniqlo.EncryptionHelper.Encrypt((string)Eval("Order_ID").ToString()) %>' Text="View Order" style="text-decoration: none; color: grey;"></asp:HyperLink>
                             </div>
                             <div onclick="showDeleteModal(<%# Eval("Delivery_ID") %>);">Delete</div>
                         </div>
