@@ -18,7 +18,7 @@ namespace Uniqlo.AdminPages
                 formView.DataBound += new EventHandler(formView_DataBound);
 
                 int productId = 0;
-                if (Request.QueryString["ProdID"] != null && int.TryParse(Request.QueryString["ProdID"], out productId))
+                if (Request.QueryString["ProdID"] != null && int.TryParse(EncryptionHelper.Decrypt(Request.QueryString["ProdID"]), out productId))
                 {
                     BindFormView(productId);
                 }

@@ -15,7 +15,7 @@ namespace Uniqlo.AdminPages
         {
             if (!IsPostBack)
             {
-                string deliveryId = EncryptionHelper.Encrypt(Request.QueryString["DeliveryID"]);
+                string deliveryId = EncryptionHelper.Decrypt(Request.QueryString["DeliveryID"]);
 
                 if (!string.IsNullOrEmpty(deliveryId))
                 {
