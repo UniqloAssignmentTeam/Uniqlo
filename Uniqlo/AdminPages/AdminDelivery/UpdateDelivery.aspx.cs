@@ -28,7 +28,7 @@ namespace Uniqlo.AdminPages
         {
             using (var db = new DeliveryDbContext())
             {
-                var delivery = db.delivery.Include("Shipping_Address").FirstOrDefault(s => s.Delivery_ID == deliveryId);
+                var delivery = db.Delivery.Include("Shipping_Address").FirstOrDefault(s => s.Delivery_ID == deliveryId);
                 if (delivery != null)
                 {
                     // Combine address details in the desired sequence
@@ -61,7 +61,7 @@ namespace Uniqlo.AdminPages
                 using (var db = new DeliveryDbContext()) // Replace 'DeliveryDbContext' with your actual context
                 {
                     int deliveryId = Convert.ToInt32(txtDeliveryID.Text); // Assuming the Delivery ID is being displayed
-                    var delivery = db.delivery.FirstOrDefault(d => d.Delivery_ID == deliveryId);
+                    var delivery = db.Delivery.FirstOrDefault(d => d.Delivery_ID == deliveryId);
 
                     if (delivery != null)
                     {

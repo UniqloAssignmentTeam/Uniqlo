@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Net.Mail;
+using System.Net.Mime;
 using System.Web.UI;
 using static Uniqlo.Staff;
 
@@ -104,8 +105,106 @@ namespace Uniqlo.AdminPages.AdminStaff
                 {
                     mail.From = new MailAddress("jefferozf-pm21@student.tarc.edu.my");
                     mail.To.Add(userEmailText);
-                    mail.Subject = "Verification Code";
-                    mail.Body = "Your verification code is: " + verificationCode;
+                    mail.Subject = "Your Uniqlo Verification Code";
+                    mail.IsBodyHtml = true;
+
+                    string logoUrl = Server.MapPath("/Images/Uniqlo-Logos.png");
+                    string emailBody = $@"
+                                        <!DOCTYPE html>
+                                        <html>
+                                        <head>
+                                            <style>
+                                                .container {{
+                                                    font-family: Arial, sans-serif;
+                                                    color: #333;
+                                                    line-height: 1.6;
+                                                    max-width: 600px;
+                                                    margin: auto;
+                                                    border: 1px solid #ddd;
+                                                    border-radius: 10px;
+                                                    overflow: hidden;
+                                                    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                                                }}
+                                                .header {{
+                                                    background-color: #f8f8f8;
+                                                    padding: 20px;
+                                                    text-align: center;
+                                                    border-bottom: 1px solid #ddd;
+                                                }}
+                                                .header p {{
+                                                    margin: 0;
+                                                    font-size: 16px;
+                                                }}
+                                                .content {{
+                                                    padding: 20px;
+                                                }}
+                                                .content p {{
+                                                    margin: 0 0 10px;
+                                                }}
+                                                .content .verification-code {{
+                                                    font-size: 24px;
+                                                    font-weight: bold;
+                                                    color: #d9534f;
+                                                    text-align: center;
+                                                    margin: 20px 0;
+                                                }}
+                                                .content img {{
+                                                    max-width: 100%;
+                                                    height: auto;
+                                                    border: 1px solid #ddd;
+                                                    border-radius: 5px;
+                                                    margin: 10px 0;
+                                                }}
+                                                .thank-you {{
+                                                    margin: 20px 0;
+                                                    text-align: center;
+                                                }}
+                                                .thank-you img {{
+                                                    width: 100px;
+                                                    height: auto;
+                                                    margin-top: 10px;
+                                                }}
+                                                .footer {{
+                                                    background-color: #f8f8f8;
+                                                    padding: 10px;
+                                                    text-align: center;
+                                                    border-top: 1px solid #ddd;
+                                                    font-size: 12px;
+                                                    color: #777;
+                                                }}
+                                            </style>
+                                        </head>
+                                        <body>
+                                            <div class='container'>
+                                                <div class='content'>
+                                                    <p>Dear Customer,</p>
+                                                    <p>Thank you for choosing Uniqlo. Please use the following verification code to complete your registration:</p>
+                                                    <p class='verification-code'>{verificationCode}</p>
+                                                    <p>If you did not request this code, please ignore this email.</p>
+                                                    <div class='thank-you'>
+                                                        <p>Thank you for supporting our company!</p>
+                                                        <img src='cid:companyLogo' alt='Company Logo' />
+                                                    </div>
+                                                </div>
+                                                <div class='footer'>
+                                                    <p>&copy; 2024 Uniqlo. All rights reserved.</p>
+                                                </div>
+                                            </div>
+                                        </body>
+                                        </html>";
+
+
+                    mail.Body = emailBody;
+
+                    // Embed Uniqlo logo
+                    LinkedResource companyLogo = new LinkedResource(logoUrl, "image/png")
+                    {
+                        ContentId = "companyLogo"
+                    };
+                    AlternateView avHtml = AlternateView.CreateAlternateViewFromString(mail.Body, null, MediaTypeNames.Text.Html);
+                    avHtml.LinkedResources.Add(companyLogo);
+                    mail.AlternateViews.Add(avHtml);
+
                     smtp.Send(mail);
                 }
 

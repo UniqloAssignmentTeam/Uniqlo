@@ -2,27 +2,28 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="main" runat="server">
     <header>
-           <style>
-           .hyperlink{
+        <style>
+            .hyperlink {
                 color: #6F6F6F;
-text-decoration: none;
-           }
-                       .no-discount-label {
-    color: red;
-    font-size: 16px;
-    margin-top: 20px;
-    display: block;
-    text-align: center;
-}
-       </style>
+                text-decoration: none;
+            }
 
-    <link href="../../css/Admin/adminStaff.css" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-    <link href="../../css/Admin/ErrorMessage.css" rel="stylesheet" />
+            .no-discount-label {
+                color: red;
+                font-size: 16px;
+                margin-top: 20px;
+                display: block;
+                text-align: center;
+            }
+        </style>
+
+        <link href="../../css/Admin/adminStaff.css" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+        <link href="../../css/Admin/ErrorMessage.css" rel="stylesheet" />
 
 
-        </header>
+    </header>
     <asp:ScriptManager ID="ScriptManagerStaff" runat="server" />
     <asp:UpdatePanel ID="UpdatePanelStaff" runat="server">
         <ContentTemplate>
@@ -40,7 +41,7 @@ text-decoration: none;
 
                         <div class="search">
                             <span class="material-symbols-outlined">search</span>
-                           <asp:TextBox ID="searchBox" runat="server" CssClass="search-input" AutoPostBack="true" OnTextChanged="searchBox_TextChanged"  placeholder="Search Staff Name"></asp:TextBox>
+                            <asp:TextBox ID="searchBox" runat="server" CssClass="search-input" AutoPostBack="true" OnTextChanged="searchBox_TextChanged" placeholder="Search Staff Name"></asp:TextBox>
                         </div>
 
                         <div class="dropdown-wrapper">
@@ -50,7 +51,7 @@ text-decoration: none;
                                 <asp:ListItem Value="M">Male</asp:ListItem>
                                 <asp:ListItem Value="F">Female</asp:ListItem>
                             </asp:DropDownList>
-            
+
                             <asp:DropDownList ID="roleSortDDL" runat="server" AutoPostBack="true"
                                 OnSelectedIndexChanged="roleSortDDL_SelectedIndexChanged" CssClass="dropdown-display">
                                 <asp:ListItem Value="">All Roles</asp:ListItem>
@@ -58,8 +59,8 @@ text-decoration: none;
                                 <asp:ListItem Value="Admin">Admin</asp:ListItem>
                                 <asp:ListItem Value="Manager">Manager</asp:ListItem>
                             </asp:DropDownList>
-                       
-                   
+
+
                         </div>
 
                         <div class="btnExcel-Add">
@@ -121,10 +122,10 @@ text-decoration: none;
                                         <div>
                                             <asp:HyperLink ID="updateStaff" runat="server" NavigateUrl='<%# "UpdateStaff.aspx?StaffID=" + Uniqlo.EncryptionHelper.Encrypt((string) Eval("Staff_ID").ToString()) %>' Text="Update" CssClass="hyperlink"></asp:HyperLink>
                                         </div>
-                                      <div>
-                                          <asp:HyperLink ID="deleteStaff" runat="server" NavigateUrl='<%# "DeleteStaff.aspx?StaffID=" + Uniqlo.EncryptionHelper.Encrypt((string)Eval("Staff_ID").ToString()) %>' Text="Delete" CssClass="hyperlink"></asp:HyperLink>
+                                        <div>
+                                            <asp:HyperLink ID="deleteStaff" runat="server" NavigateUrl='<%# "DeleteStaff.aspx?StaffID=" + Eval("Staff_ID") %>' Text="Delete" CssClass="hyperlink"></asp:HyperLink>
+                                        </div>
                                     </div>
-                                      </div>
                                 </td>
                             </tr>
                         </ItemTemplate>
@@ -135,43 +136,39 @@ text-decoration: none;
                     </asp:Repeater>
                     <asp:Label ID="lblNoStaffFound" runat="server" Text="No Staff Found" Visible="false" CssClass="no-discount-label"></asp:Label>
                 </div>
-       
 
 
-        <div style="margin-bottom: 80px;">
-        </div>
 
-   
-
-    <asp:HiddenField ID="hiddenStaffId" runat="server" Value="" />
-    
-    <!--DELETE CONFIRMATION-->
-
-  
+                <div style="margin-bottom: 80px;">
+                </div>
 
 
-    </ContentTemplate>
-    <Triggers>
-        <asp:AsyncPostBackTrigger ControlID="roleSortDDL" EventName="SelectedIndexChanged" />
-        <asp:AsyncPostBackTrigger ControlID="genderSortDDL" EventName="SelectedIndexChanged" />
-        <asp:PostBackTrigger ControlID="excelBtn" />
-       
-    </Triggers>
+
+                <asp:HiddenField ID="hiddenStaffId" runat="server" Value="" />
+
+                <!--DELETE CONFIRMATION-->
+        </ContentTemplate>
+        <Triggers>
+            <asp:AsyncPostBackTrigger ControlID="roleSortDDL" EventName="SelectedIndexChanged" />
+            <asp:AsyncPostBackTrigger ControlID="genderSortDDL" EventName="SelectedIndexChanged" />
+            <asp:PostBackTrigger ControlID="excelBtn" />
+
+        </Triggers>
 
 
-</asp:UpdatePanel>
+    </asp:UpdatePanel>
 
     <asp:HiddenField ID="modalState" runat="server" Value="closed" />
 
 
     <footer>
-        
 
-         <script type="text/javascript">
-     document.getElementById('<%= searchBox.ClientID %>').onkeyup = function() {
- __doPostBack('<%= searchBox.ClientID %>', '');
-     };
-         </script>
+
+        <script type="text/javascript">
+            document.getElementById('<%= searchBox.ClientID %>').onkeyup = function () {
+                __doPostBack('<%= searchBox.ClientID %>', '');
+            };
+        </script>
 
         <script src="../../Javascript/productBtnEclipse.js"></script>
         <script src="../../Javascript/productAdminDDL.js"></script>

@@ -63,6 +63,7 @@
             <div class="footerNav">
                 
                     <a href="Dashboard.aspx">Dashboard</a>
+                    <a href="CustomerHome.aspx">Customer</a>
                     <a href="StaffHome.aspx">Staff</a>
                     <a href="Product.aspx">Product</a>
                     <a href="DiscountHome.aspx">Discount</a>

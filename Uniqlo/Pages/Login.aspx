@@ -27,7 +27,10 @@
                     <asp:RegularExpressionValidator ID="revEmail" runat="server" ControlToValidate="txtEmail" ErrorMessage="Invalid email address." ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"></asp:RegularExpressionValidator>
                 </div>
                 <div class="field input-field">
-                    <asp:TextBox ID="txtPassword" type="password" placeholder="Password" CssClass="password" runat="server"></asp:TextBox>
+                    <div class="password-container">
+                        <asp:TextBox ID="txtPassword" runat="server" placeholder="Password" CssClass="input password" MaxLength="50" TextMode="Password" style="height: 50px;"></asp:TextBox>
+                        <i id="togglePassword" class="fa fa-eye" onclick="togglePasswordVisibility()"></i>
+                    </div>
                     <asp:RequiredFieldValidator ID="rfvPassword" runat="server" ControlToValidate="txtPassword" ErrorMessage="Password is required." ForeColor="Red"></asp:RequiredFieldValidator>
                 </div>
                 <div class="form-link">
@@ -55,8 +58,25 @@
 
     </section>
     <!-- JavaScript -->
-    <script src="../Javascript/Login.js"></script>
-
+    
+    <footer>
+        <script src="../Javascript/Login.js"></script>
+        <script>
+            function togglePasswordVisibility() {
+                var passwordField = document.getElementById('<%= txtPassword.ClientID %>');
+                            var toggleIcon = document.getElementById('togglePassword');
+                            if (passwordField.type === 'password') {
+                                passwordField.type = 'text';
+                                toggleIcon.classList.remove('fa-eye');
+                                toggleIcon.classList.add('fa-eye-slash');
+                            } else {
+                                passwordField.type = 'password';
+                                toggleIcon.classList.remove('fa-eye-slash');
+                                toggleIcon.classList.add('fa-eye');
+                            }
+            }
+        </script>
+    </footer>
 
 
 

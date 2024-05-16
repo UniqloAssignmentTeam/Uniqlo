@@ -56,6 +56,32 @@
                 .invoice-footer p {
                     margin: 5px;
                 }
+
+            .button-container {
+                display: flex;
+                text-align: center;
+                width: 100%;
+                margin: 20px 0px 20px 0px;
+                margin-left: 530px;
+            }
+
+            .continue-button {
+                border: 2px solid lightgrey;
+                padding: 20px 90px 20px 90px;
+                background: none;
+                outline: none;
+                font-weight: bold;
+                cursor: pointer;
+                transition: all 0.5s ease;
+                text-decoration: none;
+                color: black;
+                width: 100%;
+            }
+
+            .continue-button:hover{
+                background-color: black;
+                color: white;
+            }
         </style>
         <link href="../css/style.css" rel="stylesheet" />
         <link href="../css/style1.css" rel="stylesheet" />
@@ -173,7 +199,11 @@
 
                             <div class="invoice-footer" style="text-align: center;">
                                 <p>PDF copy of invoice has been send to <asp:Label ID="lblEmail2" runat="server"></asp:Label></p>
-                                <asp:Button ID="btnPDF" runat="server" Text="Download PDF" OnClick="btnPDF_Click" />
+                                <div class="button-container">
+                                    <div class="continue-div">
+                                        <asp:Button ID="btnPDF" runat="server" Text="Download PDF" CssClass="continue-button" OnClick="btnPDF_Click"/>
+                                    </div>
+                                </div>
                                 <p>Thank you for your purchase. To check on the status of your order, please visit <a href="profile.jsp">Here</a>.</p>
                             </div>
                         </div>

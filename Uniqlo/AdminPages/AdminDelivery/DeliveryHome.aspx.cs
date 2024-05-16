@@ -101,7 +101,6 @@ namespace Uniqlo.AdminPages.AdminDelivery
             }
         }
 
-
         protected void btnRemoveDelivery_Click(object sender, EventArgs e)
         {
             int deliveryId = Convert.ToInt32(hiddenDeliveryId.Value);
@@ -161,39 +160,44 @@ namespace Uniqlo.AdminPages.AdminDelivery
         {
             string searchTerm = searchBox.Text.Trim();
             int deliveryID;
+            bool isValidDeliveryID = int.TryParse(searchTerm, out deliveryID);
 
             // Base query
             string query = @"
-    SELECT 
-        d.Delivery_ID,
-        sa.Address + ', ' + sa.State + ', ' + sa.City + ', ' + sa.Postcode + ', ' + sa.Country AS DeliveryAddress,
-        d.Delivery_Status,
-        p.Order_ID
-    FROM 
-        Delivery d
-    INNER JOIN 
-        Shipping_Address sa ON d.Address_ID = sa.Address_ID
-    INNER JOIN 
-        Payment p ON d.Delivery_ID = p.Delivery_ID";
+SELECT 
+    d.Delivery_ID,
+    sa.Address + ', ' + sa.State + ', ' + sa.City + ', ' + sa.Postcode + ', ' + sa.Country AS DeliveryAddress,
+    d.Delivery_Status,
+    p.Order_ID
+FROM 
+    Delivery d
+INNER JOIN 
+    Shipping_Address sa ON d.Address_ID = sa.Address_ID
+INNER JOIN 
+    Payment p ON d.Delivery_ID = p.Delivery_ID";
 
             DataTable dt = new DataTable();
-
-            // Check if the search term is a valid integer
-            if (int.TryParse(searchTerm, out deliveryID))
-            {
-                query += " WHERE d.Delivery_ID = @DeliveryID";
-            }
-
-            query += " ORDER BY d.Delivery_ID ASC";
 
             using (SqlConnection conn = new SqlConnection(cs))
             {
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
-                    if (int.TryParse(searchTerm, out deliveryID))
+                    // Check if the search term is a valid integer
+                    if (!string.IsNullOrEmpty(searchTerm))
                     {
-                        cmd.Parameters.AddWithValue("@DeliveryID", deliveryID);
+                        if (isValidDeliveryID)
+                        {
+                            query += " WHERE d.Delivery_ID = @DeliveryID";
+                            cmd.Parameters.AddWithValue("@DeliveryID", deliveryID);
+                        }
+                        else
+                        {
+                            query += " WHERE 1 = 0"; // Ensure no results for non-integer input
+                        }
                     }
+
+                    query += " ORDER BY d.Delivery_ID ASC";
+                    cmd.CommandText = query;
 
                     using (SqlDataAdapter da = new SqlDataAdapter(cmd))
                     {
@@ -207,6 +211,11 @@ namespace Uniqlo.AdminPages.AdminDelivery
             rptDeliveries.DataBind();
             noDeliveryLabel.Visible = dt.Rows.Count == 0;
         }
+
+
+
+
+
 
 
         protected void addDeliveryBtn_Click(object sender, EventArgs e)
@@ -259,6 +268,5 @@ namespace Uniqlo.AdminPages.AdminDelivery
                 }
             }
         }
-
     }
 }
