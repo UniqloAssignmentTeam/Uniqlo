@@ -569,9 +569,10 @@ namespace Uniqlo.Pages
 
         protected void fetchProductID(object sender, EventArgs e)
         {
-            int productID = Int32.Parse(prodIdHidden.Value);
+            string productID = (prodIdHidden.Value);
 
-            Response.Redirect("/Pages/SendProductGmailToFriend.aspx?id=" + productID);
+            string encryptedProductID = EncryptionHelper.Encrypt(productID);
+            Response.Redirect("/Pages/SendProductGmailToFriend.aspx?id=" + encryptedProductID);
         }
 
 

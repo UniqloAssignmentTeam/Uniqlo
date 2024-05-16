@@ -11,7 +11,7 @@ namespace Uniqlo.AdminPages.AdminStaff
         {
             if (!IsPostBack)
             {
-                staffIdlbl.Text = Request.QueryString["StaffId"];
+                staffIdlbl.Text = EncryptionHelper.Decrypt(Request.QueryString["StaffId"]);
             }
         }
 
@@ -35,7 +35,7 @@ namespace Uniqlo.AdminPages.AdminStaff
             if (inputCode == storedCode)
             {
                 int staffId;
-                if (!int.TryParse(Request.QueryString["StaffId"], out staffId))
+                if (!int.TryParse(EncryptionHelper.Decrypt(Request.QueryString["StaffId"]), out staffId))
                 {
                     lblMessage.ForeColor = System.Drawing.Color.Red;
                     lblMessage.Text = "Invalid staff ID.";

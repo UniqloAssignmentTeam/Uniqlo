@@ -177,7 +177,9 @@ namespace Uniqlo.Pages
 
         protected void backToProductDetails(object sender, EventArgs e)
         {
-            int productID = Int32.Parse(Request.QueryString["id"]);
+            string productID = EncryptionHelper.Decrypt(Request.QueryString["id"].ToString());
+
+        
 
             Response.Redirect("/Pages/ProductDetails.aspx?ProdID=" + productID);
         }
