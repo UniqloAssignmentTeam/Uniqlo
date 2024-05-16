@@ -64,7 +64,7 @@ namespace Uniqlo.AdminPages
                         if (discount != null)
                         {
                             discount.Product_ID = int.Parse(DdlProductName.SelectedValue);
-                            discount.Discount_Amount = float.Parse(discountAmount.Text);
+                            discount.Discount_Amount = double.Parse(discountAmount.Text);
 
                             if (parsedEndDate < DateTime.Today && status.SelectedValue == "Active")
                             {

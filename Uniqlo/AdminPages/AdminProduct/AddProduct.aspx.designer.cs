@@ -204,6 +204,15 @@ namespace Uniqlo.AdminPages
         protected global::System.Web.UI.WebControls.TextBox newColorInput;
 
         /// <summary>
+        /// RegexValidatorNewColorInput control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator RegexValidatorNewColorInput;
+
+        /// <summary>
         /// addColorButton control.
         /// </summary>
         /// <remarks>

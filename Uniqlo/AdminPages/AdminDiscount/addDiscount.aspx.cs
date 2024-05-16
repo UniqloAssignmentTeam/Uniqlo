@@ -45,10 +45,13 @@ namespace Uniqlo.AdminPages
                     using (var db = new DiscountDbContext())
                     {
                         int productId = Int32.Parse(DdlProductName.SelectedValue);
+                        double discountAmountParsed = double.Parse(discountAmount.Text);
+                        double roundedDiscountAmount = Math.Round(discountAmountParsed, 2);
+
                         Discount newDiscount = new Discount
                         {
                             Product_ID = productId,
-                            Discount_Amount = float.Parse(discountAmount.Text),
+                            Discount_Amount = roundedDiscountAmount,
                             Start_Date = startInput,
                             End_Date = endInput,
                             Status = (DateTime.Now.Date >= startInput && DateTime.Now.Date <= endInput) ? "Active" : "Inactive"
@@ -56,18 +59,14 @@ namespace Uniqlo.AdminPages
 
                         db.Discount.Add(newDiscount);
                         db.SaveChanges();
-                       
-                      
 
-
-                        Response.Redirect("DiscountHome.aspx");
-                      
-                        
+                        // Use SweetAlert for success message
+                        ScriptManager.RegisterStartupScript(this, GetType(), "success", "Swal.fire({title: 'Success!', text: 'Discount added successfully.', icon: 'success'}).then(function() { window.location = 'DiscountHome.aspx'; });", true);
                     }
                 }
                 catch (Exception ex)
                 {
-                    ScriptManager.RegisterStartupScript(this, GetType(), "saveError", "alert('Error saving discount: " + ex.Message + "');", true);
+                    ScriptManager.RegisterStartupScript(this, GetType(), "saveError", "Swal.fire('Error', 'Error saving discount: " + ex.Message + "', 'error');", true);
                 }
             }
         }

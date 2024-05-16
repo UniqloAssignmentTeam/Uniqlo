@@ -2,6 +2,7 @@
 using System.Data;
 using System.Data.SqlClient;
 using System.Web.UI;
+using System.Web.UI.DataVisualization.Charting;
 using System.Web.UI.WebControls;
 using Uniqlo.AdminPages;
 
@@ -15,21 +16,39 @@ namespace Uniqlo.Pages
             {
                 // Populate the review data
                 BindReviewData();
+
+
+
+            }
+            string eventTarget = Request["__EVENTTARGET"];
+            if (eventTarget == "HyperLink1")
+            {
+                string orderListId = EncryptionHelper.Decrypt(Request.QueryString["OrderList_ID"]);
+
+                if (!string.IsNullOrEmpty(orderListId))
+                {
+                    string encryptedOrderListId = EncryptionHelper.Encrypt(orderListId);
+                    Response.Redirect("/Pages/OrderHistoryItem.aspx?Order_ID=" + encryptedOrderListId);
+                }
             }
         }
 
         private void BindReviewData()
         {
-            // Retrieve ReviewID from query string
-            string reviewID = Request.QueryString["ReviewID"];
+            // Retrieve OrderList_ID from query string
+            string orderListId = EncryptionHelper.Decrypt(Request.QueryString["OrderList_ID"]);
 
-            if (!string.IsNullOrEmpty(reviewID))
+            if (!string.IsNullOrEmpty(orderListId))
             {
                 // Connection string retrieved from web.config
                 string connectionString = Global.CS;
 
-                // SQL query to retrieve review data based on ReviewID
-                string query = "SELECT Rating, Review FROM Review WHERE Review_ID = @ReviewID";
+                // SQL query to retrieve review data based on OrderList_ID
+                string query = @"
+                                SELECT r.Rating, r.Review
+                                FROM Review r
+                                INNER JOIN OrderList ol ON r.OrderList_ID = ol.OrderList_ID
+                                WHERE ol.OrderList_ID = @OrderListID";
 
                 // Create a new SqlConnection using the connection string
                 using (SqlConnection connection = new SqlConnection(connectionString))
@@ -37,8 +56,8 @@ namespace Uniqlo.Pages
                     // Create a new SqlCommand with the query and connection
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
-                        // Add parameter for ReviewID
-                        command.Parameters.AddWithValue("@ReviewID", reviewID);
+                        // Add parameter for OrderList_ID
+                        command.Parameters.AddWithValue("@OrderListID", orderListId);
 
                         // Open the connection
                         connection.Open();
@@ -64,27 +83,40 @@ namespace Uniqlo.Pages
             }
         }
 
-        protected void updateRating_Click(object sender, EventArgs e)
+        protected void btnUpdate_Click(object sender, EventArgs e)
         {
             // Retrieve the rating and review from the controls
             int rating = Convert.ToInt32(HiddenRatingUpdate.Value);
             string comment = Review.Text;
 
-            // Get the ReviewID from the query string
-            int reviewID = GetReviewIDFromQueryString();
+            // Get the OrderList_ID from the query string
+            string orderListId = EncryptionHelper.Decrypt(Request.QueryString["OrderList_Id"]); ;
 
             // Update the review in the database
-            UpdateReview(reviewID, rating, comment);
+            UpdateReview(int.Parse(orderListId), rating, comment);
 
-            // Display popup using JavaScript
-            ScriptManager.RegisterStartupScript(this, GetType(), "Popup", "showPopup();", true);
+
+            string script = $@"
+                            Swal.fire({{
+                                title: 'Success!',
+                                text: 'Review updated successfully!',
+                                icon: 'success',
+                                confirmButtonText: 'OK'
+                            }}).then((result) => {{
+                                if (result.isConfirmed) {{
+                                    window.location.href = 'ViewReviewItem.aspx?OrderList_Id={EncryptionHelper.Encrypt(orderListId)}';
+                                }}
+                            }});
+                        ";
+
+            ScriptManager.RegisterStartupScript(this, GetType(), "SweetAlert", script, true);
         }
 
-        private void UpdateReview(int reviewID, int rating, string comment)
+        private void UpdateReview(int orderListId, int rating, string comment)
         {
             // Implement logic to update the review in the database
             string connectionString = Global.CS;
-            string query = "UPDATE Review SET Rating = @Rating, Review = @Review WHERE Review_ID = @ReviewID";
+            string query = "UPDATE Review SET Rating = @Rating, Review = @Review WHERE OrderList_ID = @OrderListID";
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -92,31 +124,11 @@ namespace Uniqlo.Pages
                 {
                     command.Parameters.AddWithValue("@Rating", rating);
                     command.Parameters.AddWithValue("@Review", comment);
-                    command.Parameters.AddWithValue("@ReviewID", reviewID);
+                    command.Parameters.AddWithValue("@OrderListID", orderListId);
 
                     connection.Open();
                     command.ExecuteNonQuery();
                 }
-            }
-
-            // Optionally, you can redirect the user to another page after the update
-            Response.Redirect("OrderHistoryItem.aspx");
-        }
-
-
-        private int GetReviewIDFromQueryString()
-        {
-            // Implement logic to retrieve ReviewID from the query string
-            // For example:
-            if (!string.IsNullOrEmpty(Request.QueryString["ReviewID"]))
-            {
-                return Convert.ToInt32(Request.QueryString["ReviewID"]);
-            }
-            else
-            {
-                // Handle the case where ReviewID is not present in the query string
-                // You may throw an exception or return a default value
-                throw new Exception("ReviewID is missing in the query string.");
             }
         }
 

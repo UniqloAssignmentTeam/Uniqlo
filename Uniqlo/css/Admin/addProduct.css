@@ -4,6 +4,8 @@
     margin: auto;
 }
 
+
+
 .modal-content {
     background-color: #fefefe;
     margin: 5% auto; /* 5% from the top and centered */
@@ -13,8 +15,6 @@
     border-radius: 5px;
     margin-bottom: 120px;
 }
-
-
 
 
 .product-content {

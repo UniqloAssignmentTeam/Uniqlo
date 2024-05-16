@@ -15,15 +15,13 @@ namespace Uniqlo.Pages
         {
             if (!IsPostBack)
             {
-
-
                 List<CartItem> cartItems = (List<CartItem>)Session["Cart"];
                 cartItems = GetCartItems(cartItems);
                 Session["Cart"] = cartItems; // Save the updated cartItems back to the session
                 rptCartItems.DataSource = cartItems;
                 rptCartItems.DataBind();
+                UpdateCartSummary(cartItems);
             }
-
         }
 
         public List<CartItem> GetCartItems(List<CartItem> cartItems)
@@ -101,8 +99,10 @@ namespace Uniqlo.Pages
                 List<CartItem> cartItems = (List<CartItem>)Session["Cart"];
                 rptCartItems.DataSource = cartItems;
                 rptCartItems.DataBind();
+                UpdateCartSummary(cartItems); // Update summary after removing item
             }
         }
+
         // Method to remove item from the cart and the database
         private void RemoveItemFromCart(int quantityId)
         {
@@ -127,11 +127,14 @@ namespace Uniqlo.Pages
 
             // Update the quantity of the item in the cart
             UpdateItemQuantity(quantityId, newQuantity);
+
+            // Update the cart summary in real-time
+            List<CartItem> cartItems = (List<CartItem>)Session["Cart"];
+            UpdateCartSummary(cartItems);
         }
 
         private void UpdateItemQuantity(int quantityId, int newQuantity)
         {
-       
             List<CartItem> cartItems = (List<CartItem>)Session["Cart"];
 
             // Find the item in the cart list
@@ -149,6 +152,15 @@ namespace Uniqlo.Pages
             // Rebind the Repeater to reflect the changes
             rptCartItems.DataSource = cartItems;
             rptCartItems.DataBind();
+        }
+
+        private void UpdateCartSummary(List<CartItem> cartItems)
+        {
+            int totalItems = cartItems.Sum(item => item.Quantity);
+            decimal subtotal = cartItems.Sum(item => item.Item_Price);
+
+            lblTotalItems.Text = totalItems.ToString();
+            lblSubtotal.Text = subtotal.ToString("0.00");
         }
 
         protected void btnCheckout_Click(object sender, EventArgs e)

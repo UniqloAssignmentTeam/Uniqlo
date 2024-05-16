@@ -118,6 +118,20 @@
     font-weight: bold;
 }
 
+.dropdown-Customer {
+    width: 150px;
+    height: 40px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: white;
+    cursor: pointer;
+    position: relative;
+    text-align: center; /* Center the text */
+    display: flex; /* Use flexbox here to help with centering text and arrow */
+    align-items: center; /* Align the text and arrow vertically */
+    justify-content: center; /* Centers the text inside the dropdown */
+    font-weight: bold;
+}
 .dropdown-list {
     position: absolute;
     top: 100%;

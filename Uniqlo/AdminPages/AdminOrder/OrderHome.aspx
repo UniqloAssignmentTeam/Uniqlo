@@ -1,10 +1,10 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin.Master" AutoEventWireup="true" CodeBehind="OrderHome.aspx.cs" Inherits="Uniqlo.AdminPages.AdminOrder.OrderHome" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="main" runat="server">
-    <link href="../../css/Admin/adminOrder.css" rel="stylesheet" />
+        <link href="../../css/Admin/adminOrder.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <style>
         .dropdown-container {
             margin-left: -180px;
@@ -27,7 +27,6 @@
             margin-top: 90px;
         }
 
-        /* Add a color to the cancel button */
         .confirmationCancelbtn, .confirmationDeletebtn {
             border: 2px solid black;
             padding: 20px 150px 20px 150px;
@@ -42,53 +41,54 @@
             width: calc((100% / 2) - 20px);
         }
 
-            .confirmationDeletebtn:hover,
-            .confirmationCancelbtn:hover {
-                background-color: black;
-                color: white;
-            }
+        .confirmationDeletebtn:hover,
+        .confirmationCancelbtn:hover {
+            background-color: black;
+            color: white;
+        }
 
-
-        /* Add padding and center-align text to the container */
         .confirmationContainer {
             padding: 16px;
             text-align: center;
         }
 
-        /* The Modal (background) */
         .confirmationModal {
-            display: none; /* Hidden by default */
-            position: fixed; /* Stay in place */
-            z-index: 2; /* Sit on top */
+            display: none;
+            position: fixed;
+            z-index: 2;
             left: 0;
             top: 0;
-            width: 100%; /* Full width */
-            height: 100%; /* Full height */
-            background-color: rgb(0,0,0); /* Fallback color */
-            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.4);
             padding-top: 50px;
             margin-top: 100px;
         }
 
-        /* Modal Content/Box */
         .confirmation-modal-content {
             background-color: #fefefe;
             margin: 5% auto 15% auto;
             border: 1px solid #888;
-            width: 80%; /* Could be more or less, depending on screen size */
+            width: 80%;
             height: 400px;
         }
 
+        .no-discount-label {
+            color: red;
+            font-size: 16px;
+            margin-top: 20px;
+            display: block;
+            text-align: center;
+        }
 
-            .confirmation-modal-content h1 {
-                margin-top: 60px;
-            }
+        .confirmation-modal-content h1 {
+            margin-top: 60px;
+        }
 
-            .confirmation-modal-content p {
-                margin-top: 30px;
-            }
+        .confirmation-modal-content p {
+            margin-top: 30px;
+        }
 
-        /* The Modal Close Button (x) */
         .confirmationClose {
             float: right;
             font-size: 40px;
@@ -96,20 +96,18 @@
             color: #f1f1f1;
         }
 
-            .confirmationClose:hover,
-            .confirmationClose:focus {
-                color: black;
-                cursor: pointer;
-            }
+        .confirmationClose:hover,
+        .confirmationClose:focus {
+            color: black;
+            cursor: pointer;
+        }
 
-        /* Clear floats */
         .confirmationClearFix::after {
             content: "";
             clear: both;
             display: table;
         }
 
-        /* Change styles for cancel button and delete button on extra small screens */
         @media screen and (max-width: 300px) {
             .confirmationCancelbtn, .confirmationDeletebtn {
                 width: 100%;
@@ -118,7 +116,6 @@
     </style>
 
     <div class="productBody">
-
         <asp:ScriptManager ID="ScriptManagerProduct" runat="server" />
         <asp:UpdatePanel ID="UpdatePanelProduct" runat="server">
             <ContentTemplate>
@@ -128,28 +125,24 @@
                     <div class="wrap-items-search-buttons">
                         <div class="search">
                             <span class="material-symbols-outlined">search</span>
-                            <asp:TextBox ID="searchBox" runat="server" CssClass="search-input" AutoPostBack="true" OnTextChanged="searchBox_TextChanged"  placeholder="Search Customer Name"></asp:TextBox>
+                            <asp:TextBox ID="searchBox" runat="server" CssClass="search-input" AutoPostBack="true" OnTextChanged="searchBox_TextChanged" placeholder="Search Customer Name"></asp:TextBox>
                         </div>
 
                         <div class="dropdown-wrapper" style="margin-left: -300px;">
                             <asp:DropDownList ID="ddlStatus" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlStatus_SelectedIndexChanged" CssClass="dropdown-display">
-      <asp:ListItem Value="">Status</asp:ListItem>
-      <asp:ListItem Value="Paid">Paid</asp:ListItem>
-      <asp:ListItem Value="Unpaid">Unpaid</asp:ListItem>
-  </asp:DropDownList>
+                                <asp:ListItem Value="">Status</asp:ListItem>
+                                <asp:ListItem Value="Paid">Paid</asp:ListItem>
+                                <asp:ListItem Value="Unpaid">Unpaid</asp:ListItem>
+                            </asp:DropDownList>
                         </div>
 
                         <div class="btnExcel-Add">
-                            <asp:Button ID="excelExport" runat="server" Text="Export" CssClass="excel-export" OnClick="btnExport_Click"/>
+                            <asp:Button ID="excelExport" runat="server" Text="Export" CssClass="excel-export" OnClick="btnExport_Click" />
                         </div>
                     </div>
                 </div>
 
-
-
-
                 <asp:Repeater ID="orderRepeater" runat="server" ViewStateMode="Disabled">
-
                     <HeaderTemplate>
                         <table class="table" style="width: 100%">
                             <!-- Header -->
@@ -165,7 +158,6 @@
                                 </td>
                             </tr>
                     </HeaderTemplate>
-
                     <ItemTemplate>
                         <tr class="row">
                             <td class="col productid"><%# Eval("OrderId") %></td>
@@ -188,54 +180,58 @@
                     <FooterTemplate>
                         </table>
                     </FooterTemplate>
-
                 </asp:Repeater>
-
+                <asp:Label ID="noDiscount" runat="server" Text="No Orders Available" CssClass="no-discount-label" Visible="false"></asp:Label>
             </ContentTemplate>
             <Triggers>
                 <asp:AsyncPostBackTrigger ControlID="ddlStatus" EventName="SelectedIndexChanged" />
                 <asp:PostBackTrigger ControlID="excelExport" />
             </Triggers>
-
-
         </asp:UpdatePanel>
 
-         <asp:HiddenField ID="hiddenOrderId" runat="server" Value="" />
+        <asp:HiddenField ID="hiddenOrderId" runat="server" Value="" />
+        <asp:Button ID="hiddenDeleteButton" runat="server" Text="Delete" OnClick="btnRemoveOrder_Click" Style="display:none;" />
 
-        <!--DELETE CONFIRMATION-->
-        <div id="id01" class="confirmationModal">
-            <div class="confirmation-modal-content">
-                <div class="confirmationContainer">
-                    <span onclick="document.getElementById('id01').style.display='none'" class="confirmationClose" title="Close Modal">×</span>
-                    <h1>Remove Order</h1>
-                    <p>Are you sure you want to remove the Order?</p>
-
-                    <div class="confirmationClearFix">
-                        <button type="button" onclick="document.getElementById('id01').style.display='none'" class="confirmationCancelbtn">Cancel</button>
-                        <asp:Button ID="btnRemoveProduct" runat="server" Text="Remove"  CssClass="confirmationDeletebtn" OnClick="btnRemoveOrder_Click" />
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!--DELETE CONFIRMATION END-->
-
-        <div style="margin-bottom: 80px;">
-        </div>
+        <div style="margin-bottom: 80px;"></div>
     </div>
-
     <footer>
         <script src="../../Javascript/productBtnEclipse.js"></script>
         <script src="../../Javascript/productAdminDDL.js"></script>
         <script>
+            function showDeleteModal(orderID) {
+                Swal.fire({
+                    title: 'Are you sure?',
+                    html: "<strong>You are about to delete the orders with ID:</strong> <span style='color: red;'>" + orderID + "</span>.<br>This action cannot be undone!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, delete it!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        document.getElementById('<%= hiddenOrderId.ClientID %>').value = orderID;
+                        __doPostBack('<%= hiddenDeleteButton.UniqueID %>', '');
+                    }
+                });
+            }
 
-            function showDeleteModal(prodID) {
-                document.getElementById('<%= hiddenOrderId.ClientID %>').value = prodID;
-                document.getElementById('id01').style.display = 'block';
+            function showDeleteSuccess() {
+                Swal.fire({
+                    title: 'Deleted!',
+                    text: 'The order has been successfully deleted.',
+                    icon: 'success',
+                    confirmButtonText: 'Ok'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = window.location.href;
+                    }
+                });
             }
 
             document.getElementById('<%= searchBox.ClientID %>').onkeyup = function () {
-                     __doPostBack('<%= searchBox.ClientID %>', '');
+                __doPostBack('<%= searchBox.ClientID %>', '');
             };
         </script>
     </footer>
+
 </asp:Content>

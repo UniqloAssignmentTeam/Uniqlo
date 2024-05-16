@@ -15,7 +15,9 @@
 }
 
 
-
+.password {
+    width: 1000px;
+}
 
 .product-content {
     display: flex;
@@ -66,7 +68,7 @@ label {
 }
 
 input[type="text"], input[type="number"], input[type="date"],
-textarea {
+textarea, input[type="password"] {
     width: 100%;
     padding: 10px;
     margin-bottom: 10px;
@@ -80,7 +82,9 @@ textarea {
     resize: vertical;
 }
 
+.password{
 
+}
 
 body .form-group {
     max-width: 360px;
@@ -238,7 +242,7 @@ body .form-group {
 
 .cancel-button {
     border: 2px solid lightgrey;
-    padding: 20px 80px 20px 80px;
+    padding: 20px 80px 20px 65px;
     background: none;
     outline: none;
     font-weight: bold;
@@ -252,7 +256,7 @@ body .form-group {
 
 .continue-button {
     border: 2px solid lightgrey;
-    padding: 20px 80px 20px 80px;
+    padding: 20px 80px 20px 70px;
     background: none;
     outline: none;
     font-weight: bold;

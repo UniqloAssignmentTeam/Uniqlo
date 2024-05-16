@@ -85,6 +85,7 @@ namespace Uniqlo.AdminPages.AdminStaff
                     var staffList = db.Staff.ToList();
                     staffRepeater.DataSource = staffList;
                     staffRepeater.DataBind();
+                    
                 }
             }
             catch (Exception ex)
@@ -127,6 +128,7 @@ namespace Uniqlo.AdminPages.AdminStaff
                     var staffList = query.ToList();
                     staffRepeater.DataSource = staffList;
                     staffRepeater.DataBind();
+                    lblNoStaffFound.Visible = staffList.Count == 0;
                 }
             }
             catch (Exception ex)
@@ -209,6 +211,7 @@ namespace Uniqlo.AdminPages.AdminStaff
                 var results = SearchDatabase(searchText);  // Call the method that performs the search
                 staffRepeater.DataSource = results;
                 staffRepeater.DataBind();
+                lblNoStaffFound.Visible = results.Count == 0;
             }
             catch (Exception ex)
             {

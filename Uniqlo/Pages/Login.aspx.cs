@@ -30,36 +30,43 @@ namespace Uniqlo.Pages
 
         protected void btnLogin_Click(object sender, EventArgs e)
         {
-            
-                con.Open();
-                if (Page.IsValid)
-                {
-                    string email = txtEmail.Text;
-                    string password = txtPassword.Text.Trim();
+            con.Open();
+            if (Page.IsValid)
+            {
+                string email = txtEmail.Text;
+                string password = txtPassword.Text.Trim();
 
-                string checkUser = "SELECT Customer_ID, Name, Gender, Contact_No, Email, Password from Customer where email=@email and password=@password";
+                string checkUser = "SELECT Customer_ID, Name, Gender, Contact_No, Email, Password from Customer where email=@email";
                 SqlCommand checkCmd = new SqlCommand(checkUser, con);
                 checkCmd.Parameters.AddWithValue("@email", email);
-                checkCmd.Parameters.AddWithValue("@password", password);
                 SqlDataReader read = checkCmd.ExecuteReader();
 
                 if (read.Read())
                 {
-                    
-                    Session["Customer_ID"] = read.GetValue(0).ToString();
+                    string hashedPasswordFromDB = read["Password"].ToString();
 
-                    Response.Redirect("Home.aspx");
+                    if (Crypto.VerifyPassword(hashedPasswordFromDB, password))
+                    {
+                        // Passwords match, login successful
+                        Session["Customer_ID"] = read["Customer_ID"].ToString();
+                        Response.Redirect("Home.aspx");
+                    }
+                    else
+                    {
+                        // Passwords do not match
+                        errorMSG.Text = "Invalid email or password.";
+                        errorMSG.ForeColor = System.Drawing.Color.Red;
+                    }
                 }
                 else
                 {
+                    // User not found
                     errorMSG.Text = "Invalid email or password.";
                     errorMSG.ForeColor = System.Drawing.Color.Red;
-                    con.Close();
                 }
 
-
+                con.Close();
             }
-
         }
 
     }

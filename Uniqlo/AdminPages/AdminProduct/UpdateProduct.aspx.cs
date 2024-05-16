@@ -148,8 +148,15 @@ namespace Uniqlo.AdminPages
                         }
 
                         dbContext.SaveChanges();
-                        ScriptManager.RegisterStartupScript(this, GetType(), "deleteSuccess", "Swal.fire('Deleted!', 'The item has been deleted.', 'success');", true);
-                        Response.Redirect(Request.RawUrl); // Refresh the page to reflect changes
+                        ScriptManager.RegisterStartupScript(this, GetType(), "deleteSuccess",
+                                                                                @"Swal.fire({
+                                                                                title: 'Deleted!',
+                                                                                text: 'The item has been deleted.',
+                                                                                icon: 'success',
+                                                                                confirmButtonText: 'Ok'
+                                                                            }).then((result) => {
+                                                                                if (result.value) {
+                                                                                    window.location.href = '" + Request.RawUrl + "';}}); ", true);
                     }
                 }
                 catch (Exception ex)
@@ -173,6 +180,7 @@ namespace Uniqlo.AdminPages
 
         protected void updateButton_Click(object sender, EventArgs e)
         {
+
             if (Page.IsValid)
             {
                 TextBox txtProductName = formView.FindControl("txtProdName") as TextBox;
@@ -183,7 +191,7 @@ namespace Uniqlo.AdminPages
 
                 string productName = txtProductName.Text;
                 string productDescription = txtProductDescription.Text;
-                double productPrice = Double.Parse(txtProductPrice.Text);
+                double productPrice = double.Parse(txtProductPrice.Text);
                 string category = ddlCategory.Text;
                 string gender = ddlGender.Text;
 
@@ -193,7 +201,7 @@ namespace Uniqlo.AdminPages
 
                 try
                 {
-                   using (var dbContext = new ProductDbContext())
+                    using (var dbContext = new ProductDbContext())
                     {
                         int productIDQuery = int.Parse(Request.QueryString["ProdID"]);
                         var productID = dbContext.Product.FirstOrDefault(p => p.Product_ID == productIDQuery);
@@ -210,65 +218,76 @@ namespace Uniqlo.AdminPages
 
                             dbContext.SaveChanges();
 
-
-                            foreach (var colorSize in colorSizes)
+                            if (colorSizes != null)
                             {
-                                if (!String.IsNullOrWhiteSpace(colorSize.Image))
+                                foreach (var colorSize in colorSizes)
                                 {
-                                    // Handling the base64 image string
-                                    string base64Image = colorSize.Image.Split(',')[1]; // Ensuring only the base64 part is taken
-                                    try
+                                    if (!String.IsNullOrWhiteSpace(colorSize.Image))
                                     {
-                                        byte[] imageBytes = Convert.FromBase64String(base64Image);
-                                        Image newImage = new Image
+                                        // Handling the base64 image string
+                                        string base64Image = colorSize.Image.Split(',')[1]; // Ensuring only the base64 part is taken
+                                        try
                                         {
-                                            ProductImage = imageBytes
-                                        };
-                                        dbContext.Image.Add(newImage);
-                                        dbContext.SaveChanges();
-
-                                        // Linking the image with product details
-                                        foreach (var sizeProperty in typeof(ColorSize).GetProperties().Where(p => p.Name.StartsWith("Size")))
-                                        {
-                                            string sizeValue = sizeProperty.GetValue(colorSize) as string;
-                                            if (!string.IsNullOrEmpty(sizeValue))
+                                            byte[] imageBytes = Convert.FromBase64String(base64Image);
+                                            Image newImage = new Image
                                             {
-                                                string size = sizeProperty.Name.Substring(4);
-                                                Quantity newQuantity = new Quantity
+                                                ProductImage = imageBytes
+                                            };
+                                            dbContext.Image.Add(newImage);
+                                            dbContext.SaveChanges();
+
+                                            // Linking the image with product details
+                                            foreach (var sizeProperty in typeof(ColorSize).GetProperties().Where(p => p.Name.StartsWith("Size")))
+                                            {
+                                                string sizeValue = sizeProperty.GetValue(colorSize) as string;
+                                                if (!string.IsNullOrEmpty(sizeValue))
                                                 {
-                                                    Product_ID = productIDQuery,
-                                                    Image_ID = newImage.Image_ID,
-                                                    Color = colorSize.Color,
-                                                    Size = size,
-                                                    Qty = Int32.Parse(sizeValue)
-                                                };
-                                                dbContext.Quantity.Add(newQuantity);
+                                                    string size = sizeProperty.Name.Substring(4);
+                                                    Quantity newQuantity = new Quantity
+                                                    {
+                                                        Product_ID = productIDQuery,
+                                                        Image_ID = newImage.Image_ID,
+                                                        Color = colorSize.Color,
+                                                        Size = size,
+                                                        Qty = Int32.Parse(sizeValue)
+                                                    };
+                                                    dbContext.Quantity.Add(newQuantity);
+                                                }
                                             }
                                         }
-                                    }
-                                    catch (FormatException fe)
-                                    {
-                                        Console.WriteLine("Failed to convert Base64 string to byte array. Error: " + fe.Message);
-                                    }
-                                    catch (Exception ex)
-                                    {
-                                        Console.WriteLine("Error saving image data: " + ex.Message);
+                                        catch (FormatException fe)
+                                        {
+                                            Console.WriteLine("Failed to convert Base64 string to byte array. Error: " + fe.Message);
+                                        }
+                                        catch (Exception ex)
+                                        {
+                                            Console.WriteLine("Error saving image data: " + ex.Message);
+                                        }
                                     }
                                 }
                             }
+
                             dbContext.SaveChanges();
                         }
                     }
-                    ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", "alert('Product and details update successfully!');", true);
-                    Response.Redirect(Request.RawUrl);
+                    ScriptManager.RegisterStartupScript(this, GetType(), "successMessage",
+                                                                            @"Swal.fire({
+                                                                                title: 'Success!',
+                                                                                text: 'Product and details updated successfully!',
+                                                                                icon: 'success',
+                                                                                confirmButtonText: 'Ok'
+                                                                            }).then((result) => {
+                                                                                if (result.value) {
+                                                                                    window.location.href = '" + Request.RawUrl + "';}}); ", true);
                 }
                 catch (Exception ex)
                 {
-                    ScriptManager.RegisterStartupScript(this, GetType(), "errorAlert", "alert('An error occurred when updating product.');", true);
+                    ScriptManager.RegisterStartupScript(this, GetType(), "errorAlert", "alert('An error occurred when updating product." + ex.Message + "');", true);
                 }
 
             }
         }
+
 
 
     }
