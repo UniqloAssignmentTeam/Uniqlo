@@ -21,7 +21,7 @@
         <div class="wrapper">
             <asp:DataList ID="carouselDataList" runat="server" RepeatDirection="Horizontal" Width="100%">
                 <ItemTemplate>
-                    <asp:HyperLink ID="productLink" runat="server" NavigateUrl='<%# "/Pages/ProductDetails.aspx?ProdID=" +  Eval("ProductId") %>' CssClass="hyperlink">
+                    <asp:HyperLink ID="productLink" runat="server" NavigateUrl='<%# "/Pages/ProductDetails.aspx?ProdID="  + Uniqlo.EncryptionHelper.Encrypt((string)  Eval("ProductId").ToString()) %>' CssClass="hyperlink">
                     <div class="limitedOfferCardContainer">
                         <div class="limitedOfferCard" id="product9" data-product-id="1">
                             <div class="product-image-container">
@@ -98,7 +98,7 @@
                     <ContentTemplate>
                         <asp:DataList ID="dataList" runat="server" RepeatDirection="Horizontal" Width="100%">
                             <ItemTemplate>
-                                <asp:HyperLink ID="productLink" runat="server" NavigateUrl='<%# "/Pages/ProductDetails.aspx?ProdID=" +  Eval("ProductId") %>' CssClass="hyperlink">
+                                <asp:HyperLink ID="productLink" runat="server" NavigateUrl='<%# "/Pages/ProductDetails.aspx?ProdID=" + Uniqlo.EncryptionHelper.Encrypt((string) Eval("ProductId").ToString()) %>' CssClass="hyperlink">
                                    <div class="limitedOfferCardContainer">
                                        <div class="limitedOfferCard" id="product9" data-product-id="1">
                                            <div class="product-image-container">

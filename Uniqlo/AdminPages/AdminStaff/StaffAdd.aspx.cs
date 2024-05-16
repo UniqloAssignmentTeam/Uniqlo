@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -17,28 +18,50 @@ namespace Uniqlo.AdminPages.AdminStaff
             if (Page.IsValid)
             {
                 string hashedPassword = Crypto.HashPassword(password.Text);
-                
-                    using (var db = new StaffDbContext())
+
+                // Define your connection string
+                string connectionString = Global.CS;
+
+                // Define your SQL query with parameters
+                string query = @"INSERT INTO Staff (Name, Email, Gender, Contact_No, Password, Role)
+                         VALUES (@Name, @Email, @Gender, @Contact_No, @Password, @Role)";
+
+                // Create and open a SqlConnection
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    // Create a SqlCommand with the query and connection
+                    using (SqlCommand command = new SqlCommand(query, connection))
                     {
-                        Staff newStaff = new Staff
+                        // Add parameters to the command
+                        command.Parameters.AddWithValue("@Name", staffName.Text);
+                        command.Parameters.AddWithValue("@Email", email.Text);
+                        command.Parameters.AddWithValue("@Gender", staffGender.SelectedValue);
+                        command.Parameters.AddWithValue("@Contact_No", contactNumber.Text);
+                        command.Parameters.AddWithValue("@Password", hashedPassword);
+                        command.Parameters.AddWithValue("@Role", staffRole.SelectedValue);
+
+                        // Open the connection
+                        connection.Open();
+
+                        // Execute the command
+                        int rowsAffected = command.ExecuteNonQuery();
+
+                        // Close the connection
+                        connection.Close();
+
+                        // Check if the insert was successful
+                        if (rowsAffected > 0)
                         {
-                            Name = staffName.Text,
-                            Email = email.Text,
-                            Gender = staffGender.SelectedValue,
-                            Contact_No = contactNumber.Text,
-                            Password = hashedPassword,
-                            Role = staffRole.SelectedValue
-                        };
-
-                        db.Staff.Add(newStaff);
-                        db.SaveChanges();
-
-                        // Set session variable to indicate success
-                        Session["StaffAdded"] = true;
-                        Response.Redirect("StaffAdd.aspx"); // Refresh page to trigger SweetAlert
+                            // Set session variable to indicate success
+                            Session["StaffAdded"] = true;
+                            Response.Redirect("StaffAdd.aspx"); // Refresh page to trigger SweetAlert
+                        }
+                        else
+                        {
+                           
+                        }
                     }
-                
-                
+                }
             }
         }
 

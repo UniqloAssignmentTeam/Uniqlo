@@ -15,11 +15,16 @@ namespace Uniqlo.AdminPages
         string cs = Global.CS;
         protected void Page_Load(object sender, EventArgs e)
         {
-            BindDeliveryData();
-            BindPaymentData();
-            BindStaffData();
-            BindCustomerData();
-            BindSalesChartData();
+            if (!IsPostBack)
+            {
+                BindDeliveryData();
+                BindPaymentData();
+                BindStaffData();
+                BindCustomerData();
+                BindSalesChartData();
+            }
+
+            
         }
         private void BindDeliveryData()
         {

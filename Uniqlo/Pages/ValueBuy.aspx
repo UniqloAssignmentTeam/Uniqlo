@@ -101,7 +101,7 @@
                     <ItemTemplate>
 
 
-                           <asp:HyperLink ID="productLink" runat="server" NavigateUrl='<%# "/Pages/ProductDetails.aspx?ProdID=" +  Eval("Product_ID") %>' CssClass="hyperlink">
+                           <asp:HyperLink ID="productLink" runat="server" NavigateUrl='<%# "/Pages/ProductDetails.aspx?ProdID=" + Uniqlo.EncryptionHelper.Encrypt((string) Eval("Product_ID").ToString()) %>' CssClass="hyperlink">
                         <div class="limitedOfferCardContainer">
                             <div class="limitedOfferCard" id="product9" data-product-id="1">
                                 <div class="product-image-container">
