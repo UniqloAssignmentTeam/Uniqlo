@@ -51,6 +51,7 @@ namespace Uniqlo.AdminPages.AdminCustomer
                 }
             }
 
+            Session["CustomerAdded"] = "True";
             string script = @"
                             <script>
                                 Swal.fire({
@@ -65,10 +66,9 @@ namespace Uniqlo.AdminPages.AdminCustomer
                                 });
                             </script>";
 
-            Session["CustomerAdded"] = "True";
+            // Register the script to be executed
             ClientScript.RegisterStartupScript(this.GetType(), "SweetAlert", script);
         }
-
 
         protected void cancelBtn_Click(object sender, EventArgs e)
         {
