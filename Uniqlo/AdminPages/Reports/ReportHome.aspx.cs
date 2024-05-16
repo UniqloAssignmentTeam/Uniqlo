@@ -11,7 +11,21 @@ namespace Uniqlo.AdminPages.Reports
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (Session["StaffRole"] != null)
+            {
+                if (!Session["StaffRole"].Equals("Manager"))
+                {
+                    // Redirect to adminLogin.aspx if the session role is invalid or not set
+                    Response.Redirect("../adminLogin.aspx");
+                    Session["Unauthorized"] = true;
+                }
+            }
+            else
+            {
+                // Redirect to adminLogin.aspx if the session role is invalid or not set
+                Response.Redirect("../adminLogin.aspx");
+                Session["Unauthorized"] = true;
+            }
         }
     }
 }
