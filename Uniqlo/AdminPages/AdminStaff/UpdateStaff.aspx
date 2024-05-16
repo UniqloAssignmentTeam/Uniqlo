@@ -17,7 +17,7 @@
                 </div>
                 <div class="form-group">
                     <label for="email">E-mail</label>
-                    <asp:TextBox ID="email" runat="server" MaxLength="50"></asp:TextBox>
+                    <asp:TextBox ID="email" runat="server" MaxLength="40"></asp:TextBox>
                     <asp:RegularExpressionValidator ID="RegexValidatorEmail" runat="server" ControlToValidate="email" ErrorMessage="Please enter a valid email address."
                         ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" ForeColor="Red" Display="Dynamic"></asp:RegularExpressionValidator>
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="email"
@@ -25,7 +25,7 @@
                 </div>
                 <div class="form-group">
                     <label for="password">Password</label>
-                    <asp:TextBox ID="password" runat="server" MaxLength="50"></asp:TextBox>
+                    <asp:TextBox ID="password" runat="server" MaxLength="30"></asp:TextBox>
                     <asp:RegularExpressionValidator ID="RegexValidatorPassword" runat="server" ControlToValidate="password"
                         ErrorMessage="Password must be at least 8 characters long including numbers, uppercase and lowercase letters."
                         ValidationExpression="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$" ForeColor="Red" Display="Dynamic"></asp:RegularExpressionValidator>

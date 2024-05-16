@@ -29,17 +29,19 @@ namespace Uniqlo.AdminPages.AdminDelivery
             using (SqlConnection conn = new SqlConnection(connString))
             {
                 string query = @"
-                SELECT 
-                    d.Delivery_ID,
-                    sa.Address + ', ' + sa.State + ', ' + sa.City + ', ' + sa.Postcode + ', ' + sa.Country AS DeliveryAddress,
-                    d.Delivery_Status,
-                    p.Order_ID
-                FROM 
-                    Delivery d
-                INNER JOIN 
-                    Shipping_Address sa ON d.Address_ID = sa.Address_ID
-                INNER JOIN 
-                    Payment p ON d.Delivery_ID = p.Delivery_ID";
+        SELECT 
+            d.Delivery_ID,
+            sa.Address + ', ' + sa.State + ', ' + sa.City + ', ' + sa.Postcode + ', ' + sa.Country AS DeliveryAddress,
+            d.Delivery_Status,
+            p.Order_ID
+        FROM 
+            Delivery d
+        INNER JOIN 
+            Shipping_Address sa ON d.Address_ID = sa.Address_ID
+        INNER JOIN 
+            Payment p ON d.Delivery_ID = p.Delivery_ID
+        ORDER BY 
+            d.Delivery_ID ASC";
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
                     using (SqlDataAdapter sda = new SqlDataAdapter(cmd))
@@ -61,22 +63,24 @@ namespace Uniqlo.AdminPages.AdminDelivery
             {
                 string selectedStatus = statusSortDDL.SelectedValue;
                 string query = @"
-                SELECT 
-                    d.Delivery_ID,
-                    CONCAT(sa.Address, ', ', sa.State, ', ', sa.City, ', ', sa.Postcode, ', ', sa.Country) AS DeliveryAddress,
-                    d.Delivery_Status,
-                    p.Order_ID
-                FROM 
-                    Delivery d
-                INNER JOIN 
-                    Shipping_Address sa ON d.Address_ID = sa.Address_ID
-                INNER JOIN 
-                    Payment p ON d.Delivery_ID = p.Delivery_ID";
+        SELECT 
+            d.Delivery_ID,
+            CONCAT(sa.Address, ', ', sa.State, ', ', sa.City, ', ', sa.Postcode, ', ', sa.Country) AS DeliveryAddress,
+            d.Delivery_Status,
+            p.Order_ID
+        FROM 
+            Delivery d
+        INNER JOIN 
+            Shipping_Address sa ON d.Address_ID = sa.Address_ID
+        INNER JOIN 
+            Payment p ON d.Delivery_ID = p.Delivery_ID";
 
                 if (!string.IsNullOrEmpty(selectedStatus))
                 {
                     query += " WHERE d.Delivery_Status = @DeliveryStatus";
                 }
+
+                query += " ORDER BY d.Delivery_ID ASC";
 
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
@@ -96,6 +100,7 @@ namespace Uniqlo.AdminPages.AdminDelivery
                 }
             }
         }
+
 
         protected void btnRemoveDelivery_Click(object sender, EventArgs e)
         {
@@ -159,17 +164,17 @@ namespace Uniqlo.AdminPages.AdminDelivery
 
             // Base query
             string query = @"
-SELECT 
-    d.Delivery_ID,
-    sa.Address + ', ' + sa.State + ', ' + sa.City + ', ' + sa.Postcode + ', ' + sa.Country AS DeliveryAddress,
-    d.Delivery_Status,
-    p.Order_ID
-FROM 
-    Delivery d
-INNER JOIN 
-    Shipping_Address sa ON d.Address_ID = sa.Address_ID
-INNER JOIN 
-    Payment p ON d.Delivery_ID = p.Delivery_ID";
+    SELECT 
+        d.Delivery_ID,
+        sa.Address + ', ' + sa.State + ', ' + sa.City + ', ' + sa.Postcode + ', ' + sa.Country AS DeliveryAddress,
+        d.Delivery_Status,
+        p.Order_ID
+    FROM 
+        Delivery d
+    INNER JOIN 
+        Shipping_Address sa ON d.Address_ID = sa.Address_ID
+    INNER JOIN 
+        Payment p ON d.Delivery_ID = p.Delivery_ID";
 
             DataTable dt = new DataTable();
 
@@ -177,31 +182,22 @@ INNER JOIN
             if (int.TryParse(searchTerm, out deliveryID))
             {
                 query += " WHERE d.Delivery_ID = @DeliveryID";
+            }
 
-                using (SqlConnection conn = new SqlConnection(cs))
+            query += " ORDER BY d.Delivery_ID ASC";
+
+            using (SqlConnection conn = new SqlConnection(cs))
+            {
+                using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
-                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    if (int.TryParse(searchTerm, out deliveryID))
                     {
                         cmd.Parameters.AddWithValue("@DeliveryID", deliveryID);
-
-                        using (SqlDataAdapter da = new SqlDataAdapter(cmd))
-                        {
-                            da.Fill(dt);
-                        }
                     }
-                }
-            }
-            else if (string.IsNullOrEmpty(searchTerm))
-            {
-                // If search term is empty, show all records
-                using (SqlConnection conn = new SqlConnection(cs))
-                {
-                    using (SqlCommand cmd = new SqlCommand(query, conn))
+
+                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
                     {
-                        using (SqlDataAdapter da = new SqlDataAdapter(cmd))
-                        {
-                            da.Fill(dt);
-                        }
+                        da.Fill(dt);
                     }
                 }
             }
@@ -211,6 +207,7 @@ INNER JOIN
             rptDeliveries.DataBind();
             noDeliveryLabel.Visible = dt.Rows.Count == 0;
         }
+
 
         protected void addDeliveryBtn_Click(object sender, EventArgs e)
         {
@@ -225,17 +222,19 @@ INNER JOIN
                 conn.Open();
 
                 StringBuilder query = new StringBuilder(@"
-                SELECT 
-                    d.Delivery_ID,
-                    sa.Address + ', ' + sa.State + ', ' + sa.City + ', ' + sa.Postcode + ', ' + sa.Country AS DeliveryAddress,
-                    d.Delivery_Status,
-                    p.Order_ID
-                FROM 
-                    Delivery d
-                INNER JOIN 
-                    Shipping_Address sa ON d.Address_ID = sa.Address_ID
-                INNER JOIN 
-                    Payment p ON d.Delivery_ID = p.Delivery_ID");
+        SELECT 
+            d.Delivery_ID,
+            sa.Address + ', ' + sa.State + ', ' + sa.City + ', ' + sa.Postcode + ', ' + sa.Country AS DeliveryAddress,
+            d.Delivery_Status,
+            p.Order_ID
+        FROM 
+            Delivery d
+        INNER JOIN 
+            Shipping_Address sa ON d.Address_ID = sa.Address_ID
+        INNER JOIN 
+            Payment p ON d.Delivery_ID = p.Delivery_ID
+        ORDER BY 
+            d.Delivery_ID ASC");
 
                 using (SqlCommand cmd = new SqlCommand(query.ToString(), conn))
                 {
@@ -260,5 +259,6 @@ INNER JOIN
                 }
             }
         }
+
     }
 }
