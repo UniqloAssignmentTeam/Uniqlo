@@ -25,7 +25,7 @@ namespace Uniqlo.AdminPages
                 formView.DataBound += new EventHandler(formView_DataBound);
 
                 int productId = 0;
-                if (Request.QueryString["ProdID"] != null && int.TryParse(Request.QueryString["ProdID"], out productId))
+                if (Request.QueryString["ProdID"] != null && int.TryParse(EncryptionHelper.Decrypt(Request.QueryString["ProdID"]), out productId))
                 {
                     BindFormView(productId);
 
@@ -203,7 +203,7 @@ namespace Uniqlo.AdminPages
                 {
                     using (var dbContext = new ProductDbContext())
                     {
-                        int productIDQuery = int.Parse(Request.QueryString["ProdID"]);
+                        int productIDQuery = int.Parse(EncryptionHelper.Decrypt(Request.QueryString["ProdID"]));
                         var productID = dbContext.Product.FirstOrDefault(p => p.Product_ID == productIDQuery);
                         var categoryID = dbContext.Category.Where(c => c.Name == category && c.Gender.ToString() == gender).Select(c => c.Category_ID).FirstOrDefault();
 

@@ -120,7 +120,7 @@
                                     <div class="eclipse-list" id="dropdownList<%# Eval("Staff_ID") %>">
 
                                         <div>
-                                            <asp:HyperLink ID="updateStaff" runat="server" NavigateUrl='<%# "UpdateStaff.aspx?StaffID=" + Eval("Staff_ID") %>' Text="Update" CssClass="hyperlink"></asp:HyperLink>
+                                            <asp:HyperLink ID="updateStaff" runat="server" NavigateUrl='<%# "UpdateStaff.aspx?StaffID=" + Uniqlo.EncryptionHelper.Encrypt((string) Eval("Staff_ID").ToString()) %>' Text="Update" CssClass="hyperlink"></asp:HyperLink>
                                         </div>
                                         <div>
                                             <asp:HyperLink ID="deleteStaff" runat="server" NavigateUrl='<%# "DeleteStaff.aspx?StaffID=" + Eval("Staff_ID") %>' Text="Delete" CssClass="hyperlink"></asp:HyperLink>

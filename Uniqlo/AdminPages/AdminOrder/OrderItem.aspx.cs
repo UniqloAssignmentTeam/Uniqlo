@@ -11,7 +11,7 @@ namespace Uniqlo.AdminPages
         {
             if (!IsPostBack)
             {
-                int orderID = int.Parse(Request.QueryString["OrderID"]);
+                int orderID = int.Parse(EncryptionHelper.Decrypt(Request.QueryString["OrderID"]));
                 orderIDLabel.Text = orderID.ToString();
 
                 BindOrderListDataList(orderID);

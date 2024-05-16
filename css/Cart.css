@@ -1,0 +1,221 @@
+﻿/* General styles for the cart page */
+.productBody {
+    font-family: 'Lato', sans-serif;
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 15px;
+}
+
+    .productBody h1 {
+        font-size: 2rem;
+        color: #333;
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+.cart-items-container {
+    width: 70%; /* Adjust according to your design needs */
+    padding-right: 20px; /* Optional padding for spacing */
+}
+
+.cart-summary-container {
+    flex-direction: column;
+}
+
+.cart-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 2px;
+    padding: 2px;
+    border: 2px solid lightgrey; /* Updated border size and color */
+    border-radius: 4px;
+    background-color: #f9f9f9;
+}
+
+.cart-item-image-container img {
+    width: 400px; /* Adjusted image size */
+    margin-right: 20px;
+    border-radius: 4px;
+}
+
+.item-details {
+    flex-grow: 1;
+}
+
+.item-name h3 {
+    font-size: 1.25rem;
+    margin-bottom: 5px;
+}
+
+.item-description {
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+}
+
+.item-details {
+    font-size: 0.9rem;
+}
+
+.item-price {
+    display: flex; /* Add flex display */
+    align-items: center; /* Center align the items vertically */
+    font-size: 1rem;
+}
+
+    .item-price p {
+        margin-right: 10px; /* Ensure spacing between the prices */
+        margin-bottom: 0; /* Remove any bottom margin to align them properly */
+    }
+
+        .item-price p:last-child {
+            color: red; /* Ensure the discounted price is red */
+            margin-right: 0; /* No additional margin on the right for the last item */
+        }
+
+    .item-price span {
+        font-size: 1rem;
+    }
+
+.qty {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 5px;
+    width: 60px;
+}
+
+.item-subtotal {
+    font-size: 1.1rem;
+    font-weight: bold;
+    text-align: right;
+    color: #333;
+    padding-right: 20px;
+}
+
+/* Adding higher specificity to ensure styles aren't being overridden */
+.cart-summary {
+    width: 30%; /* Adjust according to your design needs */
+    margin-left: 2%; /* Optional margin for spacing */
+    border: 2px solid lightgrey;
+    padding: 15px;
+    box-sizing: border-box;
+}
+
+    .cart-summary h3 {
+        font-size: 25px; /* Increase font size to 20px */
+        color: #333;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+.cart-page-container {
+    display: flex;
+    justify-content: space-between; /* This will space the items and summary apart */
+    align-items: flex-start; /* Aligns items at the top */
+    width: 100%;
+}
+
+.total-items, .total-price {
+    font-weight: bold;
+    color: #333; /* Ensuring the text is easily readable */
+}
+
+.buttons-container {
+    display: flex;
+    flex-direction: column; /* Stack buttons vertically */
+    justify-content: center; /* Center the buttons vertically */
+    align-items: center; /* Center the buttons horizontally */
+    padding: 10px 0;
+}
+
+.btn-checkout {
+    background-color: #f44336; /* Red background */
+    color: white; /* White text */
+}
+
+.btn-checkout, .btn-continue-shopping {
+    width: 100%; /* Set button width to fill the container */
+    padding: 10px; /* Uniform padding */
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 4px;
+    margin: 10px 0; /* Ensures space between buttons and also around them */
+    cursor: pointer;
+    text-transform: uppercase;
+}
+
+    .btn-checkout:hover {
+        background-color: #d32f2f; /* Slightly darker red on hover */
+    }
+
+.btn-continue-shopping {
+    background-color: white; /* White background */
+    color: black; /* Black text */
+    border: 2px solid #ccc; /* Light grey border */
+}
+
+    .btn-continue-shopping:hover {
+        background-color: #f0f0f0; /* Light grey background on hover */
+        border-color: #b3b3b3; /* Darker grey border on hover */
+    }
+
+/* Ensure responsiveness */
+@media (max-width: 768px) {
+    .cart-page-container {
+        flex-direction: column;
+    }
+
+    .cart-items-container,
+    .cart-summary {
+        width: 100%;
+        margin-left: 0;
+    }
+
+    .cart-summary {
+        margin-top: 20px;
+    }
+
+    .review-modal-content {
+        padding: 50px 10px; /* smaller padding for smaller screens */
+    }
+}
+
+.cart-item {
+    position: relative; /* Needed for absolute positioning of child elements */
+    display: flex;
+    align-items: center;
+    margin-bottom: 2px;
+    padding: 2px;
+    border: 2px solid lightgrey;
+    border-radius: 4px;
+    background-color: #f9f9f9;
+}
+
+.remove-item {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    font-size: 24px;
+    color: black;
+    z-index: 1;
+    transition: color 0.3s ease;
+}
+
+    .remove-item:hover {
+        color: red; /* Changes to red when hovered */
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

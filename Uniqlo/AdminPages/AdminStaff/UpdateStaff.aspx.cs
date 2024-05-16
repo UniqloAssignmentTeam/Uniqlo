@@ -12,7 +12,7 @@ namespace Uniqlo.AdminPages
         {
             if (!IsPostBack)
             {
-                string staffId = Request.QueryString["StaffID"];
+                string staffId = EncryptionHelper.Decrypt(Request.QueryString["StaffID"]);
                 if (!string.IsNullOrEmpty(staffId))
                 {
                     try
@@ -78,7 +78,8 @@ namespace Uniqlo.AdminPages
 
                             // Set session variable to indicate success
                             Session["StaffUpdated"] = true;
-                            Response.Redirect("UpdateStaff.aspx?StaffID=" + staffId); // Refresh page to trigger SweetAlert
+                            string encryptedStaffId = EncryptionHelper.Encrypt(staffId.ToString());
+                            Response.Redirect("UpdateStaff.aspx?StaffID=" + encryptedStaffId); // Refresh page to trigger SweetAlert
                         }
                         else
                         {
