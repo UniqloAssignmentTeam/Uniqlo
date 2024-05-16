@@ -13,7 +13,6 @@ namespace Uniqlo.AdminPages
         {
             if (!IsPostBack)
             {
-                Session["StaffRole"] = "Manager";
                 if (Session["Unauthorized"] != null) 
                 { 
                     if ((bool)Session["Unauthorized"])
