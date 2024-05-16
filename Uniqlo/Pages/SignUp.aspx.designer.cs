@@ -213,6 +213,33 @@ namespace Uniqlo.Pages
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvGender;
 
         /// <summary>
+        /// lblCode control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblCode;
+
+        /// <summary>
+        /// txtVerificationCode control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtVerificationCode;
+
+        /// <summary>
+        /// btnSendCode control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnSendCode;
+
+        /// <summary>
         /// captchaLbl control.
         /// </summary>
         /// <remarks>

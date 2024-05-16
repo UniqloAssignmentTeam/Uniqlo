@@ -245,6 +245,21 @@ a.google {
     border-radius: 6px;
     display: inline;
 }
-.rblGender {
-    ;
+
+.password-container {
+    position: relative;
 }
+
+    .password-container input[type="password"],
+    .password-container input[type="text"] {
+        padding-right: 30px; /* Add space for the icon */
+        padding-left: 10px; /* Adjust padding to align with icon */
+    }
+
+    .password-container .fa {
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        cursor: pointer;
+    }
