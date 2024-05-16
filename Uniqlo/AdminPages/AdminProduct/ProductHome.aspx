@@ -177,10 +177,10 @@
                                     <div class="eclipse-display" id="dropdownDisplay<%# Eval("Product_ID") %>" style="border: none;"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></div>
                                     <div class="eclipse-list" id="dropdownList<%# Eval("Product_ID") %>">
                                         <div>
-                                            <asp:HyperLink ID="HyperLink2" runat="server" NavigateUrl='<%# "viewMoreProduct.aspx?ProdID=" +Uniqlo.EncryptionHelper.Encrypt((string) Eval("Product_ID").ToString()) %>' Text="View More" Style="text-decoration: none; color: #6F6F6F"></asp:HyperLink>
+                                            <asp:HyperLink ID="HyperLink2" runat="server" NavigateUrl='<%# "viewMoreProduct.aspx?ProdID=" +Uniqlo.EncryptionHelper.Encrypt(Eval("Product_ID").ToString()) %>' Text="View More" Style="text-decoration: none; color: #6F6F6F"></asp:HyperLink>
                                         </div>
                                         <div>
-                                            <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl='<%# "UpdateProduct.aspx?ProdID=" + Uniqlo.EncryptionHelper.Encrypt((string)Eval("Product_ID").ToString()) %>' Text="Update" Style="text-decoration: none; color: #6F6F6F"></asp:HyperLink>
+                                            <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl='<%# "UpdateProduct.aspx?ProdID=" + Uniqlo.EncryptionHelper.Encrypt(Eval("Product_ID").ToString()) %>' Text="Update" Style="text-decoration: none; color: #6F6F6F"></asp:HyperLink>
                                         </div>
                                         <div>
                                             <asp:LinkButton ID="btnRemoveProduct" runat="server" Text="Delete" CommandName="Delete" CommandArgument='<%# Eval("Product_ID") %>' OnClientClick='return confirmDelete(this);' data-id='<%# Eval("Product_ID") %>' Style="text-decoration: none; color: #6F6F6F"/>
