@@ -15,7 +15,7 @@ namespace Uniqlo.Pages
             if (!IsPostBack)
             {
                 // Retrieve the OrderListID from the query 
-                string orderListID = Request.QueryString["OrderList_ID"];
+                string orderListID = EncryptionHelper.Encrypt(Request.QueryString["OrderList_ID"]);
 
                 //Decrypt
                 orderListID = EncryptionHelper.Decrypt(orderListID);
@@ -117,8 +117,8 @@ namespace Uniqlo.Pages
 
         protected void EditButton_Click(object sender, EventArgs e)
         {
-            string orderListId = Request.QueryString["OrderList_ID"];
-            Response.Redirect("EditReviewItem.aspx?OrderList_ID=" + orderListId);
+            string encryptedOrderListId = EncryptionHelper.Encrypt(Request.QueryString["OrderList_ID"]);
+            Response.Redirect("EditReviewItem.aspx?OrderList_ID=" + encryptedOrderListId);
         }
         protected void btnDeleteReview_Click(object sender, EventArgs e)
         {

@@ -1,0 +1,91 @@
+﻿.rate {
+    float: left;
+    padding: 0 10px;
+}
+
+    .rate:not(:checked) > input {
+        position: absolute;
+        visibility: hidden;
+    }
+
+    .rate:not(:checked) > label {
+        float: right;
+        width: 1em;
+        overflow: hidden;
+        white-space: nowrap;
+        cursor: pointer;
+        font-size: 30px;
+        color: #ccc;
+    }
+
+        .rate:not(:checked) > label:before {
+            content: '★ ';
+        }
+
+    .rate > input:checked ~ label {
+        color: #ffc700;
+    }
+
+    .rate:not(:checked) > label:hover,
+    .rate:not(:checked) > label:hover ~ label {
+        color: #deb217;
+    }
+
+    .rate > input:checked + label:hover,
+    .rate > input:checked + label:hover ~ label,
+    .rate > input:checked ~ label:hover,
+    .rate > input:checked ~ label:hover ~ label,
+    .rate > label:hover ~ input:checked ~ label {
+        color: #c59b08;
+    }
+
+.purchaseImg {
+    max-width: 200px;
+    height: auto;
+}
+
+.rowBorder {
+    border: 1px solid lightgray;
+    border-left: 0;
+    border-right: 0;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+.border-bottom-lightgray {
+    border: 2px solid lightgray;
+    border-left: 0;
+    border-right: 0;
+    border-top: 0;
+}
+
+.border-gray {
+    border: 1px solid lightgray;
+}
+
+.radio-gender {
+    height: 15px;
+    width: 15px;
+    margin-top: 0.75rem;
+    cursor: pointer;
+}
+
+.border-text {
+    border: 1px solid lightgray;
+}
+
+.cat-button {
+    background-color: white;
+    border: none;
+    width: 280px;
+}
+
+button,
+button:active,
+button:focus {
+    border: none;
+    outline: none !important;
+    box-shadow: none !important;
+    outline-style: none;
+    background-color: transparent;
+}

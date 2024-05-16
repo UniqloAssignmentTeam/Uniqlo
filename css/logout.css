@@ -1,0 +1,36 @@
+﻿body {
+}
+/* Main container styles */
+.mainBody {
+    display: flex;
+    justify-content: center; /* Center the content horizontally */
+    align-items: center; /* Center the content vertically */
+    height: 100vh; /* Full height of the viewport */
+    background-color: #f0f0f0; /* Light grey background */
+    margin: 0;
+    padding: 0;
+}
+
+/* Container for logout message */
+.containerLogout {
+    text-align: center; /* Center text content */
+    padding: 200px;
+    border: 1px solid #ccc; /* Light grey border */
+    border-radius: 10px; /* Rounded corners */
+    background-color: white; /* White background */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15); /* Light shadow */
+}
+
+    /* Image styles */
+    .containerLogout img {
+        max-width: 100px; /* Set max-width to prevent image from becoming too large */
+        display: block;
+        margin: 0 auto 10px; /* Center image and add space below */
+    }
+
+    /* Text styles */
+    .containerLogout p {
+        font-size: 18px; /* Font size */
+        color: #333; /* Dark grey text color */
+        margin: 0; /* Remove default margin */
+    }

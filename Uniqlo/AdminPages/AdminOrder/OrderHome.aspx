@@ -170,7 +170,7 @@
                                 <div class="eclipse-display" id="dropdownDisplay<%# Eval("OrderId") %>" style="border: none;"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></div>
                                 <div class="eclipse-list" id="dropdownList<%# Eval("OrderId") %>">
                                     <div>
-                                        <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl='<%# "OrderItem.aspx?OrderID=" + Eval("OrderId") %>' Text="View More" Style="text-decoration: none; color: #6F6F6F"></asp:HyperLink>
+                                        <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl='<%# "OrderItem.aspx?OrderID=" + Uniqlo.EncryptionHelper.Encrypt((string)Eval("OrderId").ToString()) %>' Text="View More" Style="text-decoration: none; color: #6F6F6F"></asp:HyperLink>
                                     </div>
                                     <div onclick="showDeleteModal(<%# Eval("OrderId") %>);">Delete</div>
                                 </div>

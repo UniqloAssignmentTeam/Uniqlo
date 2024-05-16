@@ -3,8 +3,6 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="main" runat="server">
 
 
-
-
     <header>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -38,7 +36,7 @@
                     <a href="ForgotPassword.aspx" class="forgot-pass">Forgot password?</a>
                 </div>
                 <div class="field button-field">
-                    <asp:Button ID="btnLogin" runat="server" Text="Login" OnClick="btnLogin_Click" ValidationGroup="LoginValidation" />
+                    <asp:Button ID="btnLogin" runat="server" Text="Login" OnClick="btnLogin_Click" ValidationGroup="LoginValidation" style="cursor: pointer;"/>
                 </div>
                 <asp:ValidationSummary ID="ValidationSummary1" runat="server" ValidationGroup="LoginValidation" DisplayMode="BulletList" ForeColor="Red" />
                 <input type="hidden" id="recaptchaResponse" name="recaptchaResponse" runat="server" />

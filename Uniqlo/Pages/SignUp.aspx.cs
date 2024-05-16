@@ -7,6 +7,11 @@ using System.Net;
 using System.Web.Script.Serialization;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Twilio.Rest.Verify.V2.Service;
+using Twilio.Types;
+using Twilio;
+using Twilio.TwiML.Messaging;
+using Twilio.Rest.Api.V2010.Account;
 
 namespace Uniqlo.Pages
 {
@@ -65,26 +70,61 @@ namespace Uniqlo.Pages
 
             try
             {
-                Random random = new Random();
-                int myRandom = random.Next(10000000, 999999999);
-                string Activation_Code = myRandom.ToString();
+                string verificationCode =(string) Session["verificationCode"];
 
-                con.Open();
-                string insertUser = "INSERT INTO Customer (Name, Gender, Contact_No, Email, Password) VALUES (@Name, @Gender, @ContactNo, @Email, @Password)";
-                SqlCommand insertCmd = new SqlCommand(insertUser, con);
-                insertCmd.Parameters.AddWithValue("@Name", txtName.Text);
-                insertCmd.Parameters.AddWithValue("@Gender", ddlGender.SelectedValue);
-                insertCmd.Parameters.AddWithValue("@ContactNo", txtPhone.Text);
-                insertCmd.Parameters.AddWithValue("@Email", txtEmail.Text);
-                insertCmd.Parameters.AddWithValue("@Password", hashedPassword);
-                insertCmd.ExecuteNonQuery();
-                con.Close();
+                // Send verification code to the phone number
+                string phoneNumber = txtPhone.Text;
 
-                ShowSweetAlert("Success", "Sign up successful! Please login to your account.", "success", "Login.aspx");
+                // Wait for user input of verification code
+                string enteredVerificationCode = txtVerificationCode.Text;
+
+                if (enteredVerificationCode == verificationCode)
+                {
+                    con.Open();
+                    string insertUser = "INSERT INTO Customer (Name, Gender, Contact_No, Email, Password) VALUES (@Name, @Gender, @ContactNo, @Email, @Password)";
+                    SqlCommand insertCmd = new SqlCommand(insertUser, con);
+                    insertCmd.Parameters.AddWithValue("@Name", txtName.Text);
+                    insertCmd.Parameters.AddWithValue("@Gender", ddlGender.SelectedValue);
+                    insertCmd.Parameters.AddWithValue("@ContactNo", phoneNumber);
+                    insertCmd.Parameters.AddWithValue("@Email", txtEmail.Text);
+                    insertCmd.Parameters.AddWithValue("@Password", hashedPassword);
+                    insertCmd.ExecuteNonQuery();
+                    con.Close();
+
+                    ShowSweetAlert("Success", "Sign up successful! Please proceed to login.", "success", "Login.aspx");
+                }
+                else
+                {
+                    ShowSweetAlert("Error", "Wrong Verification Code. Please try again.", "error");
+                }
             }
             catch (Exception ex)
             {
                 ShowSweetAlert("Error", "An error occurred: " + ex.Message, "error");
+            }
+        }
+
+        private bool SendVerificationCode(string phoneNumber, string verificationCode)
+        {
+            try
+            {
+                string accountSid = "AC690daab05f98c65d2e05d81ab69c7816";
+                string authToken = "82c53d2f3c78a4a27101861e03de1fb3";
+                TwilioClient.Init(accountSid, authToken);
+
+                var message = MessageResource.Create(
+                    body:"Your verification code for signing up Uniqlo : " + verificationCode,
+                    from: new Twilio.Types.PhoneNumber("+16502314653"),
+                    to: new Twilio.Types.PhoneNumber("+60168422878")
+
+                );
+
+                return true; 
+            }
+            catch (Exception ex)
+            {
+                ShowSweetAlert("Error", "Error sending verification code", "error");
+                return false;
             }
         }
 
@@ -131,6 +171,28 @@ namespace Uniqlo.Pages
         {
             string script = $"Swal.fire({{ title: '{title}', html: '{message}', icon: '{icon}' }}).then((result) => {{ if (result.isConfirmed && '{redirectUrl}' !== '') {{ window.location.href = '{redirectUrl}'; }} }});";
             ScriptManager.RegisterStartupScript(this, GetType(), "ShowSweetAlert", script, true);
+        }
+
+        protected void btnSendCode_Click(object sender, EventArgs e)
+        {
+            Random random = new Random();
+            int myRandom = random.Next(100000, 999999);
+            string verificationCode = myRandom.ToString();
+            Session["verificationCode"] = verificationCode;
+
+            // Set session variable to indicate when the button should be re-enabled
+            Session["SendCodeDisabledUntil"] = DateTime.Now.AddMinutes(1);
+
+            // Send verification code to the phone number
+            string phoneNumber = txtPhone.Text;
+            bool verificationSent = SendVerificationCode(phoneNumber, verificationCode);
+
+            // Enable the verification code input field
+            txtVerificationCode.ReadOnly = false;
+            txtVerificationCode.Text = "bitch";
+
+            // Disable the button on the client side
+            btnSendCode.Enabled = false;
         }
     }
 }

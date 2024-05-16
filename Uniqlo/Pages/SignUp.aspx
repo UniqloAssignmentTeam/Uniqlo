@@ -58,7 +58,8 @@
                     <asp:Label ID="lblPhone" runat="server" Text="Phone"></asp:Label>
                     <asp:TextBox ID="txtPhone" runat="server" type="text" placeholder="Phone Number" CssClass="input"></asp:TextBox>
                     <asp:RegularExpressionValidator ID="RegexValidatorPhone" runat="server" ControlToValidate="txtPhone" ErrorMessage="Please enter a valid phone number." ValidationExpression="^\+?([0-9]{1,3})?([0-9]{10})$" ForeColor="Red" Display="Dynamic"></asp:RegularExpressionValidator>
-                </div>
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtPhone" ErrorMessage="Phone Number is required." Display="Dynamic" ForeColor="Red"></asp:RequiredFieldValidator>
+                    </div>
 
                 <!-- Gender Field -->
                 <div class="field input-field">
@@ -72,6 +73,19 @@
                     <asp:RequiredFieldValidator ID="rfvGender" runat="server" ControlToValidate="ddlGender" ErrorMessage="Gender is required." Display="Dynamic" ForeColor="Red" InitialValue=""></asp:RequiredFieldValidator>
                 </div>
 
+                <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+        <ContentTemplate>
+            <div class="field input-field">
+                <asp:Label ID="lblCode" runat="server" Text="Verification Code"></asp:Label>
+                <asp:TextBox ID="txtVerificationCode" runat="server" CssClass="input" ReadOnly="true"></asp:TextBox>
+                <asp:Button ID="btnSendCode" runat="server" Text="Send Verification Code" OnClick="btnSendCode_Click" CausesValidation="false" />
+            </div>
+        </ContentTemplate>
+        <Triggers>
+            <asp:AsyncPostBackTrigger ControlID="btnSendCode" EventName="Click" />
+        </Triggers>
+    </asp:UpdatePanel>
                 <!-- reCAPTCHA -->
                 <asp:Label ID="captchaLbl" runat="server" Text="Captcha Invalid. Please Try Again." Visible="false" ForeColor="Red"></asp:Label>
                 <div class="g-recaptcha" data-sitekey="6LeFetopAAAAALbDjZrPI5w7-yysmbhgyD3t3Iou"></div>
@@ -144,6 +158,8 @@
                     toggleIcon.classList.add('fa-eye-slash');
                 }
             }
+
+            
         </script>
     </footer>
    

@@ -47,7 +47,7 @@
         <h1 class="genderHeader">Limited Offers</h1>
         <asp:DataList ID="dlValueBuy" runat="server" RepeatDirection="Horizontal" Width="100%" >
             <ItemTemplate>
-                <asp:HyperLink ID="productLink" runat="server" NavigateUrl='<%# "/Pages/ProductDetails.aspx?ProdID=" +  Eval("Product_Id") %>' CssClass="hyperlink">
+                <asp:HyperLink ID="productLink" runat="server" NavigateUrl='<%# "/Pages/ProductDetails.aspx?ProdID=" + Uniqlo.EncryptionHelper.Encrypt((string) Eval("Product_Id").ToString()) %>' CssClass="hyperlink">
                     <div class="limitedOfferCardContainer">
                         <div class="limitedOfferCard" id="product9" data-product-id="1">
                             <div class="product-image-container">

@@ -11,6 +11,7 @@
         <link href="../css/Admin/report.css" rel="stylesheet" />
         <script src="https://www.gstatic.com/charts/loader.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     </header>
 

@@ -15,6 +15,15 @@ namespace Uniqlo.Pages.Categories.Women
     {
 
         /// <summary>
+        /// ScriptManagerProduct control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.ScriptManager ScriptManagerProduct;
+
+        /// <summary>
         /// carouselDataList control.
         /// </summary>
         /// <remarks>
@@ -49,15 +58,6 @@ namespace Uniqlo.Pages.Categories.Women
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox searchBox;
-
-        /// <summary>
-        /// ScriptManagerProduct control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.ScriptManager ScriptManagerProduct;
 
         /// <summary>
         /// UpdatePanelProduct control.

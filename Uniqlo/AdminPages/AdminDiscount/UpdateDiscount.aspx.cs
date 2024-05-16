@@ -14,7 +14,7 @@ namespace Uniqlo.AdminPages
                 try
                 {
                     int discountID;
-                    if (int.TryParse(Request.QueryString["discountId"], out discountID) && discountID > 0)
+                    if (int.TryParse(EncryptionHelper.Decrypt(Request.QueryString["discountId"]), out discountID) && discountID > 0)
                     {
                         LoadDiscountDetails(discountID);
                         DropDownListProductName(discountID);
