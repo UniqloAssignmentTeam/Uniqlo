@@ -93,31 +93,55 @@
 
     <footer>
         <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                var passwordField = document.getElementById('<%= txtPassword.ClientID %>');
+                var toggleIcon = document.getElementById('togglePassword');
+                if (passwordField.type === 'password') {
+                    toggleIcon.classList.remove('fa-eye');
+                    toggleIcon.classList.add('fa-eye-slash');
+                } else {
+                    toggleIcon.classList.remove('fa-eye-slash');
+                    toggleIcon.classList.add('fa-eye');
+                }
+            });
+
             function togglePasswordVisibility() {
                 var passwordField = document.getElementById('<%= txtPassword.ClientID %>');
                 var toggleIcon = document.getElementById('togglePassword');
                 if (passwordField.type === 'password') {
                     passwordField.type = 'text';
+                    toggleIcon.classList.remove('fa-eye-slash');
+                    toggleIcon.classList.add('fa-eye');
+                } else {
+                    passwordField.type = 'password';
+                    toggleIcon.classList.remove('fa-eye');
+                    toggleIcon.classList.add('fa-eye-slash');
+                }
+            }
+
+            document.addEventListener("DOMContentLoaded", function () {
+                var passwordField = document.getElementById('<%= txtConfirmPassword.ClientID %>');
+                var toggleIcon = document.getElementById('togglePassword2');
+                if (passwordField.type === 'password') {
                     toggleIcon.classList.remove('fa-eye');
                     toggleIcon.classList.add('fa-eye-slash');
                 } else {
-                    passwordField.type = 'password';
                     toggleIcon.classList.remove('fa-eye-slash');
                     toggleIcon.classList.add('fa-eye');
                 }
-            }
+            });
 
             function toggleConfirmPasswordVisibility() {
                 var passwordField = document.getElementById('<%= txtConfirmPassword.ClientID %>');
                 var toggleIcon = document.getElementById('togglePassword2');
                 if (passwordField.type === 'password') {
                     passwordField.type = 'text';
-                    toggleIcon.classList.remove('fa-eye');
-                    toggleIcon.classList.add('fa-eye-slash');
-                } else {
-                    passwordField.type = 'password';
                     toggleIcon.classList.remove('fa-eye-slash');
                     toggleIcon.classList.add('fa-eye');
+                } else {
+                    passwordField.type = 'password';
+                    toggleIcon.classList.remove('fa-eye');
+                    toggleIcon.classList.add('fa-eye-slash');
                 }
             }
         </script>

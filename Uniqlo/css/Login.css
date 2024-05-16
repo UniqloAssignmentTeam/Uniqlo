@@ -246,9 +246,26 @@ a.google {
     display: inline;
 }
 
-.password-container {
+.field.input-field {
     position: relative;
 }
+
+.password-container {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+}
+
+    .password-container .fa-eye {
+        font-size: 18px;
+        color: #8b8b8b;
+        cursor: pointer;
+        padding: 50px;
+        position: absolute;
+        top: 50%;
+        right: 10px;
+    }
 
     .password-container input[type="password"],
     .password-container input[type="text"] {
@@ -256,10 +273,3 @@ a.google {
         padding-left: 10px; /* Adjust padding to align with icon */
     }
 
-    .password-container .fa {
-        position: absolute;
-        right: 10px;
-        top: 50%;
-        transform: translateY(-50%);
-        cursor: pointer;
-    }
