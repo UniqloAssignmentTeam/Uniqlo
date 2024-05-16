@@ -56,54 +56,44 @@
                 </div>
 
                 <div class="table">
-                    <asp:Repeater ID="customerRepeater" runat="server" ViewStateMode="Disabled">
-                        <HeaderTemplate>
-                            <table style="width: 100%" class="table">
+                    <asp:Repeater ID="customerRepeater" runat="server">
+                            <HeaderTemplate>
+                                <table style="width: 100%" class="table">
+                                    <tr class="row">
+                                        <th class="col name">Name</th>
+                                        <th class="col gender">Gender</th>
+                                        <th class="col contactNo">Contact No</th>
+                                        <th class="col address">Address</th>
+                                        <th class="col email">Email</th>
+                                        <th class="col password">Password</th>
+                                    </tr>
+                            </HeaderTemplate>
+                            <ItemTemplate>
                                 <tr class="row">
-                                    <td class="col customerId">Customer ID</td>
-                                    <td class="col name">Customer Name</td>
-                                    <td class="col email">E-mail</td>
-                                    <td class="col gender">Gender</td>
-                                    <td class="col status">Status</td>
-                                    <td class="col contactNo">Contact No</td>
-                                    <td class="col eclipse-display">
-                                        <asp:Button ID="Button1" runat="server" Text="Button" Visible="False" />
+                                    <td class="col name">
+                                        <asp:Label ID="lblName" runat="server" Text='<%# Eval("Name") %>'></asp:Label>
+                                    </td>
+                                    <td class="col gender">
+                                        <asp:Label ID="lblGender" runat="server" Text='<%# Eval("Gender") %>'></asp:Label>
+                                    </td>
+                                    <td class="col contactNo">
+                                        <asp:Label ID="lblContactNo" runat="server" Text='<%# Eval("Contact_No") %>'></asp:Label>
+                                    </td>
+                                    <td class="col address">
+                                        <asp:Label ID="lblAddress" runat="server" Text='<%# Eval("Address") %>'></asp:Label>
+                                    </td>
+                                    <td class="col email">
+                                        <asp:Label ID="lblEmail" runat="server" Text='<%# Eval("Email") %>'></asp:Label>
+                                    </td>
+                                    <td class="col password">
+                                        <asp:Label ID="lblPassword" runat="server" Text='<%# Eval("Password") %>'></asp:Label>
                                     </td>
                                 </tr>
-                        </HeaderTemplate>
-
-                        <ItemTemplate>
-                            <tr class="row">
-                                <td class="col customerId">
-                                    <asp:Label ID="customerId" runat="server" Text='<%# Eval("Customer_ID") %>'></asp:Label></td>
-                                <td class="col name">
-                                    <asp:Label ID="customerName" runat="server" Text='<%# Eval("Name") %>'></asp:Label></td>
-                                <td class="col email">
-                                    <asp:Label ID="email" runat="server" Text='<%# Eval("Email") %>'></asp:Label></td>
-                                <td class="col gender">
-                                    <asp:Label ID="gender" runat="server" Text='<%# Eval("Gender") %>'></asp:Label></td>
-                                <td class="col status">
-                                    <asp:Label ID="status" runat="server" Text='<%# Eval("Status") %>'></asp:Label></td>
-                                <td class="col contactNo">
-                                    <asp:Label ID="contactNo" runat="server" Text='<%# Eval("Contact_No") %>'></asp:Label></td>
-
-                                <td class="col eclipse-container" onclick="toggleDropdown('dropdownList<%# Eval("Customer_ID") %>', 'dropdownDisplay<%# Eval("Customer_ID") %>')">
-                                    <div class="eclipse-display" id="dropdownDisplay<%# Eval("Customer_ID") %>" style="border: none;"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></div>
-                                    <div class="eclipse-list" id="dropdownList<%# Eval("Customer_ID") %>">
-                                        <div>
-                                            <asp:HyperLink ID="updateCustomer" runat="server" NavigateUrl='<%# "UpdateCustomer.aspx?CustomerID=" + Eval("Customer_ID") %>' Text="Update" CssClass="hyperlink"></asp:HyperLink>
-                                        </div>
-                                        <div>
-                                            <asp:HyperLink ID="deleteCustomer" runat="server" NavigateUrl='<%# "DeleteCustomer.aspx?CustomerID=" + Eval("Customer_ID") %>' Text="Delete" CssClass="hyperlink"></asp:HyperLink>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                        </ItemTemplate>
-                        <FooterTemplate>
-                            </table>
-                        </FooterTemplate>
-                    </asp:Repeater>
+                            </ItemTemplate>
+                            <FooterTemplate>
+                                </table>
+                            </FooterTemplate>
+                        </asp:Repeater>
                     <asp:Label ID="lblNoCustomerFound" runat="server" Text="No Customer Found" Visible="false" CssClass="no-customer-label"></asp:Label>
                 </div>
 
