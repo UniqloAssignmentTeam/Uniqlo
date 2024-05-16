@@ -176,7 +176,7 @@ namespace Uniqlo.Pages
         protected void btnSendCode_Click(object sender, EventArgs e)
         {
             Random random = new Random();
-            int myRandom = random.Next(10000000, 999999999);
+            int myRandom = random.Next(100000, 999999);
             string verificationCode = myRandom.ToString();
             Session["verificationCode"] = verificationCode;
 
