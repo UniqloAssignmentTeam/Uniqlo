@@ -11,7 +11,7 @@ namespace Uniqlo
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.Data.Entity;
     public partial class Customer
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -34,5 +34,14 @@ namespace Uniqlo
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Order> Orders { get; set; }
+    }
+
+    public class CustomerDBContext : DbContext
+    {
+        public CustomerDBContext() : base("name=UniqloEntities")
+        {
+        }
+
+        public DbSet<Customer> Customer { get; set; }
     }
 }

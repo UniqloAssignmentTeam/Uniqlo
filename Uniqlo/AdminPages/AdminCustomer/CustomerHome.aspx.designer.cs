@@ -51,15 +51,6 @@ namespace Uniqlo.AdminPages.AdminCustomer
         protected global::System.Web.UI.WebControls.DropDownList genderSortDDL;
 
         /// <summary>
-        /// statusSortDDL control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList statusSortDDL;
-
-        /// <summary>
         /// excelBtn control.
         /// </summary>
         /// <remarks>
@@ -105,12 +96,12 @@ namespace Uniqlo.AdminPages.AdminCustomer
         protected global::System.Web.UI.WebControls.HiddenField hiddenCustomerId;
 
         /// <summary>
-        /// modalState control.
+        /// hiddenDeleteButton control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField modalState;
+        protected global::System.Web.UI.WebControls.Button hiddenDeleteButton;
     }
 }
