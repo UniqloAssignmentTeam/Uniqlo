@@ -3,6 +3,7 @@
 <asp:ScriptManager ID="ScriptManager1" runat="server" />
     <header>
         <link href="../../css/Admin/addProduct.css" rel="stylesheet" />
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <style>
             .error-message {
     color: red;
@@ -59,7 +60,7 @@
 
                 <div class="form-group">
                     <label for="ddlStatus">Status</label>
-                    <asp:DropDownList ID="ddlStatus" runat="server" CssClass="dropdown">
+                    <asp:DropDownList ID="ddlStatus" runat="server" CssClass="dropdown-display">
                         <asp:ListItem Text="Pending" Value="Pending"></asp:ListItem>
                         <asp:ListItem Text="In Transit" Value="In Transit"></asp:ListItem>
                         <asp:ListItem Text="Delivered" Value="Delivered"></asp:ListItem>
@@ -72,13 +73,53 @@
                 <div class="cancel-div">
                     <asp:LinkButton ID="btnCancel" runat="server" CssClass="cancel-button" PostBackUrl="~/AdminPages/AdminDelivery/DeliveryHome.aspx">CANCEL</asp:LinkButton>
                 </div>
-                <div class="continue-div">
-                    <asp:LinkButton ID="btnUpdate" runat="server" CssClass="continue-button" OnClick="btnUpdate_Click">UPDATE</asp:LinkButton>
-                </div>
+              <div class="continue-div">
+    <asp:LinkButton ID="btnUpdate" runat="server" CssClass="continue-button" OnClientClick="return updateDelivery();" OnClick="btnUpdate_Click">UPDATE</asp:LinkButton>
+</div>
             </div>
         </div>
     </div>
     <footer>
+        <script>
+
+
+
+            function updateDelivery() {
+                event.preventDefault(); // Prevent default form submission
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: "Do you want to update the delivery details?",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, update it!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // Perform the server-side operation
+                        __doPostBack('<%= btnUpdate.UniqueID %>', '');
+        }
+    });
+                return false; // Prevent form submission
+            }
+            function successUpdate() {
+                Swal.fire(
+                    'Updated!',
+                    'Your delivery details have been updated successfully.',
+                    'success'
+                ).then((result) => {
+                    window.location.href = 'DeliveryHome.aspx'; // Redirect after acknowledging the success
+                });
+            }
+
+            function errorUpdate(errorMessage) {
+                Swal.fire(
+                    'Error!',
+                    'An error occurred: ' + errorMessage,
+                    'error'
+                );
+            }
+        </script>
         <script src="../../Javascript/productBtnEclipse.js"></script>
         <script src="../../Javascript/productAdminDDL.js"></script>
         <script src="../../Javascript/Pagination.js"></script>

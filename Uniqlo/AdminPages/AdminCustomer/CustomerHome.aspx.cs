@@ -11,6 +11,7 @@ namespace Uniqlo.AdminPages.AdminCustomer
 {
     public partial class CustomerHome : System.Web.UI.Page
     {
+        string cs = Global.CS;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -21,30 +22,52 @@ namespace Uniqlo.AdminPages.AdminCustomer
 
         private void BindCustomerData()
         {
-            string query = "SELECT Customer_ID, Name, Email, Gender, Status, Contact_No FROM Customers";
-
-            // Add your connection string
-            string connectionString = Global.CS;
-
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlConnection connection = new SqlConnection(cs))
             {
-                using (SqlCommand command = new SqlCommand(query, connection))
+                string query = "SELECT Name, Gender, Contact_No, Address, Email, Password FROM Customer";
+                SqlDataAdapter adapter = new SqlDataAdapter(query, connection);
+                DataTable dataTable = new DataTable();
+                adapter.Fill(dataTable);
+
+                if (dataTable.Rows.Count > 0)
                 {
-                    connection.Open();
-                    SqlDataReader reader = command.ExecuteReader();
-                    DataTable dt = new DataTable();
-                    dt.Load(reader);
-                    if (dt.Rows.Count > 0)
-                    {
-                        customerRepeater.DataSource = dt;
-                        customerRepeater.DataBind();
-                    }
-                    else
-                    {
-                        lblNoCustomerFound.Visible = true;
-                    }
+                    customerRepeater.DataSource = dataTable;
+                    customerRepeater.DataBind();
+                }
+                else
+                {
+                    lblNoCustomerFound.Visible = true;
                 }
             }
+        }
+
+        protected void searchBox_TextChanged(object sender, EventArgs e)
+        {
+            // Implement search logic
+            BindCustomerData();
+        }
+
+        protected void genderSortDDL_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // Implement gender sorting logic
+            BindCustomerData();
+        }
+
+        protected void statusSortDDL_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // Implement status sorting logic
+            BindCustomerData();
+        }
+
+        protected void excelBtn_Click(object sender, EventArgs e)
+        {
+            // Implement export to Excel logic
+        }
+
+        protected void addCustomerBtn_Click(object sender, EventArgs e)
+        {
+            // Redirect to add customer page
+            Response.Redirect("AddCustomer.aspx");
         }
     }
 }
