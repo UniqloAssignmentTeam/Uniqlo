@@ -83,6 +83,7 @@
                                             <asp:TextBox ID="txtCardCvv" CssClass="form-control" MaxLength="3" runat="server" />
                                             <asp:RequiredFieldValidator ID="rfvCardCvv" ControlToValidate="txtCardCvv" ErrorMessage="CVV is required." Display="Dynamic" ForeColor="Red" runat="server" />
                                             <asp:RegularExpressionValidator ID="revCardCvv" ControlToValidate="txtCardCvv" ValidationExpression="^\d{3}$" ErrorMessage="CVV must be 3 digits." Display="Dynamic" ForeColor="Red" runat="server" />
+                                            <i id="toggleCVV" class="fa fa-eye-slash" onclick="toggleCvvVisibility()"></i>
                                         </div>
                                     </div>
 
@@ -165,5 +166,26 @@
     </div>
 
     <!-- Checkout End -->
+    <script>
+            document.addEventListener("DOMContentLoaded", function () {
+            var cvvField = document.getElementById('<%= txtCardCvv.ClientID %>');
+            var toggleIcon = document.getElementById('toggleCVV');
+            cvvField.type = 'password'; // Initially hide CVV
+            toggleIcon.classList.add('fa-eye-slash'); // Set the eye icon to slashed by default
+        });
 
+        function toggleCvvVisibility() {
+            var cvvField = document.getElementById('<%= txtCardCvv.ClientID %>');
+        var toggleIcon = document.getElementById('toggleCVV');
+        if (cvvField.type === 'password') {
+            cvvField.type = 'text';
+        toggleIcon.classList.remove('fa-eye-slash');
+        toggleIcon.classList.add('fa-eye');
+            } else {
+            cvvField.type = 'password';
+        toggleIcon.classList.remove('fa-eye');
+        toggleIcon.classList.add('fa-eye-slash');
+            }
+        }
+    </script>
 </asp:Content>

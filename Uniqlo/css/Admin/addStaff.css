@@ -19,6 +19,8 @@
     width: 1000px;
 }
 
+
+
 .product-content {
     display: flex;
     flex-direction: column;
@@ -59,6 +61,15 @@
 
 
 .form-group {
+    position: relative;
+}
+
+.fa-eye, .fa-eye-slash {
+    position: absolute;
+    right: 10px; /* Adjust as needed */
+    top: 50%; /* Center vertically */
+    transform: translateY(-50%);
+    cursor: pointer;
 }
 
 label {
@@ -85,6 +96,22 @@ textarea {
 .password{
 
 }
+
+.form-group {
+    position: relative; /* Ensure the container is positioned relatively */
+}
+
+    /* Adjust the position of the eye icon */
+    .form-group i {
+        position: absolute;
+        top: 60%; /* Position it vertically centered */
+        right: 10px; /* Adjust the distance from the right */
+        transform: translateY(-50%); /* Center it vertically */
+        font-size: 18px;
+        color: #8b8b8b;
+        cursor: pointer;
+        padding: 5px;
+    }
 
 body .form-group {
     max-width: 360px;

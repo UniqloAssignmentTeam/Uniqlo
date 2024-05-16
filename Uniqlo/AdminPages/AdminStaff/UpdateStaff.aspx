@@ -31,6 +31,7 @@
                         ValidationExpression="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$" ForeColor="Red" Display="Dynamic"></asp:RegularExpressionValidator>
                     <asp:RequiredFieldValidator ID="RequiredFieldValidatorPassword" runat="server" ControlToValidate="password"
                         ErrorMessage="Password is required." ForeColor="Red" Display="Dynamic"></asp:RequiredFieldValidator>
+                    <i id="togglePassword" class="fa fa-eye" onclick="togglePasswordVisibility()"></i>
                 </div>
                 <div class="form-group">
                     <label for="staffName">Staff Name</label>
@@ -103,5 +104,28 @@
                 <% Session["StaffUpdated"] = null; %> // Clear session variable
             }
         }
+
+        // Eye Icon
+        function togglePasswordVisibility() {
+            var passwordField = document.getElementById('<%= password.ClientID %>');
+        var toggleIcon = document.getElementById('togglePassword');
+        if (passwordField.type === 'password') {
+            passwordField.type = 'text';
+            toggleIcon.classList.remove('fa-eye-slash');
+            toggleIcon.classList.add('fa-eye');
+        } else {
+            passwordField.type = 'password';
+            toggleIcon.classList.remove('fa-eye');
+            toggleIcon.classList.add('fa-eye-slash');
+        }
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+        var passwordField = document.getElementById('<%= password.ClientID %>');
+        var toggleIcon = document.getElementById('togglePassword');
+        passwordField.type = 'password'; // Ensure password is hidden by default
+        toggleIcon.classList.remove('fa-eye');
+        toggleIcon.classList.add('fa-eye-slash'); // Set default icon to slashed eye
+    });
     </script>
 </asp:Content>

@@ -144,7 +144,6 @@
                 document.getElementById('<%= HiddenRating.ClientID %>').value = rating;
             }
 
-
         </script>
     </footer>
 </asp:Content>
