@@ -290,6 +290,16 @@
                     }
 
                     if (fileInput.files.length > 0) {
+                        var file = fileInput.files[0];
+                        if (file.type !== 'image/jpeg') {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Invalid Image Type',
+                                text: 'Only JPEG images are allowed.'
+                            });
+                            return;
+                        }
+
                         imageFound = true; 
                         var reader = new FileReader();
                         reader.onload = function (e) {

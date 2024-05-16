@@ -6,6 +6,9 @@
         <link href="../css/style.css" rel="stylesheet" />
         <link href="../css/style1.css" rel="stylesheet" />
         <link href="../css/delivery.css" rel="stylesheet" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.all.min.js"></script>
+
     </header>
 
     <!-- Checkout Review Start -->

@@ -95,9 +95,7 @@ namespace Uniqlo.Pages
                 // Check if the quantity exceeds the available stock
                 if (item.Quantity > GetAvailableStock(item.Quantity_Id))
                 {
-                    // Display an error message indicating that the item is out of stock
-                    lblErrorMessage.Visible = true;
-                    lblErrorMessage.Text = "Error: The quantity of one or more items in your cart exceeds the available stock.";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "StockError", "Swal.fire({ icon: 'error', title: 'Error', text: 'The quantity of one or more items in your cart exceeds the available stock.' });", true);
                     return;
                 }
             }

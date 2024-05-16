@@ -12,6 +12,7 @@
         </style>
     </header>
     <div class="categoryBody">
+        <asp:ScriptManager ID="ScriptManagerProduct" runat="server" />
         <h1 class="bestSellerHeader">Women's Products</h1>
         <h2 class="bestSellerHeader" style="margin-top: -4px;">Best Seller</h2>
 
@@ -87,7 +88,7 @@
             <!--PRODUCT LIST DISPLAY HERE-->
             <div class="limitedOfferCardBigContainer">
                 <!--START OF COLUMN-->
-                <asp:ScriptManager ID="ScriptManagerProduct" runat="server" />
+                
 
 
                 <asp:UpdatePanel ID="UpdatePanelProduct" runat="server">

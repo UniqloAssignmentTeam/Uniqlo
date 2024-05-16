@@ -114,6 +114,15 @@ namespace Uniqlo.Pages
         protected global::System.Web.UI.WebControls.TextBox txtPostcode;
 
         /// <summary>
+        /// revPostcode control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator revPostcode;
+
+        /// <summary>
         /// txtCity control.
         /// </summary>
         /// <remarks>
@@ -139,15 +148,6 @@ namespace Uniqlo.Pages
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtCountry;
-
-        /// <summary>
-        /// fileProfilePhoto control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.FileUpload fileProfilePhoto;
 
         /// <summary>
         /// btnSaveChanges control.
