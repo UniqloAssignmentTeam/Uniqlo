@@ -22,7 +22,7 @@
                 <asp:Label ID="errorMSG" runat="server" Text=""></asp:Label>
                 <div class="field input-field">
                     <asp:TextBox ID="txtEmail" type="email" placeholder="Email" CssClass="input" runat="server"></asp:TextBox>
-                    <asp:RequiredFieldValidator ID="rfvEmail" runat="server" ControlToValidate="txtEmail" ErrorMessage="Email is required." ForeColor="Red"></asp:RequiredFieldValidator>
+                    <asp:RequiredFieldValidator ID="rfvEmail" runat="server" ControlToValidate="txtEmail" ErrorMessage="Email is required." ForeColor="Red" Display="Dynamic"></asp:RequiredFieldValidator>
                     <asp:RegularExpressionValidator ID="revEmail" runat="server" ControlToValidate="txtEmail" ErrorMessage="Invalid email address." ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"></asp:RegularExpressionValidator>
                 </div>
                 <div class="field input-field">
@@ -30,7 +30,7 @@
                         <asp:TextBox ID="txtPassword" runat="server" placeholder="Password" CssClass="input password" MaxLength="50" TextMode="Password" style="height: 50px;"></asp:TextBox>
                         <i id="togglePassword" class="fa fa-eye" onclick="togglePasswordVisibility()"></i>
                     </div>
-                    <asp:RequiredFieldValidator ID="rfvPassword" runat="server" ControlToValidate="txtPassword" ErrorMessage="Password is required." ForeColor="Red"></asp:RequiredFieldValidator>
+                    <asp:RequiredFieldValidator ID="rfvPassword" runat="server" ControlToValidate="txtPassword" ErrorMessage="Password is required." ForeColor="Red" Display="Dynamic"></asp:RequiredFieldValidator>
                 </div>
                 <div class="field button-field" style="margin-top: 30px;">
                     <asp:Button ID="btnLogin" runat="server" Text="Login" OnClick="btnLogin_Click" ValidationGroup="LoginValidation" style="cursor: pointer;"/>

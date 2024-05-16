@@ -122,16 +122,31 @@ namespace Uniqlo.Pages
             // Find the Quantity_Id of the item from the CommandArgument
             int quantityId = Convert.ToInt32(((Button)item.FindControl("btnRemoveItem")).CommandArgument);
 
-            // Find the current quantity value entered by the user
-            int newQuantity = Convert.ToInt32(txtQuantity.Text);
+            // Validate the current quantity value entered by the user
+            if (int.TryParse(txtQuantity.Text, out int newQuantity))
+            {
+                if (newQuantity > 0)
+                {
+                    // Update the quantity of the item in the cart
+                    UpdateItemQuantity(quantityId, newQuantity);
 
-            // Update the quantity of the item in the cart
-            UpdateItemQuantity(quantityId, newQuantity);
-
-            // Update the cart summary in real-time
-            List<CartItem> cartItems = (List<CartItem>)Session["Cart"];
-            UpdateCartSummary(cartItems);
+                    // Update the cart summary in real-time
+                    List<CartItem> cartItems = (List<CartItem>)Session["Cart"];
+                    UpdateCartSummary(cartItems);
+                }
+                else
+                {
+                    // Display a SweetAlert indicating invalid input
+                    ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "Swal.fire({ title: 'Invalid Quantity', text: 'Quantity must be greater than 0.', icon: 'error', confirmButtonText: 'OK' });", true);
+                }
+            }
+            else
+            {
+                // Display a SweetAlert indicating invalid input
+                ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "Swal.fire({ title: 'Invalid Quantity', text: 'Please enter a valid number.', icon: 'error', confirmButtonText: 'OK' });", true);
+            }
         }
+
 
         private void UpdateItemQuantity(int quantityId, int newQuantity)
         {
@@ -171,8 +186,8 @@ namespace Uniqlo.Pages
             }
             else
             {
-                // Display an alert or message indicating that the cart is empty
-                ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "alert('Your cart is empty. Please add items to proceed.');", true);
+                // Display a SweetAlert indicating that the cart is empty
+                ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "Swal.fire({ title: 'Your cart is empty', text: 'Please add items to proceed.', icon: 'warning', confirmButtonText: 'OK' });", true);
             }
         }
     }
