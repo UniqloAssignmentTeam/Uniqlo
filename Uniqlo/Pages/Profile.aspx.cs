@@ -13,7 +13,27 @@ namespace Uniqlo.Pages
         SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["UniqloConnectionString"].ConnectionString);
 
         protected void Page_Load(object sender, EventArgs e)
-        {
+        {  //Deny not registered customer
+            if (Session["Customer_Id"] == null)
+            {
+                // Register SweetAlert script to show when no Customer_Id is found
+                string showAlertScript = @"
+            Swal.fire({
+                title: 'Not Logged In',
+                text: 'You have not logged in. Please log in to continue.',
+                icon: 'warning',
+                confirmButtonText: 'OK'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = 'Login.aspx';
+                }
+            });
+        ";
+                ClientScript.RegisterStartupScript(this.GetType(), "showAlert", showAlertScript, true);
+
+                return; // Stop further execution of this method
+            }
+
             if (!IsPostBack)
             {
                 string sessionValue = Session["Customer_ID"] as string;
@@ -47,11 +67,22 @@ namespace Uniqlo.Pages
                         lblEmail.Text = dr["Email"].ToString();
                         lblGender.Text = dr["Gender"].ToString() == "M" ? "Male" : "Female";
                         lblPhone.Text = dr["Contact_No"].ToString();
-                        lblAddress.Text = dr["Address"] != DBNull.Value ? dr["Address"].ToString() : "";
-                        lblPostCode.Text = dr["Postcode"] != DBNull.Value ? dr["Postcode"].ToString() : "";
-                        lblCity.Text = dr["City"] != DBNull.Value ? dr["City"].ToString() : "";
-                        lblState.Text = dr["State"] != DBNull.Value ? dr["State"].ToString() : "";
-                        lblCountry.Text = dr["Country"] != DBNull.Value ? dr["Country"].ToString() : "";
+                        lblAddress.Text = dr["Address"].ToString();
+                        if(lblAddress.Text.Equals("NULL"))
+                            lblAddress.Text = "";
+
+                        lblPostCode.Text = dr["Postcode"].ToString();
+                        if (lblPostCode.Text.Equals("NULL"))
+                            lblPostCode.Text = "";
+                        lblCity.Text = dr["City"].ToString();
+                        if (lblCity.Text.Equals("NULL"))
+                            lblCity.Text = "";
+                        lblState.Text = dr["State"].ToString();
+                        if (lblState.Text.Equals("NULL"))
+                            lblState.Text = "";
+                        lblCountry.Text = dr["Country"].ToString();
+                        if (lblCountry.Text.Equals("NULL"))
+                            lblCountry.Text = "";
                     }
                 }
             }
