@@ -53,7 +53,7 @@ namespace Uniqlo.Pages.Categories.Women
 
                     dlValueBuy.DataSource = productDetails;
                     dlValueBuy.DataBind();
-
+                  
 
                 }
             }

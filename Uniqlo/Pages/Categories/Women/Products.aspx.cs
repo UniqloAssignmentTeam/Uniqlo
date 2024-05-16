@@ -56,6 +56,7 @@ namespace Uniqlo.Pages.Categories.Women
                     dataList.DataBind();
 
                     dataList.RepeatColumns = productDetails.Count > 4 ? 4 : productDetails.Count;
+                   
                 }
             }
             catch (Exception ex)
@@ -105,6 +106,7 @@ namespace Uniqlo.Pages.Categories.Women
 
 
                     carouselDataList.RepeatColumns = productDetails.Count > 4 ? 4 : productDetails.Count;
+                  
                 }
             }
             catch (Exception ex)
@@ -212,6 +214,7 @@ namespace Uniqlo.Pages.Categories.Women
                     var productList = discountQuery.ToList();
                     dataList.DataSource = productList;
                     dataList.DataBind();
+                   
                 }
             }
             catch (Exception ex)
@@ -265,6 +268,7 @@ namespace Uniqlo.Pages.Categories.Women
 
                     dataList.DataSource = productDetails;
                     dataList.DataBind();
+                   
                 }
             }
             catch (Exception ex)

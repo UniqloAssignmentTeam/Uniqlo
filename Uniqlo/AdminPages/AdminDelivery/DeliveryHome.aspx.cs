@@ -22,7 +22,7 @@ namespace Uniqlo.AdminPages.AdminDelivery
                 if (Session["StaffRole"]==null)
                 {
                     // Redirect to adminLogin.aspx if the session role is invalid or not set
-                    Response.Redirect("adminLogin.aspx");
+                    Response.Redirect("../adminLogin.aspx");
                     Session["Unauthorized"] = true;
                 }
                 bindRepeater();

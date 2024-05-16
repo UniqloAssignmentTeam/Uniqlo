@@ -72,12 +72,12 @@
                 </asp:HyperLink>
             </ItemTemplate>
         </asp:DataList>
-
+      
         <!--VIEWMORE BUTTON-->
         <div class="viewMoreSection">
             <a href="../../ValueBuy.aspx" class="viewMoreButton">VIEW MORE</a>
         </div>
-
+     
 
     </div>
     <footer>

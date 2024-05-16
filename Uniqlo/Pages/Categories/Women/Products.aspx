@@ -74,7 +74,7 @@
                     </div>
 
                 </div>
-
+                
                 <div class="wrap-items-search-buttons" style="margin-top: 85px;">
                     <div class="search">
                         <span class="material-symbols-outlined">search</span>
@@ -90,11 +90,11 @@
                 <!--START OF COLUMN-->
                 
 
+                            <asp:UpdatePanel ID="UpdatePanelProduct" runat="server">
 
-                <asp:UpdatePanel ID="UpdatePanelProduct" runat="server">
 
-
-                    <ContentTemplate>
+<ContentTemplate>
+              
 
 
                         <asp:DataList ID="dataList" runat="server" RepeatDirection="Horizontal" Width="100%">
@@ -133,23 +133,26 @@
                                 </asp:HyperLink>
                             </ItemTemplate>
                         </asp:DataList>
+                           
                     </ContentTemplate>
                     <Triggers>
                         <asp:AsyncPostBackTrigger ControlID="ddlSort" EventName="SelectedIndexChanged" />
                         <asp:AsyncPostBackTrigger ControlID="ddlCategory" EventName="SelectedIndexChanged" />
+                        <asp:AsyncPostBackTrigger ControlID="searchBox" EventName="TextChanged" />
+
                     </Triggers>
 
 
                 </asp:UpdatePanel>
-
+             
             </div>
         </div>
 
         <hr />
-        <div class="noMoreProductTxt" style="border: none; margin: 30px;">No More Product Found</div>
+        
     </div>
 
-
+        <div class="noMoreProductTxt" style="border: none; margin: 30px;">No More Product Found</div>
 
 
 

@@ -11,7 +11,8 @@ namespace Uniqlo
     {
         protected void btnLogout_Click(object sender, EventArgs e)
         {
-            Session.Remove("admin");
+            Session.Abandon();
+            Session.Clear();
             Response.Redirect("~/AdminPages/adminLogin.aspx");
         }
 

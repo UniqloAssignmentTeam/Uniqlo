@@ -54,6 +54,8 @@ namespace Uniqlo.Pages
                 dlValueBuy.RepeatColumns = productDetails.Count > 4 ? 4 : productDetails.Count;
                 dlValueBuy.DataSource = productDetails;
                 dlValueBuy.DataBind();
+
+                noProduct.Visible  = productDetails.Count == 0;
             }
         }
 
@@ -117,7 +119,7 @@ namespace Uniqlo.Pages
                 dlValueBuy.RepeatColumns = productDetails.Count > 4 ? 4 : productDetails.Count;
                 dlValueBuy.DataSource = productDetails;
                 dlValueBuy.DataBind();
-                
+                noProduct.Visible = productDetails.Count == 0;
             }
         }
 

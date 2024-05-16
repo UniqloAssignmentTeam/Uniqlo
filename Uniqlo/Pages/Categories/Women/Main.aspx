@@ -76,13 +76,13 @@
                     </asp:HyperLink>
             </ItemTemplate>
         </asp:DataList>
-
+            
         <!--VIEWMORE BUTTON-->
         <div class="viewMoreSection">
             <a href="../../ValueBuy.aspx" class="viewMoreButton">VIEW MORE</a>
         </div>
     </div>
-
+       
     <footer>
         <script src="../../../Javascript/slider.js"></script>
         <script src="../../../Javascript/modalProduct.js"></script>

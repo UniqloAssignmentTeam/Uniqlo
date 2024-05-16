@@ -207,7 +207,6 @@
     <Content Include="AdminPages\Reports\ReportHome.aspx" />
     <Content Include="AdminPages\Reports\ReviewReport.aspx" />
     <Content Include="AdminPages\Reports\SalesReport.aspx" />
-    <Content Include="AdminPages\test.aspx" />
     <Content Include="AdminPages\AdminDelivery\UpdateDelivery.aspx" />
     <Content Include="App_Data\Uniqlo.mdf" />
     <Content Include="App_Data\Uniqlo_log.ldf">
@@ -561,10 +560,6 @@
     </Compile>
     <Compile Include="AdminPages\Reports\SalesReport.aspx.designer.cs">
       <DependentUpon>SalesReport.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="AdminPages\test.aspx.cs">
-      <DependentUpon>test.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Card.cs" />
     <Compile Include="CartItem.cs" />
