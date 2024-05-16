@@ -32,7 +32,7 @@
 
                 <div class="form-group">
                     <label for="staffName">Staff Name</label>
-                    <asp:TextBox ID="staffName" runat="server" MaxLength="50"></asp:TextBox>
+                    <asp:TextBox ID="staffName" runat="server" MaxLength="40"></asp:TextBox>
                     <asp:RegularExpressionValidator ID="RegexValidatorName" runat="server" ControlToValidate="staffName" 
                         ErrorMessage="Name must contain only letters." ValidationExpression="^[A-Za-z ]+$" ForeColor="Red" Display="Dynamic"></asp:RegularExpressionValidator>
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Please Enter a Name" ControlToValidate="staffName" ForeColor="Red" Display="Dynamic"></asp:RequiredFieldValidator>

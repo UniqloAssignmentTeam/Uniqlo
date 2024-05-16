@@ -10,6 +10,10 @@
                 padding-top: 5px;
             }
         </style>
+        <!-- Include SweetAlert2 CSS -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+        <!-- Include SweetAlert2 JS -->
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     </header>
     <div class="container">
         <div class="productItemCard">
@@ -18,10 +22,8 @@
         <div class="modal-content">
             <div class="product-content">
                 <div class="form-group">
-
                     <label for="ddlPaymentID">Payment ID</label>
-                    <asp:DropDownList ID="ddlPaymentID" runat="server" CssClass="dropdown-display">
-                    </asp:DropDownList>
+                    <asp:DropDownList ID="ddlPaymentID" runat="server" CssClass="dropdown-display"></asp:DropDownList>
                     <asp:RequiredFieldValidator ID="rfvPaymentID" runat="server" ControlToValidate="ddlPaymentID" InitialValue="" ErrorMessage="Please select a Payment ID" CssClass="error-message" Display="Dynamic" />
                 </div>
 
@@ -56,7 +58,7 @@
                 </div>
                 <div class="form-group">
                     <label for="ddlStatus">Status</label>
-                    <asp:DropDownList ID="ddlStatus" runat="server"  CssClass="dropdown-display">
+                    <asp:DropDownList ID="ddlStatus" runat="server" CssClass="dropdown-display">
                         <asp:ListItem Text="Pending" Value="Pending"></asp:ListItem>
                         <asp:ListItem Text="In Transit" Value="In Transit"></asp:ListItem>
                         <asp:ListItem Text="Delivered" Value="Delivered"></asp:ListItem>
@@ -78,5 +80,26 @@
         <script src="../../Javascript/productBtnEclipse.js"></script>
         <script src="../../Javascript/productAdminDDL.js"></script>
         <script src="../../Javascript/Pagination.js"></script>
+        <script>
+            function showSuccessMessage(message, redirectUrl) {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Success',
+                    text: message
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = redirectUrl;
+                    }
+                });
+            }
+
+            function showErrorMessage(message) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: message
+                });
+            }
+        </script>
     </footer>
 </asp:Content>
