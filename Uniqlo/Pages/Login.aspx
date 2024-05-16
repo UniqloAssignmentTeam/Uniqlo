@@ -12,6 +12,41 @@
 
         <!-- Boxicons CSS -->
         <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+        <style>
+            .password-container {
+    position: relative;
+    display: inline-block;
+}
+
+.password-container .fa-eye {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+.password-container {
+    position: relative;
+    display: inline-block;
+}
+
+.password-container .fa-eye,
+.password-container .fa-eye-slash {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #aaa;
+}
+
+.input.password {
+    padding-right: 30px; /* Adjust padding to make space for the eye icon */
+    width: 100%; /* Optional: to ensure the input takes full width */
+    box-sizing: border-box; /* Ensure padding is included in the width */
+}
+
+        </style>
     </header>
     <section class="container forms">
         <div class="form login">
@@ -26,8 +61,8 @@
                     <asp:RegularExpressionValidator ID="revEmail" runat="server" ControlToValidate="txtEmail" ErrorMessage="Invalid email address." ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"></asp:RegularExpressionValidator>
                 </div>
                 <div class="field input-field">
-                    <div class="password-container">
-                        <asp:TextBox ID="txtPassword" runat="server" placeholder="Password" CssClass="input password" MaxLength="50" TextMode="Password" style="height: 50px;"></asp:TextBox>
+                    <div class="password-container" style="width: 100%; margin-left: 10px;">
+                        <asp:TextBox ID="txtPassword" runat="server" placeholder="Password" CssClass="input password" MaxLength="50" TextMode="Password" style="height: 50px; "></asp:TextBox>
                         <i id="togglePassword" class="fa fa-eye" onclick="togglePasswordVisibility()"></i>
                     </div>
                     <asp:RequiredFieldValidator ID="rfvPassword" runat="server" ControlToValidate="txtPassword" ErrorMessage="Password is required." ForeColor="Red"></asp:RequiredFieldValidator>
