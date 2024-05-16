@@ -11,6 +11,8 @@ using System.Web.UI.WebControls;
 using System.Xml.Linq;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
+using Uniqlo.AdminPages.AdminCustomer;
+using System.Net.Mime;
 
 namespace Uniqlo.Pages
 {
@@ -206,6 +208,8 @@ namespace Uniqlo.Pages
         private void SendEmailWithAttachment(byte[] pdfBytes)
         {
             string customerEmail = lblEmail.Text; // Get customer's email address
+            string customerName = GetCustomerName();
+            string companyLogoPath = Server.MapPath("/Images/Uniqlo-Logos.png");
 
             MailMessage message = new MailMessage();
             message.From = new MailAddress("yipy-pm21@student.tarc.edu.my"); // Your email address
@@ -213,12 +217,83 @@ namespace Uniqlo.Pages
 
             // Set the email subject and body
             message.Subject = "Invoice for Your Recent Purchase";
-            message.Body = "Dear Customer,\n\nPlease find attached your invoice for the recent purchase. If you have any questions or concerns, please feel free to contact us.\n\nThank you for shopping with us!\n\nBest regards,\nUniqlo";
+            message.IsBodyHtml = true;
+
+            string emailBody = $@"
+                                <!DOCTYPE html>
+                                <html>
+                                <head>
+                                    <style>
+                                        .container {{
+                                            font-family: Arial, sans-serif;
+                                            color: #333;
+                                            line-height: 1.6;
+                                            max-width: 600px;
+                                            margin: auto;
+                                            border: 1px solid #ddd;
+                                            border-radius: 10px;
+                                            overflow: hidden;
+                                            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                                        }}
+                                        .header {{
+                                            background-color: #f8f8f8;
+                                            padding: 20px;
+                                            text-align: center;
+                                            border-bottom: 1px solid #ddd;
+                                        }}
+                                        .header h1 {{
+                                            margin: 0;
+                                            font-size: 24px;
+                                        }}
+                                        .content {{
+                                            padding: 20px;
+                                        }}
+                                        .content p {{
+                                            margin: 0 0 10px;
+                                        }}
+                                        .footer {{
+                                            background-color: #f8f8f8;
+                                            padding: 10px;
+                                            text-align: center;
+                                            border-top: 1px solid #ddd;
+                                            font-size: 12px;
+                                            color: #777;
+                                        }}
+                                    </style>
+                                </head>
+                                <body>
+                                    <div class='container'>
+                                        <div class='header'>
+                                            <h1>Thank You for Your Order!</h1>
+                                        </div>
+                                        <div class='content'>
+                                            <p>Dear {customerName},</p> 
+                                            <p>Thank you for your purchase from Uniqlo. Attached to this email you will find a PDF copy of your order details.</p>
+                                            <p>We appreciate your business and hope you enjoy your purchase!</p>
+                                            <p>If you have any questions or need further assistance, please do not hesitate to contact our customer support team.</p>
+                                            <p>Thank you for supporting Uniqlo!</p>
+                                            <p><img src='cid:companyLogo' alt='Company Logo' /></p>
+                                        <div class='footer'>
+                                            <p>&copy; 2024 Uniqlo. All rights reserved.</p>
+                                        </div>
+                                    </div>
+                                </body>
+                                </html>";
+
+            message.Body = emailBody;
 
             // Attach the PDF file
             MemoryStream ms = new MemoryStream(pdfBytes);
             Attachment attachment = new Attachment(ms, "Invoice.pdf");
             message.Attachments.Add(attachment);
+
+            LinkedResource companyLogo = new LinkedResource(companyLogoPath, "image/png")
+            {
+                ContentId = "companyLogo"
+            };
+            AlternateView avHtml = AlternateView.CreateAlternateViewFromString(emailBody, null, MediaTypeNames.Text.Html);
+            avHtml.LinkedResources.Add(companyLogo);
+            message.AlternateViews.Add(avHtml);
 
             // Configure SMTP settings
             SmtpClient smtpClient = new SmtpClient();
@@ -231,13 +306,41 @@ namespace Uniqlo.Pages
             {
                 // Send the email
                 smtpClient.Send(message);
+                ScriptManager.RegisterStartupScript(this, GetType(), "successAlert", "Swal.fire('Success', 'Order email sent successfully!', 'success');", true);
             }
             catch (Exception ex)
             {
                 // Handle the exception, for example, display an error message
-                Response.Write("An error occurred while sending the email: " + ex.Message);
+                ScriptManager.RegisterStartupScript(this, GetType(), "errorAlert", $"Swal.fire('Error', 'An error occurred: {ex.Message}', 'error');", true);
             }
         }
+
+
+        private string GetCustomerName()
+        {
+            int customerId = Convert.ToInt32(Session["Customer_Id"]);
+            string customerName = string.Empty;
+
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                con.Open();
+                string query = "SELECT Name FROM Customer WHERE Customer_Id = @CustomerId";
+
+                using (SqlCommand cmd = new SqlCommand(query, con))
+                {
+                    cmd.Parameters.AddWithValue("@CustomerId", customerId);
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            customerName = reader["Name"].ToString();
+                        }
+                    }
+                }
+            }
+            return customerName;
+        }
+
 
 
         protected void btnPDF_Click(object sender, EventArgs e)
