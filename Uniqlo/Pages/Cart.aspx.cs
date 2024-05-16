@@ -125,7 +125,7 @@ namespace Uniqlo.Pages
             // Validate the current quantity value entered by the user
             if (int.TryParse(txtQuantity.Text, out int newQuantity))
             {
-                if (newQuantity > 0)
+                if (newQuantity > 0 && newQuantity<999)
                 {
                     // Update the quantity of the item in the cart
                     UpdateItemQuantity(quantityId, newQuantity);
@@ -134,8 +134,21 @@ namespace Uniqlo.Pages
                     List<CartItem> cartItems = (List<CartItem>)Session["Cart"];
                     UpdateCartSummary(cartItems);
                 }
+                else if(newQuantity <= 0 || newQuantity > 999)
+                {
+                    UpdateItemQuantity(quantityId, 1);
+                    // Update the cart summary in real-time
+                    List<CartItem> cartItems = (List<CartItem>)Session["Cart"];
+                    UpdateCartSummary(cartItems);
+                    // Display a SweetAlert indicating invalid input
+                    ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "Swal.fire({ title: 'Invalid Quantity', text: 'Quantity must be greater than 0.', icon: 'error', confirmButtonText: 'OK' });", true);
+                }
                 else
                 {
+                    UpdateItemQuantity(quantityId, 1);
+                    // Update the cart summary in real-time
+                    List<CartItem> cartItems = (List<CartItem>)Session["Cart"];
+                    UpdateCartSummary(cartItems);
                     // Display a SweetAlert indicating invalid input
                     ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "Swal.fire({ title: 'Invalid Quantity', text: 'Quantity must be greater than 0.', icon: 'error', confirmButtonText: 'OK' });", true);
                 }

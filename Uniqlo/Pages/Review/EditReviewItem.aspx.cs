@@ -28,7 +28,7 @@ namespace Uniqlo.Pages
                 if (!string.IsNullOrEmpty(orderListId))
                 {
                     string encryptedOrderListId = EncryptionHelper.Encrypt(orderListId);
-                    Response.Redirect("/Pages/OrderHistoryItem.aspx?Order_ID=" + encryptedOrderListId);
+                    Response.Redirect("/Pages/viewReviewItem.aspx?OrderList_ID=" + encryptedOrderListId);
                 }
             }
         }
@@ -36,48 +36,55 @@ namespace Uniqlo.Pages
         private void BindReviewData()
         {
             // Retrieve OrderList_ID from query string
-            string orderListId = EncryptionHelper.Decrypt(Request.QueryString["OrderList_ID"]);
+            string encryptedOrderListId = Request.QueryString["OrderList_ID"];
+            int orderListId;
 
-            if (!string.IsNullOrEmpty(orderListId))
+            if (!string.IsNullOrEmpty(encryptedOrderListId))
             {
-                // Connection string retrieved from web.config
-                string connectionString = Global.CS;
+                string decryptedOrderListId = EncryptionHelper.Decrypt(encryptedOrderListId);
 
-                // SQL query to retrieve review data based on OrderList_ID
-                string query = @"
-                                SELECT r.Rating, r.Review
-                                FROM Review r
-                                INNER JOIN OrderList ol ON r.OrderList_ID = ol.OrderList_ID
-                                WHERE ol.OrderList_ID = @OrderListID";
-
-                // Create a new SqlConnection using the connection string
-                using (SqlConnection connection = new SqlConnection(connectionString))
+                // Attempt to parse the decrypted ID to an integer
+                if (int.TryParse(decryptedOrderListId, out orderListId))
                 {
-                    // Create a new SqlCommand with the query and connection
-                    using (SqlCommand command = new SqlCommand(query, connection))
+                    // Connection string retrieved from web.config
+                    string connectionString = Global.CS;
+
+                    // SQL query to retrieve review data based on OrderList_ID
+                    string query = @"
+                                    SELECT r.Rating, r.Review
+                                    FROM Review r
+                                    INNER JOIN OrderList ol ON r.OrderList_ID = ol.OrderList_ID
+                                    WHERE ol.OrderList_ID = @OrderListID";
+
+                    // Create a new SqlConnection using the connection string
+                    using (SqlConnection connection = new SqlConnection(connectionString))
                     {
-                        // Add parameter for OrderList_ID
-                        command.Parameters.AddWithValue("@OrderListID", orderListId);
-
-                        // Open the connection
-                        connection.Open();
-
-                        // Execute the command and retrieve the data
-                        SqlDataReader reader = command.ExecuteReader();
-
-                        // Check if data exists
-                        if (reader.Read())
+                        // Create a new SqlCommand with the query and connection
+                        using (SqlCommand command = new SqlCommand(query, connection))
                         {
-                            // Populate the rating
-                            HiddenRatingUpdate.Value = reader["Rating"].ToString();
+                            // Add parameter for OrderList_ID
+                            command.Parameters.AddWithValue("@OrderListID", orderListId);
 
-                            // Populate the review
-                            Review.Text = reader["Review"].ToString();
+                            // Open the connection
+                            connection.Open();
+
+                            // Execute the command and retrieve the data
+                            SqlDataReader reader = command.ExecuteReader();
+
+                            // Check if data exists
+                            if (reader.Read())
+                            {
+                                // Populate the rating
+                                HiddenRatingUpdate.Value = reader["Rating"].ToString();
+
+                                // Populate the review
+                                Review.Text = reader["Review"].ToString();
+                            }
+
+                            // Close the reader and connection
+                            reader.Close();
+                            connection.Close();
                         }
-
-                        // Close the reader and connection
-                        reader.Close();
-                        connection.Close();
                     }
                 }
             }
@@ -90,7 +97,9 @@ namespace Uniqlo.Pages
             string comment = Review.Text;
 
             // Get the OrderList_ID from the query string
+
             string orderListId = EncryptionHelper.Decrypt(Request.QueryString["OrderList_Id"]); ;
+
 
             // Update the review in the database
             UpdateReview(int.Parse(orderListId), rating, comment);

@@ -9,9 +9,33 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <!-- CSS -->
         <link href="../css/Login.css" rel="stylesheet" />
-
         <!-- Boxicons CSS -->
         <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+        <!-- SweetAlert CSS -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css">
+
+        <style>
+            .password-container {
+                position: relative;
+                display: inline-block;
+            }
+
+            .password-container .fa-eye,
+            .password-container .fa-eye-slash {
+                position: absolute;
+                top: 50%;
+                right: 10px;
+                transform: translateY(-50%);
+                cursor: pointer;
+                color: #aaa;
+            }
+
+            .input.password {
+                padding-right: 30px; /* Adjust padding to make space for the eye icon */
+                width: 100%; /* Optional: to ensure the input takes full width */
+                box-sizing: border-box; /* Ensure padding is included in the width */
+            }
+        </style>
     </header>
     <section class="container forms">
         <div class="form login">
@@ -23,11 +47,11 @@
                 <div class="field input-field">
                     <asp:TextBox ID="txtEmail" type="email" placeholder="Email" CssClass="input" runat="server"></asp:TextBox>
                     <asp:RequiredFieldValidator ID="rfvEmail" runat="server" ControlToValidate="txtEmail" ErrorMessage="Email is required." ForeColor="Red" Display="Dynamic"></asp:RequiredFieldValidator>
-                    <asp:RegularExpressionValidator ID="revEmail" runat="server" ControlToValidate="txtEmail" ErrorMessage="Invalid email address." ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"></asp:RegularExpressionValidator>
+                    <asp:RegularExpressionValidator ID="revEmail" runat="server" ControlToValidate="txtEmail" ErrorMessage="Invalid email address." ForeColor="Red" Display="Dynamic"  ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"></asp:RegularExpressionValidator>
                 </div>
                 <div class="field input-field">
-                    <div class="password-container">
-                        <asp:TextBox ID="txtPassword" runat="server" placeholder="Password" CssClass="input password" MaxLength="50" TextMode="Password" style="height: 50px;"></asp:TextBox>
+                    <div class="password-container" style="width: 100%; margin-left: 10px;">
+                        <asp:TextBox ID="txtPassword" runat="server" placeholder="Password" CssClass="input password" MaxLength="50" TextMode="Password" style="height: 50px; "></asp:TextBox>
                         <i id="togglePassword" class="fa fa-eye" onclick="togglePasswordVisibility()"></i>
                     </div>
                     <asp:RequiredFieldValidator ID="rfvPassword" runat="server" ControlToValidate="txtPassword" ErrorMessage="Password is required." ForeColor="Red" Display="Dynamic"></asp:RequiredFieldValidator>
@@ -55,10 +79,11 @@
     </section>
     <!-- JavaScript -->
     
-    <footer>
+   <footer>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.js"></script>
         <script src="../Javascript/Login.js"></script>
         <script>
-            document.addEventListener("DOMContentLoaded", function() {
+            document.addEventListener("DOMContentLoaded", function () {
                 var passwordField = document.getElementById('<%= txtPassword.ClientID %>');
                 var toggleIcon = document.getElementById('togglePassword');
                 if (passwordField.type === 'password') {
@@ -84,5 +109,6 @@
                 }
             }
         </script>
+    </footer>
     </footer>
 </asp:Content>

@@ -18,7 +18,6 @@ namespace Uniqlo.Pages.Categories.Men
             }
         }
 
-
         private void BindDataList()
         {
             try
@@ -28,7 +27,7 @@ namespace Uniqlo.Pages.Categories.Men
                     var today = DateTime.Today;
                     var productDetails = db.Product
                         .Where(p => !p.IsDeleted && p.Category.Gender == "M")
-                        .GroupJoin( // Simulate a left join using GroupJoin and DefaultIfEmpty
+                        .GroupJoin(
                             db.Discount.Where(d => d.Start_Date <= today && d.End_Date >= today && d.Status == "Active"),
                             product => product.Product_ID,
                             discount => discount.Product_ID,
@@ -41,29 +40,30 @@ namespace Uniqlo.Pages.Categories.Men
                                 ProductName = pd.Product.Product_Name,
                                 Description = pd.Product.Description,
                                 Price = pd.Product.Price,
-                                Image_ID = pd.Product.Quantities.Select(q => q.Image_ID).FirstOrDefault(), // Assuming at least one quantity
+                                Image_ID = pd.Product.Quantities.Select(q => q.Image_ID).FirstOrDefault(),
                                 AverageRating = pd.Product.Quantities.SelectMany(q => q.OrderLists).SelectMany(ol => ol.Reviews).Average(r => (int?)r.Rating) ?? 0,
                                 ReviewCount = pd.Product.Quantities.SelectMany(q => q.OrderLists).SelectMany(ol => ol.Reviews).Count(),
-                                DiscountAmount = discount != null ? discount.Discount_Amount : 0 // Handle null discounts
+                                DiscountAmount = discount != null ? discount.Discount_Amount : 0
                             }
                         )
                         .ToList();
 
-
                     dataList.DataSource = productDetails;
                     dataList.DataBind();
-
                     dataList.RepeatColumns = productDetails.Count > 4 ? 4 : productDetails.Count;
-               
                 }
             }
             catch (Exception ex)
             {
-
-                // Optionally display error message on the page
-                ScriptManager.RegisterStartupScript(this, GetType(), "errorAlert", "alert('An error occurred when retrieve product.');", true);
+                string script = @"
+                Swal.fire({
+                    title: 'Error',
+                    text: 'An error occurred when retrieving product details.',
+                    icon: 'error',
+                    confirmButtonText: 'OK'
+                });";
+                ScriptManager.RegisterStartupScript(this, GetType(), "errorAlert", script, true);
             }
-
         }
 
         private void BindDataList2()
@@ -89,53 +89,51 @@ namespace Uniqlo.Pages.Categories.Men
                                 Description = pd.Product.Description,
                                 Price = pd.Product.Price,
                                 Image_ID = pd.Product.Quantities.Select(q => q.Image_ID).FirstOrDefault(),
-                                OrderCount = pd.Product.Quantities.SelectMany(q => q.OrderLists).Count(), // Count of orders for each product
+                                OrderCount = pd.Product.Quantities.SelectMany(q => q.OrderLists).Count(),
                                 AverageRating = pd.Product.Quantities.SelectMany(q => q.OrderLists).SelectMany(ol => ol.Reviews).Average(r => (int?)r.Rating) ?? 0,
                                 ReviewCount = pd.Product.Quantities.SelectMany(q => q.OrderLists).SelectMany(ol => ol.Reviews).Count(),
                                 DiscountAmount = discount != null ? discount.Discount_Amount : 0
                             }
                         )
-                        .OrderByDescending(p => p.OrderCount) // Order by the number of orders, descending
-                        .Take(4) // Take only the top 5 products
+                        .OrderByDescending(p => p.OrderCount)
+                        .Take(4)
                         .ToList();
 
                     carouselDataList.DataSource = productDetails;
                     carouselDataList.DataBind();
-
-
                     carouselDataList.RepeatColumns = productDetails.Count > 4 ? 4 : productDetails.Count;
-                   
                 }
             }
             catch (Exception ex)
             {
-
-                // Optionally display error message on the page
-                ScriptManager.RegisterStartupScript(this, GetType(), "errorAlert", "alert('An error occurred when retrieve product.');", true);
+                string script = @"
+                Swal.fire({
+                    title: 'Error',
+                    text: 'An error occurred when retrieving product details.',
+                    icon: 'error',
+                    confirmButtonText: 'OK'
+                });";
+                ScriptManager.RegisterStartupScript(this, GetType(), "errorAlert", script, true);
             }
-
         }
 
         public string GenerateStars(double rating)
         {
-            var fullStars = (int)rating; // Number of full stars
-            var halfStar = rating % 1 != 0; // Check if there is a half star
-            var noStars = 5 - fullStars - (halfStar ? 1 : 0); // Remaining empty stars
+            var fullStars = (int)rating;
+            var halfStar = rating % 1 != 0;
+            var noStars = 5 - fullStars - (halfStar ? 1 : 0);
             var html = string.Empty;
 
-            // Add full stars
             for (int i = 0; i < fullStars; i++)
             {
                 html += "<i class='fas fa-star star'></i>";
             }
 
-            // Add half star
             if (halfStar)
             {
                 html += "<i class='fas fa-star-half-alt star'></i>";
             }
 
-            // Add empty stars
             for (int i = 0; i < noStars; i++)
             {
                 html += "<i class='far fa-star star'></i>";
@@ -144,13 +142,10 @@ namespace Uniqlo.Pages.Categories.Men
             return html;
         }
 
-
         protected void ddlSort_SelectedIndexChanged(object sender, EventArgs e)
         {
             FilterProducts();
         }
-
-
 
         private void FilterProducts()
         {
@@ -162,17 +157,14 @@ namespace Uniqlo.Pages.Categories.Men
                     string selectedCategory = ddlCategory.SelectedValue;
                     string selectedSort = ddlSort.SelectedValue;
 
-                    // Start with a base query that can be modified according to filters and sorting
                     var productQuery = db.Product
                         .Where(p => !p.IsDeleted && p.Category.Gender == "M");
 
-                    // Apply category filter
                     if (!string.IsNullOrEmpty(selectedCategory))
                     {
                         productQuery = productQuery.Where(p => p.Category.Name == selectedCategory);
                     }
 
-                    // Transform the products to include discount information
                     var discountQuery = productQuery
                         .GroupJoin(
                             db.Discount.Where(d => d.Start_Date <= today && d.End_Date >= today && d.Status == "Active"),
@@ -196,7 +188,6 @@ namespace Uniqlo.Pages.Categories.Men
                             }
                         );
 
-                    // Apply sorting based on price
                     if (!string.IsNullOrEmpty(selectedSort))
                     {
                         switch (selectedSort)
@@ -213,38 +204,38 @@ namespace Uniqlo.Pages.Categories.Men
                     var productList = discountQuery.ToList();
                     dataList.DataSource = productList;
                     dataList.DataBind();
-                   
                 }
             }
             catch (Exception ex)
             {
-                ScriptManager.RegisterStartupScript(this, GetType(), "errorAlert", "alert('An error occurred when filtering products.');", true);
+                string script = @"
+                Swal.fire({
+                    title: 'Error',
+                    text: 'An error occurred when filtering products.',
+                    icon: 'error',
+                    confirmButtonText: 'OK'
+                });";
+                ScriptManager.RegisterStartupScript(this, GetType(), "errorAlert", script, true);
             }
         }
-
-
-
 
         protected void ddlCategory_SelectedIndexChanged(object sender, EventArgs e)
         {
             FilterProducts();
         }
 
-
-
         protected void searchBox_TextChanged(object sender, EventArgs e)
         {
             try
             {
                 string searchText = searchBox.Text;
-
+                var today = DateTime.Today;
 
                 using (var db = new ProductDbContext())
                 {
-                    var today = DateTime.Today;
                     var productDetails = db.Product
                         .Where(p => !p.IsDeleted && p.Category.Gender == "M" && p.Product_Name.Contains(searchText))
-                        .GroupJoin( // Simulate a left join using GroupJoin and DefaultIfEmpty
+                        .GroupJoin(
                             db.Discount.Where(d => d.Start_Date <= today && d.End_Date >= today && d.Status == "Active"),
                             product => product.Product_ID,
                             discount => discount.Product_ID,
@@ -257,13 +248,12 @@ namespace Uniqlo.Pages.Categories.Men
                                 ProductName = pd.Product.Product_Name,
                                 Description = pd.Product.Description,
                                 Price = pd.Product.Price,
-                                Image_ID = pd.Product.Quantities.Select(q => q.Image_ID).FirstOrDefault(), // Assuming at least one quantity
+                                Image_ID = pd.Product.Quantities.Select(q => q.Image_ID).FirstOrDefault(),
                                 AverageRating = pd.Product.Quantities.SelectMany(q => q.OrderLists).SelectMany(ol => ol.Reviews).Average(r => (int?)r.Rating) ?? 0,
                                 ReviewCount = pd.Product.Quantities.SelectMany(q => q.OrderLists).SelectMany(ol => ol.Reviews).Count(),
-                                DiscountAmount = discount != null ? discount.Discount_Amount : 0 // Handle null discounts
+                                DiscountAmount = discount != null ? discount.Discount_Amount : 0
                             }
                         ).ToList();
-
 
                     dataList.DataSource = productDetails;
                     dataList.DataBind();
@@ -271,8 +261,14 @@ namespace Uniqlo.Pages.Categories.Men
             }
             catch (Exception ex)
             {
-                ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('An error occurred while searching the product name.');", true);
-
+                string script = @"
+                Swal.fire({
+                    title: 'Error',
+                    text: 'An error occurred while searching the product name.',
+                    icon: 'error',
+                    confirmButtonText: 'OK'
+                });";
+                ScriptManager.RegisterStartupScript(this, GetType(), "error", script, true);
             }
         }
     }

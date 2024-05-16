@@ -1,20 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using System.Data.SqlClient;
 using System.Configuration;
-using System.Xml.Linq;
-using System.Net;
-using System.IO;
-using Newtonsoft.Json;
-using System.Web.Security;
-using System.Security.Policy;
+using System.Data.SqlClient;
+using System.Web.UI;
 using crypto;
-
-
 
 namespace Uniqlo.Pages
 {
@@ -36,9 +24,9 @@ namespace Uniqlo.Pages
                 string email = txtEmail.Text;
                 string password = txtPassword.Text.Trim();
 
-                string checkUser = "SELECT Customer_ID, Name, Gender, Contact_No, Email, Password from Customer where email=@email";
+                string checkUser = "SELECT Customer_ID, Name, Gender, Contact_No, Email, Password from Customer where email=@Email";
                 SqlCommand checkCmd = new SqlCommand(checkUser, con);
-                checkCmd.Parameters.AddWithValue("@email", email);
+                checkCmd.Parameters.AddWithValue("@Email", email);
                 SqlDataReader read = checkCmd.ExecuteReader();
 
                 if (read.Read())
@@ -54,21 +42,23 @@ namespace Uniqlo.Pages
                     else
                     {
                         // Passwords do not match
-                        errorMSG.Text = "Invalid email or password.";
-                        errorMSG.ForeColor = System.Drawing.Color.Red;
+                        DisplayAlert("Invalid email or password.", "error");
                     }
                 }
                 else
                 {
                     // User not found
-                    errorMSG.Text = "Invalid email or password.";
-                    errorMSG.ForeColor = System.Drawing.Color.Red;
+                    DisplayAlert("Invalid email or password.", "error");
                 }
 
                 con.Close();
             }
         }
 
+        private void DisplayAlert(string message, string type)
+        {
+            string script = $"Swal.fire({{ title: '{message}', icon: '{type}' }});";
+            ScriptManager.RegisterStartupScript(this, GetType(), "SweetAlert", script, true);
+        }
     }
-
 }

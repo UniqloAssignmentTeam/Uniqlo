@@ -17,8 +17,22 @@ namespace Uniqlo.Pages
             //Deny not registered customer
             if (Session["Customer_Id"] == null)
             {
-                //Sweet you havent login
-                Response.Redirect("cart.aspx");
+                // Register SweetAlert script to show when no Customer_Id is found
+                string showAlertScript = @"
+            Swal.fire({
+                title: 'Not Logged In',
+                text: 'You have not logged in. Please log in to continue.',
+                icon: 'warning',
+                confirmButtonText: 'OK'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = 'Login.aspx';
+                }
+            });
+        ";
+                ClientScript.RegisterStartupScript(this.GetType(), "showAlert", showAlertScript, true);
+
+                return; // Stop further execution of this method
             }
 
 
@@ -84,7 +98,7 @@ namespace Uniqlo.Pages
             }
         }
 
-
+    
 
         protected void btnProceedToPayment_Click(object sender, EventArgs e)
         {
