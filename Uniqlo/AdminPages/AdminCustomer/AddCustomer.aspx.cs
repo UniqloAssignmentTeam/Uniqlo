@@ -30,6 +30,18 @@ namespace Uniqlo.AdminPages.AdminCustomer
 
             string connectionString = cs;
 
+            // Check if the email or contact number already exists in the database
+            if (IsDuplicateEmail(email) || IsDuplicateContactNumber(contactNumber))
+            {
+                // sweet here
+                return;
+            }
+            if (IsDuplicateContactNumber(contactNumber))
+            {
+                //sweet here
+                return;
+            }
+
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 string query = "INSERT INTO Customer (Name, Gender, Contact_No, Address, State, City, Postcode, Country, Email, Password) VALUES (@Name, @Gender, @Contact_No, @Address, @State, @City, @Postcode, @Country, @Email, @Password)";
@@ -69,6 +81,37 @@ namespace Uniqlo.AdminPages.AdminCustomer
             ClientScript.RegisterStartupScript(this.GetType(), "SweetAlert", script);
         }
 
+        // Method to check if the email already exists in the database
+        private bool IsDuplicateEmail(string email)
+        {
+            string query = "SELECT COUNT(*) FROM Customer WHERE Email = @Email";
+            using (SqlConnection connection = new SqlConnection(cs))
+            {
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@Email", email);
+                    connection.Open();
+                    int count = (int)command.ExecuteScalar();
+                    return count > 0; // If count > 0, email already exists
+                }
+            }
+        }
+
+        // Method to check if the contact number already exists in the database
+        private bool IsDuplicateContactNumber(string contactNumber)
+        {
+            string query = "SELECT COUNT(*) FROM Customer WHERE Contact_No = @Contact_No";
+            using (SqlConnection connection = new SqlConnection(cs))
+            {
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@Contact_No", contactNumber);
+                    connection.Open();
+                    int count = (int)command.ExecuteScalar();
+                    return count > 0; // If count > 0, contact number already exists
+                }
+            }
+        }
 
         protected void cancelBtn_Click(object sender, EventArgs e)
         {
