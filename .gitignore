@@ -370,3 +370,5 @@ FodyWeavers.xsd
 /AdminPages/Logout.aspx
 /AdminPages/Logout.aspx.cs
 /AdminPages/Logout.aspx.designer.cs
+/Uniqlo/App_Data/Uniqlo.mdf
+/Uniqlo/App_Data/Uniqlo_log.ldf
