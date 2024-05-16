@@ -15,6 +15,8 @@
             }
         </style>
 
+
+         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <link href="../../css/Admin/adminStaff.css" rel="stylesheet" />
         <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
@@ -24,10 +26,10 @@
     <asp:ScriptManager ID="ScriptManagerCustomer" runat="server" />
     <asp:UpdatePanel ID="UpdatePanelCustomer" runat="server">
         <ContentTemplate>
-            <div class="customerBody">
+            <div class="productBody">
                 <h2>UNIQLO CUSTOMER MANAGEMENT</h2>
 
-                <div class="crudCustomer">
+                <div class="crudProduct">
                     <div class="wrap-items-search-buttons">
                         <div class="search">
                             <span class="material-symbols-outlined">search</span>
@@ -44,7 +46,7 @@
 
                         <div class="btnExcel-Add">
                             <asp:Button ID="excelBtn" runat="server" Text="Export" CssClass="excel-export" OnClick="excelBtn_Click" />
-                            <asp:Button ID="addCustomerBtn" runat="server" Text="➕ Add Customer" CssClass="customer-add" OnClick="addCustomerBtn_Click" />
+                            <asp:Button ID="addCustomerBtn" runat="server" Text="➕ Add Customer" CssClass="product-add" OnClick="addCustomerBtn_Click" />
                         </div>
                     </div>
                 </div>
