@@ -123,6 +123,29 @@
             transition: background-color 0.3s ease;
             /* Smooth transition */
         }
+.fa{
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    font-size: 18px;
+    color: #8b8b8b;
+    cursor: pointer;
+    padding: 5px;
+}
+
+/* Submit Button */
+input[type="submit"] {
+    width: 100%; /* Full width */
+    padding: 10px;
+    border: none;
+    background-color: #4285f4; /* Google blue */
+    color: white;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Smooth transition */
+}
 
         input[type="submit"]:hover {
             background-color: #357ae8;
@@ -152,4 +175,43 @@
             </div>
         </div>
     </div>
+                  
+                    <asp:TextBox ID="txtPassword" type="password" name="password" required="true"  runat="server"></asp:TextBox> 
+                    <i id="togglePassword" class="fa fa-eye" onclick="togglePasswordVisibility()"></i>
+                    <span></span>
+                </div>
+                <asp:Button ID="btnLogin" runat="server" name="submit" type="Submit" value="Login" Text="Login"  onClick="btnLogin_Click"/>
+        </div>
+    </div>
+        </div>
+    <footer>
+    <script src="../Javascript/Login.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var passwordField = document.getElementById('<%= txtPassword.ClientID %>');
+                var toggleIcon = document.getElementById('togglePassword');
+                if (passwordField.type === 'password') {
+                    toggleIcon.classList.remove('fa-eye');
+                    toggleIcon.classList.add('fa-eye-slash');
+                } else {
+                    toggleIcon.classList.remove('fa-eye-slash');
+                    toggleIcon.classList.add('fa-eye');
+                }
+            });
+
+            function togglePasswordVisibility() {
+                var passwordField = document.getElementById('<%= txtPassword.ClientID %>');
+                var toggleIcon = document.getElementById('togglePassword');
+                if (passwordField.type === 'password') {
+                    passwordField.type = 'text';
+                    toggleIcon.classList.remove('fa-eye-slash');
+                    toggleIcon.classList.add('fa-eye');
+                } else {
+                    passwordField.type = 'password';
+                    toggleIcon.classList.remove('fa-eye');
+                    toggleIcon.classList.add('fa-eye-slash');
+                }
+            }
+    </script>
+</footer>
 </asp:Content>

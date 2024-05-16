@@ -4,7 +4,6 @@
 
 
     <header>
-
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -62,26 +61,31 @@
     <footer>
         <script src="../Javascript/Login.js"></script>
         <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                var passwordField = document.getElementById('<%= txtPassword.ClientID %>');
+                var toggleIcon = document.getElementById('togglePassword');
+                if (passwordField.type === 'password') {
+                    toggleIcon.classList.remove('fa-eye');
+                    toggleIcon.classList.add('fa-eye-slash');
+                } else {
+                    toggleIcon.classList.remove('fa-eye-slash');
+                    toggleIcon.classList.add('fa-eye');
+                }
+            });
+
             function togglePasswordVisibility() {
                 var passwordField = document.getElementById('<%= txtPassword.ClientID %>');
-                            var toggleIcon = document.getElementById('togglePassword');
-                            if (passwordField.type === 'password') {
-                                passwordField.type = 'text';
-                                toggleIcon.classList.remove('fa-eye');
-                                toggleIcon.classList.add('fa-eye-slash');
-                            } else {
-                                passwordField.type = 'password';
-                                toggleIcon.classList.remove('fa-eye-slash');
-                                toggleIcon.classList.add('fa-eye');
-                            }
+                var toggleIcon = document.getElementById('togglePassword');
+                if (passwordField.type === 'password') {
+                    passwordField.type = 'text';
+                    toggleIcon.classList.remove('fa-eye-slash');
+                    toggleIcon.classList.add('fa-eye');
+                } else {
+                    passwordField.type = 'password';
+                    toggleIcon.classList.remove('fa-eye');
+                    toggleIcon.classList.add('fa-eye-slash');
+                }
             }
         </script>
     </footer>
-
-
-
-
-
-
-
 </asp:Content>
