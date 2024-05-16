@@ -7,6 +7,6 @@
 		<siteMapNode url="AdminPages/AdminDiscount/DiscountHome.aspx" title="Discount"/>
 		<siteMapNode url="AdminPages/AdminOrder/OrderHome.aspx" title="Order"/>
 		<siteMapNode url="AdminPages/AdminDelivery/DeliveryHome.aspx" title="Delivery"/>
-		<siteMapNode url="AdminPages/AdminReport/Reports.aspx" title="Reports"/>
+		<siteMapNode url="AdminPages/Reports/ReportHome.aspx" title="Reports"/>
 	</siteMapNode>
 </siteMap>

@@ -29,7 +29,7 @@ namespace Uniqlo.AdminPages.AdminStaff
                 {
                     if (Session["StaffRole"] != null)
                     {
-                        if (!Session["StaffRole"].Equals("Admin") || Session["StaffRole"].Equals("Manager"))
+                        if (!Session["StaffRole"].Equals("Admin") && !Session["StaffRole"].Equals("Manager"))
                         {
                             // Redirect to adminLogin.aspx if the session role is invalid or not set
                             Response.Redirect("../adminLogin.aspx");
