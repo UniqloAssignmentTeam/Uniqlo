@@ -43,7 +43,7 @@ namespace Uniqlo.AdminPages
                             string hashedPasswordFromDB = reader["Password"].ToString();
                             string role = reader["Role"].ToString();
 
-                            if (Crypto.VerifyPassword(password, hashedPasswordFromDB))
+                            if (Crypto.VerifyPassword(hashedPasswordFromDB,password))
                             {
                                 // Staff login successful
                                 Session["StaffRole"] = role;

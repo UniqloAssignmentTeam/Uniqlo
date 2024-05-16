@@ -36,7 +36,9 @@
                                             <p style="color: red;">RM <%# String.Format("{0:0.00}", Eval("DiscountedPrice")) %></p>
                                         </div>
                                         <p>Quantity: </p>
-                                        <asp:TextBox ID="txtQuantity" runat="server" CssClass="qty" Min="1" Text='<%# Eval("Quantity") %>' MaxLength="3" AutoPostBack="true" OnTextChanged="txtQuantity_TextChanged" />
+                                   <asp:TextBox ID="txtQuantity" runat="server" CssClass="qty" Text='<%# Eval("Quantity") %>' MaxLength="3" AutoPostBack="true" OnTextChanged="txtQuantity_TextChanged" TextMode="Number" />
+
+
                                         <p class="item-subtotal"><b>Item Price: RM <%# String.Format("{0:0.00}", Eval("Item_Price")) %></b></p>
                                     </div>
                                 </div>
@@ -60,57 +62,43 @@
             </Triggers>
         </asp:UpdatePanel>
         <footer>
-            <script type="text/javascript">
-                // Function to allow only numeric input and disallow '0' as the first digit
-                function isNumberKey(evt) {
-                    var charCode = (evt.which) ? evt.which : evt.keyCode;
-                    var inputValue = evt.target.value;
-                    // Disallow non-numeric characters
-                    if (charCode < 48 || charCode > 57) {
-                        return false;
-                    }
-                    // Disallow '0' as the first character
-                    if (charCode == 48 && inputValue.length == 0) {
-                        return false;
-                    }
-                    return true;
-                }
+          <script type="text/javascript">
+            
+                  function validateNumberInput(input) {
+                      input.value = input.value.replace(/[^0-9]/g, '');
+    }
+       
 
-                // Function to enforce max length
-                function maxLengthCheck(object) {
-                    if (object.value.length > object.maxLength) {
-                        object.value = object.value.slice(0, object.maxLength);
-                    }
-                    // Disallow '0' as the first character
-                    if (object.value.startsWith('0')) {
-                        object.value = '';
-                    }
-                }
+              // Function to allow only numeric input and disallow '0' as the first digit
+              function isNumberKey(evt) {
+                  var charCode = (evt.which) ? evt.which : evt.keyCode;
+                  var inputValue = evt.target.value;
 
-                // Function to validate quantity before form submission
-                function validateQuantity() {
-                    var quantityInputs = document.querySelectorAll('.qty');
-                    for (var i = 0; i < quantityInputs.length; i++) {
-                        if (quantityInputs[i].value.trim() === '') {
-                            Swal.fire({
-                                icon: 'warning',
-                                title: 'Quantity Missing',
-                                text: 'Please enter a quantity.',
-                                confirmButtonText: 'OK'
-                            });
-                            return false; // Prevent form submission
-                        }
-                    }
-                    return true; // Allow form submission
-                }
+                  // Disallow non-numeric characters
+                  if (charCode < 48 || charCode > 57) {
+                      return false;
+                  }
 
-                // Attach the validation to the submit button
-                document.getElementById('<%= btnCheckout.ClientID %>').addEventListener('click', function (e) {
-                    if (!validateQuantity()) {
-                        e.preventDefault();
-                    }
-                });
-            </script>
+                  // Disallow '0' as the first character
+                  if (charCode == 48 && inputValue.length == 0) {
+                      return false;
+                  }
+
+                  return true;
+              }
+
+              // Function to enforce max length
+              function maxLengthCheck(object) {
+                  if (object.value.length > object.maxLength) {
+                      object.value = object.value.slice(0, object.maxLength);
+                  }
+
+                  // Disallow '0' as the first character
+                  if (object.value.startsWith('0')) {
+                      object.value = '';
+                  }
+              }
+          </script>
         </footer>
     </div>
    
