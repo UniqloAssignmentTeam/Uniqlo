@@ -493,7 +493,13 @@ namespace Uniqlo.Pages
                     {
                         // If the item already exists, check if adding the new quantity exceeds available stock
                         int totalQuantity = item.Quantity + quantity;
-                        if (totalQuantity > stockInfo.AvailableStock)
+
+                        if (quantity > stockInfo.AvailableStock)
+                        {
+                            ScriptManager.RegisterStartupScript(this, this.GetType(), "overQuantityError", $"Swal.fire('Error', 'Only {stockInfo.AvailableStock} items available for the selected product. You cannot add {totalQuantity} items to the cart.', 'error');", true);
+                            return;
+                        }
+                        else if (totalQuantity > stockInfo.AvailableStock)
                         {
                             ScriptManager.RegisterStartupScript(this, this.GetType(), "overQuantityError", $"Swal.fire('Error', 'Only {stockInfo.AvailableStock} items available for the selected product. You cannot add {totalQuantity} items to the cart.', 'error');", true);
                             return;
@@ -506,6 +512,22 @@ namespace Uniqlo.Pages
                             return;
                         }
                     }
+                    else
+                    {
+                        // Check if the entered quantity exceeds the available stock
+                        if (quantity > stockInfo.AvailableStock)
+                        {
+                            ScriptManager.RegisterStartupScript(this, this.GetType(), "overQuantityError", $"Swal.fire('Error', 'Only {stockInfo.AvailableStock} items available for the selected product. You cannot add {quantity} items to the cart.', 'error');", true);
+                            return;
+                        }
+                    }
+                }
+
+                // Check if the entered quantity exceeds the available stock if the product hasnt been add
+                if (quantity > stockInfo.AvailableStock)
+                {
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "overQuantityError", $"Swal.fire('Error', 'Only {stockInfo.AvailableStock} items available for the selected product. You cannot add {quantity} items to the cart.', 'error');", true);
+                    return;
                 }
 
                 // If the item does not exist in the cart, create a new CartItem and add it to the cart

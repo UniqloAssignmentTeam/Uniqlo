@@ -88,8 +88,22 @@ namespace Uniqlo.Pages
         }
         protected void lnkConfirmOrder_Click(object sender, EventArgs e)
         {
+            List<CartItem> cartItems = (List<CartItem>)Session["Cart"];
+            // Validate quantity of each cart item
+            foreach (var item in cartItems)
+            {
+                // Check if the quantity exceeds the available stock
+                if (item.Quantity > GetAvailableStock(item.Quantity_Id))
+                {
+                    // Display an error message indicating that the item is out of stock
+                    lblErrorMessage.Visible = true;
+                    lblErrorMessage.Text = "Error: The quantity of one or more items in your cart exceeds the available stock.";
+                    return;
+                }
+            }
+
             //confirm order, so create orderlist, order, payment, and delivery insert into database
-           
+
             using (SqlConnection con = new SqlConnection(cs))
             {
                 con.Open();
@@ -115,7 +129,6 @@ namespace Uniqlo.Pages
 
                     // Insert Order
                     int customerId = Convert.ToInt32(Session["Customer_Id"]);
-                    List<CartItem> cartItems = Session["Cart"] as List<CartItem>;
                     decimal subtotal = (decimal)Session["TotalPrice"];
                     cmd.CommandText = "INSERT INTO Orders (Customer_Id, Subtotal, IsDeleted) VALUES (@CustomerId, @Subtotal, 0); SELECT SCOPE_IDENTITY();";
                     cmd.Parameters.AddWithValue("@CustomerId", customerId);
@@ -187,6 +200,34 @@ namespace Uniqlo.Pages
                 }
             }
 
+        }
+
+        private int GetAvailableStock(int quantityId)
+        {
+            int availableStock = 0;
+            try
+            {
+                // Retrieve the available stock quantity from the database
+                using (SqlConnection con = new SqlConnection(cs))
+                {
+                    con.Open();
+                    SqlCommand cmd = new SqlCommand("SELECT Qty FROM Quantity WHERE Quantity_Id = @QuantityId", con);
+                    cmd.Parameters.AddWithValue("@QuantityId", quantityId);
+                    object result = cmd.ExecuteScalar();
+                    if (result != null)
+                    {
+                        availableStock = Convert.ToInt32(result);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Handle any database retrieval errors
+                // You can log the error or display an error message as needed
+                lblErrorMessage.Visible = true;
+                lblErrorMessage.Text = "Error: Unable to retrieve available stock quantity.";
+            }
+            return availableStock;
         }
 
     }
