@@ -23,16 +23,13 @@
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="email"
                         ErrorMessage="Email is required." ForeColor="Red" Display="Dynamic"></asp:RequiredFieldValidator>
                 </div>
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <asp:TextBox ID="password" runat="server" MaxLength="30"></asp:TextBox>
-                    <asp:RegularExpressionValidator ID="RegexValidatorPassword" runat="server" ControlToValidate="password"
-                        ErrorMessage="Password must be at least 8 characters long including numbers, uppercase and lowercase letters."
-                        ValidationExpression="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$" ForeColor="Red" Display="Dynamic"></asp:RegularExpressionValidator>
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidatorPassword" runat="server" ControlToValidate="password"
-                        ErrorMessage="Password is required." ForeColor="Red" Display="Dynamic"></asp:RequiredFieldValidator>
-                    <i id="togglePassword" class="fa fa-eye" onclick="togglePasswordVisibility()"></i>
-                </div>
+               <div class="form-group">
+     <label for="resetPassword">Reset Password</label>
+     <asp:TextBox ID="txtResetPassword" runat="server" MaxLength="30" TextMode="Password"></asp:TextBox>
+     <asp:RegularExpressionValidator ID="RegexValidatorResetPassword" runat="server" ControlToValidate="txtResetPassword"
+         ErrorMessage="Password must be at least 8 characters long including numbers, uppercase and lowercase letters."
+         ValidationExpression="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,50}$" ForeColor="Red" Display="Dynamic"></asp:RegularExpressionValidator>
+ </div>
                 <div class="form-group">
                     <label for="staffName">Staff Name</label>
                     <asp:TextBox ID="staffName" runat="server" MaxLength="50"></asp:TextBox>
@@ -105,27 +102,8 @@
             }
         }
 
-        // Eye Icon
-        function togglePasswordVisibility() {
-            var passwordField = document.getElementById('<%= password.ClientID %>');
-        var toggleIcon = document.getElementById('togglePassword');
-        if (passwordField.type === 'password') {
-            passwordField.type = 'text';
-            toggleIcon.classList.remove('fa-eye-slash');
-            toggleIcon.classList.add('fa-eye');
-        } else {
-            passwordField.type = 'password';
-            toggleIcon.classList.remove('fa-eye');
-            toggleIcon.classList.add('fa-eye-slash');
-        }
-    }
+       
 
-    document.addEventListener("DOMContentLoaded", function () {
-        var passwordField = document.getElementById('<%= password.ClientID %>');
-        var toggleIcon = document.getElementById('togglePassword');
-        passwordField.type = 'password'; // Ensure password is hidden by default
-        toggleIcon.classList.remove('fa-eye');
-        toggleIcon.classList.add('fa-eye-slash'); // Set default icon to slashed eye
-    });
+   
     </script>
 </asp:Content>
