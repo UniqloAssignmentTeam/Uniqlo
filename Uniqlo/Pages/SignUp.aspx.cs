@@ -189,7 +189,6 @@ namespace Uniqlo.Pages
 
             // Enable the verification code input field
             txtVerificationCode.ReadOnly = false;
-            txtVerificationCode.Text = "bitch";
 
             // Disable the button on the client side
             btnSendCode.Enabled = false;
