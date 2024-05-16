@@ -125,7 +125,7 @@
                     <div class="wrap-items-search-buttons">
                         <div class="search">
                             <span class="material-symbols-outlined">search</span>
-                            <asp:TextBox ID="searchBox" runat="server" CssClass="search-input" AutoPostBack="true" OnTextChanged="searchBox_TextChanged" placeholder="Search Order Name"></asp:TextBox>
+                            <asp:TextBox ID="searchBox" runat="server" CssClass="search-input" AutoPostBack="true" OnTextChanged="searchBox_TextChanged" placeholder="Search Customer Name"></asp:TextBox>
                         </div>
 
                         <div class="dropdown-wrapper" style="margin-left: -300px;">
