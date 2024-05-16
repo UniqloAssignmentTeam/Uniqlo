@@ -88,31 +88,31 @@
                 <div class="form-group">
                     <label for="address">Address</label>
                     <asp:TextBox ID="txtAddress" runat="server" MaxLength="100"></asp:TextBox>
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidatorAddress" runat="server" ControlToValidate="txtAddress" ErrorMessage="Address is required." ForeColor="Red" Display="Dynamic"></asp:RequiredFieldValidator>
+                    
                 </div>
 
                 <div class="form-group">
                     <label for="state">State</label>
                     <asp:TextBox ID="txtState" runat="server" MaxLength="50"></asp:TextBox>
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidatorState" runat="server" ControlToValidate="txtState" ErrorMessage="State is required." ForeColor="Red" Display="Dynamic"></asp:RequiredFieldValidator>
+                    
                 </div>
 
                 <div class="form-group">
                     <label for="city">City</label>
                     <asp:TextBox ID="txtCity" runat="server" MaxLength="50"></asp:TextBox>
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidatorCity" runat="server" ControlToValidate="txtCity" ErrorMessage="City is required." ForeColor="Red" Display="Dynamic"></asp:RequiredFieldValidator>
+                    
                 </div>
 
                 <div class="form-group">
                     <label for="postcode">Postcode</label>
                     <asp:TextBox ID="txtPostcode" runat="server" MaxLength="10"></asp:TextBox>
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidatorPostcode" runat="server" ControlToValidate="txtPostcode" ErrorMessage="Postcode is required." ForeColor="Red" Display="Dynamic"></asp:RequiredFieldValidator>
+                    
                 </div>
 
                 <div class="form-group">
                     <label for="country">Country</label>
                     <asp:TextBox ID="txtCountry" runat="server" MaxLength="50"></asp:TextBox>
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidatorCountry" runat="server" ControlToValidate="txtCountry" ErrorMessage="Country is required." ForeColor="Red" Display="Dynamic"></asp:RequiredFieldValidator>
+                    
                 </div>
 
                 <div class="form-group">
