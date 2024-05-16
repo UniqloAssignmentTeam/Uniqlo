@@ -63,13 +63,13 @@
             <div class="footerNav">
                 
                     <a href="Dashboard.aspx">Dashboard</a>
-                    <a href="CustomerHome.aspx">Customer</a>
-                    <a href="StaffHome.aspx">Staff</a>
-                    <a href="Product.aspx">Product</a>
-                    <a href="DiscountHome.aspx">Discount</a>
-                    <a href="Order.aspx">Order</a>
-                    <a href="DeliveryHome.aspx">Delivery</a>
-                    <a href="Report.aspx">Report</a>
+                    <a href="./AdminCustomer/CustomerHome.aspx">Customer</a>
+                    <a href="./AdminStaff/StaffHome.aspx">Staff</a>
+                    <a href="./AdminProduct/ProductHome.aspx">Product</a>
+                    <a href="./AdminDiscount/DiscountHome.aspx">Discount</a>
+                    <a href="./AdminOrder/OrderHome.aspx">Order</a>
+                    <a href="./AdminDelivery/DeliveryHome.aspx">Delivery</a>
+                    <a href="./AdminReport/ReportHome.aspx">Report</a>
                 
             </div>
 <div class="footerBottom">

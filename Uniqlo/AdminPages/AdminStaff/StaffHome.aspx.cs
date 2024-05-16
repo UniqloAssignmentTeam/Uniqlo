@@ -27,12 +27,22 @@ namespace Uniqlo.AdminPages.AdminStaff
             {
                 if (!IsPostBack)
                 {
-                    if (!Session["StaffRole"].Equals("Admin") || Session["StaffRole"].Equals("Manager"))
+                    if (Session["StaffRole"] != null)
+                    {
+                        if (!Session["StaffRole"].Equals("Admin") || Session["StaffRole"].Equals("Manager"))
+                        {
+                            // Redirect to adminLogin.aspx if the session role is invalid or not set
+                            Response.Redirect("../adminLogin.aspx");
+                            Session["Unauthorized"] = true;
+                        }
+                    }
+                    else
                     {
                         // Redirect to adminLogin.aspx if the session role is invalid or not set
                         Response.Redirect("../adminLogin.aspx");
                         Session["Unauthorized"] = true;
                     }
+
                     BindRepeater();
                     modalState.Value = "closed";
                 }
