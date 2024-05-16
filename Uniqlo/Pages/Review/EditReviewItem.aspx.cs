@@ -2,6 +2,7 @@
 using System.Data;
 using System.Data.SqlClient;
 using System.Web.UI;
+using System.Web.UI.DataVisualization.Charting;
 using System.Web.UI.WebControls;
 using Uniqlo.AdminPages;
 
@@ -15,6 +16,20 @@ namespace Uniqlo.Pages
             {
                 // Populate the review data
                 BindReviewData();
+
+
+
+            }
+            string eventTarget = Request["__EVENTTARGET"];
+            if (eventTarget == "HyperLink1")
+            {
+                string orderListId = EncryptionHelper.Decrypt(Request.QueryString["OrderList_ID"]);
+
+                if (!string.IsNullOrEmpty(orderListId))
+                {
+                    string encryptedOrderListId = EncryptionHelper.Encrypt(orderListId);
+                    Response.Redirect("/Pages/OrderHistoryItem.aspx?Order_ID=" + encryptedOrderListId);
+                }
             }
         }
 
@@ -30,10 +45,10 @@ namespace Uniqlo.Pages
 
                 // SQL query to retrieve review data based on OrderList_ID
                 string query = @"
-            SELECT r.Rating, r.Review
-            FROM Review r
-            INNER JOIN OrderList ol ON r.OrderList_ID = ol.OrderList_ID
-            WHERE ol.OrderList_ID = @OrderListID";
+                                SELECT r.Rating, r.Review
+                                FROM Review r
+                                INNER JOIN OrderList ol ON r.OrderList_ID = ol.OrderList_ID
+                                WHERE ol.OrderList_ID = @OrderListID";
 
                 // Create a new SqlConnection using the connection string
                 using (SqlConnection connection = new SqlConnection(connectionString))
@@ -80,10 +95,21 @@ namespace Uniqlo.Pages
             // Update the review in the database
             UpdateReview(int.Parse(orderListId), rating, comment);
 
-            // Display popup using JavaScript
-            ScriptManager.RegisterStartupScript(this, GetType(), "Popup", "showPopup();", true);
 
-            Response.Redirect($"ViewReviewItem.aspx?OrderList_Id={EncryptionHelper.Encrypt(orderListId)}");
+            string script = $@"
+                            Swal.fire({{
+                                title: 'Success!',
+                                text: 'Review updated successfully!',
+                                icon: 'success',
+                                confirmButtonText: 'OK'
+                            }}).then((result) => {{
+                                if (result.isConfirmed) {{
+                                    window.location.href = 'ViewReviewItem.aspx?OrderList_Id={EncryptionHelper.Encrypt(orderListId)}';
+                                }}
+                            }});
+                        ";
+
+            ScriptManager.RegisterStartupScript(this, GetType(), "SweetAlert", script, true);
         }
 
         private void UpdateReview(int orderListId, int rating, string comment)

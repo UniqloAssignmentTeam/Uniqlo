@@ -358,7 +358,7 @@
 
                                     <div class="orderReceivedSection" id="<%# Eval("reviewBtn") %>">
 
-<asp:Button ID="reviewValidBtn" runat="server" Text='<%# Convert.ToBoolean(Eval("reviewBtn")) ? "View" : "Review" %>' CommandArgument='<%# Eval("OrderList_ID") %>' CssClass="orderReceivedButton" AutoPostBack="false" UseSubmitBehavior="false" OnClick="reviewValidBtn_Click" />
+                                    <asp:Button ID="reviewValidBtn" runat="server" Text='<%# Convert.ToBoolean(Eval("reviewBtn")) ? "View" : "Review" %>' CommandArgument='<%# Eval("OrderList_ID") %>' CssClass="orderReceivedButton" AutoPostBack="false" UseSubmitBehavior="false" OnClick="reviewValidBtn_Click" />
 
                                     </div>
                                 </div>

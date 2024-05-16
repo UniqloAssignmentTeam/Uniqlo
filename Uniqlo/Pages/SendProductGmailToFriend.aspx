@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Uniqlo.Master" AutoEventWireup="true" CodeBehind="SendProductGmailToFriend.aspx.cs" Inherits="Uniqlo.Pages.SendProductGmailToFriend" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="main" runat="server">
-    <head>
+    <header>
         <style>
             .body{
                 max-width: 1100px;
@@ -87,7 +87,7 @@
                 color: white;
             }
         </style>
-    </head>
+    </header>
 
     <div class="body">
 
