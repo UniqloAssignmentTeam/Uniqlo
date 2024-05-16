@@ -51,9 +51,24 @@ namespace Uniqlo.AdminPages.AdminCustomer
                 }
             }
 
+            string script = @"
+                            <script>
+                                Swal.fire({
+                                    title: 'Success!',
+                                    text: 'Customer added successfully!',
+                                    icon: 'success',
+                                    confirmButtonText: 'OK'
+                                }).then((result) => {
+                                    if (result.isConfirmed) {
+                                        window.location.href = 'CustomerHome.aspx';
+                                    }
+                                });
+                            </script>";
+
             Session["CustomerAdded"] = "True";
-            Response.Redirect("CustomerHome.aspx");
+            ClientScript.RegisterStartupScript(this.GetType(), "SweetAlert", script);
         }
+
 
         protected void cancelBtn_Click(object sender, EventArgs e)
         {
