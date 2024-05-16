@@ -101,14 +101,17 @@ namespace Uniqlo.Pages
             string friendEmail = friendEmailInput.Text;
             string friendEmailContent = emailContentInput.Text;
             string productName = prodNameHidden.Value;
-            double discountAmount = Double.Parse(prodDiscountHidden.Value);
-            double price = Double.Parse(prodPriceHidden.Value);
+            double discountAmount = double.Parse(prodDiscountHidden.Value);
+            double price = double.Parse(prodPriceHidden.Value);
             string description = prodDescHidden.Value;
             int imageID = Int32.Parse(prodImageID.Value);
             double currentPrice = price - discountAmount;
             string userEmail = getUserEmailAddress();
             string userName = getUserName();
             byte[] imageData = GetImageFromDatabase(imageID);
+
+            string formattedPrice = price.ToString("F2");
+            string formattedCurrentPrice = currentPrice.ToString("F2");
 
             try
             {
@@ -125,14 +128,87 @@ namespace Uniqlo.Pages
                         mail.IsBodyHtml = true; // Enable HTML content
 
                         // HTML body with embedded image
-                        string logoUrl = "/Images/Uniqlo-Logos.png"; // Change this to your actual logo URL
+                        string logoUrl = Server.MapPath("/Images/Uniqlo-Logos.png");
                         string emailBody = $@"
-                                            <p>{friendEmailContent}</p>
-                                            <p>Hey, I thought you might be interested in this product: <strong>{productName}</strong>. Here's what they say about it: {description}. Its original price is RM {price}, but it is now RM {currentPrice}!</p>
-                                            <p>See the image below:</p>
-                                            <img src='cid:productImage' alt='Product Image' /><br />
-                                            <p>Thank you,<br />{userName}</p>
-                                            <p><img src='{logoUrl}' alt='Company Logo' style='width:100px;height:auto;' /><br />Thank you for supporting our company shout-out from Uniqlo!</p>";
+                                            <!DOCTYPE html>
+                                            <html>
+                                            <head>
+                                                <style>
+                                                    .container {{
+                                                        font-family: Arial, sans-serif;
+                                                        color: #333;
+                                                        line-height: 1.6;
+                                                        max-width: 600px;
+                                                        margin: auto;
+                                                        border: 1px solid #ddd;
+                                                        border-radius: 10px;
+                                                        overflow: hidden;
+                                                        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                                                    }}
+                                                    .header {{
+                                                        background-color: #f8f8f8;
+                                                        padding: 20px;
+                                                        text-align: center;
+                                                        border-bottom: 1px solid #ddd;
+                                                    }}
+                                                    .header p {{
+                                                        margin: 0;
+                                                        font-size: 16px;
+                                                    }}
+                                                    .content {{
+                                                        padding: 20px;
+                                                    }}
+                                                    .content p {{
+                                                        margin: 0 0 10px;
+                                                    }}
+                                                    .content img {{
+                                                        max-width: 100%;
+                                                        height: auto;
+                                                        border: 1px solid #ddd;
+                                                        border-radius: 5px;
+                                                        margin: 10px 0;
+                                                    }}
+                                                    .thank-you {{
+                                                        margin: 20px 0;
+                                                        text-align: center;
+                                                    }}
+                                                    .thank-you img {{
+                                                        width: 100px;
+                                                        height: auto;
+                                                        margin-top: 10px;
+                                                    }}
+                                                    .footer {{
+                                                        background-color: #f8f8f8;
+                                                        padding: 10px;
+                                                        text-align: center;
+                                                        border-top: 1px solid #ddd;
+                                                        font-size: 12px;
+                                                        color: #777;
+                                                    }}
+                                                </style>
+                                            </head>
+                                            <body>
+                                                <div class='container'>
+                                                    <div class='header'>
+                                                        <p>{friendEmailContent}</p>
+                                                    </div>
+                                                    <div class='content'>
+                                                        <p>Hey, I thought you might be interested in this product: <strong>{productName}</strong>.</p>
+                                                        <p>Here's what they say about it: {description}.</p>
+                                                        <p>Its original price is RM {formattedPrice}, but it is only <strong>RM {formattedCurrentPrice}</strong> now!</p>
+                                                        <p>See the image below:</p>
+                                                        <img src='cid:productImage' alt='Product Image' />
+                                                        <div class='thank-you'>
+                                                            <p>Thank you for supporting our company!</p>
+                                                            <img src='cid:companyLogo' alt='Company Logo' />
+                                                        </div>
+                                                    </div>
+                                                    <div class='footer'>
+                                                        <p>&copy; 2024 Uniqlo. All rights reserved.</p>
+                                                    </div>
+                                                </div>
+                                            </body>
+                                            </html>";
 
                         mail.Body = emailBody;
 
@@ -141,8 +217,14 @@ namespace Uniqlo.Pages
                         {
                             ContentId = "productImage"
                         };
+
+                        LinkedResource companyLogo = new LinkedResource(logoUrl, "image/png")
+                        {
+                            ContentId = "companyLogo"
+                        };
                         AlternateView avHtml = AlternateView.CreateAlternateViewFromString(mail.Body, null, MediaTypeNames.Text.Html);
                         avHtml.LinkedResources.Add(productImage);
+                        avHtml.LinkedResources.Add(companyLogo);
                         mail.AlternateViews.Add(avHtml);
 
                         smtp.Send(mail);
@@ -157,6 +239,8 @@ namespace Uniqlo.Pages
                 ScriptManager.RegisterStartupScript(this, GetType(), "errorAlert", $"Swal.fire('Error', 'An error occurred: {ex.Message}', 'error');", true);
             }
         }
+
+
 
         private byte[] GetImageFromDatabase(int imageID)
         {
