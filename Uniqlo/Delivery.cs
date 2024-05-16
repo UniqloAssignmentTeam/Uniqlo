@@ -34,7 +34,11 @@ namespace Uniqlo
         public DeliveryDbContext() : base("name=UniqloEntities")
         {
         }
-
-        public DbSet<Delivery> delivery { get; set; }
+      
+        public DbSet<Shipping_Address> Shipping_Addresses { get; set; }
+        public DbSet<Payment> Payments { get; set; }
+        public DbSet<Discount> Discount { get; set; }
+        public DbSet<Product> Product { get; set; }
+        public DbSet<Delivery> Delivery { get; set; }
     }
 }

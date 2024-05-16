@@ -31,7 +31,7 @@ namespace Uniqlo
         public PaymentDbContext() : base("name=UniqloEntities")
         {
         }
-
+        public DbSet<Order> Order { get; set; }
         public DbSet<Payment> payment { get; set; }
     }
 }

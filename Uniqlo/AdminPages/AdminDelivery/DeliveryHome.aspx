@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin.Master" AutoEventWireup="true" CodeBehind="DeliveryHome.aspx.cs" Inherits="Uniqlo.AdminPages.AdminDelivery.DeliveryHome" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="main" runat="server">
-      <style>
+   <style>
+        /* Add your custom styles here */
         .dropdown-wrapper {
             margin-right: 310px;
         }
@@ -96,18 +97,31 @@
             left: 0px;
             top: 0px;
         }
+        .no-delivery-label {
+            color: red;
+            font-size: 16px;
+            margin-top: 20px;
+            display: block;
+            text-align: center;
+        }
     </style>
     <link href="../../css/Admin/adminDelivery.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <div class="productBody">
+
+
+
         <h2>UNIQLO DELIVERY MANAGEMENT</h2>
+
         <div class="crudProduct">
             <div class="wrap-items-search-buttons">
                 <div class="search">
-                    <asp:TextBox ID="searchBox" runat="server" CssClass="search-input" AutoPostBack="true"  OnTextChanged="searchBox_TextChanged" placeholder="Search Delivery ID"></asp:TextBox>
-                </div>
+                    <span class="material-symbols-outlined">search</span>
+                    <asp:TextBox ID="searchBox" runat="server" CssClass="search-input" AutoPostBack="true" OnTextChanged="searchBox_TextChanged" placeholder="Search Delivery ID"></asp:TextBox>
+           
+                    </div>
                 <div class="dropdown-wrapper">
                     <asp:DropDownList ID="statusSortDDL" runat="server" AutoPostBack="true" OnSelectedIndexChanged="statusSortDDL_SelectedIndexChanged" CssClass="dropdown-display">
                         <asp:ListItem Value="">Status</asp:ListItem>
@@ -131,7 +145,7 @@
                         <th class="col name">Delivery Address</th>
                         <th class="col price">Status</th>
                         <th class="col gender">Order ID</th>
-                        <th class="col eclipse-container">Options</th>
+                        <th class="col eclipse-container"></th>
                     </tr>
             </HeaderTemplate>
             <ItemTemplate>
@@ -163,16 +177,11 @@
     </div>
     <div style="margin-bottom: 80px;"></div>
     <asp:HiddenField ID="hiddenDeliveryId" Value="" runat="server" />
+   
     <asp:Button ID="hiddenDeleteButton" runat="server" Text="Delete" OnClick="btnRemoveDelivery_Click" Style="display:none;" />
     <footer>
         <script type="text/javascript">
-            function isNumber(evt) {
-                var charCode = (evt.which) ? evt.which : event.keyCode;
-                if (charCode > 31 && (charCode < 48 || charCode > 57)) {
-                    return false;
-                }
-                return true;
-            }
+           
 
             function showDeleteModal(deliveryId) {
                 Swal.fire({
@@ -205,8 +214,8 @@
             }
 
             document.getElementById('<%= searchBox.ClientID %>').onkeyup = function () {
-                __doPostBack('<%= searchBox.ClientID %>', '');
-            };
+                     __doPostBack('<%= searchBox.UniqueID %>', '');
+                 };
         </script>
         <script src="../../Javascript/productBtnEclipse.js"></script>
         <script src="../../Javascript/productAdminDDL.js"></script>
