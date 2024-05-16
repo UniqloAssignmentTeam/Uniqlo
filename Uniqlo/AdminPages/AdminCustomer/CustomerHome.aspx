@@ -40,12 +40,6 @@
                                 <asp:ListItem Value="M">Male</asp:ListItem>
                                 <asp:ListItem Value="F">Female</asp:ListItem>
                             </asp:DropDownList>
-            
-                            <asp:DropDownList ID="statusSortDDL" runat="server" AutoPostBack="true" OnSelectedIndexChanged="statusSortDDL_SelectedIndexChanged" CssClass="dropdown-display">
-                                <asp:ListItem Value="">All Statuses</asp:ListItem>
-                                <asp:ListItem Value="Active">Active</asp:ListItem>
-                                <asp:ListItem Value="Inactive">Inactive</asp:ListItem>
-                            </asp:DropDownList>
                         </div>
 
                         <div class="btnExcel-Add">
@@ -56,20 +50,24 @@
                 </div>
 
                 <div class="table">
-                    <asp:Repeater ID="customerRepeater" runat="server">
+                    <asp:Repeater ID="customerRepeater" runat="server" ViewStateMode="Disabled">
                             <HeaderTemplate>
                                 <table style="width: 100%" class="table">
                                     <tr class="row">
+                                        <td class="col customerID">Customer ID</td>
                                         <th class="col name">Name</th>
                                         <th class="col gender">Gender</th>
                                         <th class="col contactNo">Contact No</th>
-                                        <th class="col address">Address</th>
                                         <th class="col email">Email</th>
-                                        <th class="col password">Password</th>
+                                        <th class="col eclipse-display">
                                     </tr>
                             </HeaderTemplate>
                             <ItemTemplate>
                                 <tr class="row">
+
+                                    <td class="col staffid">
+                                        <asp:Label ID="lblCustId" runat="server" Text='<%# Eval("Customer_ID") %>'></asp:Label>
+                                    </td>
                                     <td class="col name">
                                         <asp:Label ID="lblName" runat="server" Text='<%# Eval("Name") %>'></asp:Label>
                                     </td>
@@ -79,14 +77,18 @@
                                     <td class="col contactNo">
                                         <asp:Label ID="lblContactNo" runat="server" Text='<%# Eval("Contact_No") %>'></asp:Label>
                                     </td>
-                                    <td class="col address">
-                                        <asp:Label ID="lblAddress" runat="server" Text='<%# Eval("Address") %>'></asp:Label>
-                                    </td>
                                     <td class="col email">
                                         <asp:Label ID="lblEmail" runat="server" Text='<%# Eval("Email") %>'></asp:Label>
                                     </td>
-                                    <td class="col password">
-                                        <asp:Label ID="lblPassword" runat="server" Text='<%# Eval("Password") %>'></asp:Label>
+                                    <td class="col eclipse-container" onclick="toggleDropdown('dropdownList<%# Eval("Customer_ID") %>', 'dropdownDisplay<%# Eval("Customer_ID") %>')">
+                                        <div class="eclipse-display" id="dropdownDisplay<%# Eval("Customer_ID") %>" style="border: none;"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></div>
+                                        <div class="eclipse-list" id="dropdownList<%# Eval("Customer_ID") %>">
+
+                                            <div>
+                                                <asp:HyperLink ID="updateCustomer" runat="server" NavigateUrl='<%# "UpdateCustomer.aspx?Customer_ID=" + Eval("Customer_ID") %>' Text="Update" CssClass="hyperlink"></asp:HyperLink>
+                                            </div>
+                                            <div onclick="showDeleteModal(<%# Eval("Customer_ID") %>);">Delete</div>
+                                        </div>
                                     </td>
                                 </tr>
                             </ItemTemplate>
@@ -99,20 +101,47 @@
 
                 <div style="margin-bottom: 80px;"></div>
             </div>
-
-            <asp:HiddenField ID="hiddenCustomerId" runat="server" Value="" />
         </ContentTemplate>
         <Triggers>
-            <asp:AsyncPostBackTrigger ControlID="statusSortDDL" EventName="SelectedIndexChanged" />
             <asp:AsyncPostBackTrigger ControlID="genderSortDDL" EventName="SelectedIndexChanged" />
             <asp:PostBackTrigger ControlID="excelBtn" />
         </Triggers>
     </asp:UpdatePanel>
 
-    <asp:HiddenField ID="modalState" runat="server" Value="closed" />
-
+    <asp:HiddenField ID="hiddenCustomerId" Value="" runat="server" />
+    <asp:Button ID="hiddenDeleteButton" runat="server" Text="Delete" OnClick="btnRemoveCustomer_Click" Style="display:none;" />
     <footer>
         <script type="text/javascript">
+
+            function showDeleteModal(customerId) {
+                Swal.fire({
+                    title: 'Are you sure?',
+                    html: "<strong>You are about to delete the Customer with ID:</strong> <span style='color: red;'>" + customerId + "</span>.<br>This action cannot be undone!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, delete it!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        document.getElementById('<%= hiddenCustomerId.ClientID %>').value = customerId;
+            __doPostBack('<%= hiddenDeleteButton.UniqueID %>', '');
+        }
+    });
+            }
+
+            function showDeleteSuccess() {
+                Swal.fire({
+                    title: 'Deleted!',
+                    text: 'The delivery has been successfully deleted.',
+                    icon: 'success',
+                    confirmButtonText: 'Ok'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = window.location.href;
+                    }
+                });
+            }
             document.getElementById('<%= searchBox.ClientID %>').onkeyup = function() {
                 __doPostBack('<%= searchBox.ClientID %>', '');
             };

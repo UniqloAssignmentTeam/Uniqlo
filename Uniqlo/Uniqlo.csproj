@@ -154,7 +154,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AdminPages\AdminCustomer\AddCustomer.aspx" />
     <Content Include="AdminPages\AdminCustomer\CustomerHome.aspx" />
+    <Content Include="AdminPages\AdminCustomer\UpdateCustomer.aspx" />
     <Content Include="AdminPages\AdminDelivery\AddDelivery.aspx" />
     <Content Include="AdminPages\AdminDelivery\DeliveryHome.aspx" />
     <Content Include="AdminPages\AdminDiscount\addDiscount.aspx" />
@@ -326,12 +328,26 @@
     <Compile Include="Admin.Master.designer.cs">
       <DependentUpon>Admin.Master</DependentUpon>
     </Compile>
+    <Compile Include="AdminPages\AdminCustomer\AddCustomer.aspx.cs">
+      <DependentUpon>AddCustomer.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminPages\AdminCustomer\AddCustomer.aspx.designer.cs">
+      <DependentUpon>AddCustomer.aspx</DependentUpon>
+    </Compile>
     <Compile Include="AdminPages\AdminCustomer\CustomerHome.aspx.cs">
       <DependentUpon>CustomerHome.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="AdminPages\AdminCustomer\CustomerHome.aspx.designer.cs">
       <DependentUpon>CustomerHome.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AdminPages\AdminCustomer\UpdateCustomer.aspx.cs">
+      <DependentUpon>UpdateCustomer.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminPages\AdminCustomer\UpdateCustomer.aspx.designer.cs">
+      <DependentUpon>UpdateCustomer.aspx</DependentUpon>
     </Compile>
     <Compile Include="AdminPages\AdminDelivery\AddDelivery.aspx.cs">
       <DependentUpon>AddDelivery.aspx</DependentUpon>
