@@ -16,8 +16,8 @@ namespace Uniqlo.AdminPages.AdminStaff
         {
             if (Page.IsValid)
             {
-                try
-                {
+                string hashedPassword = Crypto.HashPassword(password.Text);
+                
                     using (var db = new StaffDbContext())
                     {
                         Staff newStaff = new Staff
@@ -26,7 +26,7 @@ namespace Uniqlo.AdminPages.AdminStaff
                             Email = email.Text,
                             Gender = staffGender.SelectedValue,
                             Contact_No = contactNumber.Text,
-                            Password = password.Text, // Consider hashing this before storing
+                            Password = hashedPassword,
                             Role = staffRole.SelectedValue
                         };
 
@@ -37,12 +37,8 @@ namespace Uniqlo.AdminPages.AdminStaff
                         Session["StaffAdded"] = true;
                         Response.Redirect("StaffAdd.aspx"); // Refresh page to trigger SweetAlert
                     }
-                }
-                catch (Exception ex)
-                {
-                    // Optionally display error message on the page
-                    ScriptManager.RegisterStartupScript(this, GetType(), "errorAlert", "alert('An error occurred while adding new staff.');", true);
-                }
+                
+                
             }
         }
 

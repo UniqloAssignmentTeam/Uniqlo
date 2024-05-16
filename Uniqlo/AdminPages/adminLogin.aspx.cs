@@ -1,53 +1,71 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
 using System.Data.SqlClient;
-using System.Drawing;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
+using Org.BouncyCastle.Crypto.Generators;
 
 namespace Uniqlo.AdminPages
 {
     public partial class adminLogin : System.Web.UI.Page
     {
         string cs = Global.CS;
-        int i;
+
         protected void Page_Load(object sender, EventArgs e)
         {
 
         }
+
         protected void btnLogin_Click(object sender, EventArgs e)
         {
-            SqlConnection con = new SqlConnection(cs);
-            con.Open();
-            if (Page.IsValid)
+            string email = txtEmail.Text.Trim();
+            string password = txtPassword.Text.Trim();
+
+            if (!string.IsNullOrEmpty(email) && !string.IsNullOrEmpty(password))
             {
-                //string email = txtEmail.Text;
-                //string password = txtPassword.Text.Trim();
+                string connectionString = cs;
+                string query = "SELECT Password, Role FROM Staff WHERE Email = @Email";
 
-                //check user
-                string checkUser = "SELECT* FROM Staff WHERE email=@email and password=@password";
-                SqlCommand checkCmd = new SqlCommand(checkUser, con);
-                //checkCmd.Parameters.AddWithValue("@email", email);
-                //checkCmd.Parameters.AddWithValue("@password", password);
-                SqlDataReader read = checkCmd.ExecuteReader();
-
-                if (read.Read())
+                using (SqlConnection conn = new SqlConnection(connectionString))
                 {
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@Email", email);
 
-                    Response.Redirect("Dashboard.aspx");
+                        conn.Open();
+                        SqlDataReader reader = cmd.ExecuteReader();
+
+                        if (reader.Read())
+                        {
+                            string hashedPasswordFromDB = reader["Password"].ToString();
+                            string role = reader["Role"].ToString();
+
+                            if (Crypto.VerifyPassword(password, hashedPasswordFromDB))
+                            {
+                                // Staff login successful
+                                Session["StaffRole"] = role;
+                                Response.Redirect("Dashboard.aspx");
+                            }
+                            else
+                            {
+                                // Incorrect password
+                                lblError.Text = "Invalid email or password. Please try again.";
+                                lblError.Visible = true;
+                            }
+                        }
+                        else
+                        {
+                            // No user found with the given email
+                            lblError.Text = "Invalid email or password. Please try again.";
+                            lblError.Visible = true;
+                        }
+                    }
                 }
-                else
-                {
-
-                    con.Close();
-                }
-
-
             }
-
+            else
+            {
+                // Email or password field is empty
+                lblError.Text = "Please enter both email and password.";
+                lblError.Visible = true;
+            }
         }
     }
 }

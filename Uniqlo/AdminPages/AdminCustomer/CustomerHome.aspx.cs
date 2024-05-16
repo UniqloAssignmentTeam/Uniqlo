@@ -6,6 +6,10 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using static Uniqlo.Staff;
+using OfficeOpenXml;
+using System.IO;
+using System.Text;
 
 namespace Uniqlo.AdminPages.AdminCustomer
 {
@@ -43,19 +47,70 @@ namespace Uniqlo.AdminPages.AdminCustomer
 
         protected void searchBox_TextChanged(object sender, EventArgs e)
         {
-            // Implement search logic
-            BindCustomerData();
+            try
+            {
+                string searchText = searchBox.Text;
+                var results = SearchCustomerDatabase(searchText);  // Call the method that performs the search
+                customerRepeater.DataSource = results;
+                customerRepeater.DataBind();
+                lblNoCustomerFound.Visible = results.Count == 0;
+            }
+            catch (Exception ex)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "error", "alert('An error occurred while searching the customer name.');", true);
+            }
+        }
+
+        public List<Customer> SearchCustomerDatabase(string searchText)
+        {
+            using (var db = new CustomerDBContext())
+            {
+                var query = db.Customer
+                              .Where(c => c.Name.Contains(searchText))
+                              .ToList();
+                return query;
+            }
         }
 
         protected void genderSortDDL_SelectedIndexChanged(object sender, EventArgs e)
         {
             // Implement gender sorting logic
-            BindCustomerData();
+            BindFilteredCustList();
         }
 
-        protected void excelBtn_Click(object sender, EventArgs e)
+        private void BindFilteredCustList()
         {
-            // Implement export to Excel logic
+            try
+            {
+                using (var db = new CustomerDBContext())
+                {
+                    // Retrieve the selected gender from the dropdown list
+                    string selectedGender = genderSortDDL.SelectedValue;
+
+                    // Initialize the query to select all customers
+                    IQueryable<Customer> query = db.Customer;
+
+                    // Filter by the selected gender if a specific gender is selected
+                    if (!string.IsNullOrEmpty(selectedGender) && selectedGender != "All Genders")
+                    {
+                        query = query.Where(c => c.Gender == selectedGender);
+                    }
+
+                    // Execute the query and get the list of customers
+                    var customerList = query.ToList();
+
+                    // Bind the customer list to the repeater control
+                    customerRepeater.DataSource = customerList;
+                    customerRepeater.DataBind();
+
+                    // Display a message if no customers were found
+                    lblNoCustomerFound.Visible = customerList.Count == 0;
+                }
+            }
+            catch (Exception ex)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "scriptError", "alert('Failed to load filtered customer list. Please try again.');", true);
+            }
         }
 
         protected void addCustomerBtn_Click(object sender, EventArgs e)
@@ -121,6 +176,54 @@ namespace Uniqlo.AdminPages.AdminCustomer
             }
 
             return success;
+        }
+
+        protected void excelBtn_Click(object sender, EventArgs e)
+        {
+            string connectionString = Global.CS; // Ensure this is correctly defined
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();  // Ensure the connection is opened before executing the command
+
+                StringBuilder query = new StringBuilder("SELECT Customer_ID, Name, Gender, Contact_No, Email FROM Customer");
+                List<SqlParameter> parameters = new List<SqlParameter>();
+
+                string genderFilter = genderSortDDL.SelectedValue;
+                bool hasGenderFilter = !string.IsNullOrEmpty(genderFilter) && genderFilter != "All Genders";
+
+                if (hasGenderFilter)
+                {
+                    query.Append(" WHERE");
+                    if (hasGenderFilter)
+                    {
+                        query.Append(" Gender = @Gender");
+                        parameters.Add(new SqlParameter("@Gender", genderFilter));
+                    }
+                }
+
+                using (SqlCommand cmd = new SqlCommand(query.ToString(), conn))
+                {
+                    cmd.Parameters.AddRange(parameters.ToArray());
+                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                    {
+                        DataTable dt = new DataTable();
+                        da.Fill(dt);
+                        using (ExcelPackage pck = new ExcelPackage())
+                        {
+                            ExcelWorksheet ws = pck.Workbook.Worksheets.Add("Customers");
+                            ws.Cells["A1"].LoadFromDataTable(dt, true, OfficeOpenXml.Table.TableStyles.Light1);
+                            var memoryStream = new MemoryStream();
+                            pck.SaveAs(memoryStream);
+                            memoryStream.Position = 0;
+
+                            HttpContext.Current.Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+                            HttpContext.Current.Response.AddHeader("content-disposition", "attachment; filename=Customers.xlsx");
+                            HttpContext.Current.Response.BinaryWrite(memoryStream.ToArray());
+                            HttpContext.Current.Response.End();
+                        }
+                    }
+                }
+            }
         }
     }
 }
