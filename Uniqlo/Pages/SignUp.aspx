@@ -72,6 +72,11 @@
                     <asp:RequiredFieldValidator ID="rfvGender" runat="server" ControlToValidate="ddlGender" ErrorMessage="Gender is required." Display="Dynamic" ForeColor="Red" InitialValue=""></asp:RequiredFieldValidator>
                 </div>
 
+                <div class="field input-field">
+    <asp:Label ID="lblCode" runat="server" Text="Verification Code"></asp:Label>
+    <asp:TextBox ID="txtVerificationCode" runat="server" type="text" placeholder="" CssClass="input" ReadOnly="true" ></asp:TextBox><asp:Button ID="btnSendCode" runat="server" Text="Send Verification Code" OnClick="btnSendCode_Click" CausesValidation="false"/>
+</div>
+
                 <!-- reCAPTCHA -->
                 <asp:Label ID="captchaLbl" runat="server" Text="Captcha Invalid. Please Try Again." Visible="false" ForeColor="Red"></asp:Label>
                 <div class="g-recaptcha" data-sitekey="6LeFetopAAAAALbDjZrPI5w7-yysmbhgyD3t3Iou"></div>
@@ -120,6 +125,8 @@
                     toggleIcon.classList.add('fa-eye');
                 }
             }
+
+            
         </script>
     </footer>
    
