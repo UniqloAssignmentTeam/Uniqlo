@@ -69,7 +69,7 @@
                     <a href="./AdminDiscount/DiscountHome.aspx">Discount</a>
                     <a href="./AdminOrder/OrderHome.aspx">Order</a>
                     <a href="./AdminDelivery/DeliveryHome.aspx">Delivery</a>
-                    <a href="./AdminReport/Reports.aspx">Reports</a>
+                    <a href="./Reports/ReportHome.aspx">Reports</a>
                 
             </div>
 <div class="footerBottom">
