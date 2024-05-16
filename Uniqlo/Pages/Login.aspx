@@ -3,8 +3,6 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="main" runat="server">
 
 
-
-
     <header>
 
         <meta charset="UTF-8">

@@ -28,7 +28,7 @@ namespace Uniqlo.Pages
                 formView.DataBound += new EventHandler(formView_DataBound);
 
                 int productId = 0;
-                if (Request.QueryString["ProdID"] != null && int.TryParse(Request.QueryString["ProdID"], out productId))
+                if (EncryptionHelper.Decrypt(Request.QueryString["ProdID"]) != null && int.TryParse(EncryptionHelper.Decrypt(Request.QueryString["ProdID"]), out productId))
                 {
 
                     BindFormView(productId);
@@ -205,7 +205,7 @@ namespace Uniqlo.Pages
 
                     int count = data.Count;
                     dataList.RepeatColumns = count > 4 ? 4 : count;
-                    BindColorRadioButtonList(Int32.Parse(Request.QueryString["ProdID"]));
+                    BindColorRadioButtonList(Int32.Parse(EncryptionHelper.Decrypt(Request.QueryString["ProdID"].ToString())));
                 }
                 else
                 {
@@ -258,7 +258,7 @@ namespace Uniqlo.Pages
             Session["selectedColor"] = selectedColor;
 
             int productId = 0;
-            if (Request.QueryString["ProdID"] != null && int.TryParse(Request.QueryString["ProdID"], out productId))
+            if (Request.QueryString["ProdID"] != null && int.TryParse(EncryptionHelper.Decrypt(Request.QueryString["ProdID"].ToString()), out productId))
             {
                 try
                 {
@@ -348,7 +348,7 @@ namespace Uniqlo.Pages
 
 
             int productId = 0;
-            if (Request.QueryString["ProdID"] != null && int.TryParse(Request.QueryString["ProdID"], out productId))
+            if (Request.QueryString["ProdID"] != null && int.TryParse(EncryptionHelper.Decrypt(Request.QueryString["ProdID"]), out productId))
             {
                 try
                 {
@@ -463,7 +463,7 @@ namespace Uniqlo.Pages
                 }
 
                 // Retrieve product ID from query string
-                if (!int.TryParse(Request.QueryString["ProdID"], out int productId))
+                if (!int.TryParse(EncryptionHelper.Decrypt(Request.QueryString["ProdID"].ToString()), out int productId))
                 {
                     ScriptManager.RegisterStartupScript(this, this.GetType(), "productError", "Swal.fire('Error', 'Invalid product ID.', 'error');", true);
                     return;
@@ -591,9 +591,10 @@ namespace Uniqlo.Pages
 
         protected void fetchProductID(object sender, EventArgs e)
         {
-            int productID = Int32.Parse(prodIdHidden.Value);
+            string productID = (prodIdHidden.Value);
 
-            Response.Redirect("/Pages/SendProductGmailToFriend.aspx?id=" + productID);
+            string encryptedProductID = EncryptionHelper.Encrypt(productID);
+            Response.Redirect("/Pages/SendProductGmailToFriend.aspx?id=" + encryptedProductID);
         }
 
 

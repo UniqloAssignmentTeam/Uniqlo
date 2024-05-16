@@ -15,11 +15,23 @@ namespace Uniqlo.AdminPages
         string cs = Global.CS;
         protected void Page_Load(object sender, EventArgs e)
         {
-            BindDeliveryData();
-            BindPaymentData();
-            BindStaffData();
-            BindCustomerData();
-            BindSalesChartData();
+            if (!IsPostBack)
+            {
+                if (Session["StaffRole"] == null)
+                {
+                    // Redirect to adminLogin.aspx if the session role is invalid or not set
+                    Response.Redirect("adminLogin.aspx");
+                    Session["Unauthorized"] = true;
+                }
+
+                BindDeliveryData();
+                BindPaymentData();
+                BindStaffData();
+                BindCustomerData();
+                BindSalesChartData();
+            }
+
+            
         }
         private void BindDeliveryData()
         {
