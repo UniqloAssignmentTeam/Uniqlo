@@ -73,7 +73,7 @@ namespace Uniqlo.AdminPages
                             staff.Contact_No = contactNumber.Text;
                             staff.Gender = staffGender.SelectedValue;
                             staff.Role = staffRole.SelectedValue;
-                            staff.Password = txtResetPassword.Text;
+                            staff.Password = Crypto.HashPassword(txtResetPassword.Text);
                             db.SaveChanges();
 
                             // Set session variable to indicate success
