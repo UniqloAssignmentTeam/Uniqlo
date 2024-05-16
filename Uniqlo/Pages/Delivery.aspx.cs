@@ -17,8 +17,7 @@ namespace Uniqlo.Pages
             //Deny not registered customer
             if (Session["Customer_Id"] == null)
             {
-                //Sweet you havent login
-                Response.Redirect("cart.aspx");
+                Response.Redirect("Login.aspx");
             }
 
 
@@ -84,7 +83,7 @@ namespace Uniqlo.Pages
             }
         }
 
-
+    
 
         protected void btnProceedToPayment_Click(object sender, EventArgs e)
         {

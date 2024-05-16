@@ -136,6 +136,10 @@ namespace Uniqlo.Pages
                 }
                 else
                 {
+                    UpdateItemQuantity(quantityId, 1);
+                    // Update the cart summary in real-time
+                    List<CartItem> cartItems = (List<CartItem>)Session["Cart"];
+                    UpdateCartSummary(cartItems);
                     // Display a SweetAlert indicating invalid input
                     ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "Swal.fire({ title: 'Invalid Quantity', text: 'Quantity must be greater than 0.', icon: 'error', confirmButtonText: 'OK' });", true);
                 }
