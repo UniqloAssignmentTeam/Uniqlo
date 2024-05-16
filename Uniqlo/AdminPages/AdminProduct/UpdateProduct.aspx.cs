@@ -191,7 +191,7 @@ namespace Uniqlo.AdminPages
 
                 string productName = txtProductName.Text;
                 string productDescription = txtProductDescription.Text;
-                double productPrice = Double.Parse(txtProductPrice.Text);
+                double productPrice = double.Parse(txtProductPrice.Text);
                 string category = ddlCategory.Text;
                 string gender = ddlGender.Text;
 

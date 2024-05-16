@@ -10,7 +10,20 @@ namespace Uniqlo.Pages.Review
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (IsPostBack)
+            {
+                string eventTarget = Request["__EVENTTARGET"];
+                if (eventTarget == "HyperLink1")
+                {
+                    string orderListId = EncryptionHelper.Decrypt(Request.QueryString["OrderList_ID"]);
 
+                    if (!string.IsNullOrEmpty(orderListId))
+                    {
+                        string encryptedOrderListId = EncryptionHelper.Encrypt(orderListId);
+                        Response.Redirect("/Pages/OrderHistoryItem.aspx?Order_ID=" + encryptedOrderListId);
+                    }
+                }
+            }
         }
 
         protected void submitRating_Click(object sender, EventArgs e)
@@ -28,9 +41,20 @@ namespace Uniqlo.Pages.Review
 
             // Optionally, you can display a confirmation message or redirect the user
             // For example, you can display a popup message using JavaScript
-            ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Review submitted successfully!');", true);
+            string script = @"
+                Swal.fire({
+                    title: 'Success!',
+                    text: 'Review submitted successfully!',
+                    icon: 'success',
+                    confirmButtonText: 'OK'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = '../Profile.aspx';
+                    }
+                });
+            ";
 
-            Response.Redirect("../Profile.aspx");
+            ClientScript.RegisterStartupScript(this.GetType(), "SweetAlert", script, true);
         }
 
         // Method to insert the review into the database

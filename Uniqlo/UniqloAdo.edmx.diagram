@@ -4,19 +4,19 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="27eb904a82f5410eacd6be42094c7842" Name="Diagram1">
+      <Diagram DiagramId="27eb904a82f5410eacd6be42094c7842" Name="Diagram1" ZoomLevel="73">
         <EntityTypeShape EntityType="UniqloModel.Category" Width="1.5" PointX="0.75" PointY="3.625" IsExpanded="true" />
         <EntityTypeShape EntityType="UniqloModel.Customer" Width="1.5" PointX="6" PointY="6.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="UniqloModel.Delivery" Width="1.5" PointX="3" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="UniqloModel.Delivery" Width="1.5" PointX="7.25" PointY="11.625" IsExpanded="true" />
         <EntityTypeShape EntityType="UniqloModel.Discount" Width="1.5" PointX="5.25" PointY="3.375" IsExpanded="true" />
         <EntityTypeShape EntityType="UniqloModel.Image" Width="1.5" PointX="6" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="UniqloModel.OrderList" Width="1.5" PointX="10.5" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="UniqloModel.OrderList" Width="1.5" PointX="10.5" PointY="5.125" IsExpanded="true" />
         <EntityTypeShape EntityType="UniqloModel.Order" Width="1.5" PointX="8.25" PointY="7.375" IsExpanded="true" />
         <EntityTypeShape EntityType="UniqloModel.Payment" Width="1.5" PointX="10.5" PointY="9.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="UniqloModel.Product" Width="1.5" PointX="3" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="UniqloModel.Product" Width="1.5" PointX="10.375" PointY="1.25" IsExpanded="true" />
         <EntityTypeShape EntityType="UniqloModel.Quantity" Width="1.5" PointX="8.25" PointY="3.125" IsExpanded="true" />
         <EntityTypeShape EntityType="UniqloModel.Review" Width="1.5" PointX="12.75" PointY="3.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="UniqloModel.Shipping_Address" Width="1.5" PointX="0.75" PointY="11.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="UniqloModel.Shipping_Address" Width="1.5" PointX="3.875" PointY="11.5" IsExpanded="true" />
         <EntityTypeShape EntityType="UniqloModel.Staff" Width="1.5" PointX="0.75" PointY="7.125" IsExpanded="true" />
         <AssociationConnector Association="UniqloModel.FK__Product__Categor__6A70BD6B" ManuallyRouted="false" />
         <AssociationConnector Association="UniqloModel.FK__Orders__Customer__75E27017" ManuallyRouted="false" />

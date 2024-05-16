@@ -2,6 +2,7 @@
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using System.Web.UI;
 using System.Web.UI.WebControls;
 using Uniqlo.AdminPages;
 
@@ -27,6 +28,18 @@ namespace Uniqlo.Pages
                 else
                 {
                     Response.Write("OrderListID is missing from the query string.");
+                }
+            }
+
+            string eventTarget = Request["__EVENTTARGET"];
+            if (eventTarget == "HyperLink1")
+            {
+                string orderListId = EncryptionHelper.Decrypt(Request.QueryString["OrderList_ID"]);
+
+                if (!string.IsNullOrEmpty(orderListId))
+                {
+                    string encryptedOrderListId = EncryptionHelper.Encrypt(orderListId);
+                    Response.Redirect("/Pages/OrderHistoryItem.aspx?Order_ID=" + encryptedOrderListId);
                 }
             }
         }
@@ -152,7 +165,21 @@ namespace Uniqlo.Pages
                         reader.Close();
 
                         // Redirect to OrderItemList.aspx with OrderID query string
-                        Response.Redirect($"../OrderHistoryItem.aspx?Order_ID={EncryptionHelper.Encrypt(orderId)}");
+                        string script = $@"
+                                        Swal.fire({{
+                                            title: 'Success!',
+                                            text: 'Review deleted successfully!',
+                                            icon: 'success',
+                                            confirmButtonText: 'OK'
+                                        }}).then((result) => {{
+                                            if (result.isConfirmed) {{
+                                                window.location.href = '../OrderHistoryItem.aspx?Order_ID={EncryptionHelper.Encrypt(orderId)}';
+                                            }}
+                                        }});
+                                    ";
+
+                        // Register the script to execute after the response is sent to the client
+                        ScriptManager.RegisterStartupScript(this, GetType(), "SweetAlert", script, true);
                     }
                     else
                     {
