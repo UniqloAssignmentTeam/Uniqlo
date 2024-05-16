@@ -10,6 +10,7 @@ using System.Data.Entity;
 using Uniqlo.AdminPages.AdminProduct;
 using System.Diagnostics;
 using System.IO;
+using System.Net.Mime;
 
 namespace Uniqlo.Pages
 {
@@ -68,9 +69,18 @@ namespace Uniqlo.Pages
                     {
 
                         // Optionally display error message on the page
-                        ScriptManager.RegisterStartupScript(this, GetType(), "errorAlert", "alert('An error occurred when retrieving product information.');", true);
+                        ScriptManager.RegisterStartupScript(this, GetType(), "errorAlert", $"Swal.fire('Error', 'An error occurred when retrieving product information: {ex.Message}', 'error');", true);
                     }
 
+                }
+
+                string eventTarget = Request["__EVENTTARGET"];
+                if (eventTarget == "HyperLink1")
+                {
+                    if (int.TryParse(Request.QueryString["id"], out int productID))
+                    {
+                        Response.Redirect("/Pages/ProductDetails.aspx?ProdID=" + productID);
+                    }
                 }
             }
             else
@@ -90,7 +100,6 @@ namespace Uniqlo.Pages
 
             string friendEmail = friendEmailInput.Text;
             string friendEmailContent = emailContentInput.Text;
-            string yourName = "Janice";
             string productName = prodNameHidden.Value;
             double discountAmount = Double.Parse(prodDiscountHidden.Value);
             double price = Double.Parse(prodPriceHidden.Value);
@@ -98,6 +107,7 @@ namespace Uniqlo.Pages
             int imageID = Int32.Parse(prodImageID.Value);
             double currentPrice = price - discountAmount;
             string userEmail = getUserEmailAddress();
+            string userName = getUserName();
             byte[] imageData = GetImageFromDatabase(imageID);
 
             try
@@ -111,23 +121,40 @@ namespace Uniqlo.Pages
                     {
                         mail.From = new MailAddress(userEmail);
                         mail.To.Add(friendEmail);
-                        mail.Subject = "Hello from " + yourName + ", Check out this product I found!";
-                        mail.Body = $"{friendEmailContent}\nHey, I thought you might be interested in this product: {productName}. Here's what they say about it: {description}. It's original price is RM {price} but it is RM {currentPrice} now! \n See image here: ";
-                        
-                        using (MemoryStream ms = new MemoryStream(imageData))
+                        mail.Subject = "Hello from " + userName + ", Check out this product I found!";
+                        mail.IsBodyHtml = true; // Enable HTML content
+
+                        // HTML body with embedded image
+                        string logoUrl = "/Images/Uniqlo-Logos.png"; // Change this to your actual logo URL
+                        string emailBody = $@"
+                                            <p>{friendEmailContent}</p>
+                                            <p>Hey, I thought you might be interested in this product: <strong>{productName}</strong>. Here's what they say about it: {description}. Its original price is RM {price}, but it is now RM {currentPrice}!</p>
+                                            <p>See the image below:</p>
+                                            <img src='cid:productImage' alt='Product Image' /><br />
+                                            <p>Thank you,<br />{userName}</p>
+                                            <p><img src='{logoUrl}' alt='Company Logo' style='width:100px;height:auto;' /><br />Thank you for supporting our company shout-out from Uniqlo!</p>";
+
+                        mail.Body = emailBody;
+
+                        // Embed product image
+                        LinkedResource productImage = new LinkedResource(new MemoryStream(imageData), "image/jpeg")
                         {
-                            mail.Attachments.Add(new Attachment(ms, $"{productName}.jpg", "image/jpeg"));
-                            smtp.Send(mail);
-                        }
+                            ContentId = "productImage"
+                        };
+                        AlternateView avHtml = AlternateView.CreateAlternateViewFromString(mail.Body, null, MediaTypeNames.Text.Html);
+                        avHtml.LinkedResources.Add(productImage);
+                        mail.AlternateViews.Add(avHtml);
+
+                        smtp.Send(mail);
 
                     }
                 }
 
-                ScriptManager.RegisterStartupScript(this, GetType(), "successAlert", "alert('Email sent successfully!');", true);
+                ScriptManager.RegisterStartupScript(this, GetType(), "successAlert", "Swal.fire('Success', 'Email sent successfully!', 'success');", true);
             }
             catch (Exception ex)
             {
-                ScriptManager.RegisterStartupScript(this, GetType(), "errorAlert", "alert('An error occurred while sending email. Error: " + ex.Message + "');", true);
+                ScriptManager.RegisterStartupScript(this, GetType(), "errorAlert", $"Swal.fire('Error', 'An error occurred: {ex.Message}', 'error');", true);
             }
         }
 
@@ -147,33 +174,74 @@ namespace Uniqlo.Pages
 
         private string getUserEmailAddress()
         {
-            int custId = (int)Session["Customer_ID"];
-            string userEmail = ""; // Default to an empty string if no email is found
+            string sessionValue = Session["Customer_ID"] as string;
 
-            try
+            if (int.TryParse(sessionValue, out int custId))
             {
-                using (var db = new CustomerDBContext())
-                {
-                    // Fetch the customer's email based on their customer ID
-                    var customer = db.Customer
-                        .Where(c => c.Customer_ID == custId)
-                        .Select(c => c.Email) // Directly select the Email field
-                        .FirstOrDefault(); // Use FirstOrDefault to handle cases where no customer matches
+                string userEmail = ""; 
 
-                    if (customer != null)
+                try
+                {
+                    using (var db = new CustomerDBContext())
                     {
-                        userEmail = customer; // Assign the email if found
+                        var customerEmail = db.Customer
+                            .Where(c => c.Customer_ID == custId)
+                            .Select(c => c.Email) 
+                            .FirstOrDefault();
+
+                        if (customerEmail != null)
+                        {
+                            userEmail = customerEmail; 
+                        }
                     }
                 }
-            }
-            catch (Exception ex)
-            {
-                ScriptManager.RegisterStartupScript(this, GetType(), "errorAlert", "alert('An error occurred while retrieving the email address. Error: " + ex.Message + "');", true);
-                userEmail = "Error retrieving email"; // Optional: Return an error message as email
+                catch (Exception ex)
+                {
+                    ScriptManager.RegisterStartupScript(this, GetType(), "errorAlert", $"Swal.fire('Error', 'An error occurred: {ex.Message}', 'error');", true);
+                    userEmail = "Error retrieving email";
+                }
+
+                return userEmail;
             }
 
-            return userEmail; // Return the found email or an empty string if none was found
+            return ""; 
+        }        
+        
+        private string getUserName()
+        {
+            string sessionValue = Session["Customer_ID"] as string;
+
+            if (int.TryParse(sessionValue, out int custId))
+            {
+                string userName = ""; 
+
+                try
+                {
+                    using (var db = new CustomerDBContext())
+                    {
+                        var customerName = db.Customer
+                            .Where(c => c.Customer_ID == custId)
+                            .Select(c => c.Name) 
+                            .FirstOrDefault();
+
+                        if (customerName != null)
+                        {
+                            userName = customerName; 
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    ScriptManager.RegisterStartupScript(this, GetType(), "errorAlert", $"Swal.fire('Error', 'An error occurred: {ex.Message}', 'error');", true);
+                    userName = "Error retrieving email";
+                }
+
+                return userName;
+            }
+
+            return ""; 
         }
+
 
         protected void backToProductDetails(object sender, EventArgs e)
         {
