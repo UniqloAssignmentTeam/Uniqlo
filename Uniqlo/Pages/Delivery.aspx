@@ -5,6 +5,7 @@
         <link href="../css/delivery.css" rel="stylesheet" />
         <link href="../css/style.css" rel="stylesheet" />
         <link href="../css/style1.css" rel="stylesheet" />
+         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     </header>
 
     <div class="body">
