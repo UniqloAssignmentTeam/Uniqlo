@@ -48,6 +48,7 @@
                     </asp:HyperLink>
                 </ItemTemplate>
             </asp:DataList>
+
         </div>
 
 
@@ -125,14 +126,17 @@
                                 </asp:HyperLink>
                             </ItemTemplate>
                         </asp:DataList>
+                          
                     </ContentTemplate>
                     <Triggers>
                         <asp:AsyncPostBackTrigger ControlID="ddlSort" EventName="SelectedIndexChanged" />
                         <asp:AsyncPostBackTrigger ControlID="ddlCategory" EventName="SelectedIndexChanged" />
+                        <asp:AsyncPostBackTrigger ControlID="searchBox" EventName="TextChanged" />
                     </Triggers>
 
 
                 </asp:UpdatePanel>
+
             </div>
         </div>
 

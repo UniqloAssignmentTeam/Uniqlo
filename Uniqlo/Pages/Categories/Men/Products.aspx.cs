@@ -54,6 +54,7 @@ namespace Uniqlo.Pages.Categories.Men
                     dataList.DataBind();
 
                     dataList.RepeatColumns = productDetails.Count > 4 ? 4 : productDetails.Count;
+               
                 }
             }
             catch (Exception ex)
@@ -103,6 +104,7 @@ namespace Uniqlo.Pages.Categories.Men
 
 
                     carouselDataList.RepeatColumns = productDetails.Count > 4 ? 4 : productDetails.Count;
+                   
                 }
             }
             catch (Exception ex)
@@ -211,6 +213,7 @@ namespace Uniqlo.Pages.Categories.Men
                     var productList = discountQuery.ToList();
                     dataList.DataSource = productList;
                     dataList.DataBind();
+                   
                 }
             }
             catch (Exception ex)

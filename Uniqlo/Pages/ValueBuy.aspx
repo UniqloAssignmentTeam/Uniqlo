@@ -129,7 +129,7 @@
                             </asp:HyperLink>
                     </ItemTemplate>
                 </asp:DataList>
-
+                   <asp:Label ID="noProduct" runat="server" Text="No Discounted Product" Visible="false" ForeColor="Red"></asp:Label>
         </ContentTemplate>
         <Triggers>
             <asp:AsyncPostBackTrigger ControlID="genderSortDDL" EventName="SelectedIndexChanged" />
@@ -140,7 +140,7 @@
 
 
     </asp:UpdatePanel>
-
+ 
 
 
 
