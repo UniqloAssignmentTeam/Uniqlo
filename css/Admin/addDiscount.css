@@ -1,0 +1,286 @@
+﻿.Body {
+    max-width: 1100px;
+    position: relative;
+    margin: auto;
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 5% auto; /* 5% from the top and centered */
+    padding: 10px 20px 20px 20px;
+    border: 1px solid lightgrey;
+    width: 80%; /* Could be more or less, depending on screen size */
+    border-radius: 5px;
+    margin-bottom: 120px;
+}
+
+
+
+
+.product-content {
+    display: flex;
+    flex-direction: column;
+    padding-left: 230px;
+    padding-top: 15px;
+}
+
+.sizeQtyTable {
+    background: #fff;
+    border-radius: 16px;
+    border: 1px solid lightgrey;
+    margin: 20px;
+    margin-left: 235px;
+    width: 350px; /* Adjust the width as necessary */
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 20px;
+}
+
+
+
+.product-title {
+    display: flex;
+    justify-content: center;
+}
+
+
+.container {
+    max-width: 1100px;
+    position: relative;
+    margin: auto;
+    margin: 50px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+
+.form-group {
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+input[type="text"], input[type="number"], input[type="date"],
+textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+textarea {
+    height: 100px;
+    resize: vertical;
+}
+
+
+
+body .form-group {
+    max-width: 360px;
+}
+
+    body .form-group:not(:last-child) {
+        margin-bottom: 32px;
+    }
+
+
+
+.dropdown-container {
+    position: relative;
+    width: 300px; /* Fixed width for consistency */
+    display: flex; /* Use flex to align the arrow inside .dropdown-display */
+    align-items: center; /* Center align the contents */
+    justify-content: space-between; /* Spread out the contents */
+}
+
+.dropdown-display {
+    width: 360px;
+    height: 40px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: white;
+    cursor: pointer;
+    position: relative;
+    text-align: center; /* Center the text */
+    display: flex; /* Use flexbox here to help with centering text and arrow */
+    align-items: center; /* Align the text and arrow vertically */
+    justify-content: center; /* Centers the text inside the dropdown */
+}
+
+.dropdown-list {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 100;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    opacity: 0; /* Start fully transparent */
+    visibility: hidden; /* Start hidden */
+    transform: translateY(-20px); /* Start slightly above */
+    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s; /* Animate opacity, transform, and visibility */
+    align-items: center;
+    text-align: center; /* Centers the text inside the dropdown */
+}
+
+
+    .dropdown-list.open {
+        opacity: 1; /* Fade in to fully opaque */
+        visibility: visible; /* Make visible */
+        transform: translateY(0px); /* Move to original position */
+    }
+
+
+    .dropdown-list.open {
+        display: block; /* Show dropdown */
+    }
+
+    .dropdown-list div {
+        padding: 10px;
+        cursor: pointer;
+    }
+
+        .dropdown-list div:hover {
+            background-color: #f0f0f0;
+        }
+
+
+.dropdown-display::after {
+    content: '';
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%) rotate(180deg); /* Arrow points up initially */
+    border: solid transparent;
+    border-width: 0 6px 6px 6px; /* Create a sharper arrow */
+    border-bottom-color: black; /* The tip of the arrow is black */
+    display: inline-block;
+    transition: transform 0.3s ease;
+}
+
+
+.product-add {
+    width: 20%;
+    background-color: lightgrey;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    border-style: none;
+    box-sizing: border-box;
+    height: 40px;
+    cursor: pointer;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    transition: color 500ms;
+    transition: background-color 250ms ease-out 100ms;
+    padding: 10px;
+    margin-top: 15px;
+    margin-left: 280px;
+}
+
+    .product-add:hover, .product-add:focus, .excel-export:hover, .excel-export:focus {
+        background-color: grey;
+    }
+
+.image-gallery {
+    display: flex;
+    padding: 10px;
+    gap: 10px; /* Space between images */
+    background: #f0f0f0;
+    border-radius: 10px;
+    margin: 20px auto;
+    width: 80%; /* Container width, adjust as needed */
+    overflow: hidden; /* Ensures the content fits within the padding */
+}
+
+.image-box {
+    flex: 1;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+    .image-box img {
+        width: 100%; /* Scale the width to fit the container */
+        height: auto; /* Scale the height automatically */
+        object-fit: cover; /* Cover the box area, might crop some parts of the image */
+        display: block; /* Remove any extra line-height space below the image */
+    }
+
+.add-image {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 2px dashed #c0c0c0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.button-container {
+    display: flex;
+    text-align: center;
+    margin: 60px 0px 60px 0px;
+    width: 80%;
+    margin-top: 50px;
+    margin-left: 210px;
+}
+
+.cancel-button {
+    border: 2px solid lightgrey;
+    padding: 20px 80px 20px 80px;
+    background: none;
+    outline: none;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.5s ease;
+    text-decoration: none;
+    color: black;
+    width: 31%;
+}
+
+
+
+
+.continue-button {
+    border: 2px solid lightgrey;
+    padding: 20px 80px 20px 80px;
+    background: none;
+    outline: none;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.5s ease;
+    text-decoration: none;
+    color: black;
+    width: 31%;
+}
+
+.addColor-button {
+    border: 2px solid lightgrey;
+    padding: 10px 30px 10px 30px;
+    background: none;
+    outline: none;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.5s ease;
+    text-decoration: none;
+    color: black;
+}
+
+    .continue-button:hover, .cancel-button:hover, .addColor-button:hover {
+        background-color: black;
+        color: white;
+    }
+
+
+
