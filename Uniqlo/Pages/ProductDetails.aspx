@@ -52,7 +52,7 @@
                             <h2 class="product-title product-name"><%# Eval("Product_Name") %></h2>
                             <div class="product-rating">
                                 <%# GenerateStars(Convert.ToDouble(Eval("AverageRating")) ) %>
-                                <span><%# Eval("AverageRating") %>(<%# Eval("ReviewCount") %>)</span>
+                                <span><%# Eval("AverageRating", "{0:F2}") %>(<%# Eval("ReviewCount") %>)</span>
                             </div>
 
                             <div class="product-price">
@@ -72,9 +72,9 @@
 
 
 
-  <asp:ScriptManager ID="ValueManagerStaff" runat="server" />
- <asp:UpdatePanel ID="ValuePanelStaff" runat="server">
-    <ContentTemplate>
+                      <asp:ScriptManager ID="ValueManagerStaff" runat="server" />
+                     <asp:UpdatePanel ID="ValuePanelStaff" runat="server">
+                        <ContentTemplate>
 
 
 
@@ -134,16 +134,16 @@
                             </div>
 
         
-            </ContentTemplate>
-    <Triggers>
-        <asp:AsyncPostBackTrigger ControlID="RadioButtonListSizes" EventName="SelectedIndexChanged" />
-    <asp:AsyncPostBackTrigger ControlID="RadioButtonListColors" EventName="SelectedIndexChanged" />
-         <asp:AsyncPostBackTrigger ControlID="btnAddToCart" EventName="Click" />
+                        </ContentTemplate>
+                <Triggers>
+                    <asp:AsyncPostBackTrigger ControlID="RadioButtonListSizes" EventName="SelectedIndexChanged" />
+                <asp:AsyncPostBackTrigger ControlID="RadioButtonListColors" EventName="SelectedIndexChanged" />
+                     <asp:AsyncPostBackTrigger ControlID="btnAddToCart" EventName="Click" />
 
-    </Triggers>
+                </Triggers>
 
 
-</asp:UpdatePanel>
+            </asp:UpdatePanel>
                             <div class="social-links">
                                 <p>Share At: </p>
                                 <asp:LinkButton CssClass="text-dark px-2" ID="btnPinterest" runat="server" Text="Pinterest" OnClientClick="shareOnPinterest()">
@@ -170,12 +170,12 @@
                         <!--REVIEW SECTIONS-->
                         <div class="reviewSection" style="display: flex; margin-top: 100px;">
                             <div class="reviewRatingAndBar" style="border: 2px solid #6F6F6F; height: 20%; margin: 50px; border-radius: 16px;">
-                                <div class="reviewRating">
-                                    <h3 style="margin-left: 55px;"><%# Eval("AverageRating") %></h3>
+                                <div class="reviewRating" style="width: 100%">
+                                    <div><h3><%# Eval("AverageRating", "{0:F2}") %></h3></div>
                                     <div style="display: flex;"><%# GenerateStars(Convert.ToDouble(Eval("AverageRating")) ) %></div>
-                                    <div class="reviewRatingNumUser" style="margin-left: 50px;">
+                                    <div class="reviewRatingNumUser">
                                         <i class="fa-solid fa-user"></i>
-                                        <div style="display: flex; margin-left: -16px;">
+                                        <div style="display: flex; justify-content: center; align-items: center; text-align: center;">
                                             <div><%# Eval("ReviewCount") %></div>
                                             <div>Total</div>
                                         </div>
@@ -243,13 +243,13 @@
 
             function shareOnTwitter() {
                 var productName = document.getElementById('<%= prodNameHidden.ClientID %>').value;
-                var productDisc = document.getElementById('<%= prodDiscountHidden.ClientID %>').value;
-                var productPrice = document.getElementById('<%= prodPriceHidden.ClientID %>').value;
+                var productDisc = parseFloat(document.getElementById('<%= prodDiscountHidden.ClientID %>').value);
+                var productPrice = parseFloat(document.getElementById('<%= prodPriceHidden.ClientID %>').value);
                 var productDesc = document.getElementById('<%= prodDescHidden.ClientID %>').value;
                 var finalPrice = productPrice - productDisc;
                 var imageUrl = window.location.origin + '/ImageHandler.ashx?id=' + document.getElementById('<%= prodImageID.ClientID %>').value;
 
-                var textToShare = encodeURIComponent("Check out this product: " + productName + " for only RM" + finalPrice.toFixed(2) + "\n" + productDesc + "\nSee image here: " + imageUrl);
+                var textToShare = encodeURIComponent("Check out this product: " + productName + " for only RM" + finalPrice.toFixed(2) + ". " + productDesc + " " + imageUrl);
 
                 var twitterShareUrl = "https://twitter.com/intent/tweet?" + "text=" + textToShare;
                 window.open(twitterShareUrl, "_blank");
@@ -257,16 +257,17 @@
 
             function shareOnPinterest() {
                 var productName = document.getElementById('<%= prodNameHidden.ClientID %>').value;
-                var productPrice = document.getElementById('<%= prodPriceHidden.ClientID %>').value;
+                var productPrice = parseFloat(document.getElementById('<%= prodPriceHidden.ClientID %>').value);
                 var productDesc = document.getElementById('<%= prodDescHidden.ClientID %>').value;
-                var productDisc = document.getElementById('<%= prodDiscountHidden.ClientID %>').value;
+                var productDisc = parseFloat(document.getElementById('<%= prodDiscountHidden.ClientID %>').value);
                 var imageUrl = window.location.origin + '/ImageHandler.ashx?id=' + document.getElementById('<%= prodImageID.ClientID %>').value;
 
                 var finalPrice = productPrice - productDisc;
 
                 var pinterestShareUrl = "https://www.pinterest.com/pin/create/button/" +
                     "?url=" + encodeURIComponent(window.location.href) +
-                    "&description=" + encodeURIComponent("Check out this product: " + productName + " for only RM " + finalPrice.toFixed(2) + "\n" + productDesc + "\nSee image here: " + imageUrl);
+                    "&media=" + encodeURIComponent(imageUrl) +
+                    "&description=" + encodeURIComponent("Check out this product: " + productName + " for only RM " + finalPrice.toFixed(2));
 
                 window.open(pinterestShareUrl, "_blank");
             }
@@ -279,8 +280,8 @@
                 var productDesc = document.getElementById('<%= prodDescHidden.ClientID %>').value;
 
                 var finalPrice = productPrice - productDisc;
-                var imageUrl = window.location.origin + '/ImageHandler.ashx?id=' + document.getElementById('<%= prodImageID.ClientID %>').value; // Assuming you have a hidden field for the image ID
-                var textToShare = encodeURIComponent("Check out this product: " + productName + " for only RM" + finalPrice.toFixed(2) + "\n" + productDesc + "\nSee image here: " + imageUrl);
+                var imageUrl = window.location.origin + '/ImageHandler.ashx?id=' + document.getElementById('<%= prodImageID.ClientID %>').value;
+                var textToShare = encodeURIComponent("Check out this product: " + productName + " for only RM" + finalPrice.toFixed(2) + ". " + productDesc + " See image here: " + imageUrl);
 
                 var whatsappShareUrl = "https://api.whatsapp.com/send?text=" + textToShare;
                 window.open(whatsappShareUrl, "_blank");
