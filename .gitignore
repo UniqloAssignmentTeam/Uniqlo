@@ -361,3 +361,12 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/AdminPages/adminLogin.aspx
+/AdminPages/adminLogin.aspx.cs
+/AdminPages/adminLogin.aspx.designer.cs
+/AdminPages/adminProfile.aspx
+/AdminPages/adminProfile.aspx.cs
+/AdminPages/adminProfile.aspx.designer.cs
+/AdminPages/Logout.aspx
+/AdminPages/Logout.aspx.cs
+/AdminPages/Logout.aspx.designer.cs
