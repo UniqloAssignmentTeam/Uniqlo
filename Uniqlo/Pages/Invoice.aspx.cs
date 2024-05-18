@@ -122,9 +122,7 @@ namespace Uniqlo.Pages
 
             // Send email with PDF attachment
             SendEmailWithAttachment(pdfBytes);
-
             Session["Cart"] = null;
-
         }
 
         // Method to generate PDF receipt
