@@ -57,14 +57,17 @@
         <div class="space"></div>
 
         <div class="header">
-            <h2>Total Sales In 2024</h2>
+            <h2>Revenue In 2024</h2>
             <p>Payment received across all channels</p>
         </div>
 
         <!--LINE CHART-->
-        <asp:Chart ID="SalesChart" runat="server" Width="1100px" Height="500px">
+   <!--LINE CHART-->
+<asp:Chart ID="SalesChart" runat="server" Width="1100px" Height="500px">
     <Series>
-        <asp:Series Name="SalesSeries" ChartType="Column" XValueMember="SaleMonth" YValueMembers="TotalSales"></asp:Series>
+        <asp:Series Name="SalesSeries" ChartType="Column" XValueMember="SaleMonth" YValueMembers="TotalSales"
+                    ToolTip="Month: #VALX, Total Sales: RM #VALY{N2}" LabelFormat="{N2}" IsValueShownAsLabel="true">
+        </asp:Series>
     </Series>
     <ChartAreas>
         <asp:ChartArea Name="MainChartArea">
@@ -77,6 +80,7 @@
         </asp:ChartArea>
     </ChartAreas>
 </asp:Chart>
+
 
         <div class="space"></div>
        </div>
