@@ -3,6 +3,8 @@ using System.Linq;
 using System.Web.UI;
 using static Uniqlo.Staff;
 using System.Web.UI.WebControls;
+using System.Configuration;
+using System.Data.SqlClient;
 
 namespace Uniqlo.AdminPages
 {
@@ -62,28 +64,31 @@ namespace Uniqlo.AdminPages
             {
                 try
                 {
-                    using (var db = new StaffDbContext())
+                    string cs = ConfigurationManager.ConnectionStrings["StaffDbConnectionString"].ConnectionString;
+                    using (SqlConnection con = new SqlConnection(cs))
                     {
-                        int staffId = int.Parse(staffID.Text);
-                        var staff = db.Staff.FirstOrDefault(s => s.Staff_ID == staffId);
-                        if (staff != null)
-                        {
-                            staff.Name = staffName.Text;
-                            staff.Email = email.Text;
-                            staff.Contact_No = contactNumber.Text;
-                            staff.Gender = staffGender.SelectedValue;
-                            staff.Role = staffRole.SelectedValue;
-                            staff.Password = Crypto.HashPassword(txtResetPassword.Text);
-                            db.SaveChanges();
+                        con.Open();
 
-                            // Set session variable to indicate success
-                            Session["StaffUpdated"] = true;
-                            string encryptedStaffId = EncryptionHelper.Encrypt(staffId.ToString());
-                            Response.Redirect("UpdateStaff.aspx?StaffID=" + encryptedStaffId); // Refresh page to trigger SweetAlert
-                        }
-                        else
+                        string query = "UPDATE Staff SET Name = @Name, Email = @Email, Contact_No = @Contact_No, Gender = @Gender, Role = @Role, Password = @Password WHERE Staff_ID = @Staff_ID";
+                        using (SqlCommand cmd = new SqlCommand(query, con))
                         {
-                            ScriptManager.RegisterStartupScript(this, GetType(), "updateError", "alert('Staff not found.');", true);
+                            cmd.Parameters.AddWithValue("@Name", staffName.Text);
+                            cmd.Parameters.AddWithValue("@Email", email.Text);
+                            cmd.Parameters.AddWithValue("@Contact_No", contactNumber.Text);
+                            cmd.Parameters.AddWithValue("@Gender", staffGender.SelectedValue);
+                            cmd.Parameters.AddWithValue("@Role", staffRole.SelectedValue);
+                            cmd.Parameters.AddWithValue("@Password", Crypto.HashPassword(txtResetPassword.Text));
+                            cmd.Parameters.AddWithValue("@Staff_ID", int.Parse(staffID.Text));
+
+                            int rowsAffected = cmd.ExecuteNonQuery();
+
+                            if (rowsAffected > 0)
+                            {
+                                // Set session variable to indicate success
+                                Session["StaffUpdated"] = true;
+                                string encryptedStaffId = EncryptionHelper.Encrypt(staffID.Text);
+                                Response.Redirect("UpdateStaff.aspx?StaffID=" + encryptedStaffId);
+                            }
                         }
                     }
                 }
