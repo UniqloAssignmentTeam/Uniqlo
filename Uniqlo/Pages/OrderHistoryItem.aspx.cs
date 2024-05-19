@@ -39,9 +39,14 @@ namespace Uniqlo.Pages
                             BindOrderSummaryRepeater(custId, orderId);
                         }
                     }
-                    
-                        
-                       
+
+
+
+                }
+                else
+                {
+                    ScriptManager.RegisterStartupScript(this, GetType(), "errorAlert", "alert('An error occurred when retrieve order list item.');", true);
+                    Response.Redirect("Profile.aspx");
                 }
                 
             }
@@ -185,8 +190,7 @@ namespace Uniqlo.Pages
                 }
                 catch (Exception ex)
                 {
-                    // Log the exception (e.g., to a file or monitoring system)
-                    Console.WriteLine("An error occurred: " + ex.Message);
+                    ScriptManager.RegisterStartupScript(this, GetType(), "errorAlert", "alert('An error occurred when retrieve delivery status.');", true);
                 }
             }
 

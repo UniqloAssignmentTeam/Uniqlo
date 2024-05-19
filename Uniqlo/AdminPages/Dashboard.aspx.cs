@@ -52,7 +52,7 @@ namespace Uniqlo.AdminPages
 
             using (SqlConnection con = new SqlConnection(cs))
             {
-                string query = "SELECT COUNT(*) FROM Payment WHERE Payment_Status != 'uPaid'";
+                string query = "SELECT COUNT(*) FROM Payment WHERE Payment_Status = 'Unpaid'";
                 using (SqlCommand cmd = new SqlCommand(query, con))
                 {
                     con.Open();
