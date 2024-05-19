@@ -28,7 +28,7 @@ namespace Uniqlo.Pages
                 if (!string.IsNullOrEmpty(orderListId))
                 {
                     string encryptedOrderListId = EncryptionHelper.Encrypt(orderListId);
-                    Response.Redirect("/Pages/viewReviewItem.aspx?OrderList_ID=" + encryptedOrderListId);
+                    Response.Redirect("/Pages/Review/viewReviewItem.aspx?OrderList_ID=" + encryptedOrderListId);
                 }
             }
         }
