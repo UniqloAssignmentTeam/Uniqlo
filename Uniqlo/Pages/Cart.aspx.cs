@@ -165,7 +165,26 @@ namespace Uniqlo.Pages
         }
         }
 
+        private int GetAvailableQuantity(int quantityId)
+        {
+            int availableQuantity = 0;
 
+            using (SqlConnection con = new SqlConnection(cs))
+            {
+                string query = "SELECT Qty FROM Quantity WHERE Quantity_Id = @QuantityId";
+                SqlCommand cmd = new SqlCommand(query, con);
+                cmd.Parameters.AddWithValue("@QuantityId", quantityId);
+                con.Open();
+
+                object result = cmd.ExecuteScalar();
+                if (result != null)
+                {
+                    availableQuantity = Convert.ToInt32(result);
+                }
+            }
+
+            return availableQuantity;
+        }
         private void UpdateItemQuantity(int quantityId, int newQuantity)
         {
             List<CartItem> cartItems = (List<CartItem>)Session["Cart"];

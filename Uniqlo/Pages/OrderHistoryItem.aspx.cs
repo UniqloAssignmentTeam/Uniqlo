@@ -42,9 +42,7 @@ namespace Uniqlo.Pages
                 }
                 else
                 {
-                    Debug.WriteLine("Failed to convert session value to integer: " + sessionValue);
-                    // Optionally redirect or display an error message
-                    Response.Redirect("ErrorPage.aspx"); // Change this to your error handling page
+                  
                 }
             }
 
@@ -133,9 +131,20 @@ namespace Uniqlo.Pages
             //Encrypt
             orderListID = EncryptionHelper.Encrypt(orderListID);
 
+            // Check delivery status
+            string deliveryStatus = GetDeliveryStatus(orderListID);
+
+            if (deliveryStatus != "Delivered")
+            {
+                // Display a SweetAlert indicating that the item hasn't been received yet
+                ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "Swal.fire({ title: 'Cannot Add Review', text: 'You cannot add a review until the item is delivered.', icon: 'error', confirmButtonText: 'OK' });", true);
+                return;
+            }
+
             // Redirect based on the button text
             if (buttonText == "Review")
             {
+
                 Response.Redirect("./Review/addReviewItem.aspx?OrderList_ID=" + orderListID);
             }
             else if (buttonText == "View")
