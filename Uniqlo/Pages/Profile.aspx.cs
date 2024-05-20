@@ -18,7 +18,7 @@ namespace Uniqlo.Pages
             {
                 if (Session["Customer_Id"] == null)
                 {
-                    Response.Redirect("Login.aspx");
+                    
                     // Register SweetAlert script to show when no Customer_Id is found
                     string showAlertScript = @"
             Swal.fire({

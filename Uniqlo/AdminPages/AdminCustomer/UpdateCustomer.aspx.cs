@@ -70,25 +70,37 @@ namespace Uniqlo.AdminPages.AdminCustomer
             string postcode = txtPostcode.Text;
             string country = txtCountry.Text;
             string email = txtEmail.Text;
-            string password = Crypto.HashPassword(txtResetPassword.Text);
+            string newPassword = txtResetPassword.Text;
+            string password = string.IsNullOrEmpty(newPassword) ? null : Crypto.HashPassword(newPassword);
 
             // Check if the provided email or contact number already exist for other customers
             if (IsDuplicateEmailForOtherCustomers(email, customerId))
             {
-                //add sweet
+                // Add SweetAlert notification for duplicate email
+                ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "Swal.fire({ title: 'Error', text: 'The email is already used by another customer.', icon: 'error', confirmButtonText: 'OK' });", true);
                 return; // Stop further execution
             }
-            if(IsDuplicateContactNumberForOtherCustomers(contactNumber, customerId))
+
+            if (IsDuplicateContactNumberForOtherCustomers(contactNumber, customerId))
             {
-                //add sweet
-                return;
+                // Add SweetAlert notification for duplicate contact number
+                ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "Swal.fire({ title: 'Error', text: 'The contact number is already used by another customer.', icon: 'error', confirmButtonText: 'OK' });", true);
+                return; // Stop further execution
             }
 
             using (SqlConnection con = new SqlConnection(cs))
             {
                 string query = "UPDATE Customer SET Name = @Name, Gender = @Gender, Contact_No = @Contact_No, " +
                                "Address = @Address, State = @State, City = @City, Postcode = @Postcode, " +
-                               "Country = @Country, Email = @Email, password = @password WHERE Customer_ID = @Customer_Id";
+                               "Country = @Country, Email = @Email";
+
+                if (!string.IsNullOrEmpty(password))
+                {
+                    query += ", Password = @Password";
+                }
+
+                query += " WHERE Customer_ID = @Customer_Id";
+
                 using (SqlCommand cmd = new SqlCommand(query, con))
                 {
                     cmd.Parameters.AddWithValue("@Name", name);
@@ -100,16 +112,33 @@ namespace Uniqlo.AdminPages.AdminCustomer
                     cmd.Parameters.AddWithValue("@Postcode", postcode);
                     cmd.Parameters.AddWithValue("@Country", country);
                     cmd.Parameters.AddWithValue("@Email", email);
-                    cmd.Parameters.AddWithValue("@password", password);
                     cmd.Parameters.AddWithValue("@Customer_Id", customerId);
+
+                    if (!string.IsNullOrEmpty(password))
+                    {
+                        cmd.Parameters.AddWithValue("@Password", password);
+                    }
 
                     con.Open();
                     int rowsAffected = cmd.ExecuteNonQuery();
                     if (rowsAffected > 0)
                     {
-                        // Set a session variable to indicate that the customer was updated
+                        string script = @"
+                                        Swal.fire({
+                                            title: 'Success!',
+                                            text: 'Customer updated successfully!',
+                                            icon: 'success',
+                                            confirmButtonText: 'OK'
+                                        }).then((result) => {
+                                            if (result.isConfirmed) {
+                                                window.location.href = 'CustomerHome.aspx';
+                                            }
+                                        });";
+
                         Session["CustomerUpdated"] = "True";
-                        Response.Redirect("CustomerHome.aspx");
+
+                        ScriptManager.RegisterStartupScript(this, GetType(), "SweetAlert", script, true);
+                        
                     }
                 }
             }
