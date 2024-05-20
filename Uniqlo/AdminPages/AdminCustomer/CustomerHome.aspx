@@ -21,6 +21,9 @@
         <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
         <link href="../../css/Admin/ErrorMessage.css" rel="stylesheet" />
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
+        <script src="script.js"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
     </header>
 
     <asp:ScriptManager ID="ScriptManagerCustomer" runat="server" />
@@ -135,15 +138,16 @@
             function showDeleteSuccess() {
                 Swal.fire({
                     title: 'Deleted!',
-                    text: 'The delivery has been successfully deleted.',
+                    text: 'The customer has been successfully deleted.',
                     icon: 'success',
                     confirmButtonText: 'Ok'
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        window.location.href = window.location.href;
+                        window.location.href = 'CustomerHome.aspx';
                     }
                 });
             }
+
             document.getElementById('<%= searchBox.ClientID %>').onkeyup = function() {
                 __doPostBack('<%= searchBox.ClientID %>', '');
             };

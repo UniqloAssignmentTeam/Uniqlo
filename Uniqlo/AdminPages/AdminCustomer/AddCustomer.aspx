@@ -4,6 +4,9 @@
         <link href="../../css/Admin/ErrorMessage.css" rel="stylesheet" />
         <link href="../../css/Admin/addStaff.css" rel="stylesheet" />
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
+        <script src="script.js"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
         <style>
             .button-container {
                 display: flex;

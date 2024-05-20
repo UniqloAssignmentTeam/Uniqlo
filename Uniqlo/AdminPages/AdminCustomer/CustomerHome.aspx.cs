@@ -137,7 +137,6 @@ namespace Uniqlo.AdminPages.AdminCustomer
                 // Display a success message
                 ScriptManager.RegisterStartupScript(this, GetType(), "deleteSuccess", "showDeleteSuccess();", true);
             }
-            Response.Redirect("CustomerHome.aspx");
         }
 
         // Method to delete a customer from the database

@@ -31,14 +31,14 @@ namespace Uniqlo.AdminPages.AdminCustomer
             string connectionString = cs;
 
             // Check if the email or contact number already exists in the database
-            if (IsDuplicateEmail(email) || IsDuplicateContactNumber(contactNumber))
+            if (IsDuplicateEmail(email))
             {
-                // sweet here
+                ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "Swal.fire({ title: 'Error', text: 'The email is already used by another customer.', icon: 'error', confirmButtonText: 'OK' });", true);
                 return;
             }
             if (IsDuplicateContactNumber(contactNumber))
             {
-                //sweet here
+                ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "Swal.fire({ title: 'Error', text: 'The contact number is already used by another customer.', icon: 'error', confirmButtonText: 'OK' });", true);
                 return;
             }
 
@@ -64,21 +64,22 @@ namespace Uniqlo.AdminPages.AdminCustomer
             }
 
             string script = @"
-                            <script>
-                                Swal.fire({
-                                    title: 'Success!',
-                                    text: 'Customer added successfully!',
-                                    icon: 'success',
-                                    confirmButtonText: 'OK'
-                                }).then((result) => {
-                                    if (result.isConfirmed) {
-                                        window.location.href = 'CustomerHome.aspx';
-                                    }
-                                });
-                            </script>";
+                    Swal.fire({
+                        title: 'Success!',
+                        text: 'Customer added successfully!',
+                        icon: 'success',
+                        confirmButtonText: 'OK'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            window.location.href = 'CustomerHome.aspx';
+                        }
+                    });";
+
 
             Session["CustomerAdded"] = "True";
-            ClientScript.RegisterStartupScript(this.GetType(), "SweetAlert", script);
+            ScriptManager.RegisterStartupScript(this, GetType(), "SweetAlert", script, true);
+
+
         }
 
         // Method to check if the email already exists in the database
