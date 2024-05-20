@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin.Master" AutoEventWireup="true" CodeBehind="UpdateStaff.aspx.cs" Inherits="Uniqlo.AdminPages.UpdateStaff" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="main" runat="server">
-    <header>
+     <header>
         <link href="../../css/Admin/addStaff.css" rel="stylesheet" />
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     </header>
@@ -77,33 +77,4 @@
             </div>
         </div>
     </div>
-
-    <script>
-        // Function to show success alert
-        function showSuccessAlert() {
-            Swal.fire({
-                title: 'Success!',
-                text: 'Staff details updated successfully.',
-                icon: 'success',
-                confirmButtonText: 'OK'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    window.location = 'StaffHome.aspx';
-                }
-            });
-        }
-
-        // Check session variable and trigger SweetAlert if staff updated
-        window.onload = function () {
-            var staffUpdated = '<%= Session["StaffUpdated"] %>';
-            if (staffUpdated === 'True') {
-                showSuccessAlert();
-                <% Session["StaffUpdated"] = null; %> // Clear session variable
-            }
-        }
-
-       
-
-   
-    </script>
 </asp:Content>

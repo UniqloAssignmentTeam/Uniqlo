@@ -10,6 +10,7 @@ namespace Uniqlo.AdminPages
 {
     public partial class UpdateStaff : Page
     {
+        string cs = Global.CS;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -23,7 +24,7 @@ namespace Uniqlo.AdminPages
                     }
                     catch (Exception ex)
                     {
-                        ScriptManager.RegisterStartupScript(this, GetType(), "loadError", "alert('Failed to load staff details.');", true);
+                        ShowErrorAlert("Failed to load staff details.");
                     }
                 }
             }
@@ -44,17 +45,16 @@ namespace Uniqlo.AdminPages
                         contactNumber.Text = staff.Contact_No;
                         staffGender.SelectedValue = staff.Gender;
                         staffRole.SelectedValue = staff.Role;
-                       
                     }
                     else
                     {
-                        ScriptManager.RegisterStartupScript(this, GetType(), "notFoundError", "alert('Staff not found.');", true);
+                        ShowErrorAlert("Staff not found.");
                     }
                 }
             }
             catch (Exception ex)
             {
-                ScriptManager.RegisterStartupScript(this, GetType(), "dbError", "alert('Error accessing database.');", true);
+                ShowErrorAlert("Error accessing database.");
             }
         }
 
@@ -62,39 +62,79 @@ namespace Uniqlo.AdminPages
         {
             if (Page.IsValid)
             {
-                try
+                if (txtResetPassword.Text == "")
                 {
-                    string cs = ConfigurationManager.ConnectionStrings["StaffDbConnectionString"].ConnectionString;
-                    using (SqlConnection con = new SqlConnection(cs))
+                    try
                     {
-                        con.Open();
-
-                        string query = "UPDATE Staff SET Name = @Name, Email = @Email, Contact_No = @Contact_No, Gender = @Gender, Role = @Role, Password = @Password WHERE Staff_ID = @Staff_ID";
-                        using (SqlCommand cmd = new SqlCommand(query, con))
+                        using (SqlConnection con = new SqlConnection(cs))
                         {
-                            cmd.Parameters.AddWithValue("@Name", staffName.Text);
-                            cmd.Parameters.AddWithValue("@Email", email.Text);
-                            cmd.Parameters.AddWithValue("@Contact_No", contactNumber.Text);
-                            cmd.Parameters.AddWithValue("@Gender", staffGender.SelectedValue);
-                            cmd.Parameters.AddWithValue("@Role", staffRole.SelectedValue);
-                            cmd.Parameters.AddWithValue("@Password", Crypto.HashPassword(txtResetPassword.Text));
-                            cmd.Parameters.AddWithValue("@Staff_ID", int.Parse(staffID.Text));
+                            con.Open();
 
-                            int rowsAffected = cmd.ExecuteNonQuery();
-
-                            if (rowsAffected > 0)
+                            string query = "UPDATE Staff SET Name = @Name, Email = @Email, Contact_No = @Contact_No, Gender = @Gender, Role = @Role WHERE Staff_ID = @Staff_ID";
+                            using (SqlCommand cmd = new SqlCommand(query, con))
                             {
-                                // Set session variable to indicate success
-                                Session["StaffUpdated"] = true;
-                                string encryptedStaffId = EncryptionHelper.Encrypt(staffID.Text);
-                                Response.Redirect("UpdateStaff.aspx?StaffID=" + encryptedStaffId);
+                                cmd.Parameters.AddWithValue("@Name", staffName.Text);
+                                cmd.Parameters.AddWithValue("@Email", email.Text);
+                                cmd.Parameters.AddWithValue("@Contact_No", contactNumber.Text);
+                                cmd.Parameters.AddWithValue("@Gender", staffGender.SelectedValue);
+                                cmd.Parameters.AddWithValue("@Role", staffRole.SelectedValue);
+                                
+                                cmd.Parameters.AddWithValue("@Staff_ID", int.Parse(staffID.Text));
+
+                                int rowsAffected = cmd.ExecuteNonQuery();
+
+                                if (rowsAffected > 0)
+                                {
+                                    // Set session variable to indicate success
+                                    Session["StaffUpdated"] = true;
+                                    string encryptedStaffId = EncryptionHelper.Encrypt(staffID.Text);
+
+                                    Response.Redirect("UpdateStaff.aspx?StaffID=" + encryptedStaffId);
+                                }
                             }
                         }
                     }
+                    catch (Exception ex)
+                    {
+                        ShowErrorAlert("Failed to update staff details.");
+                    }
                 }
-                catch (Exception ex)
+                else
                 {
-                    ScriptManager.RegisterStartupScript(this, GetType(), "saveError", "alert('Failed to update staff details.');", true);
+                    try
+                    {
+                        using (SqlConnection con = new SqlConnection(cs))
+                        {
+                            con.Open();
+
+                            string query = "UPDATE Staff SET Name = @Name, Email = @Email, Contact_No = @Contact_No, Gender = @Gender, Role = @Role, Password = @Password WHERE Staff_ID = @Staff_ID";
+                            using (SqlCommand cmd = new SqlCommand(query, con))
+                            {
+                                cmd.Parameters.AddWithValue("@Name", staffName.Text);
+                                cmd.Parameters.AddWithValue("@Email", email.Text);
+                                cmd.Parameters.AddWithValue("@Contact_No", contactNumber.Text);
+                                cmd.Parameters.AddWithValue("@Gender", staffGender.SelectedValue);
+                                cmd.Parameters.AddWithValue("@Role", staffRole.SelectedValue);
+                                cmd.Parameters.AddWithValue("@Password", Crypto.HashPassword(txtResetPassword.Text));
+                                cmd.Parameters.AddWithValue("@Staff_ID", int.Parse(staffID.Text));
+
+                                int rowsAffected = cmd.ExecuteNonQuery();
+
+                                if (rowsAffected > 0)
+                                {
+                                    // Set session variable to indicate success
+                                    Session["StaffUpdated"] = true;
+                                    string encryptedStaffId = EncryptionHelper.Encrypt(staffID.Text);
+
+                                    Response.Redirect("UpdateStaff.aspx?StaffID=" + encryptedStaffId);
+                                }
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        ShowErrorAlert("Failed to update staff details.");
+                    }
                 }
             }
         }
@@ -107,7 +147,7 @@ namespace Uniqlo.AdminPages
             }
             catch (Exception ex)
             {
-                ScriptManager.RegisterStartupScript(this, GetType(), "saveError", "alert('Failed to redirect to staff home.');", true);
+                ShowErrorAlert("Failed to redirect to staff home.");
             }
         }
 
@@ -133,6 +173,11 @@ namespace Uniqlo.AdminPages
             {
                 args.IsValid = false;
             }
+        }
+
+        private void ShowErrorAlert(string message)
+        {
+            ScriptManager.RegisterStartupScript(this, GetType(), "showErrorAlert", $"Swal.fire({{ title: 'Error!', text: '{message}', icon: 'error', confirmButtonText: 'OK' }});", true);
         }
     }
 }
