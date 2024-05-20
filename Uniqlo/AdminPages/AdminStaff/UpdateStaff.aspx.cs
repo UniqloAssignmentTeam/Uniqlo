@@ -78,7 +78,7 @@ namespace Uniqlo.AdminPages
                                 cmd.Parameters.AddWithValue("@Contact_No", contactNumber.Text);
                                 cmd.Parameters.AddWithValue("@Gender", staffGender.SelectedValue);
                                 cmd.Parameters.AddWithValue("@Role", staffRole.SelectedValue);
-                                
+
                                 cmd.Parameters.AddWithValue("@Staff_ID", int.Parse(staffID.Text));
 
                                 int rowsAffected = cmd.ExecuteNonQuery();
@@ -88,8 +88,8 @@ namespace Uniqlo.AdminPages
                                     // Set session variable to indicate success
                                     Session["StaffUpdated"] = true;
                                     string encryptedStaffId = EncryptionHelper.Encrypt(staffID.Text);
-
-                                    Response.Redirect("UpdateStaff.aspx?StaffID=" + encryptedStaffId);
+                                    ShowSuccessAlert("Staff details updated successfully.");
+                                
                                 }
                             }
                         }
@@ -125,8 +125,8 @@ namespace Uniqlo.AdminPages
                                     // Set session variable to indicate success
                                     Session["StaffUpdated"] = true;
                                     string encryptedStaffId = EncryptionHelper.Encrypt(staffID.Text);
-
-                                    Response.Redirect("UpdateStaff.aspx?StaffID=" + encryptedStaffId);
+                                    ShowSuccessAlert("Staff details updated successfully.");
+                                  
                                 }
                             }
                         }
@@ -179,5 +179,11 @@ namespace Uniqlo.AdminPages
         {
             ScriptManager.RegisterStartupScript(this, GetType(), "showErrorAlert", $"Swal.fire({{ title: 'Error!', text: '{message}', icon: 'error', confirmButtonText: 'OK' }});", true);
         }
+
+        private void ShowSuccessAlert(string message)
+        {
+            ScriptManager.RegisterStartupScript(this, GetType(), "showSuccessAlert", $"Swal.fire({{ title: 'Success!', text: '{message}', icon: 'success', confirmButtonText: 'OK' }}).then((result) => {{ if (result.isConfirmed) {{ window.location.href = 'StaffHome.aspx'; }} }});", true);
+        }
+
     }
 }
