@@ -46,7 +46,7 @@
             height: 150px; /* Adjust height as needed */
         }
     </style>
-
+     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <div id="main">
         <h2>Report Home</h2>
         <div class="report-container">

@@ -62,7 +62,7 @@ namespace Uniqlo.AdminPages
         {
             if (Page.IsValid)
             {
-                if (txtResetPassword.Text == "")
+                if (txtResetPassword.Text == null)
                 {
                     try
                     {
