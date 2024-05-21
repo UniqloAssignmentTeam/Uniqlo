@@ -17,22 +17,10 @@ namespace Uniqlo.Pages
             //Deny not registered customer
             if (Session["Customer_Id"] == null)
             {
-                // Register SweetAlert script to show when no Customer_Id is found
-                string showAlertScript = @"
-            Swal.fire({
-                title: 'Not Logged In',
-                text: 'You have not logged in. Please log in to continue.',
-                icon: 'warning',
-                confirmButtonText: 'OK'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    window.location.href = 'Login.aspx';
-                }
-            });
-        ";
-                ClientScript.RegisterStartupScript(this.GetType(), "showAlert", showAlertScript, true);
+                ScriptManager.RegisterStartupScript(this, GetType(), "showUnauthorizedAlert",
+                           "Swal.fire({ title: 'Unauthorized', text: 'Please login to access this page.', icon: 'error', confirmButtonText: 'OK' }).then(function() { window.location.href = 'Login.aspx'; });", true);
 
-                return; // Stop further execution of this method
+                return;
             }
 
 

@@ -20,7 +20,7 @@ namespace Uniqlo.AdminPages.AdminCustomer
                 if (!string.IsNullOrEmpty(Request.QueryString["Customer_ID"]))
                 {
                     //Retrieve the customer ID from the query string
-                    string customerId = Request.QueryString["Customer_ID"];
+                    string customerId = EncryptionHelper.Decrypt(Request.QueryString["Customer_ID"]);
                     txtCustId.Text = customerId;
 
                     // Call a method to bind customer data based on the customer ID

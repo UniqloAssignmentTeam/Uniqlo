@@ -31,9 +31,9 @@ namespace Uniqlo.AdminPages.AdminStaff
                     {
                         if (!Session["StaffRole"].Equals("Admin") && !Session["StaffRole"].Equals("Manager"))
                         {
-                            // Set the unauthorized session variable and redirect to adminLogin.aspx if the session role is invalid
-                            Session["Unauthorized"] = true;
-                            Response.Redirect("../adminLogin.aspx");
+
+                            ScriptManager.RegisterStartupScript(this, GetType(), "showUnauthorizedAlert",
+                         "Swal.fire({ title: 'Unauthorized', text: 'You are not authorized to access this page.', icon: 'error', confirmButtonText: 'OK' }).then(function() { window.location.href = '../Dashboard.aspx'; });", true);
                         }
                     }
                     else

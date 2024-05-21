@@ -19,9 +19,9 @@
             <div class="customer-content">
                 <div class="form-group">
                     <label for="name">Customer ID</label>
-                    <asp:TextBox ID="txtCustId" runat="server" ReadOnly="true"></asp:TextBox>
+                    <asp:TextBox ID="txtCustId" runat="server" Enabled="False"></asp:TextBox>
 
-                </div>
+                </div>  
 
                 <div class="form-group">
                     <label for="name">Name</label>

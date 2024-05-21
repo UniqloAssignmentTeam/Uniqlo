@@ -5,6 +5,7 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
         <link href="../css/Admin/OrderItem.css" rel="stylesheet" />
         <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet" />
+          <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <style>
             .backButtonClass {
                 margin: 20px 0px;
@@ -366,6 +367,8 @@
                         </ItemTemplate>
                     </asp:DataList>
                 </div>
+
+
 
                 <!-- Cart Summary -->
                 <div style="width: 30%;">

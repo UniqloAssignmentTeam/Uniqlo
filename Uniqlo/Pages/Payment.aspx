@@ -6,6 +6,9 @@
         <link href="../css/style1.css" rel="stylesheet" />
         <link href="../css/delivery.css" rel="stylesheet" />
     </header>
+    <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+    <ContentTemplate>
     <!-- Checkout Start -->
     <div class="container-fluid pt-5">
         <section class="step-wizard">
@@ -39,6 +42,9 @@
                             <div class="card-header bg-secondary border-0">
                                 <h4 class="font-weight-semi-bold m-0">Payment</h4>
                             </div>
+
+
+
                             <div class="card-body">
                                 <asp:Label ID="lblError" runat="server" ForeColor="Red" CssClass="error-message" Visible="false"></asp:Label>
                                 <div class="form-group">
@@ -50,6 +56,7 @@
                                 <div class="form-group">
                                     <asp:RadioButton ID="rbDebitCard" runat="server" GroupName="PaymentMethod" Text="Debit Card" AutoPostBack="true" OnCheckedChanged="PaymentMethod_Changed" />
                                 </div>
+
                                 <asp:Panel ID="cardInfo" runat="server" Visible="false">
 
                                     <div class="form-group">
@@ -164,7 +171,13 @@
             </div>
         </form>
     </div>
-
+         </ContentTemplate>
+    <Triggers>
+        <asp:AsyncPostBackTrigger ControlID="rbCash" EventName="CheckedChanged" />
+        <asp:AsyncPostBackTrigger ControlID="rbCreditCard" EventName="CheckedChanged" />
+        <asp:AsyncPostBackTrigger ControlID="rbDebitCard" EventName="CheckedChanged" />
+    </Triggers>
+</asp:UpdatePanel>
     <!-- Checkout End -->
     <script>
             document.addEventListener("DOMContentLoaded", function () {
