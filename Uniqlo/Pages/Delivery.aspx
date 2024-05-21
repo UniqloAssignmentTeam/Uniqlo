@@ -43,7 +43,7 @@
                                     <div class="col-md-6 form-group">
                                         <label>Name</label>
 
-                                        <asp:TextBox class="form-control" ID="txtName" value="Tan Choo Jun" ReadOnly="true" runat="server"></asp:TextBox>
+                                        <asp:TextBox class="form-control" ID="txtName" ReadOnly="true" runat="server"></asp:TextBox>
                                     </div>
                                     <div class="col-md-6 form-group">
                                         <label>E-mail</label>
