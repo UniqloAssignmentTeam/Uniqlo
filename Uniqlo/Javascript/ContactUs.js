@@ -65,20 +65,20 @@
             botReply = "Hello there! How can I assist you today?";
         } else if (message.includes("opening hour") || message.includes("operating hour") || message.includes("when you open") || message.includes("what time do you close") || message.includes("store hour")) {
             botReply = "Our stores are open from 10 AM to 9 PM every day.";
-        } else if (message.includes("return policy") || message.includes("refund") || message.includes("exchange policy") || message.includes("returns")) {
+        } else if (message.includes("return policy") || message.includes("refund") || message.includes("exchange policy") || message.includes("returns") || message.includes("exchange")) {
             botReply = "You can return products within 30 days of purchase with a valid receipt.";
         } else if (message.includes("size")) {
             botReply = "We have sizes ranging from XS to XXL. Availability may vary by item and location.";
         } else if (message.includes("locate") || message.includes("store near") || message.includes("location")) {
             botReply = "Let me help you find a store near you. Could you share your location or any specific area you are interested in?";
-        } else if (message.includes("shipping cost") || message.includes("delivery charge") || message.includes("shipping fee")) {
-            botReply = "Shipping costs depend on the order size and destination. It's free for orders over $75!";
+        } else if (message.includes("shipping cost") || message.includes("delivery charge") || message.includes("shipping fee") || message.includes("delivery fee")) {
+            botReply = "Shipping costs will be around RM 20 for every delivery, if the purchase does not achieve RM 150.";
         } else if (message.includes("track order") || message.includes("order status") || message.includes("status") || message.includes("order")) {
             botReply = "You can check the status of your order by visiting the 'Order Status' section on our website.";
         } else if (message.includes("help")) {
             botReply = "Sure, what do you need help with?";
         } else if (message.includes("payment methods") || message.includes("payment options") || message.includes("payment")) {
-            botReply = "We accept all major credit cards, PayPal, and cash on delivery.";
+            botReply = "We accept credit cards, debit cards, and cash on delivery.";
         } else if (message.includes("new arrivals") || message.includes("latest collection") || message.includes("new") || message.includes("latest")) {
             botReply = "You can view our latest arrivals on our website.";
         } else if (message.includes("sales") || message.includes("discounts")) {

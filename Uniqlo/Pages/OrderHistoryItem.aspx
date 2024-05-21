@@ -362,9 +362,9 @@
                                         <p><b>Size:</b> <%# Eval("Size") %></p>
                                         <p><b>Color:</b>  <%# Eval("Color") %></p>
                                     </div>
-                                    <p><b>Price:</b> <%# Eval("Price", "{0:C}") %></p>
+                                    <p><b>Price:</b> <%# Eval("Unit_Price", "{0:C}") %></p>
                                     <p><b>Quantity:</b> <%# Eval("Qty") %></p>
-                                    <p class="item-subtotal"><b>Item Price: <%# Eval("Item_Price", "{0:C}") %></b></p>
+                                    <p class="item-subtotal"><b>Item Price: <%# Eval("Price", "{0:C}") %></b></p>
 
                                     <asp:HiddenField ID="hiddenOrderListID" runat="server" Value='<%# Eval("OrderList_ID") %>' />
 
@@ -445,7 +445,7 @@
                                 <td>
                                     <b>Discount Amount : </b>
                                     RM
-                                    <asp:Label ID="Label1" runat="server" Text='<%# (Convert.ToDecimal(Eval("Total_Payment")) - Convert.ToDecimal(Eval("Shipping_Amount")) - Convert.ToDecimal(Eval("Sub_Total"))).ToString("0.00") %>'></asp:Label>
+                                    <asp:Label ID="Label1" runat="server" Text='<%# (Convert.ToDecimal(Eval("Total_Payment")) - Convert.ToDecimal(Eval("Shipping_Amount")) - Convert.ToDecimal(Eval("Sub_Total")) < 0 ? "0.00" : (Convert.ToDecimal(Eval("Total_Payment")) - Convert.ToDecimal(Eval("Shipping_Amount")) - Convert.ToDecimal(Eval("Sub_Total"))).ToString("0.00")) %>'></asp:Label>
                                 </td>
                             </tr>
                             <tr>
