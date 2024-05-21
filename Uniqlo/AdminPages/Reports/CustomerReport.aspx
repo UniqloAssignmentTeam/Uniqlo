@@ -24,6 +24,11 @@
                     <% Response.Write(GetChartData()); %>
                 ]);
 
+                var formatter = new google.visualization.NumberFormat({
+                    fractionDigits: 2
+                });
+                formatter.format(data, 1); // Apply formatter to second column
+
                 var options = {
                     title: 'Top 5 Customers with Most Spending',
                     titleTextStyle: {
@@ -76,6 +81,7 @@
                 chart.draw(data, options);
             }
         </script>
+  
     </header>
     <div id="chart_div" style="width: 900px; height: 500px; margin: auto;"></div>
 

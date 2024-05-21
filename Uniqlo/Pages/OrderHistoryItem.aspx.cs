@@ -135,69 +135,21 @@ namespace Uniqlo.Pages
             // Get the OrderList_ID from the CommandArgument
             string orderListID = btn.CommandArgument;
 
-            // Check delivery status
-            string deliveryStatus = GetDeliveryStatus(orderListID);
 
-            //Encrypt
-            orderListID = EncryptionHelper.Encrypt(orderListID);
-
-            if (deliveryStatus != "Delivered")
-            {
-                // Display a SweetAlert indicating that the item hasn't been received yet
-                ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "Swal.fire({ title: 'Cannot Add Review', text: 'You cannot add a review until the item is delivered.', icon: 'error', confirmButtonText: 'OK' });", true);
-                return;
-            }
 
             // Redirect based on the button text
             if (buttonText == "Review")
             {
 
-                Response.Redirect("./Review/addReviewItem.aspx?OrderList_ID=" + orderListID);
+                Response.Redirect("./Review/addReviewItem.aspx?OrderList_ID=" + EncryptionHelper.Encrypt(orderListID));
             }
             else if (buttonText == "View")
             {
-                Response.Redirect("./Review/viewReviewItem.aspx?OrderList_ID=" + orderListID);
+                Response.Redirect("./Review/viewReviewItem.aspx?OrderList_ID=" + EncryptionHelper.Encrypt(orderListID));
             }
         }
 
 
-        private string GetDeliveryStatus(string orderListID)
-        {
-            string deliveryStatus = string.Empty;
-
-            using (SqlConnection con = new SqlConnection(Global.CS))
-            {
-                try
-                {
-                    con.Open();
-
-                    string query = @"
-                        SELECT d.Delivery_Status
-                        FROM Delivery d
-                        INNER JOIN Orders o ON d.Address_ID = o.Customer_ID
-                        INNER JOIN OrderList ol ON o.Order_ID = ol.Order_ID
-                        WHERE ol.OrderList_ID = @OrderListID";
-
-                    using (SqlCommand cmd = new SqlCommand(query, con))
-                    {
-                        cmd.Parameters.AddWithValue("@OrderListID", orderListID);
-
-                        SqlDataReader reader = cmd.ExecuteReader();
-
-                        if (reader.Read())
-                        {
-                            deliveryStatus = reader["Delivery_Status"].ToString();
-                        }
-                    }
-                }
-                catch (Exception ex)
-                {
-                    ScriptManager.RegisterStartupScript(this, GetType(), "errorAlert", "alert('An error occurred when retrieve delivery status.');", true);
-                }
-            }
-
-            return deliveryStatus;
-        }
 
         public string GenerateStars(double rating)
         {
