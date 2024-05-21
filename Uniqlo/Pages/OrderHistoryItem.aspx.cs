@@ -12,6 +12,7 @@ using static Uniqlo.Review;
 using static Uniqlo.EncryptionHelper;
 using System.Data.SqlClient;
 using System.Configuration;
+using MailKit.Search;
 
 namespace Uniqlo.Pages
 {
@@ -19,6 +20,7 @@ namespace Uniqlo.Pages
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            
             if (!IsPostBack)
             {
                 // Try to retrieve and convert the customer ID from the session
