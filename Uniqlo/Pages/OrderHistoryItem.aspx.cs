@@ -133,11 +133,11 @@ namespace Uniqlo.Pages
             // Get the OrderList_ID from the CommandArgument
             string orderListID = btn.CommandArgument;
 
-            //Encrypt
-            orderListID = EncryptionHelper.Encrypt(orderListID);
-
             // Check delivery status
             string deliveryStatus = GetDeliveryStatus(orderListID);
+
+            //Encrypt
+            orderListID = EncryptionHelper.Encrypt(orderListID);
 
             if (deliveryStatus != "Delivered")
             {
