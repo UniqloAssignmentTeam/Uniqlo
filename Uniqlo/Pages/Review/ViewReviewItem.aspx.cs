@@ -34,13 +34,7 @@ namespace Uniqlo.Pages
             string eventTarget = Request["__EVENTTARGET"];
             if (eventTarget == "HyperLink1")
             {
-                string orderListId = EncryptionHelper.Decrypt(Request.QueryString["OrderList_ID"]);
-
-                if (!string.IsNullOrEmpty(orderListId))
-                {
-                    string encryptedOrderListId = EncryptionHelper.Encrypt(orderListId);
-                    Response.Redirect("/Pages/OrderHistoryItem.aspx?Order_ID=" + encryptedOrderListId);
-                }
+                Response.Redirect("/Pages/OrderHistoryItem.aspx?Order_ID=" + Session["Order_ID"]);
             }
         }
 

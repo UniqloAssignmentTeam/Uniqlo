@@ -52,7 +52,7 @@ namespace Uniqlo.AdminPages
 
             using (SqlConnection con = new SqlConnection(cs))
             {
-                string query = "SELECT COUNT(*) FROM Payment WHERE Payment_Status != 'uPaid'";
+                string query = "SELECT COUNT(*) FROM Payment WHERE Payment_Status = 'Unpaid'";
                 using (SqlCommand cmd = new SqlCommand(query, con))
                 {
                     con.Open();
@@ -91,7 +91,6 @@ namespace Uniqlo.AdminPages
         }
         private void BindSalesChartData()
         {
-         
             using (SqlConnection con = new SqlConnection(cs))
             {
                 string query = @"SELECT MONTH(Payment_DateTime) AS SaleMonth, SUM(Total_Payment) AS TotalSales
@@ -112,5 +111,6 @@ namespace Uniqlo.AdminPages
                 }
             }
         }
+
     }
 }

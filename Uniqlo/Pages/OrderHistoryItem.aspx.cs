@@ -10,6 +10,8 @@ using Uniqlo.AdminPages.AdminStaff;
 using static Uniqlo.OrderList;
 using static Uniqlo.Review;
 using static Uniqlo.EncryptionHelper;
+using System.Data.SqlClient;
+using System.Configuration;
 
 namespace Uniqlo.Pages
 {
@@ -28,6 +30,7 @@ namespace Uniqlo.Pages
                     {
                         string encryptedOrderId = Request.QueryString["Order_ID"];
                         string decryptedOrderId = EncryptionHelper.Decrypt(encryptedOrderId);
+                        Session["Order_ID"] =encryptedOrderId;
                         int orderId;
                         if (int.TryParse(decryptedOrderId, out orderId))
                         {
@@ -36,16 +39,16 @@ namespace Uniqlo.Pages
                             BindOrderSummaryRepeater(custId, orderId);
                         }
                     }
-                    
-                        
-                       
+
+
+
                 }
                 else
                 {
-                    Debug.WriteLine("Failed to convert session value to integer: " + sessionValue);
-                    // Optionally redirect or display an error message
-                    Response.Redirect("ErrorPage.aspx"); // Change this to your error handling page
+                    ScriptManager.RegisterStartupScript(this, GetType(), "errorAlert", "alert('An error occurred when retrieve order list item.');", true);
+                    Response.Redirect("Profile.aspx");
                 }
+                
             }
 
 
@@ -133,9 +136,20 @@ namespace Uniqlo.Pages
             //Encrypt
             orderListID = EncryptionHelper.Encrypt(orderListID);
 
+            // Check delivery status
+            string deliveryStatus = GetDeliveryStatus(orderListID);
+
+            if (deliveryStatus != "Delivered")
+            {
+                // Display a SweetAlert indicating that the item hasn't been received yet
+                ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "Swal.fire({ title: 'Cannot Add Review', text: 'You cannot add a review until the item is delivered.', icon: 'error', confirmButtonText: 'OK' });", true);
+                return;
+            }
+
             // Redirect based on the button text
             if (buttonText == "Review")
             {
+
                 Response.Redirect("./Review/addReviewItem.aspx?OrderList_ID=" + orderListID);
             }
             else if (buttonText == "View")
@@ -145,6 +159,43 @@ namespace Uniqlo.Pages
         }
 
 
+        private string GetDeliveryStatus(string orderListID)
+        {
+            string deliveryStatus = string.Empty;
+
+            using (SqlConnection con = new SqlConnection(Global.CS))
+            {
+                try
+                {
+                    con.Open();
+
+                    string query = @"
+                        SELECT d.Delivery_Status
+                        FROM Delivery d
+                        INNER JOIN Orders o ON d.Address_ID = o.Customer_ID
+                        INNER JOIN OrderList ol ON o.Order_ID = ol.Order_ID
+                        WHERE ol.OrderList_ID = @OrderListID";
+
+                    using (SqlCommand cmd = new SqlCommand(query, con))
+                    {
+                        cmd.Parameters.AddWithValue("@OrderListID", orderListID);
+
+                        SqlDataReader reader = cmd.ExecuteReader();
+
+                        if (reader.Read())
+                        {
+                            deliveryStatus = reader["Delivery_Status"].ToString();
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    ScriptManager.RegisterStartupScript(this, GetType(), "errorAlert", "alert('An error occurred when retrieve delivery status.');", true);
+                }
+            }
+
+            return deliveryStatus;
+        }
 
         public string GenerateStars(double rating)
         {

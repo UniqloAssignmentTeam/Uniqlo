@@ -110,7 +110,7 @@ namespace Uniqlo.Pages
             cartItems.RemoveAll(item => item.Quantity_Id == quantityId);
             Session["Cart"] = cartItems;
         }
-
+   
         protected void txtQuantity_TextChanged(object sender, EventArgs e)
         {
             // Find the TextBox control that triggered the event
@@ -125,6 +125,7 @@ namespace Uniqlo.Pages
             // Validate the current quantity value entered by the user
             if (int.TryParse(txtQuantity.Text, out int newQuantity))
             {
+                int availableQuantity = GetAvailableQuantity(quantityId);
                 if (newQuantity > 0 && newQuantity<999)
                 {
                     // Update the quantity of the item in the cart
@@ -145,22 +146,45 @@ namespace Uniqlo.Pages
                 }
                 else
                 {
-                    UpdateItemQuantity(quantityId, 1);
-                    // Update the cart summary in real-time
-                    List<CartItem> cartItems = (List<CartItem>)Session["Cart"];
-                    UpdateCartSummary(cartItems);
-                    // Display a SweetAlert indicating invalid input
-                    ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "Swal.fire({ title: 'Invalid Quantity', text: 'Quantity must be greater than 0.', icon: 'error', confirmButtonText: 'OK' });", true);
-                }
+                UpdateItemQuantity(quantityId, 1);
+                // Update the cart summary in real-time
+                List<CartItem> cartItems = (List<CartItem>)Session["Cart"];
+                UpdateCartSummary(cartItems);
+                // Display a SweetAlert indicating invalid input
+                ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "Swal.fire({ title: 'Invalid Quantity', text: 'Quantity must be greater than 0.', icon: 'error', confirmButtonText: 'OK' });", true);
+            }
             }
             else
             {
-                // Display a SweetAlert indicating invalid input
-                ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "Swal.fire({ title: 'Invalid Quantity', text: 'Please enter a valid number.', icon: 'error', confirmButtonText: 'OK' });", true);
-            }
+
+                UpdateItemQuantity(quantityId, 1);
+                List<CartItem> cartItems = (List<CartItem>)Session["Cart"];
+                UpdateCartSummary(cartItems);
+            // Display a SweetAlert indicating invalid input
+            ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "Swal.fire({ title: 'Invalid Quantity', text: 'Please enter a valid number.', icon: 'error', confirmButtonText: 'OK' });", true);
+        }
         }
 
+        private int GetAvailableQuantity(int quantityId)
+        {
+            int availableQuantity = 0;
 
+            using (SqlConnection con = new SqlConnection(cs))
+            {
+                string query = "SELECT Qty FROM Quantity WHERE Quantity_Id = @QuantityId";
+                SqlCommand cmd = new SqlCommand(query, con);
+                cmd.Parameters.AddWithValue("@QuantityId", quantityId);
+                con.Open();
+
+                object result = cmd.ExecuteScalar();
+                if (result != null)
+                {
+                    availableQuantity = Convert.ToInt32(result);
+                }
+            }
+
+            return availableQuantity;
+        }
         private void UpdateItemQuantity(int quantityId, int newQuantity)
         {
             List<CartItem> cartItems = (List<CartItem>)Session["Cart"];

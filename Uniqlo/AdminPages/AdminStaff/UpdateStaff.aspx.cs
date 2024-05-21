@@ -3,11 +3,14 @@ using System.Linq;
 using System.Web.UI;
 using static Uniqlo.Staff;
 using System.Web.UI.WebControls;
+using System.Configuration;
+using System.Data.SqlClient;
 
 namespace Uniqlo.AdminPages
 {
     public partial class UpdateStaff : Page
     {
+        string cs = Global.CS;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -21,7 +24,7 @@ namespace Uniqlo.AdminPages
                     }
                     catch (Exception ex)
                     {
-                        ScriptManager.RegisterStartupScript(this, GetType(), "loadError", "alert('Failed to load staff details.');", true);
+                        ShowErrorAlert("Failed to load staff details.");
                     }
                 }
             }
@@ -42,17 +45,16 @@ namespace Uniqlo.AdminPages
                         contactNumber.Text = staff.Contact_No;
                         staffGender.SelectedValue = staff.Gender;
                         staffRole.SelectedValue = staff.Role;
-                       
                     }
                     else
                     {
-                        ScriptManager.RegisterStartupScript(this, GetType(), "notFoundError", "alert('Staff not found.');", true);
+                        ShowErrorAlert("Staff not found.");
                     }
                 }
             }
             catch (Exception ex)
             {
-                ScriptManager.RegisterStartupScript(this, GetType(), "dbError", "alert('Error accessing database.');", true);
+                ShowErrorAlert("Error accessing database.");
             }
         }
 
@@ -60,36 +62,79 @@ namespace Uniqlo.AdminPages
         {
             if (Page.IsValid)
             {
-                try
+                if (txtResetPassword.Text == "")
                 {
-                    using (var db = new StaffDbContext())
+                    try
                     {
-                        int staffId = int.Parse(staffID.Text);
-                        var staff = db.Staff.FirstOrDefault(s => s.Staff_ID == staffId);
-                        if (staff != null)
+                        using (SqlConnection con = new SqlConnection(cs))
                         {
-                            staff.Name = staffName.Text;
-                            staff.Email = email.Text;
-                            staff.Contact_No = contactNumber.Text;
-                            staff.Gender = staffGender.SelectedValue;
-                            staff.Role = staffRole.SelectedValue;
-                            staff.Password = Crypto.HashPassword(txtResetPassword.Text);
-                            db.SaveChanges();
+                            con.Open();
 
-                            // Set session variable to indicate success
-                            Session["StaffUpdated"] = true;
-                            string encryptedStaffId = EncryptionHelper.Encrypt(staffId.ToString());
-                            Response.Redirect("UpdateStaff.aspx?StaffID=" + encryptedStaffId); // Refresh page to trigger SweetAlert
-                        }
-                        else
-                        {
-                            ScriptManager.RegisterStartupScript(this, GetType(), "updateError", "alert('Staff not found.');", true);
+                            string query = "UPDATE Staff SET Name = @Name, Email = @Email, Contact_No = @Contact_No, Gender = @Gender, Role = @Role WHERE Staff_ID = @Staff_ID";
+                            using (SqlCommand cmd = new SqlCommand(query, con))
+                            {
+                                cmd.Parameters.AddWithValue("@Name", staffName.Text);
+                                cmd.Parameters.AddWithValue("@Email", email.Text);
+                                cmd.Parameters.AddWithValue("@Contact_No", contactNumber.Text);
+                                cmd.Parameters.AddWithValue("@Gender", staffGender.SelectedValue);
+                                cmd.Parameters.AddWithValue("@Role", staffRole.SelectedValue);
+
+                                cmd.Parameters.AddWithValue("@Staff_ID", int.Parse(staffID.Text));
+
+                                int rowsAffected = cmd.ExecuteNonQuery();
+
+                                if (rowsAffected > 0)
+                                {
+                                    // Set session variable to indicate success
+                                    Session["StaffUpdated"] = true;
+                                    string encryptedStaffId = EncryptionHelper.Encrypt(staffID.Text);
+                                    ShowSuccessAlert("Staff details updated successfully.");
+                                
+                                }
+                            }
                         }
                     }
+                    catch (Exception ex)
+                    {
+                        ShowErrorAlert("Failed to update staff details.");
+                    }
                 }
-                catch (Exception ex)
+                else
                 {
-                    ScriptManager.RegisterStartupScript(this, GetType(), "saveError", "alert('Failed to update staff details.');", true);
+                    try
+                    {
+                        using (SqlConnection con = new SqlConnection(cs))
+                        {
+                            con.Open();
+
+                            string query = "UPDATE Staff SET Name = @Name, Email = @Email, Contact_No = @Contact_No, Gender = @Gender, Role = @Role, Password = @Password WHERE Staff_ID = @Staff_ID";
+                            using (SqlCommand cmd = new SqlCommand(query, con))
+                            {
+                                cmd.Parameters.AddWithValue("@Name", staffName.Text);
+                                cmd.Parameters.AddWithValue("@Email", email.Text);
+                                cmd.Parameters.AddWithValue("@Contact_No", contactNumber.Text);
+                                cmd.Parameters.AddWithValue("@Gender", staffGender.SelectedValue);
+                                cmd.Parameters.AddWithValue("@Role", staffRole.SelectedValue);
+                                cmd.Parameters.AddWithValue("@Password", Crypto.HashPassword(txtResetPassword.Text));
+                                cmd.Parameters.AddWithValue("@Staff_ID", int.Parse(staffID.Text));
+
+                                int rowsAffected = cmd.ExecuteNonQuery();
+
+                                if (rowsAffected > 0)
+                                {
+                                    // Set session variable to indicate success
+                                    Session["StaffUpdated"] = true;
+                                    string encryptedStaffId = EncryptionHelper.Encrypt(staffID.Text);
+                                    ShowSuccessAlert("Staff details updated successfully.");
+                                  
+                                }
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        ShowErrorAlert("Failed to update staff details.");
+                    }
                 }
             }
         }
@@ -102,7 +147,7 @@ namespace Uniqlo.AdminPages
             }
             catch (Exception ex)
             {
-                ScriptManager.RegisterStartupScript(this, GetType(), "saveError", "alert('Failed to redirect to staff home.');", true);
+                ShowErrorAlert("Failed to redirect to staff home.");
             }
         }
 
@@ -129,5 +174,16 @@ namespace Uniqlo.AdminPages
                 args.IsValid = false;
             }
         }
+
+        private void ShowErrorAlert(string message)
+        {
+            ScriptManager.RegisterStartupScript(this, GetType(), "showErrorAlert", $"Swal.fire({{ title: 'Error!', text: '{message}', icon: 'error', confirmButtonText: 'OK' }});", true);
+        }
+
+        private void ShowSuccessAlert(string message)
+        {
+            ScriptManager.RegisterStartupScript(this, GetType(), "showSuccessAlert", $"Swal.fire({{ title: 'Success!', text: '{message}', icon: 'success', confirmButtonText: 'OK' }}).then((result) => {{ if (result.isConfirmed) {{ window.location.href = 'StaffHome.aspx'; }} }});", true);
+        }
+
     }
 }

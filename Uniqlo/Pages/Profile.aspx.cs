@@ -13,11 +13,14 @@ namespace Uniqlo.Pages
         SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["UniqloConnectionString"].ConnectionString);
 
         protected void Page_Load(object sender, EventArgs e)
-        {  //Deny not registered customer
-            if (Session["Customer_Id"] == null)
+        {  
+            if (!IsPostBack)
             {
-                // Register SweetAlert script to show when no Customer_Id is found
-                string showAlertScript = @"
+                if (Session["Customer_Id"] == null)
+                {
+                    
+                    // Register SweetAlert script to show when no Customer_Id is found
+                    string showAlertScript = @"
             Swal.fire({
                 title: 'Not Logged In',
                 text: 'You have not logged in. Please log in to continue.',
@@ -29,13 +32,11 @@ namespace Uniqlo.Pages
                 }
             });
         ";
-                ClientScript.RegisterStartupScript(this.GetType(), "showAlert", showAlertScript, true);
+                    ClientScript.RegisterStartupScript(this.GetType(), "showAlert", showAlertScript, true);
 
-                return; // Stop further execution of this method
-            }
+                    return; // Stop further execution of this method
+                }
 
-            if (!IsPostBack)
-            {
                 string sessionValue = Session["Customer_ID"] as string;
 
                 if (int.TryParse(sessionValue, out int custId))
