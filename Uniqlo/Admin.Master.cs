@@ -18,6 +18,20 @@ namespace Uniqlo
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!IsPostBack)
+            {
+                // Check if the session variable is null
+                if (Session["StaffRole"] == null)
+                {
+                    phLogin.Visible = true;
+                    phLogout.Visible = false;
+                }
+                else
+                {
+                    phLogin.Visible = false;
+                    phLogout.Visible = true;
+                }
+            }
         }
     }
 }
