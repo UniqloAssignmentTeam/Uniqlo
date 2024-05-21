@@ -138,7 +138,7 @@ namespace Uniqlo.AdminPages.AdminCustomer
                         Session["CustomerUpdated"] = "True";
 
                         ScriptManager.RegisterStartupScript(this, GetType(), "SweetAlert", script, true);
-                        
+                       
                     }
                 }
             }

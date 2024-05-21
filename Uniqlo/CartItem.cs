@@ -31,8 +31,9 @@ namespace Uniqlo
 
         public decimal OriginalPrice { get; set; }
         public decimal DiscountedPrice { get; set; }
+        public int Image_Id { get; set; }
 
-        public int Image_Id { get; set; } // Add this property for image data
+        public bool HasDiscount => OriginalPrice != DiscountedPrice;
     }
 
 }
