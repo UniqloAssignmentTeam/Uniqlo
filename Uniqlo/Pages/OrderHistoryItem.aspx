@@ -362,9 +362,9 @@
                                         <p><b>Size:</b> <%# Eval("Size") %></p>
                                         <p><b>Color:</b>  <%# Eval("Color") %></p>
                                     </div>
-                                    <p><b>Item Price:</b> <%# Eval("Item_Price", "{0:C}") %></p>
+                                    <p><b>Price:</b> <%# Eval("Price", "{0:C}") %></p>
                                     <p><b>Quantity:</b> <%# Eval("Qty") %></p>
-                                    <p class="item-subtotal"><b>Sub Total: <%# Eval("Subtotal", "{0:C}") %></b></p>
+                                    <p class="item-subtotal"><b>Item Price: <%# Eval("Item_Price", "{0:C}") %></b></p>
 
                                     <asp:HiddenField ID="hiddenOrderListID" runat="server" Value='<%# Eval("OrderList_ID") %>' />
 
