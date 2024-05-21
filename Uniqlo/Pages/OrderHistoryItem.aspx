@@ -311,6 +311,7 @@
             }
         </style>
     </header>
+   
     <div class="productBody">
 
         <div class="backButtonClass">
@@ -322,6 +323,16 @@
         <div class="cart-page-container">
             <div class="cart-items-container" style="display: flex; width: 100%;">
                 <div style="width: 70%;">
+
+
+
+
+
+
+                     <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+ <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional" ChildrenAsTriggers="true">
+     <ContentTemplate>
+
                     <asp:DataList ID="DataList1" runat="server">
                         <ItemTemplate>
                             <!-- Cart Item 1 -->
@@ -359,13 +370,23 @@
 
                                     <div class="orderReceivedSection" id="<%# Eval("reviewBtn") %>">
 
-                                    <asp:Button ID="reviewValidBtn" runat="server" Text='<%# Convert.ToBoolean(Eval("reviewBtn")) ? "View" : "Review" %>' CommandArgument='<%# Eval("OrderList_ID") %>' CssClass="orderReceivedButton" AutoPostBack="false" UseSubmitBehavior="false" OnClick="reviewValidBtn_Click" />
+                                    <asp:Button ID="reviewValidBtn" runat="server" Text='<%# Convert.ToBoolean(Eval("reviewBtn")) ? "View" : "Review" %>' CommandArgument='<%# Eval("OrderList_ID") %>' CssClass="orderReceivedButton" UseSubmitBehavior="false" OnClick="reviewValidBtn_Click" />
 
                                     </div>
                                 </div>
                             </div>
                         </ItemTemplate>
                     </asp:DataList>
+
+                  </ContentTemplate>
+    
+</asp:UpdatePanel>
+
+
+
+
+
+                            
                 </div>
 
 
@@ -460,6 +481,7 @@
 
             </div>
                 <asp:HiddenField ID="HiddenOrderListID" runat="server" ClientIDMode="Static"/>
+             
             <script>
                 function validateAndSubmit() {
                     var orderListID = document.getElementById('HiddenOrderListID').value;
