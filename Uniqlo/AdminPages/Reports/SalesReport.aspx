@@ -21,7 +21,7 @@
         ]);
 
            var options = {
-               title: 'Monthly Sales Report',
+               title: 'Number of Sales Report',
                titleTextStyle: {
                    color: '#333',
                    fontSize: 24,

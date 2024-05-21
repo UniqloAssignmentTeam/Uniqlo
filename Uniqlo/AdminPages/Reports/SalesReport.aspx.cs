@@ -29,13 +29,11 @@ namespace Uniqlo.AdminPages.Reports
 
             using (SqlConnection conn = new SqlConnection(cs))
             {
-                string sql = @"SELECT FORMAT(p.Payment_DateTime, 'MMM yyyy') AS Month, SUM(ol.Qty) AS TotalItemsSold
-                               FROM OrderList ol
-                               JOIN Orders o ON ol.Order_ID = o.Order_ID
-                               JOIN Payment p ON o.Order_ID = p.Order_ID
-                               WHERE p.Payment_Status = 'Paid' AND p.Payment_DateTime >= DATEADD(MONTH, -4, GETDATE())
-                               GROUP BY FORMAT(p.Payment_DateTime, 'MMM yyyy')
-                               ORDER BY MIN(p.Payment_DateTime);";
+                string sql = @"SELECT FORMAT(p.Payment_DateTime, 'MMM yyyy') AS Month, COUNT(Payment_ID) AS TotalItemsSold
+                       FROM Payment p
+                       WHERE p.Payment_Status = 'Paid' AND p.Payment_DateTime >= DATEADD(MONTH, -4, GETDATE())
+                       GROUP BY FORMAT(p.Payment_DateTime, 'MMM yyyy')
+                       ORDER BY MIN(p.Payment_DateTime);";
                 using (SqlCommand cmd = new SqlCommand(sql, conn))
                 {
                     conn.Open();
@@ -50,6 +48,7 @@ namespace Uniqlo.AdminPages.Reports
             }
             return chartData.ToString().TrimEnd(',');
         }
+
 
 
     }

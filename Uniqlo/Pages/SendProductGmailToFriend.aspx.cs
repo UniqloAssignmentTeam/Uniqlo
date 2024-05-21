@@ -18,7 +18,9 @@ namespace Uniqlo.Pages
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (int.TryParse(Request.QueryString["id"], out int prodID))
+            string productID = EncryptionHelper.Decrypt(Request.QueryString["id"]);
+
+            if (int.TryParse(productID, out int prodID))
             {
                 if (!IsPostBack)
                 {
@@ -77,10 +79,8 @@ namespace Uniqlo.Pages
                 string eventTarget = Request["__EVENTTARGET"];
                 if (eventTarget == "HyperLink1")
                 {
-                    if (int.TryParse(Request.QueryString["id"], out int productID))
-                    {
-                        Response.Redirect("/Pages/ProductDetails.aspx?ProdID=" + productID);
-                    }
+                    Response.Redirect("/Pages/ProductDetails.aspx?ProdID=" + productID);
+
                 }
             }
             else
@@ -246,7 +246,8 @@ namespace Uniqlo.Pages
         {
             using (var db = new ImageDbContext())
             {
-                int prodID = Int32.Parse(Request.QueryString["id"]);
+                string productID = EncryptionHelper.Decrypt(Request.QueryString["id"]);
+                int prodID = Int32.Parse(productID);
 
                 return db.Image
                 .Where(img => img.Image_ID == imageID)
