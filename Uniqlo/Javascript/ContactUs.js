@@ -71,14 +71,14 @@
             botReply = "We have sizes ranging from XS to XXL. Availability may vary by item and location.";
         } else if (message.includes("locate") || message.includes("store near") || message.includes("location")) {
             botReply = "Let me help you find a store near you. Could you share your location or any specific area you are interested in?";
-        } else if (message.includes("shipping cost") || message.includes("delivery charge") || message.includes("shipping fee")) {
-            botReply = "Shipping costs depend on the order size and destination. It's free for orders over $75!";
+        } else if (message.includes("shipping cost") || message.includes("delivery charge") || message.includes("shipping fee") || message.includes("delivery fee")) {
+            botReply = "Shipping costs will be cost around RM20 for every delivery.";
         } else if (message.includes("track order") || message.includes("order status") || message.includes("status") || message.includes("order")) {
             botReply = "You can check the status of your order by visiting the 'Order Status' section on our website.";
         } else if (message.includes("help")) {
             botReply = "Sure, what do you need help with?";
         } else if (message.includes("payment methods") || message.includes("payment options") || message.includes("payment")) {
-            botReply = "We accept all major credit cards, PayPal, and cash on delivery.";
+            botReply = "We accept credit cards, debit cards, and cash on delivery.";
         } else if (message.includes("new arrivals") || message.includes("latest collection") || message.includes("new") || message.includes("latest")) {
             botReply = "You can view our latest arrivals on our website.";
         } else if (message.includes("sales") || message.includes("discounts")) {
