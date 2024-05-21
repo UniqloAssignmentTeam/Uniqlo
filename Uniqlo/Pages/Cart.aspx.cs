@@ -24,6 +24,7 @@ namespace Uniqlo.Pages
             }
         }
 
+
         public List<CartItem> GetCartItems(List<CartItem> cartItems)
         {
             if (cartItems == null || !cartItems.Any())
@@ -79,7 +80,7 @@ namespace Uniqlo.Pages
                             Color = reader["Color"].ToString(),
                             Price = Convert.ToDecimal(reader["Price"]),
                             Quantity = cartItems.First(c => c.Quantity_Id == quantityId).Quantity,
-                            OriginalPrice = Convert.ToDecimal(reader["Price"]), // Assuming original price is just the listed price
+                            OriginalPrice = Convert.ToDecimal(reader["Price"]),
                             DiscountedPrice = Convert.ToDecimal(reader["DiscountedPrice"]),
                             Image_Id = Convert.ToInt32(reader["Image_ID"])
                         };
