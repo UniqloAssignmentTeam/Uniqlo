@@ -26,7 +26,7 @@
                 ]);
 
                 var options = {
-                    title: 'Top 5 Products with Most Reviews',
+                    title: 'Top 3 Products with Most Reviews',
                     titleTextStyle: {
                         color: '#333',
                         fontSize: 24,

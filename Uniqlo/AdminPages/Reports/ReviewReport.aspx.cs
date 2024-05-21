@@ -23,7 +23,7 @@ namespace Uniqlo.AdminPages
           
             using (SqlConnection conn = new SqlConnection(cs))
             {
-                string sql = @"SELECT TOP 5 p.Product_Name, COUNT(r.Review_ID) AS ReviewCount
+                string sql = @"SELECT TOP 3 p.Product_Name, COUNT(r.Review_ID) AS ReviewCount
                            FROM Review r
                            JOIN OrderList ol ON r.OrderList_ID = ol.OrderList_ID
                            JOIN Quantity q ON ol.Quantity_ID = q.Quantity_ID
