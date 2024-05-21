@@ -74,7 +74,7 @@ namespace Uniqlo.Pages
                             Color = ol.Quantity.Color,
                             Price = ol.Item_Price,
                             Qty = ol.Qty,
-                            Item_Price = ol.Qty * ol.Item_Price,
+                            Unit_Price = ol.Item_Price / ol.Qty,
                             Image_ID = ol.Quantity.Image_ID,
                             reviewBtn = db.Review.Any(r => r.OrderList_ID == ol.OrderList_ID),
                             OrderList_ID = ol.OrderList_ID,
