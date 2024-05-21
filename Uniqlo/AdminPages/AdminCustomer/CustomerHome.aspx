@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin.Master" AutoEventWireup="true" CodeBehind="CustomerHome.aspx.cs" Inherits="Uniqlo.AdminPages.AdminCustomer.CustomerHome" %>
+﻿    <%@ Page Title="" Language="C#" MasterPageFile="~/Admin.Master" AutoEventWireup="true" CodeBehind="CustomerHome.aspx.cs" Inherits="Uniqlo.AdminPages.AdminCustomer.CustomerHome" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="main" runat="server">
     <header>
         <style>
@@ -6,6 +6,7 @@
                 color: #6F6F6F;
                 text-decoration: none;
             }
+
             .no-customer-label {
                 color: red;
                 font-size: 16px;
