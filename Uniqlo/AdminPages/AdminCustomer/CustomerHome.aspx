@@ -91,7 +91,7 @@
                                         <div class="eclipse-list" id="dropdownList<%# Eval("Customer_ID") %>">
 
                                             <div>
-                                                <asp:HyperLink ID="updateCustomer" runat="server" NavigateUrl='<%# "UpdateCustomer.aspx?Customer_ID=" + Eval("Customer_ID") %>' Text="Update" CssClass="hyperlink"></asp:HyperLink>
+                                                <asp:HyperLink ID="updateCustomer" runat="server" NavigateUrl='<%# "UpdateCustomer.aspx?Customer_ID=" + Uniqlo.EncryptionHelper.Encrypt(Eval("Customer_ID").ToString()) %>' Text="Update" CssClass="hyperlink"></asp:HyperLink>
                                             </div>
                                             <div onclick="showDeleteModal(<%# Eval("Customer_ID") %>);">Delete</div>
                                         </div>
