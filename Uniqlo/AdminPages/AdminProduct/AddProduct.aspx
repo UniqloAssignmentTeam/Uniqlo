@@ -33,13 +33,13 @@
                 <div class="form-group">
                     <asp:Label ID="lblProductName" runat="server" Text="Product Name"></asp:Label>
                     <asp:TextBox ID="txtProductName" runat="server" MaxLength="45"></asp:TextBox>
-                    <asp:RequiredFieldValidator ID="rfvProductName" ControlToValidate="txtProductName" runat="server" ErrorMessage="Product name is required." CssClass="validation-error" Display="Dynamic"/>
+                    <asp:RequiredFieldValidator ID="rfvProductName" ControlToValidate="txtProductName" runat="server" ErrorMessage="Product name is required." CssClass="validation-error" Display="Dynamic" ValidationGroup="ProductInfo"/>
                 </div>
 
                 <div class="form-group">
                     <asp:Label ID="lblDescription" runat="server" Text="Description"></asp:Label>
                     <asp:TextBox ID="txtDescription" CssClass="form-field" TextMode="MultiLine" runat="server" Rows="4" Columns="50" MaxLength="250"></asp:TextBox>
-                    <asp:RequiredFieldValidator ID="rfvProductDescription" ControlToValidate="txtDescription" runat="server" ErrorMessage="Product description is required." CssClass="validation-error" Display="Dynamic"/>
+                    <asp:RequiredFieldValidator ID="rfvProductDescription" ControlToValidate="txtDescription" runat="server" ErrorMessage="Product description is required." CssClass="validation-error" Display="Dynamic" ValidationGroup="ProductInfo"/>
                 </div>
 
                 <div class="form-group">
@@ -47,8 +47,8 @@
                     <asp:TextBox ID="txtPrice" CssClass="form-field" runat="server"></asp:TextBox>  
                     <div>
                         <asp:RequiredFieldValidator ID="rfvPrice" ControlToValidate="txtPrice" runat="server" ErrorMessage="Price is required." CssClass="validation-error" Display="Dynamic"/>
-                        <asp:RegularExpressionValidator ID="revPrice" ControlToValidate="txtPrice" runat="server" ErrorMessage="Invalid price format." ValidationExpression="^\d+(\.\d{1,2})?$" CssClass="validation-error" Display="Dynamic"/>
-                        <asp:RangeValidator ID="rvPrice" ControlToValidate="txtPrice" runat="server" ErrorMessage="Price must be between RM0.01 and RM999.99." MinimumValue="0.01" CssClass="validation-error" MaximumValue="999.99" Type="Double" Display="Dynamic"/>
+                        <asp:RegularExpressionValidator ID="revPrice" ControlToValidate="txtPrice" runat="server" ErrorMessage="Invalid price format." ValidationExpression="^\d+(\.\d{1,2})?$" CssClass="validation-error" Display="Dynamic" ValidationGroup="ProductInfo"/>
+                        <asp:RangeValidator ID="rvPrice" ControlToValidate="txtPrice" runat="server" ErrorMessage="Price must be between RM0.01 and RM999.99." MinimumValue="0.01" CssClass="validation-error" MaximumValue="999.99" Type="Double" Display="Dynamic" ValidationGroup="ProductInfo"/>
                     </div>
                 </div>
 
@@ -61,7 +61,7 @@
                             <asp:ListItem Text="Bottoms" Value="Bottom"></asp:ListItem>
                         </asp:DropDownList>
                     </asp:Panel>
-                    <asp:RequiredFieldValidator ID="rfvCategory" ControlToValidate="ddlCategory" runat="server" InitialValue="" ErrorMessage="Please select a Category." CssClass="validation-error" Display="Dynamic"/>
+                    <asp:RequiredFieldValidator ID="rfvCategory" ControlToValidate="ddlCategory" runat="server" InitialValue="" ErrorMessage="Please select a Category." CssClass="validation-error" Display="Dynamic" ValidationGroup="ProductInfo"/>
                 </div>
 
                 <div class="form-group">
@@ -73,17 +73,17 @@
                             <asp:ListItem Text="Women" Value="W"></asp:ListItem>
                         </asp:DropDownList>
                     </asp:Panel>
-                    <asp:RequiredFieldValidator ID="rfvGender" ControlToValidate="ddlGender" runat="server" InitialValue="" ErrorMessage="Please select a Gender." CssClass="validation-error" Display="Dynamic"/>
+                    <asp:RequiredFieldValidator ID="rfvGender" ControlToValidate="ddlGender" runat="server" InitialValue="" ErrorMessage="Please select a Gender." CssClass="validation-error" Display="Dynamic" ValidationGroup="ProductInfo"/>
                 </div>
 
                 <div class="form-group">
                     <asp:Label ID="lblColor" runat="server" Text="Color"></asp:Label>
                     <asp:TextBox ID="newColorInput" runat="server"></asp:TextBox>
-                    <asp:RegularExpressionValidator ID="RegexValidatorNewColorInput" runat="server" ControlToValidate="newColorInput" ErrorMessage="Please enter only letters." ValidationExpression="^[a-zA-Z\s]*$" CssClass="validation-error" Display="Dynamic"></asp:RegularExpressionValidator>
+                    <asp:RegularExpressionValidator ID="RegexValidatorNewColorInput" runat="server" ControlToValidate="newColorInput" ErrorMessage="Please enter only letters." ValidationExpression="^[a-zA-Z\s]*$" CssClass="validation-error" Display="Dynamic" ValidationGroup="ProductColor"/>
                 </div>
                 <div style="display: flex;">
-                    <asp:Button ID="addColorButton" runat="server" Text="Add Color" CssClass="addColor-button" OnClientClick="return false;" ClientIDMode="Static" CausesValidation="false" />
-                    <asp:CustomValidator ID="cvHiddenFieldData" runat="server" ErrorMessage="Please add a color." ClientValidationFunction="validateHiddenFieldData" CssClass="validation-error" ValidateEmptyText="True" Display="Dynamic"></asp:CustomValidator>
+                    <asp:Button ID="addColorButton" runat="server" Text="Add Color" CssClass="addColor-button" OnClientClick="return false;" ClientIDMode="Static" CausesValidation="true" ValidationGroup="ProductColor"/>
+                    <asp:CustomValidator ID="cvHiddenFieldData" runat="server" ErrorMessage="Please add a color." ClientValidationFunction="validateHiddenFieldData" CssClass="validation-error" ValidateEmptyText="True" Display="Dynamic" ValidationGroup="ProductInfo"/>
                 </div>
             </div>
 
@@ -95,7 +95,7 @@
                     <asp:Button ID="cancelButton" runat="server" Text="Cancel" CssClass="cancel-button" CausesValidation="false" PostBackUrl="~/AdminPages/AdminProduct/ProductHome.aspx"/>
                 </div>
                 <div class="continue-div">
-                    <asp:Button ID="addButton" runat="server" Text="Add" CssClass="continue-button" OnClick="addButton_Click" CausesValidation="true"/>
+                    <asp:Button ID="addButton" runat="server" Text="Add" CssClass="continue-button" OnClick="addButton_Click" CausesValidation="true" ValidationGroup="ProductInfo"/>
                 </div>
             </div>
         </div>

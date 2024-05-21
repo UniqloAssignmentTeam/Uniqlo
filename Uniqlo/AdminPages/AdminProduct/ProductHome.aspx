@@ -215,6 +215,7 @@
     <footer>
         <script type="text/javascript">
 
+
             function showAlert(type, title, message) {
                 Swal.fire({
                     icon: type,
@@ -246,6 +247,7 @@
                 });
                 return false;
             }
+
 
 
 
