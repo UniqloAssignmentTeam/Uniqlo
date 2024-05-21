@@ -30,15 +30,15 @@
          ErrorMessage="Password must be at least 8 characters long including numbers, uppercase and lowercase letters."
          ValidationExpression="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,50}$" ForeColor="Red" Display="Dynamic"></asp:RegularExpressionValidator>
  </div>
-                <div class="form-group">
-                    <label for="staffName">Staff Name</label>
-                    <asp:TextBox ID="staffName" runat="server" MaxLength="50"></asp:TextBox>
-                    <asp:RegularExpressionValidator ID="RegexValidatorName" runat="server" ControlToValidate="staffName"
-                        ErrorMessage="Name must contain only letters and be 3-50 characters long and only characters."
-                        ValidationExpression="^[A-Za-z ]{3,50}$" ForeColor="Red" Display="Dynamic"></asp:RegularExpressionValidator>
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Please Enter a Name" ControlToValidate="staffName"
-                        ForeColor="Red" Display="Dynamic"></asp:RequiredFieldValidator>
-                </div>
+                 <div class="form-group">
+      <label for="staffName">Staff Name</label>
+      <asp:TextBox ID="staffName" runat="server" MaxLength="40"></asp:TextBox>
+      <asp:RegularExpressionValidator ID="RegexValidatorName" runat="server" ControlToValidate="staffName" 
+          ErrorMessage="Name must contain only letters." ValidationExpression="^[A-Za-z ]+$" ForeColor="Red" Display="Dynamic"></asp:RegularExpressionValidator>
+      <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Please Enter a Name" ControlToValidate="staffName" ForeColor="Red" Display="Dynamic"></asp:RequiredFieldValidator>
+  </div>
+
+
                 <div class="form-group">
                     <label for="productName">Gender</label>
                     <div class="dropdown-container" onclick="toggleDropdown('dropdownList', 'dropdownDisplay')">
@@ -69,6 +69,8 @@
                     <asp:TextBox ID="contactNumber" runat="server"></asp:TextBox>
                     <asp:RegularExpressionValidator ID="RegexValidatorPhone" runat="server" ControlToValidate="contactNumber"
                         ErrorMessage="Please enter a valid phone number." ValidationExpression="^\+?([0-9]{1,3})?([0-9]{10})$" ForeColor="Red" Display="Dynamic"></asp:RegularExpressionValidator>
+                   <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="contactNumber" InitialValue="" 
+ErrorMessage="Please enter contact number." ForeColor="Red" Display="Dynamic"></asp:RequiredFieldValidator>
                 </div>
             </div>
             <div class="button-container">

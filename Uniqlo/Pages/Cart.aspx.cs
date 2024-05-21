@@ -23,6 +23,20 @@ namespace Uniqlo.Pages
                 UpdateCartSummary(cartItems);
             }
         }
+        protected string ShowPrice(object originalPrice, object discountedPrice)
+        {
+            decimal original = Convert.ToDecimal(originalPrice);
+            decimal discounted = Convert.ToDecimal(discountedPrice);
+
+            if (original != discounted)
+            {
+                return string.Format("<p style='text-decoration: line-through; margin-right: 10px;'>RM {0:0.00}</p><p style='color: red;'>RM {1:0.00}</p>", original, discounted);
+            }
+            else
+            {
+                return string.Format("<p style='color: grey;'>RM {0:0.00}</p>", original);
+            }
+        }
 
         public List<CartItem> GetCartItems(List<CartItem> cartItems)
         {
@@ -125,15 +139,24 @@ namespace Uniqlo.Pages
             // Validate the current quantity value entered by the user
             if (int.TryParse(txtQuantity.Text, out int newQuantity))
             {
-                int availableQuantity = GetAvailableQuantity(quantityId);
                 if (newQuantity > 0 && newQuantity<999)
                 {
-                    // Update the quantity of the item in the cart
-                    UpdateItemQuantity(quantityId, newQuantity);
+                    // Check if the new quantity does not exceed available quantity
+                    int availableQuantity = GetAvailableQuantity(quantityId);
+                    if (newQuantity <= availableQuantity)
+                    {
+                        // Update the quantity of the item in the cart
+                        UpdateItemQuantity(quantityId, newQuantity);
 
-                    // Update the cart summary in real-time
-                    List<CartItem> cartItems = (List<CartItem>)Session["Cart"];
-                    UpdateCartSummary(cartItems);
+                        // Update the cart summary in real-time
+                        List<CartItem> cartItems = (List<CartItem>)Session["Cart"];
+                        UpdateCartSummary(cartItems);
+                    }
+                    else
+                    {
+                        // Display a SweetAlert indicating the quantity exceeds available stock
+                        ScriptManager.RegisterStartupScript(this, GetType(), "showalert", $"Swal.fire({{ title: 'Quantity Exceeds Stock', text: 'Only {availableQuantity} items available.', icon: 'error', confirmButtonText: 'OK' }});", true);
+                    }
                 }
                 else if(newQuantity <= 0 || newQuantity > 999)
                 {

@@ -17,7 +17,7 @@ namespace Uniqlo.AdminPages
                 { 
                     if ((bool)Session["Unauthorized"])
                     {
-                        //pop up You are not authorized to view this page
+                        
                     }
                 
                 }  

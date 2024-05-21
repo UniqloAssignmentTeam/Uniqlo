@@ -71,6 +71,8 @@
                     <asp:TextBox ID="contactNumber" runat="server"></asp:TextBox>
                     <asp:RegularExpressionValidator ID="RegexValidatorPhone" runat="server" ControlToValidate="contactNumber" 
                         ErrorMessage="Please enter a valid phone number." ValidationExpression="^\+?([0-9]{1,3})?([0-9]{10})$" ForeColor="Red" Display="Dynamic"></asp:RegularExpressionValidator>
+                       <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="contactNumber" InitialValue="" 
+       ErrorMessage="Please enter contact number." ForeColor="Red" Display="Dynamic"></asp:RequiredFieldValidator>
                 </div>
             </div>
 
