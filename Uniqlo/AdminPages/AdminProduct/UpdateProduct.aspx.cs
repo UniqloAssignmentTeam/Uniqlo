@@ -199,11 +199,6 @@ namespace Uniqlo.AdminPages
                 string jsonData = HiddenFieldData.Value;
                 List<ColorSize> colorSizes = JsonConvert.DeserializeObject<List<ColorSize>>(jsonData);
 
-                if (IsDuplicateProductName(productName))
-                {
-                    ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "Swal.fire({ title: 'Error', text: 'The product is already existed.', icon: 'error', confirmButtonText: 'OK' });", true);
-                    return;
-                }
 
                 try
                 {
@@ -294,17 +289,7 @@ namespace Uniqlo.AdminPages
             }
         }
 
-        private bool IsDuplicateProductName(string productName)
-        {
-            using (var db = new ProductDbContext())
-            {
-                var isDuplicate = db.Product
-                    .Include(p => p.Category)
-                    .Any(p => p.Product_Name == productName && !p.IsDeleted);
 
-                return isDuplicate;
-            }
-        }
 
 
 
